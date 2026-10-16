@@ -14,8 +14,7 @@
 <span class="tok-co">#     (`sic/secus`), and bitwise (`∧ ∨ ⊻ ⇐ ⇒`)</span>
 <span class="tok-co">#   • Assignment patterns — explicit assignment (`←`) and postfix increment</span>
 <span class="tok-co">#     (`↑ ↓` statements)</span>
-<span class="tok-co">#   • `let` sugar — compact inference syntax alongside explicit `const _`</span>
-<span class="tok-co">#     type inference</span>
+<span class="tok-co">#   • `let` — inferred write-once locals alongside explicitly typed ones</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • confusing `≡` (equality comparison) with `=` (structural field init) or `←` (assignment) — each operator has a distinct role</span>
@@ -32,8 +31,7 @@
 <span class="tok-co"># GRAMMAR:</span>
 <span class="tok-co">#   binaryExpr :← expr (arithOp | cmpOp | logicOp | bitwiseOp) expr</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># Inferred result locals below mix const _ (explicit infer marker) with let</span>
-<span class="tok-co"># (compact sugar) so both spellings stay visible in one tour.</span>
+<span class="tok-co"># Inferred result locals below use let; typed locals state their type.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   binarius.expected</span>

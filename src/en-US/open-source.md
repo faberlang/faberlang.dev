@@ -35,8 +35,9 @@ WebAssembly, the GPU kernel targets and the historical and novelty targets. The
 [target table](/toolchain/compiling.html#target-table) says which is which and
 how mature each one is.
 
-A native backend built on Cranelift is in progress, so that a build from the
-public source alone produces executables. Until it lands, the public source
+The official `faber` already carries a preview native backend built on
+Cranelift (`-t clif`, a fail-closed subset). It is not in the public source yet,
+so the public source
 builds `faber check`, `faber run`, `faber test`, `faber format` and
 `faber convert`, and emits C.
 
@@ -45,7 +46,7 @@ builds `faber check`, `faber run`, `faber test`, `faber format` and
 Everything below lives under the [faberlang](https://github.com/faberlang)
 organisation.
 
-<!-- TODO(cut): verify this list at the cut. faber-1.x exists only after the rename step; norma, cista, hosts and releases are archived by a later step, after the cut. -->
+<!-- TODO(cut): after the rename step, confirm faber-1.x exists (gh repo view faberlang/faber-1.x), then delete this comment. The rest of the list was checked against `gh repo list faberlang` on 2026-10-15. -->
 
 | Repository | Description |
 |---|---|

@@ -22,7 +22,7 @@ for <mode> <expression> <binding> <block>
 ## Grammar
 
 ```
-forInStmt  :← 'itera' 'ex' callExpr 'fixum' ident block
+forInStmt  :← 'itera' 'ex' callExpr 'sit' ident block
 cursorDecl :← funcDecl 'fiunt' | funcDecl 'fient'
 ```
 

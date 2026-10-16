@@ -13,16 +13,16 @@ mut <type|_> <pattern> [← <expression>]
 ## What this teaches
 
 - Mutable bindings — `mut` for values that can be reassigned after declaration
-- Immutable bindings — `const` and `let` for values that cannot be reassigned
+- Write-once bindings — `let` for values that cannot be reassigned
 
 ## Common mistakes
 
-- declaring mut when the binding is never reassigned — use const instead (WARN013)
+- declaring mut when the binding is never reassigned — use let instead (WARN013)
 
 ## Grammar
 
 ```
-bindingStmt :← ('varia' | 'fixum') type? ident '←' expr
+bindingStmt :← ('varia' | 'sit') type? ident '←' expr
 ```
 
 ## Expected output
@@ -46,12 +46,12 @@ main {
     computus ← computus + 10
     print computus
 
-    # --- Immutable bindings: const _ and let ---
+    # --- Write-once bindings: let ---
 
     let salutatio ← "Salve, Mundus!"
     print salutatio
 
-    # let compresses repeated const _ when chaining inferred locals
+    # let infers the type of each local
     let x ← 10
     let y ← 20
     let sum ← x + y

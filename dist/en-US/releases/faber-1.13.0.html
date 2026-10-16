@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Pinned download for Faber 1.13.0. For the current release, use [Start](/start/) instead."><meta name="theme-color" content="#e8e5db" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Faber 1.13.0 — Faber"><meta property="og:description" content="Pinned download for Faber 1.13.0. For the current release, use [Start](/start/) instead."><meta property="og:url" content="https://faberlang.dev/en-US/releases/faber-1.13.0.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23ff5a2c'/%3E%3Cpath%20d='M46%2032H19M31%2019L18%2032L31%2045'%20fill='none'%20stroke='%230a0c0f'%20stroke-width='6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/releases/faber-1.13.0.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Faber 1.13.0 — Faber</title><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-instrument.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">←</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword..." aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/install.md">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">←</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/en-US/start/">Start here</a></li><li><a href="/en-US/releases/" class="active">Releases</a></li></ul><div class="side-h">The Language</div><ul class="nav"><li><a href="/en-US/language/overview.html">Overview</a></li><li><details class="nav-branch"><summary>Behavior</summary><ul><li><a href="/en-US/language/behavior/type-first.html">Types before names</a></li><li><a href="/en-US/language/behavior/glyph-law.html">The glyph law</a></li><li><a href="/en-US/language/behavior/numeric-widths.html">Math in the ether</a></li><li><a href="/en-US/language/behavior/sealed-locales.html">Sealed reader locales</a></li><li><a href="/en-US/language/behavior/packages.html">A program is a package</a></li><li><a href="/en-US/language/behavior/errors-and-tests.html">Errors as values, tests as declarations</a></li></ul></details></li><li><details class="nav-branch"><summary>Grammar</summary><ul><li><a href="/en-US/reference/grammar.html">Grammar overview</a></li><li><a href="/en-US/reference/grammar/program.html">Programs, regions &amp; imports</a></li><li><a href="/en-US/reference/grammar/declarations.html">Declarations &amp; bindings</a></li><li><a href="/en-US/reference/grammar/annotations.html">Annotations &amp; directives</a></li><li><a href="/en-US/reference/grammar/types.html">Types &amp; contracts</a></li><li><a href="/en-US/reference/grammar/statements.html">Statements &amp; control flow</a></li><li><a href="/en-US/reference/grammar/expressions.html">Expressions &amp; operators</a></li><li><a href="/en-US/reference/grammar/patterns.html">Patterns &amp; destructuring</a></li><li><a href="/en-US/reference/grammar/errors.html">Error channel</a></li><li><a href="/en-US/reference/grammar/lexical.html">Lexical structure &amp; glyphs</a></li></ul></details></li><li><a href="/en-US/corpus/az.html">Terms A–Z</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">Targets</div><ul class="nav"><li><a href="/en-US/targets/">All targets</a></li><li><details class="nav-branch"><summary>Application · HIR</summary><ul><li><a href="/en-US/targets/rust.html">Rust</a></li><li><a href="/en-US/targets/ts.html">TypeScript</a></li><li><a href="/en-US/targets/go.html">Go</a></li><li><a href="/en-US/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>Systems · MIR</summary><ul><li><a href="/en-US/targets/llvm-text.html">LLVM IR</a></li><li><a href="/en-US/targets/wasm-text.html">WebAssembly text</a></li></ul></details></li><li><details class="nav-branch"><summary>Device · GPU</summary><ul><li><a href="/en-US/targets/metal-text.html">Metal</a></li><li><a href="/en-US/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li></ul><div class="side-h">Reader locales</div><ul class="nav"><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/locales/keywords.html">Keyword reference</a></li><li><a href="/en-US/language/locales/examples.html">Locale examples</a></li><li><a href="/en-US/language/locales/diagnostics.html">Diagnostics by locale</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/tela.html">Tela — views</a></li><li><a href="/en-US/libraries/inferentia.html">Inferentia — inference</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul></aside><main id="main-content"><h1>Faber 1.13.0</h1><div class="content"><div class="table-scroll"><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td><strong>Product</strong></td><td>Faber</td></tr><tr><td><strong>Version</strong></td><td>1.13.0</td></tr><tr><td><strong>Tag</strong></td><td><code>faber-v1.13.0</code></td></tr><tr><td><strong>GitHub</strong></td><td><a href="https://github.com/faberlang/releases/releases/tag/faber-v1.13.0">faber-v1.13.0</a></td></tr><tr><td><strong>Published</strong></td><td>2026-10-12</td></tr><tr><td><strong>License</strong></td><td>MIT</td></tr></tbody></table></div><h2 id="install">Install this version<a class="anchor" href="#install">#</a></h2><p>Pinned download for <strong>Faber 1.13.0</strong>. For the current release, use <a href="/en-US/start/">Start</a> instead.</p><div class="table-scroll"><table><thead><tr><th>Platform</th><th>Archive</th><th>Size</th><th>Checksum</th></tr></thead><tbody><tr><td><strong>macOS arm64</strong></td><td><a href="https://github.com/faberlang/releases/releases/download/faber-v1.13.0/faber-v1.13.0-aarch64-apple-darwin.tar.gz">faber-v1.13.0-aarch64-apple-darwin.tar.gz</a></td><td>15.7 MB</td><td><a href="https://github.com/faberlang/releases/releases/download/faber-v1.13.0/faber-v1.13.0-aarch64-apple-darwin.tar.gz.sha256">sha256</a></td></tr><tr><td><strong>Linux x64</strong></td><td><a href="https://github.com/faberlang/releases/releases/download/faber-v1.13.0/faber-v1.13.0-x86_64-unknown-linux-gnu.tar.gz">faber-v1.13.0-x86_64-unknown-linux-gnu.tar.gz</a></td><td>17.6 MB</td><td><a href="https://github.com/faberlang/releases/releases/download/faber-v1.13.0/faber-v1.13.0-x86_64-unknown-linux-gnu.tar.gz.sha256">sha256</a></td></tr></tbody></table></div><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">curl</span> <span class="tok-op">-fsSL</span> <span class="tok-op">-o</span> faber.tgz \
+<span class="tok-fn">  https</span>://github.com/faberlang/releases/releases/download/faber-v1.13.0/faber-v1.13.0-aarch64-apple-darwin.tar.gz
+<span class="tok-fn">tar</span> <span class="tok-op">-xzf</span> faber.tgz
+<span class="tok-co"># The archive ships bin/ and share/; keep them together so the</span>
+<span class="tok-co"># reader packs resolve beside the binary.</span>
+<span class="tok-fn">sudo</span> mv bin/faber /usr/local/bin/faber
+<span class="tok-fn">sudo</span> mv share/faber /usr/local/share/faber
+<span class="tok-fn">faber</span> <span class="tok-op">--version</span></code></pre><h2 id="notes">Release notes<a class="anchor" href="#notes">#</a></h2><blockquote><p><strong>Status</strong>: final — tagged <code>faber/v1.13.0</code> on 2026-10-12</p></blockquote><p>Faber 1.13 turns the device route on: <code>faber run</code> can now execute <code>@ kernel</code>
+functions on the CPU and on Metal, with loops, reductions, run-time shapes and
+fault delivery, all in-process. Printed output finally follows the file's
+locale — an English program prints <code>true</code> / <code>false</code> / <code>none</code>, a Latin one
+<code>true</code> / <code>false</code> / <code>none</code>, on every backend. The raw-bits surface is
+settled (<code>b8</code> <code>b16</code> <code>b32</code> <code>b64</code>, bytes as <code>list&lt;b8&gt;</code>), every type gains a
+written zero (<code>Type {}</code>), <code>match</code> matches several subjects at once, and
+reduction expressions lower across the main targets. The binary becomes
+self-contained: the standard library and the explain reference are embedded,
+and the separate host component is folded away. Several of these are breaking
+changes; read that section before you upgrade.</p><p>This is a consolidation release: its purpose is to capture the large body of
+language change that landed since 1.12 in one verifiable drop. It is good for
+writing, checking, formatting and interpreting Faber. It is not yet good for
+building real programs — compiled programs cannot yet touch the outside
+world, there is no way to install a library beyond the built-in standard
+library, and the standard library still has holes. Those limits are listed in
+detail under Known issues; none of them gate this release.</p><h3 id="language">Language<a class="anchor" href="#language">#</a></h3><p><strong>Output follows the file's locale.</strong> The words a program prints — boolean
+<code>true</code> / <code>false</code> (Latin <code>true</code> / <code>false</code>), the null value <code>none</code> (<code>none</code>),
+and the tuple head <code>tuple</code> (<code>tuple</code>) — come from the locale pack of the file
+that defines them, on every backend: the runner, Rust, Go, TypeScript, Swift,
+Python, WebAssembly, LLVM and the S-expression target. A generic function
+prints with the tokens of the unit that defines the template, not the caller.
+Haskell keeps its native <code>True</code> / <code>False</code> / <code>Nothing</code>. Expected-output files
+for corpus programs are written in the source's own locale. This closes the
+1.12 defect where every locale printed the Latin words.</p><p><strong>Raw bits and bytes.</strong> The bit-pattern markers <code>b8</code>, <code>b16</code>, <code>b32</code> and <code>b64</code>
+are the raw-bits domain: a <code>bN</code> is exactly N bits, always. <code>∧ ∨ ⊻ ¬ ⇐ ⇒</code>
+act at the type's width every time — a left shift drops bits off the top, a
+right shift fills with zeros, a shift by N or more gives all zeros, <code class="glyph">¬</code> flips
+exactly N bits. A <code>bN</code> compares and orders by its unsigned bit pattern and
+does no arithmetic. Conversions are explicit <code class="glyph">↦</code>: same-width <code>bN</code> to <code>iN</code> is
+two's complement, <code>bN</code> to <code>f16</code> / <code>bf16</code> / <code>f32</code> / <code>f64</code> reinterprets the bit
+pattern (both ways), and a byte list and a wider-element list convert through
+each other with <code>via Le</code> or <code>via Be</code> for little- or big-endian packing. The old escape hatches are gone: `via
+Bits<code> no longer converts through a bits view, the words </code>byte<code class="glyph"> / </code>bytes` are
+retired (<code>list&lt;b8&gt;</code> is the byte list), and <code class="glyph">≠</code> is retired in favour of <code class="glyph">≢</code>
+as the negation of <code class="glyph">≡</code>. A bit-type value or a list window that a target has
+no carrier for is refused by name at emit time, not approximated.</p><p><strong>The zero of a type is written `Type {}`.</strong> <code>tensor&lt;T, [shape]&gt; {}</code>,
+<code>vector&lt;T, N&gt; {}</code>, <code>matrix&lt;T, [r, c]&gt; {}</code> and the short sugar <code>tf32[2, 2] {}</code>
+build the typed zero: every part takes its default, including a tensor of
+vectors and size-parameter extents. The bare form (<code>← tf32[2, 2]</code>) is
+retired, as is <code>Type []</code>; a call-form constructor is refused at parse time.
+The inferred constructor <code class="glyph">_ {}</code> builds the typed zero where the type comes
+from context. <code>empty</code> (Latin <code>empty</code>) is the default empty instance of the
+declared type: at a dense tensor, vector or matrix slot it <em>is</em> the typed
+zero. <code>empty</code> claims zero-or-more types only — a text, character, byte,
+regex or tuple slot refuses it by name. The English reader spells the marker
+<code>empty</code> now; the earlier English spelling <code>empty</code> is gone.</p><p><strong>Multi-subject `match`.</strong> <code>match a and b</code> matches several subjects at
+once, with one pattern per arm over all subjects. The match is over closed
+sets: every arm's pattern is checked for exhaustiveness against the subjects'
+constructors, width and length-shape patterns are rejected, and a match over
+a value-type subject is refused by name with a hint to switch forms. It
+lowers on the MIR runner as a tag-probe chain and emits on Go and TypeScript
+as a column-probe chain and on Swift as a tuple pattern per arm.</p><p><strong>Reduction expressions.</strong> The <code>reduce</code> reduction family is in the language
+and lowered on the runner, Rust, Go and TypeScript: plain reductions fold to
+a flat walk, grouped reductions (with <code>per</code>) and the argument-extrema forms
+(<code>argmax</code> / <code>argmin</code>) lower, an optional reduction is a native option
+value, and a reduction body with statements runs in a value closure. The
+<code>for</code> statement accepts a <code>thread</code> clause, so a loop can carry a thread
+argument through its body. A failable read inside a kernel's lane body may
+take an inline default.</p><p><strong>Conversion rounding is explicit.</strong> A conversion from a float or a decimal
+to an integer, <code>inf</code> or a policy-word cell now names its rounding:
+<code>via Floor</code>, <code>via Ceil</code>, <code>via HalfEven</code> or <code>via Trunc</code> (half-even is the
+default everywhere else). A bare float-to-integer conversion is rejected by
+name; write the hint. Convert-assign accepts the hint too (`a ↤ x via Trunc
+⊥ 0`), keeping the failable error path. The runner, the S-expression,
+WebAssembly and the Rust, TypeScript, Go, Swift and Python emitters honour
+the four modes.</p><p><strong>Checked tensor access.</strong> The method forms <code>accipe</code> (get) and <code>ponde</code> (set)
+are the failable tensor reads and writes: out-of-range fails through the
+ordinary error channel, on the runner, on generated Rust, TypeScript and Go,
+and on the device route inside kernels. The bracket forms stay plain <code>T</code> and
+trap on a bad index, and a literal index provably out of bounds stays a
+compile error. A checked store is failable unless its index is proven in
+range.</p><p><strong>Aggregates: arithmetic, aliases and ownership.</strong> Arithmetic over lists,
+queues and stacks follows one rule set: <code class="glyph">⊙</code> and <code class="glyph">⊘</code> (and <code class="glyph">÷</code>, <code class="glyph">%</code> and unary
+minus where they apply) operate element-wise over two aggregates, and the
+bounded-list length defects are fixed. An alias of an unmarked list, map,
+object, queue or contract parameter is read-only, exactly like the parameter
+itself, and the bind-alias rule is flow-aware: an unconditional re-bind of
+the source detaches its stale aliases. Conversely, <code>own</code> and <code>copy</code> parameters are
+writable by the callee — field stores, element stores, reassignment and
+mutating methods all work on them — and mutation of a read-only binding is
+counted by a warning. A device launch whose written binding overlaps another
+binding is refused up front (the noalias contract).</p><p><strong>Smaller settled rules.</strong></p><ul><li>The right-hand side of <code>is</code> is always a type; the null words split from
+the null type. A bare <code>none</code> value is a named parse error that names the
+locale's word (<code>null</code> in English, <code>null</code> in Latin); <code>none</code> survives only
+as the Latin null type and in <code>case none</code> patterns.</li><li>An optional stored into a plain cell — at an argument, return, field
+initializer, throw, yield, element or tuple store — is rejected by name;
+unwrap or convert first.</li><li>Flow narrowing works through <code>and</code>, <code>or</code> and <code>not</code> conditions, and a
+diverging or-guard ends the path.</li><li>The keyed list method <code>.sorted(key)</code> (Latin <code>.ordinata(key)</code>) is retired in
+favour of the sort expression; the standard library's <code>ordered_map</code> module
+is renamed <code>sorted_map</code> (the Latin word is unchanged).</li><li>A text index <code>s[i]</code> yields the Unicode character everywhere, including
+generated Rust; the optional text read <code>get</code> / <code>accipe</code> returns the
+character or <code>none</code> past the end on Rust, Go, TypeScript and Swift.</li><li>The mean of an empty tensor is NaN (sum over count) on every runtime; the
+grammar records the sentence.</li><li>Trailing commas in array element lists are a parse error.</li><li>JSON parsing reads integer tokens of any length into the unbounded integer
+type; JSON documents parse and serialize in pure Faber, including
+object-rooted documents.</li><li><code>cumulate</code> folds into a fresh accumulator (the caller's value is no longer
+overwritten); <code>int ↦ f32</code> rounds once on Python; a map holding an enum or
+variant value prints like the runner on the S-expression target; list and
+map values convert to and from the dynamic <code>value</code> element-wise on Rust,
+and the LLVM conversion no longer fails.</li></ul><h3 id="tooling">Tooling<a class="anchor" href="#tooling">#</a></h3><p><strong>A self-contained binary.</strong> The standard library (Norma) is embedded in the
+<code>faber</code> binary the way the runtime sources already were, and the explain
+reference is embedded too. The library home no longer probes a build
+checkout: an installed <code>faber</code> resolves the standard library with no
+environment variables set, and the release smoke proves it. The native host
+surface — file, network, HTTP, console — lives in this repository now; the
+release manifest pins this repository alone, with no separate host component.</p><p><strong>`faber corpus`.</strong> A new product command verifies target code end to end.
+It runs a named suite of exemplar cases through one target per invocation
+(<code>--target rust</code>, <code>--target runner</code>, …), where each case pins its expected
+outcome — pass, expected-fail, or not applicable — in a checked-in
+expectation file. The command validates what each target can judge, bounds
+every child process, and never hides a pass behind a skipped phase; a failing
+case is either a regression or a stale expectation. Suites cover the exempla
+corpus, the product packages and the GPU rungs.</p><p><strong>`faber format`.</strong> Formatting policy is configurable: a <code>[format]</code> section
+in the package manifest sets the policy (and the CLI value wins over the
+manifest, which wins over the built-in default <code>normalise-v1</code>; the
+<code>pretty-v1</code> style is admitted with a rebaselined corpus). The steady-state
+flags are <code>--write</code> (in place), <code>--stdin</code> / <code>--stdout</code> (one document through
+the pipe; <code>--stdout</code> takes exactly one input file), and <code>--policy &lt;slug&gt;</code>
+(unknown slugs fail clearly). <code>--canonical</code> is gone — <code>--locale</code> is the only
+re-emit selector — and asking for both a policy and a locale re-emission is
+rejected explicitly rather than silently switching modes.</p><p><strong>Installer lifecycle.</strong> The bootstrap installer is verified end to end.
+<code>faber self update</code> fetches the installer base, <code>faber self repair</code> runs a
+typed repair policy, <code>faber self uninstall</code> removes only what the product
+owns, and a downgrade to an incompatible pack fails closed instead of
+mixing. Reinstall is idempotent. An HTTPS-to-HTTP redirect on installer or
+HTTP fetch is refused.</p><p><strong>Locale flags.</strong> <code>--locale</code> (formerly <code>--reader-locale</code>) selects the source
+locale, and the new <code>--diagnostics-locale</code> selects the language of
+diagnostics independently of it. Diagnostics carry the locale id and issue
+name, and parse errors print the locale pack's own keyword spelling.</p><p><strong>Generated code.</strong> Generated output prints the display tokens of the module
+it was compiled from, so English source prints <code>true</code> / <code>false</code> / <code>none</code> on
+every target. Every failable function in generated Swift is a <code>throws</code>
+function (the result-wrapper path is gone), so regenerate Swift output. Go
+carries a class as a pointer with a zero value and <code>&amp;T{}</code> constructors,
+removing the interface-pointer workarounds. Unreachable markers and expect
+calls are gone from the TypeScript, Go, Swift, Python and WebAssembly
+emitters. A new default-off novelty target joins the experimental set: Odin
+(<code>faber emit -t odin</code>), a fail-closed scalar-and-print subset behind the
+<code>hir-odin</code> feature, listed by <code>faber targets</code> as unavailable on a default
+build.</p><h3 id="gpu">GPU<a class="anchor" href="#gpu">#</a></h3><p><code>faber run --device …</code> executes device code for real.</p><ul><li><code>--device cpu</code> runs <code>@ kernel</code> functions on the MIR runner in host form —
+device programs are testable without a GPU.</li><li><code>--device metal</code> runs them on Metal through an in-process device session;
+the child-process route is retired. The device route serves <code>--stats</code>,
+program arguments and every input kind, and its output matches the CPU
+route.</li><li><code>--device auto</code> prepares the package once and reuses the lowered unit.</li><li><code>faber test --device cpu</code> runs a package's kernel rows in host form; the
+<code>auto</code>, <code>metal</code> and <code>cuda</code> selections refuse with a clear exit for now.
+Run and test share one device-selection precedence.</li></ul><p>Kernel launches support lane-form bodies with loops, <code>break</code>, <code>continue</code> and
+early return; run-time extents flow through the dispatcher, so a kernel can
+take N-dimensional tensor indices and shapes decided at launch; a class
+parameter rides along as a packed parameter block read on the GPU; and
+vector-element tensors (width 2 and 4) upload and read back. Whole-grid
+reductions run on the device, and matmul accepts run-time dimensions on
+Metal, verified against the CPU oracle across the tiled, one-row, gemv and
+simdgroup shapes. Every buffer binding is 16-byte aligned and refused before
+encoding if it is not.</p><p>Faults are part of the contract: a kernel declaring an error channel can
+throw a constant text, an unproven index guards with an unsigned compare and
+a lowest-lane-wins fault word, and the fault is delivered to the enclosing
+<code>do all</code> or plain <code>do</code> on the real Metal route. <code>do all … while</code> is
+legal grammar, and a host read after a faulting launch delivers the fault
+before the read completes.</p><h3 id="breaking-changes">Breaking changes<a class="anchor" href="#breaking-changes">#</a></h3><ol><li><strong>`≠` is retired.</strong> Write <code class="glyph">≢</code> for the negation of <code class="glyph">≡</code>; <code class="glyph">≠</code> draws the
+named parse error that names its replacement.</li><li><strong>`via Bits` is retired.</strong> Convert through the bit markers: <code>x ↦ b32</code>,
+<code>u16 ↦ b16 ↦ f16</code>, and the <code>bN</code> conversion table above.</li><li><strong>`byte` / `bytes` are retired.</strong> Bytes are <code>list&lt;b8&gt;</code>; the byte literal
+and byte insertion produce a <code>list&lt;b8&gt;</code> everywhere.</li><li><strong>A bare float-to-integer conversion is rejected.</strong> Name the rounding:
+<code>via Floor</code>, <code>via Ceil</code>, <code>via HalfEven</code> or <code>via Trunc</code> (the error names
+them).</li><li><strong>The typed zero is `Type {}`.</strong> Rewrite the bare form <code>← tf32[2, 2]</code> as
+<code>tf32[2, 2] {}</code>; <code>Type []</code> and call-form constructors are refused.</li><li><strong>A bare `none` value is retired.</strong> Write <code>null</code> (Latin <code>null</code>); the
+parse error names the locale's word.</li><li><strong>English `empty` is retired.</strong> The English empty-instance marker is
+<code>empty</code>; Latin keeps <code>empty</code>.</li><li><strong>`.sorted(key)` is retired</strong> in favour of the sort expression, and the
+<code>ordered_map</code> module is renamed <code>sorted_map</code>.</li><li><strong>CLI renames.</strong> <code>--reader-locale</code> is <code>--locale</code>; diagnostics move to the
+new <code>--diagnostics-locale</code>; <code>faber format --canonical</code> is gone (<code>--locale</code>
+is the only re-emit selector).</li><li><strong>The file-copy verbs in the native host surface are renamed</strong>: <code>copy</code> /
+<code>copy_async</code> are <code>exscribe</code> / <code>exscribet</code>.</li><li><strong>Regenerate generated code.</strong> Swift output from 1.12 does not match the
+new <code>throws</code> emission, and Go class output changed shape. Older output
+and this release's runtimes do not mix.</li><li><strong>Trailing commas in array element lists are a parse error.</strong></li></ol><h3 id="known-issues">Known issues<a class="anchor" href="#known-issues">#</a></h3><p>The three limits below shape what 1.13 is for. It is for people who want to
+read, write and check the language as it now stands, and run scripts through
+the interpreter. Anyone who wants to ship a compiled program that reads a
+file, or use the graphics, autograd or UI libraries, should wait for the
+releases that close those limits.</p><ul><li><strong>A built program cannot touch the outside world.</strong> <code>faber build --target
+rust</code> works for pure code — math, text, print. The moment a program uses
+the file-system, console, process or random modules, the build stops with
+<code>PKG001 package_host_selection_required</code>, and <code>host = &quot;native&quot;</code> answers
+<code>host_provider_unsupported</code>: the native host provider was retired on
+purpose and its replacement has not landed. Interpreted runs keep script
+I/O — <code>faber run</code> covers file read and write, console, the current
+directory, environment variables and random.</li><li><strong>There is no way to add a library.</strong> The graphics, autograd and UI
+libraries cannot be installed; <code>faber doctor</code> reports all three
+not-found. Only the built-in standard library ships with the binary, and
+the package manager is not released yet, so there is no install command.</li><li><strong>The standard library has holes.</strong> <code>time.now()</code> fails under <code>faber run</code>;
+there is no working HTTP route and no WebSocket surface; and roughly
+seventy standard-library lines are marked deferred — functions that exist
+by name and fail when called, with text, encoding, toml and net among
+them.</li><li><strong>Some shipped exemplars are stale.</strong> One imports <code>norma:solum</code>, a module
+name that no longer exists; three exemplar packages fail <code>faber check</code>,
+and that failure reports a line far beyond the end of the file, so the
+diagnostic points at the wrong place.</li></ul><p>Beyond those limits:</p><ul><li><strong>The largest device acceptance case cannot meet its bound as written.</strong>
+The full-grid flood simulation (roughly 1,227 by 1,132 cells) completes on
+Metal, but its f32 depth field differs from the reference by more than the
+0.01 m bound allows — the bound presumes arithmetic bit-identical to the
+donor program, and a one-ulp change of one input cell moves the field by
+metres between runs. The reduced-grid oracle passes on Metal within the
+bound.</li><li><strong>A throwing kernel can throw only a constant text</strong>, and kernel-to-kernel
+inlining of a throwing kernel is not implemented.</li><li><strong>Regex engine gaps by target</strong> (carried from 1.12): Go has no Unicode
+<code>\b</code>; TypeScript clears repeated-group captures per iteration; Swift and
+Python differ from the dialect on named constructs; the backtracking
+engines (TypeScript, Python, Swift) can take exponential time on hostile
+patterns; Racket and Haskell name every regex construct unsupported.</li><li><strong>Range containment `∈ a‥b` still has no MIR lowering</strong>; it emits on the
+HIR targets only.</li><li><strong>Rust corpus builds.</strong> One corpus program still fails to build on Rust (it
+stores an awaited promise at a <code class="glyph">←</code> binding); it is recorded as an expected
+failure. The half-width float cells (f16, bf16 and their policy words)
+build again on Rust; bare <code>f16</code> / <code>bf16</code> ride an f32 carrier.</li><li><strong>Print and templates</strong> (carried): the comma form <code>print a, b</code> still lays
+out differently on the MIR text targets than elsewhere; LLVM still lacks
+template rows for some sized integers and composites; Haskell still rejects
+string templates. Prefer a template, <code>print &quot;§ §&quot;(a, b)</code>.</li><li><strong>`faber convert` still does not resolve imports</strong>; a file importing a
+library type fails with the resolution error.</li><li><strong>Checker residuals</strong> (carried): narrowing an inferred error result with
+<code>is</code> and <code class="glyph">✓ ✗</code> is still accepted by the checker and rejected only at MIR
+validation; WebAssembly still types one conversion local as <code>f64</code>; the Go,
+Python and Swift generic-enum and generic-map gaps remain.</li><li><strong>Device-row test debt.</strong> A sizable slice of the kernel test rows for the
+autograd library fails under <code>faber test --device cpu</code> on empty-initialised
+tensors — a library-side initialization issue, not a launch refusal.</li><li><strong>Experimental targets differ from `faber run` where their arithmetic does</strong> (carried): COBOL checks only stored values, Pascal traps per
+operation, BASIC floats are the C64's. Each target rejects the cases it
+cannot match by name.</li><li><strong>Sibling-library gates.</strong> No gate in this repository runs the autograd or
+UI libraries' suites; the optional graphics provider package checks and the
+environment-gated device checks remain skipped (carried from 1.10).</li></ul><h3 id="not-in-this-release">Not in this release<a class="anchor" href="#not-in-this-release">#</a></h3><ul><li>Character ranges as set bounds (<code>x ∈ '0'…'9'</code>) are still not supported;
+interval bounds are numbers, and text membership stays <code>.contains</code>.</li><li>The slash regex literal and per-group spans are not shipped; read group
+spans with <code>start()</code> and <code>group(n)</code>.</li><li>The collection-ergonomics rewrite, set-algebra glyphs and superscript
+powers remain planned.</li><li>Removal of the comma <code>print</code> form is still decided in direction only.</li><li><code>externa</code> typing and conditional-compilation enforcement stay held; there
+is no LSP.</li><li>Translated reader packs keep their own spelling for the null type until
+the word is chosen.</li><li>Public publication of the Go runtime module and <code>@faber/runtime</code> waits for
+the Faber 2 migration; they are consumed by path here.</li><li>The CUDA backend exists behind hardware-gated checks; no CUDA route is
+enabled for <code>faber run</code>.</li><li>The Lean leaf is not a discoverable target or package backend.</li><li>Radix stays at 0.84.0 (no separate Radix release); Cista is unchanged and
+not part of this release.</li></ul><p>---</p><p><a href="/en-US/releases/">All releases</a> · <a href="/en-US/start/">Start</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#install">Install this version</a></li><li class="toc-2"><a href="#notes">Release notes</a></li><li class="toc-3"><a href="#language">Language</a></li><li class="toc-3"><a href="#tooling">Tooling</a></li><li class="toc-3"><a href="#gpu">GPU</a></li><li class="toc-3"><a href="#breaking-changes">Breaking changes</a></li><li class="toc-3"><a href="#known-issues">Known issues</a></li><li class="toc-3"><a href="#not-in-this-release">Not in this release</a></li></ul></div></nav><footer><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

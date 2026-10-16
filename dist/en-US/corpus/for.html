@@ -17,10 +17,10 @@
 
 <span class="tok-co"># for from — cursor function return iteration</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># for from &lt;cursor-call&gt; const &lt;item&gt; { &lt;body&gt; }</span>
+<span class="tok-co"># for from &lt;cursor-call&gt; let &lt;item&gt; { &lt;body&gt; }</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
-<span class="tok-co">#   forInStmt  :← 'for' 'from' callExpr 'const' ident block</span>
+<span class="tok-co">#   forInStmt  :← 'for' 'from' callExpr 'let' ident block</span>
 <span class="tok-co">#   cursorDecl :← funcDecl 'generator' | funcDecl 'async_generator'</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
@@ -88,10 +88,10 @@ Async cursor iteration:
 
 <span class="tok-co"># for from — accumulator pattern inside fn</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># for from &lt;list&gt; const &lt;item&gt; { &lt;body&gt; }</span>
+<span class="tok-co"># for from &lt;list&gt; let &lt;item&gt; { &lt;body&gt; }</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
-<span class="tok-co">#   forInStmt :← 'for' 'from' expr 'const' ident block</span>
+<span class="tok-co">#   forInStmt :← 'for' 'from' expr 'let' ident block</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   Sums, max, and counts above a threshold for sample listas.</span>
@@ -162,11 +162,11 @@ main {
 
 <span class="tok-co"># for range — ranges with step using per</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># for range &lt;start&gt;‥&lt;end&gt; per &lt;step&gt; const &lt;item&gt; { &lt;body&gt; }</span>
-<span class="tok-co"># for range &lt;start&gt;…&lt;end&gt; per &lt;step&gt; const &lt;item&gt; { &lt;body&gt; }</span>
+<span class="tok-co"># for range &lt;start&gt;‥&lt;end&gt; per &lt;step&gt; let &lt;item&gt; { &lt;body&gt; }</span>
+<span class="tok-co"># for range &lt;start&gt;…&lt;end&gt; per &lt;step&gt; let &lt;item&gt; { &lt;body&gt; }</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
-<span class="tok-co">#   forRangeStmt :← 'for' 'range' rangeExpr 'per' expr ('const' | 'mut') ident block</span>
+<span class="tok-co">#   forRangeStmt :← 'for' 'range' rangeExpr 'per' expr ('let' | 'mut') ident block</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   intervallum-gradus.expected — positive-step, inclusive, and descending</span>
@@ -245,12 +245,12 @@ main {
 
 <span class="tok-co"># for range — range expressions with exclusive and inclusive bounds</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># for range &lt;start&gt;‥&lt;end&gt; const &lt;item&gt; { &lt;body&gt; }       — exclusive end</span>
-<span class="tok-co"># for range &lt;start&gt; before &lt;end&gt; const &lt;item&gt; { &lt;body&gt; }  — explicit exclusive</span>
-<span class="tok-co"># for range &lt;start&gt;…&lt;end&gt; const &lt;item&gt; { &lt;body&gt; }        — inclusive end</span>
+<span class="tok-co"># for range &lt;start&gt;‥&lt;end&gt; let &lt;item&gt; { &lt;body&gt; }       — exclusive end</span>
+<span class="tok-co"># for range &lt;start&gt; before &lt;end&gt; let &lt;item&gt; { &lt;body&gt; }  — explicit exclusive</span>
+<span class="tok-co"># for range &lt;start&gt;…&lt;end&gt; let &lt;item&gt; { &lt;body&gt; }        — inclusive end</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
-<span class="tok-co">#   forRangeStmt :← 'for' 'range' rangeExpr ('const' | 'mut') ident block</span>
+<span class="tok-co">#   forRangeStmt :← 'for' 'range' rangeExpr ('let' | 'mut') ident block</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   intervallum.expected — exclusive, ante-exclusive, inclusive, non-zero,</span>
@@ -400,12 +400,12 @@ main {
 
 <span class="tok-co"># for from — nested loops (Cartesian product)</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># for from &lt;collection&gt; const &lt;item&gt; { &lt;body&gt; }</span>
-<span class="tok-co"># for range &lt;start&gt;‥&lt;end&gt; const &lt;item&gt; { &lt;body&gt; }</span>
+<span class="tok-co"># for from &lt;collection&gt; let &lt;item&gt; { &lt;body&gt; }</span>
+<span class="tok-co"># for range &lt;start&gt;‥&lt;end&gt; let &lt;item&gt; { &lt;body&gt; }</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
-<span class="tok-co">#   forInStmt    :← 'for' 'from' expr 'const' ident block</span>
-<span class="tok-co">#   forRangeStmt :← 'for' 'range' rangeExpr 'const' ident block</span>
+<span class="tok-co">#   forInStmt    :← 'for' 'from' expr 'let' ident block</span>
+<span class="tok-co">#   forRangeStmt :← 'for' 'range' rangeExpr 'let' ident block</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   none — row/col pairs, multiplication table, coordinate grids.</span>

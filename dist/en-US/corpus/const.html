@@ -8,7 +8,7 @@
 <span class="tok-co">#   • Related keywords: mut, let, ←</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • Reassigning a `const` binding after initialization — `const` is immutable; use `mut` for mutable bindings (SEM020) or defer init with a single later assignment.</span>
+<span class="tok-co">#   • Reassigning a `let` binding after initialization — `let` is write-once; use `mut` for mutable bindings (SEM020) or defer init with a single later assignment.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># See also: mut, let, ←</span>
 <span class="tok-co"># =============================================================================</span>
@@ -16,20 +16,21 @@
 <span class="tok-co"># const — immutable bindings</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Immediate init:</span>
-<span class="tok-co">#   const int count ← 0</span>
-<span class="tok-co">#   const _ name ← "Marcus"</span>
+<span class="tok-co">#   let int count ← 0</span>
+<span class="tok-co">#   let name ← "Marcus"</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Deferred init (write-once): declare without ←, assign exactly once later, then</span>
 <span class="tok-co"># freeze. The definite-assignment pass rejects reads before that assignment and</span>
 <span class="tok-co"># any second assignment.</span>
-<span class="tok-co">#   const int pending</span>
+<span class="tok-co">#   let int pending</span>
 <span class="tok-co">#   pending ← 42</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># `let x` is sugar for `const _ x` in both immediate and deferred shapes; see</span>
-<span class="tok-co"># let/sit.fab for the compact inferred spelling.</span>
+<span class="tok-co"># `let x` infers the type in both immediate and deferred shapes; see</span>
+<span class="tok-co"># let/sit.fab for the compact inferred spelling. `const` itself now states a</span>
+<span class="tok-co"># compile-time constant (`const T X = e`).</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
-<span class="tok-co">#   varDecl := ('const' | 'mut') typeAnnotation IDENTIFIER ('←' expression)?</span>
+<span class="tok-co">#   varDecl := ('let' | 'mut') typeAnnotation IDENTIFIER ('←' expression)?</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   fixum.expected (Salve, Marcus! / 7 / 30 / 300)</span>

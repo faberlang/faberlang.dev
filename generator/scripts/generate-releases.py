@@ -47,7 +47,7 @@ PRODUCTS = {
     "faber": {
         "label": "Faber",
         "blurb": "The user-facing CLI: check, build, run, test, format, explain.",
-        "notes_dir": WORKSPACE / "radix" / "docs" / "release" / "faber",
+        "notes_dir": WORKSPACE / "radix" / "packaging" / "release" / "notes",
     },
     "radix": {
         "label": "Radix",

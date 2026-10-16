@@ -446,9 +446,8 @@ def main() -> None:
 </header>
 
 <div class="fl-banner" role="status">
-  <!-- TODO(cut): decide the banner wording once the version line of the first post-cut release is known. -->
   <p><strong>Under active development.</strong>
-  Faber changes quickly and the 2.0 line is being prepared. Expect the
+  Faber is open source and changes quickly, and the 2.0 line is being prepared. Expect the
   language and the commands to keep moving until then.</p>
 </div>
 

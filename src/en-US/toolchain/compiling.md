@@ -42,8 +42,6 @@ with expected output). "Suite" counts are pinned outcomes in
 `corpus-suites/full`; "matches" counts were measured by building the emitted
 program with the real toolchain and comparing it with the runner.
 
-<!-- TODO(cut): these numbers are from radix packaging/public/README.md at ae5b812704; refresh them from the README at the cut commit. -->
-
 | Target | `-t` | Output | Evidence | Source |
 |---|---|---|---|---|
 | **Reference** | | | | |
@@ -61,7 +59,7 @@ program with the real toolchain and comparing it with the runner.
 | C | `c` | C11 with a header-only runtime | preview: 71 programs emit, 65 of 66 comparable match | public |
 | LLVM | `llvm-text`, `llvm-host` | LLVM IR, or a native executable via clang | suite 461 / 651 | official binary |
 | WebAssembly | `wasm`, `wasm-text` | WebAssembly text | suite 460 / 651 assemble (no host runtime yet) | official binary |
-| Cranelift | — | native objects with no external toolchain | in progress | public (planned) |
+| Cranelift | `clif` | native objects with no external toolchain | preview: fail-closed subset | official binary (public source planned) |
 | **GPU kernels** (kernel functions only) | | | | |
 | Metal | `metal-text` | Metal Shading Language | kernel programs only | official binary |
 | WGSL | `wgsl-text` | WebGPU compute shaders | kernel programs only | official binary |
@@ -86,8 +84,8 @@ Notes:
   for much of the gap between their counts and Rust's.
 - "Public" means the generator's source is in the public repository. "Official
   binary" means it ships in the released `faber` but its source does not.
-- The C target is a preview. A build from the public source needs the `hir-c`
-  feature to enable it; `faber targets` on the binary you are running is the
+- The C and Cranelift targets are previews and are on by default in `faber`.
+  Neither runs under `faber run`; `faber targets` on the binary you are running is the
   authority on what that binary can emit, and a target missing from the build
   is rejected with `PKG001 target_not_in_this_build`.
 - The GPU rows are kernel functions only. `faber run --device metal` and
@@ -106,7 +104,8 @@ Notes:
 | `llvm-text`, `metal-text` | yes | device only | yes |
 | `faber`, `ts`, `go`, `python`, `haskell`, `swift` | yes | no | no |
 | `wasm`, `wasm-text`, `wgsl-text`, `sexp` | yes | no | no |
-| `pascal`, `cobol`, `fortran`, `odin`, `c`, `basic` | default-off features | — | — |
+| `c`, `clif` | yes (preview) | no | no |
+| `pascal`, `cobol`, `fortran`, `odin`, `basic` | default-off features | — | — |
 
 ### Pipeline routing {#pipeline-routing}
 
@@ -321,7 +320,7 @@ is a preview: it covers a growing subset (exact integer arithmetic, control
 flow, functions, text, lists, classes and floats) and rejects everything else
 by name (`unsupported on target c: <construct>`). The emitted program never
 reaches undefined behavior; the corpus checks it under the undefined-behavior
-and address sanitizers. A source build enables it with the `hir-c` feature, and
+and address sanitizers. It is on by default in `faber`, and
 a GCC or Clang compiler builds the output.
 
 ```faber locale=en

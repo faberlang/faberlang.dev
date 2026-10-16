@@ -1,7 +1,7 @@
 +++
 title = "Faber 1.8.0"
 section = "releases"
-order = 13
+order = 17
 sources = []
 +++
 

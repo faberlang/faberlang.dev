@@ -987,7 +987,7 @@ mean that the artifact has a complete external runtime.
 | `swift` | HIR-direct | check/build | no package/run | Apple-oriented source emission; no package runtime. |
 | `python` | HIR-direct | check/build | no package/run | File emission supported; package compilation not yet supported. |
 | `haskell` | HIR-direct | check/build | no package/run | File emission supported; package compilation not yet supported. |
-| `c` | HIR-direct | check/build (`hir-c` feature) | no package/run | Preview: readable C11 with a header-only runtime; 71 corpus programs emit and 65 of 66 comparable ones match the runner. |
+| `c` | HIR-direct | check/build | no package/run | Preview: readable C11 with a header-only runtime; 71 corpus programs emit and 65 of 66 comparable ones match the runner. |
 | `wasm-text` | MIR-backed | check/build | no package/run | Fail-closed WAT probe with external host imports. |
 | `wasm` | MIR-backed | check/build | no package/run | Compatibility alias of `wasm-text`; emits WAT text, binary conversion is external. |
 | `llvm-text` | MIR-backed | check/build | device run via `faber run --device cuda` | LLVM IR staging; NVVM/PTX CUDA device execution through `faber`. |

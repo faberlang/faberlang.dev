@@ -7,12 +7,12 @@ Extracts fields from a value into local bindings.
 ## Syntax
 
 ```
-from <expression> <fixum|varia> <field> [, ...] [rest <ident>]
+from <expression> <sit|varia> <field> [, ...] [rest <ident>]
 ```
 
 ## What this teaches
 
-- Field extraction — `from <expr> const <field>, ...` extracts named fields from class records into local scope.
+- Field extraction — `from <expr> let <field>, ...` extracts named fields from class records into local scope.
 - Multiple field extraction — extract several fields from a single expression in one statement.
 
 ## Common mistakes

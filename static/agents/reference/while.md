@@ -31,7 +31,7 @@ loopStmt :← 'dum' expr '{' stmt* '}'
 ```
 dum.expected
 main {
-Ascending counter: varia so the loop variable can mutate
+Ascending counter: mut so the loop variable can mutate
     mut int computus ← 0
     while computus ≺ 5 {
         print computus

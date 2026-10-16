@@ -4,7 +4,7 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • Binding targets accept keyword spellings — `const string print` is a</span>
+<span class="tok-co">#   • Binding targets accept keyword spellings — `let string print` is a</span>
 <span class="tok-co">#     user name, not a reserved word.</span>
 <span class="tok-co">#   • Bare `print print` is the output intrinsic of that binding.</span>
 <span class="tok-co">#</span>
@@ -80,7 +80,7 @@ main {
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • Writing `print(x)` when the output statement is wanted — use the bare</span>
 <span class="tok-co">#     form `print x`.</span>
-<span class="tok-co">#   • Pairing `fn print` with a local `const string print` in the same scope —</span>
+<span class="tok-co">#   • Pairing `fn print` with a local `let string print` in the same scope —</span>
 <span class="tok-co">#     the binding shadows the function, so `print(...)` is no longer callable.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># See also: print, fn, print-binding.fab, print-call.fab</span>

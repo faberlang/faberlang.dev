@@ -22,7 +22,7 @@ for range <range> <binding>
 ## Grammar
 
 ```
-iteraStmt :← 'itera' 'ab' expr '‥' expr step? 'fixum' ident block
+iteraStmt :← 'itera' 'ab' expr '‥' expr step? 'sit' ident block
 ```
 
 ## Expected output

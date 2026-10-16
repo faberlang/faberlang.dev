@@ -409,7 +409,7 @@ the English tree; `/llms-full.txt` is a locale-neutral corpus reference.
   the next release, so every page is checked against the radix commit recorded in
   `generator/upstream.lock.toml` and a `faber` built from that commit. Pass it
   with `build-site.sh --faber <path>`: the convert cache is keyed on the binary's
-  content hash, so two builds that both print `faber 1.13.0` never share entries.
+  content hash, so two builds that both print `faber 1.14.0` never share entries.
   A claim that holds for the previous release but not for HEAD is a defect.
 - **The install surface pins the published release.** `static/install.md`, the
   install skill and the skill catalog name one release. They are the only

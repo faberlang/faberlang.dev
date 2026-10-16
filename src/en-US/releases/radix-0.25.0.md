@@ -1,7 +1,7 @@
 +++
 title = "Radix 0.25.0"
 section = "releases"
-order = 83
+order = 87
 sources = []
 +++
 
@@ -133,7 +133,7 @@ refactoring, project cleanup, and compiler-subsystem modularization.
   #225) (`f385e0b29`).
 - `ego` returns instance type instead of metatype inside `genus` methods,
   fixing fluent/builder patterns (fixes #224) (`f12682d63`).
-- Destructuring patterns (`ex obj sit name, age`, `fixum [a, b, c] = arr`)
+- Destructuring patterns (`ex obj fixum name, age`, `fixum [a, b, c] = arr`)
   now register all bound identifiers in scope, including aliases, rest
   patterns, and placeholders (fixes #221) (`79e3fc34f`).
 - Regex flag parsing uses inline syntax `sed "(?i)pattern"` instead of

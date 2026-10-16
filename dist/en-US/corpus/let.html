@@ -4,13 +4,13 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • Immutable binding sugar — `let name` is a compact alternative to</span>
-<span class="tok-co">#     `const _ name` for inferred-type immutable locals</span>
+<span class="tok-co">#   • Write-once binding — `let name` declares an inferred-type local that</span>
+<span class="tok-co">#     is written once</span>
 <span class="tok-co">#   • Supports immediate init (`let x ← expr`) and deferred init</span>
 <span class="tok-co">#     (`let x` then `x ← expr` later)</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • Confusing `let` (sugar for `const _`) with `mut` — `let` creates an immutable binding.</span>
+<span class="tok-co">#   • Confusing `let` with `mut` — `let` creates a write-once binding.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># See also: const, mut, ←</span>
 <span class="tok-co"># =============================================================================</span>
@@ -20,14 +20,14 @@
 <span class="tok-co"># let — inferred immutable bindings</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Immediate init:</span>
-<span class="tok-co">#   let name ← expr        -- compact sugar for const _ name ← expr</span>
+<span class="tok-co">#   let name ← expr        -- inferred write-once local</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Deferred init:</span>
-<span class="tok-co">#   let name               -- compact sugar for const _ name (assign once later)</span>
+<span class="tok-co">#   let name               -- deferred: assign once later</span>
 <span class="tok-co">#   name ← expr</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># Prefer let when a block chains several inferred locals; keep const _ when</span>
-<span class="tok-co"># teaching the explicit infer marker or mixing typed and inferred bindings.</span>
+<span class="tok-co"># `let` infers the type; write `let T name ← expr` to state it. `const` is for</span>
+<span class="tok-co"># compile-time constants only.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
 <span class="tok-co">#   sitDecl := 'let' IDENTIFIER ('←' expression)?</span>

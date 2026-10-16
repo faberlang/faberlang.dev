@@ -17,12 +17,12 @@ const <type|_> <pattern> [← <expression>]
 
 ## Common mistakes
 
-- Reassigning a `const` binding after initialization — `const` is immutable; use `mut` for mutable bindings (SEM020) or defer init with a single later assignment.
+- Reassigning a `let` binding after initialization — `let` is write-once; use `mut` for mutable bindings (SEM020) or defer init with a single later assignment.
 
 ## Grammar
 
 ```
-varDecl := ('fixum' | 'varia') typeAnnotation IDENTIFIER ('←' expression)?
+varDecl := ('sit' | 'varia') typeAnnotation IDENTIFIER ('←' expression)?
 ```
 
 ## Expected output
@@ -33,15 +33,16 @@ fixum.expected (Salve, Marcus! / 7 / 30 / 300)
 
 ## Immediate init
 
-const int count ← 0
-const _ name ← "Marcus"
+let int count ← 0
+let name ← "Marcus"
 Deferred init (write-once): declare without ←, assign exactly once later, then
 freeze. The definite-assignment pass rejects reads before that assignment and
 any second assignment.
-const int pending
+let int pending
 pending ← 42
-`let x` is sugar for `const _ x` in both immediate and deferred shapes; see
-let/sit.fab for the compact inferred spelling.
+`let x` infers the type in both immediate and deferred shapes; see
+let/sit.fab for the compact inferred spelling. `const` itself now states a
+compile-time constant (`const T X = e`).
 
 ## Example
 

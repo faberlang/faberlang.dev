@@ -18,11 +18,11 @@
 <span class="tok-co"># Numeric/tensor modules may use lf32/lu32 sugar; see docs/design/numeric-type-sugar.md.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># list&lt;T&gt; name ← empty        -- typed empty collection (forma innata)</span>
-<span class="tok-co"># const _ name ← [elem, …]     -- list literal</span>
+<span class="tok-co"># let name ← [elem, …]     -- list literal</span>
 <span class="tok-co"># [spread expr, …]              -- splice into literal</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
-<span class="tok-co">#   listDecl :← ('mut' | 'const') 'list&lt;' type '&gt;' ident '←' expr</span>
+<span class="tok-co">#   listDecl :← ('mut' | 'let') 'list&lt;' type '&gt;' ident '←' expr</span>
 <span class="tok-co">#   listLit  :← '[' (expr | spread)* ']'</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>

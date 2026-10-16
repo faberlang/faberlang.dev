@@ -23,7 +23,7 @@ list<T>
 ## Grammar
 
 ```
-listDecl :← ('varia' | 'fixum') 'lista<' type '>' ident '←' expr
+listDecl :← ('varia' | 'sit') 'lista<' type '>' ident '←' expr
 listLit  :← '[' (expr | sparge)* ']'
 ```
 

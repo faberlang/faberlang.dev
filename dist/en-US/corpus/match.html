@@ -5,7 +5,7 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • Exhaustive pattern matching — `match &lt;value&gt; { case ... }` matches against all variants of a union (tagged union).</span>
-<span class="tok-co">#   • Variant destructuring — `case &lt;Variant&gt; const &lt;field&gt;, ...` destructures variant payload fields.</span>
+<span class="tok-co">#   • Variant destructuring — `case &lt;Variant&gt; let &lt;field&gt;, ...` destructures variant payload fields.</span>
 <span class="tok-co">#   • Unit variants — variant without payload fields match by name alone.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
@@ -19,8 +19,8 @@
 <span class="tok-co"># match &lt;value&gt; {</span>
 <span class="tok-co">#     case &lt;Casus&gt; { &lt;body&gt; }</span>
 <span class="tok-co">#     case &lt;Casus&gt; as &lt;alias&gt; { &lt;body&gt; }</span>
-<span class="tok-co">#     case &lt;Casus&gt; const &lt;bindings&gt; { &lt;body&gt; }</span>
-<span class="tok-co">#     case &lt;Casus&gt; const &lt;field&gt; as &lt;alias&gt; { &lt;body&gt; }</span>
+<span class="tok-co">#     case &lt;Casus&gt; let &lt;bindings&gt; { &lt;body&gt; }</span>
+<span class="tok-co">#     case &lt;Casus&gt; let &lt;field&gt; as &lt;alias&gt; { &lt;body&gt; }</span>
 <span class="tok-co"># }</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
@@ -62,7 +62,7 @@ fn nomina(Condicio s) <span class="tok-op">→</span> string {
     }
 }
 
-<span class="tok-co"># case with const bindings destructures variant fields</span>
+<span class="tok-co"># case with let bindings destructures variant fields</span>
 fn tracta(Nuntius e) <span class="tok-op">→</span> none {
     match e {
         case Pulsus let x, y {

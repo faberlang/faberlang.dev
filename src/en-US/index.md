@@ -187,8 +187,6 @@ the full discussion.
 
 ## Repositories {#repositories}
 
-<!-- TODO(cut): confirm the release host (faberlang/releases) after the cut -->
-
 | Repo | Role |
 |---|---|
 | [faberlang/faber](https://github.com/faberlang/faber) | The language: compiler front end, MIR runner, Faber re-emitter, C target preview, Norma (`lib/norma`), grammar, locale packs and corpus |

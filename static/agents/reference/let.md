@@ -12,12 +12,12 @@ let <name> [← <expression>]
 
 ## What this teaches
 
-- Immutable binding sugar — `let name` is a compact alternative to `const _ name` for inferred-type immutable locals
+- Write-once binding — `let name` declares an inferred-type local that is written once
 - Supports immediate init (`let x ← expr`) and deferred init (`let x` then `x ← expr` later)
 
 ## Common mistakes
 
-- Confusing `let` (sugar for `const _`) with `mut` — `let` creates an immutable binding.
+- Confusing `let` with `mut` — `let` creates a write-once binding.
 
 ## Grammar
 
@@ -33,14 +33,14 @@ sit.expected
 
 ## Immediate init
 
-let name ← expr        -- compact sugar for const _ name ← expr
+let name ← expr        -- inferred write-once local
 
 ## Deferred init
 
-let name               -- compact sugar for const _ name (assign once later)
+let name               -- deferred: assign once later
 name ← expr
-Prefer let when a block chains several inferred locals; keep const _ when
-teaching the explicit infer marker or mixing typed and inferred bindings.
+`let` infers the type; write `let T name ← expr` to state it. `const` is for
+compile-time constants only.
 
 ## Example
 

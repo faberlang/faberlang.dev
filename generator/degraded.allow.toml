@@ -74,3 +74,8 @@ why = "same as `is`: the projected example fails `faber check --locale=en`, so t
 kind = "agent-reference-projection"
 subject = "command"
 why = "same as `is`: the projected example fails `faber check --locale=en`, so the registry text ships"
+
+[[allow]]
+kind = "transcode"
+subject = "libraries/norma.md"
+why = "`faber convert --from la --to en` at radix 1896384cbd fails with SEM008 unknown qualified type on `⇥ fault.IoFault` in the fence (the same file passes `faber check`); the page shows its Latin source unchanged. Remove this entry when the converter resolves imported error-channel types"

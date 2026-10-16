@@ -154,8 +154,8 @@ metadata. The browser seam for the DOM and Canvas2D is [Tela](/libraries/tela.ht
 
 ## Status {#status}
 
-TODO(cut): re-run `faber check` on the Triga checkout with the release compiler
-and record the result here.
+`faber check-library triga` with the Faber 1.14.0 release compiler passes on the
+current checkout (warnings only: unused imports and functions).
 
 | Layer | State |
 |-------|-------|

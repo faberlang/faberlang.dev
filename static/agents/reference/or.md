@@ -14,7 +14,7 @@ Combines boolean expressions with logical or.
 
 - Complete binary operator tour — arithmetic (`+ − * / %`), comparison (`≡ ≢ < >`), logic (`and or`), nullish coalescing (`coalesce`), ternary (`sic/secus`), and bitwise (`∧ ∨ ⊻ ⇐ ⇒`)
 - Assignment patterns — explicit assignment (`←`) and postfix increment (`↑ ↓` statements)
-- `let` sugar — compact inference syntax alongside explicit `const _` type inference
+- `let` — inferred write-once locals alongside explicitly typed ones
 
 ## Common mistakes
 
@@ -24,8 +24,7 @@ Combines boolean expressions with logical or.
 
 ```
 binaryExpr :← expr (arithOp | cmpOp | logicOp | bitwiseOp) expr
-Inferred result locals below mix fixum _ (explicit infer marker) with sit
-(compact sugar) so both spellings stay visible in one tour.
+Inferred result locals below use sit; typed locals state their type.
 ```
 
 ## Expected output

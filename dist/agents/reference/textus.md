@@ -25,7 +25,7 @@ string
 s.slice(lo, hi) | s.uppercase() | s.lowercase() | s.trim()
 s.split(sep) | s.replace(old, new)
 divide returns lista<textus>; pairs with lista/ exempla for collection smoke.
-Derived locals use sit to avoid repeating fixum _ across the transform chain.
+Derived locals use sit so the transform chain needs no type annotations.
 Wasm tier Runnable.
 ```
 

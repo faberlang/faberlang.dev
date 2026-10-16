@@ -541,7 +541,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Kind: feature
 - Category: control-flow
 - Summary: Discerne cases can test nominal type members and bind the narrowed value.
-- Syntax: `discerne <union> { casu <type> fixum <name> { ... } }`
+- Syntax: `discerne <union> { casu <type> sit <name> { ... } }`
 - Aliases: none
 - Related: `discerne`, `casu`, `discretio`, `est`
 - Page: https://faberlang.dev/en-US/corpus/discerne%20type%20patterns.html
@@ -673,7 +673,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Kind: keyword
 - Category: destructuring
 - Summary: Extracts fields from a value into local bindings.
-- Syntax: `ex <expression> <fixum|varia> <field> [, ...] [ceteri <ident>]`
+- Syntax: `ex <expression> <sit|varia> <field> [, ...] [ceteri <ident>]`
 - Aliases: none
 - Related: `de`, `ut`, `ceteri`
 - Page: https://faberlang.dev/en-US/corpus/from.html
@@ -1116,7 +1116,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `integratio`
 - Kind: concept
 - Category: integration
-- Summary: Minimal multi-feature happy path across functio, fixum, si, and nota.
+- Summary: Minimal multi-feature happy path across functio, sit, si, and nota.
 - Syntax: `integratio — multi-feature happy path`
 - Aliases: none
 - Related: `functio`, `fixum`, `si`, `nota`
@@ -1380,8 +1380,8 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `mutabilitas`
 - Kind: concept
 - Category: type
-- Summary: MU-1 baseline narrowed by tcs1: in-place list mutation requires a var binding.
-- Syntax: `var list<int> xs`
+- Summary: MU-1 baseline narrowed by tcs1: in-place list mutation requires a mut binding.
+- Syntax: `mut list<int> xs`
 - Aliases: none
 - Related: `fixum`, `lista`
 - Page: https://faberlang.dev/en-US/corpus/mutabilitas.html
@@ -2461,7 +2461,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Kind: type
 - Category: types
 - Summary: The `_` hole infers one inhabitant type; the `∪` hole infers a finite union; `T ∪ nihil` stays a single optional inhabitant.
-- Syntax: `fixum _ x ← value; fixum ∪ x ← a; x ← b; fixum lista<∪> xs ← [a, b]`
+- Syntax: `sit x ← value; sit ∪ x ← a; x ← b; sit lista<∪> xs ← [a, b]`
 - Aliases: none
 - Related: `unio`, `nihil`
 - Page: https://faberlang.dev/en-US/corpus/type-hole-union.html

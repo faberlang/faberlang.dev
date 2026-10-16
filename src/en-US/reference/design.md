@@ -256,8 +256,6 @@ parser, custom AST) are still visible in the git history.
 
 ### Releases {#releases}
 
-<!-- TODO(cut): confirm the release host (faberlang/releases) after the cut -->
-
 Prebuilt CLI archives — current Faber release at the top, then every published
 tag and binary from [faberlang/releases](https://github.com/faberlang/releases):
 

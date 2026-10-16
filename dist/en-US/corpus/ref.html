@@ -4,7 +4,7 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • Borrowed iteration — `for ref &lt;expr&gt; const &lt;ident&gt; { ... }` iterates over a collection without taking ownership.</span>
+<span class="tok-co">#   • Borrowed iteration — `for ref &lt;expr&gt; let &lt;ident&gt; { ... }` iterates over a collection without taking ownership.</span>
 <span class="tok-co">#   • Tabula key iteration — iterating over map keys via borrowed iteration.</span>
 <span class="tok-co">#   • Index iteration — iterating over list indices via `ref`.</span>
 <span class="tok-co">#</span>
@@ -17,7 +17,7 @@
 <span class="tok-co"># ref — borrowed iteration / parameters</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
-<span class="tok-co">#   forDeStmt :← 'for' 'ref' expr 'const' ident block</span>
+<span class="tok-co">#   forDeStmt :← 'for' 'ref' expr 'let' ident block</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   Scalar stdout smoke (see body).</span>
@@ -51,11 +51,11 @@ main {
 
 <span class="tok-co"># for ref — for-in key and index iteration</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># for ref &lt;object&gt; const &lt;key&gt; { &lt;body&gt; }</span>
-<span class="tok-co"># for ref &lt;list&gt; const &lt;index&gt; { &lt;body&gt; }</span>
+<span class="tok-co"># for ref &lt;object&gt; let &lt;key&gt; { &lt;body&gt; }</span>
+<span class="tok-co"># for ref &lt;list&gt; let &lt;index&gt; { &lt;body&gt; }</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
-<span class="tok-co">#   forDeStmt :← 'for' 'ref' expr 'const' ident block</span>
+<span class="tok-co">#   forDeStmt :← 'for' 'ref' expr 'let' ident block</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   none — stdout not pinned for this exemplum.</span>

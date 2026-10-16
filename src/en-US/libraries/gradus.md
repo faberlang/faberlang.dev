@@ -100,8 +100,10 @@ typed error (`LossError`, `NnError`) instead of a shape type.
 
 ## Status {#status}
 
-Gradus is pre-1.0 and its API may change. TODO(cut): re-run `faber check` on
-the Gradus checkout with the release compiler and record the result here. What is proven is narrower than
+Gradus is pre-1.0 and its API may change. `faber check-library gradus` with
+the Faber 1.14.0 release compiler does not pass yet: the sources still use the
+retired binding words (`var`, run-time `const`, `fixum` binders), which the
+compiler now rejects. What is proven is narrower than
 what the module list suggests: most of it is structural, with source contracts
 that check and are pinned by proba tests, and a narrow set of executed proofs.
 
