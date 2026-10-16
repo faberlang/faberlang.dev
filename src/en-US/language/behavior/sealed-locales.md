@@ -58,7 +58,7 @@ The same source, in Latin and rendered into Thai:
 
 ```faber
 functio salve(textus nomen) → textus {
-    fixum textus msg ← "Salve, §!"(nomen)
+    sit textus msg ← "Salve, §!"(nomen)
     redde msg
 }
 

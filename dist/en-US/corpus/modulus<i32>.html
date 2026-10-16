@@ -24,32 +24,32 @@
 <span class="tok-co"># =============================================================================</span>
 
 fn javaHash(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> codes) <span class="tok-op">→</span> wrapping<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> {
-    var wrapping<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> h <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    for from codes const c {
-        const wrapping<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> code <span class="tok-op">←</span> c ↦ wrapping<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span>
+    mut wrapping<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> h <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    for from codes let c {
+        let wrapping<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> code <span class="tok-op">←</span> c ↦ wrapping<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span>
         h <span class="tok-op">←</span> <span class="tok-nu">31</span> <span class="tok-op">*</span> h <span class="tok-op">+</span> code
     }
     return h
 }
 
 main {
-    var wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> <span class="tok-nu">127</span>
+    mut wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> <span class="tok-nu">127</span>
     a <span class="tok-op">←</span> a <span class="tok-op">+</span> <span class="tok-nu">1</span>
     print a
-    const wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> m <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">128</span>
-    const wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> quotient <span class="tok-op">←</span> m <span class="tok-op">/</span> <span class="tok-op">-</span><span class="tok-nu">1</span>
+    let wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> m <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">128</span>
+    let wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> quotient <span class="tok-op">←</span> m <span class="tok-op">/</span> <span class="tok-op">-</span><span class="tok-nu">1</span>
     print quotient
-    const wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> n <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">7</span>
+    let wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> n <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">7</span>
     print n <span class="tok-op">/</span> <span class="tok-nu">2</span>
     print n <span class="tok-op">%</span> <span class="tok-nu">2</span>
-    const wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> s <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">8</span>
+    let wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> s <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">8</span>
     print s ⇒ <span class="tok-nu">1</span>
     print <span class="tok-op">¬</span>s
-    const int wide <span class="tok-op">←</span> <span class="tok-nu">300</span>
+    let int wide <span class="tok-op">←</span> <span class="tok-nu">300</span>
     print wide ↦ wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span>
-    const int over <span class="tok-op">←</span> <span class="tok-nu">200</span>
+    let int over <span class="tok-op">←</span> <span class="tok-nu">200</span>
     print over ↦ wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span>
-    const wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> c <span class="tok-op">←</span> <span class="tok-nu">200</span>
+    let wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> c <span class="tok-op">←</span> <span class="tok-nu">200</span>
     print c
     print javaHash([<span class="tok-nu">104</span>, <span class="tok-nu">101</span>, <span class="tok-nu">108</span>, <span class="tok-nu">108</span>, <span class="tok-nu">111</span>])
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>-128

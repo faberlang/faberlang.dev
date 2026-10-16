@@ -36,7 +36,7 @@ breakStmt :← 'rumpe'
 ```fab
 main {
     # Break when reaching 5
-    var int i ← 0
+    mut int i ← 0
     while i ≺ 10 {
         if i ≡ 5 {
             break
@@ -46,9 +46,9 @@ main {
     }
 
     # Break in nested loop
-    var int exterior ← 0
+    mut int exterior ← 0
     while exterior ≺ 3 {
-        var int interior ← 0
+        mut int interior ← 0
         while interior ≺ 10 {
             if interior ≡ 2 {
                 break

@@ -36,10 +36,10 @@ Salve, Salve, Mundus!
 
 ```fab
 main {
-    const string greeting ← "Salve"
+    let string greeting ← "Salve"
     print greeting
-    const string name ← "Mundus"
-    const string message ← "Salve, §!"(name)
+    let string name ← "Mundus"
+    let string message ← "Salve, §!"(name)
     print message
 }
 ```

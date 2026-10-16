@@ -84,9 +84,9 @@ not the tail of a try statement — it attaches to **structured statements gener
 
 ```faber locale-tabs
 incipit {
-    fixum lista<textus> raw ← ["1", "two", "3"]
-    itera ex raw fixum item {
-        fixum numerus n ← item ↦ numerus
+    sit lista<textus> raw ← ["1", "two", "3"]
+    itera ex raw sit item {
+        sit numerus n ← item ↦ numerus
         nota n
     }
     cape err {

@@ -28,7 +28,7 @@
 <span class="tok-co">#</span>
 
 main {
-    var int attempt <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    mut int attempt <span class="tok-op">←</span> <span class="tok-nu">0</span>
     do {
         attempt <span class="tok-op">←</span> attempt <span class="tok-op">+</span> <span class="tok-nu">1</span>
         if attempt ≻ <span class="tok-nu">1</span> {
@@ -78,7 +78,7 @@ fn custos_dum(bool pergo) <span class="tok-op">→</span> void {
 <span class="tok-co"># 2. whole-loop catch on for — loop-spectrum keep-out</span>
 @ radix lane <span class="tok-st">"air"</span>
 fn custos_itera() <span class="tok-op">→</span> void {
-    for range <span class="tok-nu">0</span>‥<span class="tok-nu">4</span> const i {
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">4</span> let i {
         throw <span class="tok-st">"x"</span>
     } catch err { }
 }

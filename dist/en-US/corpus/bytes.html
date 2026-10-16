@@ -26,9 +26,9 @@
 type Fascis <span class="tok-op">=</span> list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span>
 
 main {
-    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> sig <span class="tok-op">←</span> <span class="tok-op">|</span>ref call be ef<span class="tok-op">|</span>
-    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> hello <span class="tok-op">←</span> <span class="tok-op">|</span><span class="tok-nu">48</span> <span class="tok-nu">65</span> <span class="tok-nu">6</span>c <span class="tok-nu">6</span>c <span class="tok-nu">6</span>f<span class="tok-op">|</span>
-    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> empty <span class="tok-op">←</span> <span class="tok-op">||</span>
+    let list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> sig <span class="tok-op">←</span> <span class="tok-op">|</span>ref call be ef<span class="tok-op">|</span>
+    let list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> hello <span class="tok-op">←</span> <span class="tok-op">|</span><span class="tok-nu">48</span> <span class="tok-nu">65</span> <span class="tok-nu">6</span>c <span class="tok-nu">6</span>c <span class="tok-nu">6</span>f<span class="tok-op">|</span>
+    let list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> empty <span class="tok-op">←</span> <span class="tok-op">||</span>
     print <span class="tok-st">"octeti typus notus"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>octeti typus notus
 </code></pre><h3 id="radixcorpusboundedconversio-octeti-to-octeti-declinefab-supporting-reject">radix/corpus/bounded/conversio-octeti-to-octeti-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusboundedconversio-octeti-to-octeti-declinefab-supporting-reject">#</a></h3><p>Decline: bounded bytes&lt;N&gt; cannot resize directly to bounded bytes&lt;M&gt;.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>

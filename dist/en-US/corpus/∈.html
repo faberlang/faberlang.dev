@@ -24,8 +24,8 @@
 <span class="tok-co">#   none — stdout not pinned for this exemplum.</span>
 
 main {
-    const string condicio <span class="tok-op">←</span> <span class="tok-st">"agens"</span>
-    const int aetas <span class="tok-op">←</span> <span class="tok-nu">21</span>
+    let string condicio <span class="tok-op">←</span> <span class="tok-st">"agens"</span>
+    let int aetas <span class="tok-op">←</span> <span class="tok-nu">21</span>
 
 <span class="tok-co">    # Basic ∈ with string list</span>
     if condicio <span class="tok-op">∈</span> [<span class="tok-st">"pendens"</span>, <span class="tok-st">"agens"</span>, <span class="tok-st">"pausa"</span>] {
@@ -139,7 +139,7 @@ fn classify(Color c) <span class="tok-op">→</span> void {
 
 main {
 <span class="tok-co">    # list</span>
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> primi <span class="tok-op">←</span> [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">5</span>, <span class="tok-nu">7</span>]
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> primi <span class="tok-op">←</span> [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">5</span>, <span class="tok-nu">7</span>]
     if <span class="tok-nu">5</span> <span class="tok-op">∈</span> primi {
         print <span class="tok-st">"list in"</span>
     }
@@ -148,7 +148,7 @@ main {
     }
 
 <span class="tok-co">    # set</span>
-    var set<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> visi <span class="tok-op">←</span> empty
+    mut set<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> visi <span class="tok-op">←</span> empty
     visi.add(<span class="tok-st">"alpha"</span>)
     visi.add(<span class="tok-st">"beta"</span>)
     if <span class="tok-st">"alpha"</span> <span class="tok-op">∈</span> visi {
@@ -159,11 +159,11 @@ main {
     }
 
 <span class="tok-co">    # map: the test is on the keys</span>
-    var map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> puncta <span class="tok-op">←</span> empty
+    mut map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> puncta <span class="tok-op">←</span> empty
     puncta[<span class="tok-st">"alpha"</span>] <span class="tok-op">←</span> <span class="tok-nu">1</span>
     puncta[<span class="tok-st">"beta"</span>] <span class="tok-op">←</span> <span class="tok-nu">2</span>
-    const string present <span class="tok-op">←</span> <span class="tok-st">"beta"</span>
-    const string absent <span class="tok-op">←</span> <span class="tok-st">"gamma"</span>
+    let string present <span class="tok-op">←</span> <span class="tok-st">"beta"</span>
+    let string absent <span class="tok-op">←</span> <span class="tok-st">"gamma"</span>
     if present <span class="tok-op">∈</span> puncta {
         print <span class="tok-st">"map key in"</span>
     }

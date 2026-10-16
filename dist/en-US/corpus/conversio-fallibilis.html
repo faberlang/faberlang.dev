@@ -58,8 +58,8 @@ fn tutumDirect(value v) <span class="tok-op">→</span> instant {
 }
 
 main {
-    const value good <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
-    const value bad <span class="tok-op">←</span> <span class="tok-st">"not-a-datetime"</span>
+    let value good <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
+    let value bad <span class="tok-op">←</span> <span class="tok-st">"not-a-datetime"</span>
     assert inlineRecovery(good) <span class="tok-op">≡</span> (good ↦ instant)
     assert inlineRecovery(bad) <span class="tok-op">≡</span> epochZero()
     assert tutum(good) <span class="tok-op">≡</span> (good ↦ instant)

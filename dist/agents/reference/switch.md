@@ -37,7 +37,7 @@ elige.expected
 ```fab
 main {
     # Text matching
-    const string condicio ← "agens"
+    let string condicio ← "agens"
     switch condicio {
         case "pendens" {
             print "exspectat..."
@@ -51,7 +51,7 @@ main {
     }
 
     # Numerus matching
-    const int codex ← 200
+    let int codex ← 200
     switch codex {
         case 200 {
             print "Recte"
@@ -65,7 +65,7 @@ main {
     }
 
     # Multiple statements per case
-    const string modus ← "opera"
+    let string modus ← "opera"
     switch modus {
         case "labor" {
             print "modus laboris"

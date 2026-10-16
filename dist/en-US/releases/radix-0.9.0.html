@@ -11,7 +11,7 @@ annotation in Faber source). (<code>e4efe11ef</code>)</li></ul><h4 id="self-host
 nucleus (core Parser class with token navigation), errores (error codes
 P001–P205), type (type annotation parsing), precedence-climbing expression
 parsers (binaria, unaria, primaria), and statement parsers (actio, massa,
-var, index) with TODO stubs. Also fixes keyword-as-method-name and
+mut, index) with TODO stubs. Also fixes keyword-as-method-name and
 non-statement-keyword-as-identifier handling. (<code>054615ffb</code>)</li><li><strong>Documents the Resolvitor blocker</strong>: parser modules have mutual recursion
 (expressions need blocks, statements need expressions); the solution is a
 Resolvitor context with function pointers, but Faber lacks function type

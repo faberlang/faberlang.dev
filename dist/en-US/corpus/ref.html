@@ -4,7 +4,7 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • Borrowed iteration — `for ref &lt;expr&gt; const &lt;ident&gt; { ... }` iterates over a collection without taking ownership.</span>
+<span class="tok-co">#   • Borrowed iteration — `for ref &lt;expr&gt; let &lt;ident&gt; { ... }` iterates over a collection without taking ownership.</span>
 <span class="tok-co">#   • Tabula key iteration — iterating over map keys via borrowed iteration.</span>
 <span class="tok-co">#   • Index iteration — iterating over list indices via `ref`.</span>
 <span class="tok-co">#</span>
@@ -17,7 +17,7 @@
 <span class="tok-co"># ref — borrowed iteration / parameters</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
-<span class="tok-co">#   forDeStmt :← 'for' 'ref' expr 'const' ident block</span>
+<span class="tok-co">#   forDeStmt :← 'for' 'ref' expr 'let' ident block</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   Scalar stdout smoke (see body).</span>
@@ -27,12 +27,12 @@
 <span class="tok-co">#</span>
 
 main {
-    const map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> persona <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"aetas"</span><span class="tok-op">:</span> <span class="tok-nu">30</span> }
-    for ref persona const clavis {
+    let map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> persona <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"aetas"</span><span class="tok-op">:</span> <span class="tok-nu">30</span> }
+    for ref persona let clavis {
         print clavis
     }
-    const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
-    for ref numeri const index {
+    let list<span class="tok-op">&lt;</span>int, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
+    for ref numeri let index {
         print index
     }
 }</code></pre><h3 id="radixcorpusiteradefab-canonical-keyword">radix/corpus/itera/de.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteradefab-canonical-keyword">#</a></h3><p>Introduces borrowed iteration or borrowed parameters.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
@@ -51,36 +51,36 @@ main {
 
 <span class="tok-co"># for ref — for-in key and index iteration</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># for ref &lt;object&gt; const &lt;key&gt; { &lt;body&gt; }</span>
-<span class="tok-co"># for ref &lt;list&gt; const &lt;index&gt; { &lt;body&gt; }</span>
+<span class="tok-co"># for ref &lt;object&gt; let &lt;key&gt; { &lt;body&gt; }</span>
+<span class="tok-co"># for ref &lt;list&gt; let &lt;index&gt; { &lt;body&gt; }</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
-<span class="tok-co">#   forDeStmt :← 'for' 'ref' expr 'const' ident block</span>
+<span class="tok-co">#   forDeStmt :← 'for' 'ref' expr 'let' ident block</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   none — stdout not pinned for this exemplum.</span>
 
 main {
 <span class="tok-co">    # Iterate over map keys</span>
-    const map<span class="tok-op">&lt;</span>string, string<span class="tok-op">&gt;</span> persona <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-st">"Marcus"</span>, <span class="tok-st">"urbs"</span><span class="tok-op">:</span> <span class="tok-st">"Roma"</span> }
-    for ref persona const clavis {
+    let map<span class="tok-op">&lt;</span>string, string<span class="tok-op">&gt;</span> persona <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-st">"Marcus"</span>, <span class="tok-st">"urbs"</span><span class="tok-op">:</span> <span class="tok-st">"Roma"</span> }
+    for ref persona let clavis {
         print clavis
     }
 
 <span class="tok-co">    # Access values using the key</span>
-    for ref persona const clavis {
+    for ref persona let clavis {
         print clavis, persona[clavis]
     }
 
 <span class="tok-co">    # Iterate over list indices</span>
-    const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
-    for ref numeri const index {
+    let list<span class="tok-op">&lt;</span>int, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
+    for ref numeri let index {
         print <span class="tok-st">"index: § valor: §"</span>(index, numeri[index])
     }
 
 <span class="tok-co">    # With numerus-valued map</span>
-    const map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> forma <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"beta"</span><span class="tok-op">:</span> <span class="tok-nu">2</span> }
-    for ref forma const k {
+    let map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> forma <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"beta"</span><span class="tok-op">:</span> <span class="tok-nu">2</span> }
+    for ref forma let k {
         print k
     }
 }</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusdedefab-canonical-keyword">radix/corpus/de/de.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteradefab-canonical-keyword">radix/corpus/itera/de.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/de/de.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

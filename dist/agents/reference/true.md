@@ -30,7 +30,7 @@ literal :← 'verum'
 ```
 Scalar stdout smoke (see body).
 main {
-    const bool active ← true
+    let bool active ← true
     print active
 }
 ```
@@ -39,7 +39,7 @@ main {
 
 ```fab
 test "true is the true literal" {
-    const bool active ← true
+    let bool active ← true
     assert active
     assert active ≡ true
 }

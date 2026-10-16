@@ -35,6 +35,9 @@ yieldStmt :← 'cede' expr
 ## Example
 
 ```fab
++++
+locale = "la"
++++
 fn stream() generator → int {
     yield 1
     yield 2

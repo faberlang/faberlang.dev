@@ -13,8 +13,8 @@ grammatical order reads from category to instance — Chinese, Hindi, Arabic
 }
 <span class="tok-co"># Type before name in every declaration</span>
 main {
-    const string name <span class="tok-op">←</span> <span class="tok-st">"Aelia"</span>
-    const int aetas <span class="tok-op">←</span> <span class="tok-nu">30</span>
+    let string name <span class="tok-op">←</span> <span class="tok-st">"Aelia"</span>
+    let int aetas <span class="tok-op">←</span> <span class="tok-nu">30</span>
 }</code></pre><h3 id="ii-mechanical-over-magical">II. Mechanical over magical<a class="anchor" href="#ii-mechanical-over-magical">#</a></h3><p>The same construct should mean the same thing everywhere. If a reader needs
 distant context to know what a symbol does, the syntax is suspect. Faber
 prefers explicit, local reasoning — the declaration site carries enough
@@ -29,8 +29,8 @@ for error exit, <code>then</code> for compact statement body,
 types. Glyphs are universal — they never localise and never change meaning
 across renderings. A Thai reader and a French reader see the same glyphs,
 even if the keywords around them differ.</p><h3 id="iv-latin-carries-behaviour">IV. Words carry behaviour<a class="anchor" href="#iv-latin-carries-behaviour">#</a></h3><p>Words are for declarations, statements, lifecycle, and behavioural intent:
-<code>fn</code>, <code>class</code>, <code>const</code>,
-<code>var</code>, <code>return</code>, <code>catch</code>.
+<code>fn</code>, <code>class</code>, <code>let</code>,
+<code>mut</code>, <code>return</code>, <code>catch</code>.
 These are bindable through reader-locale packs — they are the vocabulary,
 not the grammar. Underneath the reader surfaces, the pack files are keyed by one classical
 spelling per word. That choice is not about Latin superiority; it is about
@@ -49,17 +49,17 @@ principle that drives Faber's split between <code class="glyph">←</code>
 (runtime binding) and <code class="glyph">=</code> (structural field shape) — most
 languages collapse both into <code class="glyph">=</code>, but that overloading hides
 whether a line is a data-flow operation or a type-level definition.</p><pre class="faber-code"><code class="lang-faber">class Point {
-    const int x
-    const int y
+    let int x
+    let int y
 }
 
 main {
 <span class="tok-co">    # ← is always runtime flow</span>
-    var int count <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    mut int count <span class="tok-op">←</span> <span class="tok-nu">0</span>
     count <span class="tok-op">←</span> count <span class="tok-op">+</span> <span class="tok-nu">1</span>
 
 <span class="tok-co">    # = is always structural shape inside Type { }</span>
-    const _ p <span class="tok-op">←</span> Point { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
+    let _ p <span class="tok-op">←</span> Point { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
 }</code></pre><h3 id="vii-runtime-flow-is-explicit">VII. Runtime flow is explicit<a class="anchor" href="#vii-runtime-flow-is-explicit">#</a></h3><p>Runtime binding, reassignment, and mutation use <code class="glyph">←</code>;
 structural definition uses <code class="glyph">=</code>. A reader scanning source can see
 every data-flow operation immediately: every <code class="glyph">←</code> is a

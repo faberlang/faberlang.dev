@@ -57,7 +57,7 @@ fn duplica(int n) → int {
 main {
     saluta()
     dic("Bonum diem!")
-    const string rex ← name()
+    let string rex ← name()
     print rex
     print duplica(21)
 }

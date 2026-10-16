@@ -76,7 +76,7 @@ generators, and graphics-domain work on the language's own `vector` and
 The math carriers are the language types `vector<f32, N>` and
 `matrix<f32, [R, C]>`; Triga has no `Vector3` or `Matrix4` class. Faber
 morphologia governs receiver posture: the scene store is mutated in place on a
-`var` receiver, while math values return a new value and leave the receiver
+`mut` receiver, while math values return a new value and leave the receiver
 alone.
 
 ```faber mode=package
@@ -84,12 +84,12 @@ importa ex "triga:math" math
 
 functio demo() → math.Quaternion {
     # Free function: a constructor, no receiver exists yet
-    fixum vector<f32, 3> lo ← [0.0, 0.0, 0.0] ↦ vector<f32, 3>
-    fixum vector<f32, 3> hi ← [2.0, 2.0, 2.0] ↦ vector<f32, 3>
-    fixum math.Box<3> ∪ nihil bounds ← math.box_from_min_max(lo, hi)
+    sit vector<f32, 3> lo ← [0.0, 0.0, 0.0] ↦ vector<f32, 3>
+    sit vector<f32, 3> hi ← [2.0, 2.0, 2.0] ↦ vector<f32, 3>
+    sit math.Box<3> ∪ nihil bounds ← math.box_from_min_max(lo, hi)
 
     # Receiver method: returns a new Quaternion, receiver unchanged
-    fixum math.Quaternion turn ← math.quaternion(0.0, 0.0, 0.0, 2.0)
+    sit math.Quaternion turn ← math.quaternion(0.0, 0.0, 0.0, 2.0)
     redde turn.normalized()
 }
 ```

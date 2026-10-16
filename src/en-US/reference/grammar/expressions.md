@@ -27,8 +27,8 @@ fn greet(string nomen) → string {
 }
 
 main {
-    const i32 a ← 7
-    const i32 b ← 2
+    let i32 a ← 7
+    let i32 b ← 2
     print a / b
     print a ≥ b and b ≢ 0
     print greet("munde")
@@ -39,8 +39,8 @@ main {
 
 ```faber locale=en
 main {
-    const i32 ∪ none missing ← null
-    const i32 n ← missing coalesce 0
+    let i32 ∪ none missing ← null
+    let i32 n ← missing coalesce 0
     print n
 }
 ```
@@ -77,10 +77,10 @@ page. The second column names the grammar rule the word belongs to.
 | [`from`](/en-US/corpus/from.html) | `reducta_expr` |
 | [`all`](/en-US/corpus/all.html), [`sum`](/en-US/corpus/sum.html) | `reducta_op` |
 | [`per`](/en-US/corpus/step.html) | `reducta_group` |
-| [`const`](/en-US/corpus/const.html), [`var`](/en-US/corpus/var.html) | `reducta_body` |
+| [`let`](/en-US/corpus/let.html), [`mut`](/en-US/corpus/mut.html) | `reducta_body` |
 | [`coalesce`](/en-US/corpus/coalesce.html) | `reducta_identity` |
 | [`ref`](/en-US/corpus/ref.html), [`from`](/en-US/corpus/from.html) | `sort_expr` |
-| [`const`](/en-US/corpus/const.html), [`var`](/en-US/corpus/var.html) | `sort_body` |
+| [`let`](/en-US/corpus/let.html), [`mut`](/en-US/corpus/mut.html) | `sort_body` |
 ## Formal grammar {#formal-grammar}
 
 The rules for this part of the language are the parser's own definition of it.

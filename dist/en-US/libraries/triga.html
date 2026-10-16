@@ -27,17 +27,17 @@ generators, and graphics-domain work on the language's own <code>vector</code> a
 <code>matrix</code> types, which cannot grow receivers.</p><p>The math carriers are the language types <code>vector&lt;f32, N&gt;</code> and
 <code>matrix&lt;f32, [R, C]&gt;</code>; Triga has no <code>Vector3</code> or <code>Matrix4</code> class. Faber
 morphologia governs receiver posture: the scene store is mutated in place on a
-<code>var</code> receiver, while math values return a new value and leave the receiver
+<code>mut</code> receiver, while math values return a new value and leave the receiver
 alone.</p><pre class="faber-code"><code class="lang-faber mode=package">import from <span class="tok-st">"triga:math"</span> math
 
 fn demo() <span class="tok-op">→</span> math.Quaternion {
 <span class="tok-co">    # Free function: a constructor, no receiver exists yet</span>
-    const vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> lo <span class="tok-op">←</span> [<span class="tok-nu">0.0</span>, <span class="tok-nu">0.0</span>, <span class="tok-nu">0.0</span>] ↦ vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span>
-    const vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> hi <span class="tok-op">←</span> [<span class="tok-nu">2.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">2.0</span>] ↦ vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span>
-    const math.Box<span class="tok-op">&lt;</span><span class="tok-nu">3</span><span class="tok-op">&gt;</span> <span class="tok-op">∪</span> none bounds <span class="tok-op">←</span> math.box_from_min_max(lo, hi)
+    let vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> lo <span class="tok-op">←</span> [<span class="tok-nu">0.0</span>, <span class="tok-nu">0.0</span>, <span class="tok-nu">0.0</span>] ↦ vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span>
+    let vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> hi <span class="tok-op">←</span> [<span class="tok-nu">2.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">2.0</span>] ↦ vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span>
+    let math.Box<span class="tok-op">&lt;</span><span class="tok-nu">3</span><span class="tok-op">&gt;</span> <span class="tok-op">∪</span> none bounds <span class="tok-op">←</span> math.box_from_min_max(lo, hi)
 
 <span class="tok-co">    # Receiver method: returns a new Quaternion, receiver unchanged</span>
-    const math.Quaternion turn <span class="tok-op">←</span> math.quaternion(<span class="tok-nu">0.0</span>, <span class="tok-nu">0.0</span>, <span class="tok-nu">0.0</span>, <span class="tok-nu">2.0</span>)
+    let math.Quaternion turn <span class="tok-op">←</span> math.quaternion(<span class="tok-nu">0.0</span>, <span class="tok-nu">0.0</span>, <span class="tok-nu">0.0</span>, <span class="tok-nu">2.0</span>)
     return turn.normalized()
 }</code></pre><p>Names are English: carrier nouns (<code>Quaternion</code>, <code>Box</code>, <code>Object</code>, <code>Geometry</code>,
 <code>f32</code>, <code>WebGPU</code>) and operation methods (<code>insert</code>, <code>attach</code>, <code>take</code>, <code>find</code>,

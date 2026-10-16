@@ -14,7 +14,7 @@ function divide(p_a: number, p_b: number): result.Result<number, string> {
          
     }return { ok: true as const, value: undefined }; } catch (__e: any) { if (__e !== null && typeof __e === "object" && __e.__faberFail === true) { return { ok: false as const, error: __e.error }; } throw __e; } })() as result.Result<any, string>;
     if (!t0.ok) {
-        const l_err = t0.error;
+        const l_err = (<T, E>(r: result.Result<T, E>): E => { if (!r.ok) { return r.error; } throw new Error("result error read on the success arm"); })(t0);
         {
             console.warn(l_err);
         }}

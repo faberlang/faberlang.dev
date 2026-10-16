@@ -4,9 +4,9 @@ The type comes before the name.
 
 ```faber locale=en
 main {
-    const string name ← "Marcus"
-    const i32 age ← 30
-    const bool flag ← true
+    let string name ← "Marcus"
+    let i32 age ← 30
+    let bool flag ← true
     print name
     print age
     print flag

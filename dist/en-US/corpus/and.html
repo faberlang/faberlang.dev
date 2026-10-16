@@ -7,9 +7,9 @@
 }
 
 test <span class="tok-st">"and mirrors the incipit smoke"</span> {
-    const bool paratus <span class="tok-op">←</span> true
-    const bool licet <span class="tok-op">←</span> true
-    const bool currit <span class="tok-op">←</span> paratus and licet
+    let bool paratus <span class="tok-op">←</span> true
+    let bool licet <span class="tok-op">←</span> true
+    let bool currit <span class="tok-op">←</span> paratus and licet
     assert currit <span class="tok-op">≡</span> true
 }
 <span class="tok-co"># =============================================================================</span>
@@ -39,11 +39,11 @@ test <span class="tok-st">"and mirrors the incipit smoke"</span> {
 
 main {
 <span class="tok-co">    # left operand: true</span>
-    const bool paratus <span class="tok-op">←</span> true
+    let bool paratus <span class="tok-op">←</span> true
 <span class="tok-co">    # right operand: true</span>
-    const bool licet <span class="tok-op">←</span> true
+    let bool licet <span class="tok-op">←</span> true
 <span class="tok-co">    # true et true → true</span>
-    const bool currit <span class="tok-op">←</span> paratus and licet
+    let bool currit <span class="tok-op">←</span> paratus and licet
     print currit
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>true
 </code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusetetfab-canonical-operator-group">radix/corpus/et/et.fab (canonical · operator-group)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/et/et.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

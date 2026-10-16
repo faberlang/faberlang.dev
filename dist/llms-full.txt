@@ -26,9 +26,9 @@ This file is the generated keyword catalog, not the writing guide.
 
 ## Generated corpus frontmatter reference
 
-- Distinct frontmatter terms: 353
+- Distinct frontmatter terms: 365
 - Canonical term pages: 234
-- Alias spellings: 139
+- Alias spellings: 142
 - Categories: 48
 - Source: radix/corpus/**/*.fab TOML frontmatter
 
@@ -58,7 +58,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - destructuring (1) — https://faberlang.dev/en-US/corpus/category/destructuring.html
 - endpoint (4) — https://faberlang.dev/en-US/corpus/category/endpoint.html
 - entry (4) — https://faberlang.dev/en-US/corpus/category/entry.html
-- errors (6) — https://faberlang.dev/en-US/corpus/category/errors.html
+- errors (7) — https://faberlang.dev/en-US/corpus/category/errors.html
 - expression (2) — https://faberlang.dev/en-US/corpus/category/expression.html
 - format (4) — https://faberlang.dev/en-US/corpus/category/format.html
 - function (12) — https://faberlang.dev/en-US/corpus/category/function.html
@@ -82,7 +82,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - template (2) — https://faberlang.dev/en-US/corpus/category/template.html
 - testing (18) — https://faberlang.dev/en-US/corpus/category/testing.html
 - transfer (4) — https://faberlang.dev/en-US/corpus/category/transfer.html
-- type (26) — https://faberlang.dev/en-US/corpus/category/type.html
+- type (25) — https://faberlang.dev/en-US/corpus/category/type.html
 - types (1) — https://faberlang.dev/en-US/corpus/category/types.html
 
 ### Kinds
@@ -92,14 +92,14 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - conversio: 8
 - existing-home: 7
 - feature: 3
-- keyword: 116
+- keyword: 115
 - literal: 2
 - method: 2
 - modifier: 1
 - operator: 4
 - operator-group: 32
 - pointer: 1
-- type: 6
+- type: 7
 
 ### Canonical terms
 
@@ -205,7 +205,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Kind: keyword
 - Category: control-flow
 - Summary: One shared at [i] coordinate on a lockstep list walk.
-- Syntax: `for from <a>, <b> at [i] const <x>, <y> { }`
+- Syntax: `for from <a>, <b> at [i] let <x>, <y> { }`
 - Aliases: none
 - Related: `apud`, `itera`, `ex`
 - Page: https://faberlang.dev/en-US/corpus/at.html
@@ -541,7 +541,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Kind: feature
 - Category: control-flow
 - Summary: Discerne cases can test nominal type members and bind the narrowed value.
-- Syntax: `discerne <union> { casu <type> fixum <name> { ... } }`
+- Syntax: `discerne <union> { casu <type> sit <name> { ... } }`
 - Aliases: none
 - Related: `discerne`, `casu`, `discretio`, `est`
 - Page: https://faberlang.dev/en-US/corpus/discerne%20type%20patterns.html
@@ -579,7 +579,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Summary: Refers to the current instance inside a method.
 - Syntax: `ego.<member>`
 - Aliases: `self`, `this`
-- Related: `generis`, `genus`
+- Related: `fixum`, `genus`
 - Page: https://faberlang.dev/en-US/corpus/self.html
 - Source: radix/corpus/ego/ego.fab
 
@@ -673,7 +673,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Kind: keyword
 - Category: destructuring
 - Summary: Extracts fields from a value into local bindings.
-- Syntax: `ex <expression> <fixum|varia> <field> [, ...] [ceteri <ident>]`
+- Syntax: `ex <expression> <sit|varia> <field> [, ...] [ceteri <ident>]`
 - Aliases: none
 - Related: `de`, `ut`, `ceteri`
 - Page: https://faberlang.dev/en-US/corpus/from.html
@@ -943,18 +943,6 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/en-US/corpus/generics.html
 - Source: radix/corpus/prae/prae.fab
 
-#### `generis`
-
-- Canonical: `generis`
-- Kind: keyword
-- Category: type
-- Summary: Marks a class member as belonging to the type itself.
-- Syntax: `generis <type> <name> [= <expression>]`
-- Aliases: none
-- Related: `genus`, `ego`
-- Page: https://faberlang.dev/en-US/corpus/static.html
-- Source: radix/corpus/generis/generis.fab
-
 #### `genus`
 
 - Canonical: `genus`
@@ -1107,7 +1095,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Summary: Embeds a package file into a module constant at build time.
 - Syntax: `const <type> <name> = embed "<path>"`
 - Aliases: none
-- Related: `generis`, `textus`, `octeti`, `praefixum`
+- Related: `fixum`, `textus`, `octeti`, `praefixum`
 - Page: https://faberlang.dev/en-US/corpus/embed.html
 - Source: radix/corpus/insere/insere.fab
 
@@ -1128,7 +1116,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `integratio`
 - Kind: concept
 - Category: integration
-- Summary: Minimal multi-feature happy path across functio, fixum, si, and nota.
+- Summary: Minimal multi-feature happy path across functio, sit, si, and nota.
 - Syntax: `integratio — multi-feature happy path`
 - Aliases: none
 - Related: `functio`, `fixum`, `si`, `nota`
@@ -1189,7 +1177,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Kind: concept
 - Category: identifier
 - Summary: A binding named print used as the argument of the bare output intrinsic.
-- Syntax: `const string print ← "print"; print print`
+- Syntax: `let string print ← "print"; print print`
 - Aliases: none
 - Related: `nota`, `fixum`
 - Page: https://faberlang.dev/en-US/corpus/keyword-as-ident.html
@@ -1392,8 +1380,8 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `mutabilitas`
 - Kind: concept
 - Category: type
-- Summary: MU-1 baseline narrowed by tcs1: in-place list mutation requires a var binding.
-- Syntax: `var list<int> xs`
+- Summary: MU-1 baseline narrowed by tcs1: in-place list mutation requires a mut binding.
+- Syntax: `mut list<int> xs`
 - Aliases: none
 - Related: `fixum`, `lista`
 - Page: https://faberlang.dev/en-US/corpus/mutabilitas.html
@@ -1635,7 +1623,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Summary: Computes a module constant's value at build time.
 - Syntax: `const <type> <name> = comptime { … return <value> }`
 - Aliases: none
-- Related: `generis`, `insere`, `redde`
+- Related: `fixum`, `insere`, `redde`
 - Page: https://faberlang.dev/en-US/corpus/comptime.html
 - Source: radix/corpus/praefixum/praefixum.fab
 
@@ -1921,7 +1909,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Kind: concept
 - Category: identifier
 - Summary: Locals, parameters, fields and methods may be spelled like target-language reserved words.
-- Syntax: `class Cista { var int box; fn move(int yield) → int { const int match ← yield; return match + self.box } }`
+- Syntax: `class Cista { mut int box; fn move(int yield) → int { let int match ← yield; return match + self.box } }`
 - Aliases: none
 - Related: `keyword-as-ident`, `fixum`
 - Page: https://faberlang.dev/en-US/corpus/rust-reserved-names.html
@@ -2431,13 +2419,25 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/en-US/corpus/string.html
 - Source: radix/corpus/intrinseca/textus-transformationes.fab
 
+#### `trapped`
+
+- Canonical: `trapped`
+- Kind: type
+- Category: errors
+- Summary: The result of a capture boundary: trap { ... } reifies the error channel into a value read by match.
+- Syntax: `trapped<R, T>`
+- Aliases: none
+- Related: `discerne`, `iace`, `cape`
+- Page: https://faberlang.dev/en-US/corpus/trapped.html
+- Source: radix/corpus/trapped/trapped.fab
+
 #### `ts-reserved-field-names`
 
 - Canonical: `ts-reserved-field-names`
 - Kind: concept
 - Category: identifier
 - Summary: Genus fields, methods, variant fields, parameters and locals may be spelled like ECMAScript reserved words; a field is read, written and built under the name it was declared with.
-- Syntax: `class Pouch { var int yield; fn delete(int await) → int { const int let ← await + self.yield; return let } }`
+- Syntax: `class Pouch { mut int yield; fn delete(int await) → int { let int let ← await + self.yield; return let } }`
 - Aliases: none
 - Related: `keyword-as-ident`, `rust-reserved-names`
 - Page: https://faberlang.dev/en-US/corpus/ts-reserved-field-names.html
@@ -2461,7 +2461,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Kind: type
 - Category: types
 - Summary: The `_` hole infers one inhabitant type; the `∪` hole infers a finite union; `T ∪ nihil` stays a single optional inhabitant.
-- Syntax: `fixum _ x ← value; fixum ∪ x ← a; x ← b; fixum lista<∪> xs ← [a, b]`
+- Syntax: `sit _ x ← value; sit ∪ x ← a; x ← b; sit lista<∪> xs ← [a, b]`
 - Aliases: none
 - Related: `unio`, `nihil`
 - Page: https://faberlang.dev/en-US/corpus/type-hole-union.html
@@ -2560,7 +2560,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `varia <type|_> <pattern> [← <expression>]`
 - Aliases: `let`, `mutable`
 - Related: `fixum`, `←`, `↑`
-- Page: https://faberlang.dev/en-US/corpus/var.html
+- Page: https://faberlang.dev/en-US/corpus/mut.html
 - Source: radix/corpus/varia/varia.fab
 
 #### `variandum`
@@ -2737,7 +2737,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Kind: operator
 - Category: async
 - Summary: Awaits a promissum while initializing an ordinary binding.
-- Syntax: `fixum T name ↢ future`
+- Syntax: `sit T name ↢ future`
 - Aliases: none
 - Related: `figendum`, `variandum`, `fiet`, `promissum`
 - Page: https://faberlang.dev/en-US/corpus/%E2%86%A2.html
@@ -2941,6 +2941,10 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `catch` → `cape`
 - `choose` → `elige`
 - `class` → `genus`
+- `class const initializer` → `class constant use`
+- `class const member` → `class constant`
+- `class constant read` → `class constant read`
+- `class constant read across modules` → `class constant export`, `class constant import`
 - `closure` → `clausa`
 - `column` → `columna`
 - `compare` → `implet`
@@ -3026,8 +3030,6 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `shared capture` → `clausura`
 - `silent noop` → `tacet`
 - `skip` → `omitte`
-- `static field read` → `generis read`
-- `static field read across modules` → `generis read`
 - `string` → `textus`
 - `struct` → `genus`
 - `suite` → `probandum`
@@ -3042,7 +3044,8 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `transfer` → `⇇`
 - `type` → `typus`
 - `type parameters` → `generics`
-- `type-name field read` → `generis read`
+- `type-level constant` → `class constant`
+- `type-name constant read` → `class constant read`
 - `union` → `discretio`
 - `unit` → `vacuum`
 - `via clause` → `via`

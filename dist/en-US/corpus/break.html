@@ -27,7 +27,7 @@
 
 main {
 <span class="tok-co">    # Break when reaching 5</span>
-    var int i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    mut int i <span class="tok-op">←</span> <span class="tok-nu">0</span>
     while i ≺ <span class="tok-nu">10</span> {
         if i <span class="tok-op">≡</span> <span class="tok-nu">5</span> {
             break
@@ -37,9 +37,9 @@ main {
     }
 
 <span class="tok-co">    # Break in nested loop</span>
-    var int exterior <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    mut int exterior <span class="tok-op">←</span> <span class="tok-nu">0</span>
     while exterior ≺ <span class="tok-nu">3</span> {
-        var int interior <span class="tok-op">←</span> <span class="tok-nu">0</span>
+        mut int interior <span class="tok-op">←</span> <span class="tok-nu">0</span>
         while interior ≺ <span class="tok-nu">10</span> {
             if interior <span class="tok-op">≡</span> <span class="tok-nu">2</span> {
                 break

@@ -42,8 +42,8 @@ stressed by at least one language here, on purpose.
 
 ```faber locale=en
 class Span {
-    const f64 low
-    const f64 high
+    let f64 low
+    let f64 high
 
     fn contains(f64 x) → bool {
         return self.low ≤ x and x ≤ self.high
@@ -59,7 +59,7 @@ fn choose<T>(bool first, T a, T b) → T {
 }
 
 main {
-    const Span bytes ← Span { low = 0.0, high = 255.0 }
+    let Span bytes ← Span { low = 0.0, high = 255.0 }
     print bytes.center()
     print choose(bytes.contains(300.0), "inside", "outside")
     print -7 / 2
@@ -74,8 +74,8 @@ main {
 
 ```faber locale=la
 genus Span {
-    fixum f64 low
-    fixum f64 high
+    sit f64 low
+    sit f64 high
 
     functio contains(f64 x) → bivalens {
         redde ego.low ≤ x et x ≤ ego.high
@@ -91,7 +91,7 @@ functio choose<T>(bivalens first, T a, T b) → T {
 }
 
 incipit {
-    fixum Span bytes ← Span { low = 0.0, high = 255.0 }
+    sit Span bytes ← Span { low = 0.0, high = 255.0 }
     nota bytes.center()
     nota choose(bytes.contains(300.0), "inside", "outside")
     nota -7 / 2
@@ -106,8 +106,8 @@ incipit {
 
 ```faber locale=th-TH
 ชนิด Span {
-    คงที่ f64 low
-    คงที่ f64 high
+    กำหนด f64 low
+    กำหนด f64 high
 
     ฟังก์ชัน contains(f64 x) → ตรรกะ {
         คืน ตัวฉัน.low ≤ x และ x ≤ ตัวฉัน.high
@@ -123,7 +123,7 @@ incipit {
 }
 
 เริ่ม {
-    คงที่ Span bytes ← Span { low = 0.0, high = 255.0 }
+    กำหนด Span bytes ← Span { low = 0.0, high = 255.0 }
     บันทึก bytes.center()
     บันทึก choose(bytes.contains(300.0), "inside", "outside")
     บันทึก -7 / 2
@@ -138,8 +138,8 @@ incipit {
 
 ```faber locale=zh-Hans
 类 Span {
-    常量 f64 low
-    常量 f64 high
+    设 f64 low
+    设 f64 high
 
     函数 contains(f64 x) → 布尔 {
         返回 自身.low ≤ x 且 x ≤ 自身.high
@@ -155,7 +155,7 @@ incipit {
 }
 
 入口 {
-    常量 Span bytes ← Span { low = 0.0, high = 255.0 }
+    设 Span bytes ← Span { low = 0.0, high = 255.0 }
     显示 bytes.center()
     显示 choose(bytes.contains(300.0), "inside", "outside")
     显示 -7 / 2
@@ -170,8 +170,8 @@ incipit {
 
 ```faber locale=zh-Hant
 類型 Span {
-    定值 f64 low
-    定值 f64 high
+    設為 f64 low
+    設為 f64 high
 
     函式 contains(f64 x) → 布林 {
         傳回 自身.low ≤ x 且 x ≤ 自身.high
@@ -187,7 +187,7 @@ incipit {
 }
 
 入口 {
-    定值 Span bytes ← Span { low = 0.0, high = 255.0 }
+    設為 Span bytes ← Span { low = 0.0, high = 255.0 }
     註記 bytes.center()
     註記 choose(bytes.contains(300.0), "inside", "outside")
     註記 -7 / 2
@@ -202,8 +202,8 @@ incipit {
 
 ```faber locale=vi
 kiểu Span {
-    hằng f64 low
-    hằng f64 high
+    đặt f64 low
+    đặt f64 high
 
     hàm contains(f64 x) → logic {
         trả tôi.low ≤ x và x ≤ tôi.high
@@ -219,7 +219,7 @@ hàm choose<T>(logic first, T a, T b) → T {
 }
 
 bắt_đầu {
-    hằng Span bytes ← Span { low = 0.0, high = 255.0 }
+    đặt Span bytes ← Span { low = 0.0, high = 255.0 }
     ghi_chú bytes.center()
     ghi_chú choose(bytes.contains(300.0), "inside", "outside")
     ghi_chú -7 / 2
@@ -234,8 +234,8 @@ bắt_đầu {
 
 ```faber locale=ar
 صنف Span {
-    ثابت f64 low
-    ثابت f64 high
+    ليكن f64 low
+    ليكن f64 high
 
     دالة contains(f64 x) → منطقي {
         أعد ذات.low ≤ x و x ≤ ذات.high
@@ -251,7 +251,7 @@ bắt_đầu {
 }
 
 بداية {
-    ثابت Span bytes ← Span { low = 0.0, high = 255.0 }
+    ليكن Span bytes ← Span { low = 0.0, high = 255.0 }
     اعرض bytes.center()
     اعرض choose(bytes.contains(300.0), "inside", "outside")
     اعرض -7 / 2
@@ -266,8 +266,8 @@ bắt_đầu {
 
 ```faber locale=hi
 वर्ग Span {
-    स्थिर f64 low
-    स्थिर f64 high
+    बैठा f64 low
+    बैठा f64 high
 
     फलन contains(f64 x) → तार्किक {
         लौटाओ मैं.low ≤ x और x ≤ मैं.high
@@ -283,7 +283,7 @@ bắt_đầu {
 }
 
 आरंभ {
-    स्थिर Span bytes ← Span { low = 0.0, high = 255.0 }
+    बैठा Span bytes ← Span { low = 0.0, high = 255.0 }
     दिखाओ bytes.center()
     दिखाओ choose(bytes.contains(300.0), "inside", "outside")
     दिखाओ -7 / 2

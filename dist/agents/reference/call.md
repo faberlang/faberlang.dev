@@ -23,7 +23,7 @@ call 'runtime:echo' (payload) ↦ string
 
 ```fab
 main {
-    const string t ← call 'runtime:echo' ("salve, munde") ↦ string
+    let string t ← call 'runtime:echo' ("salve, munde") ↦ string
     assert t ≡ "salve, munde"
 }
 ```

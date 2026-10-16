@@ -45,20 +45,23 @@ The built-in collections are generic already.
 
 ```faber locale-tabs
 incipit {
-    fixum lista<textus> nomina ← ["Marcus", "Julia"]
-    fixum tabula<textus, numerus> aetates ← { "Marcus": 30 }
+    sit lista<textus> nomina ← ["Marcus", "Julia"]
+    sit tabula<textus, numerus> aetates ← { "Marcus": 30 }
     nota nomina, aetates
 }
 ```
 
 ## Records {#genus}
 
-`genus` declares a record type with type-first fields.
+`genus` declares a record type with type-first fields. Each field names its
+mode: `sit` is fixed after construction and `varia` is writable. A field with
+neither word is `PARSE010 field_modifier_missing`, and a `de` field is
+`PARSE010 ref_field_refused`.
 
 ```faber locale-tabs
 genus Persona {
-    fixum textus nomen
-    fixum numerus aetas
+    sit textus nomen
+    sit numerus aetas
 }
 
 functio descriptio(Persona p) → textus {
@@ -66,7 +69,7 @@ functio descriptio(Persona p) → textus {
 }
 
 incipit {
-    fixum _ p ← Persona { nomen = "Marcus", aetas = 30 }
+    sit _ p ← Persona { nomen = "Marcus", aetas = 30 }
     nota descriptio(p)
 }
 ```
@@ -77,8 +80,8 @@ A `genus` can carry functions alongside its fields.
 
 ```faber locale-tabs
 genus Punctum {
-    fixum numerus x
-    fixum numerus y
+    sit numerus x
+    sit numerus y
 
     functio summa() → numerus {
         redde ego.x + ego.y
@@ -86,7 +89,7 @@ genus Punctum {
 }
 
 incipit {
-    fixum _ p ← Punctum { x = 1, y = 2 }
+    sit _ p ← Punctum { x = 1, y = 2 }
     nota p.summa()
 }
 ```

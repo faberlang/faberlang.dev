@@ -18,19 +18,19 @@
 <span class="tok-co"># =============================================================================</span>
 
 class Celsius {
-    var float degrees
+    mut float degrees
 }
 
 class Fahrenheit {
-    var float degrees
+    mut float degrees
 }
 
 class Reading {
-    var int value
+    mut int value
 }
 
 class Gauged {
-    var int value
+    mut int value
 }
 
 @ conversion
@@ -49,13 +49,13 @@ fn toGauged(Reading r) <span class="tok-op">→</span> Gauged ⇥ string {
 
 main {
 <span class="tok-co">    # infallible: ↦ calls toFahrenheit</span>
-    const Fahrenheit boiling <span class="tok-op">←</span> Celsius { degrees <span class="tok-op">=</span> <span class="tok-nu">100.0</span> } ↦ Fahrenheit
+    let Fahrenheit boiling <span class="tok-op">←</span> Celsius { degrees <span class="tok-op">=</span> <span class="tok-nu">100.0</span> } ↦ Fahrenheit
     print boiling.degrees
 
 <span class="tok-co">    # failable: the ⊥ default applies only when toGauged fails</span>
-    const Gauged kept <span class="tok-op">←</span> Reading { value <span class="tok-op">=</span> <span class="tok-nu">7</span> } ↦ Gauged ⊥ Gauged { value <span class="tok-op">=</span> <span class="tok-nu">0</span> }
+    let Gauged kept <span class="tok-op">←</span> Reading { value <span class="tok-op">=</span> <span class="tok-nu">7</span> } ↦ Gauged ⊥ Gauged { value <span class="tok-op">=</span> <span class="tok-nu">0</span> }
     print kept.value
-    const Gauged fallback <span class="tok-op">←</span> Reading { value <span class="tok-op">=</span> <span class="tok-op">-</span><span class="tok-nu">4</span> } ↦ Gauged ⊥ Gauged { value <span class="tok-op">=</span> <span class="tok-nu">0</span> }
+    let Gauged fallback <span class="tok-op">←</span> Reading { value <span class="tok-op">=</span> <span class="tok-op">-</span><span class="tok-nu">4</span> } ↦ Gauged ⊥ Gauged { value <span class="tok-op">=</span> <span class="tok-nu">0</span> }
     print fallback.value
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>212.0
 7

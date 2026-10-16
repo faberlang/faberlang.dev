@@ -70,9 +70,9 @@ list as [Math in the ether](/language/behavior/numeric-widths.html):
 
 ```faber locale-tabs
 incipit {
-    fixum i32 narrow ← 7 ∷ i32
-    fixum u64 wide ← 255 ∷ u64
-    fixum f32 single ← 1.5 ∷ f32
+    sit i32 narrow ← 7 ∷ i32
+    sit u64 wide ← 255 ∷ u64
+    sit f32 single ← 1.5 ∷ f32
 }
 ```
 
@@ -93,10 +93,10 @@ with `↦`.
 
 ```faber
 incipit {
-    fixum b8 flags ← 0xF0 ∷ b8
-    fixum b8 low ← flags ⇒ 4
-    fixum b8 both ← flags ∨ low
-    fixum u8 count ← both ↦ u8
+    sit b8 flags ← 0xF0 ∷ b8
+    sit b8 low ← flags ⇒ 4
+    sit b8 both ← flags ∨ low
+    sit u8 count ← both ↦ u8
     nota both, count
 }
 ```
@@ -144,7 +144,7 @@ Explicit call-site type arguments are supported:
 functio identitas<T>(T datum) → T { redde datum }
 
 incipit {
-    fixum numerus seven ← identitas<numerus>(7)
+    sit numerus seven ← identitas<numerus>(7)
 }
 ```
 
@@ -163,8 +163,8 @@ incipit {
 
 ```faber
 incipit {
-    fixum lista<numerus> nums ← [1, 2, 3]
-    fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+    sit lista<numerus> nums ← [1, 2, 3]
+    sit tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 }
 ```
 
@@ -182,9 +182,9 @@ incipit {
 
 ```faber
 incipit {
-    fixum tensor<f32, []> scalar ← vacua
-    fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-    fixum numerus ∪ nihil first ← row[0]
+    sit tensor<f32, []> scalar ← vacua
+    sit tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+    sit numerus ∪ nihil first ← row[0]
 }
 ```
 
@@ -207,15 +207,16 @@ fn swap(mut atomic<i32> cell, i32 value) → i32 {
 
 ### Borrow markers on types {#borrow-markers}
 
-Borrow markers (`de`, `in`, `own`) can appear on types in parameter
-positions to indicate how a value is passed:
+Access markers (`ref`, `mut`, `own`, `copy`; Latin `de`, `varia`, `penes`,
+`exemplum`) can appear on types in parameter positions to indicate how a value
+is passed. A parameter with no marker is `ref`:
 
 ```faber
 # shared borrow — caller retains ownership
 functio imprime(de textus label) → vacuum { }
 
 # mutable borrow — caller lends mutable access
-functio duplica(in numerus value) → vacuum { value ← value + 1 }
+functio duplica(varia numerus value) → vacuum { value ← value + 1 }
 
 # move — caller gives up ownership
 functio consume(own textus buffer) → textus {
@@ -224,17 +225,18 @@ functio consume(own textus buffer) → textus {
 
 incipit {
     varia numerus n ← 1
-    fixum textus s ← "salve"
+    sit textus s ← "salve"
 
     imprime(s)
-    duplica(in n)
-    fixum _ t ← consume(own s)
+    duplica(varia n)
+    sit _ t ← consume(own s)
 }
 ```
 
-The call site repeats the `in` and `own` markers (en `mut` and `own`):
-`duplica(in n)`, `consume(own s)`. Leaving one off is
-`SEM057 call_marker_missing`. A parameter with no marker is read-only.
+The call site repeats the `mut` and `own` markers (Latin `varia` and
+`penes`): `duplica(varia n)`, `consume(own s)`. Leaving one off is
+`SEM057 call_marker_missing`. A parameter with no marker is `ref`: the function
+may read it and may not write it.
 
 ### Comparison policy {#comparison-policy}
 
@@ -249,21 +251,33 @@ The call site repeats the `in` and `own` markers (en `mut` and `own`):
 
 ## Variables and binding
 
-Faber has three variable keywords and a dedicated assignment glyph. The key
-distinction is between `fixum` (write-once) and `varia` (freely reassignable),
-and between `←` (runtime flow) and `=` (structural field shape).
+Four binding words say how a name is bound, and a dedicated glyph attaches a
+value. The key distinctions are between a fixed name and a writable one, and
+between `←` (runtime flow) and `=` (structural field shape).
 
-### fixum — immutable binding {#fixum-immutable-binding}
+| English | Latin | Meaning |
+|---------|-------|---------|
+| `let T x ← e` | `sit` | a fixed name |
+| `mut T x ← e` | `varia` | re-pointable and writable |
+| `ref T x ← e` | `de` | re-pointable and read-only |
+| `const T X = e` | `fixum` | a compile-time fact, set with `=` |
 
-`fixum` bindings are write-once. They may be declared with or without an
-initializer; if declared without, they must be assigned exactly once before
-reading. A second assignment is rejected.
+Every binding word writes its type slot. There is no short form: `let x ← 3`
+is `PARSE010 binding_type_slot_required`. Write the type, `let int x ← 3`, or
+write `_` to have it inferred, `let _ x ← 3`.
+
+### let (sit) — a fixed name {#let-fixed-name}
+
+A `let` binding cannot be assigned again once it is set. It may be declared
+with or without an initializer; if declared without, it must be assigned
+exactly once before reading. A second assignment is
+`SEM020 immutable_second_assignment`.
 
 ```faber
 incipit {
-    fixum numerus count ← 0
-    fixum textus name ← "Marcus"
-    fixum _ inferred ← [1, 2, 3]
+    sit numerus count ← 0
+    sit textus name ← "Marcus"
+    sit _ inferred ← [1, 2, 3]
 }
 ```
 
@@ -271,7 +285,7 @@ Deferred initialisation:
 
 ```faber
 incipit {
-    fixum numerus factor
+    sit numerus factor
     si verum {
         factor ← 10
     } secus {
@@ -281,9 +295,10 @@ incipit {
 }
 ```
 
-### varia — mutable binding {#varia-mutable-binding}
+### mut (varia) — a writable name {#mut-writable-name}
 
-`varia` bindings are freely reassignable:
+A `mut` binding can be assigned again, and its value can be written through the
+name. The retired word for this was `var` (`PARSE010 var_retired`):
 
 ```faber
 incipit {
@@ -293,19 +308,43 @@ incipit {
 }
 ```
 
-### sit — inferred immutable sugar {#sit-inferred-immutable-sugar}
+### Inferred types with `_` {#inferred-types}
 
-`sit` is sugar for `fixum _` — an immutable binding with inferred type:
+`_` in the type slot asks the compiler to infer the type. It works with every
+binding word, and with the deferred form, which is still written with the slot:
 
 ```faber
 incipit {
-    sit salve ← "Salve"
-    sit nomen ← "Marcus"
-    sit x ← 42
+    sit _ salve ← "Salve"
+    sit _ nomen ← "Marcus"
+    sit _ x ← 42
 
     # Deferred form
-    sit label
+    sit _ label
     label ← "deferred"
+}
+```
+
+### ref (de) and const (fixum) {#ref-and-const}
+
+`ref` names a value that can be re-pointed but not written. It is the mode of a
+bare parameter. `const` is no longer a run-time binding: it declares a
+compile-time fact with `=`, never `←`. A run-time `const T x ← e` (Latin
+`fixum`) is `PARSE010 runtime_const_retired`; write `let`.
+
+```faber locale=en
+const int LIMIT = 3
+
+fn first(list<int> xs) → int {
+    ref list<int> view ← xs
+    return view[0]
+}
+
+main {
+    let int n ← 4
+    mut int total ← 0
+    total ← total + n
+    print first([5, 6]), LIMIT, total
 }
 ```
 
@@ -320,8 +359,8 @@ Faber splits what most languages collapse into `=`:
 
 ```faber
 genus Point {
-    fixum numerus x
-    fixum numerus y
+    sit numerus x
+    sit numerus y
 }
 
 incipit {
@@ -331,7 +370,7 @@ incipit {
     count ← count + 1
 
     # Structural: = defines field values inside a type literal
-    fixum _ p ← Point {
+    sit _ p ← Point {
         x = 10,
         y = 20
     }
@@ -344,13 +383,13 @@ incipit {
 
 ```faber
 genus Persona {
-    fixum textus nomen
-    fixum numerus aetas
+    sit textus nomen
+    sit numerus aetas
 }
 
 incipit {
-    fixum _ p ← Persona { nomen = "Marcus", aetas = 30 }
-    ex p fixum nomen, aetas
+    sit _ p ← Persona { nomen = "Marcus", aetas = 30 }
+    ex p sit nomen, aetas
     # prints "Marcus"
     nota nomen
 }
@@ -381,10 +420,10 @@ live in the compiler, not in the standard library.
 
 ```faber
 incipit {
-    fixum lista<numerus> empty ← vacua
-    fixum _ numbers ← [1, 2, 3, 4, 5]
-    fixum _ names ← ["Marcus", "Julia", "Gaius"]
-    fixum _ nested ← [[1, 2], [3, 4]]
+    sit lista<numerus> empty ← vacua
+    sit _ numbers ← [1, 2, 3, 4, 5]
+    sit _ names ← ["Marcus", "Julia", "Gaius"]
+    sit _ nested ← [[1, 2], [3, 4]]
 }
 ```
 
@@ -392,10 +431,10 @@ Spread with `sparge`:
 
 ```faber
 incipit {
-    fixum lista<numerus> a ← [1, 2, 3]
-    fixum lista<numerus> b ← [4, 5, 6]
-    fixum _ combined ← [sparge a, sparge b]
-    fixum _ headed ← [0, sparge a, 99]
+    sit lista<numerus> a ← [1, 2, 3]
+    sit lista<numerus> b ← [4, 5, 6]
+    sit _ combined ← [sparge a, sparge b]
+    sit _ headed ← [0, sparge a, 99]
 }
 ```
 
@@ -405,7 +444,7 @@ Key methods: `length`, `get`, `append`, `sum`, `first`, `last`.
 
 ```faber
 incipit {
-    fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+    sit tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 }
 ```
 
@@ -423,7 +462,7 @@ assign by key:
 
 ```faber locale=en
 main {
-    var map<string, int> puncta ← empty
+    mut map<string, int> puncta ← empty
     puncta["alpha"] ← 1
     puncta["beta"] ← 2
     print puncta.length()
@@ -434,9 +473,9 @@ main {
 
 ```faber
 incipit {
-    fixum tensor<f32, []> scalar ← vacua
-    fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-    fixum numerus ∪ nihil first ← row[0]
+    sit tensor<f32, []> scalar ← vacua
+    sit tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+    sit numerus ∪ nihil first ← row[0]
 }
 ```
 
@@ -444,7 +483,7 @@ Tensor sugar (numeric-heavy code):
 
 ```faber locale=en
 main {
-    const tf32[4] lanes ← [1.0, 2.0, 3.0, 4.0] ↦ tf32[4]
+    let tf32[4] lanes ← [1.0, 2.0, 3.0, 4.0] ↦ tf32[4]
 }
 ```
 
@@ -457,7 +496,7 @@ namespace lookup, not a receiver method), plus elementwise
 
 ```faber locale=en
 main {
-    var sparsa<f32, [2, 3]> sparse ← empty
+    mut sparsa<f32, [2, 3]> sparse ← empty
     sparse.set([0, 1], 4.0)
     sparse.set([1, 2], 9.0)
 
@@ -472,9 +511,9 @@ Conversion between dense and sparse:
 
 ```faber
 incipit {
-    fixum tf32[2, 2] dense ← [[1.0, 0.0], [0.0, 2.0]] ↦ tf32[2, 2]
-    fixum sf32[2, 2] sparse ← dense ↦ sf32[2, 2]
-    fixum tf32[2, 2] roundtrip ← sparse ↦ tf32[2, 2]
+    sit tf32[2, 2] dense ← [[1.0, 0.0], [0.0, 2.0]] ↦ tf32[2, 2]
+    sit sf32[2, 2] sparse ← dense ↦ sf32[2, 2]
+    sit tf32[2, 2] roundtrip ← sparse ↦ tf32[2, 2]
 }
 ```
 
@@ -485,8 +524,8 @@ tuus views, or generator functions. Consumed via `itera ex`:
 
 ```faber
 incipit {
-    fixum _ items ← [1, 2, 3]
-    itera ex items fixum item {
+    sit _ items ← [1, 2, 3]
+    itera ex items sit item {
         nota item
     }
 }
@@ -500,11 +539,11 @@ yields values with `cede` (see [Functions — async and streams](/language/funct
 
 ```faber
 # exclusive range: 0, 1, 2, 3, 4
-itera ab 0‥5 fixum i {
+itera ab 0‥5 sit i {
     nota i
 }
 # inclusive range: 0, 1, 2, 3, 4, 5
-itera ab 0…5 fixum i {
+itera ab 0…5 sit i {
     nota i
 }
 ```
@@ -541,14 +580,14 @@ functio greet(textus nomen) → textus {
 }
 
 incipit {
-    fixum numerus pagina ← 3
-    fixum numerus totum ← 10
-    fixum textus code ← "200"
-    fixum textus label ← "OK"
+    sit numerus pagina ← 3
+    sit numerus totum ← 10
+    sit textus code ← "200"
+    sit textus label ← "OK"
 
-    fixum _ msg ← "Page § of §"(pagina, totum)
-    fixum _ block ← «status: § (§)»(code, label)
-    fixum _ again ← "§1 of §0, §1"(pagina, totum)
+    sit _ msg ← "Page § of §"(pagina, totum)
+    sit _ block ← «status: § (§)»(code, label)
+    sit _ again ← "§1 of §0, §1"(pagina, totum)
 }
 ```
 
@@ -561,13 +600,20 @@ Key rules:
 - Trailing `!` selects display formatting: `"Salve, §!"(nomen)`
 - The `(args)` suffix is template application, not a function call
 
+### Escapes {#escapes}
+
+A string literal may escape only its own delimiter, the backslash, `n`, `t`, `r`
+and `u{…}`. Any other escape is `LEX003 unknown_escape`; the old pass-through is
+gone. Text that contains quotes can use guillemets, `«say "hi"»`, with no
+escapes, and the lint `WARN034` suggests that rewrite.
+
 ### Block strings {#block-strings}
 
 Multiline blocks use guillemets `«…»`:
 
 ```faber
 incipit {
-    fixum _ sql ← «
+    sit _ sql ← «
         select id, email
         from accounts
     »
@@ -584,8 +630,8 @@ Safe for bound SQL/URL payloads:
 
 ```faber
 incipit {
-    fixum numerus user_id ← 42
-    fixum _ query ← `select * from users where id = §`(user_id)
+    sit numerus user_id ← 42
+    sit _ query ← `select * from users where id = §`(user_id)
 }
 ```
 
@@ -599,9 +645,9 @@ widens it to the dynamic carrier instead:
 
 ```faber
 incipit {
-    fixum json blank ← {}
-    fixum _ user ← { "name": "Marcus", "age": 30, "active": true }
-    fixum _ nested ← { "meta": { "version": 1 }, "tags": ["alpha", "beta"] }
+    sit json blank ← {}
+    sit _ user ← { "name": "Marcus", "age": 30, "active": true }
+    sit _ nested ← { "meta": { "version": 1 }, "tags": ["alpha", "beta"] }
 }
 ```
 
@@ -609,11 +655,11 @@ For typed genus construction, use the type name and `=` field shape:
 
 ```faber
 genus Point {
-    fixum numerus x
-    fixum numerus y
+    sit numerus x
+    sit numerus y
 }
 incipit {
-    fixum _ p ← Point { x = 10, y = 20 }
+    sit _ p ← Point { x = 10, y = 20 }
 }
 ```
 
@@ -646,7 +692,7 @@ by the caller or constructor:
 functio connect(textus host, numerus port sponte) → vacuum { }
 
 genus User {
-    fixum textus email sponte
+    sit textus email sponte
 }
 ```
 
@@ -661,10 +707,10 @@ functio process(de numerus depth sponte) → vacuum { }
 Use `!.`, `![`, `!(` to assert a nullable value is not `nulla`:
 
 ```faber
-genus Box { fixum numerus ∪ nihil val }
+genus Box { sit numerus ∪ nihil val }
 incipit {
-    fixum Box ∪ nihil maybe_name ← Box { val = 7 }
-    fixum _ name ← maybe_name!.val
+    sit Box ∪ nihil maybe_name ← Box { val = 7 }
+    sit _ name ← maybe_name!.val
 }
 ```
 
@@ -674,8 +720,8 @@ A non-null assertion on `nulla` aborts at runtime.
 
 ```faber
 incipit {
-    fixum textus ∪ nihil provided ← nulla
-    fixum _ name ← provided vel "default"
+    sit textus ∪ nihil provided ← nulla
+    sit _ name ← provided vel "default"
 }
 ```
 
@@ -691,10 +737,10 @@ Two important conversion operators, one for runtime and one for compile-time:
 ```faber
 incipit {
     # runtime conversion
-    fixum _ parsed ← "42" ↦ numerus ⊥ 0
+    sit _ parsed ← "42" ↦ numerus ⊥ 0
     # static ascription
-    fixum numerus count ← 7
-    fixum _ text ← count ∷ textus
+    sit numerus count ← 7
+    sit _ text ← count ∷ textus
 }
 ```
 
@@ -705,9 +751,9 @@ fail. Supply an inline default with `⊥`:
 
 ```faber
 incipit {
-    fixum textus input ← "9"
-    fixum _ n ← "42" ↦ numerus ⊥ 0
-    fixum _ safe ← input ↦ numerus ⊥ 0
+    sit textus input ← "9"
+    sit _ n ← "42" ↦ numerus ⊥ 0
+    sit _ safe ← input ↦ numerus ⊥ 0
 }
 ```
 
@@ -715,9 +761,9 @@ Type-directed materialization:
 
 ```faber
 incipit {
-    fixum textus path ← "/etc/hosts"
-    fixum _ lanes ← [1.0, 2.0, 3.0, 4.0] ↦ vf32[4]
-    fixum _ body ← ad 'solum:lege' (path) ↦ textus
+    sit textus path ← "/etc/hosts"
+    sit _ lanes ← [1.0, 2.0, 3.0, 4.0] ↦ vf32[4]
+    sit _ body ← ad 'solum:lege' (path) ↦ textus
 }
 ```
 
@@ -728,9 +774,9 @@ target-type driven:
 
 ```faber
 incipit {
-    fixum numerus count ← 7
-    fixum _ x ← 7 ∷ i32
-    fixum _ text ← count ∷ textus
+    sit numerus count ← 7
+    sit _ x ← 7 ∷ i32
+    sit _ text ← count ∷ textus
 }
 ```
 
@@ -740,7 +786,7 @@ Use `vel` for nullish coalescing when a value is `nulla`:
 
 ```faber
 incipit {
-    fixum textus ∪ nihil provided_name ← nulla
-    fixum _ name ← provided_name vel "default"
+    sit textus ∪ nihil provided_name ← nulla
+    sit _ name ← provided_name vel "default"
 }
 ```

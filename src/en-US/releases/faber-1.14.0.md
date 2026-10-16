@@ -122,7 +122,53 @@ Color.Blue
 
 **Tensor row operations.** `sum`, `mean` and `softmax` take the axis marker at the call: `t.sum(axis 1)`, `t.sum(axis 1, axis 2)`, or a named constant, `t.sum(axis K)`. `softmax` takes an optional axis and only the last axis is legal (`SEM010 softmax_axis_not_last`). `norm_rms` and `norm_layer` require the marker too, as in `input.norm_rms(axis 1, 1e-5, weight)`. `rope_half` and `softmax_causal` are source methods.
 
-**Diagnostics.** The six translated reader packs (ar, hi, th-TH, vi, zh-Hans, zh-Hant) now translate the rows that used to repeat the English text, and the parser's "expected X" errors carry named issues instead of prose. New codes include `LEX003 unknown_escape`, `WARN034`, `SEM008 template_hole_index_gap` and `PKG001 target_not_in_this_build`.
+**Grouped reductions.** `reduce … per [i, j]` groups by a bracketed coordinate list, one key per result axis. The result extents come from the expected type, and a key list whose length differs from the result rank is `SEM010 reducta_group_rank_mismatch`. A key is either a coordinate, which folds that axis away, or a key tensor read at the loop coordinate, as in `per [rows[i], cols[i]]`, which scatters each element into its bucket; a bucket nothing falls into keeps the operator's identity. `t.sum(axis n)` is sugar for this form and is rank-free, so the same call works on a rank-3 and a rank-4 tensor.
+
+**Sizes in calls.** A generic function with `size` parameters takes them in the call's angle brackets, as natural numbers: `take<2, 2>(x)`. `const size N ← n` lifts a run-time `int` into a size at the declaration (checked to be at least 0, and a snapshot of `n`); a size name reads back as an `int` and sits in extent positions, as in `tf32[ROWS, N]`.
+
+**Ascribed literals.** `{ field = value } ∷ Class` builds the class and is the same value as `Class { field = value }`. A bare `{ field = value }` stored into a cell of class type takes the cell's class, and a field the literal leaves out keeps its declared default. `∷` states a fact the compiler must prove: when the source type is not the target type and no declared contract relates them, the result is `SEM010 nominal_ascription_not_provable`.
+
+**Convert-assign with `via`.** The convert-assign arrow takes the same `via` clause as `↦`, so `n ↤ x via Floor` stores `x` into the `int` `n` rounded the way `x ↦ int via Floor` would.
+
+```fab
+fn take<size M, size N>(tensor<f32, [M, N]> value) → tensor<f32, [M, N]> {
+    return value
+}
+
+fn per_cell(tf32[2, 2, 3] cube) → tf32[2, 2] {
+    return reduce via sum from cube at [i, j, k] per [i, j] let s { return s }
+}
+
+class Calc {
+    mut bool flag = false
+    mut int ∪ none bonus = null
+}
+
+main {
+    let list<f32> flat ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
+    let tf32[2, 2, 3] cube ← flat ↦ tf32[2, 2, 3]
+    let tensor<f32, [2, 2]> sums ← take<2, 2>(per_cell(cube))
+    print sums
+    print sums.shape()[0]
+
+    let Calc a ← { flag = true, bonus = null } ∷ Calc
+    let Calc b ← { flag = false }
+    mut int n ← 0
+    let f64 x ← 3.7
+    n ↤ x via Floor
+    print a.flag, b.flag, a.bonus, n
+}
+```
+
+```text
+[6.0, 15.0, 24.0, 33.0]
+2
+true false none 3
+```
+
+**Comptime across modules.** A `comptime { … }` initializer folds an imported constant and a call to an imported pure function. In 1.13 an import inside `comptime` was `SEM064 praefixum_import_unavailable`. A plain `=` initializer that calls an imported function is still `constant_initializer_not_constant`.
+
+**Diagnostics.** The six translated reader packs (ar, hi, th-TH, vi, zh-Hans, zh-Hant) now translate the rows that used to repeat the English text, and the parser's "expected X" errors carry named issues instead of prose. New codes include `LEX003 unknown_escape`, `WARN034`, `SEM008 template_hole_index_gap` and `PKG001 target_not_in_this_build`. Smaller additions: `LEX001 empty_regex_literal` and `unterminated_regex_literal`; `LEX002 float_overflow` and `float_underflow`, for a float literal that overflows to infinity or underflows to zero; `PARSE002 enum_value_out_of_range` and `json_integer_overflow`, for an integer outside the signed 64-bit range; `PARSE010 const_member_assign_initializer`, `ref_local_requires_initializer`, `ref_local_requires_name` and `ref_local_value_marker`, for a malformed `const` member or `ref` local; `PARSE030 expression_too_long`, for an expression with more operators than the parser limit; `SEM008 conversio_signature`, for a `@ conversion` function that does not take one parameter and return one type; and `SEM010 axis_reduction_repeated`.
 
 ### Tooling
 

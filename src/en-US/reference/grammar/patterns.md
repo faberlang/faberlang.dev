@@ -16,17 +16,17 @@ on the left of each `case`: a literal, a type, a binding, or a
 destructured object or array.
 
 `and` joins patterns that must all hold; `or` offers alternatives.
-`const` / `var` / `as` bind a name to what matched. `rest` keeps the
+`let` / `mut` / `as` bind a name to what matched. `rest` keeps the
 leftover fields or elements. The same atoms appear when a union-typed
 value is read back out by member type.
 
 ```faber locale=en
 main {
-    const i32 ∪ string signum ← 7
+    let i32 ∪ string signum ← 7
 
     match signum {
-        case i32 const n { print "a number" }
-        case string const s { print "a text" }
+        case i32 let n { print "a number" }
+        case string let s { print "a text" }
     }
 }
 ```
@@ -42,7 +42,7 @@ page. The second column names the grammar rule the word belongs to.
 |---|---|
 | [`and`](/en-US/corpus/and.html) | `patterns` |
 | [`or`](/en-US/corpus/or.html) | `pattern` |
-| [`const`](/en-US/corpus/const.html), [`as`](/en-US/corpus/as.html), [`var`](/en-US/corpus/var.html) | `ut_pattern` |
+| [`let`](/en-US/corpus/let.html), [`as`](/en-US/corpus/as.html), [`mut`](/en-US/corpus/mut.html) | `ut_pattern` |
 | [`as`](/en-US/corpus/as.html) | `pattern_binding` |
 | [`rest`](/en-US/corpus/rest.html), [`as`](/en-US/corpus/as.html) | `pattern_property` |
 | [`rest`](/en-US/corpus/rest.html) | `array_pattern_element` |

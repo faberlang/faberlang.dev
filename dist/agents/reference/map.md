@@ -36,7 +36,7 @@ longitudo() plus keyed lookups for alpha/beta/gamma (tabula.expected).
 
 ```fab
 main {
-    var map<string, int> puncta ← empty
+    mut map<string, int> puncta ← empty
     puncta["alpha"] ← 1
     puncta["beta"] ← 2
     puncta["gamma"] ← 3
@@ -44,7 +44,7 @@ main {
     print puncta["alpha"]
     print puncta["beta"]
     print puncta["gamma"]
-    const int ∪ none absens ← puncta.get("missing")
+    let int ∪ none absens ← puncta.get("missing")
     print absens
 }
 ```

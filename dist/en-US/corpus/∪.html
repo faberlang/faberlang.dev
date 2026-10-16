@@ -39,16 +39,16 @@ union Forma {
 
 fn describe(Forma f) <span class="tok-op">→</span> string {
     match f {
-        case Numerus const v { return <span class="tok-st">"n: §"</span>(v) }
-        case Textus const v { return <span class="tok-st">"t: §"</span>(v) }
+        case Numerus let v { return <span class="tok-st">"n: §"</span>(v) }
+        case Textus let v { return <span class="tok-st">"t: §"</span>(v) }
     }
 }
 
 main {
 <span class="tok-co">    # --- Ad-hoc inline union values ---</span>
 
-    const Valor a <span class="tok-op">←</span> <span class="tok-nu">42</span>
-    const Valor b <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
+    let Valor a <span class="tok-op">←</span> <span class="tok-nu">42</span>
+    let Valor b <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
     print a
     print b
 

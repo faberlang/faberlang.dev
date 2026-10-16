@@ -26,12 +26,12 @@ A file that does one thing:
 
 ```faber locale=en
 fn salve(string nomen) → string {
-    const string msg ← "Salve, §!"(nomen)
+    let string msg ← "Salve, §!"(nomen)
     return msg
 }
 
 main {
-    const string m ← salve("munde")
+    let string m ← salve("munde")
     print m
 }
 ```

@@ -21,16 +21,18 @@ or Arabic.
 There is one form to learn. A declaration is a type followed by a name, and it
 is the same shape whether it is a parameter, a local, a field, or a return.
 
-## Bindings are three words {#bindings}
+## Bindings are four words {#bindings}
 
 | Word | Meaning |
 |---|---|
-| `const` | immutable binding — written once |
-| `var` | mutable binding — reassignable |
-| `let` | concise inferred immutable |
+| `let` | a fixed name |
+| `mut` | re-pointable and writable |
+| `ref` | re-pointable and read-only |
+| `const` | a compile-time fact, set with `=` |
 
-All three introduce a name with `←`. The word fixes whether the name may be
-reassigned, not when the value exists.
+The first three introduce a run-time name with `←`. The word fixes whether the
+name may be reassigned or written, not when the value exists. Each writes its
+type slot: the type, or `_` to have it inferred. There is no short form.
 
 ## Absence and omission are different {#absence}
 
@@ -64,8 +66,8 @@ functio saturate(numerus x) → numerus {
 }
 
 incipit {
-    fixum numerus v ← saturate(300)
-    fixum numerus ∪ nihil maybe ← nulla
+    sit numerus v ← saturate(300)
+    sit numerus ∪ nihil maybe ← nulla
     nota v
 }
 ```

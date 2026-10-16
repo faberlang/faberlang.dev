@@ -1,6 +1,6 @@
 वर्ग Span {
-    स्थिर f64 low
-    स्थिर f64 high
+    बैठा f64 low
+    बैठा f64 high
 
     फलन contains(f64 x) → तार्किक {
         लौटाओ मैं.low ≤ x और x ≤ मैं.high
@@ -16,7 +16,7 @@
 }
 
 आरंभ {
-    स्थिर Span bytes ← Span { low = 0.0, high = 255.0 }
+    बैठा Span bytes ← Span { low = 0.0, high = 255.0 }
     दिखाओ bytes.center()
     दिखाओ choose(bytes.contains(300.0), "inside", "outside")
     दिखाओ -7 / 2

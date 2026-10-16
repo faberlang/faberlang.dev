@@ -111,7 +111,8 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | max              maxima       अधिकतम
 | min              minima       न्यूनतम
 | module           regio        क्षेत्र
-| mut              in           में
+| mut              varia        परिवर्तनीय
+| mut              varia        परिवर्तनीय
 | name             nomen        नाम
 | nan              nonnumerus   nan
 | not              non          नहीं
@@ -176,7 +177,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | union            discretio    विभेद
 | unstable         nondum       अस्थिर
 | until            usque        तक
-| var              varia        चर
 | variant          finge        गढ़ो
 | vertex           vertex       शीर्ष
 | via              via          द्वारा
@@ -232,6 +232,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | stack        stack        स्टैक
 | string       textus       पाठ
 | tensor       tensor       टेंसर
+| trapped      interceptum  फँसा
 | trapping     exactus      सटीक
 | unknown      ignotum      अज्ञात
 | value        valor        मान
@@ -282,7 +283,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | difference            differentia            अंतर
 | difference_symmetric  symmetrica             सममित_अंतर
 | divide                divida                 भाग_दो
-| divide                divisio                विभाजन
 | divided               divisa                 विभाजित
 | dot                   productum              बिंदु_गुणनफल
 | drop                  omissa                 आरंभ_छोड़ो

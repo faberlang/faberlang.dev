@@ -15,11 +15,11 @@ functio nihil_agit() → vacuum {
 }
 
 incipit {
-    fixum textus nomen ← "Marcus"
-    fixum i32 aetas ← 30
-    fixum bivalens ready ← verum
-    fixum lista<numerus> empty ← vacua
-    fixum numerus ∪ nihil missing ← nulla
+    sit textus nomen ← "Marcus"
+    sit i32 aetas ← 30
+    sit bivalens ready ← verum
+    sit lista<numerus> empty ← vacua
+    sit numerus ∪ nihil missing ← nulla
     nota nomen, aetas, ready, empty, missing
     nihil_agit()
 }
@@ -46,9 +46,9 @@ types — the same list as
 
 ```faber locale-tabs
 incipit {
-    fixum i32 signed ← -7
-    fixum u8 byte ← 255
-    fixum f64 wide ← 1.5
+    sit i32 signed ← -7
+    sit u8 byte ← 255
+    sit f64 wide ← 1.5
     nota signed, byte, wide
 }
 ```
@@ -70,8 +70,8 @@ an explicit `↦` to the same width.
 
 ```faber locale-tabs
 incipit {
-    fixum lista<numerus> numeri ← [1, 2, 3]
-    fixum tabula<textus, numerus> aetates ← { "Marcus": 30, "Julia": 28 }
+    sit lista<numerus> numeri ← [1, 2, 3]
+    sit tabula<textus, numerus> aetates ← { "Marcus": 30, "Julia": 28 }
 
     nota numeri[0]
     nota aetates["Marcus"]
@@ -87,8 +87,8 @@ where Faber's typed construction uses `=`. Both take
 
 ```faber locale-tabs
 incipit {
-    fixum lista<numerus ∪ textus> mixed ← [1, "two", 3]
-    fixum _ inferred ← [1, 2, 3]
+    sit lista<numerus ∪ textus> mixed ← [1, "two", 3]
+    sit _ inferred ← [1, 2, 3]
     nota mixed, inferred
 }
 ```
@@ -100,8 +100,8 @@ shaped tensor with `↦` (`flat ↦ tf32[2, 3]`); `vacua` is the empty collectio
 
 ```faber locale-tabs
 incipit {
-    fixum lista<f32> flat ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    fixum tensor<f32, [2, 3]> m ← flat ↦ tensor<f32, [2, 3]>
+    sit lista<f32> flat ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    sit tensor<f32, [2, 3]> m ← flat ↦ tensor<f32, [2, 3]>
     nota m.media()
 }
 ```
@@ -117,8 +117,8 @@ functio medium(tf32[2, 3] m) → f32 {
 }
 
 incipit {
-    fixum lista<f32> flat ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    fixum tf32[2, 3] m ← flat ↦ tf32[2, 3]
+    sit lista<f32> flat ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    sit tf32[2, 3] m ← flat ↦ tf32[2, 3]
     nota medium(m)
 }
 ```
@@ -130,7 +130,7 @@ by converting a literal — the conversion is what fixes the width.
 
 ```faber locale-tabs
 incipit {
-    fixum vf32[4] v ← [1.0, 2.0, 3.0, 4.0] ↦ vf32[4]
+    sit vf32[4] v ← [1.0, 2.0, 3.0, 4.0] ↦ vf32[4]
     nota v
 }
 ```
@@ -144,24 +144,25 @@ typus Nomen = textus
 typus Puncta = lista<numerus>
 
 incipit {
-    fixum Nomen n ← "Marcus"
-    fixum Puncta p ← [1, 2, 3]
+    sit Nomen n ← "Marcus"
+    sit Puncta p ← [1, 2, 3]
     nota n, p
 }
 ```
 
 ## Records {#genus}
 
-`genus` declares a record. Fields are type-first, like everything else.
+`genus` declares a record. Fields are type-first, like everything else, and
+each one is `sit` (fixed after construction) or `varia` (writable).
 
 ```faber locale-tabs
 genus Persona {
-    fixum textus nomen
-    fixum numerus aetas
+    sit textus nomen
+    sit numerus aetas
 }
 
 incipit {
-    fixum _ p ← Persona { nomen = "Marcus", aetas = 30 }
+    sit _ p ← Persona { nomen = "Marcus", aetas = 30 }
     nota p.nomen, p.aetas
 }
 ```

@@ -37,11 +37,11 @@ Smoke asserts exit 0 only.
 
 ```fab
 main {
-    const float value ← -3.75
-    const float absolutus ← value.abs()
-    const float signum ← value.sign()
-    const float minor ← value.minimum(2.5)
-    const float maior ← value.maximum(2.5)
+    let float value ← -3.75
+    let float absolutus ← value.abs()
+    let float signum ← value.sign()
+    let float minor ← value.minimum(2.5)
+    let float maior ← value.maximum(2.5)
     print absolutus, signum, minor, maior
 }
 ```

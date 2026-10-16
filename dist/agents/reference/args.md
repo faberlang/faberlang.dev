@@ -28,7 +28,7 @@ entryDecl :← 'incipit' 'argumenta' ident block
 ## Expected output
 
 ```
-No incipit — declaration or test-runner surface only.
+none — the runner executes the entry and prints nothing; empty golden.
 ```
 
 ## Backend

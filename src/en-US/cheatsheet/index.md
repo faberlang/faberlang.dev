@@ -34,14 +34,14 @@ A whole program, doing real work:
 
 ```faber locale-tabs
 incipit {
-    fixum lista<f32> valores ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    fixum tensor<f32, [2, 3]> matrix ← valores ↦ tensor<f32, [2, 3]>
-    fixum f32 medium ← matrix.media()
+    sit lista<f32> valores ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    sit tensor<f32, [2, 3]> matrix ← valores ↦ tensor<f32, [2, 3]>
+    sit f32 medium ← matrix.media()
     nota medium
 }
 ```
 
-`incipit` is the entry point. `fixum` binds a constant. `←` is the bind glyph —
+`incipit` is the entry point. `sit` binds a fixed name. `←` is the bind glyph —
 assignment reads right-to-left into the name. `nota` prints.
 
 ## By topic {#topics}
@@ -49,7 +49,7 @@ assignment reads right-to-left into the name. `nota` prints.
 | Page | What it covers |
 |---|---|
 | [Entry points](/cheatsheet/entry-points.html) | `incipit`, async entry, CLI arguments and annotations |
-| [Bindings](/cheatsheet/bindings.html) | `fixum` vs `varia`, type holes, union holes |
+| [Bindings](/cheatsheet/bindings.html) | `sit` vs `varia`, type holes, union holes |
 | [Types and widths](/cheatsheet/types.html) | Numbers and their widths, lists, tables, tensors, vectors, and the sugar for each |
 | [Generics](/cheatsheet/generics.html) | Generic functions, generic containers, `genus` |
 | [Loops](/cheatsheet/loops.html) | `itera` over values, keys, and ranges; `dum` |
@@ -72,8 +72,8 @@ in use; the corpus has the exhaustive entry for every one.
 | `incipiet` | Async program entry point | [Entry points](/cheatsheet/entry-points.html) |
 | `functio` | Declare a function | [Generics](/cheatsheet/generics.html) |
 | `redde` | Return a value | [Control flow](/cheatsheet/control-flow.html) |
-| `fixum` | Bind a constant | [Bindings](/cheatsheet/bindings.html) |
-| `varia` | Bind a mutable variable | [Bindings](/cheatsheet/bindings.html) |
+| `sit` | Bind a fixed name | [Bindings](/cheatsheet/bindings.html) |
+| `varia` | Bind a writable name | [Bindings](/cheatsheet/bindings.html) |
 | `genus` | Declare a record type | [Generics](/cheatsheet/generics.html) |
 | `typus` | Name an alias for a type | [Types and widths](/cheatsheet/types.html) |
 | `si` | If | [Control flow](/cheatsheet/control-flow.html) |

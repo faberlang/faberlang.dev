@@ -27,9 +27,9 @@ mostly those tokens:
 
 ```faber locale=en
 main {
-    const i32 narrow ← 7 ∷ i32
-    const f32 single ← 1.5 ∷ f32
-    const string name ← "Marcus"
+    let i32 narrow ← 7 ∷ i32
+    let f32 single ← 1.5 ∷ f32
+    let string name ← "Marcus"
     print name
     print narrow
     print single

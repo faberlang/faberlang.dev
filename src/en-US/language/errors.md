@@ -131,8 +131,8 @@ an error type):
 
 ```faber
 incipit {
-    fixum textus raw ← "42"
-    fixum _ n ← raw ↦ numerus ⊥ 0
+    sit textus raw ← "42"
+    sit _ n ← raw ↦ numerus ⊥ 0
 }
 ```
 
@@ -162,11 +162,11 @@ fn read_or_empty(string path) → string {
         return fs.read_file<string>(path)
     } catch err {
         match err {
-            case NotFound const missing {
+            case NotFound let missing {
                 print "no such file: §"(missing)
                 return ""
             }
-            case Permission const denied {
+            case Permission let denied {
                 print "not allowed: §"(denied)
                 return ""
             }
@@ -234,7 +234,7 @@ probandum "arithmetica" {
 
     probandum "implicata" {
         proba "comparatio" {
-            fixum _ x ← 10
+            sit _ x ← 10
             adfirma x ≥ 10
         }
     }
@@ -261,7 +261,7 @@ An optional message string provides context on failure:
 
 ```faber
 incipit {
-    fixum _ x ← 10
+    sit _ x ← 10
 
     # Simple assertion
     adfirma x ≻ 0
@@ -270,7 +270,7 @@ incipit {
     adfirma x ≡ 10 mori "x decem esse debet"
 
     # Multiple assertions in sequence
-    fixum _ nomen ← "Marcus"
+    sit _ nomen ← "Marcus"
     adfirma nomen ≡ "Marcus"
     adfirma nomen ≢ "" mori "nomen vacuum non sit"
 }
@@ -313,7 +313,7 @@ escape expansion, and edge cases:
 ```text
 probandum "echo formatting" tag "coreutils" {
     proba "empty operands format as empty text" {
-        fixum lista<textus> words ← vacua
+        sit lista<textus> words ← vacua
         adfirma echo_textus(words) ≡ ""
     }
 

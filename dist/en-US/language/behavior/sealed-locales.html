@@ -22,7 +22,7 @@ stay ASCII everywhere.</p><h2 id="lossless">It is never a one-way door<a class="
 <code>faber convert --to la</code> re-emits the Latin surface, so a localised file
 is never trapped in one vocabulary. This is the same canonical-versus-sugar
 property as the glyph law: one defined form, many renderings of it.</p><h2 id="shape">What it looks like<a class="anchor" href="#shape">#</a></h2><p>The same source, in Latin and rendered into Thai:</p><pre class="faber-code"><code class="lang-faber">fn salve(string name) <span class="tok-op">→</span> string {
-    const string msg <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(name)
+    let string msg <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(name)
     return msg
 }
 

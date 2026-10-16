@@ -50,8 +50,8 @@ enum Condicio {
 
 main {
     # Using enum values: members are qualified by their enum name
-    const Color color ← Color.rubrum
-    const Condicio condicio ← Condicio.actum
+    let Color color ← Color.rubrum
+    let Condicio condicio ← Condicio.actum
 
     # Select by enum
     switch color {

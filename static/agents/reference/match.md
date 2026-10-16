@@ -13,7 +13,7 @@ match <subject> <block>
 ## What this teaches
 
 - Exhaustive pattern matching — `match <value> { case ... }` matches against all variants of a union (tagged union).
-- Variant destructuring — `case <Variant> const <field>, ...` destructures variant payload fields.
+- Variant destructuring — `case <Variant> let <field>, ...` destructures variant payload fields.
 - Unit variants — variant without payload fields match by name alone.
 
 ## Common mistakes
@@ -68,13 +68,13 @@ fn nomina(Condicio s) → string {
     }
 }
 
-# case with const bindings destructures variant fields
+# case with let bindings destructures variant fields
 fn tracta(Nuntius e) → none {
     match e {
-        case Pulsus const x, y {
+        case Pulsus let x, y {
             print "pulsus: § §"(x, y)
         }
-        case Clavis const clavis {
+        case Clavis let clavis {
             print "clavis: §"(clavis)
         }
         case Finis {

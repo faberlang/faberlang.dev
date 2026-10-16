@@ -41,7 +41,7 @@ Cross-ref: si/sin.fab.
 
 ```fab
 main {
-    const int score ← 85
+    let int score ← 85
     if score ≥ 90 {
         print "excellent"
     }

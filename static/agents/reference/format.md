@@ -35,19 +35,19 @@ Salve greeting, persona notice, and computed summa string.
 
 ```fab
 main {
-    const string name ← "Marcus"
-    const int aetas ← 30
+    let string name ← "Marcus"
+    let int aetas ← 30
 
     # One slot
-    const string salutatio ← "Salve, §!"(name)
+    let string salutatio ← "Salve, §!"(name)
     print salutatio
 
     # Multiple slots
-    const string notitia ← "§ habet annos §"(name, aetas)
+    let string notitia ← "§ habet annos §"(name, aetas)
     print notitia
 
     # With an expression
-    const string sum ← "10 + 20 ← §"(10 + 20)
+    let string sum ← "10 + 20 ← §"(10 + 20)
     print sum
 }
 ```

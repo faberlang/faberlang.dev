@@ -13,7 +13,7 @@ below lists the words those directives use.</p><pre class="faber-code"><code cla
 @ <span class="tok-kw">description</span> <span class="tok-st">"Prints text"</span>
 @ <span class="tok-kw">operand</span> { <span class="tok-kw">rest</span> <span class="tok-op">=</span> <span class="tok-kw">true</span>, <span class="tok-kw">type</span> <span class="tok-op">=</span> <span class="tok-kw">string</span>, binding <span class="tok-op">=</span> words }
 <span class="tok-kw">main</span> <span class="tok-kw">args</span> argv {
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> argv.words <span class="tok-kw">const</span> word {
+    <span class="tok-kw">for</span> <span class="tok-kw">from</span> argv.words <span class="tok-kw">let</span> word {
         <span class="tok-kw">print</span> word
     }
 }</code></pre><p>Return to the <a href="/en-US/reference/grammar.html">grammar overview</a>.</p><h2 id="terms">Terms<a class="anchor" href="#terms">#</a></h2><p>These are the words you write in this part of the language. Each links to its

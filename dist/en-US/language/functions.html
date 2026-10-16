@@ -83,7 +83,7 @@ Iteration with <code>for from</code> handles the channel:</p><pre class="faber-c
 }
 
 async_main {
-    for from poll() const lectio {
+    for from poll() let lectio {
         print lectio
     }
 }</code></pre><p>A synchronous stream may also carry an alternate channel (<code>generator → T ⇥ E</code>);
@@ -94,14 +94,14 @@ the stream call is then failable, so the consuming code handles it with
 
 main {
     do {
-        for from stream() const item {
+        for from stream() let item {
             print item
         }
     }
     catch err {
         print err
     }
-}</code></pre><h3 id="borrowing-and-mutability">Borrowing and mutability (ref, mut, from)<a class="anchor" href="#borrowing-and-mutability">#</a></h3><p>Faber marks how a value is passed with short prepositions on parameters:</p><div class="table-scroll"><table><thead><tr><th>Marker</th><th>Intent</th><th>Typical Rust lowering</th></tr></thead><tbody><tr><td><em>(none)</em></td><td>Read-only value (deep const)</td><td><code>T</code> by value</td></tr><tr><td><code>ref</code></td><td>Shared borrow (read-only)</td><td><code>&amp;T</code></td></tr><tr><td><code>mut</code></td><td>Mutable borrow</td><td><code>&amp;mut T</code></td></tr><tr><td><code>own</code></td><td>Consume (move into callee)</td><td><code>T</code> by move</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># Shared borrow</span>
+}</code></pre><h3 id="borrowing-and-mutability">Borrowing and mutability (ref, mut, from)<a class="anchor" href="#borrowing-and-mutability">#</a></h3><p>Faber marks how a value is passed with short prepositions on parameters:</p><div class="table-scroll"><table><thead><tr><th>Marker</th><th>Intent</th><th>Typical Rust lowering</th></tr></thead><tbody><tr><td><em>(none)</em></td><td>Read-only value (a bare parameter is <code>ref</code>)</td><td><code>T</code> by value</td></tr><tr><td><code>ref</code> (en <code>ref</code>)</td><td>Shared borrow (read-only)</td><td><code>&amp;T</code></td></tr><tr><td><code>mut</code> (en <code>mut</code>)</td><td>Mutable borrow</td><td><code>&amp;mut T</code></td></tr><tr><td><code>own</code></td><td>Consume (move into callee)</td><td><code>T</code> by move</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># Shared borrow</span>
 fn imprime(ref string label) <span class="tok-op">→</span> void {
     print label
 }
@@ -122,37 +122,38 @@ fn salve(string name) <span class="tok-op">→</span> string {
 }
 
 main {
-    var int n <span class="tok-op">←</span> <span class="tok-nu">4</span>
-    const string t <span class="tok-op">←</span> <span class="tok-st">"abc"</span>
+    mut int n <span class="tok-op">←</span> <span class="tok-nu">4</span>
+    let string t <span class="tok-op">←</span> <span class="tok-st">"abc"</span>
     imprime(t)
     duplica(mut n)
     print consume(own t)
     print salve(<span class="tok-st">"Marcus"</span>)
 }</code></pre><p>An unmarked parameter is read-only all the way down: it cannot be assigned to,
-and sharing a list parameter into a writable binding (<code>var ys ← xs</code>) is
-<code>SEM065 const_shared_into_var</code>. A writable copy is written <code>var ys ← copy xs</code>. <code>mut</code> and <code>own</code> are repeated at the call site,
-as in <code>duplica(in n)</code> and <code>consume(own t)</code>; leaving the marker off is `SEM057
-call_marker_missing<code>. A </code>ref` argument takes no call-site marker.</p><p>The same words (<code>ref</code>, <code>from</code>) are reused in other constructs — do not read
-every <code>from</code> as &quot;consume&quot;:</p><div class="table-scroll"><table><thead><tr><th>Surface</th><th>Role</th></tr></thead><tbody><tr><td><code>ref string name</code> on parameter</td><td>Shared borrow</td></tr><tr><td><code>mut int count</code> on parameter</td><td>Mutable borrow</td></tr><tr><td><code>own string buffer</code> on parameter</td><td>Move into callee</td></tr><tr><td><code>for from items const item</code></td><td>Iterate values</td></tr><tr><td><code>for ref map const key</code></td><td>Iterate keys</td></tr><tr><td><code>from source const x, rest rest</code></td><td>Destructure fields</td></tr><tr><td><code>import from &quot;path&quot;</code></td><td>Import from module</td></tr></tbody></table></div><h3 id="entry-point">Entry point<a class="anchor" href="#entry-point">#</a></h3><p>The program entry point is <code>main</code>:</p><pre class="faber-code"><code class="lang-faber">main {
+and sharing a list parameter into a writable binding (<code>mut list&lt;int&gt; ys ← xs</code>)
+is <code>SEM065 const_shared_into_var</code>. A writable copy is written
+<code>mut list&lt;int&gt; ys ← copy xs</code>. <code>mut</code> (en <code>mut</code>) and <code>own</code> are repeated at the
+call site, as in <code>duplica(mut n)</code> and <code>consume(own t)</code>; leaving the marker off
+is <code>SEM057 call_marker_missing</code>. A <code>ref</code> argument takes no call-site marker.</p><p>The same words (<code>ref</code>, <code>from</code>) are reused in other constructs — do not read
+every <code>from</code> as &quot;consume&quot;:</p><div class="table-scroll"><table><thead><tr><th>Surface</th><th>Role</th></tr></thead><tbody><tr><td><code>ref string name</code> on parameter</td><td>Shared borrow</td></tr><tr><td><code>mut int count</code> on parameter</td><td>Mutable borrow</td></tr><tr><td><code>own string buffer</code> on parameter</td><td>Move into callee</td></tr><tr><td><code>for from items let item</code></td><td>Iterate values</td></tr><tr><td><code>for ref map let key</code></td><td>Iterate keys</td></tr><tr><td><code>from source let x, rest rest</code></td><td>Destructure fields</td></tr><tr><td><code>import from &quot;path&quot;</code></td><td>Import from module</td></tr></tbody></table></div><h3 id="entry-point">Entry point<a class="anchor" href="#entry-point">#</a></h3><p>The program entry point is <code>main</code>:</p><pre class="faber-code"><code class="lang-faber">main {
     print <span class="tok-st">"ingressus"</span>
 }</code></pre><p><code>async_main</code> is the async entry point — the body may await (<code>await_const</code>,
 <code>await_var</code>, <code>return_await</code>, <code>await</code>) and call <code>async</code> / <code>async_generator</code> functions.</p><h3 id="cli-entry-point">CLI entry point<a class="anchor" href="#cli-entry-point">#</a></h3><p>For CLI programs, <code>main args</code> receives parsed command arguments:</p><pre class="faber-code"><code class="lang-faber">@ cli { name <span class="tok-op">=</span> <span class="tok-st">"echo"</span> }
 @ description <span class="tok-st">"Prints text"</span>
 @ operand { rest <span class="tok-op">=</span> true, type <span class="tok-op">=</span> string, binding <span class="tok-op">=</span> words }
 main args args {
-    for from args.words const word {
+    for from args.words let word {
         print word
     }
 }</code></pre><h3 id="passing-mode-sponte">Passing mode — <code>optional</code><a class="anchor" href="#passing-mode-sponte">#</a></h3><p><code>optional</code> marks a parameter that may be omitted by the caller:</p><pre class="faber-code"><code class="lang-faber">fn connect(string host, int port optional) <span class="tok-op">→</span> void {
     print host
 }</code></pre><h2 id="control-flow">Control flow<a class="anchor" href="#control-flow">#</a></h2><h3 id="conditional-branching">Conditional branching<a class="anchor" href="#conditional-branching">#</a></h3><h4 id="si-sin-secus">if / elif / else<a class="anchor" href="#si-sin-secus">#</a></h4><pre class="faber-code"><code class="lang-faber">main {
-    const _ condition <span class="tok-op">←</span> true
+    let _ condition <span class="tok-op">←</span> true
     if condition {
 <span class="tok-co">        # truthy branch</span>
         print <span class="tok-st">"matched"</span>
     }
 }</code></pre><p>With else-if and else:</p><pre class="faber-code"><code class="lang-faber">main {
-    const _ score <span class="tok-op">←</span> <span class="tok-nu">85</span>
+    let _ score <span class="tok-op">←</span> <span class="tok-nu">85</span>
     if score <span class="tok-op">≥</span> <span class="tok-nu">90</span> {
         print <span class="tok-st">"A"</span>
     }
@@ -167,19 +168,19 @@ main args args {
     if ready then return value
     return null
 }</code></pre><h3 id="iteration">Iteration<a class="anchor" href="#iteration">#</a></h3><h4 id="values-itera-ex">Values — for from<a class="anchor" href="#values-itera-ex">#</a></h4><pre class="faber-code"><code class="lang-faber">fn inveni(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> items, int target) <span class="tok-op">→</span> int <span class="tok-op">∪</span> none {
-    for from items const item {
+    for from items let item {
         if item <span class="tok-op">≡</span> target then return item
     }
     return null
 }</code></pre><h4 id="keys-itera-de">Keys — for ref<a class="anchor" href="#keys-itera-de">#</a></h4><pre class="faber-code"><code class="lang-faber">main {
-    const map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> map <span class="tok-op">←</span> { <span class="tok-st">"unus"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"duo"</span><span class="tok-op">:</span> <span class="tok-nu">2</span> }
-    for ref map const key {
+    let map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> map <span class="tok-op">←</span> { <span class="tok-st">"unus"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"duo"</span><span class="tok-op">:</span> <span class="tok-nu">2</span> }
+    for ref map let key {
         print key
     }
-}</code></pre><h4 id="range-itera-ab">Range — for range<a class="anchor" href="#range-itera-ab">#</a></h4><pre class="faber-code"><code class="lang-faber">for range <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> const i {
+}</code></pre><h4 id="range-itera-ab">Range — for range<a class="anchor" href="#range-itera-ab">#</a></h4><pre class="faber-code"><code class="lang-faber">for range <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> let i {
     print i
 }</code></pre><h3 id="while-loops">While loops<a class="anchor" href="#while-loops">#</a></h3><pre class="faber-code"><code class="lang-faber">main {
-    const _ condition <span class="tok-op">←</span> true
+    let _ condition <span class="tok-op">←</span> true
     while condition {
 <span class="tok-co">        # body</span>
         pass
@@ -215,10 +216,10 @@ Each <code>if</code> clause is a sequential guard:</p><pre class="faber-code"><c
 
 fn refer(Exitus eventus) <span class="tok-op">→</span> string {
     match eventus {
-        case Bonum const nuntius {
+        case Bonum let nuntius {
             return nuntius
         }
-        case Malum const causa {
+        case Malum let causa {
             return <span class="tok-st">"Error: §"</span>(causa)
         }
     }
@@ -250,11 +251,11 @@ fn primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(list<
 }
 
 main {
-    const _ seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
-    const _ maybe <span class="tok-op">←</span> primum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>([seven])
+    let _ seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
+    let _ maybe <span class="tok-op">←</span> primum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>([seven])
 }</code></pre><h3 id="generic-genus">Generic class<a class="anchor" href="#generic-genus">#</a></h3><pre class="faber-code"><code class="lang-faber">class Par<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> {
-    const T primus
-    const T secundus
+    let T primus
+    let T secundus
 }</code></pre><h3 id="size-parameters">Size parameters<a class="anchor" href="#size-parameters">#</a></h3><p><code>size</code> declares a size parameter in generic parameter lists, bound by the bounded collection it appears in:</p><pre class="faber-code"><code class="lang-faber">fn longitudo<span class="tok-op">&lt;</span>T, size N<span class="tok-op">&gt;</span>(list<span class="tok-op">&lt;</span>T, N<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> int {
     return xs.length()
 }</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#functions">Functions</a></li><li class="toc-3"><a href="#basic-syntax">Basic syntax</a></li><li class="toc-3"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#return-values">Return values</a></li><li class="toc-3"><a href="#async-and-streams">Async and streams</a></li><li class="toc-3"><a href="#borrowing-and-mutability">Borrowing and mutability (ref, mut, from)</a></li><li class="toc-3"><a href="#entry-point">Entry point</a></li><li class="toc-3"><a href="#cli-entry-point">CLI entry point</a></li><li class="toc-3"><a href="#passing-mode-sponte">Passing mode — optional</a></li><li class="toc-2"><a href="#control-flow">Control flow</a></li><li class="toc-3"><a href="#conditional-branching">Conditional branching</a></li><li class="toc-3"><a href="#iteration">Iteration</a></li><li class="toc-3"><a href="#while-loops">While loops</a></li><li class="toc-3"><a href="#guard-sections-custodi">Guard sections — guard</a></li><li class="toc-3"><a href="#pattern-matching-elige">Pattern matching — switch</a></li><li class="toc-3"><a href="#tagged-union-matching-discerne">Tagged union matching — match</a></li><li class="toc-3"><a href="#try-blocks-fac-cape">Try blocks — do / catch</a></li><li class="toc-2"><a href="#generics">Generics</a></li><li class="toc-3"><a href="#generic-functions">Generic functions</a></li><li class="toc-3"><a href="#explicit-callsite-type-arguments">Explicit call-site type arguments</a></li><li class="toc-3"><a href="#generic-genus">Generic class</a></li><li class="toc-3"><a href="#size-parameters">Size parameters</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

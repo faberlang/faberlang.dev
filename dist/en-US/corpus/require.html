@@ -38,7 +38,7 @@ fn guarded(int value) <span class="tok-op">→</span> int ⇥ GuardError {
 
 main {
     do {
-        const int ok <span class="tok-op">←</span> guarded(<span class="tok-nu">1</span>)
+        let int ok <span class="tok-op">←</span> guarded(<span class="tok-nu">1</span>)
         assert ok <span class="tok-op">≡</span> <span class="tok-nu">1</span>
     }
     catch err {
@@ -48,7 +48,7 @@ main {
 
 test <span class="tok-st">"false path is recoverable"</span> {
     do {
-        const int dropped <span class="tok-op">←</span> guarded(<span class="tok-nu">0</span>)
+        let int dropped <span class="tok-op">←</span> guarded(<span class="tok-nu">0</span>)
         assert false panic <span class="tok-st">"false path must throw"</span>
     }
     catch err {

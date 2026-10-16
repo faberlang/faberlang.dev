@@ -14,8 +14,7 @@
 <span class="tok-co">#     (`sic/secus`), and bitwise (`∧ ∨ ⊻ ⇐ ⇒`)</span>
 <span class="tok-co">#   • Assignment patterns — explicit assignment (`←`) and postfix increment</span>
 <span class="tok-co">#     (`↑ ↓` statements)</span>
-<span class="tok-co">#   • `let` sugar — compact inference syntax alongside explicit `const _`</span>
-<span class="tok-co">#     type inference</span>
+<span class="tok-co">#   • `let` — inferred write-once locals alongside explicitly typed ones</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • confusing `≡` (equality comparison) with `=` (structural field init) or `←` (assignment) — each operator has a distinct role</span>
@@ -32,27 +31,26 @@
 <span class="tok-co"># GRAMMAR:</span>
 <span class="tok-co">#   binaryExpr :← expr (arithOp | cmpOp | logicOp | bitwiseOp) expr</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># Inferred result locals below mix const _ (explicit infer marker) with let</span>
-<span class="tok-co"># (compact sugar) so both spellings stay visible in one tour.</span>
+<span class="tok-co"># Inferred result locals below use let; typed locals state their type.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   binarius.expected</span>
 
 main {
 <span class="tok-co">    # Arithmetica: + - * / %</span>
-    const int sum <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">+</span> <span class="tok-nu">5</span>
+    let int sum <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">+</span> <span class="tok-nu">5</span>
     print sum
-    const int differentia <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">-</span> <span class="tok-nu">5</span>
+    let int differentia <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">-</span> <span class="tok-nu">5</span>
     print differentia
-    let productum <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">*</span> <span class="tok-nu">5</span>
+    let _ productum <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">*</span> <span class="tok-nu">5</span>
     print productum
-    let quotiens <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">/</span> <span class="tok-nu">5</span>
+    let _ quotiens <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">/</span> <span class="tok-nu">5</span>
     print quotiens
-    let reliquum <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">%</span> <span class="tok-nu">3</span>
+    let _ reliquum <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">%</span> <span class="tok-nu">3</span>
     print reliquum
 
 <span class="tok-co">    # Assignatio explicita (compound glyphs removed)</span>
-    var int index <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    mut int index <span class="tok-op">←</span> <span class="tok-nu">0</span>
     index <span class="tok-op">←</span> index <span class="tok-op">+</span> <span class="tok-nu">10</span>
     index ↑
     index ↓
@@ -60,61 +58,61 @@ main {
     print index
 
 <span class="tok-co">    # Comparationes</span>
-    let aequalis <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">≡</span> <span class="tok-nu">10</span>
+    let _ aequalis <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">≡</span> <span class="tok-nu">10</span>
     print aequalis
-    let diversus <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">≢</span> <span class="tok-nu">5</span>
+    let _ diversus <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">≢</span> <span class="tok-nu">5</span>
     print diversus
-    let minor <span class="tok-op">←</span> <span class="tok-nu">5</span> ≺ <span class="tok-nu">10</span>
+    let _ minor <span class="tok-op">←</span> <span class="tok-nu">5</span> ≺ <span class="tok-nu">10</span>
     print minor
-    let maior <span class="tok-op">←</span> <span class="tok-nu">10</span> ≻ <span class="tok-nu">5</span>
+    let _ maior <span class="tok-op">←</span> <span class="tok-nu">10</span> ≻ <span class="tok-nu">5</span>
     print maior
-    let medius <span class="tok-op">←</span> <span class="tok-nu">0</span> ≺ <span class="tok-nu">5</span> and <span class="tok-nu">5</span> ≺ <span class="tok-nu">10</span>
+    let _ medius <span class="tok-op">←</span> <span class="tok-nu">0</span> ≺ <span class="tok-nu">5</span> and <span class="tok-nu">5</span> ≺ <span class="tok-nu">10</span>
     print medius
 
 <span class="tok-co">    # Logica</span>
-    let ambo <span class="tok-op">←</span> true and true
+    let _ ambo <span class="tok-op">←</span> true and true
     print ambo
-    let alterutrum <span class="tok-op">←</span> false or true
+    let _ alterutrum <span class="tok-op">←</span> false or true
     print alterutrum
-    let neutrum <span class="tok-op">←</span> false and false
+    let _ neutrum <span class="tok-op">←</span> false and false
     print neutrum
-    let short <span class="tok-op">←</span> false and carum()
+    let _ short <span class="tok-op">←</span> false and carum()
     print short
 
 <span class="tok-co">    # vel</span>
-    const string <span class="tok-op">∪</span> none name <span class="tok-op">←</span> null
-    let solutum <span class="tok-op">←</span> name coalesce <span class="tok-st">"defectum"</span>
+    let string <span class="tok-op">∪</span> none name <span class="tok-op">←</span> null
+    let _ solutum <span class="tok-op">←</span> name coalesce <span class="tok-st">"defectum"</span>
     print solutum
-    const string <span class="tok-op">∪</span> none primum <span class="tok-op">←</span> null
-    const string <span class="tok-op">∪</span> none secundum <span class="tok-op">←</span> null
-    const string tertium <span class="tok-op">←</span> <span class="tok-st">"inventum"</span>
-    let inventum <span class="tok-op">←</span> (primum coalesce secundum) coalesce tertium
+    let string <span class="tok-op">∪</span> none primum <span class="tok-op">←</span> null
+    let string <span class="tok-op">∪</span> none secundum <span class="tok-op">←</span> null
+    let string tertium <span class="tok-op">←</span> <span class="tok-st">"inventum"</span>
+    let _ inventum <span class="tok-op">←</span> (primum coalesce secundum) coalesce tertium
     print inventum
 
 <span class="tok-co">    # ✓ ✗ — value conditional, one level only</span>
-    let aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
-    let condicio <span class="tok-op">←</span> aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> ✓ <span class="tok-st">"adultus"</span> ✗ <span class="tok-st">"minor"</span>
+    let _ aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
+    let _ condicio <span class="tok-op">←</span> aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> ✓ <span class="tok-st">"adultus"</span> ✗ <span class="tok-st">"minor"</span>
     print condicio
-    let puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
-    let gradus <span class="tok-op">←</span> puncta <span class="tok-op">≥</span> <span class="tok-nu">80</span> ✓ <span class="tok-st">"B"</span> ✗ <span class="tok-st">"F"</span>
+    let _ puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
+    let _ gradus <span class="tok-op">←</span> puncta <span class="tok-op">≥</span> <span class="tok-nu">80</span> ✓ <span class="tok-st">"B"</span> ✗ <span class="tok-st">"F"</span>
     print gradus
 
 <span class="tok-co">    # Bit per bit</span>
-    let vexilla <span class="tok-op">←</span> <span class="tok-nu">0</span>b1010
-    let persona <span class="tok-op">←</span> <span class="tok-nu">0</span>b1100
-    let coniuncta <span class="tok-op">←</span> vexilla ∧ persona
+    let _ vexilla <span class="tok-op">←</span> <span class="tok-nu">0</span>b1010
+    let _ persona <span class="tok-op">←</span> <span class="tok-nu">0</span>b1100
+    let _ coniuncta <span class="tok-op">←</span> vexilla ∧ persona
     print coniuncta
-    let velata <span class="tok-op">←</span> vexilla ∨ persona
+    let _ velata <span class="tok-op">←</span> vexilla ∨ persona
     print velata
-    let diversa <span class="tok-op">←</span> vexilla ⊻ persona
+    let _ diversa <span class="tok-op">←</span> vexilla ⊻ persona
     print diversa
 
 <span class="tok-co">    # Motus bit</span>
-    let sinistra <span class="tok-op">←</span> <span class="tok-nu">1</span> ⇐ <span class="tok-nu">4</span>
+    let _ sinistra <span class="tok-op">←</span> <span class="tok-nu">1</span> ⇐ <span class="tok-nu">4</span>
     print sinistra
-    let dextra <span class="tok-op">←</span> <span class="tok-nu">16</span> ⇒ <span class="tok-nu">2</span>
+    let _ dextra <span class="tok-op">←</span> <span class="tok-nu">16</span> ⇒ <span class="tok-nu">2</span>
     print dextra
-    let persona_vacua <span class="tok-op">←</span> vexilla ∧ persona <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+    let _ persona_vacua <span class="tok-op">←</span> vexilla ∧ persona <span class="tok-op">≡</span> <span class="tok-nu">0</span>
     print persona_vacua
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>15
 5

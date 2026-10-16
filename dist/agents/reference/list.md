@@ -23,7 +23,7 @@ list<T>
 ## Grammar
 
 ```
-listDecl :← ('varia' | 'fixum') 'lista<' type '>' ident '←' expr
+listDecl :← ('varia' | 'sit') 'lista<' type '>' ident '←' expr
 listLit  :← '[' (expr | sparge)* ']'
 ```
 
@@ -37,15 +37,15 @@ Scalar longitudo() and indexed accipe only (lista.expected).
 
 ```fab
 main {
-    const list<int> vacuares ← empty
-    const _ numeri ← [1, 2, 3, 4, 5]
-    const _ nomina ← ["Marcus", "Julia", "Gaius"]
-    const _ vexilla ← [true, false, true]
-    const _ matrix ← [[1, 2], [3, 4], [5, 6]]
-    const list<int> primum ← [1, 2, 3]
-    const list<int> secundum ← [4, 5, 6]
-    const _ coniuncta ← [spread primum, spread secundum]
-    const _ aucta ← [0, spread primum, 99]
+    let list<int> vacuares ← empty
+    let _ numeri ← [1, 2, 3, 4, 5]
+    let _ nomina ← ["Marcus", "Julia", "Gaius"]
+    let _ vexilla ← [true, false, true]
+    let _ matrix ← [[1, 2], [3, 4], [5, 6]]
+    let list<int> primum ← [1, 2, 3]
+    let list<int> secundum ← [4, 5, 6]
+    let _ coniuncta ← [spread primum, spread secundum]
+    let _ aucta ← [0, spread primum, 99]
     print vacuares.length()
     print numeri.length()
     print numeri[0]

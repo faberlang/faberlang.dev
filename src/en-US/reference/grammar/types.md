@@ -25,11 +25,11 @@ Everyday types, type first:
 
 ```faber locale=en
 main {
-    const string name ← "Marcus"
-    const i32 age ← 30
-    const bool flag ← true
-    const list<i32> nums ← [1, 2, 3]
-    const i32 ∪ none missing ← null
+    let string name ← "Marcus"
+    let i32 age ← 30
+    let bool flag ← true
+    let list<i32> nums ← [1, 2, 3]
+    let i32 ∪ none missing ← null
     print name
     print age
     print flag
@@ -46,8 +46,8 @@ type Signum = i32
 type Nomina = list<string>
 
 main {
-    const Signum signum ← 42
-    const Nomina sodales ← ["Gaius", "Lucius"]
+    let Signum signum ← 42
+    let Nomina sodales ← ["Gaius", "Lucius"]
     print signum
     print sodales
 }

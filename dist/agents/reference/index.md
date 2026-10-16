@@ -106,7 +106,6 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [setup](setup.md) (`praepara`) — Registers a before-each test hook.
 - [skip](skip.md) (`omitte`) — Marks a test case as skipped with a reason.
 - [spread](spread.md) (`sparge`) — Spreads an array or collection literal into its surrounding expression.
-- [static](static.md) (`generis`) — Marks a class member as belonging to the type itself.
 - [step](step.md) (`per`) — Sets the step for a range.
 - [switch](switch.md) (`elige`) — Starts a value-based branch statement.
 - [tag](tag.md) — Attaches a test tag string.
@@ -122,7 +121,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [union](union.md) (`discretio`) — Declares a tagged union with variant payloads.
 - [unknown](unknown.md) (`ignotum`) — Primitive types bivalens, vacuum, and ignotum.
 - [until](until.md) (`usque`) — Creates an inclusive range with a Latin keyword.
-- [var](var.md) (`varia`) — Declares a mutable binding.
+- [varia](varia.md) — Declares a mutable binding.
 - [variant](variant.md) (`finge`) — Constructs a tagged union variant.
 - [void](void.md) (`vacuum`) — Primitive no-value return type.
 - [warn](warn.md) (`mone`) — Writes a warning message.
@@ -216,6 +215,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [take](take.md) (`prima`) — Marks a test for metered or measured execution.
 - [take_last](take_last.md) (`ultima`) — Marks a test for metered or measured execution.
 - [tensor](tensor.md) — tensor<T, Figura> declaration shell with rank-0 vacua.
+- [trapped](trapped.md) — The result of a capture boundary: trap { ... } reifies the error channel into a value read by match.
 - [vector](vector.md) — vector type declarations: long form and vf32 sugar.
 
 ## Concepts
@@ -223,7 +223,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [manifest](manifest.md) — faber.toml package metadata for build, run, and test.
 - [prae](prae.md) — Angle-bracket generic parameters on functions and declarations.
 - [primus_quem](primus_quem.md) — Dedicated total first-match expression: first live element of a source satisfying the owned ubi predicate, nihil for no-match and empty sources.
-- [sum](sum.md) (`summa`) — Sequential sum-reduce expression: reducta via summa ex <tensor> apud [i] fixum s.
+- [sum](sum.md) (`summa`) — Sequential sum-reduce expression: reducta via summa ex <tensor> apud [i] sit s.
 - [targets](targets.md) — Compilation backends listed by faber targets or radix targets.
 - [thread](thread.md) (`filum`) — Distributed reducta via summa ex … filum kernel inside @ nucleum.
 

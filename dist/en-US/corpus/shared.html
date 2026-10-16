@@ -34,8 +34,8 @@ union ShapeError {
 
 fn describe(ShapeError e) <span class="tok-op">→</span> string {
     match e {
-        case Incompatible const message { return message }
-        case ElementMismatch const message, expected, actual { return message }
+        case Incompatible let message { return message }
+        case ElementMismatch let message, expected, actual { return message }
     }
 }
 
@@ -44,8 +44,8 @@ fn render(ShapeError e) <span class="tok-op">→</span> string {
 }
 
 main {
-    const ShapeError a <span class="tok-op">←</span> variant Incompatible { message <span class="tok-op">=</span> <span class="tok-st">"incompatible"</span> }
-    const ShapeError b <span class="tok-op">←</span> variant ElementMismatch { message <span class="tok-op">=</span> <span class="tok-st">"mismatch"</span>, expected <span class="tok-op">=</span> <span class="tok-nu">1</span>, actual <span class="tok-op">=</span> <span class="tok-nu">2</span> }
+    let ShapeError a <span class="tok-op">←</span> variant Incompatible { message <span class="tok-op">=</span> <span class="tok-st">"incompatible"</span> }
+    let ShapeError b <span class="tok-op">←</span> variant ElementMismatch { message <span class="tok-op">=</span> <span class="tok-st">"mismatch"</span>, expected <span class="tok-op">=</span> <span class="tok-nu">1</span>, actual <span class="tok-op">=</span> <span class="tok-nu">2</span> }
     print describe(a)
     print describe(b)
     print render(a)

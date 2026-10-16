@@ -25,12 +25,12 @@ faber init hello
 
 ```faber locale=en
 fn greet(string name) → string {
-    const string msg ← "Hello, §!"(name)
+    let string msg ← "Hello, §!"(name)
     return msg
 }
 
 main {
-    const string m ← greet("world")
+    let string m ← greet("world")
     print m
 }
 ```

@@ -8,13 +8,13 @@ sources = []
 Binding a name to a value. `←` is the bind glyph: the value on the right goes
 into the name on the left.
 
-## Constant or variable {#fixum-varia}
+## Fixed or writable {#sit-varia}
 
-`fixum` binds once. `varia` binds a name you intend to change.
+`sit` binds a name once. `varia` binds a name you intend to change.
 
 ```faber locale-tabs
 incipit {
-    fixum numerus limit ← 10
+    sit numerus limit ← 10
     varia numerus count ← 0
 
     count ← count + 1
@@ -22,17 +22,23 @@ incipit {
 }
 ```
 
-Reassigning a `fixum` is a compile error, not a convention. Reach for `fixum`
-first and widen to `varia` only where the value genuinely moves.
+Assigning a `sit` name a second time is a compile error
+(`SEM020 immutable_second_assignment`), not a convention. Reach for `sit`
+first and widen to `varia` only where the value genuinely moves. `fixum` is no
+longer a run-time binding: it declares a compile-time fact with `=`, and a
+run-time `fixum numerus x ← 1` is `PARSE010 runtime_const_retired`.
 
 ## Type holes {#holes}
 
 `_` is a type hole: the compiler infers one concrete type for the binding.
+Every binding writes its type slot, so `_` is how you ask for inference; there
+is no short form, and `sit nomen ← "Marcus"` is
+`PARSE010 binding_type_slot_required`.
 
 ```faber locale-tabs
 incipit {
-    fixum _ nomen ← "Marcus"
-    fixum _ numeri ← [1, 2, 3]
+    sit _ nomen ← "Marcus"
+    sit _ numeri ← [1, 2, 3]
     nota nomen, numeri
 }
 ```
@@ -48,8 +54,8 @@ types rather than one.
 
 ```faber locale-tabs
 incipit {
-    fixum numerus ∪ textus mixed ← 7
-    fixum lista<numerus ∪ textus> both ← [1, "two", 3]
+    sit numerus ∪ textus mixed ← 7
+    sit lista<numerus ∪ textus> both ← [1, "two", 3]
     nota mixed, both
 }
 ```
@@ -79,13 +85,13 @@ incipit {
 
 ```faber locale-tabs
 genus Punctum {
-    fixum numerus x
-    fixum numerus y
+    sit numerus x
+    sit numerus y
 }
 
 incipit {
-    fixum _ p ← Punctum { x = 1, y = 2 }
-    ex p fixum x, y
+    sit _ p ← Punctum { x = 1, y = 2 }
+    ex p sit x, y
     nota x, y
 }
 ```

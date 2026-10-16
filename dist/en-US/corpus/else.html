@@ -28,7 +28,7 @@
 <span class="tok-co">#</span>
 
 main {
-    const int hour <span class="tok-op">←</span> <span class="tok-nu">23</span>
+    let int hour <span class="tok-op">←</span> <span class="tok-nu">23</span>
     if hour ≺ <span class="tok-nu">12</span> {
         print <span class="tok-st">"morning"</span>
     }
@@ -70,7 +70,7 @@ main {
 
 main {
 <span class="tok-co">    # Two-way branch: exactly one arm runs</span>
-    const int puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
+    let int puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
     if puncta <span class="tok-op">≥</span> <span class="tok-nu">90</span> {
         print <span class="tok-st">"gradus: A"</span>
     }
@@ -80,7 +80,7 @@ main {
     }
 
 <span class="tok-co">    # Each branch may contain several statements</span>
-    const int calor <span class="tok-op">←</span> <span class="tok-nu">22</span>
+    let int calor <span class="tok-op">←</span> <span class="tok-nu">22</span>
     if calor ≻ <span class="tok-nu">30</span> {
         print <span class="tok-st">"calidum"</span>
         print <span class="tok-st">"aquam bibe"</span>
@@ -92,7 +92,7 @@ main {
     }
 
 <span class="tok-co">    # elif chains additional tests; first match wins (75 → C)</span>
-    const int gradus <span class="tok-op">←</span> <span class="tok-nu">75</span>
+    let int gradus <span class="tok-op">←</span> <span class="tok-nu">75</span>
     if gradus <span class="tok-op">≥</span> <span class="tok-nu">90</span> {
         print <span class="tok-st">"A - optimum"</span>
     }

@@ -26,7 +26,7 @@ fn stream() async_generator <span class="tok-op">→</span> int {
 }
 
 async_main {
-    for from stream() const n {
+    for from stream() let n {
         print n
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1

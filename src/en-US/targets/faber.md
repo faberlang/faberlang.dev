@@ -17,7 +17,7 @@ The round trip. Reader-locale spellings and formatting normalise to the canonica
 
 | Capable | Analyzable | Coverage |
 |---|---|---|
-| 431 | 431 | 100% |
+| 437 | 437 | 100% |
 
 From the [target matrix](/toolchain/target-matrix.html): how many corpus exempla lower to this target. Coverage is not a quality score — an emitter can lower a term and still erase a distinction.
 
@@ -31,12 +31,12 @@ Builds two shaped matrices, multiplies them, and reduces the product to a scalar
 
 ```faber locale-tabs
 incipit {
-    fixum lista<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    fixum lista<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    fixum tf32[2, 3] a ← flat_a ↦ tf32[2, 3]
-    fixum tf32[3, 4] b ← flat_b ↦ tf32[3, 4]
-    fixum tf32[2, 4] product ← a.matmul(b)
-    fixum f32 mean ← product.media()
+    sit lista<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    sit lista<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
+    sit tf32[2, 3] a ← flat_a ↦ tf32[2, 3]
+    sit tf32[3, 4] b ← flat_b ↦ tf32[3, 4]
+    sit tf32[2, 4] product ← a.matmul(b)
+    sit f32 mean ← product.media()
     nota mean
 }
 ```
@@ -45,12 +45,12 @@ incipit {
 
 ```faber locale=la
 incipit {
-    fixum lista<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    fixum lista<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    fixum tf32[2, 3] a ← flat_a ↦ tf32[2, 3]
-    fixum tf32[3, 4] b ← flat_b ↦ tf32[3, 4]
-    fixum tf32[2, 4] product ← a.matmul(b)
-    fixum f32 mean ← product.media()
+    sit lista<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    sit lista<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
+    sit tf32[2, 3] a ← flat_a ↦ tf32[2, 3]
+    sit tf32[3, 4] b ← flat_b ↦ tf32[3, 4]
+    sit tf32[2, 4] product ← a.matmul(b)
+    sit f32 mean ← product.media()
     nota mean
 }
 ```
@@ -104,14 +104,14 @@ A list folded to a total with `itera ex`. The plainest possible read on how loop
 ```faber locale-tabs
 functio summa(lista<numerus> numeri) → numerus {
     varia numerus total ← 0
-    itera ex numeri fixum n {
+    itera ex numeri sit n {
         total ← total + n
     }
     redde total
 }
 
 incipit {
-    fixum lista<numerus> valores ← [1, 2, 3, 4, 5]
+    sit lista<numerus> valores ← [1, 2, 3, 4, 5]
     nota summa(valores)
 }
 ```
@@ -121,14 +121,14 @@ incipit {
 ```faber locale=la
 functio summa(lista<numerus> numeri) → numerus {
     varia numerus total ← 0
-    itera ex numeri fixum n {
+    itera ex numeri sit n {
         total ← total + n
     }
     redde total
 }
 
 incipit {
-    fixum lista<numerus> valores ← [1, 2, 3, 4, 5]
+    sit lista<numerus> valores ← [1, 2, 3, 4, 5]
     nota summa(valores)
 }
 ```

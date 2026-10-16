@@ -28,7 +28,7 @@ annotation :← '@' 'versio' stringLit
 ## Expected output
 
 ```
-No incipit runtime — declaration-only CLI metadata.
+none — the runner executes the entry and prints nothing; empty golden.
 ```
 
 ## Backend

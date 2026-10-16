@@ -35,13 +35,13 @@ import from <span class="tok-st">"norma:fs"</span> charta
 import from <span class="tok-st">"norma:process"</span> process
 
 main {
-    const string textPath <span class="tok-op">←</span> <span class="tok-st">"§/faber-fs-lege-generic-§.txt"</span>(charta.temp_dir(), process.pid())
+    let string textPath <span class="tok-op">←</span> <span class="tok-st">"§/faber-fs-lege-generic-§.txt"</span>(charta.temp_dir(), process.pid())
     charta.write_file(textPath, <span class="tok-st">"prima\nsecunda\n"</span>)
-    const string body <span class="tok-op">←</span> charta.read_file<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>(textPath)
+    let string body <span class="tok-op">←</span> charta.read_file<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>(textPath)
     assert body <span class="tok-op">≡</span> <span class="tok-st">"prima\nsecunda\n"</span>
-    const list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> lineae <span class="tok-op">←</span> call <span class="tok-st">'solum:carpe'</span> (textPath) ↦ list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>
+    let list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> lineae <span class="tok-op">←</span> call <span class="tok-st">'solum:carpe'</span> (textPath) ↦ list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>
     assert lineae <span class="tok-op">≡</span> ([<span class="tok-st">"prima"</span>, <span class="tok-st">"secunda"</span>] ↦ list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>)
-    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> data <span class="tok-op">←</span> call <span class="tok-st">'solum:hauri'</span> (textPath) ↦ list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span>
+    let list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> data <span class="tok-op">←</span> call <span class="tok-st">'solum:hauri'</span> (textPath) ↦ list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span>
     assert data <span class="tok-op">≡</span> <span class="tok-op">|</span><span class="tok-nu">70</span> <span class="tok-nu">72</span> <span class="tok-nu">69</span> <span class="tok-nu">6</span>d <span class="tok-nu">61</span> <span class="tok-nu">0</span>a <span class="tok-nu">73</span> <span class="tok-nu">65</span> <span class="tok-nu">63</span> <span class="tok-nu">75</span> <span class="tok-nu">6</span>e <span class="tok-nu">64</span> <span class="tok-nu">61</span> <span class="tok-nu">0</span>a<span class="tok-op">|</span>
     print body
     print lineae
@@ -51,6 +51,6 @@ main {
 secunda
 
 [&quot;prima&quot;, &quot;secunda&quot;]
-[112, 114, 105, 109, 97, 10, 115, 101, 99, 117, 110, 100, 97, 10]
+[0x70, 0x72, 0x69, 0x6d, 0x61, 0x0a, 0x73, 0x65, 0x63, 0x75, 0x6e, 0x64, 0x61, 0x0a]
 fs lege carpe hauri parata
 </code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusadsolum-lege-genericfab-canonical-concept">radix/corpus/ad/solum-lege-generic.fab (canonical · concept)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/ad/solum-lege-generic.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

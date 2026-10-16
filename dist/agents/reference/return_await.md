@@ -17,6 +17,9 @@ return_await future
 ## Example
 
 ```fab
++++
+locale = "la"
++++
 fn interior() async → int {
     return 9
 }

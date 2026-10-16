@@ -1,6 +1,6 @@
 genus Span {
-    fixum f64 low
-    fixum f64 high
+    sit f64 low
+    sit f64 high
 
     functio contains(f64 x) → bivalens {
         redde ego.low ≤ x et x ≤ ego.high
@@ -16,7 +16,7 @@ functio choose<T>(bivalens first, T a, T b) → T {
 }
 
 incipit {
-    fixum Span bytes ← Span { low = 0.0, high = 255.0 }
+    sit Span bytes ← Span { low = 0.0, high = 255.0 }
     nota bytes.center()
     nota choose(bytes.contains(300.0), "inside", "outside")
     nota -7 / 2

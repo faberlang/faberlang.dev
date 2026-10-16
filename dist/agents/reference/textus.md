@@ -25,7 +25,7 @@ string
 s.slice(lo, hi) | s.uppercase() | s.lowercase() | s.trim()
 s.split(sep) | s.replace(old, new)
 divide returns lista<textus>; pairs with lista/ exempla for collection smoke.
-Derived locals use sit to avoid repeating fixum _ across the transform chain.
+Derived locals use sit so the transform chain needs no type annotations.
 Wasm tier Runnable.
 ```
 
@@ -39,14 +39,14 @@ Smoke asserts exit 0 only.
 
 ```fab
 main {
-    let nuntius ← " Ave Roma "
+    let _ nuntius ← " Ave Roma "
 
-    let secta ← nuntius.slice(1, 4)
-    let magna ← nuntius.uppercase()
-    let parva ← nuntius.lowercase()
-    let rasa ← nuntius.trim()
-    let partes ← rasa.split(" ")
-    let mutata ← rasa.replace("Roma", "Munde")
+    let _ secta ← nuntius.slice(1, 4)
+    let _ magna ← nuntius.uppercase()
+    let _ parva ← nuntius.lowercase()
+    let _ rasa ← nuntius.trim()
+    let _ partes ← rasa.split(" ")
+    let _ mutata ← rasa.replace("Roma", "Munde")
 
     print secta, magna, parva
     print rasa, partes, mutata

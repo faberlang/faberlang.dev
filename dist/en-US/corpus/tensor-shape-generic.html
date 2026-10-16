@@ -26,8 +26,8 @@
 <span class="tok-co"># same-shape result.</span>
 
 fn sgd_step<span class="tok-op">&lt;</span>size Figura<span class="tok-op">&gt;</span>(tensor<span class="tok-op">&lt;</span>f32, Figura<span class="tok-op">&gt;</span> param, tensor<span class="tok-op">&lt;</span>f32, Figura<span class="tok-op">&gt;</span> grad, f32 lr) <span class="tok-op">→</span> tensor<span class="tok-op">&lt;</span>f32, Figura<span class="tok-op">&gt;</span> {
-    const tensor<span class="tok-op">&lt;</span>f32, Figura<span class="tok-op">&gt;</span> lr_fill <span class="tok-op">←</span> param.fill(lr)
-    const tensor<span class="tok-op">&lt;</span>f32, Figura<span class="tok-op">&gt;</span> scaled <span class="tok-op">←</span> grad ⊙ lr_fill
+    let tensor<span class="tok-op">&lt;</span>f32, Figura<span class="tok-op">&gt;</span> lr_fill <span class="tok-op">←</span> param.fill(lr)
+    let tensor<span class="tok-op">&lt;</span>f32, Figura<span class="tok-op">&gt;</span> scaled <span class="tok-op">←</span> grad ⊙ lr_fill
     return param <span class="tok-op">-</span> scaled
 }
 

@@ -1,6 +1,6 @@
 class Span {
-    const f64 low
-    const f64 high
+    let f64 low
+    let f64 high
 
     fn contains(f64 x) → bool {
         return self.low ≤ x and x ≤ self.high
@@ -16,7 +16,7 @@ fn choose<T>(bool first, T a, T b) → T {
 }
 
 main {
-    const Span bytes ← Span { low = 0.0, high = 255.0 }
+    let Span bytes ← Span { low = 0.0, high = 255.0 }
     print bytes.center()
     print choose(bytes.contains(300.0), "inside", "outside")
     print -7 / 2

@@ -17,7 +17,7 @@ The largest expansion among the host languages, because Faber's typed numerics a
 
 | Capable | Analyzable | Coverage |
 |---|---|---|
-| 431 | 431 | 100% |
+| 437 | 437 | 100% |
 
 From the [target matrix](/toolchain/target-matrix.html): how many corpus exempla lower to this target. Coverage is not a quality score — an emitter can lower a term and still erase a distinction.
 
@@ -31,12 +31,12 @@ Builds two shaped matrices, multiplies them, and reduces the product to a scalar
 
 ```faber locale-tabs
 incipit {
-    fixum lista<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    fixum lista<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    fixum tf32[2, 3] a ← flat_a ↦ tf32[2, 3]
-    fixum tf32[3, 4] b ← flat_b ↦ tf32[3, 4]
-    fixum tf32[2, 4] product ← a.matmul(b)
-    fixum f32 mean ← product.media()
+    sit lista<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    sit lista<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
+    sit tf32[2, 3] a ← flat_a ↦ tf32[2, 3]
+    sit tf32[3, 4] b ← flat_b ↦ tf32[3, 4]
+    sit tf32[2, 4] product ← a.matmul(b)
+    sit f32 mean ← product.media()
     nota mean
 }
 ```
@@ -53,7 +53,7 @@ import { display, tensor } from "@faber/runtime";
     const l_flat_b: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     const l_a: tensor.Tensor<number> = tensor.Tensor.fromArray<number>(l_flat_a, [2, 3], (value) => Number(value));
     const l_b: tensor.Tensor<number> = tensor.Tensor.fromArray<number>(l_flat_b, [3, 4], (value) => Number(value));
-    const l_product: tensor.Tensor<number> = l_a.matmul(l_b);
+    const l_product: tensor.Tensor<number> = l_a.matmul(l_b, true);
     const l_mean: number = l_product.media();
     console.log(display.value(((x: number): string => { const v = Math.fround(x); if (!Number.isFinite(v)) { return display.value(v, "fractus"); } let e = v.toExponential(); for (let p = 0; p < 9; p++) { e = v.toExponential(p); if (Math.fround(Number(e)) === v) { break; } } const m = /^(-?)(\d)(?:\.(\d+))?e([+-]\d+)$/.exec(e) as RegExpExecArray; const sign = Object.is(v, -0) ? "-" : m[1]; const digits = m[2] + (m[3] ?? ""); const n = Number(m[4]); let body: string; if (n < 0) { body = "0." + "0".repeat(-n - 1) + digits; } else if (digits.length <= n + 1) { body = digits + "0".repeat(n + 1 - digits.length) + ".0"; } else { body = digits.slice(0, n + 1) + "." + digits.slice(n + 1); } return sign + body; })(l_mean), "textus"));
 })();
@@ -100,7 +100,7 @@ function divide(p_a: number, p_b: number): result.Result<number, string> {
          
     }return { ok: true as const, value: undefined }; } catch (__e: any) { if (__e !== null && typeof __e === "object" && __e.__faberFail === true) { return { ok: false as const, error: __e.error }; } throw __e; } })() as result.Result<any, string>;
     if (!t0.ok) {
-        const l_err = t0.error;
+        const l_err = (<T, E>(r: result.Result<T, E>): E => { if (!r.ok) { return r.error; } throw new Error("result error read on the success arm"); })(t0);
         {
             console.warn(l_err);
         }}
@@ -116,14 +116,14 @@ A list folded to a total with `itera ex`. The plainest possible read on how loop
 ```faber locale-tabs
 functio summa(lista<numerus> numeri) → numerus {
     varia numerus total ← 0
-    itera ex numeri fixum n {
+    itera ex numeri sit n {
         total ← total + n
     }
     redde total
 }
 
 incipit {
-    fixum lista<numerus> valores ← [1, 2, 3, 4, 5]
+    sit lista<numerus> valores ← [1, 2, 3, 4, 5]
     nota summa(valores)
 }
 ```

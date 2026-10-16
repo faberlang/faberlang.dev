@@ -17,7 +17,7 @@ The widest ratio on the site, and the least surprising one: SSA form names every
 
 | Capable | Analyzable | Coverage |
 |---|---|---|
-| 392 | 432 | 91% |
+| 395 | 441 | 90% |
 
 From the [target matrix](/toolchain/target-matrix.html): how many corpus exempla lower to this target. Coverage is not a quality score — an emitter can lower a term and still erase a distinction.
 
@@ -27,7 +27,7 @@ Terms the matrix records as partial, planned, or unsupported for this target. A 
 
 | Category | Terms |
 |---|---|
-| Keywords — systems lane | <a id="clausura"></a>`clausura`, <a id="genus"></a>`genus`, <a id="implendum"></a>`implendum`, <a id="implet"></a>`implet`, <a id="itera"></a>`itera`, <a id="lista"></a>`lista`, <a id="numerus"></a>`numerus`, `∪` |
+| Keywords — systems lane | <a id="ad"></a>`ad`, <a id="cede"></a>`cede`, <a id="clausura"></a>`clausura`, <a id="cursor"></a>`cursor`, <a id="est"></a>`est`, <a id="fient"></a>`fient`, <a id="fiunt"></a>`fiunt`, <a id="genus"></a>`genus`, <a id="implendum"></a>`implendum`, <a id="implet"></a>`implet`, <a id="importa"></a>`importa`, <a id="itera"></a>`itera`, <a id="lege"></a>`lege`, <a id="lista"></a>`lista`, <a id="tabula"></a>`tabula`, `∪` |
 | Operators — systems lane | `·`, `↦`, `⊗`, `⊙` |
 
 ## Typed tensors {#tensores}
@@ -38,12 +38,12 @@ Builds two shaped matrices, multiplies them, and reduces the product to a scalar
 
 ```faber locale-tabs
 incipit {
-    fixum lista<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    fixum lista<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    fixum tf32[2, 3] a ← flat_a ↦ tf32[2, 3]
-    fixum tf32[3, 4] b ← flat_b ↦ tf32[3, 4]
-    fixum tf32[2, 4] product ← a.matmul(b)
-    fixum f32 mean ← product.media()
+    sit lista<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    sit lista<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
+    sit tf32[2, 3] a ← flat_a ↦ tf32[2, 3]
+    sit tf32[3, 4] b ← flat_b ↦ tf32[3, 4]
+    sit tf32[2, 4] product ← a.matmul(b)
+    sit f32 mean ← product.media()
     nota mean
 }
 ```
@@ -695,14 +695,14 @@ A list folded to a total with `itera ex`. The plainest possible read on how loop
 ```faber locale-tabs
 functio summa(lista<numerus> numeri) → numerus {
     varia numerus total ← 0
-    itera ex numeri fixum n {
+    itera ex numeri sit n {
         total ← total + n
     }
     redde total
 }
 
 incipit {
-    fixum lista<numerus> valores ← [1, 2, 3, 4, 5]
+    sit lista<numerus> valores ← [1, 2, 3, 4, 5]
     nota summa(valores)
 }
 ```

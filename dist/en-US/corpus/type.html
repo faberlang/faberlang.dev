@@ -43,19 +43,19 @@ type NomenOptivum <span class="tok-op">=</span> string <span class="tok-op">∪<
 
 main {
 <span class="tok-co">    # Using primitive aliases</span>
-    const Signum signum <span class="tok-op">←</span> <span class="tok-nu">42</span>
-    const Cognomen cognomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
-    const Viget viget <span class="tok-op">←</span> true
+    let Signum signum <span class="tok-op">←</span> <span class="tok-nu">42</span>
+    let Cognomen cognomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    let Viget viget <span class="tok-op">←</span> true
 
     print signum
     print cognomen
     print viget
 
 <span class="tok-co">    # Using generic aliases</span>
-    const Nomina sodales <span class="tok-op">←</span> [<span class="tok-st">"Gaius"</span>, <span class="tok-st">"Lucius"</span>, <span class="tok-st">"Titus"</span>]
+    let Nomina sodales <span class="tok-op">←</span> [<span class="tok-st">"Gaius"</span>, <span class="tok-st">"Lucius"</span>, <span class="tok-st">"Titus"</span>]
     print sodales
 
-    const Puncta puncta <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">95</span>, <span class="tok-nu">87</span>]
+    let Puncta puncta <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">95</span>, <span class="tok-nu">87</span>]
     print puncta
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>42
 Marcus

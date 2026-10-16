@@ -12,7 +12,7 @@ ref <expression>
 
 ## What this teaches
 
-- Borrowed iteration — `for ref <expr> const <ident> { ... }` iterates over a collection without taking ownership.
+- Borrowed iteration — `for ref <expr> let <ident> { ... }` iterates over a collection without taking ownership.
 - Tabula key iteration — iterating over map keys via borrowed iteration.
 - Index iteration — iterating over list indices via `ref`.
 
@@ -23,7 +23,7 @@ ref <expression>
 ## Grammar
 
 ```
-forDeStmt :← 'itera' 'de' expr 'fixum' ident block
+forDeStmt :← 'itera' 'de' expr 'sit' ident block
 ```
 
 ## Expected output
@@ -42,12 +42,12 @@ Cross-ref: itera/de.fab.
 
 ```fab
 main {
-    const map<string, int> persona ← { "name": 1, "aetas": 30 }
-    for ref persona const clavis {
+    let map<string, int> persona ← { "name": 1, "aetas": 30 }
+    for ref persona let clavis {
         print clavis
     }
-    const list<int, 3> numeri ← [10, 20, 30]
-    for ref numeri const index {
+    let list<int, 3> numeri ← [10, 20, 30]
+    for ref numeri let index {
         print index
     }
 }

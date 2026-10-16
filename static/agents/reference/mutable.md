@@ -1,7 +1,7 @@
 # mutable
 
 `mutable` is another spelling of the entry documented at
-[`var`](var.md).
+[`varia`](varia.md).
 
 Source: `faber explain varia`.
 

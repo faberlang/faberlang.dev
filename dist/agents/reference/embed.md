@@ -44,7 +44,7 @@ const string NUNTIUS = embed "nuntius.txt"
 const list<b8> SIGNUM = embed "signum.bin"
 
 class Tabula {
-    static string TITULUS = embed "nuntius.txt"
+    const string TITULUS = embed "nuntius.txt"
 }
 
 # `embed` is contextual: directly before a string literal it is the embed; any
@@ -61,6 +61,6 @@ main {
 }
 ```
 
-See also: [`static`](static.md), [`string`](textus.md), [`bytes`](bytes.md), [`comptime`](comptime.md).
+See also: [`const`](const.md), [`string`](textus.md), [`bytes`](bytes.md), [`comptime`](comptime.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

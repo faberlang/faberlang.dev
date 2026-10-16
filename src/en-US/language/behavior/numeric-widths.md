@@ -44,13 +44,13 @@ The same unbounded sum is stored into cells with different policies:
 
 ```faber
 incipit {
-    fixum numerus a ← 200
-    fixum numerus b ← 100
-    fixum numerus exact ← (a + b) / 2
+    sit numerus a ← 200
+    sit numerus b ← 100
+    sit numerus exact ← (a + b) / 2
     nota exact
-    fixum saturatus<u8> sat ← (a + b) ↦ saturatus<u8>
+    sit saturatus<u8> sat ← (a + b) ↦ saturatus<u8>
     nota sat
-    fixum modulus<u8> wrap ← (a + b) ↦ modulus<u8>
+    sit modulus<u8> wrap ← (a + b) ↦ modulus<u8>
     nota wrap
 }
 ```
@@ -71,8 +71,8 @@ A `trapping` cell turns the same overflow into an error at the store:
 
 ```faber
 incipit {
-    fixum numerus big ← 300
-    fixum exactus<u8> cell ← big ↦ exactus<u8>
+    sit numerus big ← 300
+    sit exactus<u8> cell ← big ↦ exactus<u8>
     nota cell
 }
 ```

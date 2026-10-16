@@ -35,15 +35,15 @@ test <span class="tok-st">"ordering and chained interval"</span> {
 <span class="tok-co">#   Scalar bool stdout; chain with et for interval tests.</span>
 
 main {
-    const bool aequalis <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">≡</span> <span class="tok-nu">10</span>
+    let bool aequalis <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">≡</span> <span class="tok-nu">10</span>
     print aequalis
-    const bool diversus <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">≢</span> <span class="tok-nu">5</span>
+    let bool diversus <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">≢</span> <span class="tok-nu">5</span>
     print diversus
-    const bool nonMaior <span class="tok-op">←</span> <span class="tok-nu">5</span> <span class="tok-op">≤</span> <span class="tok-nu">10</span>
+    let bool nonMaior <span class="tok-op">←</span> <span class="tok-nu">5</span> <span class="tok-op">≤</span> <span class="tok-nu">10</span>
     print nonMaior
-    const bool nonMinor <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">≥</span> <span class="tok-nu">5</span>
+    let bool nonMinor <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">≥</span> <span class="tok-nu">5</span>
     print nonMinor
-    const bool intervallum <span class="tok-op">←</span> <span class="tok-nu">0</span> ≺ <span class="tok-nu">5</span> and <span class="tok-nu">5</span> ≺ <span class="tok-nu">10</span>
+    let bool intervallum <span class="tok-op">←</span> <span class="tok-nu">0</span> ≺ <span class="tok-nu">5</span> and <span class="tok-nu">5</span> ≺ <span class="tok-nu">10</span>
     print intervallum
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>true
 true

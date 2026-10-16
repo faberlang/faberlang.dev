@@ -16,49 +16,49 @@ fn minima_tot(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4
 }
 
 fn maxima_vacua() <span class="tok-op">→</span> f32 {
-    const tf32[<span class="tok-nu">0</span>] v <span class="tok-op">←</span> empty
+    let tf32[<span class="tok-nu">0</span>] v <span class="tok-op">←</span> empty
     return reduce via max from v at [i] coalesce <span class="tok-op">-</span><span class="tok-op">∞</span>
 }
 
 fn numera_maiora(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> a) <span class="tok-op">→</span> int {
-    return reduce via count from a at [i] const s {
+    return reduce via count from a at [i] let s {
         return s ≻ <span class="tok-nu">2.0</span>
     }
 }
 
 fn omnes_positivi(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> a) <span class="tok-op">→</span> bool {
-    return reduce via all from a at [i] const s {
+    return reduce via all from a at [i] let s {
         return s ≻ <span class="tok-nu">0.5</span>
     }
 }
 
 fn omnes_maiores(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> a) <span class="tok-op">→</span> bool {
-    return reduce via all from a at [i] const s {
+    return reduce via all from a at [i] let s {
         return s ≻ <span class="tok-nu">1.5</span>
     }
 }
 
 fn aliquis_maior(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> a) <span class="tok-op">→</span> bool {
-    return reduce via any from a at [i] const s {
+    return reduce via any from a at [i] let s {
         return s ≻ <span class="tok-nu">2.5</span>
     }
 }
 
 fn aliquis_maximus(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> a) <span class="tok-op">→</span> bool {
-    return reduce via any from a at [i] const s {
+    return reduce via any from a at [i] let s {
         return s ≻ <span class="tok-nu">3.5</span>
     }
 }
 
 fn summa_corpus(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> a) <span class="tok-op">→</span> f32 {
-    return reduce via sum from a at [i] const s {
+    return reduce via sum from a at [i] let s {
         return s <span class="tok-op">+</span> <span class="tok-nu">1.0</span>
     }
 }
 
 main {
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat <span class="tok-op">←</span> [<span class="tok-nu">3.0</span>, <span class="tok-nu">1.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">2.0</span>]
-    const tf32[<span class="tok-nu">4</span>] a <span class="tok-op">←</span> flat ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat <span class="tok-op">←</span> [<span class="tok-nu">3.0</span>, <span class="tok-nu">1.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">2.0</span>]
+    let tf32[<span class="tok-nu">4</span>] a <span class="tok-op">←</span> flat ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
     print summa_tot(a)
     print factum_tot(a)
     print maxima_tot(a)

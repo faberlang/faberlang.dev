@@ -67,12 +67,12 @@ itself tells you whether anything happens at runtime.
 
 ```faber
 genus Punctum {
-    fixum numerus x
-    fixum numerus y
+    sit numerus x
+    sit numerus y
 }
 
 incipit {
-    fixum _ p ← Punctum { x = 10, y = 20 }
+    sit _ p ← Punctum { x = 10, y = 20 }
     varia numerus count ← 0
     count ← count + 1
     nota p.x, count
@@ -139,7 +139,7 @@ construct before knowing which target backend the code will be compiled to.
 | Signal | Examples | Role |
 |--------|----------|------|
 | Type-first declarations | `string name`, `int age` | Shape reads toward binding — type, then name. |
-| Behavioural words | `fn`, `class`, `if`, `return`, `const` | Declarations, statements, lifecycle, and behavioural intent. |
+| Behavioural words | `fn`, `class`, `if`, `return`, `let` | Declarations, statements, lifecycle, and behavioural intent. |
 | Structural glyphs | `← → ∴ ≡ ∪ ⇥` | Value flow, type flow, and structural joints — universal, never localise. |
 
 These three are designed to be mutually reinforcing. A reader who knows Faber in
@@ -192,9 +192,10 @@ languages.
 
 | Keyword | Role | Approximate equivalent |
 |---------|------|------------------------|
-| `const` | Immutable binding (write-once) | `const`, `final` |
-| `var` | Mutable binding | `let mut`, `var` |
-| `let` | Concise inferred immutable | `val`, `auto` |
+| `let` | A fixed name | `const`, `final`, `val` |
+| `mut` | A writable name | `let mut`, `var` |
+| `ref` | A read-only name; a bare parameter is `ref` | `&T`, `const &` |
+| `const` | A compile-time fact, set with `=` | `constexpr`, `static final` |
 | `return` | Return a value from a function | `return` |
 | `throw` | Throw on the error channel | `throw`, `raise` |
 | `panic` | Deferred — behaviour not yet expressible | `unimplemented!`, `todo` |
@@ -276,8 +277,8 @@ is class field layout.
 ```faber
 # Runtime binding: ← attaches a value to a name
 genus Point {
-    fixum numerus x
-    fixum numerus y
+    sit numerus x
+    sit numerus y
 }
 
 incipit {
@@ -286,7 +287,7 @@ incipit {
     count ← count + 1
 
     # Structural shape: = defines field values inside a literal
-    fixum _ p ← Point {
+    sit _ p ← Point {
         x = 10,
         y = 20
     }
@@ -350,9 +351,9 @@ while a tensor kernel module uses sugar:
 
 ```faber
 incipit {
-    fixum lista<f32> values ← vacua
-    fixum tensor<f32, [2, 3]> grid ← vacua
-    fixum i32 narrow ← 7
+    sit lista<f32> values ← vacua
+    sit tensor<f32, [2, 3]> grid ← vacua
+    sit i32 narrow ← 7
 }
 ```
 
@@ -360,9 +361,9 @@ incipit {
 
 ```faber
 incipit {
-    fixum lf32 values ← vacua
-    fixum tf32[2, 3] grid ← vacua
-    fixum i32 narrow ← 7
+    sit lf32 values ← vacua
+    sit tf32[2, 3] grid ← vacua
+    sit i32 narrow ← 7
 }
 ```
 

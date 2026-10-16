@@ -1,6 +1,6 @@
 kiểu Span {
-    hằng f64 low
-    hằng f64 high
+    đặt f64 low
+    đặt f64 high
 
     hàm contains(f64 x) → logic {
         trả tôi.low ≤ x và x ≤ tôi.high
@@ -16,7 +16,7 @@ hàm choose<T>(logic first, T a, T b) → T {
 }
 
 bắt_đầu {
-    hằng Span bytes ← Span { low = 0.0, high = 255.0 }
+    đặt Span bytes ← Span { low = 0.0, high = 255.0 }
     ghi_chú bytes.center()
     ghi_chú choose(bytes.contains(300.0), "inside", "outside")
     ghi_chú -7 / 2

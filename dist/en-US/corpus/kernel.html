@@ -99,6 +99,6 @@ fn launches_private() <span class="tok-op">→</span> f32 {
 @ kernel
 @ public
 fn names_its_lane(f32 x) <span class="tok-op">→</span> f32 {
-    const vector<span class="tok-op">&lt;</span>u32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> gid <span class="tok-op">←</span> global_invocation_id()
+    let vector<span class="tok-op">&lt;</span>u32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> gid <span class="tok-op">←</span> global_invocation_id()
     return x
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusannotation-sugarnucleum-fragmentfab-canonical-annotation">radix/corpus/annotation-sugar/nucleum-fragment.fab (canonical · annotation)</a></li><li class="toc-3"><a href="#radixcorpuskernellegality-rejectfab-supporting-reject">radix/corpus/kernel/legality-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/annotation-sugar/nucleum-fragment.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

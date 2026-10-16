@@ -152,7 +152,7 @@
 }
 
 main {
-  const _ greeting ← greet(&quot;Hello, World!&quot;)
+  let _ greeting ← greet(&quot;Hello, World!&quot;)
   print greeting
 }</code></pre></div>
     <div class="fdt-panel" id="pp-th-TH" role="tabpanel" aria-labelledby="pt-th-TH"><div class="fdt-panel-label">ภาษาไทย · th-TH · <a href="/en-US/language/locales/th-TH.html">enter docs →</a></div><pre><code class="lang-faber locale=th-TH">ฟังก์ชัน salve(ข้อความ nomen) → ข้อความ {
@@ -165,12 +165,12 @@ main {
     แสดง m
 }</code></pre></div>
     <div class="fdt-panel" id="pp-ar" role="tabpanel" aria-labelledby="pt-ar"><div class="fdt-panel-label">العربية · ar · <a href="/en-US/language/locales/ar.html">enter docs →</a></div><pre dir="rtl"><code class="lang-faber locale=ar">دالة salve(نص nomen) → نص {
-    ثابت نص msg ← &quot;مرحبا، §!&quot;(nomen)
+    ليكن نص msg ← &quot;مرحبا، §!&quot;(nomen)
     أعد msg
 }
 
 بداية {
-    ثابت نص m ← salve(&quot;عالم&quot;)
+    ليكن نص m ← salve(&quot;عالم&quot;)
     اعرض m
 }</code></pre></div>
     <div class="fdt-panel" id="pp-hi" role="tabpanel" aria-labelledby="pt-hi"><div class="fdt-panel-label">हिन्दी · hi · <a href="/en-US/language/locales/hi.html">enter docs →</a></div><pre><code class="lang-faber locale=hi">फलन salve(पाठ nomen) → पाठ {
@@ -183,21 +183,21 @@ main {
     दिखाओ m
 }</code></pre></div>
     <div class="fdt-panel" id="pp-vi" role="tabpanel" aria-labelledby="pt-vi"><div class="fdt-panel-label">Tiếng Việt · vi · <a href="/en-US/language/locales/vi.html">enter docs →</a></div><pre><code class="lang-faber locale=vi">hàm salve(vănbản nomen) → vănbản {
-    hằng vănbản msg ← &quot;Xin chào, §!&quot;(nomen)
+    đặt vănbản msg ← &quot;Xin chào, §!&quot;(nomen)
     trả msg
 }
 
 bắtđầu {
-    hằng vănbản m ← salve(&quot;thế giới&quot;)
+    đặt vănbản m ← salve(&quot;thế giới&quot;)
     in m
 }</code></pre></div>
     <div class="fdt-panel" id="pp-zh-Hans" role="tabpanel" aria-labelledby="pt-zh-Hans"><div class="fdt-panel-label">简体中文 · zh-Hans · <a href="/en-US/language/locales/zh-Hans.html">enter docs →</a></div><pre><code class="lang-faber locale=zh-Hans">函数 salve(文本 nomen) → 文本 {
-    常量 文本 msg ← &quot;你好，§!&quot;(nomen)
+    设 文本 msg ← &quot;你好，§!&quot;(nomen)
     返回 msg
 }
 
 入口 {
-    常量 文本 m ← salve(&quot;世界&quot;)
+    设 文本 m ← salve(&quot;世界&quot;)
     显示 m
 }</code></pre></div>
     <div class="fdt-panel" id="pp-zh-Hant" role="tabpanel" aria-labelledby="pt-zh-Hant"><div class="fdt-panel-label">繁體中文 · zh-Hant · <a href="/en-US/language/locales/zh-Hant.html">enter docs →</a></div><pre><code class="lang-faber locale=zh-Hant">函式 salve(文字 nomen) → 文字 {

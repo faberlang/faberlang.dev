@@ -30,18 +30,18 @@
 
 main {
 <span class="tok-co">    # ↦ converts string → int</span>
-    let n1 <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ int
+    let _ n1 <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ int
 <span class="tok-co">    # ⊥ supplies a default on failure</span>
-    let n2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ int ⊥ <span class="tok-nu">0</span>
-    let n3 <span class="tok-op">←</span> <span class="tok-st">"255"</span> ↦ i32
-    let f1 <span class="tok-op">←</span> <span class="tok-st">"3.14159"</span> ↦ float
-    let f2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ float ⊥ <span class="tok-nu">0.0</span>
-    let s1 <span class="tok-op">←</span> <span class="tok-nu">42</span> ↦ string
-    let s2 <span class="tok-op">←</span> <span class="tok-nu">3.14</span> ↦ string
-    let s3 <span class="tok-op">←</span> true ↦ string
+    let _ n2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ int ⊥ <span class="tok-nu">0</span>
+    let _ n3 <span class="tok-op">←</span> <span class="tok-st">"255"</span> ↦ i32
+    let _ f1 <span class="tok-op">←</span> <span class="tok-st">"3.14159"</span> ↦ float
+    let _ f2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ float ⊥ <span class="tok-nu">0.0</span>
+    let _ s1 <span class="tok-op">←</span> <span class="tok-nu">42</span> ↦ string
+    let _ s2 <span class="tok-op">←</span> <span class="tok-nu">3.14</span> ↦ string
+    let _ s3 <span class="tok-op">←</span> true ↦ string
 
 <span class="tok-co">    # chained ↦ left-to-right</span>
-    let roundtrip <span class="tok-op">←</span> (<span class="tok-st">"42"</span> ↦ int) ↦ string
+    let _ roundtrip <span class="tok-op">←</span> (<span class="tok-st">"42"</span> ↦ int) ↦ string
     print n1
     print n2
     print n3
@@ -75,8 +75,8 @@ true
 <span class="tok-co"># =============================================================================</span>
 
 main {
-    const list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-st">"x"</span>, <span class="tok-st">"y"</span>]
-    const string s <span class="tok-op">←</span> a ↦ string
+    let list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-st">"x"</span>, <span class="tok-st">"y"</span>]
+    let string s <span class="tok-op">←</span> a ↦ string
     print s
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusconversiofloat-to-int-rejectfab-supporting-reject">radix/corpus/conversio/float-to-int-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusconversiofloat-to-int-rejectfab-supporting-reject">#</a></h3><p>Rejected route: a bare float or decimal to integer conversion has no rounding choice.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># float to integer — rejected without a rounding choice</span>
@@ -92,7 +92,7 @@ main {
 <span class="tok-co"># =============================================================================</span>
 
 main {
-    const float a <span class="tok-op">←</span> <span class="tok-nu">2.5</span>
-    const int n <span class="tok-op">←</span> a ↦ int
+    let float a <span class="tok-op">←</span> <span class="tok-nu">2.5</span>
+    let int n <span class="tok-op">←</span> a ↦ int
     print n
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusconversioconversiofab-canonical-operator-group">radix/corpus/conversio/conversio.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-lista-to-textus-rejectfab-supporting-reject">radix/corpus/bounded/conversio-lista-to-textus-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusconversiofloat-to-int-rejectfab-supporting-reject">radix/corpus/conversio/float-to-int-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/conversio/conversio.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

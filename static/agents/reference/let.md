@@ -12,12 +12,12 @@ let <name> [← <expression>]
 
 ## What this teaches
 
-- Immutable binding sugar — `let name` is a compact alternative to `const _ name` for inferred-type immutable locals
-- Supports immediate init (`let x ← expr`) and deferred init (`let x` then `x ← expr` later)
+- Write-once binding — `let name` declares an inferred-type local that is written once
+- Supports immediate init (`let _ x ← expr`) and deferred init (`let x` then `x ← expr` later)
 
 ## Common mistakes
 
-- Confusing `let` (sugar for `const _`) with `var` — `let` creates an immutable binding.
+- Confusing `let` with `mut` — `let` creates a write-once binding.
 
 ## Grammar
 
@@ -33,34 +33,34 @@ sit.expected
 
 ## Immediate init
 
-let name ← expr        -- compact sugar for const _ name ← expr
+let _ name ← expr        -- inferred write-once local
 
 ## Deferred init
 
-let name               -- compact sugar for const _ name (assign once later)
+let name               -- deferred: assign once later
 name ← expr
-Prefer let when a block chains several inferred locals; keep const _ when
-teaching the explicit infer marker or mixing typed and inferred bindings.
+`let` infers the type; write `let T name ← expr` to state it. `const` is for
+compile-time constants only.
 
 ## Example
 
 ```fab
 main {
-    let salve ← "Salve"
-    let name ← "Marcus"
-    let nuntius ← "§, §!"(salve, name)
+    let _ salve ← "Salve"
+    let _ name ← "Marcus"
+    let _ nuntius ← "§, §!"(salve, name)
 
     print nuntius
 
-    let label
+    let _ label
     label ← "deferred"
     print label
 
-    const _ idem ← nuntius
+    let _ idem ← nuntius
     print idem
 }
 ```
 
-See also: [`const`](const.md), [`var`](var.md), [`←`](←.md).
+See also: [`const`](const.md), [`mut`](varia.md), [`←`](←.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

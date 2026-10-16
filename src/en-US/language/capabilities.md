@@ -22,10 +22,10 @@ with a route named by an `ascii` literal and optional opener data:
 
 ```text
 # Simple materialized call: open, send opener, drain response
-fixum textus content ← ad 'solum:lege' ("config.toml") ↦ textus
+sit textus content ← ad 'solum:lege' ("config.toml") ↦ textus
 
 # Typed conversation handle for streaming interaction
-fixum sermo s ← ad 'processus:exsequi' ("ls -la")
+sit sermo s ← ad 'processus:exsequi' ("ls -la")
 ```
 
 The route string follows a `prefix:verb` pattern. Dispatch matches on the
@@ -59,9 +59,9 @@ Five compiler-owned types form the frame system:
 
 ```text
 # Open a conversation, get directional views
-fixum sermo s ← ad 'solum:scribe' ("output.txt")
-fixum meus<textus> out ← s.meus<textus>()
-fixum tuus<textus> input ← s.tuus<textus>()
+sit sermo s ← ad 'solum:scribe' ("output.txt")
+sit meus<textus> out ← s.meus<textus>()
+sit tuus<textus> input ← s.tuus<textus>()
 
 # Send content frames
 out.da("line one")
@@ -72,7 +72,7 @@ out.fini()
 itera ex input.cursor() fixum frame {
     nota frame.data
 }
-fixum status inbound ← input.fini()
+sit status inbound ← input.fini()
 ```
 
 ### Simple materialization {#simple-materialization}
@@ -82,10 +82,10 @@ value — `sermo ↦ T` collapses the conversation:
 
 ```text
 # Read a file: open + drain into textus
-fixum textus body ← ad 'solum:lege' ("config.toml") ↦ textus
+sit textus body ← ad 'solum:lege' ("config.toml") ↦ textus
 
 # Parse JSON from a file
-fixum json data ← ad 'solum:lege' ("data.json") ↦ json
+sit json data ← ad 'solum:lege' ("data.json") ↦ json
 ```
 
 Materialization uses a type-directed collector: `↦ textus`
@@ -138,7 +138,7 @@ functio lege(textus via) → textus {
 }
 
 functio scribe(textus via, textus content) → vacuum {
-    fixum vacuum _ ← ad 'solum:scribe' (via, content) ↦ vacuum
+    sit vacuum _ ← ad 'solum:scribe' (via, content) ↦ vacuum
 }
 
 functio exsequi(textus command) → textus {

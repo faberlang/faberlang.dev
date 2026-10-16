@@ -9,7 +9,7 @@ fn identitas<T>(T valor) → T {
 }
 
 main {
-    const int seven ← identitas<int>(7)
+    let int seven ← identitas<int>(7)
     print seven
 }
 ```

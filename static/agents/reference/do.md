@@ -49,7 +49,7 @@ main {
     }
 
     # throw on second attempt; catch recovers and prints err.nuntius
-    var int attempts ← 0
+    mut int attempts ← 0
     do {
         attempts ← attempts + 1
         print "Attempt §"(attempts)

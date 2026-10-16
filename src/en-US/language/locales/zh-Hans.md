@@ -111,7 +111,8 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | max              maxima       最大
 | min              minima       最小
 | module           regio        模块
-| mut              in           传入
+| mut              varia        可变
+| mut              varia        可变
 | name             nomen        名称
 | nan              nonnumerus   nan
 | not              non          非
@@ -176,7 +177,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | union            discretio    判别
 | unstable         nondum       不稳定
 | until            usque        到
-| var              varia        变量
 | variant          finge        构造
 | vertex           vertex       顶点
 | via              via          经由
@@ -232,6 +232,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | stack        stack        栈
 | string       textus       文本
 | tensor       tensor       张量
+| trapped      interceptum  被困
 | trapping     exactus      精确
 | unknown      ignotum      未知
 | value        valor        动态值
@@ -282,7 +283,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | difference            differentia            差集
 | difference_symmetric  symmetrica             对称差集
 | divide                divida                 除以
-| divide                divisio                除法
 | divided               divisa                 已除以
 | dot                   productum              点积
 | drop                  omissa                 丢弃

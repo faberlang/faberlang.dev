@@ -7,10 +7,10 @@ The runtime dispatches each route to the native leaf that serves it, and that
 leaf implements the actual I/O — filesystem, networking, console, time,
 randomness, or anything else the OS can do.</p><h2 id="ad">The <code>call</code> primitive<a class="anchor" href="#ad">#</a></h2><p><code>call</code> is a keyword, not a function. It opens an opaque conversation
 with a route named by an <code>ascii</code> literal and optional opener data:</p><pre class="faber-code"><code class="lang-text"># Simple materialized call: open, send opener, drain response
-const string content ← call 'solum:lege' (&quot;config.toml&quot;) ↦ string
+let string content ← call 'solum:lege' (&quot;config.toml&quot;) ↦ string
 
 # Typed conversation handle for streaming interaction
-const channel s ← call 'processus:exsequi' (&quot;ls -la&quot;)</code></pre><p>The route string follows a <code>prefix:verb</code> pattern. Dispatch matches on the
+let channel s ← call 'processus:exsequi' (&quot;ls -la&quot;)</code></pre><p>The route string follows a <code>prefix:verb</code> pattern. Dispatch matches on the
 <strong>prefix</strong> — the leaf that owns a prefix handles all verbs under it:</p><pre class="faber-code"><code class="lang-text">solum:lege   ─┐
 solum:modum  ─┼─►  prefix &quot;solum&quot;  ──►  filesystem leaf
 solum:vincula─┘</code></pre><p><code>call</code> is not a foreign function interface. It does not call C
@@ -18,9 +18,9 @@ functions, load dynamic libraries, or embed inline assembly. It is a
 structured message passing boundary: Faber sends typed frames and receives
 typed frames, without knowing whether the answering side runs in-process,
 delegates to a system call, or forwards to a remote host.</p><h2 id="types">Frame types<a class="anchor" href="#types">#</a></h2><p>Five compiler-owned types form the frame system:</p><div class="table-scroll"><table><thead><tr><th>Type</th><th>Role</th><th>Key surface</th></tr></thead><tbody><tr><td><code>channel</code></td><td>Conversation handle — an in-flight bidirectional exchange</td><td>Created by <code>call</code>; drained via <code>↦ T</code> or split into views</td></tr><tr><td><code>frame&lt;T&gt;</code></td><td>Frame envelope — one structured message in a conversation</td><td>Fields: <code>id</code>, <code>call</code>, <code>status</code>, <code>data</code>, <code>created_ms</code>, <code>from</code>, <code>trace</code></td></tr><tr><td><code>status</code></td><td>Lifecycle marker enum</td><td><code>request</code>, <code>item</code>, <code>byte</code>, <code>bulk</code>, <code>done</code>, <code>error</code>, <code>cancel</code></td></tr><tr><td><code>send&lt;T&gt;</code></td><td>Outbound half-stream — send frames to the provider</td><td><code>da(T)</code>, <code>fini() → status</code></td></tr><tr><td><code>recv&lt;T&gt;</code></td><td>Inbound half-stream — receive frames from the provider</td><td><code>accipe()</code>, <code>cursor()</code>, <code>exhauri()</code>, <code>fini()</code></td></tr></tbody></table></div><h3 id="using-directional-views">Using directional views<a class="anchor" href="#using-directional-views">#</a></h3><pre class="faber-code"><code class="lang-text"># Open a conversation, get directional views
-const channel s ← call 'solum:scribe' (&quot;output.txt&quot;)
-const send&lt;string&gt; out ← s.meus&lt;string&gt;()
-const recv&lt;string&gt; input ← s.tuus&lt;string&gt;()
+let channel s ← call 'solum:scribe' (&quot;output.txt&quot;)
+let send&lt;string&gt; out ← s.meus&lt;string&gt;()
+let recv&lt;string&gt; input ← s.tuus&lt;string&gt;()
 
 # Send content frames
 out.da(&quot;line one&quot;)
@@ -31,12 +31,12 @@ out.fini()
 for from input.cursor() const frame {
     print frame.data
 }
-const status inbound ← input.fini()</code></pre><h3 id="simple-materialization">Simple materialization<a class="anchor" href="#simple-materialization">#</a></h3><p>For the common case — open, send opener, drain all response frames into one
+let status inbound ← input.fini()</code></pre><h3 id="simple-materialization">Simple materialization<a class="anchor" href="#simple-materialization">#</a></h3><p>For the common case — open, send opener, drain all response frames into one
 value — <code>channel ↦ T</code> collapses the conversation:</p><pre class="faber-code"><code class="lang-text"># Read a file: open + drain into string
-const string body ← call 'solum:lege' (&quot;config.toml&quot;) ↦ string
+let string body ← call 'solum:lege' (&quot;config.toml&quot;) ↦ string
 
 # Parse JSON from a file
-const json data ← call 'solum:lege' (&quot;data.json&quot;) ↦ json</code></pre><p>Materialization uses a type-directed collector: <code>↦ string</code>
+let json data ← call 'solum:lege' (&quot;data.json&quot;) ↦ json</code></pre><p>Materialization uses a type-directed collector: <code>↦ string</code>
 concatenates all inbound frames, <code>↦ json</code> parses the concatenated
 payload, <code>↦ list&lt;T&gt;</code> collects frames into a list.</p><h2 id="providers">Native leaves<a class="anchor" href="#providers">#</a></h2><p>Each effect family is served by a native leaf in the <code>faber-leaf</code> crate
 (<code>radix/crates/faber-leaf</code>). The interpreter (<code>faber run</code>) and generated Rust
@@ -54,7 +54,7 @@ fn read(string via) → string {
 }
 
 fn write(string via, string content) → void {
-    const void _ ← call 'solum:scribe' (via, content) ↦ void
+    let void _ ← call 'solum:scribe' (via, content) ↦ void
 }
 
 fn exsequi(string command) → string {

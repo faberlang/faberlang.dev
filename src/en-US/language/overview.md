@@ -19,8 +19,8 @@ page cannot claim something the toolchain does not produce.
 
 ```faber
 genus Span {
-    fixum f64 low
-    fixum f64 high
+    sit f64 low
+    sit f64 high
 
     functio contains(f64 x) → bivalens {
         redde ego.low ≤ x et x ≤ ego.high
@@ -36,7 +36,7 @@ functio choose<T>(bivalens first, T a, T b) → T {
 }
 
 incipit {
-    fixum Span bytes ← Span { low = 0.0, high = 255.0 }
+    sit Span bytes ← Span { low = 0.0, high = 255.0 }
     nota bytes.center()
     nota choose(bytes.contains(300.0), "inside", "outside")
     nota -7 / 2
@@ -132,6 +132,7 @@ through faber.
 | `go` | yes | — | — |
 | `python` | yes | — | — |
 | `haskell` | yes | — | — |
+| `c` | yes | — | — |
 | `wasm-text` | yes | — | — |
 | `wasm` | yes | — | — |
 | `llvm-text` | yes | yes | yes |
@@ -141,6 +142,7 @@ through faber.
 | `swift` | yes | — | — |
 | `fhir` | yes | yes | yes |
 | `llvm-host` | yes | yes | yes |
+| `clif` | yes | — | — |
 | `fmir-text` | yes | yes | yes |
 | `fmir` | yes | yes | yes |
 | `fmir-bin` | yes | yes | yes |

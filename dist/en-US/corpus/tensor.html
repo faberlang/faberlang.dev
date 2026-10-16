@@ -32,8 +32,8 @@ fn identity(tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&g
 }
 
 main {
-    const tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> empty <span class="tok-op">←</span> empty
-    const tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> roundtrip <span class="tok-op">←</span> identity(empty)
+    let tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> empty <span class="tok-op">←</span> empty
+    let tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> roundtrip <span class="tok-op">←</span> identity(empty)
 
     print roundtrip.length()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0
@@ -68,35 +68,35 @@ fn runtime_extent(int value) <span class="tok-op">→</span> int {
 }
 
 main {
-    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>] ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
-    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> same <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>] ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
-    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> other <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">5.0</span>] ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
+    let tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>] ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
+    let tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> same <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>] ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
+    let tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> other <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">5.0</span>] ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
 
     print a <span class="tok-op">≡</span> same
     print a <span class="tok-op">≡</span> other
     print a <span class="tok-op">≢</span> other
     print a <span class="tok-op">≢</span> same
 
-    const tensor<span class="tok-op">&lt;</span>bool, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> mask <span class="tok-op">←</span> a <span class="tok-op">≅</span> other
+    let tensor<span class="tok-op">&lt;</span>bool, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> mask <span class="tok-op">←</span> a <span class="tok-op">≅</span> other
     print mask.flatten()
-    const tensor<span class="tok-op">&lt;</span>bool, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> apart <span class="tok-op">←</span> a <span class="tok-op">≇</span> other
+    let tensor<span class="tok-op">&lt;</span>bool, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> apart <span class="tok-op">←</span> a <span class="tok-op">≇</span> other
     print apart.flatten()
     print reduce via all from mask
     print reduce via any from apart
     print reduce via count from mask
 
-    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> zeros <span class="tok-op">←</span> [<span class="tok-nu">0.0</span>, <span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>] ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
-    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> nans <span class="tok-op">←</span> zeros <span class="tok-op">÷</span> zeros
+    let tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> zeros <span class="tok-op">←</span> [<span class="tok-nu">0.0</span>, <span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>] ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
+    let tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> nans <span class="tok-op">←</span> zeros <span class="tok-op">÷</span> zeros
     print nans.flatten()
     print nans <span class="tok-op">≡</span> nans
     print nans <span class="tok-op">≢</span> nans
 
-    const int n <span class="tok-op">←</span> runtime_extent(<span class="tok-nu">2</span>)
-    const int m <span class="tok-op">←</span> runtime_extent(<span class="tok-nu">3</span>)
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_short <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>]
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_long <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>]
-    const tensor<span class="tok-op">&lt;</span>f32, [size n]<span class="tok-op">&gt;</span> short <span class="tok-op">←</span> flat_short ↦ tensor<span class="tok-op">&lt;</span>f32, [size n]<span class="tok-op">&gt;</span>
-    const tensor<span class="tok-op">&lt;</span>f32, [size m]<span class="tok-op">&gt;</span> long <span class="tok-op">←</span> flat_long ↦ tensor<span class="tok-op">&lt;</span>f32, [size m]<span class="tok-op">&gt;</span>
+    let int n <span class="tok-op">←</span> runtime_extent(<span class="tok-nu">2</span>)
+    let int m <span class="tok-op">←</span> runtime_extent(<span class="tok-nu">3</span>)
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_short <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>]
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_long <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>]
+    let tensor<span class="tok-op">&lt;</span>f32, [size n]<span class="tok-op">&gt;</span> short <span class="tok-op">←</span> flat_short ↦ tensor<span class="tok-op">&lt;</span>f32, [size n]<span class="tok-op">&gt;</span>
+    let tensor<span class="tok-op">&lt;</span>f32, [size m]<span class="tok-op">&gt;</span> long <span class="tok-op">←</span> flat_long ↦ tensor<span class="tok-op">&lt;</span>f32, [size m]<span class="tok-op">&gt;</span>
     print short <span class="tok-op">≡</span> long
     print short <span class="tok-op">≢</span> long
     print short <span class="tok-op">≡</span> short
@@ -123,8 +123,9 @@ true
 <span class="tok-co">#   • Lifting — a scalar operator applied per element: `a + 1.0`, `10.0 - a`, `a * 0.5`</span>
 <span class="tok-co">#   • `* / %` lift only against a scalar; a tensor times a tensor is `⊙` (elementwise) or `·` (contraction)</span>
 <span class="tok-co">#   • Division has two kinds — `/` floors on integers, `÷` is true division (16-bit and narrower integers give f32)</span>
+<span class="tok-co">#   • Integer results follow the scalar range rule and width applies at the store: `/` on `i16` is typed `i32` (the bound is [-M, M]), so storing it back into an `i16` tensor is an explicit `↦`; `%` by a positive constant is non-negative and fits a wider tensor directly</span>
 <span class="tok-co">#   • Extrema — `a ⤒ b` and `a ⤓ b` pick the larger or smaller element of two same-shape tensors</span>
-<span class="tok-co">#   • Widths follow the scalar rules: an untyped constant adopts the element type, a family crossing needs `↦`</span>
+<span class="tok-co">#   • Widths follow the scalar rules: an untyped constant takes part by value, a family crossing needs `↦`</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • writing `a * b` for an elementwise product — use `a ⊙ b`</span>
@@ -137,8 +138,9 @@ true
 <span class="tok-co"># tensor lift — arithmetic against a scalar</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># WHY: each operator is the scalar operator applied to every element, so the</span>
-<span class="tok-co"># runner's answer for one element is the answer for the whole tensor. Results</span>
-<span class="tok-co"># are stored per element under the element type.</span>
+<span class="tok-co"># runner's answer for one element is the answer for the whole tensor. An integer</span>
+<span class="tok-co"># result is typed by the scalar range rule and is stored per element into the</span>
+<span class="tok-co"># declared tensor; a result wider than the declared element converts with `↦`.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED stdout:</span>
 <span class="tok-co">#   [2.0, 3.0, 4.0, 5.0]</span>
@@ -154,47 +156,47 @@ true
 <span class="tok-co">#   [1.0, 2.0, 2.0, 1.0]</span>
 
 main {
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>]
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">4.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">1.0</span>]
-    var tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> flat_a ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
-    var tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> flat_b ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>]
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">4.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">1.0</span>]
+    mut tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> flat_a ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
+    mut tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> flat_b ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
 
-    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> plus <span class="tok-op">←</span> a <span class="tok-op">+</span> <span class="tok-nu">1.0</span>
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> plus_out <span class="tok-op">←</span> plus.flatten()
+    let tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> plus <span class="tok-op">←</span> a <span class="tok-op">+</span> <span class="tok-nu">1.0</span>
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> plus_out <span class="tok-op">←</span> plus.flatten()
     print plus_out
-    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> minus <span class="tok-op">←</span> <span class="tok-nu">10.0</span> <span class="tok-op">-</span> a
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> minus_out <span class="tok-op">←</span> minus.flatten()
+    let tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> minus <span class="tok-op">←</span> <span class="tok-nu">10.0</span> <span class="tok-op">-</span> a
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> minus_out <span class="tok-op">←</span> minus.flatten()
     print minus_out
-    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> times <span class="tok-op">←</span> a <span class="tok-op">*</span> <span class="tok-nu">0.5</span>
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> times_out <span class="tok-op">←</span> times.flatten()
+    let tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> times <span class="tok-op">←</span> a <span class="tok-op">*</span> <span class="tok-nu">0.5</span>
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> times_out <span class="tok-op">←</span> times.flatten()
     print times_out
-    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> divided <span class="tok-op">←</span> a <span class="tok-op">/</span> <span class="tok-nu">4.0</span>
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> divided_out <span class="tok-op">←</span> divided.flatten()
+    let tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> divided <span class="tok-op">←</span> a <span class="tok-op">/</span> <span class="tok-nu">4.0</span>
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> divided_out <span class="tok-op">←</span> divided.flatten()
     print divided_out
-    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> rest <span class="tok-op">←</span> a <span class="tok-op">%</span> <span class="tok-nu">3.0</span>
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> rest_out <span class="tok-op">←</span> rest.flatten()
+    let tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> rest <span class="tok-op">←</span> a <span class="tok-op">%</span> <span class="tok-nu">3.0</span>
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> rest_out <span class="tok-op">←</span> rest.flatten()
     print rest_out
-    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> negated <span class="tok-op">←</span> <span class="tok-op">-</span>a
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> negated_out <span class="tok-op">←</span> negated.flatten()
+    let tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> negated <span class="tok-op">←</span> <span class="tok-op">-</span>a
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> negated_out <span class="tok-op">←</span> negated.flatten()
     print negated_out
 
-    const list<span class="tok-op">&lt;</span>i16<span class="tok-op">&gt;</span> flat_n <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>]
-    var tensor<span class="tok-op">&lt;</span>i16, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> n <span class="tok-op">←</span> flat_n ↦ tensor<span class="tok-op">&lt;</span>i16, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
-    const tensor<span class="tok-op">&lt;</span>i16, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> floored <span class="tok-op">←</span> n <span class="tok-op">/</span> <span class="tok-nu">2</span>
-    const list<span class="tok-op">&lt;</span>i16<span class="tok-op">&gt;</span> floored_out <span class="tok-op">←</span> floored.flatten()
+    let list<span class="tok-op">&lt;</span>i16<span class="tok-op">&gt;</span> flat_n <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>]
+    mut tensor<span class="tok-op">&lt;</span>i16, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> n <span class="tok-op">←</span> flat_n ↦ tensor<span class="tok-op">&lt;</span>i16, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
+    let tensor<span class="tok-op">&lt;</span>i16, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> floored <span class="tok-op">←</span> (n <span class="tok-op">/</span> <span class="tok-nu">2</span>) ↦ tensor<span class="tok-op">&lt;</span>i16, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
+    let list<span class="tok-op">&lt;</span>i16<span class="tok-op">&gt;</span> floored_out <span class="tok-op">←</span> floored.flatten()
     print floored_out
-    const tensor<span class="tok-op">&lt;</span>i16, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> odd <span class="tok-op">←</span> n <span class="tok-op">%</span> <span class="tok-nu">2</span>
-    const list<span class="tok-op">&lt;</span>i16<span class="tok-op">&gt;</span> odd_out <span class="tok-op">←</span> odd.flatten()
+    let tensor<span class="tok-op">&lt;</span>i16, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> odd <span class="tok-op">←</span> n <span class="tok-op">%</span> <span class="tok-nu">2</span>
+    let list<span class="tok-op">&lt;</span>i16<span class="tok-op">&gt;</span> odd_out <span class="tok-op">←</span> odd.flatten()
     print odd_out
-    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> true_half <span class="tok-op">←</span> n <span class="tok-op">÷</span> <span class="tok-nu">2</span>
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> true_half_out <span class="tok-op">←</span> true_half.flatten()
+    let tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> true_half <span class="tok-op">←</span> n <span class="tok-op">÷</span> <span class="tok-nu">2</span>
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> true_half_out <span class="tok-op">←</span> true_half.flatten()
     print true_half_out
 
-    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> larger <span class="tok-op">←</span> a ⤒ b
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> larger_out <span class="tok-op">←</span> larger.flatten()
+    let tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> larger <span class="tok-op">←</span> a ⤒ b
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> larger_out <span class="tok-op">←</span> larger.flatten()
     print larger_out
-    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> smaller <span class="tok-op">←</span> a ⤓ b
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> smaller_out <span class="tok-op">←</span> smaller.flatten()
+    let tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> smaller <span class="tok-op">←</span> a ⤓ b
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> smaller_out <span class="tok-op">←</span> smaller.flatten()
     print smaller_out
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>[2.0, 3.0, 4.0, 5.0]
 [9.0, 8.0, 7.0, 6.0]
@@ -246,49 +248,49 @@ main {
 <span class="tok-co">#   [1, 20, 3, 40]</span>
 
 main {
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>]
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">4.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">1.0</span>]
-    var tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> flat_a ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
-    var tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> flat_b ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>]
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">4.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">1.0</span>]
+    mut tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> flat_a ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
+    mut tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> flat_b ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
 
-    const tensor<span class="tok-op">&lt;</span>bool, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> greater <span class="tok-op">←</span> a ≻ b
-    const list<span class="tok-op">&lt;</span>bool<span class="tok-op">&gt;</span> greater_out <span class="tok-op">←</span> greater.flatten()
+    let tensor<span class="tok-op">&lt;</span>bool, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> greater <span class="tok-op">←</span> a ≻ b
+    let list<span class="tok-op">&lt;</span>bool<span class="tok-op">&gt;</span> greater_out <span class="tok-op">←</span> greater.flatten()
     print greater_out
-    const tensor<span class="tok-op">&lt;</span>bool, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> small <span class="tok-op">←</span> a <span class="tok-op">≤</span> <span class="tok-nu">2.0</span>
-    const list<span class="tok-op">&lt;</span>bool<span class="tok-op">&gt;</span> small_out <span class="tok-op">←</span> small.flatten()
+    let tensor<span class="tok-op">&lt;</span>bool, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> small <span class="tok-op">←</span> a <span class="tok-op">≤</span> <span class="tok-nu">2.0</span>
+    let list<span class="tok-op">&lt;</span>bool<span class="tok-op">&gt;</span> small_out <span class="tok-op">←</span> small.flatten()
     print small_out
-    const tensor<span class="tok-op">&lt;</span>bool, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> level <span class="tok-op">←</span> a <span class="tok-op">≅</span> <span class="tok-nu">2.0</span>
-    const list<span class="tok-op">&lt;</span>bool<span class="tok-op">&gt;</span> level_out <span class="tok-op">←</span> level.flatten()
+    let tensor<span class="tok-op">&lt;</span>bool, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> level <span class="tok-op">←</span> a <span class="tok-op">≅</span> <span class="tok-nu">2.0</span>
+    let list<span class="tok-op">&lt;</span>bool<span class="tok-op">&gt;</span> level_out <span class="tok-op">←</span> level.flatten()
     print level_out
-    const tensor<span class="tok-op">&lt;</span>bool, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> unlike <span class="tok-op">←</span> a <span class="tok-op">≇</span> b
-    const list<span class="tok-op">&lt;</span>bool<span class="tok-op">&gt;</span> unlike_out <span class="tok-op">←</span> unlike.flatten()
+    let tensor<span class="tok-op">&lt;</span>bool, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> unlike <span class="tok-op">←</span> a <span class="tok-op">≇</span> b
+    let list<span class="tok-op">&lt;</span>bool<span class="tok-op">&gt;</span> unlike_out <span class="tok-op">←</span> unlike.flatten()
     print unlike_out
-    const tensor<span class="tok-op">&lt;</span>bool, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> not_small <span class="tok-op">←</span> not small
-    const list<span class="tok-op">&lt;</span>bool<span class="tok-op">&gt;</span> not_small_out <span class="tok-op">←</span> not_small.flatten()
+    let tensor<span class="tok-op">&lt;</span>bool, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> not_small <span class="tok-op">←</span> not small
+    let list<span class="tok-op">&lt;</span>bool<span class="tok-op">&gt;</span> not_small_out <span class="tok-op">←</span> not_small.flatten()
     print not_small_out
-    const tensor<span class="tok-op">&lt;</span>bool, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> outer <span class="tok-op">←</span> (a ≺ <span class="tok-nu">2.0</span>) or (a ≻ <span class="tok-nu">3.0</span>)
-    const list<span class="tok-op">&lt;</span>bool<span class="tok-op">&gt;</span> outer_out <span class="tok-op">←</span> outer.flatten()
+    let tensor<span class="tok-op">&lt;</span>bool, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> outer <span class="tok-op">←</span> (a ≺ <span class="tok-nu">2.0</span>) or (a ≻ <span class="tok-nu">3.0</span>)
+    let list<span class="tok-op">&lt;</span>bool<span class="tok-op">&gt;</span> outer_out <span class="tok-op">←</span> outer.flatten()
     print outer_out
-    const tensor<span class="tok-op">&lt;</span>bool, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> inner <span class="tok-op">←</span> (a ≻ <span class="tok-nu">1.0</span>) and small
-    const list<span class="tok-op">&lt;</span>bool<span class="tok-op">&gt;</span> inner_out <span class="tok-op">←</span> inner.flatten()
+    let tensor<span class="tok-op">&lt;</span>bool, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> inner <span class="tok-op">←</span> (a ≻ <span class="tok-nu">1.0</span>) and small
+    let list<span class="tok-op">&lt;</span>bool<span class="tok-op">&gt;</span> inner_out <span class="tok-op">←</span> inner.flatten()
     print inner_out
 
-    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> bigger <span class="tok-op">←</span> greater ✓ a ✗ b
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> bigger_out <span class="tok-op">←</span> bigger.flatten()
+    let tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> bigger <span class="tok-op">←</span> greater ✓ a ✗ b
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> bigger_out <span class="tok-op">←</span> bigger.flatten()
     print bigger_out
-    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> clipped <span class="tok-op">←</span> (a ≻ <span class="tok-nu">2.5</span>) ✓ <span class="tok-nu">1.0</span> ✗ <span class="tok-nu">0.0</span>
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> clipped_out <span class="tok-op">←</span> clipped.flatten()
+    let tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> clipped <span class="tok-op">←</span> (a ≻ <span class="tok-nu">2.5</span>) ✓ <span class="tok-nu">1.0</span> ✗ <span class="tok-nu">0.0</span>
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> clipped_out <span class="tok-op">←</span> clipped.flatten()
     print clipped_out
 
-    const list<span class="tok-op">&lt;</span>int <span class="tok-op">∪</span> none<span class="tok-op">&gt;</span> flat_h <span class="tok-op">←</span> [<span class="tok-nu">1</span>, null, <span class="tok-nu">3</span>, null]
-    var tensor<span class="tok-op">&lt;</span>int <span class="tok-op">∪</span> none, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> holes <span class="tok-op">←</span> flat_h ↦ tensor<span class="tok-op">&lt;</span>int <span class="tok-op">∪</span> none, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
-    const tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> zeroed <span class="tok-op">←</span> holes coalesce <span class="tok-nu">0</span>
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> zeroed_out <span class="tok-op">←</span> zeroed.flatten()
+    let list<span class="tok-op">&lt;</span>int <span class="tok-op">∪</span> none<span class="tok-op">&gt;</span> flat_h <span class="tok-op">←</span> [<span class="tok-nu">1</span>, null, <span class="tok-nu">3</span>, null]
+    mut tensor<span class="tok-op">&lt;</span>int <span class="tok-op">∪</span> none, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> holes <span class="tok-op">←</span> flat_h ↦ tensor<span class="tok-op">&lt;</span>int <span class="tok-op">∪</span> none, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
+    let tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> zeroed <span class="tok-op">←</span> holes coalesce <span class="tok-nu">0</span>
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> zeroed_out <span class="tok-op">←</span> zeroed.flatten()
     print zeroed_out
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> flat_d <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>, <span class="tok-nu">40</span>]
-    var tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> defaults <span class="tok-op">←</span> flat_d ↦ tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
-    const tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> filled <span class="tok-op">←</span> holes coalesce defaults
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> filled_out <span class="tok-op">←</span> filled.flatten()
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> flat_d <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>, <span class="tok-nu">40</span>]
+    mut tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> defaults <span class="tok-op">←</span> flat_d ↦ tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
+    let tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> filled <span class="tok-op">←</span> holes coalesce defaults
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> filled_out <span class="tok-op">←</span> filled.flatten()
     print filled_out
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>[false, false, true, true]
 [true, true, false, false]
@@ -329,13 +331,13 @@ main {
 <span class="tok-co"># per-backend EXPECTED_FAILURES lists.</span>
 
 main {
-    const tensor<span class="tok-op">&lt;</span>string, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> words_a <span class="tok-op">←</span> empty
-    const tensor<span class="tok-op">&lt;</span>string, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> words_b <span class="tok-op">←</span> empty
-    const tensor<span class="tok-op">&lt;</span>string, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> words_sum <span class="tok-op">←</span> words_a <span class="tok-op">+</span> words_b
+    let tensor<span class="tok-op">&lt;</span>string, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> words_a <span class="tok-op">←</span> empty
+    let tensor<span class="tok-op">&lt;</span>string, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> words_b <span class="tok-op">←</span> empty
+    let tensor<span class="tok-op">&lt;</span>string, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> words_sum <span class="tok-op">←</span> words_a <span class="tok-op">+</span> words_b
     print words_sum.length()
 
-    const tensor<span class="tok-op">&lt;</span>i32, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> i32_a <span class="tok-op">←</span> empty
-    const tensor<span class="tok-op">&lt;</span>i64, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> i64_b <span class="tok-op">←</span> empty
-    const tensor<span class="tok-op">&lt;</span>i32, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> mixed <span class="tok-op">←</span> i32_a <span class="tok-op">+</span> i64_b
+    let tensor<span class="tok-op">&lt;</span>i32, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> i32_a <span class="tok-op">←</span> empty
+    let tensor<span class="tok-op">&lt;</span>i64, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> i64_b <span class="tok-op">←</span> empty
+    let tensor<span class="tok-op">&lt;</span>i32, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> mixed <span class="tok-op">←</span> i32_a <span class="tok-op">+</span> i64_b
     print mixed.length()
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpustensordeclfab-canonical-type">radix/corpus/tensor/decl.fab (canonical · type)</a></li><li class="toc-3"><a href="#radixcorpustensorequality-wholefab-canonical-operator-group">radix/corpus/tensor/equality-whole.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpustensorlift-arithfab-canonical-operator-group">radix/corpus/tensor/lift-arith.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpustensorlift-comparefab-canonical-operator-group">radix/corpus/tensor/lift-compare.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpustensorarithmetic-rejectfab-supporting-reject">radix/corpus/tensor/arithmetic-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/tensor/decl.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

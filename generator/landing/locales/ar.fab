@@ -1,6 +1,6 @@
 صنف Span {
-    ثابت f64 low
-    ثابت f64 high
+    ليكن f64 low
+    ليكن f64 high
 
     دالة contains(f64 x) → منطقي {
         أعد ذات.low ≤ x و x ≤ ذات.high
@@ -16,7 +16,7 @@
 }
 
 بداية {
-    ثابت Span bytes ← Span { low = 0.0, high = 255.0 }
+    ليكن Span bytes ← Span { low = 0.0, high = 255.0 }
     اعرض bytes.center()
     اعرض choose(bytes.contains(300.0), "inside", "outside")
     اعرض -7 / 2

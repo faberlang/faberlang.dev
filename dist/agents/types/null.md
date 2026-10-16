@@ -5,7 +5,7 @@ A value that may be missing has the type `T ∪ none`. The missing value is
 
 ```faber locale=en
 main {
-    const i32 ∪ none missing ← null
+    let i32 ∪ none missing ← null
     print missing
 }
 ```

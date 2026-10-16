@@ -6,11 +6,11 @@ the conversion names how it rounds: `via floor`, `via ceil`, `via trunc`, or
 
 ```faber locale=en
 main {
-    const f64 ratio ← 2.5
-    const int down ← ratio ↦ int via floor
-    const int up ← ratio ↦ int via ceil
-    const int even ← ratio ↦ int via half_even
-    const f64 back ← down ↦ f64
+    let f64 ratio ← 2.5
+    let int down ← ratio ↦ int via floor
+    let int up ← ratio ↦ int via ceil
+    let int even ← ratio ↦ int via half_even
+    let f64 back ← down ↦ f64
     print down
     print up
     print even
@@ -23,8 +23,8 @@ An integer becomes a float with a bare `↦`. A float `↦ int` with no `via` is
 
 ```faber locale=en outcome=rejects
 main {
-    const f64 ratio ← 2.5
-    const int n ← ratio ↦ int
+    let f64 ratio ← 2.5
+    let int n ← ratio ↦ int
     print n
 }
 ```

@@ -17,7 +17,7 @@
 
 <span class="tok-co"># before — exclusive upper bound for range iteration</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># for range &lt;initium&gt; before &lt;finis&gt; &lt;var&gt; { … }</span>
+<span class="tok-co"># for range &lt;initium&gt; before &lt;finis&gt; &lt;binder&gt; { … }</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
 <span class="tok-co">#   iterStmt :← 'for' 'range' expr 'before' expr binding '{' stmt* '}'</span>
@@ -27,7 +27,7 @@
 
 main {
 <span class="tok-co">    # i = 0, 1, 2, 3 (stops before 4)</span>
-    for range <span class="tok-nu">0</span> before <span class="tok-nu">4</span> const i {
+    for range <span class="tok-nu">0</span> before <span class="tok-nu">4</span> let i {
         print i
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0

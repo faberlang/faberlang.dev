@@ -22,7 +22,7 @@ for range <range> <binding>
 ## Grammar
 
 ```
-iteraStmt :← 'itera' 'ab' expr '‥' expr step? 'fixum' ident block
+iteraStmt :← 'itera' 'ab' expr '‥' expr step? 'sit' ident block
 ```
 
 ## Expected output
@@ -35,7 +35,7 @@ Scalar stdout smoke (see body).
 
 ```fab
 main {
-    for range 0‥10 step 2 const i {
+    for range 0‥10 step 2 let i {
         print i
     }
 }

@@ -35,7 +35,7 @@ Build a value, serialize it. The text contains a bare `&`; Tela escapes it.
 importa ex "tela:tela" tela
 
 incipit {
-    fixum tela.View greeting ← tela.element_view(tela.html_space(), "p", [tela.text_view("Fish & chips")])
+    sit tela.View greeting ← tela.element_view(tela.html_space(), "p", [tela.text_view("Fish & chips")])
     nota tela.html_view(greeting) vel "invalid"
 }
 ```

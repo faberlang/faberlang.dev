@@ -40,10 +40,10 @@ fn gradus(int puncta) <span class="tok-op">→</span> string {
 }
 
 main {
-    const int aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
+    let int aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
 
 <span class="tok-co">    # One level: two outcomes</span>
-    const string gradusaetatis <span class="tok-op">←</span> aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> ✓ <span class="tok-st">"adultus"</span> ✗ <span class="tok-st">"minor"</span>
+    let string gradusaetatis <span class="tok-op">←</span> aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> ✓ <span class="tok-st">"adultus"</span> ✗ <span class="tok-st">"minor"</span>
 <span class="tok-co">    # "adultus"</span>
     print gradusaetatis
 
@@ -52,16 +52,16 @@ main {
     print gradus(<span class="tok-nu">85</span>)
 
 <span class="tok-co">    # In expressions</span>
-    const int maximum <span class="tok-op">←</span> aetas ≻ <span class="tok-nu">30</span> ✓ aetas ✗ <span class="tok-nu">30</span>
+    let int maximum <span class="tok-op">←</span> aetas ≻ <span class="tok-nu">30</span> ✓ aetas ✗ <span class="tok-nu">30</span>
     print <span class="tok-st">"maximum: §"</span>(maximum)
 
 <span class="tok-co">    # Narrowing: the ✓ branch sees a non-null string</span>
-    var string <span class="tok-op">∪</span> none forsitan <span class="tok-op">←</span> null ∷ string <span class="tok-op">∪</span> none
-    const string solutum <span class="tok-op">←</span> forsitan not is none ✓ forsitan ✗ <span class="tok-st">"defectum"</span>
+    mut string <span class="tok-op">∪</span> none forsitan <span class="tok-op">←</span> null ∷ string <span class="tok-op">∪</span> none
+    let string solutum <span class="tok-op">←</span> forsitan not is none ✓ forsitan ✗ <span class="tok-st">"defectum"</span>
 <span class="tok-co">    # "defectum"</span>
     print solutum
 
-    const string licentia <span class="tok-op">←</span> aetas <span class="tok-op">≥</span> <span class="tok-nu">21</span> ✓ <span class="tok-st">"licet bibere"</span> ✗ <span class="tok-st">"bibere non licet"</span>
+    let string licentia <span class="tok-op">←</span> aetas <span class="tok-op">≥</span> <span class="tok-nu">21</span> ✓ <span class="tok-st">"licet bibere"</span> ✗ <span class="tok-st">"bibere non licet"</span>
     print licentia
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>adultus
 B
