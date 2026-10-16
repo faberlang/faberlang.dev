@@ -2461,7 +2461,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Kind: type
 - Category: types
 - Summary: The `_` hole infers one inhabitant type; the `∪` hole infers a finite union; `T ∪ nihil` stays a single optional inhabitant.
-- Syntax: `sit x ← value; sit ∪ x ← a; x ← b; sit lista<∪> xs ← [a, b]`
+- Syntax: `sit _ x ← value; sit ∪ x ← a; x ← b; sit lista<∪> xs ← [a, b]`
 - Aliases: none
 - Related: `unio`, `nihil`
 - Page: https://faberlang.dev/en-US/corpus/type-hole-union.html

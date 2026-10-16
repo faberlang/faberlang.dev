@@ -1,0 +1,13 @@
+class Punctum {
+    let int x
+    let int y
+
+    fn summa() → int {
+        return self.x + self.y
+    }
+}
+
+main {
+    let _ p ← Punctum { x = 1, y = 2 }
+    print p.summa()
+}

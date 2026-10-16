@@ -60,7 +60,7 @@ main {
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • Typed conversation — when a Faber function serves the route, `call` has</span>
 <span class="tok-co">#     type `channel&lt;O, R&gt;`: `O` is the handler's parameter, `R` each item back</span>
-<span class="tok-co">#   • Inference — `let s ← call '…'` infers `channel&lt;O, R&gt;` from the route</span>
+<span class="tok-co">#   • Inference — `let _ s ← call '…'` infers `channel&lt;O, R&gt;` from the route</span>
 <span class="tok-co">#   • Dropping the types — a typed channel assigns to a bare `channel`, which</span>
 <span class="tok-co">#     reads its frames as loose values again</span>
 <span class="tok-co">#   • No opener — a handler without a parameter has `O = null`, and the call</span>
@@ -85,7 +85,7 @@ fn greeting() <span class="tok-op">→</span> string {
 }
 
 main {
-    let s <span class="tok-op">←</span> call <span class="tok-st">'numeri:twice'</span> (<span class="tok-nu">21</span>)
+    let _ s <span class="tok-op">←</span> call <span class="tok-st">'numeri:twice'</span> (<span class="tok-nu">21</span>)
     let int doubled <span class="tok-op">←</span> s ↦ int
     print doubled
 

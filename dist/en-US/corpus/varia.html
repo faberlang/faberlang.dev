@@ -41,13 +41,13 @@ main {
 
 <span class="tok-co">    # --- Write-once bindings: let ---</span>
 
-    let salutatio <span class="tok-op">←</span> <span class="tok-st">"Salve, Mundus!"</span>
+    let _ salutatio <span class="tok-op">←</span> <span class="tok-st">"Salve, Mundus!"</span>
     print salutatio
 
 <span class="tok-co">    # let infers the type of each local</span>
-    let x <span class="tok-op">←</span> <span class="tok-nu">10</span>
-    let y <span class="tok-op">←</span> <span class="tok-nu">20</span>
-    let sum <span class="tok-op">←</span> x <span class="tok-op">+</span> y
+    let _ x <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    let _ y <span class="tok-op">←</span> <span class="tok-nu">20</span>
+    let _ sum <span class="tok-op">←</span> x <span class="tok-op">+</span> y
     print sum
 
 <span class="tok-co">    # --- Reassign only mut bindings ---</span>

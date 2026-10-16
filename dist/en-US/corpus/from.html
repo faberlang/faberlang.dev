@@ -32,7 +32,7 @@
 main {
 <span class="tok-co">    # --- Basic list destructuring ---</span>
 
-    let numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    let _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     let [a, b, c] <span class="tok-op">←</span> numeri
     print a
     print b
@@ -46,7 +46,7 @@ main {
 
 <span class="tok-co">    # --- Mutable destructuring with mut ---</span>
 
-    let coordinata <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">200</span>]
+    let _ coordinata <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">200</span>]
     mut [x, y] <span class="tok-op">←</span> coordinata
     print x
     print y
@@ -57,27 +57,27 @@ main {
 
 <span class="tok-co">    # --- Partial destructuring (fewer variables than elements) ---</span>
 
-    let valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    let _ valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
     let [unus, duo] <span class="tok-op">←</span> valores
     print unus
     print duo
 
 <span class="tok-co">    # --- Rest pattern with rest ---</span>
 
-    let res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    let _ res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
     let [caput, rest cauda] <span class="tok-op">←</span> res
     print caput
     print cauda
 
 <span class="tok-co">    # --- Skip elements with underscore ---</span>
 
-    let triplex <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
+    let _ triplex <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
     let [_, medius, _] <span class="tok-op">←</span> triplex
     print medius
 
 <span class="tok-co">    # --- Nested listas ---</span>
 
-    let matrix <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]]
+    let _ matrix <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]]
     let [ordo1, ordo2] <span class="tok-op">←</span> matrix
     print ordo1
     print ordo2
@@ -183,7 +183,7 @@ class Vestis {
 main {
 <span class="tok-co">    # --- Basic field extraction ---</span>
 
-    let persona <span class="tok-op">←</span> Persona { name <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span>, urbs <span class="tok-op">=</span> <span class="tok-st">"Roma"</span> }
+    let _ persona <span class="tok-op">←</span> Persona { name <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span>, urbs <span class="tok-op">=</span> <span class="tok-st">"Roma"</span> }
     from persona let name, aetas
 
     print name
@@ -191,7 +191,7 @@ main {
 
 <span class="tok-co">    # --- Extract with alias using 'as' ---</span>
 
-    let civis <span class="tok-op">←</span> Civis { name <span class="tok-op">=</span> <span class="tok-st">"Julia"</span>, epistula <span class="tok-op">=</span> <span class="tok-st">"julia@roma.com"</span> }
+    let _ civis <span class="tok-op">←</span> Civis { name <span class="tok-op">=</span> <span class="tok-st">"Julia"</span>, epistula <span class="tok-op">=</span> <span class="tok-st">"julia@roma.com"</span> }
     from civis let name as cognomen, epistula as epistula2
 
     print cognomen
@@ -199,7 +199,7 @@ main {
 
 <span class="tok-co">    # --- Mutable destructuring with mut ---</span>
 
-    let datum <span class="tok-op">←</span> Datum { int <span class="tok-op">=</span> <span class="tok-nu">100</span>, activus <span class="tok-op">=</span> true }
+    let _ datum <span class="tok-op">←</span> Datum { int <span class="tok-op">=</span> <span class="tok-nu">100</span>, activus <span class="tok-op">=</span> true }
     from datum mut int, activus
 
     print int
@@ -213,7 +213,7 @@ main {
 
 <span class="tok-co">    # --- Mixed alias and regular fields ---</span>
 
-    let forma <span class="tok-op">←</span> Forma { hospes <span class="tok-op">=</span> <span class="tok-st">"localis"</span>, portus <span class="tok-op">=</span> <span class="tok-nu">8080</span>, tutus <span class="tok-op">=</span> true }
+    let _ forma <span class="tok-op">←</span> Forma { hospes <span class="tok-op">=</span> <span class="tok-st">"localis"</span>, portus <span class="tok-op">=</span> <span class="tok-nu">8080</span>, tutus <span class="tok-op">=</span> true }
     from forma let hospes, portus as porta, tutus
 
     print hospes
@@ -222,7 +222,7 @@ main {
 
 <span class="tok-co">    # --- Rest pattern with rest ---</span>
 
-    let plenus <span class="tok-op">←</span> Plenus { signum <span class="tok-op">=</span> <span class="tok-nu">1</span>, name <span class="tok-op">=</span> <span class="tok-st">"Gaius"</span>, epistula <span class="tok-op">=</span> <span class="tok-st">"g@roma.com"</span>, munus <span class="tok-op">=</span> <span class="tok-st">"admin"</span> }
+    let _ plenus <span class="tok-op">←</span> Plenus { signum <span class="tok-op">=</span> <span class="tok-nu">1</span>, name <span class="tok-op">=</span> <span class="tok-st">"Gaius"</span>, epistula <span class="tok-op">=</span> <span class="tok-st">"g@roma.com"</span>, munus <span class="tok-op">=</span> <span class="tok-st">"admin"</span> }
     from plenus let signum, rest reliqua
 
     print signum
@@ -230,7 +230,7 @@ main {
 
 <span class="tok-co">    # --- Destructura from nested path ---</span>
 
-    let responsum <span class="tok-op">←</span> Responsum { datum <span class="tok-op">=</span> Relatus { civis <span class="tok-op">=</span> Sodalis { name <span class="tok-op">=</span> <span class="tok-st">"Claudia"</span>, probatus <span class="tok-op">=</span> true } } }
+    let _ responsum <span class="tok-op">←</span> Responsum { datum <span class="tok-op">=</span> Relatus { civis <span class="tok-op">=</span> Sodalis { name <span class="tok-op">=</span> <span class="tok-st">"Claudia"</span>, probatus <span class="tok-op">=</span> true } } }
     from responsum.datum.civis let name as internum, probatus
 
     print internum
@@ -238,7 +238,7 @@ main {
 
 <span class="tok-co">    # --- Single field extraction ---</span>
 
-    let vestis <span class="tok-op">←</span> Vestis { modus <span class="tok-op">=</span> <span class="tok-st">"nigrum"</span>, lingua <span class="tok-op">=</span> <span class="tok-st">"la"</span> }
+    let _ vestis <span class="tok-op">←</span> Vestis { modus <span class="tok-op">=</span> <span class="tok-st">"nigrum"</span>, lingua <span class="tok-op">=</span> <span class="tok-st">"la"</span> }
     from vestis let modus
 
     print modus
@@ -274,7 +274,7 @@ class Persona {
 }
 
 main {
-    let p <span class="tok-op">←</span> Persona { name <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    let _ p <span class="tok-op">←</span> Persona { name <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
     from p let name, aetas
     print name
     print aetas
@@ -329,7 +329,7 @@ class Punctum {
 main {
 <span class="tok-co">    # --- Records: object_pattern over list of class elements ---</span>
 
-    let puncta <span class="tok-op">←</span> [Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }, Punctum { x <span class="tok-op">=</span> <span class="tok-nu">3</span>, y <span class="tok-op">=</span> <span class="tok-nu">4</span> }]
+    let _ puncta <span class="tok-op">←</span> [Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }, Punctum { x <span class="tok-op">=</span> <span class="tok-nu">3</span>, y <span class="tok-op">=</span> <span class="tok-nu">4</span> }]
     for from puncta let {x, y} {
         print x <span class="tok-op">+</span> y
     }
@@ -350,7 +350,7 @@ main {
 
 <span class="tok-co">    # --- Rest patterns: first element plus the remaining list ---</span>
 
-    let matricula <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>], [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>]]
+    let _ matricula <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>], [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>]]
     for from matricula let [caput, rest cauda] {
         print caput
         print cauda[<span class="tok-nu">1</span>]

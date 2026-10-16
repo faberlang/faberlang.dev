@@ -30,18 +30,18 @@
 
 main {
 <span class="tok-co">    # ↦ converts string → int</span>
-    let n1 <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ int
+    let _ n1 <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ int
 <span class="tok-co">    # ⊥ supplies a default on failure</span>
-    let n2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ int ⊥ <span class="tok-nu">0</span>
-    let n3 <span class="tok-op">←</span> <span class="tok-st">"255"</span> ↦ i32
-    let f1 <span class="tok-op">←</span> <span class="tok-st">"3.14159"</span> ↦ float
-    let f2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ float ⊥ <span class="tok-nu">0.0</span>
-    let s1 <span class="tok-op">←</span> <span class="tok-nu">42</span> ↦ string
-    let s2 <span class="tok-op">←</span> <span class="tok-nu">3.14</span> ↦ string
-    let s3 <span class="tok-op">←</span> true ↦ string
+    let _ n2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ int ⊥ <span class="tok-nu">0</span>
+    let _ n3 <span class="tok-op">←</span> <span class="tok-st">"255"</span> ↦ i32
+    let _ f1 <span class="tok-op">←</span> <span class="tok-st">"3.14159"</span> ↦ float
+    let _ f2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ float ⊥ <span class="tok-nu">0.0</span>
+    let _ s1 <span class="tok-op">←</span> <span class="tok-nu">42</span> ↦ string
+    let _ s2 <span class="tok-op">←</span> <span class="tok-nu">3.14</span> ↦ string
+    let _ s3 <span class="tok-op">←</span> true ↦ string
 
 <span class="tok-co">    # chained ↦ left-to-right</span>
-    let roundtrip <span class="tok-op">←</span> (<span class="tok-st">"42"</span> ↦ int) ↦ string
+    let _ roundtrip <span class="tok-op">←</span> (<span class="tok-st">"42"</span> ↦ int) ↦ string
     print n1
     print n2
     print n3

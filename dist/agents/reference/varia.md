@@ -48,13 +48,13 @@ main {
 
     # --- Write-once bindings: let ---
 
-    let salutatio ← "Salve, Mundus!"
+    let _ salutatio ← "Salve, Mundus!"
     print salutatio
 
     # let infers the type of each local
-    let x ← 10
-    let y ← 20
-    let sum ← x + y
+    let _ x ← 10
+    let _ y ← 20
+    let _ sum ← x + y
     print sum
 
     # --- Reassign only mut bindings ---

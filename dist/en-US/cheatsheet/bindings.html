@@ -44,8 +44,8 @@ reserved for compile-time facts, written with <code class="glyph">=</code>.</p><
     <span class="tok-kw">दिखाओ</span> limit, count
 }</code></pre></div></div><p>Reassigning a <code>let</code> is a compile error, not a convention. Reach for <code>let</code>
 first and widen to <code>mut</code> only where the value genuinely moves.</p><h2 id="holes">Type holes<a class="anchor" href="#holes">#</a></h2><p><code class="glyph">_</code> is a type hole: the compiler infers one concrete type for the binding.</p><pre class="faber-code"><code class="lang-faber locale-tabs">main {
-    let name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
-    let numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    let _ name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    let _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     print name, numeri
 }</code></pre><p>The hole infers a type; it does not make the binding dynamic. <code>name</code> is
 <code>string</code> from this point on.</p><h2 id="union-holes">Union types and holes<a class="anchor" href="#union-holes">#</a></h2><p>An inline <code>A ∪ B</code> in type position names its union members explicitly. A
@@ -140,83 +140,83 @@ is nothing — Faber has no separate nullable syntax.</p><div class="faber-demo-
 
 <span class="tok-kw">आरंभ</span> {
     <span class="tok-kw">दिखाओ</span> primum([<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
-}</code></pre></div></div><h2 id="destructuring">Destructuring<a class="anchor" href="#destructuring">#</a></h2><p><code>from</code> pulls named fields out of a record in one statement.</p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-28dfaa6964cbc6dd-3-t-en" data-panel="lt-28dfaa6964cbc6dd-3-p-en" data-name="English" aria-controls="lt-28dfaa6964cbc6dd-3-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-28dfaa6964cbc6dd-3-t-la" data-panel="lt-28dfaa6964cbc6dd-3-p-la" data-name="Latin" aria-controls="lt-28dfaa6964cbc6dd-3-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-28dfaa6964cbc6dd-3-t-th-TH" data-panel="lt-28dfaa6964cbc6dd-3-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-28dfaa6964cbc6dd-3-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-28dfaa6964cbc6dd-3-t-zh-Hans" data-panel="lt-28dfaa6964cbc6dd-3-p-zh-Hans" data-name="简体中文" aria-controls="lt-28dfaa6964cbc6dd-3-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-28dfaa6964cbc6dd-3-t-zh-Hant" data-panel="lt-28dfaa6964cbc6dd-3-p-zh-Hant" data-name="繁體中文" aria-controls="lt-28dfaa6964cbc6dd-3-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-28dfaa6964cbc6dd-3-t-vi" data-panel="lt-28dfaa6964cbc6dd-3-p-vi" data-name="Tiếng Việt" aria-controls="lt-28dfaa6964cbc6dd-3-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-28dfaa6964cbc6dd-3-t-ar" data-panel="lt-28dfaa6964cbc6dd-3-p-ar" data-name="العربية" aria-controls="lt-28dfaa6964cbc6dd-3-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-28dfaa6964cbc6dd-3-t-hi" data-panel="lt-28dfaa6964cbc6dd-3-p-hi" data-name="हिन्दी" aria-controls="lt-28dfaa6964cbc6dd-3-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-28dfaa6964cbc6dd-3-p-en" role="tabpanel" aria-labelledby="lt-28dfaa6964cbc6dd-3-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">class</span> Punctum {
+}</code></pre></div></div><h2 id="destructuring">Destructuring<a class="anchor" href="#destructuring">#</a></h2><p><code>from</code> pulls named fields out of a record in one statement.</p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-d3630fe66dd6e341-3-t-en" data-panel="lt-d3630fe66dd6e341-3-p-en" data-name="English" aria-controls="lt-d3630fe66dd6e341-3-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-d3630fe66dd6e341-3-t-la" data-panel="lt-d3630fe66dd6e341-3-p-la" data-name="Latin" aria-controls="lt-d3630fe66dd6e341-3-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-d3630fe66dd6e341-3-t-th-TH" data-panel="lt-d3630fe66dd6e341-3-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-d3630fe66dd6e341-3-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-d3630fe66dd6e341-3-t-zh-Hans" data-panel="lt-d3630fe66dd6e341-3-p-zh-Hans" data-name="简体中文" aria-controls="lt-d3630fe66dd6e341-3-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-d3630fe66dd6e341-3-t-zh-Hant" data-panel="lt-d3630fe66dd6e341-3-p-zh-Hant" data-name="繁體中文" aria-controls="lt-d3630fe66dd6e341-3-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-d3630fe66dd6e341-3-t-vi" data-panel="lt-d3630fe66dd6e341-3-p-vi" data-name="Tiếng Việt" aria-controls="lt-d3630fe66dd6e341-3-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-d3630fe66dd6e341-3-t-ar" data-panel="lt-d3630fe66dd6e341-3-p-ar" data-name="العربية" aria-controls="lt-d3630fe66dd6e341-3-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-d3630fe66dd6e341-3-t-hi" data-panel="lt-d3630fe66dd6e341-3-p-hi" data-name="हिन्दी" aria-controls="lt-d3630fe66dd6e341-3-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-d3630fe66dd6e341-3-p-en" role="tabpanel" aria-labelledby="lt-d3630fe66dd6e341-3-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">class</span> Punctum {
     <span class="tok-kw">let</span> <span class="tok-kw">int</span> x
     <span class="tok-kw">let</span> <span class="tok-kw">int</span> y
 }
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">let</span> p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
+    <span class="tok-kw">let</span> _ p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
     <span class="tok-kw">let</span> <span class="tok-kw">int</span> x <span class="tok-op">←</span> p.x
     <span class="tok-kw">let</span> <span class="tok-kw">int</span> y <span class="tok-op">←</span> p.y
     <span class="tok-kw">print</span> x, y
-}</code></pre></div><div class="fdt-panel" id="lt-28dfaa6964cbc6dd-3-p-la" role="tabpanel" aria-labelledby="lt-28dfaa6964cbc6dd-3-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">genus</span> Punctum {
+}</code></pre></div><div class="fdt-panel" id="lt-d3630fe66dd6e341-3-p-la" role="tabpanel" aria-labelledby="lt-d3630fe66dd6e341-3-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">genus</span> Punctum {
     <span class="tok-kw">sit</span> <span class="tok-kw">numerus</span> x
     <span class="tok-kw">sit</span> <span class="tok-kw">numerus</span> y
 }
 
 <span class="tok-kw">incipit</span> {
-    <span class="tok-kw">sit</span> p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
+    <span class="tok-kw">sit</span> _ p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
     <span class="tok-kw">sit</span> <span class="tok-kw">numerus</span> x <span class="tok-op">←</span> p.x
     <span class="tok-kw">sit</span> <span class="tok-kw">numerus</span> y <span class="tok-op">←</span> p.y
     <span class="tok-kw">nota</span> x, y
-}</code></pre></div><div class="fdt-panel" id="lt-28dfaa6964cbc6dd-3-p-th-TH" role="tabpanel" aria-labelledby="lt-28dfaa6964cbc6dd-3-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">ชนิด</span> Punctum {
+}</code></pre></div><div class="fdt-panel" id="lt-d3630fe66dd6e341-3-p-th-TH" role="tabpanel" aria-labelledby="lt-d3630fe66dd6e341-3-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">ชนิด</span> Punctum {
     <span class="tok-kw">กำหนด</span> <span class="tok-kw">จํานวน</span> x
     <span class="tok-kw">กำหนด</span> <span class="tok-kw">จํานวน</span> y
 }
 
 <span class="tok-kw">เริ่ม</span> {
-    <span class="tok-kw">กำหนด</span> p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
+    <span class="tok-kw">กำหนด</span> _ p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
     <span class="tok-kw">กำหนด</span> <span class="tok-kw">จํานวน</span> x <span class="tok-op">←</span> p.x
     <span class="tok-kw">กำหนด</span> <span class="tok-kw">จํานวน</span> y <span class="tok-op">←</span> p.y
     <span class="tok-kw">บันทึก</span> x, y
-}</code></pre></div><div class="fdt-panel" id="lt-28dfaa6964cbc6dd-3-p-zh-Hans" role="tabpanel" aria-labelledby="lt-28dfaa6964cbc6dd-3-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">类</span> Punctum {
+}</code></pre></div><div class="fdt-panel" id="lt-d3630fe66dd6e341-3-p-zh-Hans" role="tabpanel" aria-labelledby="lt-d3630fe66dd6e341-3-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">类</span> Punctum {
     <span class="tok-kw">设</span> <span class="tok-kw">整数</span> x
     <span class="tok-kw">设</span> <span class="tok-kw">整数</span> y
 }
 
 <span class="tok-kw">入口</span> {
-    <span class="tok-kw">设</span> p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
+    <span class="tok-kw">设</span> _ p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
     <span class="tok-kw">设</span> <span class="tok-kw">整数</span> x <span class="tok-op">←</span> p.x
     <span class="tok-kw">设</span> <span class="tok-kw">整数</span> y <span class="tok-op">←</span> p.y
     <span class="tok-kw">显示</span> x, y
-}</code></pre></div><div class="fdt-panel" id="lt-28dfaa6964cbc6dd-3-p-zh-Hant" role="tabpanel" aria-labelledby="lt-28dfaa6964cbc6dd-3-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">類型</span> Punctum {
+}</code></pre></div><div class="fdt-panel" id="lt-d3630fe66dd6e341-3-p-zh-Hant" role="tabpanel" aria-labelledby="lt-d3630fe66dd6e341-3-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">類型</span> Punctum {
     <span class="tok-kw">設為</span> <span class="tok-kw">整數</span> x
     <span class="tok-kw">設為</span> <span class="tok-kw">整數</span> y
 }
 
 <span class="tok-kw">入口</span> {
-    <span class="tok-kw">設為</span> p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
+    <span class="tok-kw">設為</span> _ p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
     <span class="tok-kw">設為</span> <span class="tok-kw">整數</span> x <span class="tok-op">←</span> p.x
     <span class="tok-kw">設為</span> <span class="tok-kw">整數</span> y <span class="tok-op">←</span> p.y
     <span class="tok-kw">註記</span> x, y
-}</code></pre></div><div class="fdt-panel" id="lt-28dfaa6964cbc6dd-3-p-vi" role="tabpanel" aria-labelledby="lt-28dfaa6964cbc6dd-3-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">kiểu</span> Punctum {
+}</code></pre></div><div class="fdt-panel" id="lt-d3630fe66dd6e341-3-p-vi" role="tabpanel" aria-labelledby="lt-d3630fe66dd6e341-3-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">kiểu</span> Punctum {
     <span class="tok-kw">đặt</span> <span class="tok-kw">số</span> x
     <span class="tok-kw">đặt</span> <span class="tok-kw">số</span> y
 }
 
 <span class="tok-kw">bắt_đầu</span> {
-    <span class="tok-kw">đặt</span> p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
+    <span class="tok-kw">đặt</span> _ p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
     <span class="tok-kw">đặt</span> <span class="tok-kw">số</span> x <span class="tok-op">←</span> p.x
     <span class="tok-kw">đặt</span> <span class="tok-kw">số</span> y <span class="tok-op">←</span> p.y
     <span class="tok-kw">ghi_chú</span> x, y
-}</code></pre></div><div class="fdt-panel" id="lt-28dfaa6964cbc6dd-3-p-ar" role="tabpanel" aria-labelledby="lt-28dfaa6964cbc6dd-3-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">صنف</span> Punctum {
+}</code></pre></div><div class="fdt-panel" id="lt-d3630fe66dd6e341-3-p-ar" role="tabpanel" aria-labelledby="lt-d3630fe66dd6e341-3-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">صنف</span> Punctum {
     <span class="tok-kw">ليكن</span> <span class="tok-kw">عدد</span> x
     <span class="tok-kw">ليكن</span> <span class="tok-kw">عدد</span> y
 }
 
 <span class="tok-kw">بداية</span> {
-    <span class="tok-kw">ليكن</span> p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
+    <span class="tok-kw">ليكن</span> _ p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
     <span class="tok-kw">ليكن</span> <span class="tok-kw">عدد</span> x <span class="tok-op">←</span> p.x
     <span class="tok-kw">ليكن</span> <span class="tok-kw">عدد</span> y <span class="tok-op">←</span> p.y
     <span class="tok-kw">اعرض</span> x, y
-}</code></pre></div><div class="fdt-panel" id="lt-28dfaa6964cbc6dd-3-p-hi" role="tabpanel" aria-labelledby="lt-28dfaa6964cbc6dd-3-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">वर्ग</span> Punctum {
+}</code></pre></div><div class="fdt-panel" id="lt-d3630fe66dd6e341-3-p-hi" role="tabpanel" aria-labelledby="lt-d3630fe66dd6e341-3-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">वर्ग</span> Punctum {
     <span class="tok-kw">बैठा</span> <span class="tok-kw">संख्या</span> x
     <span class="tok-kw">बैठा</span> <span class="tok-kw">संख्या</span> y
 }
 
 <span class="tok-kw">आरंभ</span> {
-    <span class="tok-kw">बैठा</span> p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
+    <span class="tok-kw">बैठा</span> _ p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
     <span class="tok-kw">बैठा</span> <span class="tok-kw">संख्या</span> x <span class="tok-op">←</span> p.x
     <span class="tok-kw">बैठा</span> <span class="tok-kw">संख्या</span> y <span class="tok-op">←</span> p.y
     <span class="tok-kw">दिखाओ</span> x, y

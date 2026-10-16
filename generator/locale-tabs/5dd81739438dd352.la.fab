@@ -1,5 +1,0 @@
-incipit {
-    sit nomen ← "Marcus"
-    sit numeri ← [1, 2, 3]
-    nota nomen, numeri
-}

@@ -26,22 +26,22 @@
 <span class="tok-co">#   Unary ¬ documented in syntax; Rust emits `~` (whitelist if reintroduced in body).</span>
 
 main {
-    let vexilla <span class="tok-op">←</span> <span class="tok-nu">0</span>b1010
-    let persona <span class="tok-op">←</span> <span class="tok-nu">0</span>b1100
+    let _ vexilla <span class="tok-op">←</span> <span class="tok-nu">0</span>b1010
+    let _ persona <span class="tok-op">←</span> <span class="tok-nu">0</span>b1100
 
-    let coniuncta <span class="tok-op">←</span> vexilla ∧ persona
+    let _ coniuncta <span class="tok-op">←</span> vexilla ∧ persona
 <span class="tok-co">    # 8 (0b1000)</span>
     print coniuncta
 
-    let diversa <span class="tok-op">←</span> vexilla ⊻ persona
+    let _ diversa <span class="tok-op">←</span> vexilla ⊻ persona
 <span class="tok-co">    # 6 (0b0110)</span>
     print diversa
 
-    let sinistra <span class="tok-op">←</span> <span class="tok-nu">1</span> ⇐ <span class="tok-nu">4</span>
+    let _ sinistra <span class="tok-op">←</span> <span class="tok-nu">1</span> ⇐ <span class="tok-nu">4</span>
 <span class="tok-co">    # 16</span>
     print sinistra
 
-    let dextra <span class="tok-op">←</span> <span class="tok-nu">16</span> ⇒ <span class="tok-nu">2</span>
+    let _ dextra <span class="tok-op">←</span> <span class="tok-nu">16</span> ⇒ <span class="tok-nu">2</span>
 <span class="tok-co">    # 4</span>
     print dextra
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>8

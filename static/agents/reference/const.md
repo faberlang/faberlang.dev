@@ -34,7 +34,7 @@ fixum.expected (Salve, Marcus! / 7 / 30 / 300)
 ## Immediate init
 
 let int count ← 0
-let name ← "Marcus"
+let _ name ← "Marcus"
 Deferred init (write-once): declare without ←, assign exactly once later, then
 freeze. The definite-assignment pass rejects reads before that assignment and
 any second assignment.

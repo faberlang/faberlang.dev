@@ -41,18 +41,18 @@ fn supplementum(int valor) → int {
 main {
 Basic nihil coalescing
     let string ∪ none nomen ← null
-    let ostensum ← nomen coalesce "ignotus"
+    let _ ostensum ← nomen coalesce "ignotus"
 "ignotus"
     print ostensum
 With present value
     let string ∪ none adest ← "Marcus"
-    let ostensum2 ← adest coalesce "ignotus"
+    let _ ostensum2 ← adest coalesce "ignotus"
 "Marcus"
     print ostensum2
 Difference from logical aut: vel only checks nihil
-    let nihilum ← 0
-    let vacuus ← ""
-    let falsus2 ← false
+    let _ nihilum ← 0
+    let _ vacuus ← ""
+    let _ falsus2 ← false
 vel preserves non-nihil values
 0
     print nihilum coalesce 999
@@ -60,13 +60,13 @@ vel preserves non-nihil values
     print vacuus coalesce "defectum"
 falsum
     print falsus2 coalesce true
-    let alter ← nomen coalesce "defectum"
+    let _ alter ← nomen coalesce "defectum"
     print alter
 Chaining
     let string ∪ none a ← null
     let string ∪ none b ← null
     let string ∪ none c ← "inventum"
-    let primum ← ((a coalesce b) coalesce c) coalesce "nihil"
+    let _ primum ← ((a coalesce b) coalesce c) coalesce "nihil"
 "inventum"
     print primum
 Short-circuit: the fallback runs only when the left side is nihil
@@ -82,14 +82,14 @@ Short-circuit: the fallback runs only when the left side is nihil
 ```fab
 test "vel supplies a fallback for none" {
     let string ∪ none name ← null
-    let ostensum ← name coalesce "ignotus"
+    let _ ostensum ← name coalesce "ignotus"
     assert ostensum ≡ "ignotus"
 }
 
 test "vel preserves non-nihil values" {
-    let nihilum ← 0
-    let vacuus ← ""
-    let falsus2 ← false
+    let _ nihilum ← 0
+    let _ vacuus ← ""
+    let _ falsus2 ← false
     assert nihilum coalesce 999 ≡ 0
     assert vacuus coalesce "defectum" ≡ ""
     assert falsus2 coalesce true ≡ false
@@ -99,7 +99,7 @@ test "vel chains to the first non-nihil value" {
     let string ∪ none a ← null
     let string ∪ none b ← null
     let string ∪ none c ← "inventum"
-    let primum ← ((a coalesce b) coalesce c) coalesce "none"
+    let _ primum ← ((a coalesce b) coalesce c) coalesce "none"
     assert primum ≡ "inventum"
 }
 ```

@@ -282,9 +282,10 @@ describe "saturate" {
 """,
     "declarations": """\
 A declaration introduces a name the rest of the file can use. Bindings hold
-values: `const` is written once, `var` can be assigned again, and `let` is
-the short inferred form of an immutable binding. Functions, closures, and
-classes are declarations too — they name a callable or a type, and the
+values: `let` is written once, `mut` can be assigned again, `ref` re-points a
+read-only name, and `const` states a compile-time fact. Every binding writes
+its type slot; `_` there asks the compiler to infer the type. Functions,
+closures, and classes are declarations too — they name a callable or a type, and the
 fields and methods it holds.
 
 The type always comes before the name: `i32 count`, never `count: i32`.

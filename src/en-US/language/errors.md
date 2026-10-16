@@ -132,7 +132,7 @@ an error type):
 ```faber
 incipit {
     sit textus raw ← "42"
-    sit n ← raw ↦ numerus ⊥ 0
+    sit _ n ← raw ↦ numerus ⊥ 0
 }
 ```
 
@@ -234,7 +234,7 @@ probandum "arithmetica" {
 
     probandum "implicata" {
         proba "comparatio" {
-            sit x ← 10
+            sit _ x ← 10
             adfirma x ≥ 10
         }
     }
@@ -261,7 +261,7 @@ An optional message string provides context on failure:
 
 ```faber
 incipit {
-    sit x ← 10
+    sit _ x ← 10
 
     # Simple assertion
     adfirma x ≻ 0
@@ -270,7 +270,7 @@ incipit {
     adfirma x ≡ 10 mori "x decem esse debet"
 
     # Multiple assertions in sequence
-    sit nomen ← "Marcus"
+    sit _ nomen ← "Marcus"
     adfirma nomen ≡ "Marcus"
     adfirma nomen ≢ "" mori "nomen vacuum non sit"
 }

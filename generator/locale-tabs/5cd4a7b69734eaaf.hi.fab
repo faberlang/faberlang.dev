@@ -1,9 +1,0 @@
-वर्ग Persona {
-    बैठा पाठ nomen
-    बैठा संख्या aetas
-}
-
-आरंभ {
-    बैठा p ← Persona { nomen = "Marcus", aetas = 30 }
-    दिखाओ p.nomen, p.aetas
-}

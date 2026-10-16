@@ -13,7 +13,7 @@ let <name> [← <expression>]
 ## What this teaches
 
 - Write-once binding — `let name` declares an inferred-type local that is written once
-- Supports immediate init (`let x ← expr`) and deferred init (`let x` then `x ← expr` later)
+- Supports immediate init (`let _ x ← expr`) and deferred init (`let x` then `x ← expr` later)
 
 ## Common mistakes
 
@@ -33,7 +33,7 @@ sit.expected
 
 ## Immediate init
 
-let name ← expr        -- inferred write-once local
+let _ name ← expr        -- inferred write-once local
 
 ## Deferred init
 
@@ -46,17 +46,17 @@ compile-time constants only.
 
 ```fab
 main {
-    let salve ← "Salve"
-    let name ← "Marcus"
-    let nuntius ← "§, §!"(salve, name)
+    let _ salve ← "Salve"
+    let _ name ← "Marcus"
+    let _ nuntius ← "§, §!"(salve, name)
 
     print nuntius
 
-    let label
+    let _ label
     label ← "deferred"
     print label
 
-    let idem ← nuntius
+    let _ idem ← nuntius
     print idem
 }
 ```

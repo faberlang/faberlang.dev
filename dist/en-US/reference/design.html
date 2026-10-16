@@ -59,7 +59,7 @@ main {
     count <span class="tok-op">←</span> count <span class="tok-op">+</span> <span class="tok-nu">1</span>
 
 <span class="tok-co">    # = is always structural shape inside Type { }</span>
-    let p <span class="tok-op">←</span> Point { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
+    let _ p <span class="tok-op">←</span> Point { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
 }</code></pre><h3 id="vii-runtime-flow-is-explicit">VII. Runtime flow is explicit<a class="anchor" href="#vii-runtime-flow-is-explicit">#</a></h3><p>Runtime binding, reassignment, and mutation use <code class="glyph">←</code>;
 structural definition uses <code class="glyph">=</code>. A reader scanning source can see
 every data-flow operation immediately: every <code class="glyph">←</code> is a

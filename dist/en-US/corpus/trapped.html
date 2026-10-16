@@ -34,7 +34,7 @@ fn half(int n) <span class="tok-op">→</span> int ⇥ string {
 
 main {
 <span class="tok-co">    # trap { ... } turns the failable call's two exits into one value.</span>
-    let missed <span class="tok-op">←</span> trap { half(<span class="tok-nu">7</span>) }
+    let _ missed <span class="tok-op">←</span> trap { half(<span class="tok-nu">7</span>) }
     match missed {
         case int let value {
             print <span class="tok-st">"returned §"</span>(value)
@@ -44,7 +44,7 @@ main {
         }
     }
 
-    let made <span class="tok-op">←</span> trap { half(<span class="tok-nu">8</span>) }
+    let _ made <span class="tok-op">←</span> trap { half(<span class="tok-nu">8</span>) }
     match made {
         case int let value {
             print <span class="tok-st">"returned §"</span>(value)

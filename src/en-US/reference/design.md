@@ -109,7 +109,7 @@ incipit {
     count ← count + 1
 
     # = is always structural shape inside Type { }
-    sit p ← Point {
+    sit _ p ← Point {
         x = 10,
         y = 20
     }

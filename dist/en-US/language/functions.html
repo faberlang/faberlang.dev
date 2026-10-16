@@ -146,13 +146,13 @@ main args args {
 }</code></pre><h3 id="passing-mode-sponte">Passing mode — <code>optional</code><a class="anchor" href="#passing-mode-sponte">#</a></h3><p><code>optional</code> marks a parameter that may be omitted by the caller:</p><pre class="faber-code"><code class="lang-faber">fn connect(string host, int port optional) <span class="tok-op">→</span> void {
     print host
 }</code></pre><h2 id="control-flow">Control flow<a class="anchor" href="#control-flow">#</a></h2><h3 id="conditional-branching">Conditional branching<a class="anchor" href="#conditional-branching">#</a></h3><h4 id="si-sin-secus">if / elif / else<a class="anchor" href="#si-sin-secus">#</a></h4><pre class="faber-code"><code class="lang-faber">main {
-    let condition <span class="tok-op">←</span> true
+    let _ condition <span class="tok-op">←</span> true
     if condition {
 <span class="tok-co">        # truthy branch</span>
         print <span class="tok-st">"matched"</span>
     }
 }</code></pre><p>With else-if and else:</p><pre class="faber-code"><code class="lang-faber">main {
-    let score <span class="tok-op">←</span> <span class="tok-nu">85</span>
+    let _ score <span class="tok-op">←</span> <span class="tok-nu">85</span>
     if score <span class="tok-op">≥</span> <span class="tok-nu">90</span> {
         print <span class="tok-st">"A"</span>
     }
@@ -179,7 +179,7 @@ main args args {
 }</code></pre><h4 id="range-itera-ab">Range — for range<a class="anchor" href="#range-itera-ab">#</a></h4><pre class="faber-code"><code class="lang-faber">for range <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> let i {
     print i
 }</code></pre><h3 id="while-loops">While loops<a class="anchor" href="#while-loops">#</a></h3><pre class="faber-code"><code class="lang-faber">main {
-    let condition <span class="tok-op">←</span> true
+    let _ condition <span class="tok-op">←</span> true
     while condition {
 <span class="tok-co">        # body</span>
         pass
@@ -250,8 +250,8 @@ fn primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(list<
 }
 
 main {
-    let seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
-    let maybe <span class="tok-op">←</span> primum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>([seven])
+    let _ seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
+    let _ maybe <span class="tok-op">←</span> primum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>([seven])
 }</code></pre><h3 id="generic-genus">Generic class<a class="anchor" href="#generic-genus">#</a></h3><pre class="faber-code"><code class="lang-faber">class Par<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> {
     let T primus
     let T secundus

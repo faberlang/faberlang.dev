@@ -155,7 +155,7 @@ fn description(Persona p) <span class="tok-op">→</span> string {
 }
 
 main {
-    let p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    let _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
     print description(p)
 }</code></pre><h2 id="methods">Functions on a record<a class="anchor" href="#methods">#</a></h2><p>A <code>class</code> can carry functions alongside its fields.</p><pre class="faber-code"><code class="lang-faber locale-tabs">class Punctum {
     let int x
@@ -167,7 +167,7 @@ main {
 }
 
 main {
-    let p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
+    let _ p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
     print p.summa()
 }</code></pre><p><code>self</code> is the receiver, what other languages spell <code>this</code>.</p><p>Related: <a href="/en-US/cheatsheet/types.html">Types and widths</a> ·
 <a href="/en-US/language/functions.html">Functions and flow</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#functions">Generic functions</a></li><li class="toc-2"><a href="#union-return">Generic with a union return</a></li><li class="toc-2"><a href="#containers">Generic containers</a></li><li class="toc-2"><a href="#genus">Records</a></li><li class="toc-2"><a href="#methods">Functions on a record</a></li></ul></div></nav><footer><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

@@ -6,7 +6,7 @@
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • Write-once binding — `let name` declares an inferred-type local that</span>
 <span class="tok-co">#     is written once</span>
-<span class="tok-co">#   • Supports immediate init (`let x ← expr`) and deferred init</span>
+<span class="tok-co">#   • Supports immediate init (`let _ x ← expr`) and deferred init</span>
 <span class="tok-co">#     (`let x` then `x ← expr` later)</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
@@ -20,7 +20,7 @@
 <span class="tok-co"># let — inferred immutable bindings</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Immediate init:</span>
-<span class="tok-co">#   let name ← expr        -- inferred write-once local</span>
+<span class="tok-co">#   let _ name ← expr        -- inferred write-once local</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Deferred init:</span>
 <span class="tok-co">#   let name               -- deferred: assign once later</span>
@@ -36,17 +36,17 @@
 <span class="tok-co">#   sit.expected</span>
 
 main {
-    let salve <span class="tok-op">←</span> <span class="tok-st">"Salve"</span>
-    let name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
-    let nuntius <span class="tok-op">←</span> <span class="tok-st">"§, §!"</span>(salve, name)
+    let _ salve <span class="tok-op">←</span> <span class="tok-st">"Salve"</span>
+    let _ name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    let _ nuntius <span class="tok-op">←</span> <span class="tok-st">"§, §!"</span>(salve, name)
 
     print nuntius
 
-    let label
+    let _ label
     label <span class="tok-op">←</span> <span class="tok-st">"deferred"</span>
     print label
 
-    let idem <span class="tok-op">←</span> nuntius
+    let _ idem <span class="tok-op">←</span> nuntius
     print idem
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve, Marcus!
 deferred

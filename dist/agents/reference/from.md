@@ -46,7 +46,7 @@ class Persona {
 }
 
 main {
-    let p ← Persona { name = "Marcus", aetas = 30 }
+    let _ p ← Persona { name = "Marcus", aetas = 30 }
     from p let name, aetas
     print name
     print aetas

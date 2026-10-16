@@ -66,7 +66,7 @@ functio descriptio(Persona p) → textus {
 }
 
 incipit {
-    sit p ← Persona { nomen = "Marcus", aetas = 30 }
+    sit _ p ← Persona { nomen = "Marcus", aetas = 30 }
     nota descriptio(p)
 }
 ```
@@ -86,7 +86,7 @@ genus Punctum {
 }
 
 incipit {
-    sit p ← Punctum { x = 1, y = 2 }
+    sit _ p ← Punctum { x = 1, y = 2 }
     nota p.summa()
 }
 ```

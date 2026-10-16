@@ -126,7 +126,7 @@ main {
     print gradus(<span class="tok-nu">55</span>)
 
 <span class="tok-co">    # Linear search with early return</span>
-    let numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    let _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
     print inveni(numeri, <span class="tok-nu">3</span>)
     print inveni(numeri, <span class="tok-nu">9</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>negativus
@@ -169,22 +169,22 @@ none
 
 main {
 <span class="tok-co">    # then replaces a one-statement block body</span>
-    let x <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    let _ x <span class="tok-op">←</span> <span class="tok-nu">10</span>
 
     if x ≻ <span class="tok-nu">5</span> then print <span class="tok-st">"x magnum est"</span>
 
 <span class="tok-co">    # else then pairs else with a single consequent</span>
-    let aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
+    let _ aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
     if aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> then print <span class="tok-st">"adultus"</span>
     else then print <span class="tok-st">"minor"</span>
 
 <span class="tok-co">    # Two-way one-liner (85 &lt; 90 → "not A")</span>
-    let puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
+    let _ puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
     if puncta <span class="tok-op">≥</span> <span class="tok-nu">90</span> then print <span class="tok-st">"A"</span>
     else then print <span class="tok-st">"non A"</span>
 
 <span class="tok-co">    # bool condition used directly</span>
-    let valet <span class="tok-op">←</span> true
+    let _ valet <span class="tok-op">←</span> true
     if valet then print <span class="tok-st">"Recte"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>x magnum est
 adultus

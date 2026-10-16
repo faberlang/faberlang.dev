@@ -30,14 +30,14 @@
 <span class="tok-co">#   Smoke asserts exit 0 only.</span>
 
 main {
-    let nuntius <span class="tok-op">←</span> <span class="tok-st">" Ave Roma "</span>
+    let _ nuntius <span class="tok-op">←</span> <span class="tok-st">" Ave Roma "</span>
 
-    let secta <span class="tok-op">←</span> nuntius.slice(<span class="tok-nu">1</span>, <span class="tok-nu">4</span>)
-    let magna <span class="tok-op">←</span> nuntius.uppercase()
-    let parva <span class="tok-op">←</span> nuntius.lowercase()
-    let rasa <span class="tok-op">←</span> nuntius.trim()
-    let partes <span class="tok-op">←</span> rasa.split(<span class="tok-st">" "</span>)
-    let mutata <span class="tok-op">←</span> rasa.replace(<span class="tok-st">"Roma"</span>, <span class="tok-st">"Munde"</span>)
+    let _ secta <span class="tok-op">←</span> nuntius.slice(<span class="tok-nu">1</span>, <span class="tok-nu">4</span>)
+    let _ magna <span class="tok-op">←</span> nuntius.uppercase()
+    let _ parva <span class="tok-op">←</span> nuntius.lowercase()
+    let _ rasa <span class="tok-op">←</span> nuntius.trim()
+    let _ partes <span class="tok-op">←</span> rasa.split(<span class="tok-st">" "</span>)
+    let _ mutata <span class="tok-op">←</span> rasa.replace(<span class="tok-st">"Roma"</span>, <span class="tok-st">"Munde"</span>)
 
     print secta, magna, parva
     print rasa, partes, mutata

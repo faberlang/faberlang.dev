@@ -1,5 +1,0 @@
-bắt_đầu {
-    đặt danh_sách<văn_bản ∪ số> mixed ← [1, "two", 3]
-    đặt inferred ← [1, 2, 3]
-    ghi_chú mixed, inferred
-}

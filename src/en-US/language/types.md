@@ -228,7 +228,7 @@ incipit {
 
     imprime(s)
     duplica(varia n)
-    sit t ← consume(own s)
+    sit _ t ← consume(own s)
 }
 ```
 
@@ -263,7 +263,7 @@ reading. A second assignment is rejected.
 incipit {
     sit numerus count ← 0
     sit textus name ← "Marcus"
-    sit inferred ← [1, 2, 3]
+    sit _ inferred ← [1, 2, 3]
 }
 ```
 
@@ -295,16 +295,16 @@ incipit {
 
 ### Inferred type {#sit-inferred-type}
 
-Leave the type off and `sit` infers it — a fixed binding with an inferred type:
+Write `_` in the type slot and `sit` infers the type — a fixed binding with an inferred type:
 
 ```faber
 incipit {
-    sit salve ← "Salve"
-    sit nomen ← "Marcus"
-    sit x ← 42
+    sit _ salve ← "Salve"
+    sit _ nomen ← "Marcus"
+    sit _ x ← 42
 
     # Deferred form
-    sit label
+    sit _ label
     label ← "deferred"
 }
 ```
@@ -331,7 +331,7 @@ incipit {
     count ← count + 1
 
     # Structural: = defines field values inside a type literal
-    sit p ← Point {
+    sit _ p ← Point {
         x = 10,
         y = 20
     }
@@ -349,7 +349,7 @@ genus Persona {
 }
 
 incipit {
-    sit p ← Persona { nomen = "Marcus", aetas = 30 }
+    sit _ p ← Persona { nomen = "Marcus", aetas = 30 }
     ex p sit nomen, aetas
     # prints "Marcus"
     nota nomen
@@ -386,9 +386,9 @@ live in the compiler, not in the standard library.
 ```faber
 incipit {
     sit lista<numerus> empty ← vacua
-    sit numbers ← [1, 2, 3, 4, 5]
-    sit names ← ["Marcus", "Julia", "Gaius"]
-    sit nested ← [[1, 2], [3, 4]]
+    sit _ numbers ← [1, 2, 3, 4, 5]
+    sit _ names ← ["Marcus", "Julia", "Gaius"]
+    sit _ nested ← [[1, 2], [3, 4]]
 }
 ```
 
@@ -398,8 +398,8 @@ Spread with `sparge`:
 incipit {
     sit lista<numerus> a ← [1, 2, 3]
     sit lista<numerus> b ← [4, 5, 6]
-    sit combined ← [sparge a, sparge b]
-    sit headed ← [0, sparge a, 99]
+    sit _ combined ← [sparge a, sparge b]
+    sit _ headed ← [0, sparge a, 99]
 }
 ```
 
@@ -489,7 +489,7 @@ incipit {
 
 ```faber
 incipit {
-    sit items ← [1, 2, 3]
+    sit _ items ← [1, 2, 3]
     itera ex items sit item {
         nota item
     }
@@ -550,9 +550,9 @@ incipit {
     sit textus code ← "200"
     sit textus label ← "OK"
 
-    sit msg ← "Page § of §"(pagina, totum)
-    sit block ← «status: § (§)»(code, label)
-    sit again ← "§1 of §0, §1"(pagina, totum)
+    sit _ msg ← "Page § of §"(pagina, totum)
+    sit _ block ← «status: § (§)»(code, label)
+    sit _ again ← "§1 of §0, §1"(pagina, totum)
 }
 ```
 
@@ -571,7 +571,7 @@ Multiline blocks use guillemets `«…»`:
 
 ```faber
 incipit {
-    sit sql ← «
+    sit _ sql ← «
         select id, email
         from accounts
     »
@@ -589,7 +589,7 @@ Safe for bound SQL/URL payloads:
 ```faber
 incipit {
     sit numerus user_id ← 42
-    sit query ← `select * from users where id = §`(user_id)
+    sit _ query ← `select * from users where id = §`(user_id)
 }
 ```
 
@@ -604,8 +604,8 @@ widens it to the dynamic carrier instead:
 ```faber
 incipit {
     sit json blank ← {}
-    sit user ← { "name": "Marcus", "age": 30, "active": true }
-    sit nested ← { "meta": { "version": 1 }, "tags": ["alpha", "beta"] }
+    sit _ user ← { "name": "Marcus", "age": 30, "active": true }
+    sit _ nested ← { "meta": { "version": 1 }, "tags": ["alpha", "beta"] }
 }
 ```
 
@@ -617,7 +617,7 @@ genus Point {
     sit numerus y
 }
 incipit {
-    sit p ← Point { x = 10, y = 20 }
+    sit _ p ← Point { x = 10, y = 20 }
 }
 ```
 
@@ -668,7 +668,7 @@ Use `!.`, `![`, `!(` to assert a nullable value is not `nulla`:
 genus Box { sit numerus ∪ nihil val }
 incipit {
     sit Box ∪ nihil maybe_name ← Box { val = 7 }
-    sit name ← maybe_name!.val
+    sit _ name ← maybe_name!.val
 }
 ```
 
@@ -679,7 +679,7 @@ A non-null assertion on `nulla` aborts at runtime.
 ```faber
 incipit {
     sit textus ∪ nihil provided ← nulla
-    sit name ← provided vel "default"
+    sit _ name ← provided vel "default"
 }
 ```
 
@@ -695,10 +695,10 @@ Two important conversion operators, one for runtime and one for compile-time:
 ```faber
 incipit {
     # runtime conversion
-    sit parsed ← "42" ↦ numerus ⊥ 0
+    sit _ parsed ← "42" ↦ numerus ⊥ 0
     # static ascription
     sit numerus count ← 7
-    sit text ← count ∷ textus
+    sit _ text ← count ∷ textus
 }
 ```
 
@@ -710,8 +710,8 @@ fail. Supply an inline default with `⊥`:
 ```faber
 incipit {
     sit textus input ← "9"
-    sit n ← "42" ↦ numerus ⊥ 0
-    sit safe ← input ↦ numerus ⊥ 0
+    sit _ n ← "42" ↦ numerus ⊥ 0
+    sit _ safe ← input ↦ numerus ⊥ 0
 }
 ```
 
@@ -720,8 +720,8 @@ Type-directed materialization:
 ```faber
 incipit {
     sit textus path ← "/etc/hosts"
-    sit lanes ← [1.0, 2.0, 3.0, 4.0] ↦ vf32[4]
-    sit body ← ad 'solum:lege' (path) ↦ textus
+    sit _ lanes ← [1.0, 2.0, 3.0, 4.0] ↦ vf32[4]
+    sit _ body ← ad 'solum:lege' (path) ↦ textus
 }
 ```
 
@@ -733,7 +733,7 @@ target-type driven:
 ```faber
 incipit {
     sit numerus count ← 7
-    sit x ← 7 ∷ i32
-    sit text ← count ∷ textus
+    sit _ x ← 7 ∷ i32
+    sit _ text ← count ∷ textus
 }
 ```

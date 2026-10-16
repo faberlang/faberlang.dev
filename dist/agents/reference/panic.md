@@ -57,7 +57,7 @@ main {
     print "value: §"(value)
 
     # This would call panic:
-    # let malum ← divide(10, 0)
+    # let _ malum ← divide(10, 0)
 
     # Lista accessus
     let list<int> nums ← [1, 2, 3]

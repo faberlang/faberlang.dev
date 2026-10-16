@@ -46,26 +46,26 @@ fn explora_bivalens(bool x) <span class="tok-op">→</span> string {
 main {
 <span class="tok-co">    # Null checking with est</span>
     let int <span class="tok-op">∪</span> none forsitan <span class="tok-op">←</span> null
-    let nihil_est <span class="tok-op">←</span> forsitan is none
+    let _ nihil_est <span class="tok-op">←</span> forsitan is none
     print nihil_est
 
 <span class="tok-co">    # Boolean true comparison with ≡</span>
-    let enabled <span class="tok-op">←</span> true
-    let verum_est <span class="tok-op">←</span> enabled <span class="tok-op">≡</span> true
+    let _ enabled <span class="tok-op">←</span> true
+    let _ verum_est <span class="tok-op">←</span> enabled <span class="tok-op">≡</span> true
     print verum_est
 
 <span class="tok-co">    # Boolean false comparison with ≡</span>
-    let disabled <span class="tok-op">←</span> false
-    let falsum_est <span class="tok-op">←</span> disabled <span class="tok-op">≡</span> false
+    let _ disabled <span class="tok-op">←</span> false
+    let _ falsum_est <span class="tok-op">←</span> disabled <span class="tok-op">≡</span> false
     print falsum_est
 
 <span class="tok-co">    # Chained with logical operators</span>
     let string <span class="tok-op">∪</span> none name <span class="tok-op">←</span> null
-    let defectum_debet <span class="tok-op">←</span> name is none and enabled <span class="tok-op">≡</span> true
+    let _ defectum_debet <span class="tok-op">←</span> name is none and enabled <span class="tok-op">≡</span> true
     print defectum_debet
 
 <span class="tok-co">    # Parenthesized for clarity</span>
-    let utraque_nihil <span class="tok-op">←</span> forsitan is none and name is none
+    let _ utraque_nihil <span class="tok-op">←</span> forsitan is none and name is none
     print utraque_nihil
 
 <span class="tok-co">    # Dynamic unknown dispatch for none and exact boolean checks on bool</span>

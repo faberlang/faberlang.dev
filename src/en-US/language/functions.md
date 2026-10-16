@@ -327,7 +327,7 @@ functio connect(textus host, numerus port sponte) → vacuum {
 
 ```faber
 incipit {
-    sit condition ← verum
+    sit _ condition ← verum
     si condition {
         # truthy branch
         nota "matched"
@@ -339,7 +339,7 @@ With else-if and else:
 
 ```faber
 incipit {
-    sit score ← 85
+    sit _ score ← 85
     si score ≥ 90 {
         nota "A"
     } sin score ≥ 80 {
@@ -398,7 +398,7 @@ itera ab 0‥10 sit i {
 
 ```faber
 incipit {
-    sit condition ← verum
+    sit _ condition ← verum
     dum condition {
         # body
         tacet
@@ -502,8 +502,8 @@ functio primum<T>(lista<T> res) → T ∪ nihil {
 }
 
 incipit {
-    sit seven ← identitas<numerus>(7)
-    sit maybe ← primum<numerus>([seven])
+    sit _ seven ← identitas<numerus>(7)
+    sit _ maybe ← primum<numerus>([seven])
 }
 ```
 

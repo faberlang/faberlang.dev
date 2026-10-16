@@ -55,9 +55,9 @@ main {
     mut sf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] grid <span class="tok-op">←</span> empty
     grid.set([<span class="tok-nu">0</span>, <span class="tok-nu">1</span>], <span class="tok-nu">4.0</span>)
 
-    let value <span class="tok-op">←</span> grid.get([<span class="tok-nu">0</span>, <span class="tok-nu">1</span>])
-    let absent <span class="tok-op">←</span> grid.get([<span class="tok-nu">1</span>, <span class="tok-nu">2</span>])
-    let count <span class="tok-op">←</span> grid.count_nonzero()
+    let _ value <span class="tok-op">←</span> grid.get([<span class="tok-nu">0</span>, <span class="tok-nu">1</span>])
+    let _ absent <span class="tok-op">←</span> grid.get([<span class="tok-nu">1</span>, <span class="tok-nu">2</span>])
+    let _ count <span class="tok-op">←</span> grid.count_nonzero()
 
     let tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] dense <span class="tok-op">←</span> grid.densify()
     print value, absent, count, dense.length()

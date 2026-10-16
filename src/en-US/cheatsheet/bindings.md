@@ -33,8 +33,8 @@ first and widen to `varia` only where the value genuinely moves.
 
 ```faber locale-tabs
 incipit {
-    sit nomen ← "Marcus"
-    sit numeri ← [1, 2, 3]
+    sit _ nomen ← "Marcus"
+    sit _ numeri ← [1, 2, 3]
     nota nomen, numeri
 }
 ```
@@ -86,7 +86,7 @@ genus Punctum {
 }
 
 incipit {
-    sit p ← Punctum { x = 1, y = 2 }
+    sit _ p ← Punctum { x = 1, y = 2 }
     ex p sit x, y
     nota x, y
 }

@@ -139,7 +139,7 @@ patterns are rejected. `enum` (`ordo`) and `union` (`discretio`) are pure data:
 no methods, no `implements`.
 
 **Iteration.** `at` (`apud`) iterates lists and maps as well as tensors:
-`for from xs at [i] const x`. Composite keys are tuple keys
+`for from xs at [i] let x`. Composite keys are tuple keys
 (a map keyed by `iuncta<K1, K2>`), and map keys must be hashable (checked).
 Sets and maps iterate in unspecified order; sort when order matters.
 `itera` binds real element types, and a non-iterable is rejected.

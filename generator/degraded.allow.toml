@@ -42,6 +42,11 @@ why = "a generated release-notes fence carries an inline comment the lexer refus
 
 [[allow]]
 kind = "agent-reference-slug-collision"
+subject = "varia"
+why = "the pack gives the mut parameter marker `in` and the mut local `varia` one English word (`mut`); the first term in sorted order keeps the slug and `varia` stays on its identity key, by design"
+
+[[allow]]
+kind = "agent-reference-slug-collision"
 subject = "textus"
 why = "the English pack gives `textus` and `string` one slug; the first term in sorted order keeps it and `textus` names itself in its page title, by design"
 
@@ -74,8 +79,3 @@ why = "same as `is`: the projected example fails `faber check --locale=en`, so t
 kind = "agent-reference-projection"
 subject = "command"
 why = "same as `is`: the projected example fails `faber check --locale=en`, so the registry text ships"
-
-[[allow]]
-kind = "transcode"
-subject = "libraries/norma.md"
-why = "`faber convert --from la --to en` at radix 1896384cbd fails with SEM008 unknown qualified type on `⇥ fault.IoFault` in the fence (the same file passes `faber check`); the page shows its Latin source unchanged. Remove this entry when the converter resolves imported error-channel types"

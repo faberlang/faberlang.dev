@@ -38,14 +38,14 @@ Scalar longitudo() and indexed accipe only (lista.expected).
 ```fab
 main {
     let list<int> vacuares ← empty
-    let numeri ← [1, 2, 3, 4, 5]
-    let nomina ← ["Marcus", "Julia", "Gaius"]
-    let vexilla ← [true, false, true]
-    let matrix ← [[1, 2], [3, 4], [5, 6]]
+    let _ numeri ← [1, 2, 3, 4, 5]
+    let _ nomina ← ["Marcus", "Julia", "Gaius"]
+    let _ vexilla ← [true, false, true]
+    let _ matrix ← [[1, 2], [3, 4], [5, 6]]
     let list<int> primum ← [1, 2, 3]
     let list<int> secundum ← [4, 5, 6]
-    let coniuncta ← [spread primum, spread secundum]
-    let aucta ← [0, spread primum, 99]
+    let _ coniuncta ← [spread primum, spread secundum]
+    let _ aucta ← [0, spread primum, 99]
     print vacuares.length()
     print numeri.length()
     print numeri[0]

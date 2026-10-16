@@ -89,7 +89,7 @@ where Faber's typed construction uses `=`. Both take
 ```faber locale-tabs
 incipit {
     sit lista<numerus ∪ textus> mixed ← [1, "two", 3]
-    sit inferred ← [1, 2, 3]
+    sit _ inferred ← [1, 2, 3]
     nota mixed, inferred
 }
 ```
@@ -162,7 +162,7 @@ genus Persona {
 }
 
 incipit {
-    sit p ← Persona { nomen = "Marcus", aetas = 30 }
+    sit _ p ← Persona { nomen = "Marcus", aetas = 30 }
     nota p.nomen, p.aetas
 }
 ```

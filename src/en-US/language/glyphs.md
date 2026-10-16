@@ -74,7 +74,7 @@ genus Punctum {
 }
 
 incipit {
-    sit p ← Punctum { x = 10, y = 20 }
+    sit _ p ← Punctum { x = 10, y = 20 }
     varia numerus count ← 0
     count ← count + 1
     nota p.x, count
@@ -302,7 +302,7 @@ incipit {
     count ← count + 1
 
     # Structural shape: = defines field values inside a literal
-    sit p ← Point {
+    sit _ p ← Point {
         x = 10,
         y = 20
     }

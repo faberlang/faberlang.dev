@@ -18,7 +18,7 @@
 <span class="tok-co"># Numeric/tensor modules may use lf32/lu32 sugar; see docs/design/numeric-type-sugar.md.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># list&lt;T&gt; name ← empty        -- typed empty collection (forma innata)</span>
-<span class="tok-co"># let name ← [elem, …]     -- list literal</span>
+<span class="tok-co"># let _ name ← [elem, …]     -- list literal</span>
 <span class="tok-co"># [spread expr, …]              -- splice into literal</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
@@ -30,14 +30,14 @@
 
 main {
     let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> vacuares <span class="tok-op">←</span> empty
-    let numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
-    let nomina <span class="tok-op">←</span> [<span class="tok-st">"Marcus"</span>, <span class="tok-st">"Julia"</span>, <span class="tok-st">"Gaius"</span>]
-    let vexilla <span class="tok-op">←</span> [true, false, true]
-    let matrix <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>], [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>]]
+    let _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    let _ nomina <span class="tok-op">←</span> [<span class="tok-st">"Marcus"</span>, <span class="tok-st">"Julia"</span>, <span class="tok-st">"Gaius"</span>]
+    let _ vexilla <span class="tok-op">←</span> [true, false, true]
+    let _ matrix <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>], [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>]]
     let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> primum <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> secundum <span class="tok-op">←</span> [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>]
-    let coniuncta <span class="tok-op">←</span> [spread primum, spread secundum]
-    let aucta <span class="tok-op">←</span> [<span class="tok-nu">0</span>, spread primum, <span class="tok-nu">99</span>]
+    let _ coniuncta <span class="tok-op">←</span> [spread primum, spread secundum]
+    let _ aucta <span class="tok-op">←</span> [<span class="tok-nu">0</span>, spread primum, <span class="tok-nu">99</span>]
     print vacuares.length()
     print numeri.length()
     print numeri[<span class="tok-nu">0</span>]
@@ -102,14 +102,14 @@ true
 <span class="tok-co"># (whitelist: list/methodi-copiae.fab).</span>
 
 main {
-    let res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>] ∷ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
-    let addita <span class="tok-op">←</span> res.added(<span class="tok-nu">6</span>)
-    let sectio <span class="tok-op">←</span> res.slice(<span class="tok-nu">1</span>, <span class="tok-nu">4</span>)
-    let primaduo <span class="tok-op">←</span> res.take(<span class="tok-nu">2</span>)
-    let ultimaduo <span class="tok-op">←</span> res.take_last(<span class="tok-nu">2</span>)
-    let omissaduo <span class="tok-op">←</span> res.drop(<span class="tok-nu">2</span>)
-    let inversa <span class="tok-op">←</span> res.invert()
-    let sort <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">1</span>, <span class="tok-nu">2</span>].sorted()
+    let _ res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>] ∷ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
+    let _ addita <span class="tok-op">←</span> res.added(<span class="tok-nu">6</span>)
+    let _ sectio <span class="tok-op">←</span> res.slice(<span class="tok-nu">1</span>, <span class="tok-nu">4</span>)
+    let _ primaduo <span class="tok-op">←</span> res.take(<span class="tok-nu">2</span>)
+    let _ ultimaduo <span class="tok-op">←</span> res.take_last(<span class="tok-nu">2</span>)
+    let _ omissaduo <span class="tok-op">←</span> res.drop(<span class="tok-nu">2</span>)
+    let _ inversa <span class="tok-op">←</span> res.invert()
+    let _ sort <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">1</span>, <span class="tok-nu">2</span>].sorted()
     print addita
     print sectio
     print primaduo

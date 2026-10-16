@@ -40,7 +40,7 @@ fixum_decl ::= ('const' type_annotation IDENTIFIER '=' const_init) | ('mut' type
 # [015] figendum_decl
 figendum_decl ::= ('await_const' | 'await_var') type_annotation IDENTIFIER '←' expression
 # [016] sit_decl
-sit_decl ::= 'let' type_annotation? IDENTIFIER (('←' value_marker? expression) | ('↤' assignment inline_default?) | ('↢' expression))?
+sit_decl ::= 'let' type_annotation IDENTIFIER (('←' value_marker? expression) | ('↤' assignment inline_default?) | ('↢' expression))?
 # [017] ref_decl
 ref_decl ::= 'ref' concrete_type IDENTIFIER '←' expression
 # [018] array_destruct

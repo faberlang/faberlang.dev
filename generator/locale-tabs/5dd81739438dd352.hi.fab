@@ -1,5 +1,0 @@
-आरंभ {
-    बैठा nomen ← "Marcus"
-    बैठा numeri ← [1, 2, 3]
-    दिखाओ nomen, numeri
-}

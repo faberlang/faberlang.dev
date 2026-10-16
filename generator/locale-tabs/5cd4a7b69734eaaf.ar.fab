@@ -1,9 +1,0 @@
-صنف Persona {
-    ليكن نص nomen
-    ليكن عدد aetas
-}
-
-بداية {
-    ليكن p ← Persona { nomen = "Marcus", aetas = 30 }
-    اعرض p.nomen, p.aetas
-}
