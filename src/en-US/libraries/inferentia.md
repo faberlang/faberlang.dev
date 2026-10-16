@@ -105,8 +105,7 @@ generation stopped after two tokens instead of the expected sixteen. The
 verdict was recorded as a failure. The run took about 22 minutes in a debug
 build. The repository's evidence directory holds no later receipt.
 
-Inferentia is a good place to read how a real Faber application is put
-together, and an honest picture of where local inference stands. It is not yet
+Inferentia is an honest picture of where local inference stands. It is not yet
 a tool to run models with.
 
-Source: [github.com/faberlang/inferentia](https://github.com/faberlang/inferentia).
+The Inferentia repository is private while it is built out.
