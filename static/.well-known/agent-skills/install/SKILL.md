@@ -13,43 +13,70 @@ description: "Download and verify the current Faber CLI release for macOS arm64 
 
 ## Current release
 
-- **Version:** 1.15.1
-- **Tag:** `faber-v1.15.1`
+- **Version:** 1.15.2
+- **Tag:** `faber-v1.15.2`
 - **Published:** 2026-10-21
 - **Bundled compiler:** Radix 0.84.0
-- **Release page:** https://github.com/faberlang/releases/releases/tag/faber-v1.15.1
+- **Release page:** https://github.com/faberlang/releases/releases/tag/faber-v1.15.2
 - **License:** MIT OR Apache-2.0
 
 ## Archives
 
 | Platform | Archive | Checksum |
 |---|---|---|
-| macOS arm64 | https://github.com/faberlang/releases/releases/download/faber-v1.15.1/faber-v1.15.1-aarch64-apple-darwin.tar.gz | https://github.com/faberlang/releases/releases/download/faber-v1.15.1/faber-v1.15.1-aarch64-apple-darwin.tar.gz.sha256 |
-| Linux x64 | https://github.com/faberlang/releases/releases/download/faber-v1.15.1/faber-v1.15.1-x86_64-unknown-linux-gnu.tar.gz | https://github.com/faberlang/releases/releases/download/faber-v1.15.1/faber-v1.15.1-x86_64-unknown-linux-gnu.tar.gz.sha256 |
+| macOS arm64 | https://github.com/faberlang/releases/releases/download/faber-v1.15.2/faber-v1.15.2-aarch64-apple-darwin.tar.gz | https://github.com/faberlang/releases/releases/download/faber-v1.15.2/faber-v1.15.2-aarch64-apple-darwin.tar.gz.sha256 |
+| Linux x64 | https://github.com/faberlang/releases/releases/download/faber-v1.15.2/faber-v1.15.2-x86_64-unknown-linux-gnu.tar.gz | https://github.com/faberlang/releases/releases/download/faber-v1.15.2/faber-v1.15.2-x86_64-unknown-linux-gnu.tar.gz.sha256 |
 
 The archive ships one file, `bin/faber`; the reader packs and Norma are built into the binary. These are the only two archives published. On any other platform, stop and tell the human.
 
 ## Procedure
 
+Install with the official installer. It downloads the archive for your
+platform, verifies the checksum, and installs a versioned binary with a
+`faber` link, which `faber update` and `faber versions` manage later.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/faberlang/faber/main/install.sh | sh
+export PATH="$HOME/.faber/bin:$PATH"
+faber --version
+faber explain SEM001
+```
+
+`faber --version` prints the CLI version and `faber explain SEM001` prints a
+diagnostic explanation. If `faber` is not found, `~/.faber/bin` is not on
+`PATH`; add the `export` line to your shell profile. Pass `--prefix <DIR>` to
+the installer (`sh -s -- --prefix <DIR>`) to install somewhere else.
+
+### Manual install
+
+Use this when you cannot pipe the installer to a shell. It produces the same
+layout: a versioned `faber-<version>` binary and a `faber` link beside it.
+A bare `faber` binary copied onto `PATH` also runs, but `faber update` and
+`faber versions` cannot manage it.
+
 1. Detect platform (Darwin arm64 vs Linux x86_64).
 2. Download the matching `.tar.gz` and `.sha256`.
 3. Verify the checksum by comparing the first hash field from the `.sha256` file to the local archive hash. The published checksum line may name the original build path.
-4. Extract. Move `bin/faber` onto your `PATH`.
-5. Run `faber --version` and `faber explain SEM001`. The first prints the CLI version and the second prints a diagnostic explanation. If `faber` is not found, the directory holding the binary is not on `PATH`.
+4. Extract, then install `bin/faber` as `faber-<version>` with a `faber` link.
+5. Run `faber --version` and `faber explain SEM001`.
 6. Prove it with a first program check (below).
 
 ### macOS arm64
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.15.1/faber-v1.15.1-aarch64-apple-darwin.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.15.2/faber-v1.15.2-aarch64-apple-darwin.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.15.1/faber-v1.15.1-aarch64-apple-darwin.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.15.2/faber-v1.15.2-aarch64-apple-darwin.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
-sudo mv bin/faber /usr/local/bin/faber
+version=$(bin/faber --version | awk '{print $2}')
+mkdir -p "$HOME/.faber/bin"
+mv bin/faber "$HOME/.faber/bin/faber-$version"
+ln -sf "faber-$version" "$HOME/.faber/bin/faber"
+export PATH="$HOME/.faber/bin:$PATH"
 faber --version
 ```
 
@@ -57,14 +84,18 @@ faber --version
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.15.1/faber-v1.15.1-x86_64-unknown-linux-gnu.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.15.2/faber-v1.15.2-x86_64-unknown-linux-gnu.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.15.1/faber-v1.15.1-x86_64-unknown-linux-gnu.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.15.2/faber-v1.15.2-x86_64-unknown-linux-gnu.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(sha256sum faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
-sudo mv bin/faber /usr/local/bin/faber
+version=$(bin/faber --version | awk '{print $2}')
+mkdir -p "$HOME/.faber/bin"
+mv bin/faber "$HOME/.faber/bin/faber-$version"
+ln -sf "faber-$version" "$HOME/.faber/bin/faber"
+export PATH="$HOME/.faber/bin:$PATH"
 faber --version
 ```
 

@@ -1,7 +1,7 @@
 +++
 title = "Faber 1.14.0"
 section = "releases"
-order = 11
+order = 12
 sources = []
 +++
 
@@ -24,11 +24,11 @@ Pinned download for **Faber 1.14.0**. For the current release, use [Start](/star
 | **Linux x64** | [faber-v1.14.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.14.0/faber-v1.14.0-x86_64-unknown-linux-gnu.tar.gz) | 22.2 MB | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.14.0/faber-v1.14.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
 ```bash
-curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.14.0/faber-v1.14.0-aarch64-apple-darwin.tar.gz
-tar -xzf faber.tgz
-# The archive holds one file; the reader packs are built in.
-sudo mv bin/faber /usr/local/bin/faber
+# The installer verifies the checksum and installs a versioned
+# binary that `faber update` and `faber versions` manage.
+curl -fsSL https://raw.githubusercontent.com/faberlang/faber/main/install.sh \
+  | sh -s -- --version 1.14.0
+export PATH="$HOME/.faber/bin:$PATH"
 faber --version
 ```
 

@@ -340,11 +340,11 @@ def install_block(v: Version) -> list[str]:
             lines += [
                 "",
                 "```bash",
-                f"curl -fsSL -o {v.product}.tgz \\",
-                f"  {mac['url']}",
-                f"tar -xzf {v.product}.tgz",
-                "# The archive holds one file; the reader packs are built in.",
-                f"sudo mv bin/{v.product} /usr/local/bin/{v.product}",
+                "# The installer verifies the checksum and installs a versioned",
+                "# binary that `faber update` and `faber versions` manage.",
+                "curl -fsSL https://raw.githubusercontent.com/faberlang/faber/main/install.sh \\",
+                f"  | sh -s -- --version {v.version}",
+                'export PATH="$HOME/.faber/bin:$PATH"',
                 f"{v.product} --version",
                 "```",
             ]
