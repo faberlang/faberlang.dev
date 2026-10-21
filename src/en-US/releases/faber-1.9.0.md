@@ -296,7 +296,7 @@ version-bump/manifest/notes release commit, packet
   URLs, or hidden build logs in the archive; the only absolute paths in
   `bin/faber` are build-machine paths compiled in via
   `env!("CARGO_MANIFEST_DIR")` defaults
-  (`/Users/ianzepp/work/faberlang/worktrees/release-190/radix/crates/faber`)
+  (`~/work/faberlang/worktrees/release-190/radix/crates/faber`)
   plus public `~/.cargo/registry` panic locations. The installed
   public-channel 1.7.0 binary carries the same class
   (`worktrees/release/radix/crates/faber`, 193 path strings) —

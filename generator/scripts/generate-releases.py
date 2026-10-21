@@ -234,6 +234,9 @@ def _join_wrapped_bold(text: str) -> str:
     return "\n".join(out)
 
 
+HOME_PATH = re.compile(r"/Users/[^/\s`]+/")
+
+
 def prepare_notes(raw: str) -> str:
     """Demote the notes' own H1 and shift every heading one level down.
 
@@ -245,6 +248,9 @@ def prepare_notes(raw: str) -> str:
     # on the next emits literal asterisks. Imported notes are hard-wrapped
     # prose written elsewhere and full of these; join them on the way in.
     raw = _join_wrapped_bold(raw)
+    # Notes were written on the build machine and sometimes quote its paths.
+    # The page is public: keep the path's shape, drop the account.
+    raw = HOME_PATH.sub("~/", raw)
 
     out: list[str] = []
     in_fence = False

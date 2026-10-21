@@ -39,7 +39,7 @@ The promotion preserves the independently validated companion surfaces:
 | Radix compiler/host | `247d50785` | compiler, host, geometry, macOS carrier validation, and WGSL diagnostic-prose hygiene |
 | `faber-runtime` / LLVM host | `b6d1ad3` | runtime behavior and LLVM-host Clippy cleanup |
 | Host-kernel | `4e6c657` | kernel carriers |
-| Host-native | `d2d7d4d20` | current `/Users/ianzepp/work/faberlang/host-native-rs` head; fallible native construction |
+| Host-native | `d2d7d4d20` | current `~/work/faberlang/host-native-rs` head; fallible native construction |
 | Host providers | `0720a2c` | provider contracts |
 | Cista package store | `5bf7a53` | package-store locking and macOS path-test portability |
 | Triga geometry/graphics | `bbace0d` | geometry validation and finite-normal ownership fixes |
@@ -50,7 +50,7 @@ published as part of the Faber CLI package version.
 
 ### Promotion gate evidence
 
-Run from `/Users/ianzepp/work/faberlang/faber` on 2026-07-14:
+Run from `~/work/faberlang/faber` on 2026-07-14:
 
 ```text
 cargo metadata --locked --format-version 1
