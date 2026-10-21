@@ -28,7 +28,7 @@ sibling checkouts beside this repository; a missing checkout degrades to
 "tags only" rather than failing.
 
 Usage:
-    generate-releases.py [--output-dir src/en-US/releases] [--no-fetch]
+    generate-releases.py [--output-dir src/en-US/releases] [--radix <checkout>]
 """
 
 from __future__ import annotations
@@ -473,7 +473,13 @@ def render_index(grouped: dict[str, list[Version]]) -> str:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--output-dir", default="src/en-US/releases")
+    ap.add_argument("--radix", type=Path, default=None,
+                    help="radix checkout to read the notes from (default: the "
+                         "sibling checkout, which may lag the release tag)")
     args = ap.parse_args()
+    if args.radix:
+        PRODUCTS["faber"]["notes_dir"] = args.radix / "packaging" / "release" / "notes"
+        PRODUCTS["radix"]["notes_dir"] = args.radix / "docs" / "release"
 
     out = REPO / args.output_dir
     out.mkdir(parents=True, exist_ok=True)

@@ -1,0 +1,7 @@
+main {
+    let range<int> r ← 0 ‥ 3
+    print r
+    for range r let i {
+        print i
+    }
+}

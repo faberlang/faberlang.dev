@@ -1,0 +1,4 @@
+入口 {
+    設為 文字 roundtrip ← ("42" ↦ 整數) ↦ 文字
+    註記 roundtrip
+}

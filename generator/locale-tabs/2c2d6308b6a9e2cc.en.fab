@@ -1,5 +1,0 @@
-main {
-    const _ nomen ← "Marcus"
-    const _ numeri ← [1, 2, 3]
-    print nomen, numeri
-}

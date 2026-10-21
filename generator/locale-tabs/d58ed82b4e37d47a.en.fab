@@ -1,0 +1,11 @@
+main {
+    # a declaration
+    let int count ← 0
+    # another
+    let string name ← "Marcus"
+    # a generic
+    let list<int> scores ← [1, 2, 3]
+    # a nullable
+    let int ∪ none maybe ← null
+    print count, name, scores, maybe
+}

@@ -41,4 +41,9 @@ main {
 `faber check .` exits 0 and warns `WARN003` on `saluta`. `faber run .`
 prints `Salve, Marcus!`.
 
+A target word in place of `from` imports a module of that target language,
+by its own name: `import python "math" m`. The program then builds only for
+that target (`faber build -t python`); `faber check`, `faber run` and every
+other target refuse it with `SEM017` `import_target_bound`.
+
 Fetch list: https://faberlang.dev/agents/index.md

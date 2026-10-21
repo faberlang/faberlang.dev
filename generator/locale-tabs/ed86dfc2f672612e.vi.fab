@@ -1,0 +1,6 @@
+bắt_đầu {
+    đặt i32 signed ← -7
+    đặt u8 byte ← 255
+    đặt f64 wide ← 1.5
+    ghi_chú signed, byte, wide
+}

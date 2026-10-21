@@ -1,0 +1,6 @@
+بداية {
+    ليكن جدول<نص, نص> persona ← { "nomen": "Marcus", "urbs": "Roma" }
+    كرر عن persona ليكن clavis {
+        اعرض clavis, persona[clavis]
+    }
+}

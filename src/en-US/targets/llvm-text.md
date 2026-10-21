@@ -17,7 +17,7 @@ The widest ratio on the site, and the least surprising one: SSA form names every
 
 | Capable | Analyzable | Coverage |
 |---|---|---|
-| 395 | 441 | 90% |
+| 436 | 500 | 87% |
 
 From the [target matrix](/toolchain/target-matrix.html): how many corpus exempla lower to this target. Coverage is not a quality score — an emitter can lower a term and still erase a distinction.
 
@@ -27,8 +27,8 @@ Terms the matrix records as partial, planned, or unsupported for this target. A 
 
 | Category | Terms |
 |---|---|
-| Keywords — systems lane | <a id="ad"></a>`ad`, <a id="cede"></a>`cede`, <a id="clausura"></a>`clausura`, <a id="cursor"></a>`cursor`, <a id="est"></a>`est`, <a id="fient"></a>`fient`, <a id="fiunt"></a>`fiunt`, <a id="genus"></a>`genus`, <a id="implendum"></a>`implendum`, <a id="implet"></a>`implet`, <a id="importa"></a>`importa`, <a id="itera"></a>`itera`, <a id="lege"></a>`lege`, <a id="lista"></a>`lista`, <a id="tabula"></a>`tabula`, `∪` |
-| Operators — systems lane | `·`, `↦`, `⊗`, `⊙` |
+| Keywords — systems lane | <a id="ad"></a>`ad`, <a id="cede"></a>`cede`, <a id="clausura"></a>`clausura`, <a id="cursor"></a>`cursor`, <a id="est"></a>`est`, <a id="fient"></a>`fient`, <a id="fiunt"></a>`fiunt`, <a id="genus"></a>`genus`, <a id="implendum"></a>`implendum`, <a id="implet"></a>`implet`, <a id="importa"></a>`importa`, <a id="itera"></a>`itera`, <a id="lege"></a>`lege`, <a id="lista"></a>`lista`, <a id="numerus"></a>`numerus`, <a id="ordo"></a>`ordo`, <a id="tabula"></a>`tabula`, `∪` |
+| Operators — systems lane | `·`, `↦`, `⊗`, `⊘`, `⊙` |
 
 ## Typed tensors {#tensores}
 

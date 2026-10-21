@@ -393,7 +393,7 @@ main {
     print a ∧ mask
     print a ∨ mask
     print a ⊻ mask
-    print <span class="tok-op">¬</span>a
+    print <span class="tok-op">¬</span> a
     print a ⇐ <span class="tok-nu">4</span>
     print a ⇒ <span class="tok-nu">4</span>
     let b8 cleared <span class="tok-op">←</span> a ⇐ <span class="tok-nu">4</span> ⇒ <span class="tok-nu">4</span>
@@ -405,7 +405,7 @@ main {
     print wide ∧ low
     print wide ∨ low
     print wide ⊻ low
-    print <span class="tok-op">¬</span>wide
+    print <span class="tok-op">¬</span> wide
     print wide ⇐ <span class="tok-nu">4</span>
     print wide ⇒ <span class="tok-nu">60</span>
     print wide ⇐ <span class="tok-nu">64</span>
@@ -768,6 +768,29 @@ main {
     let list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-nu">0</span>x01, <span class="tok-nu">0</span>x02]
     let list<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> plain <span class="tok-op">←</span> raw ↦ list<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> via Le
     print plain
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusbitsbits-conversion-width-rejectfab-supporting-reject">radix/corpus/bits/bits-conversion-width-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusbitsbits-conversion-width-rejectfab-supporting-reject">#</a></h3><p>A scalar bits conversion keeps the width: b8 ↦ b16 is refused.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># bits — A scalar bits conversion keeps the width: b8 ↦ b16 is refused.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • a scalar bits conversion keeps the width: b8 ↦ b8, b16 ↦ b16, and so on</span>
+<span class="tok-co">#   • any other width is a compile error, refused by name before emission</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • expecting `↦` to widen or narrow a bits value — it cannot; there is no</span>
+<span class="tok-co">#     width-changing bits conversion</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: bits-operations, bits-literals</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># bits reject case — expected compile failure</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># This exemplum intentionally fails to compile.</span>
+
+main {
+    let b8 a <span class="tok-op">←</span> <span class="tok-nu">0</span>xf3
+    let b16 w <span class="tok-op">←</span> a ↦ b16
+    print w
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusbitsbits-literal-range-reject-lafab-supporting-reject">radix/corpus/bits/bits-literal-range-reject-la.fab (supporting · reject)<a class="anchor" href="#radixcorpusbitsbits-literal-range-reject-lafab-supporting-reject">#</a></h3><p>A literal too wide for a bits cell is refused.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># bits — A literal too wide for a bits cell is refused.</span>
 <span class="tok-co"># =============================================================================</span>
@@ -850,4 +873,49 @@ main {
     let b8 a <span class="tok-op">←</span> <span class="tok-nu">0</span>x0f
     let u8 n <span class="tok-op">←</span> <span class="tok-nu">3</span>
     print a ∧ n
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-bulk-lafab-canonical-conversio">radix/corpus/bits/bits-bulk-la.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-bulkfab-canonical-conversio">radix/corpus/bits/bits-bulk.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-display-lafab-canonical-display">radix/corpus/bits/bits-display-la.fab (canonical · display)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-display-optional-lafab-canonical-display">radix/corpus/bits/bits-display-optional-la.fab (canonical · display)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-display-optionalfab-canonical-display">radix/corpus/bits/bits-display-optional.fab (canonical · display)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-displayfab-canonical-display">radix/corpus/bits/bits-display.fab (canonical · display)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-literals-lafab-canonical-literal">radix/corpus/bits/bits-literals-la.fab (canonical · literal)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-literalsfab-canonical-literal">radix/corpus/bits/bits-literals.fab (canonical · literal)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-operations-lafab-canonical-operator-group">radix/corpus/bits/bits-operations-la.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-operationsfab-canonical-operator-group">radix/corpus/bits/bits-operations.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-order-lafab-canonical-operator-group">radix/corpus/bits/bits-order-la.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-orderfab-canonical-operator-group">radix/corpus/bits/bits-order.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-text-lafab-canonical-conversio">radix/corpus/bits/bits-text-la.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-textfab-canonical-conversio">radix/corpus/bits/bits-text.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-arithmetic-reject-lafab-supporting-reject">radix/corpus/bits/bits-arithmetic-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-arithmetic-rejectfab-supporting-reject">radix/corpus/bits/bits-arithmetic-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-bulk-hint-reject-lafab-supporting-reject">radix/corpus/bits/bits-bulk-hint-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-bulk-hint-rejectfab-supporting-reject">radix/corpus/bits/bits-bulk-hint-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-literal-range-reject-lafab-supporting-reject">radix/corpus/bits/bits-literal-range-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-literal-range-rejectfab-supporting-reject">radix/corpus/bits/bits-literal-range-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-mixing-reject-lafab-supporting-reject">radix/corpus/bits/bits-mixing-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-mixing-rejectfab-supporting-reject">radix/corpus/bits/bits-mixing-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/bits/bits-bulk-la.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusbitsbits-shift-negative-rejectfab-supporting-reject">radix/corpus/bits/bits-shift-negative-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusbitsbits-shift-negative-rejectfab-supporting-reject">#</a></h3><p>A literal negative shift count is refused before the run.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># bits — A literal negative shift count is refused before the run.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • a shift count written as a literal negative number is a compile error</span>
+<span class="tok-co">#   • the checker refuses it by name, before any emission or run</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • expecting the literal to become the run-time trap — a *variable*</span>
+<span class="tok-co">#     negative count is the run-time one (bits-shift-negative); a literal is</span>
+<span class="tok-co">#     caught here</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: bits-shift-negative, bits-operations</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># bits reject case — expected compile failure</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># This exemplum intentionally fails to compile.</span>
+
+main {
+    let b8 a <span class="tok-op">←</span> <span class="tok-nu">0</span>xf3
+    print a ⇐ <span class="tok-op">-</span><span class="tok-nu">1</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusbitsbits-via-required-rejectfab-supporting-reject">radix/corpus/bits/bits-via-required-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusbitsbits-via-required-rejectfab-supporting-reject">#</a></h3><p>A list&lt;b8&gt; bulk conversion names its byte order: via Le or via Be.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># bits — A list&lt;b8&gt; bulk conversion names its byte order: via Le or via Be.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • a width-changing list conversion takes a via clause naming the byte order</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • writing raw ↦ list&lt;u16&gt; with no via clause — the two byte orders differ,</span>
+<span class="tok-co">#     so the compiler refuses to guess</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: bits-bulk</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># bits reject case — expected compile failure</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># This exemplum intentionally fails to compile.</span>
+
+main {
+    let list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-nu">0</span>x01, <span class="tok-nu">0</span>x02, <span class="tok-nu">0</span>x03, <span class="tok-nu">0</span>x04]
+    let list<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> le <span class="tok-op">←</span> raw ↦ list<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span>
+    print le
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-bulk-lafab-canonical-conversio">radix/corpus/bits/bits-bulk-la.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-bulkfab-canonical-conversio">radix/corpus/bits/bits-bulk.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-display-lafab-canonical-display">radix/corpus/bits/bits-display-la.fab (canonical · display)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-display-optional-lafab-canonical-display">radix/corpus/bits/bits-display-optional-la.fab (canonical · display)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-display-optionalfab-canonical-display">radix/corpus/bits/bits-display-optional.fab (canonical · display)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-displayfab-canonical-display">radix/corpus/bits/bits-display.fab (canonical · display)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-literals-lafab-canonical-literal">radix/corpus/bits/bits-literals-la.fab (canonical · literal)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-literalsfab-canonical-literal">radix/corpus/bits/bits-literals.fab (canonical · literal)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-operations-lafab-canonical-operator-group">radix/corpus/bits/bits-operations-la.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-operationsfab-canonical-operator-group">radix/corpus/bits/bits-operations.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-order-lafab-canonical-operator-group">radix/corpus/bits/bits-order-la.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-orderfab-canonical-operator-group">radix/corpus/bits/bits-order.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-text-lafab-canonical-conversio">radix/corpus/bits/bits-text-la.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-textfab-canonical-conversio">radix/corpus/bits/bits-text.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-arithmetic-reject-lafab-supporting-reject">radix/corpus/bits/bits-arithmetic-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-arithmetic-rejectfab-supporting-reject">radix/corpus/bits/bits-arithmetic-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-bulk-hint-reject-lafab-supporting-reject">radix/corpus/bits/bits-bulk-hint-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-bulk-hint-rejectfab-supporting-reject">radix/corpus/bits/bits-bulk-hint-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-conversion-width-rejectfab-supporting-reject">radix/corpus/bits/bits-conversion-width-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-literal-range-reject-lafab-supporting-reject">radix/corpus/bits/bits-literal-range-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-literal-range-rejectfab-supporting-reject">radix/corpus/bits/bits-literal-range-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-mixing-reject-lafab-supporting-reject">radix/corpus/bits/bits-mixing-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-mixing-rejectfab-supporting-reject">radix/corpus/bits/bits-mixing-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-shift-negative-rejectfab-supporting-reject">radix/corpus/bits/bits-shift-negative-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-via-required-rejectfab-supporting-reject">radix/corpus/bits/bits-via-required-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/bits/bits-bulk-la.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

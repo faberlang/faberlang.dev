@@ -17,7 +17,7 @@ read [line]
 
 ## Common mistakes
 
-- Not checking is null before using the value — read may return null at end of input.
+- Not checking `is none` before using the value — `read` may return `null` at end of input.
 
 ## Grammar
 

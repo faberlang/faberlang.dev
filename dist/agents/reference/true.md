@@ -17,7 +17,7 @@ true [<expression>]
 
 ## Common mistakes
 
-- confusing true (the true literal) with not none (a null check) — true is a boolean value, not a presence test
+- confusing true (the true literal) with `not is none` (la `is not none`) — true is a boolean value, not a presence test
 
 ## Grammar
 

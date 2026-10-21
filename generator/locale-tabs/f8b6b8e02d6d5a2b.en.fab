@@ -1,0 +1,5 @@
+main {
+    let list<string ∪ int> mixed ← [1, "two", 3]
+    let _ inferred ← [1, 2, 3]
+    print mixed, inferred
+}

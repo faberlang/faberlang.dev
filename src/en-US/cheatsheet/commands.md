@@ -17,6 +17,7 @@ open [The faber CLI](/toolchain/cli.html).
 | `faber run <package>` | Interpret and execute an application package (never compiles) |
 | `faber test <package>` | Run package tests when the package defines test surfaces |
 | `faber explain <code>` | Read a stable diagnostic explanation |
+| `faber update --check` | See whether a newer release exists; `faber update` installs it |
 
 Start with `check`. It is the cheapest command and the one agents should run
 before proposing generated code as valid Faber.
@@ -95,6 +96,10 @@ faber run --device cpu <package>
 `reference` and `cpu` run kernels as ordinary functions on the MIR runner;
 today `cpu` is the same route as `reference`. Precedence is the CLI flag, then
 the manifest `[device] device`, then `auto`.
+
+Inside a kernel, integers are 32-bit: a 64-bit `int` is refused
+(`SEM008 nucleum_wide_integer`, or `nucleum_wide_intermediate` for a wide
+intermediate value). Write `i32`.
 
 See [device execution](/toolchain/cli.html#device-execution) for the contract.
 

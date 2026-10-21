@@ -1,0 +1,7 @@
+फलन identitas<T>(T datum) → T {
+    लौटाओ datum
+}
+
+आरंभ {
+    बैठा संख्या seven ← identitas<संख्या>(7)
+}

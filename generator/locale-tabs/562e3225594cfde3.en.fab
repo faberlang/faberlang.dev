@@ -1,0 +1,6 @@
+main {
+    let list<int> numeri ← [10, 20, 30]
+    for ref numeri let index {
+        print index, numeri[index]
+    }
+}

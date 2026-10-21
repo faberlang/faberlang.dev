@@ -32,6 +32,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | ---------------  -----------  --------------
 | all              omnia        الكل
 | and              et           و
+| annotation       annotatio    تعليق_توضيحي
 | any              quilibet     أي
 | argmax           argmaxima    فهرس_الأكبر
 | argmin           argminima    فهرس_الأصغر
@@ -61,6 +62,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | coalesce         vel          عوض
 | column           columna      عمود
 | command          imperium     أمر
+| commands         imperia      أوامر
 | comptime         praefixum    بادئة
 | const            fixum        ثابت
 | continue         perge        تابع
@@ -116,7 +118,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | name             nomen        اسم
 | nan              nonnumerus   nan
 | not              non          ليس
-| null             nulla        خال
+| null             nulla        غائب
 | only             solum        فقط
 | only_in          solum_in     حصري
 | operand          operandus    معامل
@@ -178,6 +180,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | unstable         nondum       غير_مستقر
 | until            usque        حتى
 | variant          finge        أنشئ
+| version          versio       إصدار
 | vertex           vertex       رأس
 | via              via          عبر
 | warn             mone         نبه
@@ -208,7 +211,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | frame        scrinium     إطار
 | instant      instans      لحظة
 | int          numerus      عدد
-| intervallum  intervallum  فترة
 | iterator     cursor_t     مؤشر
 | json         json         جسون
 | ledger       tabulae      دفتر
@@ -216,10 +218,11 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | map          tabula       جدول
 | matrix       matrix       مصفوفة
 | never        numquam      أبدا
-| none         nihil        نوع_لاشيء
+| none         nihil        لاشيء
 | object       objectum     كائن
 | promise      promissum    وعد
 | queue        queue        طابور
+| range        intervallum  فترة
 | record       ratio        ratio
 | recv         tuus         استقبال
 | reflect      reflexa      انعكاس_الحافة
@@ -228,7 +231,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | send         meus         إرسال
 | series       series       سلسلة
 | set          copia        مجموعة
-| sparsa       sparsa       متفرقة
+| sparse       sparsa       متفرقة
 | stack        stack        مكدس
 | string       textus       نص
 | tensor       tensor       موتر
@@ -265,6 +268,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | bit_and_assign        coniunge               و_بت_إسناد
 | bit_or                disiuncta              أو_بت
 | bit_or_assign         disiunge               أو_بت_إسناد
+| cbrt                  radix_cubica           الجذر_التكعيبي
 | ceiling               tectum                 تقريب_لأعلى
 | clamp                 coercere               قيد
 | compare_exchange      compare_exchange       قارن_وبدل
@@ -285,6 +289,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | divide                divida                 اقسم
 | divided               divisa                 مقسوم
 | dot                   productum              الجداء_النقطي
+| drain                 exhauri                استنزف
 | drop                  omissa                 أسقط
 | end                   terminus               النهاية
 | ends_with             finis                  ينتهي_ب
@@ -296,6 +301,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | filter                filtrata               رشح
 | find                  inventa                ابحث
 | find_all              collecta               ابحث_عن_الكل
+| finish                fini                   أنهي
 | first                 primus                 الأول
 | flatten               planata                سطح
 | flip                  alterna                اقلب

@@ -1,0 +1,5 @@
+bắt_đầu {
+    đặt số good ← "42" ↦ số ⊥ 0
+    đặt số bad ← "not a number" ↦ số ⊥ 0
+    ghi_chú good, bad
+}

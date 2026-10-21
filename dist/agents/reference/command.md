@@ -12,9 +12,9 @@ CLI root with options, operands, subcommands, and module mounts.
 
 ## What this teaches
 
-- Full CLI framework — `@ cli`, `@ versio`, `@ description`, `@ option`, `@ operand`, `@ command`, and `@ alias` compose a complete CLI application definition
+- Full CLI framework — `@ cli`, `@ version`, `@ description`, `@ option`, `@ operand`, `@ command`, and `@ alias` compose a complete CLI application definition
 - Subcommands — `@ command "greet"` declares a subcommand with its own options and operands
-- Module mounting — `@ imperia` imports command modules from packages
+- Module mounting — `@ commands` imports command modules from packages
 
 ## Common mistakes
 
@@ -44,7 +44,7 @@ Cross-ref optio/, operandus/, descriptio/, ubique/, argumenta/ keyword dirs.
 
 ```fab
 @ cli "exemplum"
-@ versio "0.1.0"
+@ version "0.1.0"
 @ description "Faber CLI framework smoke exemplum"
 @ option verbose short "v" long "verbose" type bool global description "Enable verbose output"
 main args args {
@@ -68,6 +68,6 @@ fn version() → void {
 }
 ```
 
-See also: [`command`](command.md), [`imperia`](imperia.md), [`option`](option.md), [`operand`](operand.md), [`args`](args.md), [`description`](description.md), [`global`](global.md), [`versio`](versio.md), [`alias`](alias.md).
+See also: [`command`](command.md), [`commands`](commands.md), [`option`](option.md), [`operand`](operand.md), [`args`](args.md), [`description`](description.md), [`global`](global.md), [`version`](version.md), [`alias`](alias.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

@@ -1,0 +1,7 @@
+incipit {
+    sit intervallum<numerus> r ← 0 ‥ 3
+    nota r
+    itera ab r sit i {
+        nota i
+    }
+}

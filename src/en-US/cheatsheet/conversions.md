@@ -103,6 +103,23 @@ incipit {
 }
 ```
 
+## Bits and half floats {#bits}
+
+A number converts to raw bits of the same width and back. Converting into
+`f16` or `bf16` rounds to that format at the store.
+
+```faber locale-tabs
+incipit {
+    sit u32 n ← 255
+    sit b32 bits ← n ↦ b32
+    sit f16 half ← 0.1 ↦ f16
+    nota bits, bits ↦ u32, half ↦ f64
+}
+```
+
+This prints `0x000000ff 255 0.0999755859375`. A width that does not match,
+such as `u16 ↦ b32`, is `SEM016 bits_conversion_width_mismatch`.
+
 ## Conversion is not casting {#not-casting}
 
 | | Conversion `↦` | Casting |

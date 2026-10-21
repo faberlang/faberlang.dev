@@ -1,0 +1,6 @@
+bắt_đầu {
+    đặt danh_sách<f32> valores ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    đặt ten_xo<f32, [2, 3]> matrix ← valores ↦ ten_xo<f32, [2, 3]>
+    đặt f32 medium ← matrix.trung_bình()
+    ghi_chú medium
+}

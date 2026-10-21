@@ -32,6 +32,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | ---------------  -----------  --------------
 | all              omnia        全部
 | and              et           且
+| annotation       annotatio    註解
 | any              quilibet     任一
 | argmax           argmaxima    最大值索引
 | argmin           argminima    最小值索引
@@ -61,6 +62,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | coalesce         vel          或取
 | column           columna      欄位
 | command          imperium     命令
+| commands         imperia      命令集
 | comptime         praefixum    前綴
 | const            fixum        定值
 | continue         perge        繼續
@@ -116,7 +118,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | name             nomen        名稱
 | nan              nonnumerus   nan
 | not              non          非
-| null             nulla        可空
+| null             nulla        缺失
 | only             solum        僅限
 | only_in          solum_in     僅限於
 | operand          operandus    操作數
@@ -178,6 +180,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | unstable         nondum       不穩定
 | until            usque        直到
 | variant          finge        虛構
+| version          versio       版本
 | vertex           vertex       頂點
 | via              via          經由
 | warn             mone         警告
@@ -208,7 +211,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | frame        scrinium     幀
 | instant      instans      執行個體
 | int          numerus      整數
-| intervallum  intervallum  區間
 | iterator     cursor_t     游標
 | json         json         JSON
 | ledger       tabulae      帳本
@@ -220,6 +222,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | object       objectum     物件
 | promise      promissum    承諾
 | queue        queue        佇列
+| range        intervallum  區間
 | record       ratio        ratio
 | recv         tuus         接收
 | reflect      reflexa      反射
@@ -228,7 +231,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | send         meus         發送
 | series       series       序列
 | set          copia        副本
-| sparsa       sparsa       稀疏
+| sparse       sparsa       稀疏
 | stack        stack        堆疊
 | string       textus       文字
 | tensor       tensor       張量
@@ -265,6 +268,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | bit_and_assign        coniunge               位元與指派
 | bit_or                disiuncta              位元或
 | bit_or_assign         disiunge               位元或指派
+| cbrt                  radix_cubica           立方根
 | ceiling               tectum                 向上取整
 | clamp                 coercere               限幅
 | compare_exchange      compare_exchange       比較並交換
@@ -285,6 +289,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | divide                divida                 除以
 | divided               divisa                 已除以
 | dot                   productum              點積
+| drain                 exhauri                耗盡
 | drop                  omissa                 捨棄
 | end                   terminus               結束
 | ends_with             finis                  結尾是
@@ -296,6 +301,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | filter                filtrata               過濾
 | find                  inventa                尋找
 | find_all              collecta               尋找全部
+| finish                fini                   結束
 | first                 primus                 第一個
 | flatten               planata                展平
 | flip                  alterna                翻轉

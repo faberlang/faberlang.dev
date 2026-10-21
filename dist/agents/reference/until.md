@@ -17,7 +17,7 @@ Creates an inclusive range with a Latin keyword.
 
 ## Common mistakes
 
-- confusing until (inclusive range bound) with while (loop) or intervallum (range type)
+- confusing until (inclusive range bound) with while (loop) or range (range type)
 
 ## Grammar
 

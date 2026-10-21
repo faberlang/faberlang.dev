@@ -53,4 +53,41 @@ main {
     quadratum.depinge()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>circulus radius: 25
 quadratum latus: 15
-</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusimplendumimplendumfab-canonical-keyword">radix/corpus/implendum/implendum.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/implendum/implendum.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+</code></pre><h3 id="radixcorpusimplendumconformance-missing-method-rejectfab-supporting-reject">radix/corpus/implendum/conformance-missing-method-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusimplendumconformance-missing-method-rejectfab-supporting-reject">#</a></h3><p>A class that implements an interface must declare every interface method.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># This exemplum intentionally fails to compile: `Circulus` implements</span>
+<span class="tok-co"># `Figurabile` without declaring `depinge`.</span>
+
+interface Figurabile {
+    fn depinge() <span class="tok-op">→</span> void
+    fn name() <span class="tok-op">→</span> string
+}
+
+class Circulus implements Figurabile {
+    mut int radius <span class="tok-op">=</span> <span class="tok-nu">1</span>
+
+    fn name() <span class="tok-op">→</span> string {
+        return <span class="tok-st">"circulus"</span>
+    }
+}
+
+main {
+    let Circulus circulus <span class="tok-op">←</span> Circulus { radius <span class="tok-op">=</span> <span class="tok-nu">2</span> }
+    print circulus.nomen()
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusimplendumconformance-signature-rejectfab-supporting-reject">radix/corpus/implendum/conformance-signature-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusimplendumconformance-signature-rejectfab-supporting-reject">#</a></h3><p>A class that implements an interface must match each method's signature.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># This exemplum intentionally fails to compile: `Quadratum` declares `area`</span>
+<span class="tok-co"># with a `string` return where `Figurabile` requires `int`.</span>
+
+interface Figurabile {
+    fn area() <span class="tok-op">→</span> int
+}
+
+class Quadratum implements Figurabile {
+    mut int latus <span class="tok-op">=</span> <span class="tok-nu">3</span>
+
+    fn area() <span class="tok-op">→</span> string {
+        return <span class="tok-st">"nine"</span>
+    }
+}
+
+main {
+    let Quadratum quadratum <span class="tok-op">←</span> Quadratum { latus <span class="tok-op">=</span> <span class="tok-nu">4</span> }
+    print quadratum.area()
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusimplendumimplendumfab-canonical-keyword">radix/corpus/implendum/implendum.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusimplendumconformance-missing-method-rejectfab-supporting-reject">radix/corpus/implendum/conformance-missing-method-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusimplendumconformance-signature-rejectfab-supporting-reject">radix/corpus/implendum/conformance-signature-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/implendum/implendum.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

@@ -1,0 +1,7 @@
+bắt_đầu {
+    đặt danh_sách<văn_bản> nomina ← ["Alia", "Brunus"]
+    đặt danh_sách<số> aetates ← [34, 27]
+    lặp từ nomina, aetates tại [i] đặt nomen, aetas {
+        ghi_chú i, nomen, aetas
+    }
+}

@@ -1,5 +1,0 @@
-incipit {
-    fixum lista<f32> flat ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    fixum tensor<f32, [2, 3]> m ← flat ↦ tensor<f32, [2, 3]>
-    nota m.media()
-}

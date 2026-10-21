@@ -30,5 +30,9 @@ main {
 }
 ```
 
+A number of the same width converts to bits and back: `n ↦ b32` for a `u32`
+or `i32`, then `bits ↦ u32`. A different width is `SEM016`
+`bits_conversion_width_mismatch`.
+
 Parent: https://faberlang.dev/agents/types.md
 Next: https://faberlang.dev/agents/types/null.md

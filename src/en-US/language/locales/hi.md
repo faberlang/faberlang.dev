@@ -32,6 +32,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | ---------------  -----------  --------------
 | all              omnia        सभी
 | and              et           और
+| annotation       annotatio    टीका
 | any              quilibet     कोई
 | argmax           argmaxima    argmax
 | argmin           argminima    argmin
@@ -61,6 +62,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | coalesce         vel          डिफ़ॉल्ट
 | column           columna      कॉलम
 | command          imperium     आदेश
+| commands         imperia      आदेश_सूची
 | comptime         praefixum    उपसर्ग
 | const            fixum        स्थिर
 | continue         perge        जारी
@@ -116,7 +118,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | name             nomen        नाम
 | nan              nonnumerus   nan
 | not              non          नहीं
-| null             nulla        शून्यवत्
+| null             nulla        अभाव
 | only             solum        केवल
 | only_in          solum_in     केवलमें
 | operand          operandus    ऑपरेंड
@@ -178,6 +180,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | unstable         nondum       अस्थिर
 | until            usque        तक
 | variant          finge        गढ़ो
+| version          versio       संस्करण
 | vertex           vertex       शीर्ष
 | via              via          द्वारा
 | warn             mone         चेताओ
@@ -208,7 +211,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | frame        scrinium     फ़्रेम
 | instant      instans      क्षण
 | int          numerus      संख्या
-| intervallum  intervallum  अंतराल
 | iterator     cursor_t     कर्सर
 | json         json         json
 | ledger       tabulae      बही
@@ -216,10 +218,11 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | map          tabula       तालिका
 | matrix       matrix       आव्यूह
 | never        numquam      कभीनहीं
-| none         nihil        शून्य_मान
+| none         nihil        कुछनहीं
 | object       objectum     वस्तु
 | promise      promissum    वादा
 | queue        queue        कतार
+| range        intervallum  अंतराल
 | record       ratio        ratio
 | recv         tuus         पाना
 | reflect      reflexa      किनारा_परावर्तन
@@ -228,7 +231,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | send         meus         भेजना
 | series       series       शृंखला
 | set          copia        समुच्चय
-| sparsa       sparsa       विरल
+| sparse       sparsa       विरल
 | stack        stack        स्टैक
 | string       textus       पाठ
 | tensor       tensor       टेंसर
@@ -265,6 +268,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | bit_and_assign        coniunge               बिट_और_सौंपो
 | bit_or                disiuncta              बिट_या
 | bit_or_assign         disiunge               बिट_या_सौंपो
+| cbrt                  radix_cubica           घनमूल
 | ceiling               tectum                 ऊपर_पूर्णांक
 | clamp                 coercere               सीमित_करो
 | compare_exchange      compare_exchange       तुलना_और_बदलो
@@ -285,6 +289,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | divide                divida                 भाग_दो
 | divided               divisa                 विभाजित
 | dot                   productum              बिंदु_गुणनफल
+| drain                 exhauri                खाली_करो
 | drop                  omissa                 आरंभ_छोड़ो
 | end                   terminus               अंत
 | ends_with             finis                  पर_समाप्त
@@ -296,6 +301,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | filter                filtrata               छानो
 | find                  inventa                खोज
 | find_all              collecta               सभी_खोज
+| finish                fini                   समाप्त_करो
 | first                 primus                 पहला
 | flatten               planata                समतल_करो
 | flip                  alterna                पलटो

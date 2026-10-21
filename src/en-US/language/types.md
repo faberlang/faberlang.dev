@@ -101,6 +101,30 @@ incipit {
 }
 ```
 
+The conversion runs both ways between a bits type and a number of the same
+width: `n ↦ b32` for a `u32` or `i32`, and back with `↦ u32`. A width that
+does not match is `SEM016 bits_conversion_width_mismatch`, and a literal
+negative shift count is `SEM010 shift_count_negative`. Converting into `f16`
+or `bf16` rounds to that format at the store.
+
+```faber locale=en
+main {
+    let u32 n ← 7
+    let b32 bits ← n ↦ b32
+    let u32 back ← bits ↦ u32
+    print bits, back
+
+    let f16 h ← 0.1 ↦ f16
+    print h ↦ f64
+
+    let b8 flags ← 0xf0
+    print flags ⇒ 4
+}
+```
+
+This prints `0x00000007 7`, then `0.0999755859375` (the nearest `f16` to
+0.1), then `0x0f`.
+
 ### Nullable types {#nullable-types}
 
 Nullable values use the union syntax `T ∪ nihil`:
@@ -145,6 +169,33 @@ functio identitas<T>(T datum) → T { redde datum }
 
 incipit {
     sit numerus seven ← identitas<numerus>(7)
+}
+```
+
+### Interfaces {#interfaces}
+
+An `interface` (la `implendum`) is a contract of methods, and a `class` that
+says `implements` (la `implet`) must keep it. The compiler checks the
+contract: a missing method is `SEM010 implet_missing_method`, and a method
+whose signature differs from the contract's is
+`SEM010 implet_method_signature_mismatch`.
+
+```faber locale=en
+interface Shape {
+    fn area() → f64
+}
+
+class Square implements Shape {
+    let f64 side
+
+    fn area() → f64 {
+        return self.side * self.side
+    }
+}
+
+main {
+    let Square sq ← Square { side = 3.0 }
+    print sq.area()
 }
 ```
 
@@ -438,7 +489,34 @@ incipit {
 }
 ```
 
-Key methods: `length`, `get`, `append`, `sum`, `first`, `last`.
+Key methods: `length`, `get`, `append`, `sum`, `first`, `last`, `take`,
+`slice`.
+
+`take(n)` and `slice(a, b)` are checked windows. A window that runs past the
+end of the list is reported, not clamped, so both are failable: outside
+`main` the call needs a handler (a `⊥` recovery value, a `do { } catch`, or a
+failable enclosing function), or it is `SEM011 failable_call_requires_handler`.
+Inside `main` an unhandled failure ends the program with `take_out_of_range`
+or `slice_out_of_range`.
+
+```faber locale=en
+fn head(list<int> xs, int n) → list<int> {
+    return xs.take(n) ⊥ xs
+}
+
+main {
+    let list<int> xs ← [1, 2, 3, 4, 5]
+    print head(xs, 2)
+    print head(xs, 9)
+    print xs.slice(1, 3) ⊥ []
+}
+```
+
+This prints `[1, 2]`, `[1, 2, 3, 4, 5]` and `[2, 3]`. Before 1.15 the second
+call clamped silently; it now falls back to `xs` because the window failed.
+The runner and the Rust target check windows this way; generated Python
+still clamps, and the TypeScript target refuses the `⊥` form
+(`CODEGEN001 ts_trap_expression_unsupported`).
 
 ### Tabula — key-value map {#tabula}
 
@@ -487,6 +565,20 @@ main {
 }
 ```
 
+A rank-1 tensor takes a range in brackets and gives that window as a new
+tensor. A literal range that falls outside a literal shape is
+`SEM011 index_provably_out_of_bounds`.
+
+```faber locale=en
+main {
+    let tf32[6] v ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0] ↦ tf32[6]
+    let tf32[3] mid ← v[1‥4]
+    print mid
+}
+```
+
+This prints `[2.0, 3.0, 4.0]`.
+
 Key methods: `reshape`, `get`, `set`, `create`, `tensor.structa` (Latin
 namespace lookup, not a receiver method), plus elementwise
 `added`/`subtract`/`multiply`/`divide`/`negate`, matrix multiplication
@@ -494,9 +586,12 @@ namespace lookup, not a receiver method), plus elementwise
 
 ### Sparsa — sparse fixed-shape buffer {#sparsa}
 
+The English spelling is `sparse` (since 1.15; an English file that writes
+the Latin `sparsa` is `PARSE040 wrong_locale_type`).
+
 ```faber locale=en
 main {
-    mut sparsa<f32, [2, 3]> sparse ← empty
+    mut sparse<f32, [2, 3]> sparse ← empty
     sparse.set([0, 1], 4.0)
     sparse.set([1, 2], 9.0)
 
@@ -549,6 +644,26 @@ itera ab 0…5 sit i {
 ```
 
 `‥` is exclusive range endpoint; `…` is inclusive.
+
+A range is also a value. The English type word is `range` (since 1.15; an
+English file that writes the Latin `intervallum` is
+`PARSE040 wrong_locale_type`). A range stored in a cell can be walked, and
+printing it shows its construction:
+
+```faber locale=en
+main {
+    let range<int> r ← 2‥5
+    print r
+    for range r let i {
+        print i
+    }
+}
+```
+
+This prints `2‥5`, then `2`, `3` and `4`. A stepped range works in a loop
+(`for range 0‥10 step 2 let i`), but storing one in a cell is not supported
+yet: `let range<int, 2> r ← 0‥10 step 2` is
+`SEM010 intervallum_value_step_unsupported`.
 
 ## String and template literals
 
@@ -766,6 +881,9 @@ incipit {
     sit _ body ← ad 'solum:lege' (path) ↦ textus
 }
 ```
+
+Not every pair converts. Text does not convert to a list of characters with
+`↦`; that is refused by name (`SEM016 textus_to_lista_unsupported`).
 
 ### Static ascription — ∷ {#static-ascription}
 

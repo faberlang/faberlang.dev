@@ -7,8 +7,8 @@
 <span class="tok-co">#   • The value conditional — `c ✓ a ✗ b` yields `a` when `c` holds, else `b`.</span>
 <span class="tok-co">#     The glyphs are U+2713 CHECK MARK and U+2717 BALLOT X, the same in every</span>
 <span class="tok-co">#     locale; there is no word spelling.</span>
-<span class="tok-co">#   • Narrowing — the branches narrow like `if` branches: after `x not is null`</span>
-<span class="tok-co">#     the `✓` branch sees `x` as non-null.</span>
+<span class="tok-co">#   • Narrowing — the branches narrow like `if` branches: after `x not is none`</span>
+<span class="tok-co">#     the `✓` branch sees `x` as non-`null`.</span>
 <span class="tok-co">#   • One level only — a `✓ ✗` inside another `✓ ✗` (in the condition or in</span>
 <span class="tok-co">#     either branch) is rejected. More than two outcomes read better as</span>
 <span class="tok-co">#     `if`/`elif`/`else`, a `match`, or a small function that `return`s each</span>
@@ -68,4 +68,16 @@ B
 maximum: 30
 defectum
 licet bibere
-</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusternariusternariusfab-canonical-operator-group">radix/corpus/ternarius/ternarius.fab (canonical · operator-group)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/ternarius/ternarius.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+</code></pre><h3 id="radixcorpusternariusnested-rejectfab-supporting-reject">radix/corpus/ternarius/nested-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusternariusnested-rejectfab-supporting-reject">#</a></h3><p>A value conditional cannot be nested; the <code class="glyph">✓</code> conditional has one level only.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># ✓ ✗ — nested value conditionals are refused</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Use a function or an `if` ladder when a value conditional needs more cases.</span>
+<span class="tok-co"># =============================================================================</span>
+
+fn sign(int n) <span class="tok-op">→</span> int {
+    return n ≺ <span class="tok-nu">0</span> ✓ <span class="tok-op">-</span><span class="tok-nu">1</span> ✗ n <span class="tok-op">≡</span> <span class="tok-nu">0</span> ✓ <span class="tok-nu">0</span> ✗ <span class="tok-nu">1</span>
+}
+
+main {
+    print sign(<span class="tok-op">-</span><span class="tok-nu">4</span>)
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusternariusternariusfab-canonical-operator-group">radix/corpus/ternarius/ternarius.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusternariusnested-rejectfab-supporting-reject">radix/corpus/ternarius/nested-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/ternarius/ternarius.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

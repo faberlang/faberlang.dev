@@ -123,7 +123,7 @@ true
 <span class="tok-co">#   • Lifting — a scalar operator applied per element: `a + 1.0`, `10.0 - a`, `a * 0.5`</span>
 <span class="tok-co">#   • `* / %` lift only against a scalar; a tensor times a tensor is `⊙` (elementwise) or `·` (contraction)</span>
 <span class="tok-co">#   • Division has two kinds — `/` floors on integers, `÷` is true division (16-bit and narrower integers give f32)</span>
-<span class="tok-co">#   • Integer results follow the scalar range rule and width applies at the store: `/` on `i16` is typed `i32` (the bound is [-M, M]), so storing it back into an `i16` tensor is an explicit `↦`; `%` by a positive constant is non-negative and fits a wider tensor directly</span>
+<span class="tok-co">#   • Integer results follow the scalar range rule and width applies at the store: `/` on `i16` is typed `i32` (the bound is [-M, M]), so storing it back into an `i16` tensor narrows at the store like a scalar, checked implicitly; the explicit `↦` stays optional; `%` by a positive constant is non-negative and fits a wider tensor directly</span>
 <span class="tok-co">#   • Extrema — `a ⤒ b` and `a ⤓ b` pick the larger or smaller element of two same-shape tensors</span>
 <span class="tok-co">#   • Widths follow the scalar rules: an untyped constant takes part by value, a family crossing needs `↦`</span>
 <span class="tok-co">#</span>
@@ -140,7 +140,8 @@ true
 <span class="tok-co"># WHY: each operator is the scalar operator applied to every element, so the</span>
 <span class="tok-co"># runner's answer for one element is the answer for the whole tensor. An integer</span>
 <span class="tok-co"># result is typed by the scalar range rule and is stored per element into the</span>
-<span class="tok-co"># declared tensor; a result wider than the declared element converts with `↦`.</span>
+<span class="tok-co"># declared tensor; a result wider than the declared element narrows at the store,</span>
+<span class="tok-co"># checked implicitly like a scalar (an explicit `↦` stays optional).</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED stdout:</span>
 <span class="tok-co">#   [2.0, 3.0, 4.0, 5.0]</span>
@@ -149,6 +150,7 @@ true
 <span class="tok-co">#   [0.25, 0.5, 0.75, 1.0]</span>
 <span class="tok-co">#   [1.0, 2.0, 0.0, 1.0]</span>
 <span class="tok-co">#   [-1.0, -2.0, -3.0, -4.0]</span>
+<span class="tok-co">#   [0, 1, 1, 2]</span>
 <span class="tok-co">#   [0, 1, 1, 2]</span>
 <span class="tok-co">#   [1, 0, 1, 0]</span>
 <span class="tok-co">#   [0.5, 1.0, 1.5, 2.0]</span>
@@ -185,6 +187,9 @@ main {
     let tensor<span class="tok-op">&lt;</span>i16, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> floored <span class="tok-op">←</span> (n <span class="tok-op">/</span> <span class="tok-nu">2</span>) ↦ tensor<span class="tok-op">&lt;</span>i16, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
     let list<span class="tok-op">&lt;</span>i16<span class="tok-op">&gt;</span> floored_out <span class="tok-op">←</span> floored.flatten()
     print floored_out
+    let tensor<span class="tok-op">&lt;</span>i16, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> floored_implicit <span class="tok-op">←</span> n <span class="tok-op">/</span> <span class="tok-nu">2</span>
+    let list<span class="tok-op">&lt;</span>i16<span class="tok-op">&gt;</span> floored_implicit_out <span class="tok-op">←</span> floored_implicit.flatten()
+    print floored_implicit_out
     let tensor<span class="tok-op">&lt;</span>i16, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> odd <span class="tok-op">←</span> n <span class="tok-op">%</span> <span class="tok-nu">2</span>
     let list<span class="tok-op">&lt;</span>i16<span class="tok-op">&gt;</span> odd_out <span class="tok-op">←</span> odd.flatten()
     print odd_out
@@ -204,6 +209,7 @@ main {
 [0.25, 0.5, 0.75, 1.0]
 [1.0, 2.0, 0.0, 1.0]
 [-1.0, -2.0, -3.0, -4.0]
+[0, 1, 1, 2]
 [0, 1, 1, 2]
 [1, 0, 1, 0]
 [0.5, 1.0, 1.5, 2.0]
@@ -340,4 +346,173 @@ main {
     let tensor<span class="tok-op">&lt;</span>i64, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> i64_b <span class="tok-op">←</span> empty
     let tensor<span class="tok-op">&lt;</span>i32, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> mixed <span class="tok-op">←</span> i32_a <span class="tok-op">+</span> i64_b
     print mixed.length()
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpustensordeclfab-canonical-type">radix/corpus/tensor/decl.fab (canonical · type)</a></li><li class="toc-3"><a href="#radixcorpustensorequality-wholefab-canonical-operator-group">radix/corpus/tensor/equality-whole.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpustensorlift-arithfab-canonical-operator-group">radix/corpus/tensor/lift-arith.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpustensorlift-comparefab-canonical-operator-group">radix/corpus/tensor/lift-compare.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpustensorarithmetic-rejectfab-supporting-reject">radix/corpus/tensor/arithmetic-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/tensor/decl.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpustensorelementwise-division-rejectfab-supporting-reject">radix/corpus/tensor/elementwise-division-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpustensorelementwise-division-rejectfab-supporting-reject">#</a></h3><p><code class="glyph">/</code> between two aggregates is not elementwise; ⊘ floors and ÷ is true division.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># tensor — `/` between two aggregates names neither division.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Elementwise division has two spellings, and they differ on integers:</span>
+<span class="tok-co">#     `⊘` floors, `÷` is true division.</span>
+<span class="tok-co">#   • `/` between two aggregates picks neither, so it is refused by name and</span>
+<span class="tok-co">#     the source must say which rounding it wants.</span>
+<span class="tok-co">#   • `/` stays scalar: dividing a tensor by a number.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: tensor, ⊘, ÷, glyph-elementwise</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># `/` over two [2] tensors: the elementwise glyph is ⊘ or ÷.</span>
+main {
+    let tf32[<span class="tok-nu">2</span>] a <span class="tok-op">←</span> [<span class="tok-nu">4.0</span>, <span class="tok-nu">9.0</span>] ↦ tf32[<span class="tok-nu">2</span>]
+    let tf32[<span class="tok-nu">2</span>] b <span class="tok-op">←</span> [<span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>] ↦ tf32[<span class="tok-nu">2</span>]
+    let tf32[<span class="tok-nu">2</span>] q <span class="tok-op">←</span> a <span class="tok-op">/</span> b
+    print q.flatten()
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpustensorformata-rejectfab-supporting-reject">radix/corpus/tensor/formata-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpustensorformata-rejectfab-supporting-reject">#</a></h3><p>Rejected route: a formata reshape whose target element count differs from the receiver.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># tensor — formata reshape with a mismatched element count is rejected</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • A `formata` reshape is a reinterpretation of the same elements: the</span>
+<span class="tok-co">#     target Figura's element count must equal the receiver's, checked at</span>
+<span class="tok-co">#     compile time (SEM010 tensor_formata_element_count_mismatch).</span>
+<span class="tok-co">#   • The checker refuses a mismatch rather than padding or truncating.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • expecting `formata` to resize — reshaping [1,2,3,4,5,6] (six elements) to</span>
+<span class="tok-co">#     4x2 (eight elements) has no defined fill, so it is a compile error.</span>
+<span class="tok-co"># =============================================================================</span>
+
+main {
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> l <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    let tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] data <span class="tok-op">←</span> l ↦ tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+
+<span class="tok-co">    # 8 elements requested from a 6-element receiver: rejected.</span>
+    let tf32[<span class="tok-nu">4</span>, <span class="tok-nu">2</span>] view <span class="tok-op">←</span> data.formata<span class="tok-op">&lt;</span>tf32[<span class="tok-nu">4</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>()
+    print view.flatten()
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpustensorglyph-cross-width-rejectfab-supporting-reject">radix/corpus/tensor/glyph-cross-width-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpustensorglyph-cross-width-rejectfab-supporting-reject">#</a></h3><p>Glyph × is the 3-space cross product: both operands must carry width 3.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># × — cross width must be 3 on both sides.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • `×` is the cross product of 3-space, so both operands carry width 3.</span>
+<span class="tok-co">#   • A width-4 operand has no cross product: the glyph is refused by name</span>
+<span class="tok-co">#     rather than falling back to an outer or elementwise product.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: tensor, ×, glyph-cross</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># × with a width-4 operand: cross is width-3 on both sides.</span>
+main {
+    let vf32[<span class="tok-nu">3</span>] a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">0.0</span>, <span class="tok-nu">0.0</span>] ↦ vf32[<span class="tok-nu">3</span>]
+    let vf32[<span class="tok-nu">4</span>] b <span class="tok-op">←</span> [<span class="tok-nu">0.0</span>, <span class="tok-nu">1.0</span>, <span class="tok-nu">0.0</span>, <span class="tok-nu">0.0</span>] ↦ vf32[<span class="tok-nu">4</span>]
+    let vf32[<span class="tok-nu">4</span>] c <span class="tok-op">←</span> a <span class="tok-op">×</span> b
+    print c
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpustensorglyph-hadamard-shape-rejectfab-supporting-reject">radix/corpus/tensor/glyph-hadamard-shape-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpustensorglyph-hadamard-shape-rejectfab-supporting-reject">#</a></h3><p>Glyph ⊙ requires identical operand shapes; it never stretches to broadcast.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># ⊙ — differing operand shapes are a named decline.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • `⊙` is pairwise elementwise: every lane of the left operand meets the</span>
+<span class="tok-co">#     lane at the same index on the right.</span>
+<span class="tok-co">#   • When the shapes differ there is no such lane, and no broadcast stretch is</span>
+<span class="tok-co">#     implied. Align the shapes at the source instead.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: tensor, ⊙, glyph-elementwise</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># ⊙ over [2] and [3]: Hadamard has no broadcast stretch.</span>
+main {
+    let tf32[<span class="tok-nu">2</span>] a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>] ↦ tf32[<span class="tok-nu">2</span>]
+    let tf32[<span class="tok-nu">3</span>] b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>] ↦ tf32[<span class="tok-nu">3</span>]
+    let tf32[<span class="tok-nu">2</span>] h <span class="tok-op">←</span> a ⊙ b
+    print h.flatten()
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpustensorglyph-scalar-operand-rejectfab-supporting-reject">radix/corpus/tensor/glyph-scalar-operand-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpustensorglyph-scalar-operand-rejectfab-supporting-reject">#</a></h3><p>Glyph ⊙ and ⊘ refuse a scalar operand: scale with <code class="glyph">*</code> and <code class="glyph">/</code> instead.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># ⊙ — a scalar operand is a named decline.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • `⊙` and `⊘` are elementwise operators over two shaped operands of the</span>
+<span class="tok-co">#     same shape; a scalar has no shape, so the pair is refused by name.</span>
+<span class="tok-co">#   • Scaling by a scalar keeps its own spelling: `*` and `/` on a tensor.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: tensor, ⊙, ⊘, glyph-elementwise</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># ⊙ with a scalar right operand: shaped-by-scalar is a named decline.</span>
+main {
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> l <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>]
+    let tf32[<span class="tok-nu">2</span>] a <span class="tok-op">←</span> l ↦ tf32[<span class="tok-nu">2</span>]
+    let tf32[<span class="tok-nu">2</span>] scaled <span class="tok-op">←</span> a ⊙ <span class="tok-nu">2.0</span>
+    print scaled.flatten()
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpustensorglyph-transpose-rank1-rejectfab-supporting-reject">radix/corpus/tensor/glyph-transpose-rank1-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpustensorglyph-transpose-rank1-rejectfab-supporting-reject">#</a></h3><p>Postfix ᵀ refuses a rank-1 tensor: there is no row/column distinction to swap.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># ᵀ — rank-1 transpose is a named decline.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • `ᵀ` swaps the row and column axes of a rank-2 tensor only.</span>
+<span class="tok-co">#   • A rank-1 tensor has one axis and no row/column distinction, so the</span>
+<span class="tok-co">#     postfix refuses it by name instead of guessing an identity transpose.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: tensor, ᵀ, glyph-transpose</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># ᵀ on a rank-1 tensor: no row/column distinction to swap.</span>
+main {
+    let tf32[<span class="tok-nu">3</span>] a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>] ↦ tf32[<span class="tok-nu">3</span>]
+    let tf32[<span class="tok-nu">3</span>] t <span class="tok-op">←</span> aᵀ.materialize()
+    print t.flatten()
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpustensormatrix-multiply-rejectfab-supporting-reject">radix/corpus/tensor/matrix-multiply-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpustensormatrix-multiply-rejectfab-supporting-reject">#</a></h3><p><code class="glyph">*</code> between two matrices is not the matrix product; <code class="glyph">·</code> is.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># matrix — `*` is a scalar operator, not the matrix product.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • The matrix product is a glyph: `·` contracts the inner dimensions.</span>
+<span class="tok-co">#   • `*` between two matrices is therefore a named decline, so the intent</span>
+<span class="tok-co">#     (product or elementwise) is never guessed from the shapes.</span>
+<span class="tok-co">#   • Elementwise pairing is `⊙`; `*` and `/` stay scalar scaling.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: tensor, matrix, ·, ⊙</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># `*` over two 2×2 matrices: the product glyph is `·`.</span>
+main {
+    let matrix<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [[<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>], [<span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>]] ↦ matrix<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
+    let matrix<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> a <span class="tok-op">*</span> a
+    print b
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpustensortensor-multiply-rejectfab-supporting-reject">radix/corpus/tensor/tensor-multiply-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpustensortensor-multiply-rejectfab-supporting-reject">#</a></h3><p><code class="glyph">*</code> between two tensors is not a product; ⊙ is the elementwise glyph.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># tensor — `*` is a scalar operator, not a tensor product.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • `*` between two tensors is a named decline, not a silent elementwise</span>
+<span class="tok-co">#     multiply: the shape-pairing rule belongs to an explicit glyph.</span>
+<span class="tok-co">#   • `⊙` is that glyph (elementwise), and `·` is the matrix product.</span>
+<span class="tok-co">#   • `*` and `/` stay in their scalar role: scaling a tensor by a scalar.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: tensor, ⊙, glyph-elementwise</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># `*` over two [2] tensors: the elementwise glyph is ⊙.</span>
+main {
+    let ti32[<span class="tok-nu">2</span>] a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>] ↦ ti32[<span class="tok-nu">2</span>]
+    let ti32[<span class="tok-nu">2</span>] b <span class="tok-op">←</span> a <span class="tok-op">*</span> a
+    print b.flatten()
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpustensorvector-multiply-rejectfab-supporting-reject">radix/corpus/tensor/vector-multiply-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpustensorvector-multiply-rejectfab-supporting-reject">#</a></h3><p><code class="glyph">*</code> between two vectors is not elementwise; the glyphs say which product.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># vector — `*` is a scalar operator, not a vector product.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • A rank-1 aggregate has two products with different answers: the</span>
+<span class="tok-co">#     elementwise `⊙` and the dot `·`.</span>
+<span class="tok-co">#   • `*` names neither, so it is refused by name instead of defaulting to</span>
+<span class="tok-co">#     one of them.</span>
+<span class="tok-co">#   • `*` and `/` stay scalar: scaling a vector by a number.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: tensor, vector, ⊙, ·</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># `*` over two [2] vectors: the product glyph is ⊙ or `·`.</span>
+main {
+    let vf32[<span class="tok-nu">2</span>] v <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>] ↦ vf32[<span class="tok-nu">2</span>]
+    let vf32[<span class="tok-nu">2</span>] w <span class="tok-op">←</span> v <span class="tok-op">*</span> v
+    print w
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpustensordeclfab-canonical-type">radix/corpus/tensor/decl.fab (canonical · type)</a></li><li class="toc-3"><a href="#radixcorpustensorequality-wholefab-canonical-operator-group">radix/corpus/tensor/equality-whole.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpustensorlift-arithfab-canonical-operator-group">radix/corpus/tensor/lift-arith.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpustensorlift-comparefab-canonical-operator-group">radix/corpus/tensor/lift-compare.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpustensorarithmetic-rejectfab-supporting-reject">radix/corpus/tensor/arithmetic-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpustensorelementwise-division-rejectfab-supporting-reject">radix/corpus/tensor/elementwise-division-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpustensorformata-rejectfab-supporting-reject">radix/corpus/tensor/formata-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpustensorglyph-cross-width-rejectfab-supporting-reject">radix/corpus/tensor/glyph-cross-width-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpustensorglyph-hadamard-shape-rejectfab-supporting-reject">radix/corpus/tensor/glyph-hadamard-shape-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpustensorglyph-scalar-operand-rejectfab-supporting-reject">radix/corpus/tensor/glyph-scalar-operand-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpustensorglyph-transpose-rank1-rejectfab-supporting-reject">radix/corpus/tensor/glyph-transpose-rank1-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpustensormatrix-multiply-rejectfab-supporting-reject">radix/corpus/tensor/matrix-multiply-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpustensortensor-multiply-rejectfab-supporting-reject">radix/corpus/tensor/tensor-multiply-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpustensorvector-multiply-rejectfab-supporting-reject">radix/corpus/tensor/vector-multiply-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/tensor/decl.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

@@ -28,24 +28,24 @@ main args args {
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • Full CLI framework — `@ cli`, `@ versio`, `@ description`, `@ option`,</span>
+<span class="tok-co">#   • Full CLI framework — `@ cli`, `@ version`, `@ description`, `@ option`,</span>
 <span class="tok-co">#     `@ operand`, `@ command`, and `@ alias` compose a complete CLI</span>
 <span class="tok-co">#     application definition</span>
 <span class="tok-co">#   • Subcommands — `@ command "greet"` declares a subcommand with its own</span>
 <span class="tok-co">#     options and operands</span>
-<span class="tok-co">#   • Module mounting — `@ imperia` imports command modules from packages</span>
+<span class="tok-co">#   • Module mounting — `@ commands` imports command modules from packages</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • attaching `@ cli` to a `fn` instead of an `main` (SEM009), or reusing duplicate CLI flags or binding names within the same CLI surface</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: command, imperia, option, operand, args, description,</span>
-<span class="tok-co">#   global, versio, alias</span>
+<span class="tok-co"># See also: command, commands, option, operand, args, description,</span>
+<span class="tok-co">#   global, version, alias</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># cli — structured CLI annotation tour</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># @ cli / @ versio / @ description / @ option / @ operand / @ command / @ alias</span>
-<span class="tok-co"># @ imperia mounts imported command modules (see package-cli fixture).</span>
+<span class="tok-co"># @ cli / @ version / @ description / @ option / @ operand / @ command / @ alias</span>
+<span class="tok-co"># @ commands mounts imported command modules (see package-cli fixture).</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
 <span class="tok-co">#   cliDecl :← '@' 'cli' stringLit</span>
@@ -59,7 +59,7 @@ main args args {
 <span class="tok-co">#   Cross-ref option/, operand/, description/, global/, args/ keyword dirs.</span>
 
 @ cli <span class="tok-st">"exemplum"</span>
-@ versio <span class="tok-st">"0.1.0"</span>
+@ version <span class="tok-st">"0.1.0"</span>
 @ description <span class="tok-st">"Faber CLI framework smoke exemplum"</span>
 @ option verbose short <span class="tok-st">"v"</span> long <span class="tok-st">"verbose"</span> type bool global description <span class="tok-st">"Enable verbose output"</span>
 main args args {

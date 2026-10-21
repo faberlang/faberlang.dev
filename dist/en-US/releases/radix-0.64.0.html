@@ -4,7 +4,7 @@
 <span class="tok-fn">tar</span> <span class="tok-op">-xzf</span> radix.tgz
 <span class="tok-fn">sudo</span> mv radix-v0.64.0-aarch64-apple-darwin/radix /usr/local/bin/
 <span class="tok-fn">radix</span> <span class="tok-op">--version</span></code></pre><h2 id="notes">Release notes<a class="anchor" href="#notes">#</a></h2><p>A dense single-day release shipping <strong>live channel directional views</strong>
-(<code>send&lt;T&gt;</code>/<code>recv&lt;T&gt;</code>), the <strong>recv cursor Phase 2 escape analysis</strong>, <strong>radix type parameter domains</strong>, the full <strong>`sparsa` sparse tensor type</strong> through
+(<code>send&lt;T&gt;</code>/<code>recv&lt;T&gt;</code>), the <strong>recv cursor Phase 2 escape analysis</strong>, <strong>radix type parameter domains</strong>, the full <strong>`sparse` sparse tensor type</strong> through
 Phase G (docs/exempla), and the <strong>legacy call syntax removal</strong> clean break.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>51</td></tr><tr><td><code>feat(...)</code> commits</td><td>2</td></tr><tr><td><code>fix(...)</code> commits</td><td>10</td></tr><tr><td>Date span</td><td>2026-07-01</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="live-channel-directional-views-sendt-recvt">Live channel directional views (<code>send&lt;T&gt;</code> / <code>recv&lt;T&gt;</code>)<a class="anchor" href="#live-channel-directional-views-sendt-recvt">#</a></h4><ul><li>Ship <code>send&lt;T&gt;</code> and <code>recv&lt;T&gt;</code> as shared-conversation runtime views with
 <code>da</code>/<code>accipe</code>/<code class="typ">iterator</code>/<code>exhauri</code>/<code>fini</code>. Demote <code>send</code>/<code>recv</code> from lexer
 keywords to type names. Wire compiler typecheck and Rust lowering to
@@ -23,17 +23,17 @@ bookkeeping. (<code>399667483</code>, <code>fcf58a19b</code>, <code>337a8a2a8</c
 domain annotations on generic parameters, HIR lowering, typecheck
 unification, and Rust codegen support. Add <code>solum-lege-generic</code> exemplar.
 Lock architecture decisions and refine annotation syntax in design docs.
-(<code>18064f65d</code>, <code>cda2e0ade</code>, <code>67aa915b8</code>)</li></ul><h4 id="sparsa-sparse-tensor-type-phases-ag"><code>sparsa</code> — sparse tensor type (Phases A–G)<a class="anchor" href="#sparsa-sparse-tensor-type-phases-ag">#</a></h4><ul><li><strong>Phase A:</strong> Design docs and EBNF grammar surface for <code>sparsa&lt;T, Figura&gt;</code>
+(<code>18064f65d</code>, <code>cda2e0ade</code>, <code>67aa915b8</code>)</li></ul><h4 id="sparse-sparse-tensor-type-phases-ag"><code>sparse</code> — sparse tensor type (Phases A–G)<a class="anchor" href="#sparse-sparse-tensor-type-phases-ag">#</a></h4><ul><li><strong>Phase A:</strong> Design docs and EBNF grammar surface for <code>sparse&lt;T, Figura&gt;</code>
 as a sibling sparse tensor type with omitted-coordinates-equal-zero
 semantics. (<code>8b20b902d</code>)</li><li><strong>Phase B:</strong> Parser recognition (<code>TypeExprKind::Sparsa</code>), semantic
 <code>Type::Sparsa</code> variant, exhaustiveness across all IR/codegen/MIR/forma
 arms, and numeric-only v1 enforcement. (<code>df581ffc3</code>)</li><li><strong>Phase C:</strong> Runtime core — <code>faber::Sparsa&lt;T&gt;</code> with <code>empty</code>, <code>accipe</code>,
 <code>ponde</code>, <code>nonnihil</code>, <code>densata</code> and 17 unit tests. (<code>d37b1d2f0</code>)</li><li><strong>Phase D:</strong> Intrinsic registration (<code>IntrinsicReceiver::Sparsa</code> with 6
 methods), Rust codegen (real <code>faber::Sparsa&lt;T&gt;</code> emit), typecheck routing,
-and empty literal resolution. (<code>878ec7ab4</code>, <code>1f98eb0ae</code>)</li><li>Fix 4 bugs: sparsa equality arm, empty typecheck acceptance, densata
+and empty literal resolution. (<code>878ec7ab4</code>, <code>1f98eb0ae</code>)</li><li>Fix 4 bugs: sparse equality arm, empty typecheck acceptance, densata
 zero-dim coordinate generation, and Go/TS fail-closed rejection.
 (<code>77adc5128</code>)</li><li>Tighten shape plumbing: extract standalone <code>codegen/rust/expr/call/sparsa.rs</code>
-module. (<code>bb9b214fb</code>); polish runtime lowering. (<code>31a32bc3d</code>)</li><li><strong>Phase E:</strong> Numeric type sugar (<code>sf32</code>, <code>si64[N]</code>) for sparsa shorthand.
+module. (<code>bb9b214fb</code>); polish runtime lowering. (<code>31a32bc3d</code>)</li><li><strong>Phase E:</strong> Numeric type sugar (<code>sf32</code>, <code>si64[N]</code>) for sparse shorthand.
 (<code>a12b1b73c</code>)</li><li><strong>Phase F:</strong> Conversio coverage — typecheck conversion rules and Rust
 codegen for sparsa-&gt;tensor and tensor-&gt;sparsar conversions.
 (<code>8ba98158b</code>, <code>73539bbaa</code>)</li><li><strong>Phase G:</strong> Exempla docs — full corpus fixtures (decl, access, conversion,

@@ -17,7 +17,7 @@ void
 
 ## Common mistakes
 
-- confusing void (void return type) with empty (empty collection initializer) or none (null singleton)
+- confusing void (void return type) with empty (empty collection initializer) or `none` (la `none`), the absent-member type whose value is `null`
 
 ## Grammar
 

@@ -74,7 +74,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [match](match.md) (`discerne`) — Starts an exhaustive pattern match over a value or values.
 - [mut](mut.md) (`in`) — Marks a mutable borrowed parameter.
 - [never](never.md) (`numquam`) — Primitive never type for code paths that do not return normally.
-- [none](none.md) (`nihil`) — Represents the null value and can prefix a null check.
+- [none](none.md) (`nihil`) — The absent-member type: none (la nihil) is the type, null (la nulla) is its value.
 - [not](not.md) (`non`) — Negates a boolean expression.
 - [object](object.md) (`objectum`) — Declares a type alias.
 - [only](only.md) (`solum`) — Marks a test as the only test to run.
@@ -140,7 +140,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [?.](?..md) — Null-safe member, index, and call access.
 - [?[](?[.md) — Null-safe member, index, and call access.
 - [and](and.md) (`et`) — Combines boolean expressions with logical and.
-- [coalesce](coalesce.md) (`vel`) — Provides a default when the left side is null.
+- [coalesce](coalesce.md) (`vel`) — Provides a default when the left side holds `null`.
 - [modulus<u16>](modulus<u16>.md) — Unsigned 16-bit modular-word arithmetic and bit-pattern edges.
 - [modulus<u32>](modulus<u32>.md) — Unsigned 32-bit modular-word arithmetic and bit-pattern edges.
 - [modulus<u64>](modulus<u64>.md) — Unsigned 64-bit modular-word arithmetic and bit-pattern edges.
@@ -189,10 +189,10 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [alias](alias.md) — CLI root with options, operands, subcommands, and module mounts.
 - [cli](cli.md) — CLI root with options, operands, subcommands, and module mounts.
 - [command](command.md) (`imperium`) — CLI root with options, operands, subcommands, and module mounts.
+- [commands](commands.md) (`imperia`) — CLI root with options, operands, subcommands, and module mounts.
 - [future](future.md) (`futura`) — Compatibility annotation for asynchronous posture.
-- [imperia](imperia.md) — CLI root with options, operands, subcommands, and module mounts.
 - [unstable](unstable.md) (`nondum`) — Marks an interface method as planned but unavailable for a target.
-- [versio](versio.md) — Attaches a version string to a CLI root.
+- [version](version.md) (`versio`) — Attaches a version string to a CLI root.
 
 ## Literals
 
@@ -222,7 +222,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 
 - [manifest](manifest.md) — faber.toml package metadata for build, run, and test.
 - [prae](prae.md) — Angle-bracket generic parameters on functions and declarations.
-- [primus_quem](primus_quem.md) — Dedicated total first-match expression: first live element of a source satisfying the owned ubi predicate, nihil for no-match and empty sources.
+- [primus_quem](primus_quem.md) — Dedicated total first-match expression: first live element of a source satisfying the owned ubi predicate, `nulla` for no-match and empty sources.
 - [sum](sum.md) (`summa`) — Sequential sum-reduce expression: reducta via summa ex <tensor> apud [i] sit s.
 - [targets](targets.md) — Compilation backends listed by faber targets or radix targets.
 - [thread](thread.md) (`filum`) — Distributed reducta via summa ex … filum kernel inside @ nucleum.

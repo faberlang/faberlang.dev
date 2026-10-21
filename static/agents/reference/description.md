@@ -46,6 +46,6 @@ main args args {
 }
 ```
 
-See also: [`versio`](versio.md).
+See also: [`version`](version.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

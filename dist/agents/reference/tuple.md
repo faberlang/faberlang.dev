@@ -19,7 +19,7 @@ tuple<gx: A, B>
 - objectPattern destructuring: let {gx, gw} ← pair
 - partial + rest: let {loss, rest leftover} ← metrics
 - element holes: tuple<f32, _> solved from the construction witness
-- binary cup element: tuple<f32, string ∪ null> Reject teaching rows (comments only; these must not become stage-3 inputs):
+- binary cup element: tuple<f32, string ∪ none> Reject teaching rows (comments only; these must not become stage-3 inputs):
 - ∪ element slot: tuple<f32, ∪>
 - mixed positional/label pattern: let [gx, {gw}] ← pair
 - .0 positional member: pair.0

@@ -1,5 +1,0 @@
-main {
-    const list<string> nomina ← ["Marcus", "Julia"]
-    const map<string, int> aetates ← { "Marcus": 30 }
-    print nomina, aetates
-}

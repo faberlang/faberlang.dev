@@ -1,0 +1,6 @@
+main {
+    let int limit ← 10
+    mut int count ← 0
+    count ← count + 1
+    print limit, count
+}

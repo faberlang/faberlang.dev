@@ -4,22 +4,22 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • Typed inbound stream — `s.tuus&lt;T&gt;()` creates a typed view over the</span>
-<span class="tok-co">#     incoming frames of a channel connection</span>
+<span class="tok-co">#   • Typed inbound stream — `s.recv&lt;T&gt;()` (la `s.tuus`) creates a typed</span>
+<span class="tok-co">#     view over the incoming frames of a channel connection</span>
 <span class="tok-co">#   • Cursor consumption — cursor() yields frames that can be iterated with</span>
 <span class="tok-co">#     `for from`</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • confusing call route syntax — accessing `recv&lt;T&gt;` stream after `fini()` has been called leaves no usable data</span>
+<span class="tok-co">#   • confusing call route syntax — accessing the `recv&lt;T&gt;` stream after `finish()` has been called leaves no usable data</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># See also: call, channel, frame, cursor</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-co"># sermo.tuus&lt;T&gt;() — typed inbound frame stream</span>
+<span class="tok-co"># s.recv&lt;T&gt;() — typed inbound frame stream (la s.tuus)</span>
 
 main {
     let channel s <span class="tok-op">←</span> call <span class="tok-st">'runtime:echo'</span> (<span class="tok-st">"salve"</span>)
-    for from s.tuus<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>().cursor() let frame {
+    for from s.recv<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>().cursor() let frame {
         assert frame.data <span class="tok-op">≡</span> <span class="tok-st">"salve"</span>
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code></code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusadsermo-tuusfab-canonical-method">radix/corpus/ad/sermo-tuus.fab (canonical · method)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/ad/sermo-tuus.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

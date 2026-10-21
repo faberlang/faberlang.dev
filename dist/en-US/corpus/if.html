@@ -119,4 +119,26 @@ main {
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>x maior quam 5
 Adult
 Can vote
-</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpussinidificatusfab-canonical-keyword">radix/corpus/si/nidificatus.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpussisifab-canonical-keyword">radix/corpus/si/si.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/si/nidificatus.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+</code></pre><h3 id="radixcorpussielse-if-rejectfab-supporting-reject">radix/corpus/si/else-if-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpussielse-if-rejectfab-supporting-reject">#</a></h3><p>The <code>else if</code> spelling is refused; use <code>elif</code> to continue a conditional ladder.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># if — the `else if` spelling is refused</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Continue a conditional ladder with `elif`; `else if` is not a second spelling.</span>
+<span class="tok-co"># =============================================================================</span>
+
+main {
+    let int n <span class="tok-op">←</span> <span class="tok-nu">5</span>
+    if n ≺ <span class="tok-nu">0</span> { print <span class="tok-st">"a"</span> } else if n ≺ <span class="tok-nu">10</span> { print <span class="tok-st">"b"</span> } else { print <span class="tok-st">"c"</span> }
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpussishadow-rejectfab-supporting-reject">radix/corpus/si/shadow-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpussishadow-rejectfab-supporting-reject">#</a></h3><p>Shadowing a local name is refused in a nested block.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># if — local variable shadowing is refused</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Give each local binding a distinct name, including inside conditional blocks.</span>
+<span class="tok-co"># =============================================================================</span>
+
+main {
+    let int x <span class="tok-op">←</span> <span class="tok-nu">1</span>
+    if true {
+        let int x <span class="tok-op">←</span> <span class="tok-nu">2</span>
+        print x
+    }
+    print x
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpussinidificatusfab-canonical-keyword">radix/corpus/si/nidificatus.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpussisifab-canonical-keyword">radix/corpus/si/si.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpussielse-if-rejectfab-supporting-reject">radix/corpus/si/else-if-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpussishadow-rejectfab-supporting-reject">radix/corpus/si/shadow-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/si/nidificatus.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

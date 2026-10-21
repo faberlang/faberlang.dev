@@ -55,4 +55,22 @@ test <span class="tok-st">"true path is recoverable"</span> {
     catch err {
 <span class="tok-co">        # recovered — reject entered ⇥ and catch intercepted it</span>
     }
-}</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusmetareicefab-canonical-keyword">radix/corpus/meta/reice.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/meta/reice.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+}</code></pre><h3 id="radixcorpusreicereice-iace-rejectfab-supporting-reject">radix/corpus/reice/reice-iace-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusreicereice-iace-rejectfab-supporting-reject">#</a></h3><p>Reject always names its payload with throw; the missing particle is refused by name.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># reject — a reject guard must name its payload</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • `reject cond throw err` always carries the `throw` particle (en `throw`) and</span>
+<span class="tok-co">#     the error value to throw. The particle is mandatory, so a guard that drops</span>
+<span class="tok-co">#     it is refused by name (PARSE001 reice_iace).</span>
+<span class="tok-co">#   • `reject` is the boolean twin of `require`: it desugars to</span>
+<span class="tok-co">#     `if (cond) { throw err }`, failing when the condition holds. There is no</span>
+<span class="tok-co">#     recoverable failure without something to throw.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • writing the guard as a bare condition — add `throw &lt;error&gt;` after it.</span>
+<span class="tok-co"># =============================================================================</span>
+
+main {
+    reject <span class="tok-nu">1</span> <span class="tok-op">≡</span> <span class="tok-nu">2</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusmetareicefab-canonical-keyword">radix/corpus/meta/reice.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusreicereice-iace-rejectfab-supporting-reject">radix/corpus/reice/reice-iace-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/meta/reice.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

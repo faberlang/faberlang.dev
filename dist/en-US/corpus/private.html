@@ -35,4 +35,75 @@ fn privatum() <span class="tok-op">→</span> string {
 main {
     print privatum()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>privata
-</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusprivataprivatafab-canonical-keyword">radix/corpus/privata/privata.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/privata/privata.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+</code></pre><h3 id="radixcorpusprivatacall-rejectfab-supporting-reject">radix/corpus/privata/call-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusprivatacall-rejectfab-supporting-reject">#</a></h3><p>Calling a <code>@ private</code> method from outside the type's own methods is a check error.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># private — private method call from outside the type</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># A `@ private` method is callable only from the type's own methods.</span>
+<span class="tok-co"># Outside the type the call is a check error: route callers through a</span>
+<span class="tok-co"># public method instead.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Calling a private method from outside the type (`v.secret()`).</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: private, class</span>
+<span class="tok-co"># =============================================================================</span>
+
+class V {
+    mut int a
+    @ private
+    fn secret() <span class="tok-op">→</span> int { return <span class="tok-nu">1</span> }
+    fn open() <span class="tok-op">→</span> int { return self.secret() }
+}
+
+main {
+    let V v <span class="tok-op">←</span> V { a <span class="tok-op">=</span> <span class="tok-nu">1</span> }
+    print v.open()
+    print v.secret()
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusprivataread-rejectfab-supporting-reject">radix/corpus/privata/read-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusprivataread-rejectfab-supporting-reject">#</a></h3><p>Reading a <code>@ private</code> field from outside the type's own methods is a check error.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># private — private field read from outside the type</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># A `@ private` field is reachable only from the type's own methods.</span>
+<span class="tok-co"># Outside the type it is not part of the surface: expose a method that</span>
+<span class="tok-co"># returns what callers need instead of reaching into the field.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Reading a private field from outside the type (`v.a`).</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: private, class</span>
+<span class="tok-co"># =============================================================================</span>
+
+class V {
+    @ private
+    mut int a
+    fn get() <span class="tok-op">→</span> int { return self.a }
+}
+
+main {
+    let V v <span class="tok-op">←</span> V { a <span class="tok-op">=</span> <span class="tok-nu">1</span> }
+    print v.get()
+    print v.a
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusprivatawrite-rejectfab-supporting-reject">radix/corpus/privata/write-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusprivatawrite-rejectfab-supporting-reject">#</a></h3><p>Storing to a <code>@ private</code> field from outside the type's own methods is a check error.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># private — private field store from outside the type</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># A `@ private` field is writable only from the type's own methods.</span>
+<span class="tok-co"># Outside the type a store is a check error even when the binding is</span>
+<span class="tok-co"># `mut`: an exported method is the way to change private state.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Storing to a private field from outside the type (`v.a ← 4`).</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: private, class</span>
+<span class="tok-co"># =============================================================================</span>
+
+class V {
+    @ private
+    mut int a
+    fn set(int x) <span class="tok-op">→</span> void { self.a <span class="tok-op">←</span> x }
+    fn get() <span class="tok-op">→</span> int { return self.a }
+}
+
+main {
+    mut V v <span class="tok-op">←</span> V { a <span class="tok-op">=</span> <span class="tok-nu">1</span> }
+    v.a <span class="tok-op">←</span> <span class="tok-nu">4</span>
+    print v.get()
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusprivataprivatafab-canonical-keyword">radix/corpus/privata/privata.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusprivatacall-rejectfab-supporting-reject">radix/corpus/privata/call-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusprivataread-rejectfab-supporting-reject">radix/corpus/privata/read-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusprivatawrite-rejectfab-supporting-reject">radix/corpus/privata/write-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/privata/privata.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

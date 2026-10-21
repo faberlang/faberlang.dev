@@ -54,4 +54,21 @@ test <span class="tok-st">"false path is recoverable"</span> {
     catch err {
 <span class="tok-co">        # recovered — require entered ⇥ and catch intercepted it</span>
     }
-}</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusmetarequiritfab-canonical-keyword">radix/corpus/meta/requirit.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/meta/requirit.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+}</code></pre><h3 id="radixcorpusrequiritrequirit-iace-rejectfab-supporting-reject">radix/corpus/requirit/requirit-iace-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusrequiritrequirit-iace-rejectfab-supporting-reject">#</a></h3><p>Require always names its payload with throw; the missing particle is refused by name.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># require — a require guard must name its payload</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • `require cond throw err` always carries the `throw` particle (en `throw`)</span>
+<span class="tok-co">#     and the error value to throw. The particle is mandatory, so a guard that</span>
+<span class="tok-co">#     drops it is refused by name (PARSE001 requirit_iace).</span>
+<span class="tok-co">#   • The statement desugars to `if not (cond) { throw err }`: there is no</span>
+<span class="tok-co">#     recoverable failure without something to throw.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • writing the guard as a bare condition — add `throw &lt;error&gt;` after it.</span>
+<span class="tok-co"># =============================================================================</span>
+
+main {
+    require <span class="tok-nu">1</span> <span class="tok-op">≡</span> <span class="tok-nu">1</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusmetarequiritfab-canonical-keyword">radix/corpus/meta/requirit.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusrequiritrequirit-iace-rejectfab-supporting-reject">radix/corpus/requirit/requirit-iace-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/meta/requirit.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

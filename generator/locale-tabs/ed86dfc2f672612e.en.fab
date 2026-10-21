@@ -1,0 +1,6 @@
+main {
+    let i32 signed ← -7
+    let u8 byte ← 255
+    let f64 wide ← 1.5
+    print signed, byte, wide
+}

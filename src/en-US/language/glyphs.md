@@ -50,6 +50,27 @@ of source glyphs recognised by the lexer.
 | `∧` `∨` `⊻` `¬` | And, or, xor, not |
 | `⇐` `⇒` | Left and right bit shift |
 
+### Roots {#roots}
+
+| Glyph | Meaning |
+|-------|---------|
+| `√` | Square root |
+| `∛` | Real cube root (`∛ -8.0` is `-2.0`) |
+| `∜` | Fourth root |
+
+The radicals are prefix operators. They bind like unary minus, so `√ x + 1`
+is `(√ x) + 1`, and they apply where the matching method applies: floats and
+float tensors.
+
+```faber locale=en
+main {
+    let f64 x ← 16.0
+    print √ x, ∛ -8.0, ∜ x
+}
+```
+
+This prints `4.0 -2.0 2.0`.
+
 ### Assignment updates {#assignment-updates}
 
 | Glyph | Meaning |
@@ -98,6 +119,10 @@ Worked through in full under
 |-------|---------|
 | `‥` | Exclusive range endpoint |
 | `…` | Inclusive range endpoint |
+
+A range is a value of type `range<T>` (la `intervallum<T>`): it can be stored,
+walked with `for range r let i`, printed, and used to slice a rank-1 tensor,
+`v[1‥4]`. See [Intervallum — ranges](/language/types.html#intervallum).
 
 ### Literal delimiters {#literal-delimiters}
 
@@ -343,7 +368,7 @@ while a tensor kernel module uses sugar:
 | Sugar | Canonical form | Domain |
 |-------|----------------|--------|
 | `tf32`, `tf32[4]`, `ti64[2, 3]` | `tensor<f32, _>`, `tensor<f32, [4]>` | Dense tensor — `t` + width + optional shape |
-| `sf32`, `sf32[2, 3]`, `si64[N]` | `sparsa<f32, _>`, `sparsa<f32, [2, 3]>` | Sparse tensor — `s` + width + optional shape |
+| `sf32`, `sf32[2, 3]`, `si64[N]` | `sparse<f32, _>`, `sparse<f32, [2, 3]>` | Sparse tensor — `s` + width + optional shape |
 | `mf32[4, 4]`, `mu32[3, 3]` | `matrix<f32, [4, 4]>` | Register-class matrix — `m` + width + shape |
 | `lf32`, `lu32`, `li64` | `list<f32>`, `list<u32>` | List — `l` + width |
 

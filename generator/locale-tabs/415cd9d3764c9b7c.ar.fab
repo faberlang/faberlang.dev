@@ -1,0 +1,6 @@
+بداية {
+    ليكن عدد limit ← 10
+    قابل_للتغيير عدد count ← 0
+    count ← count + 1
+    اعرض limit, count
+}

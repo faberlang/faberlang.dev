@@ -1,0 +1,4 @@
+main {
+    let string roundtrip ← ("42" ↦ int) ↦ string
+    print roundtrip
+}

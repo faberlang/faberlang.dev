@@ -26,9 +26,9 @@ This file is the generated keyword catalog, not the writing guide.
 
 ## Generated corpus frontmatter reference
 
-- Distinct frontmatter terms: 365
-- Canonical term pages: 234
-- Alias spellings: 142
+- Distinct frontmatter terms: 408
+- Canonical term pages: 240
+- Alias spellings: 147
 - Categories: 48
 - Source: radix/corpus/**/*.fab TOML frontmatter
 
@@ -39,7 +39,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - ad (3) — https://faberlang.dev/en-US/corpus/category/ad.html
 - aliasing (1) — https://faberlang.dev/en-US/corpus/category/aliasing.html
 - application (1) — https://faberlang.dev/en-US/corpus/category/application.html
-- arithmetic (13) — https://faberlang.dev/en-US/corpus/category/arithmetic.html
+- arithmetic (14) — https://faberlang.dev/en-US/corpus/category/arithmetic.html
 - assignment (2) — https://faberlang.dev/en-US/corpus/category/assignment.html
 - async (12) — https://faberlang.dev/en-US/corpus/category/async.html
 - availability (1) — https://faberlang.dev/en-US/corpus/category/availability.html
@@ -48,10 +48,10 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - boolean (1) — https://faberlang.dev/en-US/corpus/category/boolean.html
 - cli (6) — https://faberlang.dev/en-US/corpus/category/cli.html
 - codegen (1) — https://faberlang.dev/en-US/corpus/category/codegen.html
-- collection (29) — https://faberlang.dev/en-US/corpus/category/collection.html
+- collection (32) — https://faberlang.dev/en-US/corpus/category/collection.html
 - comparison (2) — https://faberlang.dev/en-US/corpus/category/comparison.html
 - comptime (2) — https://faberlang.dev/en-US/corpus/category/comptime.html
-- control-flow (16) — https://faberlang.dev/en-US/corpus/category/control-flow.html
+- control-flow (18) — https://faberlang.dev/en-US/corpus/category/control-flow.html
 - conversio (1) — https://faberlang.dev/en-US/corpus/category/conversio.html
 - conversion (7) — https://faberlang.dev/en-US/corpus/category/conversion.html
 - declaration (3) — https://faberlang.dev/en-US/corpus/category/declaration.html
@@ -88,17 +88,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 ### Kinds
 
 - annotation: 10
-- concept: 42
+- concept: 44
 - conversio: 8
-- existing-home: 7
+- existing-home: 8
 - feature: 3
 - keyword: 115
 - literal: 2
 - method: 2
 - modifier: 1
 - operator: 4
-- operator-group: 32
+- operator-group: 33
 - pointer: 1
+- reject: 2
 - type: 7
 
 ### Canonical terms
@@ -595,6 +596,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/en-US/corpus/switch.html
 - Source: radix/corpus/elige/elige.fab
 
+#### `elige duplicate case value`
+
+- Canonical: `elige duplicate case value`
+- Kind: reject
+- Category: control-flow
+- Summary: A switch case value may be claimed once; a repeat is a duplicate literal.
+- Syntax: `switch d { case 1 { } case 1 { } default { } }`
+- Aliases: none
+- Related: `elige`, `casu`, `ceterum`
+- Page: https://faberlang.dev/en-US/corpus/elige%20duplicate%20case%20value.html
+- Source: radix/corpus/elige/duplicate-case-reject.fab
+
 #### `elige negative patterns`
 
 - Canonical: `elige negative patterns`
@@ -606,6 +619,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `elige`, `casu`, `ceterum`
 - Page: https://faberlang.dev/en-US/corpus/elige%20negative%20patterns.html
 - Source: radix/corpus/elige/negative-patterns.fab
+
+#### `elige pattern type mismatch`
+
+- Canonical: `elige pattern type mismatch`
+- Kind: reject
+- Category: control-flow
+- Summary: A switch case literal must unify with the scrutinee type.
+- Syntax: `switch level { case 1 { } case "high" { } default { } }`
+- Aliases: none
+- Related: `elige`, `casu`, `ceterum`
+- Page: https://faberlang.dev/en-US/corpus/elige%20pattern%20type%20mismatch.html
+- Source: radix/corpus/elige/pattern-type-reject.fab
 
 #### `ergo`
 
@@ -650,7 +675,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Category: logic
 - Summary: Tests whether a value's runtime type is a given type.
 - Syntax: `<expression> est <type>`
-- Aliases: none
+- Aliases: `is`
 - Related: `non est`, `≡`
 - Page: https://faberlang.dev/en-US/corpus/is.html
 - Source: radix/corpus/est/est.fab
@@ -1132,7 +1157,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `n/a`
 - Aliases: none
 - Related: `intersect`, `union`, `longitudo`, `nihil`
-- Page: https://faberlang.dev/en-US/corpus/intervallum.html
+- Page: https://faberlang.dev/en-US/corpus/range.html
 - Source: radix/corpus/intervallum/algebra.fab
 
 #### `itera`
@@ -1188,24 +1213,24 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `lege`
 - Kind: keyword
 - Category: io
-- Summary: Reads input from the active input stream.
-- Syntax: `lege [lineam]`
+- Summary: Reads all of stdin to end of input.
+- Syntax: `lege`
 - Aliases: none
 - Related: `lineam`, `scribe`
 - Page: https://faberlang.dev/en-US/corpus/read.html
-- Source: radix/corpus/lege/lege.fab
+- Source: radix/corpus/lege/lege-stdin.fab
 
 #### `lineam`
 
 - Canonical: `lineam`
 - Kind: keyword
 - Category: io
-- Summary: Reads one line of input.
+- Summary: Reads one line of stdin without its terminator; none at end of input.
 - Syntax: `lege lineam`
 - Aliases: none
 - Related: `lege`
 - Page: https://faberlang.dev/en-US/corpus/line.html
-- Source: radix/corpus/lineam/lineam.fab
+- Source: radix/corpus/lineam/lineam-stdin.fab
 
 #### `lista`
 
@@ -1656,12 +1681,12 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `primus_quem`
 - Kind: concept
 - Category: collection
-- Summary: Dedicated total first-match expression: first live element of a source satisfying the owned ubi predicate, nihil for no-match and empty sources.
+- Summary: Dedicated total first-match expression: first live element of a source satisfying the owned ubi predicate, `none` for no-match and empty sources.
 - Syntax: `primus_quem(<source>, ubi <binder> { <predicate> })`
 - Aliases: `primus quem`
-- Related: `nihil`
+- Related: `none`
 - Page: https://faberlang.dev/en-US/corpus/primus_quem.html
-- Source: radix/corpus/primus-quem/primus-quem.fab
+- Source: radix/corpus/primus-quem/primus-quem-en.fab
 
 #### `privata`
 
@@ -2107,6 +2132,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/en-US/corpus/sort-body-stable-en.html
 - Source: radix/corpus/sort/body-stable-en.fab
 
+#### `sort-bool-key-en`
+
+- Canonical: `sort-bool-key-en`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/sort-bool-key-en.html
+- Source: radix/corpus/sort/bool-key.fab
+
 #### `sort-empty`
 
 - Canonical: `sort-empty`
@@ -2203,6 +2240,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/en-US/corpus/sort-map-en.html
 - Source: radix/corpus/sort/map-from-ref-en.fab
 
+#### `sort-nan-text-order-en`
+
+- Canonical: `sort-nan-text-order-en`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/sort-nan-text-order-en.html
+- Source: radix/corpus/sort/nan-text-order.fab
+
 #### `sort-set`
 
 - Canonical: `sort-set`
@@ -2268,11 +2317,11 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `sparsa`
 - Kind: type
 - Category: collection
-- Summary: sparsa<T, Figura> declaration shell with all-zero vacua.
-- Syntax: `sparsa<T, Figura> | sparsa<T, []>`
+- Summary: sparse<T, Figura> declaration shell with all-zero vacua.
+- Syntax: `sparse<T, Figura> | sparse<T, []>`
 - Aliases: none
 - Related: `sparsa`, `tensor`, `vacua`
-- Page: https://faberlang.dev/en-US/corpus/sparsa.html
+- Page: https://faberlang.dev/en-US/corpus/sparse.html
 - Source: radix/corpus/sparsa/decl.fab
 
 #### `sponte`
@@ -2298,6 +2347,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `block-string`, `§`, `textus`
 - Page: https://faberlang.dev/en-US/corpus/string.html
 - Source: radix/corpus/literalia/textus.fab
+
+#### `sum-empty-float`
+
+- Canonical: `sum-empty-float`
+- Kind: existing-home
+- Category: collection
+- Summary: Returns 0.0, not 0, for an empty float list.
+- Syntax: `<lista<float>>.sum()`
+- Aliases: none
+- Related: `prima`, `ultima`, `lista`
+- Page: https://faberlang.dev/en-US/corpus/sum-empty-float.html
+- Source: radix/corpus/lista/sum-empty-float.fab
 
 #### `summa`
 
@@ -2580,7 +2641,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `vel`
 - Kind: operator-group
 - Category: logic
-- Summary: Provides a default when the left side is null.
+- Summary: Provides a default when the left side holds `null`.
 - Syntax: `<expression> vel <expression>`
 - Aliases: `nullish coalescing`
 - Related: `nihil`
@@ -2593,10 +2654,10 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Kind: annotation
 - Category: cli
 - Summary: Attaches a version string to a CLI root.
-- Syntax: `@ versio <string>`
+- Syntax: `@ version <string>`
 - Aliases: none
 - Related: `cli`, `descriptio`
-- Page: https://faberlang.dev/en-US/corpus/versio.html
+- Page: https://faberlang.dev/en-US/corpus/version.html
 - Source: radix/corpus/meta/versio.fab
 
 #### `verte`
@@ -2646,6 +2707,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `functio`, `sparge`, `genus`
 - Page: https://faberlang.dev/en-US/corpus/vocatio.html
 - Source: radix/corpus/vocatio/vocatio.fab
+
+#### `word-list-sum`
+
+- Canonical: `word-list-sum`
+- Kind: operator-group
+- Category: arithmetic
+- Summary: A list sum over wrapping or saturating words is exact; the store applies the word's policy.
+- Syntax: `<lista<wrapping<W>>>.sum()`
+- Aliases: none
+- Related: `wrapping`, `saturating`, `lista`
+- Page: https://faberlang.dev/en-US/corpus/word-list-sum.html
+- Source: radix/corpus/operatores/word-list-sum.fab
 
 #### `§`
 
@@ -2856,12 +2929,12 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `⊘`
 - Kind: operator-group
 - Category: arithmetic
-- Summary: Glyph Hadamard divide: identical-shape elementwise division on tensors.
-- Syntax: `<expression> ⊘ <expression>`
+- Summary: Tensor division semantics: floored integer ⊘, / and %, exact ÷ into float, IEEE float division by zero.
+- Syntax: `<expression> ⊘ <expression> | <expression> ÷ <expression>`
 - Aliases: none
 - Related: `tensor`, `arithmetic`
 - Page: https://faberlang.dev/en-US/corpus/%E2%8A%98.html
-- Source: radix/corpus/tensor/glyph-hadamard-divide.fab
+- Source: radix/corpus/tensor/arithmetic-int-division.fab
 
 #### `⊙`
 
@@ -2937,6 +3010,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `break` → `rumpe`
 - `bytes` → `octeti`
 - `capture by reference` → `clausura`
+- `capture field write` → `clausura`
 - `case` → `casu`
 - `catch` → `cape`
 - `choose` → `elige`
@@ -2946,6 +3020,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `class constant read` → `class constant read`
 - `class constant read across modules` → `class constant export`, `class constant import`
 - `closure` → `clausa`
+- `closure mutates captured value` → `clausura`
 - `column` → `columna`
 - `compare` → `implet`
 - `const` → `fixum`
@@ -2986,10 +3061,12 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `int` → `numerus`
 - `integer` → `numerus`
 - `interface` → `implendum`
+- `is` → `est`
 - `it` → `proba`
 - `iterate` → `itera`
 - `json` → `valor`
 - `lambda` → `clausa`
+- `ledger` → `tabulae`
 - `legacy clausura head` → `clausura`
 - `let` → `varia`
 - `list` → `lista`
@@ -3000,6 +3077,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `main` → `incipit`
 - `map` → `tabula`
 - `match` → `discerne`
+- `multiple interfaces` → `implendum`
 - `mutable` → `varia`
 - `never` → `numquam`
 - `nullish coalescing` → `vel`

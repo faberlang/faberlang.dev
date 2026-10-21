@@ -482,7 +482,8 @@ class Build:
                   outputs=[DIST / "index.html"])
         (DIST / "porta").mkdir(parents=True, exist_ok=True)
         self.step("portal", "generate-portal.py", [DIST / "porta" / "index.html"],
-                  inputs=[GENERATOR / "portal", GENERATOR / "locales.toml", *self.pin("locale")],
+                  inputs=[GENERATOR / "portal", GENERATOR / "locales.toml", STATIC / "install.md",
+                          *self.pin("locale")],
                   outputs=[DIST / "porta" / "index.html"])
 
     def diagram_cache(self) -> None:

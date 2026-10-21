@@ -30,6 +30,8 @@ ergonomic developer tool.
 | `faber explain <term>` | Explain a glyph, keyword, grammar term, or diagnostic code |
 | `faber emit <path>` | Compile to a target surface for stdout |
 | `faber targets` | Show supported targets and capability notes |
+| `faber update` | Check for (`--check`) or install a newer release; `--version <V>` switches to an exact version, rolling back included |
+| `faber versions` | List the installed versions and the active one |
 | `faber init` | Create a new Faber package |
 | `faber repl` | Interactive MIR runner REPL |
 | `faber verify <file>` | Run aspect verification on a single file |
@@ -75,6 +77,33 @@ artifact/module hash, and the observed outputs. An explicit GPU request never
 silently falls back: unavailable backends, bad descriptors, and
 entry/dtype/shape mismatches fail closed with a stable code
 (`E_BACKEND_UNAVAILABLE`, `E_DEVICE_*`, `E_NO_DEVICE_PROGRAM`).
+
+Kernels use 32-bit integers. Inside an `@ nucleum` (en `@ kernel`) function a
+64-bit `int` is refused: `SEM008 nucleum_wide_integer` for the declaration and
+`nucleum_wide_intermediate` for a wide intermediate. Write `i32`:
+
+```faber locale=en
+@ kernel
+@ public
+fn scale(tf32[4] a, i32 k) → tf32[4] {
+    return a * (k ↦ f32)
+}
+```
+
+### Updating faber {#updating}
+
+`faber update --check` reports whether a newer public release exists.
+`faber update` installs it under a versioned name (`faber-<version>`) beside
+the running binary and moves the `faber` link to it; `--version <V>` installs
+an exact version instead, which is also how you switch back to an older one.
+`faber versions` lists what is installed and which one is active.
+
+```bash
+faber update --check
+faber update
+faber update --version 1.15.1
+faber versions
+```
 
 ### Checking without emitting {#checking}
 

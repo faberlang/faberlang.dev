@@ -1,0 +1,5 @@
+bắt_đầu {
+    đặt văn_bản ∪ số mixed ← 7
+    đặt danh_sách<văn_bản ∪ số> both ← [1, "two", 3]
+    ghi_chú mixed, both
+}

@@ -85,7 +85,7 @@ FAMILIES: list[dict] = [
             nondum_functio_decl
             statement_core importa_decl importa_record import_field_list
             import_field ex_field visibilitas_field nomen_field ut_field
-            omnia_field importa_sugar publica named_import wildcard_import
+            omnia_field importa_sugar import_target publica named_import wildcard_import
             selective_import import_value_binding entry_header incipit_stmt
             incipiet_stmt probandum_decl probandum_body proba_stmt proba_modifier
             praepara_block
@@ -172,7 +172,7 @@ FAMILIES: list[dict] = [
             "collection and JSON forms."
         ),
         "ids": """
-            expression transfer value_marker assignment place ternary aut_expr et_expr
+            expression transfer sink_into value_marker assignment place ternary aut_expr et_expr
             equality equality_tail comparison format_expr bitwise_or_expr
             bitwise_xor_expr bitwise_and_expr shift_expr range_expr range_tail
             additive_expr multiplicative_expr vel_expr vel_rhs vel_range_tail

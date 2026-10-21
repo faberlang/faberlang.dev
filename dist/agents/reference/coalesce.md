@@ -1,6 +1,6 @@
 # coalesce
 
-Provides a default when the left side is null.
+Provides a default when the left side holds `null`.
 
 **Term** `vel` · **Section** OPERATORS · **Also** `nullish coalescing`
 
@@ -12,13 +12,13 @@ Provides a default when the left side is null.
 
 ## What this teaches
 
-- Nullish coalescing — `coalesce` supplies a fallback when the left operand is `none`
-- Chaining — multiple `coalesce` expressions fall through until the first non-`none` value
-- Short-circuit — like `and`/`or`, the right operand runs only when the left is `none`
+- Nullish coalescing — `coalesce` supplies a fallback when the left operand holds `null` (the `none` type's value)
+- Chaining — multiple `coalesce` expressions fall through until the first non-`null` value
+- Short-circuit — like `and`/`or`, the right operand runs only when the left holds `null`
 
 ## Common mistakes
 
-- confusing vel (nullish coalescing, checks none only) with or (logical OR), or using vel for conversion recovery instead of ⇥
+- confusing vel (nullish coalescing, checks for `null` only) with or (logical OR), or using vel for conversion recovery instead of ⇥
 
 ## Grammar
 

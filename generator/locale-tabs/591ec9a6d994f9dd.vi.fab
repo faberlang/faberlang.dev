@@ -1,0 +1,7 @@
+bắt_đầu {
+    đặt miền<số> r ← 0 ‥ 3
+    ghi_chú r
+    lặp khoảng r đặt i {
+        ghi_chú i
+    }
+}

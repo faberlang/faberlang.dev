@@ -17,7 +17,7 @@ Marks a named declaration slot (parameter or class field) as voluntary — the c
 
 ## Common mistakes
 
-- confusing optional (optional parameter with a default) with ∪ none (nullable type) — optional marks omission, ∪ none marks absence
+- confusing optional (optional parameter with a default) with `∪ none` (la `∪ none`, the nullable type) — optional marks omission, `∪ none` marks absence
 
 ## Grammar
 

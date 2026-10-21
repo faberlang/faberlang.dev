@@ -674,8 +674,15 @@ def est_citatio(linea):
     return littera_ad(linea, 1) == " "
 
 
+def est_commentarium(linea):
+    # A whole-line HTML comment, such as a generator's region marker: not content.
+    return initium_cum(linea, "<!--") and linea.endswith("-->")
+
+
 def est_initium_blocki(linea):
     if len(linea) == 0:
+        return True
+    if est_commentarium(linea):
         return True
     if initium_cum(linea, "#"):
         return True
@@ -700,8 +707,8 @@ def converte_nodes(source, site_locale):
     while i < n:
         linea = recide(lines[i])
 
-        # Blank lines.
-        if len(linea) == 0:
+        # Blank lines and whole-line HTML comments.
+        if len(linea) == 0 or est_commentarium(linea):
             i += 1
             continue
 

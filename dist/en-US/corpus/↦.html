@@ -95,4 +95,42 @@ main {
     let float a <span class="tok-op">←</span> <span class="tok-nu">2.5</span>
     let int n <span class="tok-op">←</span> a ↦ int
     print n
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusconversioconversiofab-canonical-operator-group">radix/corpus/conversio/conversio.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-lista-to-textus-rejectfab-supporting-reject">radix/corpus/bounded/conversio-lista-to-textus-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusconversiofloat-to-int-rejectfab-supporting-reject">radix/corpus/conversio/float-to-int-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/conversio/conversio.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusconversiotextus-to-lista-rejectfab-supporting-reject">radix/corpus/conversio/textus-to-lista-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusconversiotextus-to-lista-rejectfab-supporting-reject">#</a></h3><p>Rejected route: a string does not convert to a list.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># string to list — rejected route</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • A string is not a list of strings — the element type does not say which</span>
+<span class="tok-co">#     encoding, so the checker refuses "abc" ↦ list&lt;string&gt; with one named</span>
+<span class="tok-co">#     diagnostic (SEM016 textus_to_lista_unsupported, need 5dccc092).</span>
+<span class="tok-co">#   • Say the encoding: ↦ list&lt;b8&gt; gives the UTF-8 octets (list&lt;b16&gt; and</span>
+<span class="tok-co">#     list&lt;b32&gt; are the wider rows), or build the character list explicitly.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • reading ↦ as "split the characters" — the element type is not an</span>
+<span class="tok-co">#     encoding choice.</span>
+<span class="tok-co"># =============================================================================</span>
+
+main {
+    let list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> cs <span class="tok-op">←</span> <span class="tok-st">"abc"</span> ↦ list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusconversiovia-bits-retired-rejectfab-supporting-reject">radix/corpus/conversio/via-bits-retired-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusconversiovia-bits-retired-rejectfab-supporting-reject">#</a></h3><p>Rejected route: via Bits is retired; a bit pattern is an explicit ↦ bN.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># via Bits — retired spelling for a bit-pattern route</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • `via Bits` is retired and refused by name (SEM016</span>
+<span class="tok-co">#     conversio_via_bits_retired). A bit pattern is an explicit `↦ bN` step,</span>
+<span class="tok-co">#     never a hint on the conversion.</span>
+<span class="tok-co">#   • Say the width: `let f16 h ← n ↦ b16 ↦ f16` reads the bits, then</span>
+<span class="tok-co">#     reinterprets them as the target type.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • copying the old `↦ f16 via Bits` spelling — drop the `via` clause and</span>
+<span class="tok-co">#     step through an explicit bit width instead.</span>
+<span class="tok-co"># =============================================================================</span>
+
+main {
+    let u16 n <span class="tok-op">←</span> <span class="tok-nu">15360</span>
+    let f16 h <span class="tok-op">←</span> n ↦ f16 via Bits
+    print h
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusconversioconversiofab-canonical-operator-group">radix/corpus/conversio/conversio.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-lista-to-textus-rejectfab-supporting-reject">radix/corpus/bounded/conversio-lista-to-textus-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusconversiofloat-to-int-rejectfab-supporting-reject">radix/corpus/conversio/float-to-int-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusconversiotextus-to-lista-rejectfab-supporting-reject">radix/corpus/conversio/textus-to-lista-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusconversiovia-bits-retired-rejectfab-supporting-reject">radix/corpus/conversio/via-bits-retired-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/conversio/conversio.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

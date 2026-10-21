@@ -14,4 +14,12 @@ main args argv {
 }
 ```
 
+`exit N` after `main` sets the exit code. `faber run` ends with it.
+
+```faber locale=en
+main exit 2 {
+    print "done"
+}
+```
+
 Parent: https://faberlang.dev/agents/functions.md

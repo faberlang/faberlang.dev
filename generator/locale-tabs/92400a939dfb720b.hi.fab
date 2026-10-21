@@ -1,0 +1,5 @@
+आरंभ {
+    बैठा _ nomen ← "Marcus"
+    बैठा _ numeri ← [1, 2, 3]
+    दिखाओ nomen, numeri
+}

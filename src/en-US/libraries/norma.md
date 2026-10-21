@@ -119,6 +119,20 @@ functio legeConfig() → textus ⇥ fault.IoFault {
 `read_file` is failable: its error channel is `fault.IoFault`, the union
 of I/O fault kinds, so the caller handles it or passes it on.
 
+For files that must never be left half-written, `norma:fs` has
+`write_file_durably` and `write_bytes_durably`. They replace the file
+atomically: a failure or an interruption leaves the previous complete file,
+never a partial one.
+
+```faber locale=en
+import from "norma:fs" fs
+import from "norma:fault" fault
+
+fn save_config(string text) → void ⇥ fault.IoFault {
+    fs.write_file_durably("config.toml", text)
+}
+```
+
 Test code can live beside product source in colocated `*.proba` files —
 discovered only by `faber test`, never importable, and excluded from Cista
 package snapshots.

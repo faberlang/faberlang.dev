@@ -1,0 +1,6 @@
+आरंभ {
+    बैठा तालिका<पाठ, पाठ> persona ← { "nomen": "Marcus", "urbs": "Roma" }
+    दोहराओ से persona बैठा clavis {
+        दिखाओ clavis, persona[clavis]
+    }
+}

@@ -101,7 +101,7 @@ other route.</p><h2 id="guards">Guards: require / reject<a class="anchor" href="
 }
 
 <span class="tok-kw">دالة</span> exigePositivum(<span class="tok-kw">عدد</span> value) <span class="tok-op">→</span> <span class="tok-kw">عدد</span> ⇥ <span class="tok-kw">نص</span> {
-    <span class="tok-kw">يرفض</span> value ≺ <span class="tok-nu">0</span> <span class="tok-kw">ارم</span> <span class="tok-st">"negative value"</span>
+    يرفض value ≺ <span class="tok-nu">0</span> <span class="tok-kw">ارم</span> <span class="tok-st">"negative value"</span>
     <span class="tok-kw">أعد</span> value
 }</code></pre></div><div class="fdt-panel" id="lt-389b0a8c25cae3cb-1-p-hi" role="tabpanel" aria-labelledby="lt-389b0a8c25cae3cb-1-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">फलन</span> divide(<span class="tok-kw">संख्या</span> a, <span class="tok-kw">संख्या</span> b) <span class="tok-op">→</span> <span class="tok-kw">संख्या</span> ⇥ <span class="tok-kw">पाठ</span> {
     <span class="tok-kw">आवश्यक</span> b <span class="tok-op">≢</span> <span class="tok-nu">0</span> <span class="tok-kw">इधरफेंको</span> <span class="tok-st">"division by zero"</span>
@@ -273,15 +273,71 @@ other route.</p><h2 id="guards">Guards: require / reject<a class="anchor" href="
     <span class="tok-kw">दिखाओ</span> tutum(<span class="tok-nu">10</span>, <span class="tok-nu">0</span>)
 }</code></pre></div></div><p><code>tutum</code> has no <code class="glyph">⇥</code> in its signature, and that is the point: it handles the
 failure, so it cannot itself fail. The channel stops here.</p><h2 id="attachment"><code>catch</code> attaches to more than <code>do</code><a class="anchor" href="#attachment">#</a></h2><p>This is the part that surprises people arriving from other languages. <code>catch</code> is
-not the tail of a try statement — it attaches to <strong>structured statements generally</strong>. A loop can carry its own handler:</p><pre class="faber-code"><code class="lang-faber locale-tabs">main {
-    let list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-st">"1"</span>, <span class="tok-st">"two"</span>, <span class="tok-st">"3"</span>]
-    for from raw let item {
-        let int n <span class="tok-op">←</span> item ↦ int
-        print n
-    } catch err {
-        warn err
+not the tail of a try statement — it attaches to <strong>structured statements generally</strong>. A loop can carry its own handler:</p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-4d4a9a1235c08e47-3-t-en" data-panel="lt-4d4a9a1235c08e47-3-p-en" data-name="English" aria-controls="lt-4d4a9a1235c08e47-3-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-4d4a9a1235c08e47-3-t-la" data-panel="lt-4d4a9a1235c08e47-3-p-la" data-name="Latin" aria-controls="lt-4d4a9a1235c08e47-3-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-4d4a9a1235c08e47-3-t-th-TH" data-panel="lt-4d4a9a1235c08e47-3-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-4d4a9a1235c08e47-3-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-4d4a9a1235c08e47-3-t-zh-Hans" data-panel="lt-4d4a9a1235c08e47-3-p-zh-Hans" data-name="简体中文" aria-controls="lt-4d4a9a1235c08e47-3-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-4d4a9a1235c08e47-3-t-zh-Hant" data-panel="lt-4d4a9a1235c08e47-3-p-zh-Hant" data-name="繁體中文" aria-controls="lt-4d4a9a1235c08e47-3-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-4d4a9a1235c08e47-3-t-vi" data-panel="lt-4d4a9a1235c08e47-3-p-vi" data-name="Tiếng Việt" aria-controls="lt-4d4a9a1235c08e47-3-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-4d4a9a1235c08e47-3-t-ar" data-panel="lt-4d4a9a1235c08e47-3-p-ar" data-name="العربية" aria-controls="lt-4d4a9a1235c08e47-3-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-4d4a9a1235c08e47-3-t-hi" data-panel="lt-4d4a9a1235c08e47-3-p-hi" data-name="हिन्दी" aria-controls="lt-4d4a9a1235c08e47-3-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-4d4a9a1235c08e47-3-p-en" role="tabpanel" aria-labelledby="lt-4d4a9a1235c08e47-3-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
+    <span class="tok-kw">let</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">string</span><span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-st">"1"</span>, <span class="tok-st">"two"</span>, <span class="tok-st">"3"</span>]
+    <span class="tok-kw">for</span> <span class="tok-kw">from</span> raw <span class="tok-kw">let</span> item {
+        <span class="tok-kw">let</span> <span class="tok-kw">int</span> n <span class="tok-op">←</span> item ↦ <span class="tok-kw">int</span>
+        <span class="tok-kw">print</span> n
+    } <span class="tok-kw">catch</span> err {
+        <span class="tok-kw">warn</span> err
     }
-}</code></pre><p>And so can a <code>while</code> loop:</p><pre class="faber-code"><code class="lang-faber locale-tabs">main {
+}</code></pre></div><div class="fdt-panel" id="lt-4d4a9a1235c08e47-3-p-la" role="tabpanel" aria-labelledby="lt-4d4a9a1235c08e47-3-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">incipit</span> {
+    <span class="tok-kw">sit</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span><span class="tok-kw">textus</span><span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-st">"1"</span>, <span class="tok-st">"two"</span>, <span class="tok-st">"3"</span>]
+    <span class="tok-kw">itera</span> <span class="tok-kw">ex</span> raw <span class="tok-kw">sit</span> item {
+        <span class="tok-kw">sit</span> <span class="tok-kw">numerus</span> n <span class="tok-op">←</span> item ↦ <span class="tok-kw">numerus</span>
+        <span class="tok-kw">nota</span> n
+    } <span class="tok-kw">cape</span> err {
+        <span class="tok-kw">mone</span> err
+    }
+}</code></pre></div><div class="fdt-panel" id="lt-4d4a9a1235c08e47-3-p-th-TH" role="tabpanel" aria-labelledby="lt-4d4a9a1235c08e47-3-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">เริ่ม</span> {
+    <span class="tok-kw">กำหนด</span> <span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span><span class="tok-kw">ข้อความ</span><span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-st">"1"</span>, <span class="tok-st">"two"</span>, <span class="tok-st">"3"</span>]
+    <span class="tok-kw">วน</span> <span class="tok-kw">ออก</span> raw <span class="tok-kw">กำหนด</span> item {
+        <span class="tok-kw">กำหนด</span> <span class="tok-kw">จํานวน</span> n <span class="tok-op">←</span> item ↦ <span class="tok-kw">จํานวน</span>
+        <span class="tok-kw">บันทึก</span> n
+    } <span class="tok-kw">จับ</span> err {
+        <span class="tok-kw">เตือน</span> err
+    }
+}</code></pre></div><div class="fdt-panel" id="lt-4d4a9a1235c08e47-3-p-zh-Hans" role="tabpanel" aria-labelledby="lt-4d4a9a1235c08e47-3-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">入口</span> {
+    <span class="tok-kw">设</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">文本</span><span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-st">"1"</span>, <span class="tok-st">"two"</span>, <span class="tok-st">"3"</span>]
+    <span class="tok-kw">遍历</span> <span class="tok-kw">取自</span> raw <span class="tok-kw">设</span> item {
+        <span class="tok-kw">设</span> <span class="tok-kw">整数</span> n <span class="tok-op">←</span> item ↦ <span class="tok-kw">整数</span>
+        <span class="tok-kw">显示</span> n
+    } <span class="tok-kw">捕获</span> err {
+        <span class="tok-kw">警告</span> err
+    }
+}</code></pre></div><div class="fdt-panel" id="lt-4d4a9a1235c08e47-3-p-zh-Hant" role="tabpanel" aria-labelledby="lt-4d4a9a1235c08e47-3-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">入口</span> {
+    <span class="tok-kw">設為</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">文字</span><span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-st">"1"</span>, <span class="tok-st">"two"</span>, <span class="tok-st">"3"</span>]
+    <span class="tok-kw">遍歷</span> <span class="tok-kw">取自</span> raw <span class="tok-kw">設為</span> item {
+        <span class="tok-kw">設為</span> <span class="tok-kw">整數</span> n <span class="tok-op">←</span> item ↦ <span class="tok-kw">整數</span>
+        <span class="tok-kw">註記</span> n
+    } <span class="tok-kw">捕捉</span> err {
+        <span class="tok-kw">警告</span> err
+    }
+}</code></pre></div><div class="fdt-panel" id="lt-4d4a9a1235c08e47-3-p-vi" role="tabpanel" aria-labelledby="lt-4d4a9a1235c08e47-3-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">bắt_đầu</span> {
+    <span class="tok-kw">đặt</span> <span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span><span class="tok-kw">văn_bản</span><span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-st">"1"</span>, <span class="tok-st">"two"</span>, <span class="tok-st">"3"</span>]
+    <span class="tok-kw">lặp</span> <span class="tok-kw">từ</span> raw <span class="tok-kw">đặt</span> item {
+        <span class="tok-kw">đặt</span> <span class="tok-kw">số</span> n <span class="tok-op">←</span> item ↦ <span class="tok-kw">số</span>
+        <span class="tok-kw">ghi_chú</span> n
+    } <span class="tok-kw">bắt</span> err {
+        <span class="tok-kw">cảnh_báo</span> err
+    }
+}</code></pre></div><div class="fdt-panel" id="lt-4d4a9a1235c08e47-3-p-ar" role="tabpanel" aria-labelledby="lt-4d4a9a1235c08e47-3-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">بداية</span> {
+    <span class="tok-kw">ليكن</span> <span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span><span class="tok-kw">نص</span><span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-st">"1"</span>, <span class="tok-st">"two"</span>, <span class="tok-st">"3"</span>]
+    <span class="tok-kw">كرر</span> <span class="tok-kw">من</span> raw <span class="tok-kw">ليكن</span> item {
+        <span class="tok-kw">ليكن</span> <span class="tok-kw">عدد</span> n <span class="tok-op">←</span> item ↦ <span class="tok-kw">عدد</span>
+        <span class="tok-kw">اعرض</span> n
+    } <span class="tok-kw">التقط</span> err {
+        <span class="tok-kw">نبه</span> err
+    }
+}</code></pre></div><div class="fdt-panel" id="lt-4d4a9a1235c08e47-3-p-hi" role="tabpanel" aria-labelledby="lt-4d4a9a1235c08e47-3-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">आरंभ</span> {
+    <span class="tok-kw">बैठा</span> <span class="tok-kw">सूची</span><span class="tok-op">&lt;</span><span class="tok-kw">पाठ</span><span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-st">"1"</span>, <span class="tok-st">"two"</span>, <span class="tok-st">"3"</span>]
+    <span class="tok-kw">दोहराओ</span> <span class="tok-kw">सेवन</span> raw <span class="tok-kw">बैठा</span> item {
+        <span class="tok-kw">बैठा</span> <span class="tok-kw">संख्या</span> n <span class="tok-op">←</span> item ↦ <span class="tok-kw">संख्या</span>
+        <span class="tok-kw">दिखाओ</span> n
+    } <span class="tok-kw">पकड़ो</span> err {
+        <span class="tok-kw">चेताओ</span> err
+    }
+}</code></pre></div></div><p>And so can a <code>while</code> loop:</p><pre class="faber-code"><code class="lang-faber locale-tabs">main {
     mut int i <span class="tok-op">←</span> <span class="tok-nu">0</span>
     while i ≺ <span class="tok-nu">3</span> {
         i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
@@ -294,7 +350,7 @@ not the tail of a try statement — it attaches to <strong>structured statements
 }</code></pre><p>The handler belongs to the construct it follows. There is no separate <code>try</code>
 keyword to wrap things in — <code>do</code> is simply the bare block form for when you
 want a handler and have no other statement to hang it on.</p><h2 id="propagate">Failing without a message<a class="anchor" href="#propagate">#</a></h2><p>A function that declares <code class="glyph">⇥</code> and does not catch propagates automatically —
-callers must deal with it or declare their own channel.</p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-e955b1258ea32e64-3-t-en" data-panel="lt-e955b1258ea32e64-3-p-en" data-name="English" aria-controls="lt-e955b1258ea32e64-3-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-e955b1258ea32e64-3-t-la" data-panel="lt-e955b1258ea32e64-3-p-la" data-name="Latin" aria-controls="lt-e955b1258ea32e64-3-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-e955b1258ea32e64-3-t-th-TH" data-panel="lt-e955b1258ea32e64-3-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-e955b1258ea32e64-3-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-e955b1258ea32e64-3-t-zh-Hans" data-panel="lt-e955b1258ea32e64-3-p-zh-Hans" data-name="简体中文" aria-controls="lt-e955b1258ea32e64-3-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-e955b1258ea32e64-3-t-zh-Hant" data-panel="lt-e955b1258ea32e64-3-p-zh-Hant" data-name="繁體中文" aria-controls="lt-e955b1258ea32e64-3-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-e955b1258ea32e64-3-t-vi" data-panel="lt-e955b1258ea32e64-3-p-vi" data-name="Tiếng Việt" aria-controls="lt-e955b1258ea32e64-3-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-e955b1258ea32e64-3-t-ar" data-panel="lt-e955b1258ea32e64-3-p-ar" data-name="العربية" aria-controls="lt-e955b1258ea32e64-3-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-e955b1258ea32e64-3-t-hi" data-panel="lt-e955b1258ea32e64-3-p-hi" data-name="हिन्दी" aria-controls="lt-e955b1258ea32e64-3-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-e955b1258ea32e64-3-p-en" role="tabpanel" aria-labelledby="lt-e955b1258ea32e64-3-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">fn</span> parse(<span class="tok-kw">string</span> raw) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ <span class="tok-kw">string</span> {
+callers must deal with it or declare their own channel.</p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-e955b1258ea32e64-4-t-en" data-panel="lt-e955b1258ea32e64-4-p-en" data-name="English" aria-controls="lt-e955b1258ea32e64-4-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-e955b1258ea32e64-4-t-la" data-panel="lt-e955b1258ea32e64-4-p-la" data-name="Latin" aria-controls="lt-e955b1258ea32e64-4-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-e955b1258ea32e64-4-t-th-TH" data-panel="lt-e955b1258ea32e64-4-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-e955b1258ea32e64-4-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-e955b1258ea32e64-4-t-zh-Hans" data-panel="lt-e955b1258ea32e64-4-p-zh-Hans" data-name="简体中文" aria-controls="lt-e955b1258ea32e64-4-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-e955b1258ea32e64-4-t-zh-Hant" data-panel="lt-e955b1258ea32e64-4-p-zh-Hant" data-name="繁體中文" aria-controls="lt-e955b1258ea32e64-4-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-e955b1258ea32e64-4-t-vi" data-panel="lt-e955b1258ea32e64-4-p-vi" data-name="Tiếng Việt" aria-controls="lt-e955b1258ea32e64-4-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-e955b1258ea32e64-4-t-ar" data-panel="lt-e955b1258ea32e64-4-p-ar" data-name="العربية" aria-controls="lt-e955b1258ea32e64-4-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-e955b1258ea32e64-4-t-hi" data-panel="lt-e955b1258ea32e64-4-p-hi" data-name="हिन्दी" aria-controls="lt-e955b1258ea32e64-4-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-e955b1258ea32e64-4-p-en" role="tabpanel" aria-labelledby="lt-e955b1258ea32e64-4-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">fn</span> parse(<span class="tok-kw">string</span> raw) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ <span class="tok-kw">string</span> {
     <span class="tok-kw">if</span> raw <span class="tok-op">≡</span> <span class="tok-st">""</span> {
         <span class="tok-kw">throw</span> <span class="tok-st">"empty input"</span>
     }
@@ -312,7 +368,7 @@ callers must deal with it or declare their own channel.</p><div class="faber-dem
     <span class="tok-kw">catch</span> err {
         <span class="tok-kw">warn</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-e955b1258ea32e64-3-p-la" role="tabpanel" aria-labelledby="lt-e955b1258ea32e64-3-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">functio</span> parse(<span class="tok-kw">textus</span> raw) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> ⇥ <span class="tok-kw">textus</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-e955b1258ea32e64-4-p-la" role="tabpanel" aria-labelledby="lt-e955b1258ea32e64-4-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">functio</span> parse(<span class="tok-kw">textus</span> raw) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> ⇥ <span class="tok-kw">textus</span> {
     <span class="tok-kw">si</span> raw <span class="tok-op">≡</span> <span class="tok-st">""</span> {
         <span class="tok-kw">iace</span> <span class="tok-st">"empty input"</span>
     }
@@ -330,7 +386,7 @@ callers must deal with it or declare their own channel.</p><div class="faber-dem
     <span class="tok-kw">cape</span> err {
         <span class="tok-kw">mone</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-e955b1258ea32e64-3-p-th-TH" role="tabpanel" aria-labelledby="lt-e955b1258ea32e64-3-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">ฟังก์ชัน</span> parse(<span class="tok-kw">ข้อความ</span> raw) <span class="tok-op">→</span> <span class="tok-kw">จํานวน</span> ⇥ <span class="tok-kw">ข้อความ</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-e955b1258ea32e64-4-p-th-TH" role="tabpanel" aria-labelledby="lt-e955b1258ea32e64-4-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">ฟังก์ชัน</span> parse(<span class="tok-kw">ข้อความ</span> raw) <span class="tok-op">→</span> <span class="tok-kw">จํานวน</span> ⇥ <span class="tok-kw">ข้อความ</span> {
     <span class="tok-kw">ถ้า</span> raw <span class="tok-op">≡</span> <span class="tok-st">""</span> {
         <span class="tok-kw">โยน</span> <span class="tok-st">"empty input"</span>
     }
@@ -348,7 +404,7 @@ callers must deal with it or declare their own channel.</p><div class="faber-dem
     <span class="tok-kw">จับ</span> err {
         <span class="tok-kw">เตือน</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-e955b1258ea32e64-3-p-zh-Hans" role="tabpanel" aria-labelledby="lt-e955b1258ea32e64-3-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">函数</span> parse(<span class="tok-kw">文本</span> raw) <span class="tok-op">→</span> <span class="tok-kw">整数</span> ⇥ <span class="tok-kw">文本</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-e955b1258ea32e64-4-p-zh-Hans" role="tabpanel" aria-labelledby="lt-e955b1258ea32e64-4-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">函数</span> parse(<span class="tok-kw">文本</span> raw) <span class="tok-op">→</span> <span class="tok-kw">整数</span> ⇥ <span class="tok-kw">文本</span> {
     <span class="tok-kw">如果</span> raw <span class="tok-op">≡</span> <span class="tok-st">""</span> {
         <span class="tok-kw">抛错</span> <span class="tok-st">"empty input"</span>
     }
@@ -366,7 +422,7 @@ callers must deal with it or declare their own channel.</p><div class="faber-dem
     <span class="tok-kw">捕获</span> err {
         <span class="tok-kw">警告</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-e955b1258ea32e64-3-p-zh-Hant" role="tabpanel" aria-labelledby="lt-e955b1258ea32e64-3-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">函式</span> parse(<span class="tok-kw">文字</span> raw) <span class="tok-op">→</span> <span class="tok-kw">整數</span> ⇥ <span class="tok-kw">文字</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-e955b1258ea32e64-4-p-zh-Hant" role="tabpanel" aria-labelledby="lt-e955b1258ea32e64-4-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">函式</span> parse(<span class="tok-kw">文字</span> raw) <span class="tok-op">→</span> <span class="tok-kw">整數</span> ⇥ <span class="tok-kw">文字</span> {
     <span class="tok-kw">若</span> raw <span class="tok-op">≡</span> <span class="tok-st">""</span> {
         <span class="tok-kw">拋出</span> <span class="tok-st">"empty input"</span>
     }
@@ -384,7 +440,7 @@ callers must deal with it or declare their own channel.</p><div class="faber-dem
     <span class="tok-kw">捕捉</span> err {
         <span class="tok-kw">警告</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-e955b1258ea32e64-3-p-vi" role="tabpanel" aria-labelledby="lt-e955b1258ea32e64-3-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">hàm</span> parse(<span class="tok-kw">văn_bản</span> raw) <span class="tok-op">→</span> <span class="tok-kw">số</span> ⇥ <span class="tok-kw">văn_bản</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-e955b1258ea32e64-4-p-vi" role="tabpanel" aria-labelledby="lt-e955b1258ea32e64-4-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">hàm</span> parse(<span class="tok-kw">văn_bản</span> raw) <span class="tok-op">→</span> <span class="tok-kw">số</span> ⇥ <span class="tok-kw">văn_bản</span> {
     <span class="tok-kw">nếu</span> raw <span class="tok-op">≡</span> <span class="tok-st">""</span> {
         <span class="tok-kw">ném</span> <span class="tok-st">"empty input"</span>
     }
@@ -402,7 +458,7 @@ callers must deal with it or declare their own channel.</p><div class="faber-dem
     <span class="tok-kw">bắt</span> err {
         <span class="tok-kw">cảnh_báo</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-e955b1258ea32e64-3-p-ar" role="tabpanel" aria-labelledby="lt-e955b1258ea32e64-3-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">دالة</span> parse(<span class="tok-kw">نص</span> raw) <span class="tok-op">→</span> <span class="tok-kw">عدد</span> ⇥ <span class="tok-kw">نص</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-e955b1258ea32e64-4-p-ar" role="tabpanel" aria-labelledby="lt-e955b1258ea32e64-4-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">دالة</span> parse(<span class="tok-kw">نص</span> raw) <span class="tok-op">→</span> <span class="tok-kw">عدد</span> ⇥ <span class="tok-kw">نص</span> {
     <span class="tok-kw">إذا</span> raw <span class="tok-op">≡</span> <span class="tok-st">""</span> {
         <span class="tok-kw">ارم</span> <span class="tok-st">"empty input"</span>
     }
@@ -420,7 +476,7 @@ callers must deal with it or declare their own channel.</p><div class="faber-dem
     <span class="tok-kw">التقط</span> err {
         <span class="tok-kw">نبه</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-e955b1258ea32e64-3-p-hi" role="tabpanel" aria-labelledby="lt-e955b1258ea32e64-3-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">फलन</span> parse(<span class="tok-kw">पाठ</span> raw) <span class="tok-op">→</span> <span class="tok-kw">संख्या</span> ⇥ <span class="tok-kw">पाठ</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-e955b1258ea32e64-4-p-hi" role="tabpanel" aria-labelledby="lt-e955b1258ea32e64-4-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">फलन</span> parse(<span class="tok-kw">पाठ</span> raw) <span class="tok-op">→</span> <span class="tok-kw">संख्या</span> ⇥ <span class="tok-kw">पाठ</span> {
     <span class="tok-kw">यदि</span> raw <span class="tok-op">≡</span> <span class="tok-st">""</span> {
         <span class="tok-kw">इधरफेंको</span> <span class="tok-st">"empty input"</span>
     }
@@ -441,7 +497,7 @@ callers must deal with it or declare their own channel.</p><div class="faber-dem
 }</code></pre></div></div><p><code>duplum</code> never mentions failure in its body. It declares the channel and lets
 <code>parse</code>'s failure travel through.</p><h2 id="errata">Errors as a parameter<a class="anchor" href="#errata">#</a></h2><p>A caught error is an ordinary value, so a function can receive one like any
 other parameter. Declare the parameter with the error's type and pass the
-<code>catch</code> binding straight in.</p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-b0147815698a288a-4-t-en" data-panel="lt-b0147815698a288a-4-p-en" data-name="English" aria-controls="lt-b0147815698a288a-4-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-b0147815698a288a-4-t-la" data-panel="lt-b0147815698a288a-4-p-la" data-name="Latin" aria-controls="lt-b0147815698a288a-4-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-b0147815698a288a-4-t-th-TH" data-panel="lt-b0147815698a288a-4-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-b0147815698a288a-4-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-b0147815698a288a-4-t-zh-Hans" data-panel="lt-b0147815698a288a-4-p-zh-Hans" data-name="简体中文" aria-controls="lt-b0147815698a288a-4-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-b0147815698a288a-4-t-zh-Hant" data-panel="lt-b0147815698a288a-4-p-zh-Hant" data-name="繁體中文" aria-controls="lt-b0147815698a288a-4-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-b0147815698a288a-4-t-vi" data-panel="lt-b0147815698a288a-4-p-vi" data-name="Tiếng Việt" aria-controls="lt-b0147815698a288a-4-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-b0147815698a288a-4-t-ar" data-panel="lt-b0147815698a288a-4-p-ar" data-name="العربية" aria-controls="lt-b0147815698a288a-4-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-b0147815698a288a-4-t-hi" data-panel="lt-b0147815698a288a-4-p-hi" data-name="हिन्दी" aria-controls="lt-b0147815698a288a-4-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-b0147815698a288a-4-p-en" role="tabpanel" aria-labelledby="lt-b0147815698a288a-4-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ <span class="tok-kw">string</span> {
+<code>catch</code> binding straight in.</p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-b0147815698a288a-5-t-en" data-panel="lt-b0147815698a288a-5-p-en" data-name="English" aria-controls="lt-b0147815698a288a-5-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-b0147815698a288a-5-t-la" data-panel="lt-b0147815698a288a-5-p-la" data-name="Latin" aria-controls="lt-b0147815698a288a-5-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-b0147815698a288a-5-t-th-TH" data-panel="lt-b0147815698a288a-5-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-b0147815698a288a-5-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-b0147815698a288a-5-t-zh-Hans" data-panel="lt-b0147815698a288a-5-p-zh-Hans" data-name="简体中文" aria-controls="lt-b0147815698a288a-5-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-b0147815698a288a-5-t-zh-Hant" data-panel="lt-b0147815698a288a-5-p-zh-Hant" data-name="繁體中文" aria-controls="lt-b0147815698a288a-5-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-b0147815698a288a-5-t-vi" data-panel="lt-b0147815698a288a-5-p-vi" data-name="Tiếng Việt" aria-controls="lt-b0147815698a288a-5-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-b0147815698a288a-5-t-ar" data-panel="lt-b0147815698a288a-5-p-ar" data-name="العربية" aria-controls="lt-b0147815698a288a-5-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-b0147815698a288a-5-t-hi" data-panel="lt-b0147815698a288a-5-p-hi" data-name="हिन्दी" aria-controls="lt-b0147815698a288a-5-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-b0147815698a288a-5-p-en" role="tabpanel" aria-labelledby="lt-b0147815698a288a-5-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ <span class="tok-kw">string</span> {
     <span class="tok-kw">if</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">throw</span> <span class="tok-st">"division by zero"</span>
     }
@@ -460,7 +516,7 @@ other parameter. Declare the parameter with the error's type and pass the
     <span class="tok-kw">catch</span> err {
         logga(<span class="tok-st">"divide"</span>, err)
     }
-}</code></pre></div><div class="fdt-panel" id="lt-b0147815698a288a-4-p-la" role="tabpanel" aria-labelledby="lt-b0147815698a288a-4-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">functio</span> divide(<span class="tok-kw">numerus</span> a, <span class="tok-kw">numerus</span> b) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> ⇥ <span class="tok-kw">textus</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-b0147815698a288a-5-p-la" role="tabpanel" aria-labelledby="lt-b0147815698a288a-5-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">functio</span> divide(<span class="tok-kw">numerus</span> a, <span class="tok-kw">numerus</span> b) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> ⇥ <span class="tok-kw">textus</span> {
     <span class="tok-kw">si</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">iace</span> <span class="tok-st">"division by zero"</span>
     }
@@ -479,7 +535,7 @@ other parameter. Declare the parameter with the error's type and pass the
     <span class="tok-kw">cape</span> err {
         logga(<span class="tok-st">"divide"</span>, err)
     }
-}</code></pre></div><div class="fdt-panel" id="lt-b0147815698a288a-4-p-th-TH" role="tabpanel" aria-labelledby="lt-b0147815698a288a-4-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">ฟังก์ชัน</span> divide(<span class="tok-kw">จํานวน</span> a, <span class="tok-kw">จํานวน</span> b) <span class="tok-op">→</span> <span class="tok-kw">จํานวน</span> ⇥ <span class="tok-kw">ข้อความ</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-b0147815698a288a-5-p-th-TH" role="tabpanel" aria-labelledby="lt-b0147815698a288a-5-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">ฟังก์ชัน</span> divide(<span class="tok-kw">จํานวน</span> a, <span class="tok-kw">จํานวน</span> b) <span class="tok-op">→</span> <span class="tok-kw">จํานวน</span> ⇥ <span class="tok-kw">ข้อความ</span> {
     <span class="tok-kw">ถ้า</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">โยน</span> <span class="tok-st">"division by zero"</span>
     }
@@ -498,7 +554,7 @@ other parameter. Declare the parameter with the error's type and pass the
     <span class="tok-kw">จับ</span> err {
         logga(<span class="tok-st">"divide"</span>, err)
     }
-}</code></pre></div><div class="fdt-panel" id="lt-b0147815698a288a-4-p-zh-Hans" role="tabpanel" aria-labelledby="lt-b0147815698a288a-4-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">函数</span> divide(<span class="tok-kw">整数</span> a, <span class="tok-kw">整数</span> b) <span class="tok-op">→</span> <span class="tok-kw">整数</span> ⇥ <span class="tok-kw">文本</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-b0147815698a288a-5-p-zh-Hans" role="tabpanel" aria-labelledby="lt-b0147815698a288a-5-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">函数</span> divide(<span class="tok-kw">整数</span> a, <span class="tok-kw">整数</span> b) <span class="tok-op">→</span> <span class="tok-kw">整数</span> ⇥ <span class="tok-kw">文本</span> {
     <span class="tok-kw">如果</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">抛错</span> <span class="tok-st">"division by zero"</span>
     }
@@ -517,7 +573,7 @@ other parameter. Declare the parameter with the error's type and pass the
     <span class="tok-kw">捕获</span> err {
         logga(<span class="tok-st">"divide"</span>, err)
     }
-}</code></pre></div><div class="fdt-panel" id="lt-b0147815698a288a-4-p-zh-Hant" role="tabpanel" aria-labelledby="lt-b0147815698a288a-4-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">函式</span> divide(<span class="tok-kw">整數</span> a, <span class="tok-kw">整數</span> b) <span class="tok-op">→</span> <span class="tok-kw">整數</span> ⇥ <span class="tok-kw">文字</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-b0147815698a288a-5-p-zh-Hant" role="tabpanel" aria-labelledby="lt-b0147815698a288a-5-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">函式</span> divide(<span class="tok-kw">整數</span> a, <span class="tok-kw">整數</span> b) <span class="tok-op">→</span> <span class="tok-kw">整數</span> ⇥ <span class="tok-kw">文字</span> {
     <span class="tok-kw">若</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">拋出</span> <span class="tok-st">"division by zero"</span>
     }
@@ -536,7 +592,7 @@ other parameter. Declare the parameter with the error's type and pass the
     <span class="tok-kw">捕捉</span> err {
         logga(<span class="tok-st">"divide"</span>, err)
     }
-}</code></pre></div><div class="fdt-panel" id="lt-b0147815698a288a-4-p-vi" role="tabpanel" aria-labelledby="lt-b0147815698a288a-4-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">hàm</span> divide(<span class="tok-kw">số</span> a, <span class="tok-kw">số</span> b) <span class="tok-op">→</span> <span class="tok-kw">số</span> ⇥ <span class="tok-kw">văn_bản</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-b0147815698a288a-5-p-vi" role="tabpanel" aria-labelledby="lt-b0147815698a288a-5-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">hàm</span> divide(<span class="tok-kw">số</span> a, <span class="tok-kw">số</span> b) <span class="tok-op">→</span> <span class="tok-kw">số</span> ⇥ <span class="tok-kw">văn_bản</span> {
     <span class="tok-kw">nếu</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">ném</span> <span class="tok-st">"division by zero"</span>
     }
@@ -555,7 +611,7 @@ other parameter. Declare the parameter with the error's type and pass the
     <span class="tok-kw">bắt</span> err {
         logga(<span class="tok-st">"divide"</span>, err)
     }
-}</code></pre></div><div class="fdt-panel" id="lt-b0147815698a288a-4-p-ar" role="tabpanel" aria-labelledby="lt-b0147815698a288a-4-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">دالة</span> divide(<span class="tok-kw">عدد</span> a, <span class="tok-kw">عدد</span> b) <span class="tok-op">→</span> <span class="tok-kw">عدد</span> ⇥ <span class="tok-kw">نص</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-b0147815698a288a-5-p-ar" role="tabpanel" aria-labelledby="lt-b0147815698a288a-5-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">دالة</span> divide(<span class="tok-kw">عدد</span> a, <span class="tok-kw">عدد</span> b) <span class="tok-op">→</span> <span class="tok-kw">عدد</span> ⇥ <span class="tok-kw">نص</span> {
     <span class="tok-kw">إذا</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">ارم</span> <span class="tok-st">"division by zero"</span>
     }
@@ -574,7 +630,7 @@ other parameter. Declare the parameter with the error's type and pass the
     <span class="tok-kw">التقط</span> err {
         logga(<span class="tok-st">"divide"</span>, err)
     }
-}</code></pre></div><div class="fdt-panel" id="lt-b0147815698a288a-4-p-hi" role="tabpanel" aria-labelledby="lt-b0147815698a288a-4-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">फलन</span> divide(<span class="tok-kw">संख्या</span> a, <span class="tok-kw">संख्या</span> b) <span class="tok-op">→</span> <span class="tok-kw">संख्या</span> ⇥ <span class="tok-kw">पाठ</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-b0147815698a288a-5-p-hi" role="tabpanel" aria-labelledby="lt-b0147815698a288a-5-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">फलन</span> divide(<span class="tok-kw">संख्या</span> a, <span class="tok-kw">संख्या</span> b) <span class="tok-op">→</span> <span class="tok-kw">संख्या</span> ⇥ <span class="tok-kw">पाठ</span> {
     <span class="tok-kw">यदि</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">इधरफेंको</span> <span class="tok-st">"division by zero"</span>
     }

@@ -1,0 +1,7 @@
+incipit {
+    sit lista<textus> nomina ← ["Alia", "Brunus"]
+    sit lista<numerus> aetates ← [34, 27]
+    itera ex nomina, aetates apud [i] sit nomen, aetas {
+        nota i, nomen, aetas
+    }
+}

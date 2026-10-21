@@ -1,5 +1,0 @@
-bắt_đầu {
-    lặp khoảng 0‥10 qua 2 hằng i {
-        ghi_chú i
-    }
-}

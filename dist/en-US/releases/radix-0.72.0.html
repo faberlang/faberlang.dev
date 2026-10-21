@@ -30,7 +30,7 @@ stepper. GPU/device parity remains out of scope (<code>582701f5d</code>).</p><p>
 singular→none <code>Option</code>. GPU matrix targets stay fail-closed (<code>a02a00fd8</code>).</p><p>Add CPU stepper evidence for the shared register-vector subset and for the T*S
 point product matching <code>triga-transforms.fab</code> numbers (7,4,-1). Row-major
 language matrix with column-vector applica (<code>436ff0bff</code>).</p><h4 id="llvm-host-stage-4-lowerings-4aa4af">LLVM host Stage 4 lowerings (4AA–4AF)<a class="anchor" href="#llvm-host-stage-4-lowerings-4aa4af">#</a></h4><p>Lower value map-literal via <code>map_new</code> (Stage 4AA) (<code>cd18070e2</code>), array-literal
-via <code>array_new</code> (Stage 4AB) (<code>cfda0ef8c</code>), intervallum via versioned ABI
+via <code>array_new</code> (Stage 4AB) (<code>cfda0ef8c</code>), range via versioned ABI
 (Stage 4AC) (<code>ab57113a9</code>), and collection convert bridges — list↔set,
 map↦list keys/values, list↔cursor (Stage 4AD) (<code>77d6f5b10</code>).</p><p>Close isolable aggregate residuals: empty value maps and map index, plus
 tensor→value boxing (Stage 4AE) (<code>4e4643c21</code>). Unique sparse construct status

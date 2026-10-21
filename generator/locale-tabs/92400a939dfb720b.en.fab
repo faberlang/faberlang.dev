@@ -1,0 +1,5 @@
+main {
+    let _ nomen ← "Marcus"
+    let _ numeri ← [1, 2, 3]
+    print nomen, numeri
+}

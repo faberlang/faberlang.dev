@@ -1,0 +1,9 @@
+class Persona {
+    let string nomen
+    let int aetas
+}
+
+main {
+    let _ p ← Persona { nomen = "Marcus", aetas = 30 }
+    print p.nomen, p.aetas
+}

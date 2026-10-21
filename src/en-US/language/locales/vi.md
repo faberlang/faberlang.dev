@@ -32,6 +32,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | ---------------  -----------  -------------------
 | all              omnia        tất_cả
 | and              et           và
+| annotation       annotatio    chú_thích
 | any              quilibet     bất_kỳ
 | argmax           argmaxima    argmax
 | argmin           argminima    argmin
@@ -61,6 +62,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | coalesce         vel          hoặc_nếu_rỗng
 | column           columna      cột
 | command          imperium     lệnh
+| commands         imperia      các_lệnh
 | comptime         praefixum    tiền_tố
 | const            fixum        hằng
 | continue         perge        tiếp
@@ -116,7 +118,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | name             nomen        tên
 | nan              nonnumerus   nan
 | not              non          không
-| null             nulla        không_gì
+| null             nulla        vắng
 | only             solum        chỉ
 | only_in          solum_in     chỉ_trong
 | operand          operandus    toán_hạng
@@ -178,6 +180,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | unstable         nondum       không_ổn_định
 | until            usque        tới
 | variant          finge        tạo
+| version          versio       phiên_bản
 | vertex           vertex       đỉnh
 | via              via          thông_qua
 | warn             mone         cảnh_báo
@@ -208,7 +211,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | frame        scrinium     khung
 | instant      instans      thời_điểm
 | int          numerus      số
-| intervallum  intervallum  miền
 | iterator     cursor_t     bộ_lặp
 | json         json         json
 | ledger       tabulae      sổ_cái
@@ -216,10 +218,11 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | map          tabula       bảng
 | matrix       matrix       ma_trận
 | never        numquam      không_bao_giờ
-| none         nihil        rỗng_ty
+| none         nihil        hư_không
 | object       objectum     đối_tượng
 | promise      promissum    lời_hứa
 | queue        queue        hàng_đợi
+| range        intervallum  miền
 | record       ratio        ratio
 | recv         tuus         nhận
 | reflect      reflexa      phản_xạ_biên
@@ -228,7 +231,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | send         meus         gửi
 | series       series       chuỗi
 | set          copia        tập_hợp
-| sparsa       sparsa       thưa
+| sparse       sparsa       thưa
 | stack        stack        ngăn_xếp
 | string       textus       văn_bản
 | tensor       tensor       ten_xo
@@ -265,6 +268,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | bit_and_assign        coniunge               và_bit_gán
 | bit_or                disiuncta              hoặc_bit
 | bit_or_assign         disiunge               hoặc_bit_gán
+| cbrt                  radix_cubica           căn_bậc_ba
 | ceiling               tectum                 làm_tròn_lên
 | clamp                 coercere               giới_hạn
 | compare_exchange      compare_exchange       so_sánh_và_đổi
@@ -285,6 +289,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | divide                divida                 chia
 | divided               divisa                 đã_chia
 | dot                   productum              tích_vô_hướng
+| drain                 exhauri                xả_hết
 | drop                  omissa                 bỏ_qua
 | end                   terminus               kết_thúc
 | ends_with             finis                  kết_thúc_bằng
@@ -296,6 +301,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | filter                filtrata               lọc
 | find                  inventa                tìm
 | find_all              collecta               tìm_tất_cả
+| finish                fini                   kết_thúc
 | first                 primus                 đầu_tiên
 | flatten               planata                làm_phẳng
 | flip                  alterna                lật

@@ -1,0 +1,11 @@
+بداية {
+    # a declaration
+    ليكن عدد count ← 0
+    # another
+    ليكن نص name ← "Marcus"
+    # a generic
+    ليكن قائمة<عدد> scores ← [1, 2, 3]
+    # a nullable
+    ليكن عدد ∪ لاشيء maybe ← غائب
+    اعرض count, name, scores, maybe
+}

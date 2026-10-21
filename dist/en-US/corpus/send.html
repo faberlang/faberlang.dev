@@ -4,11 +4,11 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • Directional channel views — `send&lt;T&gt;` for outbound frames, `recv&lt;T&gt;` for</span>
-<span class="tok-co">#     inbound frames on a channel connection</span>
+<span class="tok-co">#   • Directional channel views — `send&lt;T&gt;` (explain term `send`) for outbound</span>
+<span class="tok-co">#     frames, `recv&lt;T&gt;` (`recv`) for inbound frames on a channel connection</span>
 <span class="tok-co">#   • Cursor iteration — `for from t.cursor()` consumes inbound frames</span>
-<span class="tok-co">#   • Accipe reception — `accipe()` pulls a single frame from the inbound</span>
-<span class="tok-co">#     queue</span>
+<span class="tok-co">#   • Single reception — `get()` (explain term `accipe`) pulls a single</span>
+<span class="tok-co">#     frame from the inbound queue</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • confusing `send` (outbound) and `recv` (inbound) channel directional views, or mixing accipe/cursor/exhauri without intentional ordered consumption</span>
@@ -19,23 +19,23 @@
 <span class="tok-co"># Live `send&lt;T&gt;` / `recv&lt;T&gt;` directional views</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># runtime:echo returns one inbound string frame per conversation.</span>
-<span class="tok-co"># accipe, cursor, and exhauri may share one recv queue; mix them only when</span>
+<span class="tok-co"># get, cursor, and drain may share one recv queue; mix them only when</span>
 <span class="tok-co"># ordered consumption is intentional.</span>
 
 main {
     let channel s <span class="tok-op">←</span> call <span class="tok-st">'runtime:echo'</span> (<span class="tok-st">"salve"</span>)
-    let send<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> m <span class="tok-op">←</span> s.meus<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>()
-    m.da(<span class="tok-st">"ping"</span>)
-    let status outbound <span class="tok-op">←</span> m.fini()
-    let recv<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> t <span class="tok-op">←</span> s.tuus<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>()
+    let send<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> m <span class="tok-op">←</span> s.send<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>()
+    m.sink(<span class="tok-st">"ping"</span>)
+    let status outbound <span class="tok-op">←</span> m.finish()
+    let recv<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> t <span class="tok-op">←</span> s.recv<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>()
     for from t.cursor() let frame {
         assert frame.data <span class="tok-op">≡</span> <span class="tok-st">"salve"</span>
     }
-    let status inbound <span class="tok-op">←</span> t.fini()
+    let status inbound <span class="tok-op">←</span> t.finish()
     let channel s2 <span class="tok-op">←</span> call <span class="tok-st">'runtime:echo'</span> (<span class="tok-st">"salve"</span>)
-    let recv<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> t2 <span class="tok-op">←</span> s2.tuus<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>()
-    let frame<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> <span class="tok-op">∪</span> none got <span class="tok-op">←</span> t2.accipe()
-    let status accipe_done <span class="tok-op">←</span> t2.fini()
+    let recv<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> t2 <span class="tok-op">←</span> s2.recv<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>()
+    let frame<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> <span class="tok-op">∪</span> none got <span class="tok-op">←</span> t2.get()
+    let status accipe_done <span class="tok-op">←</span> t2.finish()
     print outbound
     print inbound
     print got<span class="tok-op">?.</span>data

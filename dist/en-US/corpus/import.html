@@ -57,4 +57,32 @@ import from <span class="tok-st">"./auxilium"</span> auxilium
 main {
     print auxilium.saluta(<span class="tok-st">"Marcus"</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve, Marcus!
-</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusimportadefault-bracedfab-canonical-keyword">radix/corpus/importa/default-braced.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusimportaimportafab-canonical-keyword">radix/corpus/importa/importa.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/importa/default-braced.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+</code></pre><h3 id="radixcorpusimportaimport-unknown-norma-module-rejectfab-supporting-reject">radix/corpus/importa/import-unknown-norma-module-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusimportaimport-unknown-norma-module-rejectfab-supporting-reject">#</a></h3><p>Importing a norma:* module name that the embedded library does not provide is a package-graph reject.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># This exemplum intentionally fails to compile: `norma:nonexistent` names no</span>
+<span class="tok-co"># module of the embedded Norma library, so package analysis rejects the import.</span>
+import from <span class="tok-st">"norma:nonexistent"</span> nonexistent
+
+main {
+    print <span class="tok-st">"unreachable"</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusimportaprivate-rejectfab-supporting-reject">radix/corpus/importa/private-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusimportaprivate-rejectfab-supporting-reject">#</a></h3><p>An unmarked top-level member of an imported module is module-private.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># import — a module-private member is not reachable through the import</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># `hidden` carries no `@ public`, so it belongs to `lib` alone. Reaching it</span>
+<span class="tok-co"># through the module binding is a semantic error, not a name that falls back to</span>
+<span class="tok-co"># a module-local definition.</span>
+
+import from <span class="tok-st">"./lib"</span> lib
+
+main {
+    print lib.hidden()
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusimportaselective-missing-rejectfab-supporting-reject">radix/corpus/importa/selective-missing-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusimportaselective-missing-rejectfab-supporting-reject">#</a></h3><p>A selective import must name a member the imported module exports.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># import — a selective import names an exported member</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># `nosuch` is not on `lib`'s exported surface (`@ public`), and it is not a</span>
+<span class="tok-co"># module-private name either: a selective binding that names nothing the module</span>
+<span class="tok-co"># exports is its own error, reported at the import.</span>
+
+import from <span class="tok-st">"./lib"</span> const nosuch
+
+main {
+    print <span class="tok-nu">1</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusimportadefault-bracedfab-canonical-keyword">radix/corpus/importa/default-braced.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusimportaimportafab-canonical-keyword">radix/corpus/importa/importa.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusimportaimport-unknown-norma-module-rejectfab-supporting-reject">radix/corpus/importa/import-unknown-norma-module-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusimportaprivate-rejectfab-supporting-reject">radix/corpus/importa/private-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusimportaselective-missing-rejectfab-supporting-reject">radix/corpus/importa/selective-missing-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/importa/default-braced.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

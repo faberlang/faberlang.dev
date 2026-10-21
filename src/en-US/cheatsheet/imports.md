@@ -82,6 +82,22 @@ incipit {
 
 Use `publica` only when you deliberately intend to widen your module's surface.
 
+## From the target language {#target-bound}
+
+A target word before the specifier imports a module of the target language
+itself, by its own name and verbatim. The program then belongs to that
+target: `faber build -t python` emits `import math as m`, while every other
+target, `faber run` and a plain `faber check` refuse it with
+`SEM017 import_target_bound`.
+
+```faber locale=en target=python
+import python "math" m
+
+main {
+    print m.pi
+}
+```
+
 ## At a glance {#summary}
 
 | Form | Effect |
@@ -90,6 +106,7 @@ Use `publica` only when you deliberately intend to widen your module's surface.
 | `importa ex "./auxilium" saluta` | Item from a sibling file |
 | `importa ex "./auxilium" saluta ut greet` | …bound under a different name |
 | `importa ex "norma:text" publica text` | Imported and re-exported |
+| `importa python "math" m` (en `import python "math" m`) | Target-language module; Python builds only |
 
 Related: [A program is a package](/language/behavior/packages.html) for how modules sit inside
 a package · [Packages with Cista](/toolchain/packages.html) for dependency

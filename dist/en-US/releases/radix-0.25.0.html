@@ -10,7 +10,7 @@ for imports. Bare imports remain valid as a non-breaking superset
 (<code>5f91affdb</code>). The entire codebase was mass-migrated to the prefixed form
 (<code>eefa1a11a</code>).</li></ul><h4 id="language-removals-and-deprecations">Language removals and deprecations<a class="anchor" href="#language-removals-and-deprecations">#</a></h4><ul><li><strong>Disabled `fit`/`async`/`generator`/`async_generator` return-type syntax</strong>: the return
 arrow (<code class="glyph">→</code>) is now the canonical form. Also added <code>@ cursor</code> annotation for
-generator functions, <code>@ imperia</code> annotation parsing, keywords as method names
+generator functions, <code>@ commands</code> annotation parsing, keywords as method names
 in pactum declarations, and structural type-alias resolution (fixes #117,</li></ul><p>#226, #227, #228) (<code>c53e1d526</code>).</p><ul><li><strong>Removed `mut` mutation block syntax</strong>: the <code>in target { field = value }</code>
 form is gone; the explicit <code>target.field = value</code> is canonical (closes #222)
 (<code>d9199bd9f</code>).</li></ul><h4 id="multi-line-string-literals">Multi-line string literals (<code class="glyph">&quot;&quot;&quot;</code>)<a class="anchor" href="#multi-line-string-literals">#</a></h4><ul><li>Triple-quote syntax for multi-line strings in both faber and rivus lexers.

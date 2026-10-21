@@ -1,0 +1,9 @@
+kiểu Persona {
+    đặt văn_bản nomen
+    đặt số aetas
+}
+
+bắt_đầu {
+    đặt _ p ← Persona { nomen = "Marcus", aetas = 30 }
+    ghi_chú p.nomen, p.aetas
+}

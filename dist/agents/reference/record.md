@@ -18,7 +18,7 @@ record<label: type, …> { label = value }
 - objectPattern destructuring: let {g, w} ← point
 - partial + rest: let {loss, rest leftover} ← metrics
 - element holes: record<g: _> solved from the construction witness
-- binary cup element: record<g: string ∪ null> Reject teaching rows (comments only; these must not become stage-3 inputs):
+- binary cup element: record<g: string ∪ none> Reject teaching rows (comments only; these must not become stage-3 inputs):
 - positional access attempt: point[0] / point.0
 - missing label: record<f32>
 - ∪ slot: record<g: ∪>

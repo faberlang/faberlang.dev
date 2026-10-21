@@ -41,4 +41,87 @@ main {
     catch err {
         print err
     }
-}</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusjsonjsonfab-canonical-type">radix/corpus/json/json.fab (canonical · type)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/json/json.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+}</code></pre><h3 id="radixcorpusjsonliteral-duplicate-key-rejectfab-supporting-reject">radix/corpus/json/literal-duplicate-key-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusjsonliteral-duplicate-key-rejectfab-supporting-reject">#</a></h3><p>A JSON object literal cannot repeat a key: the second occurrence rejects with SEM011:json_duplicate_key.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># json — A JSON object literal cannot repeat a key</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • An object literal like `{ "a": 1, "a": 2 }` is ambiguous: which value wins?</span>
+<span class="tok-co">#   • The typechecker rejects the second occurrence at its key, not the object as a whole</span>
+<span class="tok-co">#   • Nested objects are checked the same way</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Retyping an object and leaving an older key in place</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: json</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># JSON duplicate-key reject case — expected compile failure</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># This exemplum intentionally fails to compile.</span>
+
+main {
+    let json a <span class="tok-op">←</span> { <span class="tok-st">"a"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"a"</span><span class="tok-op">:</span> <span class="tok-nu">2</span> }
+    print a
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusjsonliteral-identifier-rejectfab-supporting-reject">radix/corpus/json/literal-identifier-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusjsonliteral-identifier-rejectfab-supporting-reject">#</a></h3><p>JSON values are strings, numbers, objects, arrays or the wire words true/false/null: any other identifier value rejects with PARSE002:json_unknown_identifier_value.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># json — a bare identifier is not a JSON value</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • JSON values are strings, numbers, objects, arrays and the wire words</span>
+<span class="tok-co">#     `true`, `false` and `null`.</span>
+<span class="tok-co">#   • A bare identifier such as `foo` is not JSON data and is rejected while</span>
+<span class="tok-co">#     parsing the JSON literal.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Writing `{ "flag": foo }` when a JSON boolean was meant — write `true`.</span>
+<span class="tok-co">#   • Expecting a Faber binding to be resolved inside a JSON literal.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: json</span>
+<span class="tok-co"># =============================================================================</span>
+
+main { let json a <span class="tok-op">←</span> { <span class="tok-st">"flag"</span><span class="tok-op">:</span> foo } ; print a }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusjsonliteral-trailing-comma-rejectfab-supporting-reject">radix/corpus/json/literal-trailing-comma-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusjsonliteral-trailing-comma-rejectfab-supporting-reject">#</a></h3><p>JSON follows RFC 8259: a comma before the closing brace rejects with PARSE001:item_list_trailing_comma.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># json — JSON follows RFC 8259: a comma before the closing brace rejects</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • A JSON object literal is an RFC 8259 document: `{ "a": 1, }` is not one</span>
+<span class="tok-co">#   • A comma directly before the closing brace rejects at parse time</span>
+<span class="tok-co">#   • The same item-list law holds everywhere; JSON rows also name RFC 8259</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Copying a pretty-printed object that leaves a dangling comma</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: json</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># JSON trailing-comma reject case — expected compile failure</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># This exemplum intentionally fails to compile.</span>
+
+main {
+    let json a <span class="tok-op">←</span> { <span class="tok-st">"a"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, }
+    print a
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusjsonliteral-unquoted-key-rejectfab-supporting-reject">radix/corpus/json/literal-unquoted-key-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusjsonliteral-unquoted-key-rejectfab-supporting-reject">#</a></h3><p>JSON object keys must be quoted strings: a bare identifier key rejects with PARSE001:json_quoted_key.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># json unquoted key — JSON object keys must be quoted strings.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • A bare `{` in expression position enters the JSON literal grammar</span>
+<span class="tok-co">#   • JSON object keys are quoted strings: { "a": 1 }, never { a: 1 }</span>
+<span class="tok-co">#   • A bare identifier key rejects with PARSE001:json_quoted_key</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Writing { a: 1 } instead of { "a": 1 } — keys are JSON strings, not Faber names</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: json</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># json unquoted-key reject case — expected compile failure</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># This exemplum intentionally fails to compile.</span>
+
+main {
+    let json a <span class="tok-op">←</span> { a<span class="tok-op">:</span> <span class="tok-nu">1</span> }
+    print a
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusjsonjsonfab-canonical-type">radix/corpus/json/json.fab (canonical · type)</a></li><li class="toc-3"><a href="#radixcorpusjsonliteral-duplicate-key-rejectfab-supporting-reject">radix/corpus/json/literal-duplicate-key-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusjsonliteral-identifier-rejectfab-supporting-reject">radix/corpus/json/literal-identifier-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusjsonliteral-trailing-comma-rejectfab-supporting-reject">radix/corpus/json/literal-trailing-comma-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusjsonliteral-unquoted-key-rejectfab-supporting-reject">radix/corpus/json/literal-unquoted-key-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/json/json.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

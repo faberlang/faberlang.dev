@@ -36,4 +36,18 @@ fn stream() generator <span class="tok-op">→</span> int {
 main {
     print stream()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>[1, 2]
-</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpuscedecedefab-canonical-keyword">radix/corpus/cede/cede.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/cede/cede.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+</code></pre><h3 id="radixcorpuscedecede-outside-generator-rejectfab-supporting-reject">radix/corpus/cede/cede-outside-generator-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpuscedecede-outside-generator-rejectfab-supporting-reject">#</a></h3><p>Yielding needs a generator body; an ordinary function cannot emit items.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># yield — yielding outside a generator body is a check error</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># `yield` (yield) emits one item from a generator callable (`generator` or `async_generator`).</span>
+<span class="tok-co"># An ordinary function has no caller consuming a sequence, so the statement is</span>
+<span class="tok-co"># refused before any code is emitted.</span>
+
+fn f() <span class="tok-op">→</span> int {
+    yield <span class="tok-nu">1</span>
+    return <span class="tok-nu">2</span>
+}
+
+main {
+    print f()
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpuscedecedefab-canonical-keyword">radix/corpus/cede/cede.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpuscedecede-outside-generator-rejectfab-supporting-reject">radix/corpus/cede/cede-outside-generator-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/cede/cede.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

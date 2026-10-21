@@ -56,4 +56,24 @@ interface tempus {
 main {
     print <span class="tok-st">"nondum implendum declared"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>nondum implendum declared
-</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusannotation-sugarnondum-bracedfab-canonical-annotation">radix/corpus/annotation-sugar/nondum-braced.fab (canonical · annotation)</a></li><li class="toc-3"><a href="#radixcorpusmetanondumfab-canonical-annotation">radix/corpus/meta/nondum.fab (canonical · annotation)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/annotation-sugar/nondum-braced.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+</code></pre><h3 id="radixcorpusannotation-sugarnondum-call-rejectfab-supporting-reject">radix/corpus/annotation-sugar/nondum-call-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusannotation-sugarnondum-call-rejectfab-supporting-reject">#</a></h3><p>A function marked not yet for this target is declared but not callable.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># unstable — a call of a not-yet function is refused</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • `@ unstable` without a target marks the declaration unavailable everywhere</span>
+<span class="tok-co">#   • A signature-only `fn` under `@ unstable` is declared and exported, but any</span>
+<span class="tok-co">#     use of it is refused</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • calling a declaration that is still pending for the current target (SEM017)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: unstable, annotation-sugar</span>
+<span class="tok-co"># =============================================================================</span>
+
+@ unstable <span class="tok-st">"pending"</span>
+fn later(string t) <span class="tok-op">→</span> string
+
+main {
+    print later(<span class="tok-st">"x"</span>)
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusannotation-sugarnondum-bracedfab-canonical-annotation">radix/corpus/annotation-sugar/nondum-braced.fab (canonical · annotation)</a></li><li class="toc-3"><a href="#radixcorpusmetanondumfab-canonical-annotation">radix/corpus/meta/nondum.fab (canonical · annotation)</a></li><li class="toc-3"><a href="#radixcorpusannotation-sugarnondum-call-rejectfab-supporting-reject">radix/corpus/annotation-sugar/nondum-call-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/annotation-sugar/nondum-braced.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

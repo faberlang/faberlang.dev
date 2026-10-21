@@ -1,5 +1,0 @@
-main {
-    const i32 narrow ← 7 ∷ i32
-    const u64 wide ← 255 ∷ u64
-    const f32 single ← 1.5 ∷ f32
-}

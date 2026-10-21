@@ -1,0 +1,13 @@
+fn nihil_agit() → void {
+    print "done"
+}
+
+main {
+    let string nomen ← "Marcus"
+    let i32 aetas ← 30
+    let bool ready ← true
+    let list<int> empty ← empty
+    let int ∪ none missing ← null
+    print nomen, aetas, ready, empty, missing
+    nihil_agit()
+}

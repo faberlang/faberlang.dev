@@ -98,4 +98,55 @@ main {
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>42
 salve
 10
-</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusadsermo-conversiofab-canonical-keyword">radix/corpus/ad/sermo-conversio.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusadserve-plainfab-canonical-annotation">radix/corpus/ad/serve-plain.fab (canonical · annotation)</a></li><li class="toc-3"><a href="#radixcorpusadserve-typedfab-canonical-annotation">radix/corpus/ad/serve-typed.fab (canonical · annotation)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/ad/sermo-conversio.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+</code></pre><h3 id="radixcorpusadad-handler-multiple-routes-rejectfab-supporting-reject">radix/corpus/ad/ad-handler-multiple-routes-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusadad-handler-multiple-routes-rejectfab-supporting-reject">#</a></h3><p>One handler serves exactly one route; a second @ call annotation on the same function is refused.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># call — a handler serves one route, not two</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># A function annotated with `@ call` is the handler for exactly one route. A</span>
+<span class="tok-co"># second `@ call` on the same function has no single route to answer.</span>
+
+@ call <span class="tok-st">'m:a'</span>
+@ call <span class="tok-st">'m:b'</span>
+fn g(int n) <span class="tok-op">→</span> int {
+    return n
+}
+
+main {
+    print <span class="tok-nu">1</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusadad-handler-not-top-level-rejectfab-supporting-reject">radix/corpus/ad/ad-handler-not-top-level-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusadad-handler-not-top-level-rejectfab-supporting-reject">#</a></h3><p>A call handler must be a top-level function; a @ call annotation on a class method is refused.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># call — a handler is a top-level function, never a class method</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># Registering a route with `@ call` requires a top-level function. A method</span>
+<span class="tok-co"># belongs to its class and cannot serve a program route.</span>
+
+class C {
+    @ call <span class="tok-st">'m:a'</span>
+    fn g(int n) <span class="tok-op">→</span> int {
+        return n
+    }
+}
+
+main {
+    print <span class="tok-nu">1</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusadad-route-duplicate-rejectfab-supporting-reject">radix/corpus/ad/ad-route-duplicate-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusadad-route-duplicate-rejectfab-supporting-reject">#</a></h3><p>Two handlers may not serve the same route; a route is served once per program.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># call — a route is served once per program</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># `@ call '&lt;route&gt;'` pins a handler to a route. Two handlers claiming the same</span>
+<span class="tok-co"># route would answer the same traffic, so the program is refused.</span>
+
+@ call <span class="tok-st">'m:x'</span>
+fn a() <span class="tok-op">→</span> int {
+    return <span class="tok-nu">1</span>
+}
+@ call <span class="tok-st">'m:x'</span>
+fn b() <span class="tok-op">→</span> int {
+    return <span class="tok-nu">2</span>
+}
+main {
+    print <span class="tok-nu">1</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusadad-route-reserved-rejectfab-supporting-reject">radix/corpus/ad/ad-route-reserved-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusadad-route-reserved-rejectfab-supporting-reject">#</a></h3><p>A served route never lives under the reserved runtime: prefix; runtime routes belong to the host.</p><pre class="faber-code"><code class="lang-faber outcome=rejects">@ call <span class="tok-st">'runtime:echo'</span>
+fn a() <span class="tok-op">→</span> int {
+    return <span class="tok-nu">1</span>
+}
+main {
+    print <span class="tok-nu">1</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusadsermo-conversiofab-canonical-keyword">radix/corpus/ad/sermo-conversio.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusadserve-plainfab-canonical-annotation">radix/corpus/ad/serve-plain.fab (canonical · annotation)</a></li><li class="toc-3"><a href="#radixcorpusadserve-typedfab-canonical-annotation">radix/corpus/ad/serve-typed.fab (canonical · annotation)</a></li><li class="toc-3"><a href="#radixcorpusadad-handler-multiple-routes-rejectfab-supporting-reject">radix/corpus/ad/ad-handler-multiple-routes-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusadad-handler-not-top-level-rejectfab-supporting-reject">radix/corpus/ad/ad-handler-not-top-level-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusadad-route-duplicate-rejectfab-supporting-reject">radix/corpus/ad/ad-route-duplicate-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusadad-route-reserved-rejectfab-supporting-reject">radix/corpus/ad/ad-route-reserved-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/ad/sermo-conversio.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

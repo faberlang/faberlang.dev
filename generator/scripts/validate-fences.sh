@@ -5,9 +5,14 @@
 # Extracts every ```faber code block from Markdown files and validates
 # it against the declared fence contract:
 #
-#   ```faber [locale=<X>] [mode=fluid|pinned|package] [outcome=compiles|rejects|output-matches]
+#   ```faber [locale=<X>] [mode=fluid|pinned|package] [outcome=compiles|rejects|output-matches] [target=<T>]
 #
 # Default contract: locale=la, mode=fluid, outcome=compiles.
+#
+# target=<T> checks the fence by building it for that target instead of with
+# a plain `check`. Code that only a target can accept needs it: a function
+# on the AIR lane (`@ radix lane "air"`) builds for a MIR-backed target, while
+# a target-less `check` refuses it (TARGETLANE001).
 #
 # mode=package marks a fence that is one file of a real multi-file package.
 # Its sibling imports cannot resolve when the fence is checked on its own, so
@@ -49,23 +54,34 @@ fi
 RADIX="${RADIX:-radix}"
 LOCALE_PACK_DIR="${WORKSPACE_VF}/radix/locale"
 
-# Build the code-locale argument for a fence's declared locale. Latin is the
-# canonical surface and needs no pack.
+# Build the code-locale argument for a fence's declared locale. Latin is
+# passed explicitly too: `faber check` reads an untagged file as English, so
+# leaving it out would check every Latin fence on the wrong surface.
 #
-# `radix check` takes `--locale <name>` and resolves the pack itself. Do not
+# `check` takes `--locale <name>` and resolves the pack itself. Do not
 # reach for `--diagnostics-locale`: that one only renders *messages* in a
 # locale and will happily fail to lex the source it is complaining about.
 radix_locale_args() {
     local locale="$1"
-    if [ "$locale" = "la" ]; then
-        return 0
-    fi
-    if [ -f "${LOCALE_PACK_DIR}/${locale}/pack.toml" ]; then
+    if [ "$locale" = "la" ] || [ -f "${LOCALE_PACK_DIR}/${locale}/pack.toml" ]; then
         printf -- '--locale=%s' "$locale"
     fi
 }
+
+# Library fences import triga, gradus and tela, which no installed faber
+# carries. When the sibling checkouts exist, check against them through a
+# throwaway library home (norma stays the copy embedded in the binary).
+LIBRARY_HOME_VF=""
+for lib in triga gradus tela; do
+    if [ -d "${WORKSPACE_VF}/${lib}/src" ]; then
+        if [ -z "$LIBRARY_HOME_VF" ]; then
+            LIBRARY_HOME_VF="$(mktemp -d)"
+        fi
+        ln -s "${WORKSPACE_VF}/${lib}" "${LIBRARY_HOME_VF}/${lib}"
+    fi
+done
 TMPDIR_BASE="$(mktemp -d)"
-trap 'rm -rf "$TMPDIR_BASE"' EXIT
+trap 'rm -rf "$TMPDIR_BASE" ${LIBRARY_HOME_VF:+"$LIBRARY_HOME_VF"}' EXIT
 
 PASS=0
 FAIL=0
@@ -102,6 +118,7 @@ extract_fences() {
             local locale="la"
             local mode="fluid"
             local outcome="compiles"
+            local target=""
 
             if echo "$info_line" | grep -qo 'locale=[a-zA-Z-]*'; then
                 locale=$(echo "$info_line" | grep -o 'locale=[a-zA-Z-]*' | cut -d= -f2)
@@ -113,11 +130,19 @@ extract_fences() {
                 outcome=$(echo "$info_line" | grep -o 'outcome=[a-z-]*' | cut -d= -f2)
             fi
 
-            # Write body to temp file
-            local tmpfile="$TMPDIR_BASE/fence_${fence_idx}.fab"
+            if echo "$info_line" | grep -qo 'target=[a-z-]*'; then
+                target=$(echo "$info_line" | grep -o 'target=[a-z-]*' | cut -d= -f2)
+            fi
+
+            # Write body to its own directory, so stubbed siblings (below)
+            # never leak from one fence into the next
+            local fence_dir="$TMPDIR_BASE/fence_${fence_idx}"
+            rm -rf "$fence_dir"
+            mkdir -p "$fence_dir"
+            local tmpfile="$fence_dir/main.fab"
             printf '%s\n' "$body" > "$tmpfile"
 
-            printf '%s|%s|%s|%s|%s|%d\n' "$fence_idx" "$locale" "$mode" "$outcome" "$tmpfile" "$line_num"
+            printf '%s|%s|%s|%s|%s|%d|%s\n' "$fence_idx" "$locale" "$mode" "$outcome" "$tmpfile" "$line_num" "$target"
             fence_idx=$((fence_idx + 1))
             continue
         fi
@@ -141,8 +166,9 @@ validate_fence() {
     local outcome="$5"
     local tmpfile="$6"
     local line_num="$7"
+    local target="$8"
 
-    local label="${md_file}:fence#${fence_id} (L${line_num}, ${locale}/${mode}/${outcome})"
+    local label="${md_file}:fence#${fence_id} (L${line_num}, ${locale}/${mode}/${outcome}${target:+/$target})"
 
     local pack_arg
     pack_arg="$(radix_locale_args "$locale")"
@@ -152,9 +178,36 @@ validate_fence() {
         mode_arg="--permissive"
     fi
 
+    # A relative import names a sibling file the fence does not show. The
+    # compiler refuses a missing file outright, so give each one an empty
+    # stub and check permissively: the fence must still parse and type-check,
+    # and only references into the stub are excused.
+    local sibling
+    while IFS= read -r sibling; do
+        [ -n "$sibling" ] || continue
+        mkdir -p "$(dirname "$(dirname "$tmpfile")/${sibling}")"
+        : > "$(dirname "$tmpfile")/${sibling}.fab"
+        mode_arg="--permissive"
+    done < <(grep -o '"\./[A-Za-z0-9_/]*"' "$tmpfile" | tr -d '"' | sort -u)
+
+    local library_arg=""
+    if [ -n "$LIBRARY_HOME_VF" ] && grep -qE '"(triga|gradus|tela):' "$tmpfile"; then
+        library_arg="--library-home=${LIBRARY_HOME_VF}"
+    fi
+
+    # `build` takes the code locale from frontmatter, not a flag
+    local check_cmd=(check ${mode_arg:+"$mode_arg"} ${pack_arg:+"$pack_arg"} ${library_arg:+"$library_arg"})
+    if [ -n "$target" ]; then
+        if [ "$(head -1 "$tmpfile")" != "+++" ]; then
+            { printf '+++\nlocale = "%s"\n+++\n' "$locale"; cat "$tmpfile"; } > "${tmpfile}.tmp"
+            mv "${tmpfile}.tmp" "$tmpfile"
+        fi
+        check_cmd=(build -t "$target" -o "$(dirname "$tmpfile")/out" ${library_arg:+"$library_arg"})
+    fi
+
     case "$outcome" in
         compiles)
-            if "$RADIX" check ${mode_arg:+"$mode_arg"} ${pack_arg:+"$pack_arg"} "$tmpfile" > /dev/null 2>&1; then
+            if (cd "$(dirname "$tmpfile")" && "$RADIX" "${check_cmd[@]}" "$tmpfile") > /dev/null 2>&1; then
                 log_pass "$label"
                 PASS=$((PASS + 1))
             else
@@ -163,7 +216,7 @@ validate_fence() {
             fi
             ;;
         rejects)
-            if "$RADIX" check ${mode_arg:+"$mode_arg"} ${pack_arg:+"$pack_arg"} "$tmpfile" > /dev/null 2>&1; then
+            if (cd "$(dirname "$tmpfile")" && "$RADIX" "${check_cmd[@]}" "$tmpfile") > /dev/null 2>&1; then
                 log_fail "$label — expected rejects, radix check succeeded"
                 FAIL=$((FAIL + 1))
             else
@@ -218,8 +271,8 @@ main() {
     # Process each file
     for md_file in "${md_files[@]}"; do
         echo "  File: $md_file"
-        while IFS='|' read -r fid locale mode outcome tmpfile linenum; do
-            validate_fence "$md_file" "$fid" "$locale" "$mode" "$outcome" "$tmpfile" "$linenum"
+        while IFS='|' read -r fid locale mode outcome tmpfile linenum target; do
+            validate_fence "$md_file" "$fid" "$locale" "$mode" "$outcome" "$tmpfile" "$linenum" "$target"
         done < <(extract_fences "$md_file")
     done
 

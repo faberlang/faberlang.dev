@@ -49,4 +49,27 @@ main {
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Block executed successfully
 Attempt 1
-</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusfacfac-capefab-canonical-keyword">radix/corpus/fac/fac-cape.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/fac/fac-cape.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+</code></pre><h3 id="radixcorpusfacfac-cape-after-dum-rejectfab-supporting-reject">radix/corpus/fac/fac-cape-after-dum-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusfacfac-cape-after-dum-rejectfab-supporting-reject">#</a></h3><p>The handler precedes the loop condition; catch after while is refused by name.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># do — the error handler precedes the loop condition</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • The field order of a do statement is fixed: `do &lt;block&gt; catch &lt;name&gt;</span>
+<span class="tok-co">#     &lt;block&gt; while &lt;condition&gt;`. The handler binds before the loop condition, so</span>
+<span class="tok-co">#     a `catch` clause written after `while` has no place in the grammar and is</span>
+<span class="tok-co">#     refused by name (PARSE020 fac_cape_after_dum).</span>
+<span class="tok-co">#   • Write the handler first: `do { … } catch err { … } while &lt;condition&gt;`.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • spelling the loop as `do { … } while &lt;cond&gt; catch &lt;err&gt; { … }` — nothing</span>
+<span class="tok-co">#     after the condition accepts a handler; move `catch` before `while`.</span>
+<span class="tok-co"># =============================================================================</span>
+
+main {
+    mut int i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    do {
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    } while i ≺ <span class="tok-nu">3</span> catch e {
+        print <span class="tok-nu">1</span>
+    }
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusfacfac-capefab-canonical-keyword">radix/corpus/fac/fac-cape.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusfacfac-cape-after-dum-rejectfab-supporting-reject">radix/corpus/fac/fac-cape-after-dum-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/fac/fac-cape.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Range product semantics: sign classes, offsets, and step directions with exclusive/inclusive boundary twins."><meta name="theme-color" content="#e8e5db" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="for — Faber"><meta property="og:description" content="Range product semantics: sign classes, offsets, and step directions with exclusive/inclusive boundary twins."><meta property="og:url" content="https://faberlang.dev/en-US/corpus/for.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23ff5a2c'/%3E%3Cpath%20d='M46%2032H19M31%2019L18%2032L31%2045'%20fill='none'%20stroke='%230a0c0f'%20stroke-width='6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/corpus/for.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>for — Faber</title><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-instrument.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">←</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword..." aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/install.md">install</a></nav></div></div><div class="fl-banner" role="status"><p><strong>Experimental through version 1.</strong> Version 0 was alpha. This is the first language release: the interface is relatively stable, not frozen. Nothing is promised stable until version 2.</p></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">←</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/en-US/start/">Start here</a></li><li><a href="/en-US/releases/">Releases</a></li></ul><div class="side-h">The Language</div><ul class="nav"><li><a href="/en-US/language/overview.html">Overview</a></li><li><details class="nav-branch"><summary>Behavior</summary><ul><li><a href="/en-US/language/behavior/type-first.html">Types before names</a></li><li><a href="/en-US/language/behavior/glyph-law.html">The glyph law</a></li><li><a href="/en-US/language/behavior/numeric-widths.html">Math in the ether</a></li><li><a href="/en-US/language/behavior/sealed-locales.html">Sealed reader locales</a></li><li><a href="/en-US/language/behavior/packages.html">A program is a package</a></li><li><a href="/en-US/language/behavior/errors-and-tests.html">Errors as values, tests as declarations</a></li></ul></details></li><li><details class="nav-branch"><summary>Grammar</summary><ul><li><a href="/en-US/reference/grammar.html">Grammar overview</a></li><li><a href="/en-US/reference/grammar/program.html">Programs, regions &amp; imports</a></li><li><a href="/en-US/reference/grammar/declarations.html">Declarations &amp; bindings</a></li><li><a href="/en-US/reference/grammar/annotations.html">Annotations &amp; directives</a></li><li><a href="/en-US/reference/grammar/types.html">Types &amp; contracts</a></li><li><a href="/en-US/reference/grammar/statements.html">Statements &amp; control flow</a></li><li><a href="/en-US/reference/grammar/expressions.html">Expressions &amp; operators</a></li><li><a href="/en-US/reference/grammar/patterns.html">Patterns &amp; destructuring</a></li><li><a href="/en-US/reference/grammar/errors.html">Error channel</a></li><li><a href="/en-US/reference/grammar/lexical.html">Lexical structure &amp; glyphs</a></li></ul></details></li><li><a href="/en-US/corpus/az.html" class="active">Terms A–Z</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">Targets</div><ul class="nav"><li><a href="/en-US/targets/">All targets</a></li><li><details class="nav-branch"><summary>Application · HIR</summary><ul><li><a href="/en-US/targets/rust.html">Rust</a></li><li><a href="/en-US/targets/ts.html">TypeScript</a></li><li><a href="/en-US/targets/go.html">Go</a></li><li><a href="/en-US/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>Systems · MIR</summary><ul><li><a href="/en-US/targets/llvm-text.html">LLVM IR</a></li><li><a href="/en-US/targets/wasm-text.html">WebAssembly text</a></li></ul></details></li><li><details class="nav-branch"><summary>Device · GPU</summary><ul><li><a href="/en-US/targets/metal-text.html">Metal</a></li><li><a href="/en-US/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li></ul><div class="side-h">Reader locales</div><ul class="nav"><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/locales/keywords.html">Keyword reference</a></li><li><a href="/en-US/language/locales/examples.html">Locale examples</a></li><li><a href="/en-US/language/locales/diagnostics.html">Diagnostics by locale</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/tela.html">Tela — views</a></li><li><a href="/en-US/libraries/inferentia.html">Inferentia — inference</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul></aside><main id="main-content"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/en-US/corpus/index.html">Corpus</a> &rsaquo; <a href="/en-US/corpus/bucket/control-flow.html">Control flow</a> &rsaquo; for</nav><h1>for</h1><p><strong>Translation status:</strong> English reader-locale proof. Term names and code fences follow the <code>en</code> pack; supporting prose may still be English.</p><div class="content"><p>Range product semantics: sign classes, offsets, and step directions with exclusive/inclusive boundary twins.</p><p><strong>Aliases:</strong> <code>iterate</code></p><p><strong>Syntax:</strong> <code>for range &lt;a&gt;‥&lt;b&gt; step &lt;s&gt;, &lt;c&gt;‥&lt;d&gt; let &lt;i&gt;, &lt;j&gt; { }</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>control-flow</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/en-US/corpus/from.html">from</a></li><li><a href="/en-US/corpus/ref.html">ref</a></li><li><a href="/en-US/corpus/range.html">range</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusiteracursor-iteratiofab-canonical-keyword">radix/corpus/itera/cursor-iteratio.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteracursor-iteratiofab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="The four range forms: exclusive ‥, inclusive …, until (inclusive) and before (exclusive); the bounds pick the direction."><meta name="theme-color" content="#e8e5db" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="for — Faber"><meta property="og:description" content="The four range forms: exclusive ‥, inclusive …, until (inclusive) and before (exclusive); the bounds pick the direction."><meta property="og:url" content="https://faberlang.dev/en-US/corpus/for.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23ff5a2c'/%3E%3Cpath%20d='M46%2032H19M31%2019L18%2032L31%2045'%20fill='none'%20stroke='%230a0c0f'%20stroke-width='6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/corpus/for.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>for — Faber</title><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-instrument.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">←</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword..." aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/install.md">install</a></nav></div></div><div class="fl-banner" role="status"><p><strong>Experimental through version 1.</strong> Version 0 was alpha. This is the first language release: the interface is relatively stable, not frozen. Nothing is promised stable until version 2.</p></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">←</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/en-US/start/">Start here</a></li><li><a href="/en-US/releases/">Releases</a></li></ul><div class="side-h">The Language</div><ul class="nav"><li><a href="/en-US/language/overview.html">Overview</a></li><li><details class="nav-branch"><summary>Behavior</summary><ul><li><a href="/en-US/language/behavior/type-first.html">Types before names</a></li><li><a href="/en-US/language/behavior/glyph-law.html">The glyph law</a></li><li><a href="/en-US/language/behavior/numeric-widths.html">Math in the ether</a></li><li><a href="/en-US/language/behavior/sealed-locales.html">Sealed reader locales</a></li><li><a href="/en-US/language/behavior/packages.html">A program is a package</a></li><li><a href="/en-US/language/behavior/errors-and-tests.html">Errors as values, tests as declarations</a></li></ul></details></li><li><details class="nav-branch"><summary>Grammar</summary><ul><li><a href="/en-US/reference/grammar.html">Grammar overview</a></li><li><a href="/en-US/reference/grammar/program.html">Programs, regions &amp; imports</a></li><li><a href="/en-US/reference/grammar/declarations.html">Declarations &amp; bindings</a></li><li><a href="/en-US/reference/grammar/annotations.html">Annotations &amp; directives</a></li><li><a href="/en-US/reference/grammar/types.html">Types &amp; contracts</a></li><li><a href="/en-US/reference/grammar/statements.html">Statements &amp; control flow</a></li><li><a href="/en-US/reference/grammar/expressions.html">Expressions &amp; operators</a></li><li><a href="/en-US/reference/grammar/patterns.html">Patterns &amp; destructuring</a></li><li><a href="/en-US/reference/grammar/errors.html">Error channel</a></li><li><a href="/en-US/reference/grammar/lexical.html">Lexical structure &amp; glyphs</a></li></ul></details></li><li><a href="/en-US/corpus/az.html" class="active">Terms A–Z</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">Targets</div><ul class="nav"><li><a href="/en-US/targets/">All targets</a></li><li><details class="nav-branch"><summary>Application · HIR</summary><ul><li><a href="/en-US/targets/rust.html">Rust</a></li><li><a href="/en-US/targets/ts.html">TypeScript</a></li><li><a href="/en-US/targets/go.html">Go</a></li><li><a href="/en-US/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>Systems · MIR</summary><ul><li><a href="/en-US/targets/llvm-text.html">LLVM IR</a></li><li><a href="/en-US/targets/wasm-text.html">WebAssembly text</a></li></ul></details></li><li><details class="nav-branch"><summary>Device · GPU</summary><ul><li><a href="/en-US/targets/metal-text.html">Metal</a></li><li><a href="/en-US/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li></ul><div class="side-h">Reader locales</div><ul class="nav"><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/locales/keywords.html">Keyword reference</a></li><li><a href="/en-US/language/locales/examples.html">Locale examples</a></li><li><a href="/en-US/language/locales/diagnostics.html">Diagnostics by locale</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/tela.html">Tela — views</a></li><li><a href="/en-US/libraries/inferentia.html">Inferentia — inference</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul></aside><main id="main-content"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/en-US/corpus/index.html">Corpus</a> &rsaquo; <a href="/en-US/corpus/bucket/control-flow.html">Control flow</a> &rsaquo; for</nav><h1>for</h1><p><strong>Translation status:</strong> English reader-locale proof. Term names and code fences follow the <code>en</code> pack; supporting prose may still be English.</p><div class="content"><p>The four range forms: exclusive <code class="glyph">‥</code>, inclusive <code class="glyph">…</code>, <code>until</code> (inclusive) and <code>before</code> (exclusive); the bounds pick the direction.</p><p><strong>Aliases:</strong> <code>iterate</code></p><p><strong>Syntax:</strong> <code>for range &lt;a&gt;‥&lt;b&gt; let &lt;i&gt; { }</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>control-flow</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/en-US/corpus/from.html">from</a></li><li><a href="/en-US/corpus/ref.html">ref</a></li><li><a href="/en-US/corpus/range.html">range</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusiteracursor-iteratiofab-canonical-keyword">radix/corpus/itera/cursor-iteratio.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteracursor-iteratiofab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># for — Starts a for-each iteration statement.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -1445,6 +1445,150 @@ main {
 2
 0
 3
+</code></pre><h3 id="radixcorpusiterarange-runtime-stepfab-canonical-operator-group">radix/corpus/itera/range-runtime-step.fab (canonical · operator-group)<a class="anchor" href="#radixcorpusiterarange-runtime-stepfab-canonical-operator-group">#</a></h3><p>Range iteration is exact at the i64 edge; the step contract is checked at run time and a zero or negative step aborts.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># for — range bounds are exact; the step contract lives at run time.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Exact intermediates at the i64 edge — the inclusive range</span>
+<span class="tok-co">#     9223372036854775800…9223372036854775807 has eight values and the walk</span>
+<span class="tok-co">#     counts all eight. The bounds are numbers, not 64-bit containers: nothing</span>
+<span class="tok-co">#     overflows while the loop counts, and the walk prints 8.</span>
+<span class="tok-co">#   • The step contract is checked at run time — `for range 0‥5 step s` with</span>
+<span class="tok-co">#     `mut int s ← -2` is not a compile error. The run prints its earlier</span>
+<span class="tok-co">#     output, then aborts when the loop is entered with</span>
+<span class="tok-co">#     "range step must be positive"; the program exits non-zero and the body</span>
+<span class="tok-co">#     never runs.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Expecting a negative step to walk the range backwards — the bounds pick</span>
+<span class="tok-co">#     the direction and the step stays a positive stride.</span>
+<span class="tok-co">#   • Expecting the run-time step to be validated where it is computed — the</span>
+<span class="tok-co">#     check fires at loop entry, so earlier prints are already on stdout.</span>
+<span class="tok-co">#   • Expecting the i64-edge walk to wrap — the bounds are exact without any</span>
+<span class="tok-co">#     arithmetic on the bound values.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: intervallum-gradus, numerus-overflow, for</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># range-runtime-step — exact bounds, run-time step check</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># POLICY:</span>
+<span class="tok-co">#   A range bound is exact; the step is a positive stride whose direction</span>
+<span class="tok-co">#   comes from the bounds. A step that is zero or negative is a run-time</span>
+<span class="tok-co">#   trap, not a compile error, so it aborts the run at loop entry.</span>
+
+main {
+<span class="tok-co">    # (a) i64 edge: eight values, counted without overflow.</span>
+    mut int n <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    for range <span class="tok-nu">9223372036854775800</span><span class="tok-op">…</span><span class="tok-nu">9223372036854775807</span> let i {
+        n <span class="tok-op">←</span> n <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    }
+    print n
+
+<span class="tok-co">    # (b) run-time step: a non-positive step aborts at loop entry.</span>
+    mut int s <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">2</span>
+    print <span class="tok-st">"start"</span>
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">5</span> step s let i {
+        print i
+    }
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>8
+start
+</code></pre><h3 id="radixcorpusiterarange-until-beforefab-canonical-keyword">radix/corpus/itera/range-until-before.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiterarange-until-beforefab-canonical-keyword">#</a></h3><p>The four range forms: exclusive <code class="glyph">‥</code>, inclusive <code class="glyph">…</code>, <code>until</code> (inclusive) and <code>before</code> (exclusive); the bounds pick the direction.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># for — the four range forms on one runner</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • `a‥b` — the glyph range with an EXCLUSIVE end: `5‥5` is empty and its</span>
+<span class="tok-co">#     body never runs, `0‥10 step 4` yields 0, 4, 8.</span>
+<span class="tok-co">#   • `a…b` — the glyph range with an INCLUSIVE end: `5…5` yields 5 once.</span>
+<span class="tok-co">#   • `a until b` (la `until`) — the word form with an inclusive end:</span>
+<span class="tok-co">#     `3 until 6` yields 3, 4, 5, 6.</span>
+<span class="tok-co">#   • `a before b` (la `before`) — the word form with an exclusive end:</span>
+<span class="tok-co">#     `3 before 6` yields 3, 4, 5.</span>
+<span class="tok-co">#   • The direction lives in the bounds: the step is always a positive</span>
+<span class="tok-co">#     stride, so `10…0 step 5` counts down through 10, 5, 0.</span>
+<span class="tok-co">#   • The loop binder takes no type slot: `for range a‥b let i { }` binds</span>
+<span class="tok-co">#     each element fresh (a `mut i` binder exists for bodies that rebind).</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Expecting `5‥5` to yield 5 — an exclusive range meets its end</span>
+<span class="tok-co">#     immediately, so nothing prints.</span>
+<span class="tok-co">#   • Writing a negative step to count down — the bounds decide up or down,</span>
+<span class="tok-co">#     the step is only a stride.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: from, ref, range</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># range-until-before — the four end forms, end to end</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># POLICY:</span>
+<span class="tok-co">#   `‥` and `before` exclude the end bound; `…` and `until` include it.</span>
+<span class="tok-co">#   A negative bound is just a start or end like any other: `-2‥2` climbs</span>
+<span class="tok-co">#   from -2 up to (but not including) 2, and `2…-2 step 2` descends to the</span>
+<span class="tok-co">#   inclusive -2.</span>
+
+main {
+<span class="tok-co">    # exclusive glyph form: 5‥5 is empty, so this body never runs</span>
+    for range <span class="tok-nu">5</span>‥<span class="tok-nu">5</span> let i {
+        print <span class="tok-st">"never5"</span>
+    }
+
+<span class="tok-co">    # inclusive glyph form: 5…5 yields 5 once</span>
+    for range <span class="tok-nu">5</span><span class="tok-op">…</span><span class="tok-nu">5</span> let i {
+        print i
+    }
+
+<span class="tok-co">    # inclusive descending with a stride: the bounds pick the direction</span>
+    for range <span class="tok-nu">10</span><span class="tok-op">…</span><span class="tok-nu">0</span> step <span class="tok-nu">5</span> let i {
+        print i
+    }
+
+<span class="tok-co">    # exclusive ascending with a stride: 0, 4, 8</span>
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> step <span class="tok-nu">4</span> let i {
+        print i
+    }
+
+<span class="tok-co">    # until: the inclusive word form</span>
+    for range <span class="tok-nu">3</span> until <span class="tok-nu">6</span> let i {
+        print i
+    }
+
+<span class="tok-co">    # before: the exclusive word form</span>
+    for range <span class="tok-nu">3</span> before <span class="tok-nu">6</span> let i {
+        print i
+    }
+
+<span class="tok-co">    # a negative start with an exclusive end</span>
+    for range <span class="tok-op">-</span><span class="tok-nu">2</span>‥<span class="tok-nu">2</span> let i {
+        print i
+    }
+
+<span class="tok-co">    # an inclusive end below the start, descending by stride</span>
+    for range <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-op">-</span><span class="tok-nu">2</span> step <span class="tok-nu">2</span> let i {
+        print i
+    }
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>5
+10
+5
+0
+0
+4
+8
+3
+4
+5
+6
+3
+4
+5
+-2
+-1
+0
+1
+2
+0
+-2
 </code></pre><h3 id="radixcorpusiteraapud-declinefab-supporting-reject">radix/corpus/itera/apud-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusiteraapud-declinefab-supporting-reject">#</a></h3><p>at coordinate iteration declines arity mismatch and unindexed iterables with structured issues.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># at decline — arity mismatch and unindexed iterables fail closed.</span>
 <span class="tok-co"># =============================================================================</span>
@@ -1589,4 +1733,4 @@ fn mixes(int m, int n) <span class="tok-op">→</span> void {
     for range <span class="tok-nu">0</span>‥m, n let i, j {
         print i
     }
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusiteracursor-iteratiofab-canonical-keyword">radix/corpus/itera/cursor-iteratio.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterain-functionefab-canonical-keyword">radix/corpus/itera/in-functione.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteraintervallum-gradusfab-canonical-keyword">radix/corpus/itera/intervallum-gradus.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteraintervallumfab-canonical-keyword">radix/corpus/itera/intervallum.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteralockstep-n2fab-canonical-keyword">radix/corpus/itera/lockstep-n2.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteralockstep-n3fab-canonical-keyword">radix/corpus/itera/lockstep-n3.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteranidificatusfab-canonical-keyword">radix/corpus/itera/nidificatus.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-product-n2fab-canonical-keyword">radix/corpus/itera/range-product-n2.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-product-n3fab-canonical-keyword">radix/corpus/itera/range-product-n3.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-product-semanticsfab-canonical-keyword">radix/corpus/itera/range-product-semantics.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteraapud-declinefab-supporting-reject">radix/corpus/itera/apud-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusiteralockstep-declinefab-supporting-reject">radix/corpus/itera/lockstep-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-product-declinefab-supporting-reject">radix/corpus/itera/range-product-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/itera/cursor-iteratio.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusiteracursor-iteratiofab-canonical-keyword">radix/corpus/itera/cursor-iteratio.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterain-functionefab-canonical-keyword">radix/corpus/itera/in-functione.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteraintervallum-gradusfab-canonical-keyword">radix/corpus/itera/intervallum-gradus.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteraintervallumfab-canonical-keyword">radix/corpus/itera/intervallum.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteralockstep-n2fab-canonical-keyword">radix/corpus/itera/lockstep-n2.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteralockstep-n3fab-canonical-keyword">radix/corpus/itera/lockstep-n3.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteranidificatusfab-canonical-keyword">radix/corpus/itera/nidificatus.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-product-n2fab-canonical-keyword">radix/corpus/itera/range-product-n2.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-product-n3fab-canonical-keyword">radix/corpus/itera/range-product-n3.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-product-semanticsfab-canonical-keyword">radix/corpus/itera/range-product-semantics.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-runtime-stepfab-canonical-operator-group">radix/corpus/itera/range-runtime-step.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-until-beforefab-canonical-keyword">radix/corpus/itera/range-until-before.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteraapud-declinefab-supporting-reject">radix/corpus/itera/apud-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusiteralockstep-declinefab-supporting-reject">radix/corpus/itera/lockstep-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-product-declinefab-supporting-reject">radix/corpus/itera/range-product-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/itera/cursor-iteratio.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

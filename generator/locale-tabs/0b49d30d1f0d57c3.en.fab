@@ -1,0 +1,12 @@
+fn summa(list<int> numeri) → int {
+    mut int total ← 0
+    for from numeri let n {
+        total ← total + n
+    }
+    return total
+}
+
+main {
+    let list<int> valores ← [1, 2, 3, 4, 5]
+    print summa(valores)
+}

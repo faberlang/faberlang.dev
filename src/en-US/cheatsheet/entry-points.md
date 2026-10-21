@@ -29,6 +29,17 @@ incipiet {
 
 The two are alternatives, not a pair: a program declares one or the other.
 
+## Exit code {#exit}
+
+`exitus` (en `exit`) after the entry sets the process exit code. `faber run`
+ends with that code, as the generated programs do.
+
+```faber locale-tabs
+incipit exitus 2 {
+    nota "done"
+}
+```
+
 ## Command-line arguments {#arguments}
 
 `argumenta` binds the parsed argument object.

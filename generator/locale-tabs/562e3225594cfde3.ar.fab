@@ -1,0 +1,6 @@
+بداية {
+    ليكن قائمة<عدد> numeri ← [10, 20, 30]
+    كرر عن numeri ليكن index {
+        اعرض index, numeri[index]
+    }
+}

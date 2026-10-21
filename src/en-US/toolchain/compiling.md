@@ -57,6 +57,43 @@ closure. TypeScript and
 Go also have exempla e2e harnesses that execute emitted code under host
 toolchains; that is a measurement surface, not a `faber package` product path.
 
+### Target maturity {#maturity}
+
+Measured, not written: `scripta/render-target-maturity.py` in the compiler
+repository regenerates this table from a corpus run at the release the site
+is pinned to.
+
+<!-- target-maturity:begin -->
+How mature each target is, measured on the corpus (757 programs the suite runs, each with expected output; 220 more are meant to be refused). "Suite" counts are cases that pass in `corpus-suites/full` (`faber corpus`) out of the cases the suite applies to; the rest are pinned expected failures. A library file with no entry function has nothing to run, so it counts on a compiled target when it emits and builds, and on the runner when it checks and lowers to valid MIR. C and Haskell have no corpus lane: each single-file program the runner executes and passes was emitted, built with the real toolchain, and its output and exit status compared with the runner's.
+
+| Target | `-t` | Output | Evidence | Source |
+| --- | --- | --- | --- | --- |
+| **Reference** | | | | |
+| MIR runner | (`faber run`) | executes the program; the oracle | suite 754 / 757 (the rest are pinned expected failures); 53 of the passes are library files with no entry function, which count when they check and lower to valid MIR | public |
+| Faber | `faber` | canonical Faber in the source's locale (`format`, `convert`) | round-trip 734 / 740 | public |
+| FMIR / FHIR | `fmir`, `fhir` | serialized MIR and analyzed HIR artifacts | no corpus lane (exercised by the package build and run tests) | public |
+| **Application languages** | | | | |
+| Rust | `rust` | Rust source, or a full Cargo project | suite 725 / 749 | official binary |
+| Go | `go` | Go source | suite 625 / 756 | official binary |
+| TypeScript | `ts` | TypeScript source | suite 689 / 757 | official binary |
+| Swift | `swift` | Swift source | suite 389 / 758 | official binary |
+| Python | `python` | self-contained Python | suite 559 / 742 | official binary |
+| Haskell | `haskell` | Haskell source | 83 of 684 single-file programs emit; 32 of those match the runner | official binary |
+| **Systems and native** | | | | |
+| C | `c` | C11 with a header-only runtime | preview: 309 of 684 single-file programs emit; 308 of those match the runner | public |
+| LLVM | `llvm-text`, `llvm-host` | LLVM IR, or a native executable via clang | suite 581 / 757 | official binary |
+| WebAssembly | `wasm`, `wasm-text` | WebAssembly text | suite 528 / 757 assemble (no host runtime yet) | official binary |
+| Cranelift | `clif` | native objects with no external toolchain | preview: suite 560 / 740 | public |
+| **GPU kernels** (kernel functions only) | | | | |
+| Metal | `metal-text` | Metal Shading Language | kernel programs only | official binary |
+| WGSL | `wgsl-text` | WebGPU compute shaders | kernel programs only | official binary |
+| CUDA | (`--device cuda`) | PTX built at run time from NVVM IR (needs `clang` with the NVPTX target) | kernel programs only: `faber run --device cuda` runs whole-tensor kernels on NVIDIA GPUs; lane-form kernels are not lowered yet and fail closed | official binary |
+| **Validation** | | | | |
+| Racket | `sexp` | Racket s-expressions (a validation target) | suite 595 / 757 | official binary |
+| **Experimental** (not in the released `faber`) | | | | |
+| Fortran, COBOL, Pascal, Odin, BASIC | `fortran`, `cobol`, `pascal`, `odin`, `basic` | historical languages, a deliberate subset | default-off features; no corpus lane | private source |
+<!-- target-maturity:end -->
+
 ### Pipeline routing {#pipeline-routing}
 
 ```
@@ -200,12 +237,16 @@ AIR (Autograd / AI Representation) is a pure-functional transform detour off
 the HIR → MIR path. It is entered by explicit annotation on individual
 functions:
 
-```faber
+```faber target=llvm-text
 @ radix lane "air"
 functio identity(bivalens value) → bivalens {
     redde value
 }
 ```
+
+A lane needs a MIR-backed target: `faber build -t llvm-text` (or any other
+MIR-backed target) accepts the function above, while a plain `faber check`,
+which has no target, refuses it with `TARGETLANE001 lane_requires_mir_backed_target`.
 
 AIR-lane functions must satisfy a purity policy — no mutation, no effects,
 no loops. Functions that violate this are rejected with a diagnostic before

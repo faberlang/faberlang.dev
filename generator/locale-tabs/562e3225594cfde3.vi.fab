@@ -1,0 +1,6 @@
+bắt_đầu {
+    đặt danh_sách<số> numeri ← [10, 20, 30]
+    lặp ra numeri đặt index {
+        ghi_chú index, numeri[index]
+    }
+}

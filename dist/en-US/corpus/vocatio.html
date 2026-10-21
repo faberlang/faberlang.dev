@@ -88,13 +88,29 @@ main {
 
 <span class="tok-co">    # Call with spread</span>
     let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">7</span>]
-    let int sparsa <span class="tok-op">←</span> adde(spread numeri)
+    let int sparse <span class="tok-op">←</span> adde(spread numeri)
 <span class="tok-co">    # 10</span>
-    print sparsa
+    print sparse
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve!
 30
 30
 10
 20
 10
-</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusvocatiovocatiofab-canonical-concept">radix/corpus/vocatio/vocatio.fab (canonical · concept)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/vocatio/vocatio.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+</code></pre><h3 id="radixcorpusvocatiocallee-not-callable-rejectfab-supporting-reject">radix/corpus/vocatio/callee-not-callable-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusvocatiocallee-not-callable-rejectfab-supporting-reject">#</a></h3><p>Calling an integer binding is refused because it is not callable.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># vocatio — calling a non-callable value is refused</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • A call target must be a function, closure, or callable value</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistake:</span>
+<span class="tok-co">#   • calling an integer binding as if its name were a function</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: vocatio, call_expr</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># This exemplum intentionally fails to compile.</span>
+
+main {
+    let int x <span class="tok-op">←</span> <span class="tok-nu">1</span>
+    print x(<span class="tok-nu">2</span>)
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusvocatiovocatiofab-canonical-concept">radix/corpus/vocatio/vocatio.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpusvocatiocallee-not-callable-rejectfab-supporting-reject">radix/corpus/vocatio/callee-not-callable-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/vocatio/vocatio.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

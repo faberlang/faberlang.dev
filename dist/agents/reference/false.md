@@ -17,7 +17,7 @@ false [<expression>]
 
 ## Common mistakes
 
-- Confusing `false` with `none` — `false` is a bool literal (false); `none` is the null/absent sentinel.
+- Confusing `false` with `none` (la `none`) — `false` is a bool literal (false); `none` is the absent-member type, and its value is `null` (`null`).
 
 ## Grammar
 

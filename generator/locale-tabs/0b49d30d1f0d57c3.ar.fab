@@ -1,0 +1,12 @@
+دالة summa(قائمة<عدد> numeri) → عدد {
+    قابل_للتغيير عدد total ← 0
+    كرر من numeri ليكن n {
+        total ← total + n
+    }
+    أعد total
+}
+
+بداية {
+    ليكن قائمة<عدد> valores ← [1, 2, 3, 4, 5]
+    اعرض summa(valores)
+}

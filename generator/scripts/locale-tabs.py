@@ -44,6 +44,7 @@ Usage:
 from __future__ import annotations
 
 import hashlib
+import os
 import html as html_mod
 import json
 import re
@@ -115,6 +116,9 @@ def digest(source: str) -> str:
 
 
 def find_faber() -> str | None:
+    # An explicit FABER wins (see capture-landing-panels.sh).
+    if os.environ.get("FABER"):
+        return os.environ["FABER"]
     for candidate in (
         WORKSPACE / "radix" / "target" / "release" / "faber",
         WORKSPACE / "radix" / "target" / "debug" / "faber",

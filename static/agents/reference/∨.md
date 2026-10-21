@@ -13,7 +13,7 @@ Bitwise or and est-negation operators.
 ## What this teaches
 
 - Bitwise or — `∨` combines bit flags; distinct from logical short-circuit `or` and `coalesce`.
-- Negated est — `is not` checks that a value is not null or not equal to a target.
+- Negated est — `not is` (la `is not`) checks that a value's runtime type is not the given type, e.g. `x not is none`.
 
 ## Common mistakes
 

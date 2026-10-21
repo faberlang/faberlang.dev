@@ -1,0 +1,6 @@
+main {
+    let list<int> numeri ← [1, 2, 3]
+    for from numeri let n {
+        print n
+    }
+}

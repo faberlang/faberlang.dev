@@ -1,0 +1,5 @@
+เริ่ม {
+    กำหนด รายการ<ข้อความ> nomina ← ["Marcus", "Julia"]
+    กำหนด ตาราง<ข้อความ, จํานวน> aetates ← { "Marcus": 30 }
+    บันทึก nomina, aetates
+}

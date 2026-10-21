@@ -1,0 +1,9 @@
+bắt_đầu {
+    đặt danh_sách<văn_bản> raw ← ["1", "two", "3"]
+    lặp từ raw đặt item {
+        đặt số n ← item ↦ số
+        ghi_chú n
+    } bắt err {
+        cảnh_báo err
+    }
+}

@@ -1,6 +1,0 @@
-main {
-    const int n ← "42" ↦ int
-    const string s ← 42 ↦ string
-    const f64 f ← "3.14159" ↦ f64
-    print n, s, f
-}

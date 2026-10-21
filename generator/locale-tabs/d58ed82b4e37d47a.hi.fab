@@ -1,0 +1,11 @@
+आरंभ {
+    # a declaration
+    बैठा संख्या count ← 0
+    # another
+    बैठा पाठ name ← "Marcus"
+    # a generic
+    बैठा सूची<संख्या> scores ← [1, 2, 3]
+    # a nullable
+    बैठा संख्या ∪ कुछनहीं maybe ← अभाव
+    दिखाओ count, name, scores, maybe
+}

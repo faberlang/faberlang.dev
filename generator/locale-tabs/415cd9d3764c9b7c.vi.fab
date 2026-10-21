@@ -1,0 +1,6 @@
+bắt_đầu {
+    đặt số limit ← 10
+    khả_biến số count ← 0
+    count ← count + 1
+    ghi_chú limit, count
+}

@@ -56,7 +56,7 @@ KEYWORDS
   lista             collection      Generic ordered collection type.
   mone              output          Writes a warning message.
   mori              errors          Raises a fatal error or panic.
-  nihil             boolean         Represents the null value and can prefix a null check.
+  nihil             boolean         The absent-member type: none (la nihil) is the type, null (la nulla) is its value.
   non               logic           Negates a boolean expression.
   numerus           type            Primitive integer number type.
   numquam           type            Primitive never type for code paths that do not return normally.
@@ -132,7 +132,7 @@ OPERATORS
   modulus<u64>      arithmetic      Unsigned 64-bit modular-word arithmetic and bit-pattern edges.
   modulus<u8>       arithmetic      Unsigned 8-bit modular-word arithmetic and bit-pattern edges.
   non est           logic           Bitwise or and est-negation operators.
-  vel               logic           Provides a default when the left side is null.
+  vel               logic           Provides a default when the left side holds `null`.
   §                 format          String-template substitution holes inside quoted literals.
   ¬                 bitwise         Bitwise and, or, xor, not, and shifts on numerus operands.
   ·                 arithmetic      Glyph inner product: vector · vector reduces to a scalar dot product.
@@ -203,7 +203,7 @@ CONCEPTS
   filum             collection      Distributed reducta via summa ex … filum kernel inside @ nucleum.
   manifest          package         faber.toml package metadata for build, run, and test.
   prae              type            Angle-bracket generic parameters on functions and declarations.
-  primus_quem       collection      Dedicated total first-match expression: first live element of a source satisfying the owned ubi predicate, nihil for no-match and empty sources.
+  primus_quem       collection      Dedicated total first-match expression: first live element of a source satisfying the owned ubi predicate, `nulla` for no-match and empty sources.
   summa             collection      Sequential sum-reduce expression: reducta via summa ex <tensor> apud [i] sit s.
   targets           package         Compilation backends listed by faber targets or radix targets.
 

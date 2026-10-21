@@ -1,0 +1,6 @@
+入口 {
+    設為 i32 signed ← -7
+    設為 u8 byte ← 255
+    設為 f64 wide ← 1.5
+    註記 signed, byte, wide
+}

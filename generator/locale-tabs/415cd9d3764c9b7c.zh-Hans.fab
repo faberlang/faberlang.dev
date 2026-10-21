@@ -1,0 +1,6 @@
+入口 {
+    设 整数 limit ← 10
+    可变 整数 count ← 0
+    count ← count + 1
+    显示 limit, count
+}

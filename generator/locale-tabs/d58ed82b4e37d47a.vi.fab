@@ -1,0 +1,11 @@
+bắt_đầu {
+    # a declaration
+    đặt số count ← 0
+    # another
+    đặt văn_bản name ← "Marcus"
+    # a generic
+    đặt danh_sách<số> scores ← [1, 2, 3]
+    # a nullable
+    đặt số ∪ hư_không maybe ← vắng
+    ghi_chú count, name, scores, maybe
+}

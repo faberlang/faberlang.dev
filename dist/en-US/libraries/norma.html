@@ -24,6 +24,14 @@ import from <span class="tok-st">"norma:fault"</span> fault
 fn legeConfig() <span class="tok-op">→</span> string ⇥ fault.IoFault {
     return fs.read_file<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>(<span class="tok-st">"config.toml"</span>)
 }</code></pre><p><code>read_file</code> is failable: its error channel is <code>fault.IoFault</code>, the union
-of I/O fault kinds, so the caller handles it or passes it on.</p><p>Test code can live beside product source in colocated <code>*.proba</code> files —
+of I/O fault kinds, so the caller handles it or passes it on.</p><p>For files that must never be left half-written, <code>norma:fs</code> has
+<code>write_file_durably</code> and <code>write_bytes_durably</code>. They replace the file
+atomically: a failure or an interruption leaves the previous complete file,
+never a partial one.</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">import</span> <span class="tok-kw">from</span> <span class="tok-st">"norma:fs"</span> fs
+<span class="tok-kw">import</span> <span class="tok-kw">from</span> <span class="tok-st">"norma:fault"</span> fault
+
+<span class="tok-kw">fn</span> save_config(<span class="tok-kw">string</span> text) <span class="tok-op">→</span> <span class="tok-kw">void</span> ⇥ fault.IoFault {
+    fs.write_file_durably(<span class="tok-st">"config.toml"</span>, text)
+}</code></pre><p>Test code can live beside product source in colocated <code>*.proba</code> files —
 discovered only by <code>faber test</code>, never importable, and excluded from Cista
 package snapshots.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#modules">Modules</a></li><li class="toc-3"><a href="#nested-submodules">Nested submodules</a></li><li class="toc-2"><a href="#morphologia-naming-convention">Morphologia naming convention</a></li><li class="toc-2"><a href="#usage">Usage</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

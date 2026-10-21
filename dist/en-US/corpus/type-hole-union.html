@@ -11,7 +11,7 @@
 <span class="tok-co">#     `mixed : int ∪ string` without authoring the member list by hand.</span>
 <span class="tok-co">#   • `list&lt;∪&gt;` learns heterogeneous element types the same way:</span>
 <span class="tok-co">#     `list&lt;∪&gt; nodes ← [1, "two", 3]` solves to `list&lt;int ∪ string&gt;`.</span>
-<span class="tok-co">#   • `T ∪ null` (canonical `T ∪ none`) is a single OPTIONAL inhabitant,</span>
+<span class="tok-co">#   • `T ∪ none` (la `T ∪ none`) is a single OPTIONAL inhabitant,</span>
 <span class="tok-co">#     not a multi-member sum — a `_` hole solved to it emits no shape</span>
 <span class="tok-co">#     warning.</span>
 <span class="tok-co">#</span>
@@ -48,7 +48,7 @@ fn consume(int <span class="tok-op">∪</span> string value) <span class="tok-op
     return <span class="tok-nu">0</span>
 }
 
-<span class="tok-co"># `T ∪ null` is one optional inhabitant, so a `null` arm is the null case.</span>
+<span class="tok-co"># `T ∪ none` is one optional inhabitant, so a `case none` arm is the absent case.</span>
 fn maybe_len(string <span class="tok-op">∪</span> none value) <span class="tok-op">→</span> int {
     match value {
         case none { return <span class="tok-nu">0</span> }
@@ -67,7 +67,7 @@ test <span class="tok-st">"the two hole kinds infer cleanly without shape warnin
 <span class="tok-co">    # `list&lt;∪&gt;`: heterogeneous elements solve to `list&lt;int ∪ string&gt;`.</span>
     let list<span class="tok-op">&lt;</span><span class="tok-op">∪</span><span class="tok-op">&gt;</span> nodes <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-st">"two"</span>, <span class="tok-nu">3</span>]
 
-<span class="tok-co">    # `T ∪ null`: one optional inhabitant — `_` over it stays quiet.</span>
+<span class="tok-co">    # `T ∪ none`: one optional inhabitant — `_` over it stays quiet.</span>
     let string <span class="tok-op">∪</span> none opt <span class="tok-op">←</span> <span class="tok-st">"text"</span>
     let _ maybe <span class="tok-op">←</span> opt
 
@@ -94,7 +94,7 @@ main {
 <span class="tok-co">    # `list&lt;∪&gt;`: heterogeneous elements solve to `list&lt;int ∪ string&gt;`.</span>
     let list<span class="tok-op">&lt;</span><span class="tok-op">∪</span><span class="tok-op">&gt;</span> nodes <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-st">"two"</span>, <span class="tok-nu">3</span>]
 
-<span class="tok-co">    # `T ∪ null`: one optional inhabitant — `_` over it stays quiet.</span>
+<span class="tok-co">    # `T ∪ none`: one optional inhabitant — `_` over it stays quiet.</span>
     let string <span class="tok-op">∪</span> none opt <span class="tok-op">←</span> <span class="tok-st">"text"</span>
     let _ maybe <span class="tok-op">←</span> opt
 

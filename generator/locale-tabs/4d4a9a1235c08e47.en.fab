@@ -1,0 +1,9 @@
+main {
+    let list<string> raw ← ["1", "two", "3"]
+    for from raw let item {
+        let int n ← item ↦ int
+        print n
+    } catch err {
+        warn err
+    }
+}

@@ -62,4 +62,17 @@ Marcus
 true
 [&quot;Gaius&quot;, &quot;Lucius&quot;, &quot;Titus&quot;]
 [100, 95, 87]
-</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpustypustypusfab-canonical-keyword">radix/corpus/typus/typus.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/typus/typus.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+</code></pre><h3 id="radixcorpustypusalias-cycle-rejectfab-supporting-reject">radix/corpus/typus/alias-cycle-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpustypusalias-cycle-rejectfab-supporting-reject">#</a></h3><p>A type alias cycle is a check error.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># type — A type alias cycle is a check error</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># Each alias names another alias, and the pair never reaches a concrete type.</span>
+<span class="tok-co"># An alias is transparent, so `A` must equal `B` must equal `A`: no type exists</span>
+<span class="tok-co"># to give the binding. Break the cycle by making one member name a real type.</span>
+
+type A <span class="tok-op">=</span> B
+type B <span class="tok-op">=</span> A
+
+main {
+    let A a <span class="tok-op">←</span> <span class="tok-nu">1</span>
+    print a
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpustypustypusfab-canonical-keyword">radix/corpus/typus/typus.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpustypusalias-cycle-rejectfab-supporting-reject">radix/corpus/typus/alias-cycle-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/typus/typus.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

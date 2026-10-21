@@ -1,0 +1,9 @@
+ชนิด Persona {
+    กำหนด ข้อความ nomen
+    กำหนด จํานวน aetas
+}
+
+เริ่ม {
+    กำหนด _ p ← Persona { nomen = "Marcus", aetas = 30 }
+    บันทึก p.nomen, p.aetas
+}

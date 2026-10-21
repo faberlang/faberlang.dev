@@ -32,6 +32,7 @@ Generated from the packs. The Latin column is the pack key and the compiler's in
 | -----------  ---------------
 | omnia        all
 | et           and
+| annotatio    annotation
 | quilibet     any
 | argmaxima    argmax
 | argminima    argmin
@@ -61,6 +62,7 @@ Generated from the packs. The Latin column is the pack key and the compiler's in
 | vel          coalesce
 | columna      column
 | imperium     command
+| imperia      commands
 | praefixum    comptime
 | fixum        const
 | perge        continue
@@ -178,6 +180,7 @@ Generated from the packs. The Latin column is the pack key and the compiler's in
 | nondum       unstable
 | usque        until
 | finge        variant
+| versio       version
 | vertex       vertex
 | via          via
 | mone         warn
@@ -208,7 +211,6 @@ Generated from the packs. The Latin column is the pack key and the compiler's in
 | scrinium     frame
 | instans      instant
 | numerus      int
-| intervallum  intervallum
 | cursor_t     iterator
 | json         json
 | tabulae      ledger
@@ -220,6 +222,7 @@ Generated from the packs. The Latin column is the pack key and the compiler's in
 | objectum     object
 | promissum    promise
 | queue        queue
+| intervallum  range
 | ratio        record
 | tuus         recv
 | reflexa      reflect
@@ -228,7 +231,7 @@ Generated from the packs. The Latin column is the pack key and the compiler's in
 | meus         send
 | series       series
 | copia        set
-| sparsa       sparsa
+| sparsa       sparse
 | stack        stack
 | textus       string
 | tensor       tensor
@@ -265,6 +268,7 @@ Generated from the packs. The Latin column is the pack key and the compiler's in
 | coniunge               bit_and_assign
 | disiuncta              bit_or
 | disiunge               bit_or_assign
+| radix_cubica           cbrt
 | tectum                 ceiling
 | coercere               clamp
 | compare_exchange       compare_exchange
@@ -285,6 +289,7 @@ Generated from the packs. The Latin column is the pack key and the compiler's in
 | divida                 divide
 | divisa                 divided
 | productum              dot
+| exhauri                drain
 | omissa                 drop
 | terminus               end
 | finis                  ends_with
@@ -296,6 +301,7 @@ Generated from the packs. The Latin column is the pack key and the compiler's in
 | filtrata               filter
 | inventa                find
 | collecta               find_all
+| fini                   finish
 | primus                 first
 | planata                flatten
 | alterna                flip

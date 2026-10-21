@@ -1,0 +1,6 @@
+เริ่ม {
+    กำหนด i32 signed ← -7
+    กำหนด u8 byte ← 255
+    กำหนด f64 wide ← 1.5
+    บันทึก signed, byte, wide
+}

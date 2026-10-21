@@ -1,0 +1,4 @@
+incipit {
+    sit textus roundtrip ← ("42" ↦ numerus) ↦ textus
+    nota roundtrip
+}

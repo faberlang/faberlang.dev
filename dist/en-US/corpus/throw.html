@@ -129,4 +129,60 @@ main {
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Caught: Something went wrong
 Caught: Error code: 404
 Validation failed: Value must be non-negative
-</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusiaceiace-si-guardfab-canonical-keyword">radix/corpus/iace/iace-si-guard.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiaceiacefab-canonical-keyword">radix/corpus/iace/iace.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/iace/iace-si-guard.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+</code></pre><h3 id="radixcorpusiaceawait-context-rejectfab-supporting-reject">radix/corpus/iace/await-context-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusiaceawait-context-rejectfab-supporting-reject">#</a></h3><p>An await binder needs an async context; a synchronous body has no suspension point.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># throw — an await binder outside an async context is a check error</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># An await binder (`await_const` / `await_const`) suspends the callable that</span>
+<span class="tok-co"># contains it. A synchronous body has nowhere to suspend, so the binding is</span>
+<span class="tok-co"># refused before any code is emitted.</span>
+
+fn work() async <span class="tok-op">→</span> int {
+    return <span class="tok-nu">1</span>
+}
+
+fn sync() <span class="tok-op">→</span> int {
+    await_const int v <span class="tok-op">←</span> work()
+    return v
+}
+
+main {
+    print sync()
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusiacedefault-requires-failable-rejectfab-supporting-reject">radix/corpus/iace/default-requires-failable-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusiacedefault-requires-failable-rejectfab-supporting-reject">#</a></h3><p>A ⊥ default follows a failable call or a conversion; anything else is rejected.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># throw — a ⊥ default with no failable call or conversion before it</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># `⊥ v` supplies the recovery value of a failable call (`f() ⊥ v`) or a</span>
+<span class="tok-co"># conversion (`x ↦ T ⊥ v`). After any other expression there is nothing to</span>
+<span class="tok-co"># recover, so the leftover `⊥` is rejected as a parse error.</span>
+
+main {
+    let int x <span class="tok-op">←</span> <span class="tok-nu">5</span>
+    print x ⊥ <span class="tok-nu">0</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusiacefailable-no-handler-rejectfab-supporting-reject">radix/corpus/iace/failable-no-handler-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusiacefailable-no-handler-rejectfab-supporting-reject">#</a></h3><p>A call to a ⇥ function with no handler is rejected: do/catch, trap, a ⊥ default, or a ⇥ on the caller.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># failable call — the caller must answer the ⇥ channel</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># f is failable (→ int ⇥ string). h is not, and it neither wraps the call in</span>
+<span class="tok-co"># do/catch, captures it, defaults it, nor declares its own ⇥ — so the checker</span>
+<span class="tok-co"># rejects the file (SEM011 failable_call_requires_handler).</span>
+
+fn f(int n) <span class="tok-op">→</span> int ⇥ string {
+    if n <span class="tok-op">≡</span> <span class="tok-nu">0</span> then throw <span class="tok-st">"zero"</span>
+    return n
+}
+
+fn h() <span class="tok-op">→</span> int {
+    return f(<span class="tok-nu">1</span>)
+}
+
+main {
+    print h()
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusiaceiace-no-channel-rejectfab-supporting-reject">radix/corpus/iace/iace-no-channel-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusiaceiace-no-channel-rejectfab-supporting-reject">#</a></h3><p>A throw with no error channel is rejected: give the function a ⇥ channel or wrap the throw in do/catch.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># throw — a throw needs an alternate exit</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># h has no ⇥ error channel and no do/catch handler, so the throw has nowhere</span>
+<span class="tok-co"># to go: the checker rejects the file (SEM010 iace_requires_alternate_exit).</span>
+
+fn h() <span class="tok-op">→</span> int {
+    throw <span class="tok-st">"x"</span>
+}
+
+main {
+    print h()
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusiaceiace-si-guardfab-canonical-keyword">radix/corpus/iace/iace-si-guard.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiaceiacefab-canonical-keyword">radix/corpus/iace/iace.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiaceawait-context-rejectfab-supporting-reject">radix/corpus/iace/await-context-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusiacedefault-requires-failable-rejectfab-supporting-reject">radix/corpus/iace/default-requires-failable-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusiacefailable-no-handler-rejectfab-supporting-reject">radix/corpus/iace/failable-no-handler-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusiaceiace-no-channel-rejectfab-supporting-reject">radix/corpus/iace/iace-no-channel-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/iace/iace-si-guard.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

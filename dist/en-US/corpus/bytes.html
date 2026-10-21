@@ -59,4 +59,70 @@ fn resize(list<span class="tok-op">&lt;</span>b8, <span class="tok-nu">8</span><
 
 fn widen(list<span class="tok-op">&lt;</span>b8, <span class="tok-nu">8</span><span class="tok-op">&gt;</span> raw) <span class="tok-op">→</span> string {
     return raw ↦ string
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusoctetioctetifab-canonical-keyword">radix/corpus/octeti/octeti.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-octeti-to-octeti-declinefab-supporting-reject">radix/corpus/bounded/conversio-octeti-to-octeti-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-octeti-to-textus-declinefab-supporting-reject">radix/corpus/bounded/conversio-octeti-to-textus-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/octeti/octeti.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusoctetiliteral-invalid-char-rejectfab-supporting-reject">radix/corpus/octeti/literal-invalid-char-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusoctetiliteral-invalid-char-rejectfab-supporting-reject">#</a></h3><p>Octeti literals take hex digits only: |zz| rejects with SEM011:octeti_literal_invalid_character naming the offending character.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># bytes — Octeti literals take hex digits only.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Between the bars only hex digit pairs (and spaces) are legal</span>
+<span class="tok-co">#   • `|zz|` rejects with SEM011:octeti_literal_invalid_character, naming the offending character</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Writing a non-hex character inside `|…|` — digits 0-9 and a-f only</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: bytes, b8</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># bytes reject case — expected compile failure</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># This exemplum intentionally fails to compile.</span>
+
+main {
+    let list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> <span class="tok-op">|</span>zz<span class="tok-op">|</span>
+    print a
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusoctetiliteral-odd-rejectfab-supporting-reject">radix/corpus/octeti/literal-odd-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusoctetiliteral-odd-rejectfab-supporting-reject">#</a></h3><p>An bytes literal needs two hex digits per byte: |686| has three digits and rejects with SEM011:octeti_literal_odd_digit_count.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># bytes odd digit count — An bytes literal needs two hex digits per byte.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Every byte in an bytes hex literal is exactly two hex digits (|ref call be ef|)</span>
+<span class="tok-co">#   • |686| has three digits, so no byte boundary exists — SEM011 rejects it by name</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Writing |686| and expecting the lone digit to pad — each byte needs exactly two digits</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: bytes, b8</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># bytes odd-digit reject case — expected compile failure</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># This exemplum intentionally fails to compile.</span>
+
+main {
+    let list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> <span class="tok-op">|</span><span class="tok-nu">686</span><span class="tok-op">|</span>
+    print a
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusoctetiliteral-template-rejectfab-supporting-reject">radix/corpus/octeti/literal-template-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusoctetiliteral-template-rejectfab-supporting-reject">#</a></h3><p>An bytes literal is not a callable template: applying it as |00|(id) rejects with SEM011:octeti_literal_template_application.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># bytes — an bytes literal is not a callable template</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Byte-buffer literals are data, not templates — no holes, no application</span>
+<span class="tok-co">#   • `|00|(id)` parses as a call on the literal and rejects with</span>
+<span class="tok-co">#     SEM011:octeti_literal_template_application</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Writing `|…|(args)` for string-style templating — use string (format)</span>
+<span class="tok-co">#     formatting instead of calling an bytes literal</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: bytes, format</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># bytes reject case — expected compile failure</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># This exemplum intentionally fails to compile.</span>
+
+main {
+    let _ id <span class="tok-op">←</span> <span class="tok-nu">1</span>
+    let _ bad <span class="tok-op">←</span> <span class="tok-op">|</span><span class="tok-nu">00</span><span class="tok-op">|</span>(id)
+    print bad
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusoctetioctetifab-canonical-keyword">radix/corpus/octeti/octeti.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-octeti-to-octeti-declinefab-supporting-reject">radix/corpus/bounded/conversio-octeti-to-octeti-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-octeti-to-textus-declinefab-supporting-reject">radix/corpus/bounded/conversio-octeti-to-textus-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusoctetiliteral-invalid-char-rejectfab-supporting-reject">radix/corpus/octeti/literal-invalid-char-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusoctetiliteral-odd-rejectfab-supporting-reject">radix/corpus/octeti/literal-odd-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusoctetiliteral-template-rejectfab-supporting-reject">radix/corpus/octeti/literal-template-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/octeti/octeti.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

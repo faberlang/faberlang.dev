@@ -1,0 +1,6 @@
+आरंभ {
+    बैठा i32 signed ← -7
+    बैठा u8 byte ← 255
+    बैठा f64 wide ← 1.5
+    दिखाओ signed, byte, wide
+}

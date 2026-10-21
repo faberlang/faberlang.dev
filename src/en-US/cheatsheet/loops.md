@@ -92,6 +92,19 @@ incipit {
 }
 ```
 
+A range is also a value. Store it, print it, and walk it later; the English
+type word is `range<int>`.
+
+```faber locale-tabs
+incipit {
+    sit intervallum<numerus> r ← 0‥3
+    nota r
+    itera ab r sit i {
+        nota i
+    }
+}
+```
+
 ## While {#dum}
 
 `dum` loops while a condition holds.

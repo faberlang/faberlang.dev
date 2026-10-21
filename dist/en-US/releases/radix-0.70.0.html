@@ -5,7 +5,7 @@
 <span class="tok-fn">sudo</span> mv radix-v0.70.0-aarch64-apple-darwin/radix /usr/local/bin/
 <span class="tok-fn">radix</span> <span class="tok-op">--version</span></code></pre><h2 id="notes">Release notes<a class="anchor" href="#notes">#</a></h2><p>Package host bridge milestone: JSON class contracts enforce cross-target serialization
 contracts, the package host attach hook and <code>norma:solum</code> bridge complete package-MIR
-stdout I/O, annotation contracts (<code>@ annotatio</code>) land as a compiler-owned schema
+stdout I/O, annotation contracts (<code>@ annotation</code>) land as a compiler-owned schema
 mechanism, and the MIR target promotion campaign graduates all planned emit targets.
 The tensor systems campaign closes with view-backed storage, packed numeric blocks,
 and indexed access parity.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>103</td></tr><tr><td>Date span</td><td>2026-07-08 → 2026-07-09</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="package-host-bridge-normasolum">Package host bridge (norma:solum)<a class="anchor" href="#package-host-bridge-normasolum">#</a></h4><ul><li><strong>Bridge `norma:consolum` for package-MIR stdout:</strong> adds <code>KernelModule::Consolum</code>
@@ -13,8 +13,8 @@ and indexed access parity.</p><h3 id="scale">Scale<a class="anchor" href="#scale
 packages emit raw stdout without a forced newline. Unblocks coreutils <code>echo -n</code>
 and <code>printf</code> parity. (<code>4a7987793</code>)</li><li><strong>Emit package host attach hook:</strong> <code>frame_shim.rs</code> generates the attach/detach
 wrapper so compiled packages wire into the host runtime. (<code>44540dd20</code>)</li><li><strong>Complete package host only bridge:</strong> <code>hosts/macos-arm64/src/norma/solum.rs</code>
-implements the only kernel module with full test coverage. (<code>5c7c06373</code>)</li></ul><h4 id="annotation-contracts-and-json-class-contracts">Annotation contracts and JSON class contracts<a class="anchor" href="#annotation-contracts-and-json-class-contracts">#</a></h4><ul><li><strong>Annotation contracts (`@ annotatio`):</strong> adds compiler-owned contract machinery —
-<code>@ annotatio</code> marks a class as a compile-time schema; braced applications validate
+implements the only kernel module with full test coverage. (<code>5c7c06373</code>)</li></ul><h4 id="annotation-contracts-and-json-class-contracts">Annotation contracts and JSON class contracts<a class="anchor" href="#annotation-contracts-and-json-class-contracts">#</a></h4><ul><li><strong>Annotation contracts (`@ annotation`):</strong> adds compiler-owned contract machinery —
+<code>@ annotation</code> marks a class as a compile-time schema; braced applications validate
 constant fields and attachment targets; HIR carries <code>contract_id</code> for consumers;
 file interfaces export/import schemas without framework-specific compiler families.
 877-line semantic pass with 311-line test module. (<code>82537ee52</code>)</li><li><strong>Polish passes on annotation contracts:</strong> structure tightening, pipeline extraction,
@@ -34,9 +34,9 @@ across all promotion commits. Campaign closeout documented in
 matmul. (<code>b71c7fda4</code>, <code>7d20f704a</code>, <code>550dfdd96</code>, <code>da0b9dd91</code>)</li><li><strong>Target support</strong> recorded for tensor systems with operation floor, workload proof
 floor, and FMIR package proof. (<code>385ebe3d3</code>, <code>2f4ca0b26</code>, <code>fabd05dba</code>, <code>00e85a52c</code>,
 <code>4a14474c9</code>)</li><li><strong>Campaign closeout</strong> with e2e closeout fixtures and stage-13 delivery doc.
-(<code>401ea1398</code>)</li></ul><h4 id="vel-defaulting-and-expression-lowering">Vel defaulting and expression lowering<a class="anchor" href="#vel-defaulting-and-expression-lowering">#</a></h4><ul><li><strong>Local `coalesce` defaulting and intervallum bound conversion:</strong> reclassify expression
+(<code>401ea1398</code>)</li></ul><h4 id="vel-defaulting-and-expression-lowering">Vel defaulting and expression lowering<a class="anchor" href="#vel-defaulting-and-expression-lowering">#</a></h4><ul><li><strong>Local `coalesce` defaulting and range bound conversion:</strong> reclassify expression
 <code>coalesce</code> as tight nullable elimination (above multiplicative), with RHS interval
-constructor completion so <code>maybeRange coalesce 0‥0</code> stays intact. Emit intervallum width
+constructor completion so <code>maybeRange coalesce 0‥0</code> stays intact. Emit range width
 conversion bound-wise instead of invalid <code>as</code> carrier. EBNF, forma/faber precedence
 updated. (<code>6ca0a24d9</code>)</li><li><strong>Lower expression AD to channel MIR:</strong> expression lowering path from abstract
 declarations to channel MIR, with stepper runtime support. (<code>1f41facfb</code>)</li><li><strong>Captured argv process calls:</strong> stepper kernel and host processus support for

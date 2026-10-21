@@ -326,4 +326,30 @@ Julius habet 30 annos
 false
 true
 5.0
-</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusfunctiofunctiofab-canonical-keyword">radix/corpus/functio/functio.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusfunctioin-exfab-canonical-keyword">radix/corpus/functio/in-ex.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusfunctiorecursiofab-canonical-keyword">radix/corpus/functio/recursio.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusfunctiosponte-velfab-canonical-keyword">radix/corpus/functio/sponte-vel.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusfunctiotypi-parametrifab-canonical-keyword">radix/corpus/functio/typi-parametri.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/functio/functio.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+</code></pre><h3 id="radixcorpusfunctiofallthrough-rejectfab-supporting-reject">radix/corpus/functio/fallthrough-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusfunctiofallthrough-rejectfab-supporting-reject">#</a></h3><p>A value-returning function must return on every path; a guard that leaves a fall-through path is an error.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># fn — every path of a value-returning function returns</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># This exemplum intentionally fails to compile: the guard returns on one path</span>
+<span class="tok-co"># and falls off the end of the function on the other.</span>
+
+fn f(int a) <span class="tok-op">→</span> int {
+    if a ≻ <span class="tok-nu">0</span> {
+        return <span class="tok-nu">1</span>
+    }
+}
+
+main {
+    print f(<span class="tok-nu">1</span>)
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusfunctiowrong-arg-count-rejectfab-supporting-reject">radix/corpus/functio/wrong-arg-count-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusfunctiowrong-arg-count-rejectfab-supporting-reject">#</a></h3><p>A call must pass exactly the declared number of arguments; extra arguments are an error.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># fn — a call passes one argument per parameter</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># This exemplum intentionally fails to compile: `f` takes one parameter and</span>
+<span class="tok-co"># the call supplies two.</span>
+
+fn f(int a) <span class="tok-op">→</span> int {
+    return a
+}
+
+main {
+    print f(<span class="tok-nu">1</span>, <span class="tok-nu">2</span>)
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusfunctiofunctiofab-canonical-keyword">radix/corpus/functio/functio.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusfunctioin-exfab-canonical-keyword">radix/corpus/functio/in-ex.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusfunctiorecursiofab-canonical-keyword">radix/corpus/functio/recursio.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusfunctiosponte-velfab-canonical-keyword">radix/corpus/functio/sponte-vel.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusfunctiotypi-parametrifab-canonical-keyword">radix/corpus/functio/typi-parametri.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusfunctiofallthrough-rejectfab-supporting-reject">radix/corpus/functio/fallthrough-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusfunctiowrong-arg-count-rejectfab-supporting-reject">radix/corpus/functio/wrong-arg-count-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/functio/functio.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

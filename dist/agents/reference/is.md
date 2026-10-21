@@ -2,7 +2,7 @@
 
 Tests whether a value's runtime type is a given type.
 
-**Term** `est` · **Section** KEYWORDS
+**Term** `est` · **Section** KEYWORDS · **Also** `is`
 
 ## Syntax
 
@@ -13,7 +13,7 @@ Tests whether a value's runtime type is a given type.
 ## What this teaches
 
 - Type checking — `<expr> est <type>` tests a value's runtime variant tag without extraction.
-- Null checking — `<expr> est null` tests the null type (the null value is `null`).
+- Null checking — `<expr> is none` (la `is none`) tests the none type; the null value is `null` (la `null`).
 - Negation — `<expr> is not <type>` negates the type check.
 - Chaining — `is` composes with `and` and parenthesized expressions.
 

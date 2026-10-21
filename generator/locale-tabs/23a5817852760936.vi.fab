@@ -1,7 +1,0 @@
-hàm identitas<T>(T datum) → T {
-    trả datum
-}
-
-bắt_đầu {
-    hằng số seven ← identitas<số>(7)
-}

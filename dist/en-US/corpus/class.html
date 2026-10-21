@@ -66,4 +66,43 @@ true
 Julia
 25
 false
-</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusgenusgenusfab-canonical-keyword">radix/corpus/genus/genus.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/genus/genus.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+</code></pre><h3 id="radixcorpusgenusinitializer-type-rejectfab-supporting-reject">radix/corpus/genus/initializer-type-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusgenusinitializer-type-rejectfab-supporting-reject">#</a></h3><p>A field initializer whose type does not match the declared field is a check error.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># class — a field initializer has the wrong type for the declared field</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># Each field initializer in a construction literal must match the type the</span>
+<span class="tok-co"># class declares for that field. A `text` initializer for an `int` field is a</span>
+<span class="tok-co"># check error, so a mismatched value never enters a class.</span>
+
+class A { mut int x }
+
+main {
+    let A a <span class="tok-op">←</span> A { x <span class="tok-op">=</span> <span class="tok-st">"text"</span> }
+    print a.x
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusgenusmissing-field-rejectfab-supporting-reject">radix/corpus/genus/missing-field-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusgenusmissing-field-rejectfab-supporting-reject">#</a></h3><p>Omitting a required field from a construction literal without a source is a check error.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># class — a construction literal without a source omits a required field</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># A construction literal builds a complete value. Without a `from` source to</span>
+<span class="tok-co"># copy from, every declared field must be named; leaving one out is a check</span>
+<span class="tok-co"># error, so a class value never exists half-built.</span>
+
+class A {
+    mut int x
+    mut int y
+}
+
+main {
+    let A a <span class="tok-op">←</span> A { x <span class="tok-op">=</span> <span class="tok-nu">1</span> }
+    print a.x
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusgenusunknown-field-rejectfab-supporting-reject">radix/corpus/genus/unknown-field-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusgenusunknown-field-rejectfab-supporting-reject">#</a></h3><p>A construction literal naming a field the class does not declare is a check error.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># class — a construction literal names a field the class does not declare</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># Every key in a construction literal must be a declared field. A key that the</span>
+<span class="tok-co"># class does not declare — a typo, or a field from another type — is a check</span>
+<span class="tok-co"># error, so the value can never diverge from the declaration.</span>
+
+class A { mut int x }
+
+main {
+    let A a <span class="tok-op">←</span> A { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, z <span class="tok-op">=</span> <span class="tok-nu">2</span> }
+    print a.x
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusgenusgenusfab-canonical-keyword">radix/corpus/genus/genus.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusgenusinitializer-type-rejectfab-supporting-reject">radix/corpus/genus/initializer-type-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusgenusmissing-field-rejectfab-supporting-reject">radix/corpus/genus/missing-field-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusgenusunknown-field-rejectfab-supporting-reject">radix/corpus/genus/unknown-field-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/genus/genus.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

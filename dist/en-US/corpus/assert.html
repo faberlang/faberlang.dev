@@ -58,4 +58,31 @@ main {
     let bool viget <span class="tok-op">←</span> true
     assert viget
     assert viget <span class="tok-op">≡</span> true panic <span class="tok-st">"vigere debet"</span>
-}</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusadfirmaadfirmafab-canonical-keyword">radix/corpus/adfirma/adfirma.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/adfirma/adfirma.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+}</code></pre><h3 id="radixcorpusadfirmaadfirma-else-rejectfab-supporting-reject">radix/corpus/adfirma/adfirma-else-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusadfirmaadfirma-else-rejectfab-supporting-reject">#</a></h3><p>The assert statement has no else clause; the panic particle names the message.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># assert — no else clause</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># An assertion has no alternate branch: it either holds or it fails. The</span>
+<span class="tok-co"># failure message is introduced by the `panic` particle, so a trailing `else`</span>
+<span class="tok-co"># is rejected instead of being folded into some conditional shape.</span>
+
+main {
+    assert <span class="tok-nu">1</span> <span class="tok-op">≡</span> <span class="tok-nu">1</span> else <span class="tok-st">"m"</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusadfirmaadfirma-message-particle-rejectfab-supporting-reject">radix/corpus/adfirma/adfirma-message-particle-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusadfirmaadfirma-message-particle-rejectfab-supporting-reject">#</a></h3><p>A message on the assert line needs its panic particle.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># assert — the message needs its panic particle</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># A string literal on the same line right after the condition reads as a</span>
+<span class="tok-co"># failure message that lost its particle. It is rejected rather than parsed as</span>
+<span class="tok-co"># a separate statement, which would silently drop the message.</span>
+
+main {
+    assert <span class="tok-nu">1</span> <span class="tok-op">≡</span> <span class="tok-nu">1</span> <span class="tok-st">"m"</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusadfirmaassert-condition-rejectfab-supporting-reject">radix/corpus/adfirma/assert-condition-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusadfirmaassert-condition-rejectfab-supporting-reject">#</a></h3><p>The assert condition must be boolean; an int literal is refused.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># assert — the condition must be boolean</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># `assert` validates an invariant, so its condition is a `bool` expression. A</span>
+<span class="tok-co"># value of any other type — here an int literal — is a check error rather than</span>
+<span class="tok-co"># an implicit truthiness test.</span>
+
+main {
+    assert <span class="tok-nu">5</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusadfirmaadfirmafab-canonical-keyword">radix/corpus/adfirma/adfirma.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusadfirmaadfirma-else-rejectfab-supporting-reject">radix/corpus/adfirma/adfirma-else-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusadfirmaadfirma-message-particle-rejectfab-supporting-reject">radix/corpus/adfirma/adfirma-message-particle-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusadfirmaassert-condition-rejectfab-supporting-reject">radix/corpus/adfirma/assert-condition-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/adfirma/adfirma.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

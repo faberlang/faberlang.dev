@@ -1,0 +1,11 @@
+main {
+    let string ∪ int signum ← 7
+    match signum {
+        case int let n {
+            print "a number"
+        }
+        case string let s {
+            print "a text"
+        }
+    }
+}

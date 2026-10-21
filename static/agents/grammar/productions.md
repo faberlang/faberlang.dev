@@ -194,384 +194,388 @@ ut_field ::= 'as' '=' IDENTIFIER
 # [092] omnia_field
 omnia_field ::= 'all' '=' IDENTIFIER
 # [093] importa_sugar
-importa_sugar ::= 'import' 'from' STRING publica? (named_import | wildcard_import | selective_import)?
-# [094] publica
+importa_sugar ::= 'import' ('from' | import_target) STRING publica? (named_import | wildcard_import | selective_import)?
+# [094] import_target
+import_target ::= IDENTIFIER
+# [095] publica
 publica ::= 'public'
-# [095] named_import
+# [096] named_import
 named_import ::= IDENTIFIER ('as' IDENTIFIER)?
-# [096] wildcard_import
+# [097] wildcard_import
 wildcard_import ::= '*' 'as' IDENTIFIER
-# [097] selective_import
+# [098] selective_import
 selective_import ::= 'const' import_value_binding (',' import_value_binding)*
-# [098] import_value_binding
+# [099] import_value_binding
 import_value_binding ::= IDENTIFIER ('as' IDENTIFIER)?
-# [099] type_annotation
+# [100] type_annotation
 type_annotation ::= union_hole_type | concrete_type
-# [100] concrete_type
+# [101] concrete_type
 concrete_type ::= intersection_type ('∪' intersection_type)*
-# [101] union_hole_type
+# [102] union_hole_type
 union_hole_type ::= ('ref' | 'mut' | 'own' | 'copy')? '∪'
-# [102] intersection_type
+# [103] intersection_type
 intersection_type ::= owned_type ('∩' owned_type)*
-# [103] owned_type
+# [104] owned_type
 owned_type ::= ('ref' | 'mut' | 'own' | 'copy')? base_type
-# [104] base_type
+# [105] base_type
 base_type ::= hole_type | function_type | width_type_sugar | ratio_type | failable_promissum_type | qualified_type type_arguments?
-# [105] failable_promissum_type
+# [106] failable_promissum_type
 failable_promissum_type ::= IDENTIFIER '<' type_annotation alternate_exit_clause '>'
-# [106] ratio_type
+# [107] ratio_type
 ratio_type ::= 'record' '<' ('*' | labeled_type_argument (',' labeled_type_argument)*) '>'
-# [107] hole_type
+# [108] hole_type
 hole_type ::= '_'
-# [108] qualified_type
+# [109] qualified_type
 qualified_type ::= type_head ('.' IDENTIFIER)*
-# [109] type_head
+# [110] type_head
 type_head ::= IDENTIFIER | 'wrapping'
-# [110] type_arguments
+# [111] type_arguments
 type_arguments ::= '<' type_argument (',' type_argument)* '>'
-# [111] type_argument
+# [112] type_argument
 type_argument ::= labeled_type_argument | type_annotation | NATURAL | '[' figura_list? ']'
-# [112] labeled_type_argument
+# [113] labeled_type_argument
 labeled_type_argument ::= IDENTIFIER ':' type_annotation
-# [113] width_type_sugar
+# [114] width_type_sugar
 width_type_sugar ::= WIDTH_MARKER | LISTA_WIDTH_SUGAR | (TENSOR_WIDTH_SUGAR | SPARSA_WIDTH_SUGAR | VECTOR_WIDTH_SUGAR) shape_suffix? | MATRIX_WIDTH_SUGAR shape_suffix
-# [114] shape_suffix
+# [115] shape_suffix
 shape_suffix ::= '[' figura_list? ']'
-# [115] figura
+# [116] figura
 figura ::= spelled_lift | figura_product (('+' | '-') NATURAL)*
-# [116] spelled_lift
+# [117] spelled_lift
 spelled_lift ::= 'size' lift_extent
-# [117] lift_extent
+# [118] lift_extent
 lift_extent ::= NATURAL | '-' NATURAL | '(' figura ')' | IDENTIFIER
-# [118] figura_product
+# [119] figura_product
 figura_product ::= figura_primary ('/' NATURAL)*
-# [119] figura_primary
+# [120] figura_primary
 figura_primary ::= '_' | NATURAL | IDENTIFIER | '[' figura_list? ']' | '(' figura ')'
-# [120] figura_list
+# [121] figura_list
 figura_list ::= figura (',' figura)*
-# [121] function_type
+# [122] function_type
 function_type ::= '(' type_list? ')' '→' type_annotation alternate_exit_clause?
-# [122] type_list
+# [123] type_list
 type_list ::= type_annotation (',' type_annotation)*
-# [123] si_stmt
+# [124] si_stmt
 si_stmt ::= 'if' si_tail
-# [124] si_tail
+# [125] si_tail
 si_tail ::= expression arm ('elif' si_tail | secus_clause)?
-# [125] secus_clause
+# [126] secus_clause
 secus_clause ::= 'else' else_arm
-# [126] arm
+# [127] arm
 arm ::= (block_stmt | ergo_joint statement) cape_clause?
-# [127] else_arm
+# [128] else_arm
 else_arm ::= (block_stmt | ergo_joint statement) cape_clause?
-# [128] dum_stmt
+# [129] dum_stmt
 dum_stmt ::= 'while' expression (block_stmt | ergo_joint statement) cape_clause?
-# [129] itera_stmt
+# [130] itera_stmt
 itera_stmt ::= 'for' ('from' expression (',' expression)* | 'ref' expression | 'range' expression (',' expression)*) apud_clause? filum_clause? ('let' | 'mut') itera_binding (block_stmt | ergo_joint statement) cape_clause?
-# [130] itera_binding
+# [131] itera_binding
 itera_binding ::= array_pattern | object_pattern | IDENTIFIER (',' IDENTIFIER)*
-# [131] apud_clause
+# [132] apud_clause
 apud_clause ::= 'at' '[' IDENTIFIER (',' IDENTIFIER)* ']'
-# [132] elige_stmt
+# [133] elige_stmt
 elige_stmt ::= 'switch' expression '{' casu_elige_clause* ceterum_clause? '}' cape_clause?
-# [133] casu_elige_clause
+# [134] casu_elige_clause
 casu_elige_clause ::= 'case' expression (block_stmt | ergo_joint statement)
-# [134] ceterum_clause
+# [135] ceterum_clause
 ceterum_clause ::= 'default' (block_stmt | ergo_joint statement)
-# [135] discerne_stmt
+# [136] discerne_stmt
 discerne_stmt ::= 'match' 'all'? discriminants '{' casu_variant_clause* ceterum_clause? '}'
-# [136] discriminants
+# [137] discriminants
 discriminants ::= subject_path ('and' subject_path)*
-# [137] subject_path
+# [138] subject_path
 subject_path ::= IDENTIFIER ('.' IDENTIFIER)*
-# [138] casu_variant_clause
+# [139] casu_variant_clause
 casu_variant_clause ::= 'case' patterns (block_stmt | ergo_joint statement)
-# [139] patterns
+# [140] patterns
 patterns ::= pattern ('and' pattern)*
-# [140] pattern
+# [141] pattern
 pattern ::= pattern_atom ('or' pattern_atom)*
-# [141] pattern_atom
+# [142] pattern_atom
 pattern_atom ::= '_' | negated_number | literal | type_pattern | (IDENTIFIER ut_pattern?)
-# [142] negated_number
+# [143] negated_number
 negated_number ::= '-' NUMBER
-# [143] type_pattern
+# [144] type_pattern
 type_pattern ::= IDENTIFIER type_arguments? ut_pattern?
-# [144] ut_pattern
+# [145] ut_pattern
 ut_pattern ::= ('as' IDENTIFIER) | (('let' | 'mut') pattern_binding (',' pattern_binding)*)
-# [145] pattern_binding
+# [146] pattern_binding
 pattern_binding ::= IDENTIFIER ('as' IDENTIFIER)?
-# [146] custodi_stmt
+# [147] custodi_stmt
 custodi_stmt ::= 'guard' '{' si_guard_clause+ '}'
-# [147] si_guard_clause
+# [148] si_guard_clause
 si_guard_clause ::= 'if' expression (block_stmt | ergo_joint statement)
-# [148] ex_stmt
+# [149] ex_stmt
 ex_stmt ::= 'from' expression ('let' | 'mut') extract_fields
-# [149] extract_fields
+# [150] extract_fields
 extract_fields ::= extract_field (',' extract_field)* (',' ceteri_field)? | ceteri_field
-# [150] extract_field
+# [151] extract_field
 extract_field ::= IDENTIFIER ('as' IDENTIFIER)?
-# [151] ceteri_field
+# [152] ceteri_field
 ceteri_field ::= 'rest' IDENTIFIER
-# [152] redde_stmt
+# [153] redde_stmt
 redde_stmt ::= 'return' expression?
-# [153] reddet_stmt
+# [154] reddet_stmt
 reddet_stmt ::= 'return_await' expression
-# [154] tacebit_stmt
+# [155] tacebit_stmt
 tacebit_stmt ::= 'await' expression
-# [155] cede_stmt
+# [156] cede_stmt
 cede_stmt ::= 'yield' expression
-# [156] rumpe_stmt
+# [157] rumpe_stmt
 rumpe_stmt ::= 'break'
-# [157] perge_stmt
+# [158] perge_stmt
 perge_stmt ::= 'continue'
-# [158] tacet_stmt
+# [159] tacet_stmt
 tacet_stmt ::= 'pass'
-# [159] iace_stmt
+# [160] iace_stmt
 iace_stmt ::= iace_expr | iace_guarded_expr
-# [160] iace_expr
+# [161] iace_expr
 iace_expr ::= ('throw' | 'panic') expression
-# [161] iace_guarded_expr
+# [162] iace_guarded_expr
 iace_guarded_expr ::= ('throw' | 'panic') expression NO_NEWLINE 'if' expression
-# [162] cape_clause
+# [163] cape_clause
 cape_clause ::= 'catch' IDENTIFIER block_stmt
-# [163] adfirma_stmt
+# [164] adfirma_stmt
 adfirma_stmt ::= 'assert' expression ('panic' expression)?
-# [164] requirit_stmt
+# [165] requirit_stmt
 requirit_stmt ::= 'require' expression 'throw' expression
-# [165] reice_stmt
+# [166] reice_stmt
 reice_stmt ::= 'reject' expression 'throw' expression
-# [166] expression
+# [167] expression
 expression ::= assignment
-# [167] transfer
+# [168] transfer
 transfer ::= ternary ('⇇' ternary)?
-# [168] value_marker
+# [169] sink_into
+sink_into ::= transfer ('⇜' ternary)?
+# [170] value_marker
 value_marker ::= 'own' | 'copy'
-# [169] assignment
-assignment ::= transfer ('←' 'copy'? assignment | '↤' assignment via_clause? inline_default?)?
-# [170] inc_dec_stmt
+# [171] assignment
+assignment ::= sink_into ('←' 'copy'? assignment | '↤' assignment via_clause? inline_default?)?
+# [172] inc_dec_stmt
 inc_dec_stmt ::= place ('↑' | '↓')
-# [171] place
+# [173] place
 place ::= call_expr
-# [172] ternary
+# [174] ternary
 ternary ::= aut_expr ('✓' expression '✗' aut_expr)?
-# [173] aut_expr
+# [175] aut_expr
 aut_expr ::= et_expr (('or') et_expr)*
-# [174] et_expr
+# [176] et_expr
 et_expr ::= equality (('and') equality)*
-# [175] equality
+# [177] equality
 equality ::= comparison equality_tail*
-# [176] equality_tail
+# [178] equality_tail
 equality_tail ::= ('≡' | '≢' | '≅' | '≇' | '≈' | '≉') comparison | ('is' | 'not' 'is') type_annotation
-# [177] comparison
+# [179] comparison
 comparison ::= format_expr (('≺' | '≻' | '≤' | '≥' | '∈' | '∉') format_expr)*
-# [178] format_expr
+# [180] format_expr
 format_expr ::= bitwise_or_expr ('¶' STRING)?
-# [179] bitwise_or_expr
+# [181] bitwise_or_expr
 bitwise_or_expr ::= bitwise_xor_expr ('∨' bitwise_xor_expr)*
-# [180] bitwise_xor_expr
+# [182] bitwise_xor_expr
 bitwise_xor_expr ::= bitwise_and_expr ('⊻' bitwise_and_expr)*
-# [181] bitwise_and_expr
+# [183] bitwise_and_expr
 bitwise_and_expr ::= shift_expr ('∧' shift_expr)*
-# [182] shift_expr
+# [184] shift_expr
 shift_expr ::= range_expr (('⇐' | '⇒') range_expr)*
-# [183] range_expr
+# [185] range_expr
 range_expr ::= additive_expr range_tail?
-# [184] range_tail
+# [186] range_tail
 range_tail ::= ('‥' | '…' | 'before' | 'until') additive_expr ('step' additive_expr)?
-# [185] additive_expr
+# [187] additive_expr
 additive_expr ::= multiplicative_expr (('+' | '-' | '⤒' | '⤓') multiplicative_expr)*
-# [186] multiplicative_expr
+# [188] multiplicative_expr
 multiplicative_expr ::= vel_expr (('*' | '/' | '÷' | '%' | '·' | '×' | '⊗' | '⊙' | '⊘') vel_expr)*
-# [187] vel_expr
+# [189] vel_expr
 vel_expr ::= unary_expr ('coalesce' vel_rhs)*
-# [188] vel_rhs
+# [190] vel_rhs
 vel_rhs ::= unary_expr vel_range_tail?
-# [189] vel_range_tail
+# [191] vel_range_tail
 vel_range_tail ::= ('‥' | '…' | 'before' | 'until') unary_expr ('step' unary_expr)?
-# [190] unary_expr
-unary_expr ::= ('-' | '¬' | 'not') unary_expr | rounding_expr | finge_expr | cast_expr
-# [191] rounding_expr
+# [192] unary_expr
+unary_expr ::= ('-' | '¬' | 'not' | '√' | '∛' | '∜') unary_expr | rounding_expr | finge_expr | cast_expr
+# [193] rounding_expr
 rounding_expr ::= '⌊' expression ('⌋' | '⌉') | '⌈' expression '⌉'
-# [192] gradient_expr
+# [194] gradient_expr
 gradient_expr ::= call_expr ('∇' gradient_selection?)?
-# [193] gradient_selection
+# [195] gradient_selection
 gradient_selection ::= '[' gradient_place (',' gradient_place)* ']'
-# [194] gradient_place
+# [196] gradient_place
 gradient_place ::= expression
-# [195] cast_expr
+# [197] cast_expr
 cast_expr ::= gradient_expr ('∷' type_annotation | conversio_expr)* inline_default?
-# [196] conversio_expr
+# [198] conversio_expr
 conversio_expr ::= '↦' (type_annotation | interval_target) via_clause? inline_default?
-# [197] interval_target
+# [199] interval_target
 interval_target ::= range_expr
-# [198] via_clause
+# [200] via_clause
 via_clause ::= 'via' IDENTIFIER
-# [199] inline_default
+# [201] inline_default
 inline_default ::= '⊥' unary_expr
-# [200] call_expr
+# [202] call_expr
 call_expr ::= primary (call_suffix | member_suffix | transpose_suffix | optional_suffix | non_null_suffix)*
-# [201] call_suffix
+# [203] call_suffix
 call_suffix ::= call_type_args? '(' argument_list ')'
-# [202] member_suffix
+# [204] member_suffix
 member_suffix ::= '.' IDENTIFIER | '[' expression ']'
-# [203] transpose_suffix
+# [205] transpose_suffix
 transpose_suffix ::= 'ᵀ'
-# [204] optional_suffix
+# [206] optional_suffix
 optional_suffix ::= '?.' IDENTIFIER | '?[' expression ']' | '?(' argument_list ')'
-# [205] non_null_suffix
+# [207] non_null_suffix
 non_null_suffix ::= '!.' IDENTIFIER | '![' expression ']' | '!(' argument_list ')'
-# [206] argument_list
+# [208] argument_list
 argument_list ::= (argument (',' argument)*)?
-# [207] argument
+# [209] argument
 argument ::= template_argument | (call_marker | 'axis')? 'spread'? expression
-# [208] call_marker
+# [210] call_marker
 call_marker ::= 'ref' | 'mut' | 'own' | 'copy'
-# [209] template_argument
+# [211] template_argument
 template_argument ::= 'spread'? IDENTIFIER ':' expression
-# [210] literal
+# [212] literal
 literal ::= NUMBER | STRING | ASCII_STRING | BACKTICK_STRING | OCTETI_STRING | 'true' | 'false' | 'null' | '∞' | 'nan'
-# [211] regex_literal
+# [213] regex_literal
 regex_literal ::= REGEX_TYPE_WORD REGEX_BODY | '_' REGEX_BODY
-# [212] primary
+# [214] primary
 primary ::= IDENTIFIER | literal | regex_literal | 'self' | array_literal | json_literal | typed_constructor | iuncta_expr | ad_expr | clausura_expr | praefixum_expr | scriptum_expr | lege_expr | first_match_expr | reducta_expr | sort_expr | capta_expr | '(' expression ')'
-# [213] ad_expr
+# [215] ad_expr
 ad_expr ::= 'call' ASCII_STRING ad_opener?
-# [214] ad_opener
+# [216] ad_opener
 ad_opener ::= '(' expression ')'
-# [215] array_literal
+# [217] array_literal
 array_literal ::= '[' array_element_list? ']'
-# [216] array_element_list
+# [218] array_element_list
 array_element_list ::= array_element (',' array_element)*
-# [217] array_element
+# [219] array_element
 array_element ::= argument | '_'
-# [218] iuncta_expr
+# [220] iuncta_expr
 iuncta_expr ::= 'tuple' type_arguments '[' argument_list? ']'
-# [219] json_literal
+# [221] json_literal
 json_literal ::= '{' (json_member (',' json_member)*)? '}'
-# [220] json_member
+# [222] json_member
 json_member ::= STRING ':' json_value
-# [221] typed_constructor
+# [223] typed_constructor
 typed_constructor ::= type_annotation '{' field_list? '}' construction_source? | hole_type '{' field_list? '}' construction_source? | type_annotation json_literal | hole_type json_literal | '{' field_list '}' construction_source? | type_annotation '[' array_element_list? ']'
-# [222] field_list
+# [224] field_list
 field_list ::= field_init (',' field_init)*
-# [223] field_init
+# [225] field_init
 field_init ::= (field_key '=' expression) | IDENTIFIER
-# [224] field_key
+# [226] field_key
 field_key ::= IDENTIFIER | STRING | '[' expression ']'
-# [225] construction_source
+# [227] construction_source
 construction_source ::= 'from' call_expr
-# [226] json_value
+# [228] json_value
 json_value ::= json_object | json_array | json_string | json_number | 'true' | 'false' | 'null'
-# [227] json_object
+# [229] json_object
 json_object ::= '{' (json_member (',' json_member)*)? '}'
-# [228] json_array
+# [230] json_array
 json_array ::= '[' (json_value (',' json_value)*)? ']'
-# [229] json_string
+# [231] json_string
 json_string ::= STRING
-# [230] json_number
+# [232] json_number
 json_number ::= NUMBER
-# [231] finge_expr
+# [233] finge_expr
 finge_expr ::= 'variant' qualified_ident ('{' field_list? '}')? ('∷' type_annotation)?
-# [232] qualified_ident
+# [234] qualified_ident
 qualified_ident ::= IDENTIFIER ('.' IDENTIFIER)*
-# [233] praefixum_expr
+# [235] praefixum_expr
 praefixum_expr ::= 'comptime' block_stmt
-# [234] scriptum_expr
+# [236] scriptum_expr
 scriptum_expr ::= 'format' '(' STRING (',' expression)* ')'
-# [235] lege_expr
+# [237] lege_expr
 lege_expr ::= 'read' 'line'?
-# [236] first_match_expr
+# [238] first_match_expr
 first_match_expr ::= 'primus_quem' '(' expression apud_clause? ',' 'ubi' IDENTIFIER block_stmt ')'
-# [237] reducta_expr
+# [239] reducta_expr
 reducta_expr ::= 'reduce' 'via' reducta_op 'from' expression apud_clause? reducta_group? (filum_clause? reducta_body | reducta_identity)?
-# [238] reducta_op
+# [240] reducta_op
 reducta_op ::= 'sum' | 'product' | 'max' | 'min' | 'argmax' | 'argmin' | 'all' | 'any' | 'count'
-# [239] reducta_group
+# [241] reducta_group
 reducta_group ::= 'per' expression
-# [240] reducta_body
+# [242] reducta_body
 reducta_body ::= ('let' | 'mut') IDENTIFIER block_stmt
-# [241] reducta_identity
+# [243] reducta_identity
 reducta_identity ::= 'coalesce' expression
-# [242] sort_expr
+# [244] sort_expr
 sort_expr ::= 'sort' 'via' sort_direction ('from' | 'ref') expression sort_body?
-# [243] sort_direction
+# [245] sort_direction
 sort_direction ::= 'asc' | 'desc'
-# [244] sort_body
+# [246] sort_body
 sort_body ::= ('let' | 'mut') IDENTIFIER block_stmt
-# [245] filum_clause
+# [247] filum_clause
 filum_clause ::= 'thread' IDENTIFIER
-# [246] capta_expr
+# [248] capta_expr
 capta_expr ::= 'trap' block_stmt
-# [247] object_pattern
+# [249] object_pattern
 object_pattern ::= '{' pattern_property (',' pattern_property)* '}'
-# [248] pattern_property
+# [250] pattern_property
 pattern_property ::= 'rest'? IDENTIFIER ('as' IDENTIFIER)?
-# [249] array_pattern
+# [251] array_pattern
 array_pattern ::= '[' array_pattern_element (',' array_pattern_element)* ']'
-# [250] array_pattern_element
+# [252] array_pattern_element
 array_pattern_element ::= '_' | 'rest'? IDENTIFIER
-# [251] nota_stmt
+# [253] nota_stmt
 nota_stmt ::= ('print' | 'debug' | 'warn' | 'write') expression (',' expression)*
-# [252] entry_header
+# [254] entry_header
 entry_header ::= ('args' IDENTIFIER)? ('exit' expression)?
-# [253] incipit_stmt
+# [255] incipit_stmt
 incipit_stmt ::= 'main' entry_header block_stmt
-# [254] incipiet_stmt
+# [256] incipiet_stmt
 incipiet_stmt ::= 'async_main' entry_header block_stmt
-# [255] probandum_decl
+# [257] probandum_decl
 probandum_decl ::= 'describe' STRING proba_modifier* '{' probandum_body '}'
-# [256] probandum_body
+# [258] probandum_body
 probandum_body ::= (praepara_block | probandum_decl | proba_stmt)*
-# [257] proba_stmt
+# [259] proba_stmt
 proba_stmt ::= 'test' STRING proba_modifier* block_stmt
-# [258] proba_modifier
+# [260] proba_modifier
 proba_modifier ::= 'expect_failure' | 'skip' STRING | 'todo' STRING | 'only' | 'tag' STRING | 'timeout' NATURAL | 'bench' | 'repeat' NATURAL | 'flaky' NATURAL | 'only_in' STRING
-# [259] praepara_block
+# [261] praepara_block
 praepara_block ::= ('setup' | 'async_setup' | 'teardown' | 'async_teardown') 'all'? block_stmt
-# [260] fac_stmt
+# [262] fac_stmt
 fac_stmt ::= 'do' block_stmt cape_clause? ('while' expression)?
-# [261] IDENTIFIER
+# [263] IDENTIFIER
 IDENTIFIER ::=
-# [262] NUMBER
+# [264] NUMBER
 NUMBER ::=
-# [263] NATURAL
+# [265] NATURAL
 NATURAL ::=
-# [264] STRING
+# [266] STRING
 STRING ::=
-# [265] ASCII_STRING
+# [267] ASCII_STRING
 ASCII_STRING ::=
-# [266] BACKTICK_STRING
+# [268] BACKTICK_STRING
 BACKTICK_STRING ::=
-# [267] OCTETI_STRING
+# [269] OCTETI_STRING
 OCTETI_STRING ::=
-# [268] REGEX_TYPE_WORD
+# [270] REGEX_TYPE_WORD
 REGEX_TYPE_WORD ::=
-# [269] REGEX_BODY
+# [271] REGEX_BODY
 REGEX_BODY ::=
-# [270] NEWLINE
+# [272] NEWLINE
 NEWLINE ::=
-# [271] WIDTH_MARKER
+# [273] WIDTH_MARKER
 WIDTH_MARKER ::=
-# [272] LISTA_WIDTH_SUGAR
+# [274] LISTA_WIDTH_SUGAR
 LISTA_WIDTH_SUGAR ::=
-# [273] TENSOR_WIDTH_SUGAR
+# [275] TENSOR_WIDTH_SUGAR
 TENSOR_WIDTH_SUGAR ::=
-# [274] SPARSA_WIDTH_SUGAR
+# [276] SPARSA_WIDTH_SUGAR
 SPARSA_WIDTH_SUGAR ::=
-# [275] VECTOR_WIDTH_SUGAR
+# [277] VECTOR_WIDTH_SUGAR
 VECTOR_WIDTH_SUGAR ::=
-# [276] MATRIX_WIDTH_SUGAR
+# [278] MATRIX_WIDTH_SUGAR
 MATRIX_WIDTH_SUGAR ::=
-# [277] FRONTMATTER_DELIMITER
+# [279] FRONTMATTER_DELIMITER
 FRONTMATTER_DELIMITER ::=
-# [278] TOML_LINES
+# [280] TOML_LINES
 TOML_LINES ::=
-# [279] ANNOTATION_NAME
+# [281] ANNOTATION_NAME
 ANNOTATION_NAME ::=
-# [280] ANNOTATION_FIELD_NAME
+# [282] ANNOTATION_FIELD_NAME
 ANNOTATION_FIELD_NAME ::=
-# [281] NON_NEWLINE_TOKEN
+# [283] NON_NEWLINE_TOKEN
 NON_NEWLINE_TOKEN ::=
-# [282] NO_NEWLINE
+# [284] NO_NEWLINE
 NO_NEWLINE ::=
 ```
 

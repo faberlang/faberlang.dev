@@ -28,12 +28,12 @@ fn count_items(channel s) <span class="tok-op">→</span> int {
 main {
     let channel s <span class="tok-op">←</span> call <span class="tok-st">'runtime:echo'</span> (<span class="tok-st">"salve"</span>)
     let send<span class="tok-op">&lt;</span>value<span class="tok-op">&gt;</span> outbound <span class="tok-op">←</span> s.send<span class="tok-op">&lt;</span>value<span class="tok-op">&gt;</span>()
-    outbound.da(<span class="tok-st">"ping"</span>)
-    outbound.fini()
+    outbound.sink(<span class="tok-st">"ping"</span>)
+    outbound.finish()
     print count_items(s)
 
     let channel second <span class="tok-op">←</span> call <span class="tok-st">'runtime:echo'</span> (<span class="tok-st">"vale"</span>)
-    let frame<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> <span class="tok-op">∪</span> none first <span class="tok-op">←</span> second.recv<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>().accipe()
+    let frame<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> <span class="tok-op">∪</span> none first <span class="tok-op">←</span> second.recv<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>().get()
     print first<span class="tok-op">?.</span>data
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>salve
 1
@@ -94,13 +94,13 @@ fn sum(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> p
 main {
 <span class="tok-co">    # Four conversations finish at once; their handles wait in the pool.</span>
     mut map<span class="tok-op">&lt;</span>int, channel<span class="tok-op">&gt;</span> piscina <span class="tok-op">←</span> empty
-    for range <span class="tok-nu">0</span>‥<span class="tok-nu">4</span> let i {
+    for range <span class="tok-nu">0</span> ‥ <span class="tok-nu">4</span> let i {
         piscina[i] <span class="tok-op">←</span> call <span class="tok-st">'numeri:bis'</span> (i)
     }
 
 <span class="tok-co">    # A longer conversation streams while the finished ones hold nothing.</span>
     let channel longus <span class="tok-op">←</span> call <span class="tok-st">'numeri:numera'</span> (<span class="tok-nu">5</span>)
-    for range <span class="tok-nu">0</span>‥<span class="tok-nu">4</span> let i {
+    for range <span class="tok-nu">0</span> ‥ <span class="tok-nu">4</span> let i {
         print piscina[i] ↦ int
     }
     print sum(longus ↦ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>)

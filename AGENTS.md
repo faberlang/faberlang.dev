@@ -206,8 +206,11 @@ A build that exceeds these by 3x is a finding, not a fact of the environment.
 > The operator wants the pin removed. Until then, after **any** compiler change
 > that touches syntax, diagnostics or the locale packs: run
 > `build-site.sh --refresh-upstream <rev> --faber <1.x binary>`, run
-> `validate-fences.sh` on `src/en-US` and `static/agents`, and treat a failing
-> fence as a blocker. The build prints a `PINNED to …` line every run.
+> `RADIX=<that faber> validate-fences.sh` on `src/en-US` and `static/agents`,
+> and treat a failing fence as a blocker. The validator passes every fence's
+> locale (Latin included), stubs relative-import siblings, checks library
+> fences against the sibling triga/gradus/tela checkouts, and builds a fence
+> tagged `target=<t>` for that target instead of checking it. The build prints a `PINNED to …` line every run.
 
 The build never reads the live radix checkout. It reads `grammar/`, `locale/`
 and `corpus/` as of the git tree ids in `generator/upstream.lock.toml`,
@@ -420,8 +423,8 @@ the English tree; `/llms-full.txt` is a locale-neutral corpus reference.
 ### Binary versions
 
 - **Content targets radix HEAD, not a release.** The site is published from
-  `main` (Faber 1.14.0, the first release after the source went public, is the
-  install surface's release), so every page is checked against the radix commit
+  `main` (Faber 1.15.1 is the install surface's release; 1.15.0 has a source
+  tag but no published artifacts, so never offer it), so every page is checked against the radix commit
   recorded in `generator/upstream.lock.toml` and a `faber` built from that
   commit. Pass it
   with `build-site.sh --faber <path>`: the convert cache is keyed on the binary's
@@ -478,7 +481,7 @@ See `docs/factory/site-implementation/CAMPAIGN.md` for full detail.
 - **Never commit `generator/target/` or `.DS_Store`.** See `.gitignore`.
 - **Faber comment rule:** `#` only, on its own line. No inline comments
   (`//` or trailing `#`). Violations throw `LEX006`/`LEX007`.
-- **Code fences in Markdown must pass `radix check`.** Run
+- **Code fences in Markdown must pass `faber check`** (at the pin). Run
   `validate-fences.sh` after editing any Markdown with fenced Faber code.
 - **One stylesheet.** All CSS lives in `generator/www/speculum.css`. The
   generator cannot write CSS. Do not inline styles in pages.

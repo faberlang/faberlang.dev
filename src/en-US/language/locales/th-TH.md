@@ -32,6 +32,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | ---------------  -----------  --------------
 | all              omnia        ทั้งหมด
 | and              et           และ
+| annotation       annotatio    คำอธิบายประกอบ
 | any              quilibet     ใดก็ได้
 | argmax           argmaxima    ดัชนีค่าสูงสุด
 | argmin           argminima    ดัชนีค่าต่ําสุด
@@ -61,6 +62,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | coalesce         vel          หรือว่าง
 | column           columna      คอลัมน์
 | command          imperium     คำสั่ง
+| commands         imperia      ชุดคำสั่ง
 | comptime         praefixum    นำหน้า
 | const            fixum        คงที่
 | continue         perge        ไปต่อ
@@ -116,7 +118,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | name             nomen        ชื่อ
 | nan              nonnumerus   nan
 | not              non          ไม่
-| null             nulla        ว่างเปล่า
+| null             nulla        ขาดหาย
 | only             solum        เฉพาะ
 | only_in          solum_in     เฉพาะใน
 | operand          operandus    ตัวถูกดำเนินการ
@@ -178,6 +180,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | unstable         nondum       ไม่เสถียร
 | until            usque        จนถึง
 | variant          finge        สร้าง
+| version          versio       เวอร์ชัน
 | vertex           vertex       จุดยอด
 | via              via          ผ่านทาง
 | warn             mone         เตือน
@@ -208,7 +211,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | frame        scrinium     เฟรม
 | instant      instans      อินสแตนซ์
 | int          numerus      จํานวน
-| intervallum  intervallum  อันตรภาค
 | iterator     cursor_t     ตัวชี้
 | json         json         json
 | ledger       tabulae      สมุดบัญชี
@@ -216,10 +218,11 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | map          tabula       ตาราง
 | matrix       matrix       เมทริกซ์
 | never        numquam      ไม่เคย
-| none         nihil        นัล
+| none         nihil        ไม่มี
 | object       objectum     ออบเจ็กต์
 | promise      promissum    คำมั่น
 | queue        queue        คิว
+| range        intervallum  อันตรภาค
 | record       ratio        ratio
 | recv         tuus         รับ
 | reflect      reflexa      สะท้อนขอบ
@@ -228,7 +231,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | send         meus         ส่ง
 | series       series       ซีรีส์
 | set          copia        ชุด
-| sparsa       sparsa       กระจัดกระจาย
+| sparse       sparsa       กระจัดกระจาย
 | stack        stack        สแตก
 | string       textus       ข้อความ
 | tensor       tensor       เทนเซอร์
@@ -265,6 +268,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | bit_and_assign        coniunge               และบิตกําหนด
 | bit_or                disiuncta              หรือบิต
 | bit_or_assign         disiunge               หรือบิตกําหนด
+| cbrt                  radix_cubica           รากที่สาม
 | ceiling               tectum                 ปัดขึ้น
 | clamp                 coercere               จํากัดค่า
 | compare_exchange      compare_exchange       เทียบแล้วสลับ
@@ -285,6 +289,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | divide                divida                 หาร
 | divided               divisa                 หารแล้ว
 | dot                   productum              ดอตโปรดักต์
+| drain                 exhauri                ระบาย
 | drop                  omissa                 ข้าม
 | end                   terminus               สิ้นสุด
 | ends_with             finis                  ลงท้ายด้วย
@@ -296,6 +301,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | filter                filtrata               กรอง
 | find                  inventa                ค้นหา
 | find_all              collecta               ค้นหาทั้งหมด
+| finish                fini                   จบ
 | first                 primus                 ตัวแรก
 | flatten               planata                ทําให้แบน
 | flip                  alterna                พลิกค่า
