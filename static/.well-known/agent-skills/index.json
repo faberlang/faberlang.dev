@@ -11,24 +11,28 @@
     {
       "name": "install",
       "type": "skill-md",
+      "files": ["SKILL.md"],
       "description": "Download and verify the current Faber CLI release for macOS arm64 or Linux x64.",
       "url": "/.well-known/agent-skills/install/SKILL.md"
     },
     {
       "name": "language",
       "type": "skill-md",
+      "files": ["SKILL.md"],
       "description": "Write Faber in the English reader spelling. Start at the agent canon and follow its links.",
       "url": "/.well-known/agent-skills/language/SKILL.md"
     },
     {
       "name": "packages",
       "type": "skill-md",
+      "files": ["SKILL.md"],
       "description": "Scaffold and drive Faber packages with the faber init manifest and faber check, build, run, test, and format.",
       "url": "/.well-known/agent-skills/packages/SKILL.md"
     },
     {
       "name": "corpus",
       "type": "skill-md",
+      "files": ["SKILL.md"],
       "description": "Look up a keyword in the generated catalog after the writing guide.",
       "url": "/.well-known/agent-skills/corpus/SKILL.md"
     }
