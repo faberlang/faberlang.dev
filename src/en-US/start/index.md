@@ -6,6 +6,7 @@ sources = []
 +++
 
 Faber Romanus is written by models, so you install it by handing your model a link.
+To do it yourself instead, see [Without a model](#without-a-model).
 
 ::agent-pass::
 
@@ -47,6 +48,40 @@ See what a compiler error says:
 ```text prompt
 Break the hello program on purpose by giving a value the wrong type. Run faber check, read me the diagnostic, and use faber explain on its code so I can see what it means.
 ```
+
+## Without a model {#without-a-model}
+
+You can also install and run Faber yourself. Release builds exist for macOS
+on Apple silicon and Linux on x86-64. The installer downloads the release for
+your machine, checks its checksum, and puts `faber` in `~/.faber/bin`:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/faberlang/faber/main/install.sh | sh
+export PATH="$HOME/.faber/bin:$PATH"
+faber --version
+```
+
+Add the `export` line to your shell profile to keep `faber` on your `PATH`.
+Then write a program, check it, and run it:
+
+```bash
+printf 'main {\n    print "Hello, world!"\n}\n' > hello.fab
+faber check hello.fab
+faber run hello.fab
+```
+
+`faber run` prints `Hello, world!`. To see the same program in another
+language, print it to the terminal with `faber emit`:
+
+```bash
+faber emit --target go hello.fab
+faber emit --target ts hello.fab
+```
+
+`faber build -t rust hello.fab` builds a Cargo package, so it needs Cargo and
+a current stable Rust toolchain (`rustup update`). The
+[cheat sheet](/cheatsheet/) shows how Faber is written, one topic per page,
+and `faber explain <code>` explains any diagnostic the compiler prints.
 
 ## Read along {#read-along}
 

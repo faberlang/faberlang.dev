@@ -49,6 +49,9 @@ MAP: list[tuple[str, str]] = [
     ("/start/install.html", "/start/"),
     ("/start/hello.html", "/start/"),
     ("/start/projects.html", "/start/"),
+    # there was never a tutorial section, but people guess the URL; send
+    # them to Start, which carries the without-a-model walkthrough
+    ("/tutorial/", "/start/"),
     # the cheat sheet's reader-locale page became its own top-level section,
     # with the selection rationale the buried version never carried
     ("/cheatsheet/locales.html", "/localization.html"),

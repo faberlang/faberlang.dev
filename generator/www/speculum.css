@@ -2101,6 +2101,13 @@ a.channel:focus-visible { outline-color: #d93a12; }
     color: var(--ink-faint);
 }
 .fl-open-source strong { color: var(--ink-soft); font-weight: 600; }
+.fl-no-model {
+    max-width: var(--prose-s);
+    margin: var(--s4) 0 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+}
 .fl-hero .pass-wrap { margin-top: 0.4rem; }
 
 /* -- the program: a terminal panel with its output attached beneath -- */

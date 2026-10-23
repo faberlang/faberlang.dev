@@ -76,7 +76,7 @@ TARGETS: list[dict[str, str]] = [
      "note": "builds as a Cargo package with `faber build`; uses the small faber runtime crate",
      "elide_before": "#[derive(Clone, PartialEq)]"},
     {"id": "ts", "name": "TypeScript",
-     "note": "a source file you add to your project; imports `@faber/runtime`",
+     "note": "a source file you add to your project; imports `@faber/runtime`, which is not on npm yet",
      "elide_before": "class Span {"},
     {"id": "go", "name": "Go", "note": "a source file in `package main`"},
     {"id": "swift", "name": "Swift", "note": "a source file; no runtime dependency"},
@@ -309,7 +309,7 @@ def build_target_panels(d: Path) -> list[dict[str, str]]:
         panels.append({
             "id": esc(t["id"]), "name": esc(t["name"]),
             "tab": esc(t["name"]), "hint": esc(t["id"]),
-            "label": f'<code>radix emit --target {esc(t["id"])} span.fab</code> '
+            "label": f'<code>faber emit --target {esc(t["id"])} span.fab</code> '
                      f'<span class="fdt-note">— {t["note"].replace("`", "")}</span>',
             "code": esc(body),
             "lang": esc(t["id"]),
@@ -461,6 +461,10 @@ def main() -> None:
         more — so a library you write once can go into the project you already
         have.
       </p>
+      <p class="fl-no-model">
+        No model? <a href="/en-US/start/#without-a-model">Install and run it yourself</a>
+        with one command.
+      </p>
     </div>
 
 {pass_html}
@@ -567,7 +571,7 @@ def main() -> None:
         library in Faber, emit it in the language your project already uses, and
         add it alongside your existing code. This small library, with no
         generics and no <code>main</code>, is emitted below exactly as
-        <code>radix emit</code> produces it, and each panel was checked in its
+        <code>faber emit</code> produces it, and each panel was checked in its
         own toolchain.
       </p>
     </div>
