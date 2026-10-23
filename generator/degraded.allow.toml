@@ -47,6 +47,11 @@ why = "a generated release-notes fence carries an inline comment the lexer refus
 
 [[allow]]
 kind = "agent-reference-slug-collision"
+subject = "varia"
+why = "same wrinkle as the corpus `varia` entry: the English pack spells both the binding word `varia` and the parameter marker `in` as `mut`; `in` keeps /agents/reference/mut.md and `varia` names itself in its page title (`mut (varia)`)"
+
+[[allow]]
+kind = "agent-reference-slug-collision"
 subject = "textus"
 why = "the English pack gives `textus` and `string` one slug; the first term in sorted order keeps it and `textus` names itself in its page title, by design"
 
@@ -72,8 +77,8 @@ why = "same as `is`: the projected example fails `faber check --locale=en`, so t
 
 [[allow]]
 kind = "agent-reference-projection"
-subject = "imperia"
-why = "same as `is`: the projected example fails `faber check --locale=en`, so the registry text ships"
+subject = "commands"
+why = "same as `is`: the projected example for `imperia` (page slug `commands`) fails `faber check --locale=en`, so the registry text ships"
 
 [[allow]]
 kind = "agent-reference-projection"

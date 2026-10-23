@@ -206,6 +206,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | channel      sermo        kênh
 | char         littera      ký_tự
 | clamp        clampa       kẹp_biên
+| error        erratum      sai_lầm
 | filter       filtrum      bộ_lọc
 | float        fractus      thập_phân
 | frame        scrinium     khung
@@ -368,6 +369,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | sign                  signum                 dấu
 | silu                  silu                   silu
 | sin                   sinus                  sin
+| sink                  immerge                chìm
 | slice                 sectio                 cắt
 | softmax               activatio_softmax      kích_hoạt_softmax
 | softmax_causal        softmax_causal         kích_hoạt_softmax_nhân_quả

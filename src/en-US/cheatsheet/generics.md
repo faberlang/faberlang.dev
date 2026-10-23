@@ -51,9 +51,9 @@ incipit {
 }
 ```
 
-## Records {#genus}
+## Classes {#genus}
 
-`genus` declares a record type with type-first fields. Each field names its
+`genus` (en `class`) declares a class with type-first fields. Each field names its
 mode: `sit` is fixed after construction and `varia` is writable. A field with
 neither word is `PARSE010 field_modifier_missing`, and a `de` field is
 `PARSE010 ref_field_refused`.
@@ -74,7 +74,7 @@ incipit {
 }
 ```
 
-## Functions on a record {#methods}
+## Functions on a class {#methods}
 
 A `genus` can carry functions alongside its fields.
 

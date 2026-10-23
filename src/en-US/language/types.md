@@ -208,6 +208,7 @@ main {
 | `tensor<T, Figura>` | Dense fixed-shape buffer | `tf32[4]`, `ti64[2,3]` |
 | `sparsa<T, Figura>` | Sparse fixed-shape buffer | `sf32[4]`, `si64[2,3]` |
 | `intervallum` | Range type | — |
+| `ratio<label: T, …>` | Labeled record value (en `record`) | `{ label = value }` |
 | `copia<T>` | Unordered set | — |
 | `cursor<T>` | Lazy stream | — |
 | `promissum<T>` | Async finite result from `fiet` functions; `promissum<T ⇥ E>` carries a delayed alternate channel | — |
@@ -376,6 +377,19 @@ incipit {
 }
 ```
 
+A local may take the name of a value word such as `true`, `false` or `null`.
+The binding shadows the value for the rest of its scope, and the compiler
+warns `WARN021 value_literal_shadowing` instead of refusing it:
+
+```faber locale=en
+main {
+    let string true ← "t"
+    print true
+}
+```
+
+This prints `t`.
+
 ### ref (de) and const (fixum) {#ref-and-const}
 
 `ref` names a value that can be re-pointed but not written. It is the mode of a
@@ -514,9 +528,8 @@ main {
 
 This prints `[1, 2]`, `[1, 2, 3, 4, 5]` and `[2, 3]`. Before 1.15 the second
 call clamped silently; it now falls back to `xs` because the window failed.
-The runner and the Rust target check windows this way; generated Python
-still clamps, and the TypeScript target refuses the `⊥` form
-(`CODEGEN001 ts_trap_expression_unsupported`).
+The runner, Rust, TypeScript and Python all check windows this way (generated
+TypeScript and Python clamped until 1.16).
 
 ### Tabula — key-value map {#tabula}
 
@@ -526,14 +539,15 @@ incipit {
 }
 ```
 
-The `:` there is not map syntax. A bare `{ … }` is always
-[inline JSON](#inline-json) — a compile-time `json` document whose keys are
-quoted strings separated by `:`. Declaring the binding as a `tabula` ascribes
-that document to a map type, which lowers it to a real constant map.
+The `:` there is not map syntax. A bare `{ … }` with quoted keys and `:` is
+[inline JSON](#inline-json) — a compile-time `json` document. Declaring the
+binding as a `tabula` ascribes that document to a map type, which lowers it to
+a real constant map.
 
-Faber's own key-value shape uses `=`, and it is only available on a named
-type: `Point { x = 10 }`. There is no anonymous `{ key = expr }` object —
-writing one is a parse error, not a second spelling of the line above.
+Faber's own key-value shape uses `=`: on a named type, `Point { x = 10 }`, or
+with no type name as a [record](#record), `{ x = 10 }`. A record is a value
+with labeled, read-only fields, not a map: it has no keys to look up at run
+time.
 
 For a map you build up rather than declare whole, start from `vacua` and
 assign by key:
@@ -544,6 +558,45 @@ main {
     puncta["alpha"] ← 1
     puncta["beta"] ← 2
     print puncta.length()
+}
+```
+
+### Records — labeled values {#record}
+
+A record is a value made of labeled fields. The English type word is
+`record` (Latin `ratio`). Fields are read by label, never by position, and a
+record is not a class: two record types are the same when they have the same
+labels with exactly the same field types, in any order.
+
+A bare `{ label = value }` in a cell with no declared type is a record whose
+fields take their default types; `record<*>` names that type. A record prints
+like a class value without the type name, in the order the fields were
+written. A destructuring `rest` binding of a typed record is a record of the
+fields that were not named.
+
+```faber locale=en
+main {
+    let record<x: f64, y: int> typed ← record<x: f64, y: int> { x = 1.5, y = 2 }
+    let _ point ← { x = 1.5, y = 2 }
+    print typed.x
+    print point
+
+    let {x, rest others} ← typed
+    print x
+    print others
+}
+```
+
+This prints `1.5`, `{ x = 1.5, y = 2 }`, `1.5` and `{ y = 2 }`.
+
+Records are values, so their fields are read-only. Writing through a field is
+`SEM020 assignment_to_fixum_field`, even when the binding is `mut`; build a
+new record, or use a class with a `mut` field.
+
+```faber locale=en outcome=rejects
+main {
+    mut _ point ← { x = 1.5, y = 2 }
+    point.x ← 3.0
 }
 ```
 
@@ -578,6 +631,33 @@ main {
 ```
 
 This prints `[2.0, 3.0, 4.0]`.
+
+A matrix reads and writes one element by row and column with a double
+bracket, `m[[row, col]]`, and the coordinates may be computed. The method
+forms follow the three list reads: `m.get([r, c])` gives `none` for a
+coordinate outside the shape, `m.at([r, c])` reports it on the error channel,
+and `m.set([r, c], v)` stores. A literal coordinate that is provably outside
+the shape is refused at compile time.
+
+```faber locale=en
+main {
+    mut matrix<f32, [2, 2]> m ← [[1.0, 2.0], [3.0, 4.0]] ↦ matrix<f32, [2, 2]>
+    let int row ← 1
+    print m[[0, 1]]
+    m[[row, 0]] ← 7.5
+    print m.get([row, 5]) coalesce 0.0
+    print m.at([row, 1]) ⊥ 0.0
+    print m
+}
+```
+
+This prints `2.0`, `0.0`, `4.0` and `[[1.0, 2.0], [7.5, 4.0]]`. A bracket
+range on a vector or a matrix slices to a vector or a matrix, and `↦`
+converts between tensors, vectors and matrices of the same shape.
+
+Known issue in 1.16: element access runs on `faber run`, but generated Rust
+does not compile it yet, and the TypeScript, Swift and LLVM targets refuse it
+by name rather than approximate it.
 
 Key methods: `reshape`, `get`, `set`, `create`, `tensor.structa` (Latin
 namespace lookup, not a receiver method), plus elementwise
@@ -630,6 +710,64 @@ Generator *functions* declare their stream posture in the signature slot:
 `fiunt` is a synchronous stream and `fient` an asynchronous stream; the body
 yields values with `cede` (see [Functions — async and streams](/language/functions.html#async-and-streams)).
 
+### Sinks — ⇜ {#sinks}
+
+`Sink<T>` is the contract for "take one item". A class opts in with
+`implements Sink<T>` and supplies `sink(T)` and `flush()`, both failable.
+`s ⇜ x` is the operator form of `s.sink(x)`: the method reports a failed write
+on the error channel, and the operator stops the program. The item must be
+exactly the sink's `T`; there is no implicit conversion. The sink must be
+writable, so a `let` sink is refused.
+
+The contract is declared in the source file today (an import of `norma:sink`
+checks but does not run yet):
+
+```faber locale=en
+@ radix contract "sinking"
+interface Sink<T> {
+    fn sink(T item) → void ⇥ string
+    fn flush() → void ⇥ string
+}
+
+class Tally implements Sink<int> {
+    mut int total = 0
+
+    fn sink(int item) → void ⇥ string {
+        self.total ← self.total + item
+    }
+
+    fn flush() → void ⇥ string {
+    }
+}
+
+main {
+    mut Tally tally ← Tally { total = 0 }
+    tally.sink(3)
+    tally ⇜ 4
+    print tally.total
+}
+```
+
+This prints `7`. Lists and sets are sinks too: `⇜` appends to a list
+(duplicates kept) and adds a missing item to a set. On a bounded
+`list<T, N>` that is already full, `.sink(v)` reports.
+
+```faber locale=en
+main {
+    mut list<string> log ← []
+    log.append("begin")
+    log ⇜ "step"
+    log ⇜ "step"
+    print log
+}
+```
+
+This prints `["begin", "step", "step"]`; `log.append(v)` and `log ⇜ v` do the same thing here.
+
+Known issue in 1.16: `⇜` runs on `faber run`, Rust and LLVM; the Go,
+TypeScript, Swift, WebAssembly, Racket, Python and Cranelift targets refuse it
+by name (`CODEGEN001`).
+
 ### Intervallum — ranges {#intervallum}
 
 ```faber
@@ -660,10 +798,28 @@ main {
 }
 ```
 
-This prints `2‥5`, then `2`, `3` and `4`. A stepped range works in a loop
-(`for range 0‥10 step 2 let i`), but storing one in a cell is not supported
-yet: `let range<int, 2> r ← 0‥10 step 2` is
-`SEM010 intervallum_value_step_unsupported`.
+This prints `2‥5`, then `2`, `3` and `4`.
+
+A stored range can carry a step (since 1.16). The step is part of the type:
+`range<int>` has step 1, and `range<int, 2>` steps by 2. `length()` counts
+only the members on the step, and `contains(v)` is true only for a value on
+the step.
+
+```faber locale=en
+main {
+    let range<int, 2> evens ← 0…10 step 2
+    print evens.length()
+    print evens.contains(4)
+    print evens.contains(3)
+}
+```
+
+This prints `6`, `true` and `false`. A stored step must be a positive integer
+literal and the bounds must be integers; a step known only at run time stays
+inline in `for range` and in bracket windows
+(`SEM010 intervallum_value_step_unsupported` elsewhere). Operations that
+cannot keep a step (`clamp`, `coercere`, `inter`, `union`) refuse a stepped
+range by name rather than dropping the step.
 
 ## String and template literals
 
@@ -680,9 +836,24 @@ shape. They are not interchangeable synonyms.
 | `` `…` `` | `forma` | Captured templates; `(…)` captures |
 | `{ … }` | `json` | Compile-time JSON document |
 | `\|…\|` | `lista<b8>` (en `bytes`) | Compile-time hex bytes |
-| `regex /…/` | `regex` | Inline pattern literal; raw body, `\/` writes a slash |
+| `regex /…/` | `regex` | Inline pattern literal; raw body, `\/` writes a slash (inside a class too: `[\/]`) |
 | `_ /…/` | `regex` | The same literal where the cell gives the type |
 | `[ … ]` | `lista<T>` | Faber list literal |
+
+A bounded text cell such as `ascii<N>` keeps text behaviour: `+` joins and
+the ordering operators compare as text.
+
+```faber locale=en
+main {
+    let ascii<8> a ← 'ab'
+    let ascii<8> b ← 'cd'
+    print a + b
+    print a ≺ b
+    print 'ab' ≥ 'cd'
+}
+```
+
+This prints `abcd`, `true` and `false`.
 
 ### String-template application {#string-template-application}
 
@@ -752,8 +923,9 @@ incipit {
 
 ### Inline JSON {#inline-json}
 
-A bare `{ … }` is inline JSON: a compile-time `json` document, not an
-anonymous Faber object. Keys are quoted strings separated by `:`. Values are
+A bare `{ … }` with quoted keys and `:` is inline JSON: a compile-time `json`
+document. (With `label = value` fields it is a [record](#record) instead.)
+Values are
 JSON constants only — no variable references, no Faber expressions. Ascribing
 one to a [`tabula`](#tabula) lowers it to a real constant map; `↦ valor`
 widens it to the dynamic carrier instead:
@@ -881,6 +1053,21 @@ incipit {
     sit _ body ← ad 'solum:lege' (path) ↦ textus
 }
 ```
+
+Text converts to a boolean only when it is the code locale's word: in an
+English file `"true" ↦ bool` and `"false" ↦ bool` succeed, and any other text
+fails and takes the `⊥` value. Without a `⊥` the failure stops the program.
+Every target agrees (since 1.16; Go, TypeScript, Swift, LLVM and Racket used to
+test truthiness or emptiness instead).
+
+```faber locale=en
+main {
+    print "true" ↦ bool ⊥ false
+    print "yes" ↦ bool ⊥ false
+}
+```
+
+This prints `true` and `false`.
 
 Not every pair converts. Text does not convert to a list of characters with
 `↦`; that is refused by name (`SEM016 textus_to_lista_unsupported`).

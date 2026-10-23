@@ -21,6 +21,10 @@ main {
 }
 ```
 
+The type after `⇥` is the payload. The value on the channel is the
+compiler-owned carrier `error<T>` with one field, `payload`; `catch` binds the
+payload, so ordinary code never names the carrier.
+
 Detail pages:
 
 - https://faberlang.dev/agents/errors/failable.md — `throw` sends a value on `⇥`.

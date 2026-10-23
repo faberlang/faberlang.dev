@@ -245,7 +245,9 @@ type word is <code>range&lt;int&gt;</code>.</p><div class="faber-demo-tabs" data
     <span class="tok-kw">दोहराओ</span> <span class="tok-kw">सीमा</span> r <span class="tok-kw">बैठा</span> i {
         <span class="tok-kw">दिखाओ</span> i
     }
-}</code></pre></div></div><h2 id="dum">While<a class="anchor" href="#dum">#</a></h2><p><code>while</code> loops while a condition holds.</p><pre class="faber-code"><code class="lang-faber locale-tabs">main {
+}</code></pre></div></div><p>A stored range can carry a step, and the step is part of its type:
+<code>let range&lt;int, 2&gt; evens ← 0…10 step 2</code> walks <code>0, 2, … 10</code>, and
+<code>evens.length()</code> is <code>6</code>. See <a href="/en-US/language/types.html#intervallum">ranges</a>.</p><h2 id="dum">While<a class="anchor" href="#dum">#</a></h2><p><code>while</code> loops while a condition holds.</p><pre class="faber-code"><code class="lang-faber locale-tabs">main {
     mut int i <span class="tok-op">←</span> <span class="tok-nu">0</span>
     while i ≺ <span class="tok-nu">3</span> {
         i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>

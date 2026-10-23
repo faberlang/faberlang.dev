@@ -203,6 +203,7 @@ listed at the end.
 | `channel` | `sermo` | `قناة` | `चैनल` | `ช่องทาง` | `kênh` | `通道` | `通道` |
 | `char` | `littera` | `حرف` | `अक्षर` | `อักขระ` | `ký_tự` | `字符` | `字元` |
 | `clamp` | `clampa` | `تثبيت_الحافة` | `किनारा_स्थिर` | `ตรึงขอบ` | `kẹp_biên` | `钳制` | `鉗制` |
+| `error` | `erratum` | `خلل` | `गलती` | `ความผิดพลาด` | `sai_lầm` | `错误` | `失誤` |
 | `filter` | `filtrum` | `مرشح` | `फ़िल्टर` | `ตัวกรอง` | `bộ_lọc` | `过滤器` | `篩選器` |
 | `float` | `fractus` | `كسر` | `भिन्न` | `เศษ` | `thập_phân` | `小数` | `小數` |
 | `frame` | `scrinium` | `إطار` | `फ़्रेम` | `เฟรม` | `khung` | `帧` | `幀` |
@@ -365,6 +366,7 @@ Latin has no `[intrinsics]` section, so the Latin column carries each intrinsic'
 | `sign` | `signum` | `إشارة` | `चिह्न` | `เครื่องหมาย` | `dấu` | `符号` | `符號` |
 | `silu` | `silu` | `silu` | `silu` | `silu` | `silu` | `silu` | `silu` |
 | `sin` | `sinus` | `جيب` | `ज्या` | `ไซน์` | `sin` | `正弦` | `正弦` |
+| `sink` | `immerge` | `اغمر` | `डुबो` | `จม` | `chìm` | `浸入` | `浸入` |
 | `slice` | `sectio` | `شريحة` | `टुकड़ा` | `ตัดช่วง` | `cắt` | `切片` | `切片` |
 | `softmax` | `activatio_softmax` | `تنشيط_سوفتماكس` | `सॉफ्टमैक्स` | `ซอฟต์แมกซ์` | `kích_hoạt_softmax` | `Softmax` | `Softmax` |
 | `softmax_causal` | `softmax_causal` | `تنشيط_سوفتماكس_سببي` | `सॉफ्टमैक्स_कारणात्मक` | `ซอฟต์แมกซ์_เชิงสาเหตุ` | `kích_hoạt_softmax_nhân_quả` | `Softmax_因果` | `Softmax_因果` |

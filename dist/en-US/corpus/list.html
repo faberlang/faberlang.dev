@@ -72,17 +72,22 @@ true
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • copy, slice, and reordering intrinsics — `addita()`, `sectio()`, `prima()`, `ultima()`</span>
+<span class="tok-co">#   • `mut list&lt;int&gt; mutata ← res[0‥2]` gets a new list containing the same</span>
+<span class="tok-co">#     value elements. This is a shallow window copy: replacing a slot in</span>
+<span class="tok-co">#     `mutata` does not replace a slot in `res`.</span>
 <span class="tok-co">#   • ordering operations — `inversa()`, `sort()`</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • Forgetting that sectio(lo, hi) uses an exclusive hi bound — the returned slice may be shorter than expected.</span>
+<span class="tok-co">#   • Assuming a window aliases the source list itself; it is a new list with</span>
+<span class="tok-co">#     the same elements, not a view into the source's slots.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># See also: map, set, ∷, for</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># list&lt;T&gt; copy, slice, and ordering intrinsics</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># res.added(x) | res.slice(lo, hi) | res.take(n) | res.take_last(n)   -- views</span>
+<span class="tok-co"># res.added(x) | res.slice(lo, hi) | res.take(n) | res.take_last(n)   -- copies</span>
 <span class="tok-co"># res.drop(n) | res.invert() | res.sorted()                      -- reorder</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
@@ -97,6 +102,11 @@ true
 <span class="tok-co">#   [3, 4, 5]</span>
 <span class="tok-co">#   [5, 4, 3, 2, 1]</span>
 <span class="tok-co">#   [1, 2, 3]</span>
+<span class="tok-co">#   [0]</span>
+<span class="tok-co">#   [0]</span>
+<span class="tok-co">#   [1, 2]</span>
+<span class="tok-co">#   [99, 2]</span>
+<span class="tok-co">#   [1, 2, 3, 4, 5]</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># BACKEND: Go e2e whitelist — list intrinsic methods not yet lowered for Go</span>
 <span class="tok-co"># (whitelist: list/methodi-copiae.fab).</span>
@@ -117,6 +127,17 @@ main {
     print omissaduo
     print inversa
     print sort
+
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> sectiofallax <span class="tok-op">←</span> res.slice(<span class="tok-nu">1</span>, <span class="tok-nu">9</span>) ⊥ [<span class="tok-nu">0</span>]
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> primafallax <span class="tok-op">←</span> res.take(<span class="tok-nu">9</span>) ⊥ [<span class="tok-nu">0</span>]
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> fenestra <span class="tok-op">←</span> res[<span class="tok-nu">0</span>‥<span class="tok-nu">2</span>]
+    mut list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> mutata <span class="tok-op">←</span> res[<span class="tok-nu">0</span>‥<span class="tok-nu">2</span>]
+    mutata[<span class="tok-nu">0</span>] <span class="tok-op">←</span> <span class="tok-nu">99</span>
+    print sectiofallax
+    print primafallax
+    print fenestra
+    print mutata
+    print res
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>[1, 2, 3, 4, 5, 6]
 [2, 3, 4]
 [1, 2]
@@ -124,6 +145,11 @@ main {
 [3, 4, 5]
 [5, 4, 3, 2, 1]
 [1, 2, 3]
+[0]
+[0]
+[1, 2]
+[99, 2]
+[1, 2, 3, 4, 5]
 </code></pre><h3 id="radixcorpuslistamethodi-mutatiofab-canonical-keyword">radix/corpus/lista/methodi-mutatio.fab (canonical · keyword)<a class="anchor" href="#radixcorpuslistamethodi-mutatiofab-canonical-keyword">#</a></h3><p>Generic ordered collection type.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># list — Generic ordered collection type.</span>
 <span class="tok-co"># =============================================================================</span>
@@ -221,6 +247,15 @@ main {
 main {
     let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> rejected <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>] <span class="tok-op">+</span> [<span class="tok-nu">3</span>]
     print rejected
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuslistadivide-rejectfab-supporting-reject">radix/corpus/lista/divide-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpuslistadivide-rejectfab-supporting-reject">#</a></h3><p>List <code class="glyph">/</code> list is refused by name: the elementwise divisions are ⊘ and ÷.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># Dividing two lists with `/` is refused by name.</span>
+<span class="tok-co"># The operator does not select elementwise division.</span>
+<span class="tok-co"># The elementwise division forms have dedicated operators.</span>
+<span class="tok-co"># This is a semantic rejection, not a parser limitation.</span>
+
+main {
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">4</span>, <span class="tok-nu">6</span>, <span class="tok-nu">8</span>]
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>]
+    print a <span class="tok-op">/</span> b
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuslistaelementwise-comparison-bits-rejectfab-supporting-reject">radix/corpus/lista/elementwise-comparison-bits-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpuslistaelementwise-comparison-bits-rejectfab-supporting-reject">#</a></h3><p>Ordering a list of bits is refused: a bits list has whole-value equality only.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># list — A list of bits has whole-value equality only.</span>
 <span class="tok-co"># =============================================================================</span>
@@ -243,6 +278,46 @@ main {
     let list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">0</span>x01, <span class="tok-nu">0</span>x02]
     let list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> ys <span class="tok-op">←</span> [<span class="tok-nu">0</span>x01, <span class="tok-nu">0</span>x03]
     print xs ≺ ys
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuslistaindex-numerus-rejectfab-supporting-reject">radix/corpus/lista/index-numerus-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpuslistaindex-numerus-rejectfab-supporting-reject">#</a></h3><p>A list index must be an integer: a text index is refused by name.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># list reject case — a text index on a list is refused.</span>
+<span class="tok-co"># A list is addressed by an integer position; `xs["x"]` has no position.</span>
+<span class="tok-co"># The checker names the issue `array_index_must_be_numerus`.</span>
+<span class="tok-co"># This exemplum intentionally fails to check.</span>
+
+main {
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    print xs[<span class="tok-st">"x"</span>]
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuslistaindex-requires-collection-rejectfab-supporting-reject">radix/corpus/lista/index-requires-collection-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpuslistaindex-requires-collection-rejectfab-supporting-reject">#</a></h3><p>Bracket indexing needs a list or a map; an integer cannot be indexed.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># Bracket indexing is refused for an integer because it is not a collection.</span>
+<span class="tok-co"># Lists and maps support indexing; integers do not.</span>
+<span class="tok-co"># The expression `n[0]` therefore fails during semantic checking.</span>
+<span class="tok-co"># This exemplum intentionally demonstrates that rejection.</span>
+
+main {
+    let int n <span class="tok-op">←</span> <span class="tok-nu">1</span>
+    print n[<span class="tok-nu">0</span>]
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuslistamultiply-rejectfab-supporting-reject">radix/corpus/lista/multiply-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpuslistamultiply-rejectfab-supporting-reject">#</a></h3><p>List <code class="glyph">*</code> list is refused by name: the elementwise product is ⊙.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># Multiplying two lists with `*` is refused by name.</span>
+<span class="tok-co"># The operator does not select elementwise multiplication.</span>
+<span class="tok-co"># The elementwise product has a dedicated operator.</span>
+<span class="tok-co"># This is a semantic rejection, not a parser limitation.</span>
+
+main {
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>]
+    print a <span class="tok-op">*</span> b
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuslistaspread-source-rejectfab-supporting-reject">radix/corpus/lista/spread-source-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpuslistaspread-source-rejectfab-supporting-reject">#</a></h3><p>A spread source must be a list; spreading an integer is refused.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># A spread source must be a list.</span>
+<span class="tok-co"># `[spread 1]` is refused because an integer is not a list.</span>
+<span class="tok-co"># The spread marker requires a list-valued source.</span>
+<span class="tok-co"># This is a semantic rejection, not a parser limitation.</span>
+
+main {
+    let _ xs <span class="tok-op">←</span> [spread <span class="tok-nu">1</span>]
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuslistatext-index-type-rejectfab-supporting-reject">radix/corpus/lista/text-index-type-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpuslistatext-index-type-rejectfab-supporting-reject">#</a></h3><p>A text index must be an integer or an integer range, never a text.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># list reject case — a text index on a string is refused.</span>
+<span class="tok-co"># A string is addressed by an integer position or an integer window,</span>
+<span class="tok-co"># never by text. The checker names `textus_index_must_be_numerus_or_range`.</span>
+<span class="tok-co"># This exemplum intentionally fails to check.</span>
+
+main {
+    let string s <span class="tok-op">←</span> <span class="tok-st">"abc"</span>
+    print s[<span class="tok-st">"x"</span>]
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuslistaunknown-method-rejectfab-supporting-reject">radix/corpus/lista/unknown-method-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpuslistaunknown-method-rejectfab-supporting-reject">#</a></h3><p>Calling a method a list does not have is refused by name.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># list — Calling a method a list does not have is refused by name.</span>
 <span class="tok-co"># =============================================================================</span>
@@ -264,4 +339,4 @@ main {
 main {
     let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1</span>]
     print xs.frobnicate()
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpuslistalistafab-canonical-keyword">radix/corpus/lista/lista.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpuslistamethodi-copiaefab-canonical-keyword">radix/corpus/lista/methodi-copiae.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpuslistamethodi-mutatiofab-canonical-keyword">radix/corpus/lista/methodi-mutatio.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpuslistarange-index-oobfab-canonical-keyword">radix/corpus/lista/range-index-oob.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusboundedexact-bound-lattice-declinefab-supporting-reject">radix/corpus/bounded/exact-bound-lattice-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuslistaelementwise-comparison-bits-rejectfab-supporting-reject">radix/corpus/lista/elementwise-comparison-bits-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuslistaunknown-method-rejectfab-supporting-reject">radix/corpus/lista/unknown-method-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/lista/lista.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpuslistalistafab-canonical-keyword">radix/corpus/lista/lista.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpuslistamethodi-copiaefab-canonical-keyword">radix/corpus/lista/methodi-copiae.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpuslistamethodi-mutatiofab-canonical-keyword">radix/corpus/lista/methodi-mutatio.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpuslistarange-index-oobfab-canonical-keyword">radix/corpus/lista/range-index-oob.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusboundedexact-bound-lattice-declinefab-supporting-reject">radix/corpus/bounded/exact-bound-lattice-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuslistadivide-rejectfab-supporting-reject">radix/corpus/lista/divide-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuslistaelementwise-comparison-bits-rejectfab-supporting-reject">radix/corpus/lista/elementwise-comparison-bits-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuslistaindex-numerus-rejectfab-supporting-reject">radix/corpus/lista/index-numerus-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuslistaindex-requires-collection-rejectfab-supporting-reject">radix/corpus/lista/index-requires-collection-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuslistamultiply-rejectfab-supporting-reject">radix/corpus/lista/multiply-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuslistaspread-source-rejectfab-supporting-reject">radix/corpus/lista/spread-source-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuslistatext-index-type-rejectfab-supporting-reject">radix/corpus/lista/text-index-type-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuslistaunknown-method-rejectfab-supporting-reject">radix/corpus/lista/unknown-method-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/lista/lista.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

@@ -206,6 +206,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | channel      sermo        ช่องทาง
 | char         littera      อักขระ
 | clamp        clampa       ตรึงขอบ
+| error        erratum      ความผิดพลาด
 | filter       filtrum      ตัวกรอง
 | float        fractus      เศษ
 | frame        scrinium     เฟรม
@@ -368,6 +369,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | sign                  signum                 เครื่องหมาย
 | silu                  silu                   silu
 | sin                   sinus                  ไซน์
+| sink                  immerge                จม
 | slice                 sectio                 ตัดช่วง
 | softmax               activatio_softmax      ซอฟต์แมกซ์
 | softmax_causal        softmax_causal         ซอฟต์แมกซ์_เชิงสาเหตุ

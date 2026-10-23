@@ -8,7 +8,10 @@ shape:</p><div class="table-scroll"><table><thead><tr><th>Construct</th><th>Mean
         throw <span class="tok-st">"division by zero"</span>
     }
     return a <span class="tok-op">/</span> b
-}</code></pre><h3 id="throwing--iace">Throwing — throw<a class="anchor" href="#throwing--iace">#</a></h3><p><code>throw</code> sends a value on the error channel:</p><pre class="faber-code"><code class="lang-faber">fn exigePositivum(int value) <span class="tok-op">→</span> void ⇥ string {
+}</code></pre><p>The type after <code class="glyph">⇥</code> is the payload. The value that travels on the channel is
+the compiler-owned carrier <code>error&lt;T&gt;</code> (en <code>error&lt;T&gt;</code>), which has one field,
+<code>payload</code>, and nothing else. <code>catch</code> (en <code>catch</code>) binds the payload <code>T</code>, never
+the carrier, so programs that do not name the carrier read exactly as before.</p><h3 id="throwing--iace">Throwing — throw<a class="anchor" href="#throwing--iace">#</a></h3><p><code>throw</code> sends a value on the error channel:</p><pre class="faber-code"><code class="lang-faber">fn exigePositivum(int value) <span class="tok-op">→</span> void ⇥ string {
     if value ≺ <span class="tok-nu">0</span> {
         throw <span class="tok-st">"negative value"</span>
     }

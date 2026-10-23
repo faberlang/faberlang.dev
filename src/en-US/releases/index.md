@@ -15,6 +15,7 @@ The user-facing CLI: check, build, run, test, format, explain.
 
 | Version | Published | Downloads | Notes |
 |---|---|---|---|
+| [Faber 1.16.0](/releases/faber-1.16.0.html) | 2026-10-23 | 2 | yes |
 | [Faber 1.15.2](/releases/faber-1.15.2.html) | 2026-10-21 | 2 | yes |
 | [Faber 1.15.1](/releases/faber-1.15.1.html) | 2026-10-21 | 2 | yes |
 | [Faber 1.14.0](/releases/faber-1.14.0.html) | 2026-10-16 | 2 | yes |

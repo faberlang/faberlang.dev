@@ -98,6 +98,22 @@ main {
 }
 ```
 
+A value from such a module flows into a scalar cell such as `f64` directly.
+Storing it into a list, map or other structural cell needs an explicit `↦`;
+without one it is `SEM010 import_conversion_required`.
+
+```faber locale=en target=python
+import python "math" m
+import python "re" re
+
+main {
+    let f64 root ← m.sqrt(2.0)
+    let list<string> words ← re.findall("[a-z]+", "a1b2") ↦ list<string>
+    print root
+    print words
+}
+```
+
 ## At a glance {#summary}
 
 | Form | Effect |

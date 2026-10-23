@@ -4,7 +4,9 @@ open <a href="/en-US/toolchain/cli.html">The faber CLI</a>.</p><h2 id="daily-loo
 before proposing generated code as valid Faber.</p><h2 id="check">Check<a class="anchor" href="#check">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> check .
 <span class="tok-fn">faber</span> check path/to/package</code></pre><p>A passing check means the package is syntactically and semantically acceptable
 to the compiler front end. It does not mean the final native toolchain has been
-invoked.</p><h2 id="build">Build<a class="anchor" href="#build">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> build . <span class="tok-op">-t</span> rust</code></pre><p>The Rust target is intentionally reviewable. Generated Rust is a compiler
+invoked.</p><p><code>faber check --lower .</code> goes one step further: it also lowers the program to
+the reference form that <code>faber run</code> executes, without running it, and reports
+the errors a plain check cannot see.</p><h2 id="build">Build<a class="anchor" href="#build">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> build . <span class="tok-op">-t</span> rust</code></pre><p>The Rust target is intentionally reviewable. Generated Rust is a compiler
 artifact, not source of truth; edit the Faber package and rebuild rather than
 patching emitted Rust by hand.</p><h2 id="run">Run<a class="anchor" href="#run">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> run .</code></pre><p>Use <code>run</code> for application packages with an <code>main</code> entry point. It
 interprets the package on the MIR runner and never compiles; `faber build -t

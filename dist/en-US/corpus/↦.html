@@ -78,6 +78,61 @@ main {
     let list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-st">"x"</span>, <span class="tok-st">"y"</span>]
     let string s <span class="tok-op">←</span> a ↦ string
     print s
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusconversiodecimal-radix-rejectfab-supporting-reject">radix/corpus/conversio/decimal-radix-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusconversiodecimal-radix-rejectfab-supporting-reject">#</a></h3><p>Rejected route: radix hints are integer machinery and do not apply to a decimal.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># decimal radix hint — a scaled decimal has no radix digits</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • `via Hex` / `Bin` / `Oct` parse integer digits in that radix. A `d64` is</span>
+<span class="tok-co">#     a scaled decimal: it has a mantissa and a scale, not radix digits, so the</span>
+<span class="tok-co">#     parse is refused by name (SEM016 decimal_radix_hint_rejected) instead of</span>
+<span class="tok-co">#     falling through to a generic type mismatch.</span>
+<span class="tok-co">#   • The same issue covers the reverse direction: a decimal source packed</span>
+<span class="tok-co">#     into `ascii&lt;N&gt; via Hex` is refused for the same reason.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># How to make it legal:</span>
+<span class="tok-co">#   • an integer with a radix:   "ff" ↦ i32 via Hex</span>
+<span class="tok-co">#   • a decimal from plain decimal text: "1.5" ↦ d64</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • assuming a radix hint changes a decimal's scale — it never applies.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: ↦, via, d64</span>
+<span class="tok-co"># =============================================================================</span>
+
+main {
+    let _ v <span class="tok-op">←</span> <span class="tok-st">"ff"</span> ↦ d64 via Hex
+    print v
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusconversiofailable-no-handler-rejectfab-supporting-reject">radix/corpus/conversio/failable-no-handler-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusconversiofailable-no-handler-rejectfab-supporting-reject">#</a></h3><p>Rejected route: a failable narrowing outside main needs a ⊥ default, a catch, or a ⇥ E channel.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># failable conversion with no handler — a helper must handle its own failure</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • A narrowing `↦` can fail at run time, so outside `main` it must say what</span>
+<span class="tok-co">#     happens on failure. With no handler the checker refuses it with one named</span>
+<span class="tok-co">#     diagnostic (SEM011 failable_conversio_requires_handler).</span>
+<span class="tok-co">#   • The `main` (main) body is exempt: an unhandled conversion directly</span>
+<span class="tok-co">#     there panics on every backend. Helpers called from main are NOT exempt,</span>
+<span class="tok-co">#     which is why the failure below sits in `narrow`.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># How to make it legal (pick one):</span>
+<span class="tok-co">#   • a `⊥` default:        return x ↦ u8 ⊥ 0</span>
+<span class="tok-co">#   • a local catch:        do { return x ↦ u8 } catch err { return 0 }</span>
+<span class="tok-co">#   • an error channel:     fn narrow(int x) → u8 ⇥ string { return x ↦ u8 }</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • expecting `main`'s exemption to cover a helper it calls — it does not.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: ↦, ⊥, ⇥, do, catch — and the channel form in</span>
+<span class="tok-co"># corpus/decimal/conversio_channel.fab.</span>
+<span class="tok-co"># =============================================================================</span>
+
+fn narrow(int x) <span class="tok-op">→</span> u8 {
+    return x ↦ u8
+}
+
+main {
+    print <span class="tok-st">"narrow is rejected"</span>
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusconversiofloat-to-int-rejectfab-supporting-reject">radix/corpus/conversio/float-to-int-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusconversiofloat-to-int-rejectfab-supporting-reject">#</a></h3><p>Rejected route: a bare float or decimal to integer conversion has no rounding choice.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># float to integer — rejected without a rounding choice</span>
 <span class="tok-co"># =============================================================================</span>
@@ -95,6 +150,37 @@ main {
     let float a <span class="tok-op">←</span> <span class="tok-nu">2.5</span>
     let int n <span class="tok-op">←</span> a ↦ int
     print n
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusconversionum-to-bytes-rejectfab-supporting-reject">radix/corpus/conversio/num-to-bytes-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusconversionum-to-bytes-rejectfab-supporting-reject">#</a></h3><p>Rejected route: a bare number has no byte layout without a width and an endianness.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># number to bytes — no layout until a width and an endianness are chosen</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Bytes come from a bit pattern, not from a bare number. An unsized</span>
+<span class="tok-co">#     number-to-bytes conversion leaves both the width and the endianness</span>
+<span class="tok-co">#     unstated, so the checker refuses it (SEM016 numeric_to_octeti_unspecified).</span>
+<span class="tok-co">#   • Choose the width and byte order first: a sized numeric scalar writes</span>
+<span class="tok-co">#     into a fixed-width carrier with `n ↦ bytes&lt;N&gt; via Be` (or `via Le`),</span>
+<span class="tok-co">#     where N is the source's exact byte width.</span>
+<span class="tok-co">#   • The bit pattern works too, once the source is a sized slot:</span>
+<span class="tok-co">#     `n ↦ b64` gives the bits and `bits ↦ bytes` gives their octets.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># How to make it legal:</span>
+<span class="tok-co">#   • let i64 n ← 300</span>
+<span class="tok-co">#     let bytes&lt;8&gt; raw ← n ↦ bytes&lt;8&gt; via Be      (big endian)</span>
+<span class="tok-co">#   • let bytes&lt;8&gt; raw ← n ↦ bytes&lt;8&gt; via Le      (little endian)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • assuming a default width — a number has no implicit byte layout.</span>
+<span class="tok-co">#   • omitting `via Be` / `via Le` — the endianness is part of the request.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: ↦, via, bytes — and the working forms in</span>
+<span class="tok-co"># corpus/conversio/octeti-scalar-write.fab (pack) and</span>
+<span class="tok-co"># corpus/conversio/octeti-endian.fab (unpack).</span>
+<span class="tok-co"># =============================================================================</span>
+
+main {
+    let _ raw <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ↦ bytes
+    print raw
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusconversiotextus-to-lista-rejectfab-supporting-reject">radix/corpus/conversio/textus-to-lista-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusconversiotextus-to-lista-rejectfab-supporting-reject">#</a></h3><p>Rejected route: a string does not convert to a list.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># string to list — rejected route</span>
 <span class="tok-co"># =============================================================================</span>
@@ -133,4 +219,16 @@ main {
     let u16 n <span class="tok-op">←</span> <span class="tok-nu">15360</span>
     let f16 h <span class="tok-op">←</span> n ↦ f16 via Bits
     print h
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusconversioconversiofab-canonical-operator-group">radix/corpus/conversio/conversio.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-lista-to-textus-rejectfab-supporting-reject">radix/corpus/bounded/conversio-lista-to-textus-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusconversiofloat-to-int-rejectfab-supporting-reject">radix/corpus/conversio/float-to-int-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusconversiotextus-to-lista-rejectfab-supporting-reject">radix/corpus/conversio/textus-to-lista-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusconversiovia-bits-retired-rejectfab-supporting-reject">radix/corpus/conversio/via-bits-retired-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/conversio/conversio.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusconversioword-recovery-rejectfab-supporting-reject">radix/corpus/conversio/word-recovery-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusconversioword-recovery-rejectfab-supporting-reject">#</a></h3><p>A conversion into a policy word is total, so a recovery slot is not accepted.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># Policy-word recovery — total conversions have no failure to recover from.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • A conversion into a policy word cannot fail, so a `⊥` recovery slot is</span>
+<span class="tok-co">#     refused rather than accepted and ignored.</span>
+<span class="tok-co">#   • Wrap and clamp are values, not failures.</span>
+<span class="tok-co">#</span>
+main {
+    let int n <span class="tok-op">←</span> <span class="tok-nu">300</span>
+    let wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> w <span class="tok-op">←</span> n ↦ wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> ⊥ <span class="tok-nu">0</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusconversioconversiofab-canonical-operator-group">radix/corpus/conversio/conversio.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-lista-to-textus-rejectfab-supporting-reject">radix/corpus/bounded/conversio-lista-to-textus-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusconversiodecimal-radix-rejectfab-supporting-reject">radix/corpus/conversio/decimal-radix-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusconversiofailable-no-handler-rejectfab-supporting-reject">radix/corpus/conversio/failable-no-handler-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusconversiofloat-to-int-rejectfab-supporting-reject">radix/corpus/conversio/float-to-int-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusconversionum-to-bytes-rejectfab-supporting-reject">radix/corpus/conversio/num-to-bytes-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusconversiotextus-to-lista-rejectfab-supporting-reject">radix/corpus/conversio/textus-to-lista-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusconversiovia-bits-retired-rejectfab-supporting-reject">radix/corpus/conversio/via-bits-retired-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusconversioword-recovery-rejectfab-supporting-reject">radix/corpus/conversio/word-recovery-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/conversio/conversio.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

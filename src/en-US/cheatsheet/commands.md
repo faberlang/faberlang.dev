@@ -33,6 +33,10 @@ A passing check means the package is syntactically and semantically acceptable
 to the compiler front end. It does not mean the final native toolchain has been
 invoked.
 
+`faber check --lower .` goes one step further: it also lowers the program to
+the reference form that `faber run` executes, without running it, and reports
+the errors a plain check cannot see.
+
 ## Build {#build}
 
 ```bash

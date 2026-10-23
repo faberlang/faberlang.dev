@@ -45,5 +45,11 @@ A target word in place of `from` imports a module of that target language,
 by its own name: `import python "math" m`. The program then builds only for
 that target (`faber build -t python`); `faber check`, `faber run` and every
 other target refuse it with `SEM017` `import_target_bound`.
+A value from such a module enters a scalar cell (`f64`, `string`) directly;
+into a list, map or other structural cell it needs an explicit `↦`
+(`SEM010` `import_conversion_required` otherwise).
+
+An import of a Norma module that does not exist is `PKG001`
+`unknown_library_module` on every target, before any code is emitted.
 
 Fetch list: https://faberlang.dev/agents/index.md

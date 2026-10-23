@@ -81,7 +81,7 @@ incipit {
 
 ## Destructuring {#destructuring}
 
-`ex` pulls named fields out of a record in one statement.
+`ex` pulls named fields out of a class value in one statement.
 
 ```faber locale-tabs
 genus Punctum {
@@ -96,7 +96,7 @@ incipit {
 }
 ```
 
-Records are built with named fields in braces, not positional arguments — so
+Class values are built with named fields in braces, not positional arguments — so
 adding a field never silently reorders an existing call site.
 
 Related: [Types and widths](/cheatsheet/types.html) ·

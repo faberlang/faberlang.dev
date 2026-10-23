@@ -29,4 +29,16 @@ main {
 }
 ```
 
+Text becomes a `bool` only when it is the code locale's word: in an English
+file `"true"` and `"false"`. Any other text fails, so give it a `⊥` value:
+
+```faber locale=en
+main {
+    print "true" ↦ bool ⊥ false
+    print "yes" ↦ bool ⊥ false
+}
+```
+
+This prints `true` and `false`.
+
 Parent: https://faberlang.dev/agents/types.md

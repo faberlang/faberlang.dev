@@ -105,6 +105,10 @@ incipit {
 }
 ```
 
+A stored range can carry a step, and the step is part of its type:
+`let range<int, 2> evens ← 0…10 step 2` walks `0, 2, … 10`, and
+`evens.length()` is `6`. See [ranges](/language/types.html#intervallum).
+
 ## While {#dum}
 
 `dum` loops while a condition holds.

@@ -80,6 +80,27 @@ incipit {
 `⊥` is not the error channel. `⇥` only ever names the error type a function may
 fail with; `⊥` only ever holds a value. Read `⊥ 0` as *on failure, 0*.
 
+## Text to boolean {#bool}
+
+Text becomes a boolean only when it is the code locale's word for one. In an
+English file `"true"` and `"false"` convert; any other text fails, so `"yes"`
+takes the `⊥` value here. Every target parses the words the same way.
+
+```faber locale=en
+main {
+    print "true" ↦ bool ⊥ false
+    print "false" ↦ bool ⊥ true
+    print "yes" ↦ bool ⊥ false
+}
+```
+
+```text
+$ faber run
+true
+false
+false
+```
+
 ## Chaining {#chaining}
 
 Conversions apply left to right.

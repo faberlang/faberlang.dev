@@ -109,10 +109,16 @@ faber versions
 
 ```text
 faber check my-package/
+faber check --lower my-package/
 ```
 
-Runs the full front end (lex → parse → typecheck → MIR lowering) without
-producing output artifacts. Use this in CI and editor integrations.
+Runs the front end (lex → parse → semantic analysis) without producing output
+artifacts. Use this in CI and editor integrations.
+
+`--lower` also lowers the program to Faber's reference form, without running
+it, and reports the errors that semantic analysis alone cannot see: a program
+that checks but cannot run. It needs a file or package path (not stdin). Since
+1.16 it covers programs with command-line (`cli`) surfaces too.
 
 ### Running tests {#testing-command}
 

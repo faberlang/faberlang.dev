@@ -206,6 +206,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | channel      sermo        चैनल
 | char         littera      अक्षर
 | clamp        clampa       किनारा_स्थिर
+| error        erratum      गलती
 | filter       filtrum      फ़िल्टर
 | float        fractus      भिन्न
 | frame        scrinium     फ़्रेम
@@ -368,6 +369,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | sign                  signum                 चिह्न
 | silu                  silu                   silu
 | sin                   sinus                  ज्या
+| sink                  immerge                डुबो
 | slice                 sectio                 टुकड़ा
 | softmax               activatio_softmax      सॉफ्टमैक्स
 | softmax_causal        softmax_causal         सॉफ्टमैक्स_कारणात्मक

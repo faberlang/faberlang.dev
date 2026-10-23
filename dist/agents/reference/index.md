@@ -163,6 +163,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [⇇](⇇.md) — Copy-into: target ⇇ value writes every value of a tensor into the existing storage of another tensor; storage identity is preserved and ← only ever rebinds a name.
 - [⇐](⇐.md) — Bitwise and, or, xor, not, and shifts on numerus operands.
 - [⇒](⇒.md) — Bitwise and, or, xor, not, and shifts on numerus operands.
+- [⇜](⇜.md) — Sink-into writes one exactly typed item with ⇜, the operator form of sink.sink(item).
 - [⇥](⇥.md) — Success return type and recoverable alternate-exit type in function signatures.
 - [∈](∈.md) — Checks whether a value appears in a collection.
 - [∧](∧.md) — Bitwise and, or, xor, not, and shifts on numerus operands.

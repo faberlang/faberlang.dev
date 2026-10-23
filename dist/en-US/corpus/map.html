@@ -90,7 +90,28 @@ main {
 1
 2
 3
-none</code></pre><h3 id="radixcorpustabulakey-not-hashablefab-supporting-reject">radix/corpus/tabula/key-not-hashable.fab (supporting · reject)<a class="anchor" href="#radixcorpustabulakey-not-hashablefab-supporting-reject">#</a></h3><p>Map keys and set elements must be hashable: floats and mutable collections are rejected.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+none</code></pre><h3 id="radixcorpustabulaarity-rejectfab-supporting-reject">radix/corpus/tabula/arity-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpustabulaarity-rejectfab-supporting-reject">#</a></h3><p>A map type takes two type parameters: key and value.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># Rejects a map declaration with only one type parameter.</span>
+<span class="tok-co"># A map type must specify both its key type and its value type.</span>
+<span class="tok-co"># The checker refuses the malformed collection type at check time.</span>
+<span class="tok-co"># This exercises the tabula_arity diagnostic.</span>
+
+main {
+    let map<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> empty
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpustabulabrace-text-key-rejectfab-supporting-reject">radix/corpus/tabula/brace-text-key-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpustabulabrace-text-key-rejectfab-supporting-reject">#</a></h3><p>A brace literal's text keys cannot key a map whose key type is not text.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># Brace literal text-key rejection</span>
+<span class="tok-co"># A brace literal uses text keys, so it cannot initialize a map&lt;int, int&gt;.</span>
+<span class="tok-co"># This exemplum is refused during semantic checking.</span>
+<span class="tok-co">#</span>
+main {
+    let map<span class="tok-op">&lt;</span>int, int<span class="tok-op">&gt;</span> bad <span class="tok-op">←</span> { <span class="tok-st">"a"</span><span class="tok-op">:</span> <span class="tok-nu">1</span> }
+    print bad
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpustabuladuplicate-key-rejectfab-supporting-reject">radix/corpus/tabula/duplicate-key-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpustabuladuplicate-key-rejectfab-supporting-reject">#</a></h3><p>A brace literal with a repeated key is refused at the second occurrence.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># Rejects a brace literal that repeats an object key.</span>
+<span class="tok-co"># Duplicate keys are refused at the second occurrence.</span>
+<span class="tok-co"># The checker reports the repeated key as an error.</span>
+<span class="tok-co"># This exercises the json_duplicate_key diagnostic.</span>
+
+main {
+    let _ d <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"beta"</span><span class="tok-op">:</span> <span class="tok-nu">2</span>, <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">3</span> }
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpustabulakey-not-hashablefab-supporting-reject">radix/corpus/tabula/key-not-hashable.fab (supporting · reject)<a class="anchor" href="#radixcorpustabulakey-not-hashablefab-supporting-reject">#</a></h3><p>Map keys and set elements must be hashable: floats and mutable collections are rejected.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># key-not-hashable — map keys and set elements must be hashable.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -115,4 +136,11 @@ fn weights(map<span class="tok-op">&lt;</span>f64, string<span class="tok-op">&g
 
 fn members(set<span class="tok-op">&lt;</span>list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> s) <span class="tok-op">→</span> int {
     return s.length()
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpustabulamethodi-accessusfab-canonical-keyword">radix/corpus/tabula/methodi-accessus.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpustabulatabulafab-canonical-keyword">radix/corpus/tabula/tabula.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpustabulakey-not-hashablefab-supporting-reject">radix/corpus/tabula/key-not-hashable.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/tabula/methodi-accessus.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpustabulamap-index-type-rejectfab-supporting-reject">radix/corpus/tabula/map-index-type-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpustabulamap-index-type-rejectfab-supporting-reject">#</a></h3><p>A map read is indexed by the declared key type, not by an integer.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># Map index-type rejection</span>
+<span class="tok-co"># Map reads require an index matching the map's declared key type.</span>
+<span class="tok-co"># An integer index is refused for map&lt;string, int&gt;.</span>
+<span class="tok-co">#</span>
+main {
+    let map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> m <span class="tok-op">←</span> empty
+    print m[<span class="tok-nu">1</span>]
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpustabulamethodi-accessusfab-canonical-keyword">radix/corpus/tabula/methodi-accessus.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpustabulatabulafab-canonical-keyword">radix/corpus/tabula/tabula.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpustabulaarity-rejectfab-supporting-reject">radix/corpus/tabula/arity-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpustabulabrace-text-key-rejectfab-supporting-reject">radix/corpus/tabula/brace-text-key-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpustabuladuplicate-key-rejectfab-supporting-reject">radix/corpus/tabula/duplicate-key-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpustabulakey-not-hashablefab-supporting-reject">radix/corpus/tabula/key-not-hashable.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpustabulamap-index-type-rejectfab-supporting-reject">radix/corpus/tabula/map-index-type-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/tabula/methodi-accessus.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

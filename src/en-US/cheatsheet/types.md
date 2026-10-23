@@ -150,10 +150,13 @@ incipit {
 }
 ```
 
-## Records {#genus}
+## Classes {#genus}
 
-`genus` declares a record. Fields are type-first, like everything else, and
-each one is `sit` (fixed after construction) or `varia` (writable).
+`genus` (en `class`) declares a class. Fields are type-first, like everything
+else, and each one is `sit` (fixed after construction) or `varia` (writable).
+For a labeled value with no declared class, use a
+[record](/language/types.html#record): `{ x = 1.5, y = 2 }`, whose fields are
+read-only.
 
 ```faber locale-tabs
 genus Persona {

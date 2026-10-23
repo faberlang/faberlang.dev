@@ -148,6 +148,7 @@ OPERATORS
   ⇇                 collection      Copy-into: target ⇇ value writes every value of a tensor into the existing storage of another tensor; storage identity is preserved and ← only ever rebinds a name.
   ⇐                 bitwise         Bitwise and, or, xor, not, and shifts on numerus operands.
   ⇒                 bitwise         Bitwise and, or, xor, not, and shifts on numerus operands.
+  ⇜                 collection      Sink-into writes one exactly typed item with ⇜, the operator form of sink.sink(item).
   ⇥                 function        Success return type and recoverable alternate-exit type in function signatures.
   ∈                 collection      Checks whether a value appears in a collection.
   ∧                 bitwise         Bitwise and, or, xor, not, and shifts on numerus operands.

@@ -206,6 +206,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | channel      sermo        قناة
 | char         littera      حرف
 | clamp        clampa       تثبيت_الحافة
+| error        erratum      خلل
 | filter       filtrum      مرشح
 | float        fractus      كسر
 | frame        scrinium     إطار
@@ -368,6 +369,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | sign                  signum                 إشارة
 | silu                  silu                   silu
 | sin                   sinus                  جيب
+| sink                  immerge                اغمر
 | slice                 sectio                 شريحة
 | softmax               activatio_softmax      تنشيط_سوفتماكس
 | softmax_causal        softmax_causal         تنشيط_سوفتماكس_سببي

@@ -172,6 +172,16 @@ target, <code>faber run</code> and a plain <code>faber check</code> refuse it wi
 
 <span class="tok-kw">main</span> {
     <span class="tok-kw">print</span> m.pi
+}</code></pre><p>A value from such a module flows into a scalar cell such as <code>f64</code> directly.
+Storing it into a list, map or other structural cell needs an explicit <code class="glyph">↦</code>;
+without one it is <code>SEM010 import_conversion_required</code>.</p><pre class="faber-code"><code class="lang-faber locale=en target=python"><span class="tok-kw">import</span> python <span class="tok-st">"math"</span> m
+<span class="tok-kw">import</span> python <span class="tok-st">"re"</span> re
+
+<span class="tok-kw">main</span> {
+    <span class="tok-kw">let</span> f64 root <span class="tok-op">←</span> m.sqrt(<span class="tok-nu">2.0</span>)
+    <span class="tok-kw">let</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">string</span><span class="tok-op">&gt;</span> words <span class="tok-op">←</span> re.findall(<span class="tok-st">"[a-z]+"</span>, <span class="tok-st">"a1b2"</span>) ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">string</span><span class="tok-op">&gt;</span>
+    <span class="tok-kw">print</span> root
+    <span class="tok-kw">print</span> words
 }</code></pre><h2 id="summary">At a glance<a class="anchor" href="#summary">#</a></h2><div class="table-scroll"><table><thead><tr><th>Form</th><th>Effect</th></tr></thead><tbody><tr><td><code>import from &quot;norma:console&quot; console</code></td><td>Standard library module</td></tr><tr><td><code>import from &quot;./auxilium&quot; saluta</code></td><td>Item from a sibling file</td></tr><tr><td><code>import from &quot;./auxilium&quot; saluta as greet</code></td><td>…bound under a different name</td></tr><tr><td><code>import from &quot;norma:text&quot; public text</code></td><td>Imported and re-exported</td></tr><tr><td><code>import python &quot;math&quot; m</code> (en <code>import python &quot;math&quot; m</code>)</td><td>Target-language module; Python builds only</td></tr></tbody></table></div><p>Related: <a href="/en-US/language/behavior/packages.html">A program is a package</a> for how modules let inside
 a package · <a href="/en-US/toolchain/packages.html">Packages with Cista</a> for dependency
 resolution</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#stdlib">From the standard library</a></li><li class="toc-2"><a href="#local">From a local file</a></li><li class="toc-2"><a href="#items">Importing a specific item</a></li><li class="toc-2"><a href="#aliasing">Aliasing</a></li><li class="toc-2"><a href="#publica">Re-exporting</a></li><li class="toc-2"><a href="#target-bound">From the target language</a></li><li class="toc-2"><a href="#summary">At a glance</a></li></ul></div></nav><footer><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

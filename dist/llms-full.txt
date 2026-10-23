@@ -26,8 +26,8 @@ This file is the generated keyword catalog, not the writing guide.
 
 ## Generated corpus frontmatter reference
 
-- Distinct frontmatter terms: 408
-- Canonical term pages: 240
+- Distinct frontmatter terms: 420
+- Canonical term pages: 241
 - Alias spellings: 147
 - Categories: 48
 - Source: radix/corpus/**/*.fab TOML frontmatter
@@ -48,7 +48,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - boolean (1) — https://faberlang.dev/en-US/corpus/category/boolean.html
 - cli (6) — https://faberlang.dev/en-US/corpus/category/cli.html
 - codegen (1) — https://faberlang.dev/en-US/corpus/category/codegen.html
-- collection (32) — https://faberlang.dev/en-US/corpus/category/collection.html
+- collection (33) — https://faberlang.dev/en-US/corpus/category/collection.html
 - comparison (2) — https://faberlang.dev/en-US/corpus/category/comparison.html
 - comptime (2) — https://faberlang.dev/en-US/corpus/category/comptime.html
 - control-flow (18) — https://faberlang.dev/en-US/corpus/category/control-flow.html
@@ -96,7 +96,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - literal: 2
 - method: 2
 - modifier: 1
-- operator: 4
+- operator: 5
 - operator-group: 33
 - pointer: 1
 - reject: 2
@@ -2839,6 +2839,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `∷`, `⊥`
 - Page: https://faberlang.dev/en-US/corpus/%E2%86%A6.html
 - Source: radix/corpus/conversio/conversio.fab
+
+#### `⇜`
+
+- Canonical: `⇜`
+- Kind: operator
+- Category: collection
+- Summary: Sink-into writes one exactly typed item with ⇜, the operator form of sink.sink(item).
+- Syntax: `<mut Sink<T>> ⇜ <T>`
+- Aliases: none
+- Related: `⇇`, `transfer`
+- Page: https://faberlang.dev/en-US/corpus/%E2%87%9C.html
+- Source: radix/corpus/transfer/sink-into.fab
 
 #### `∈`
 

@@ -57,7 +57,39 @@ import from <span class="tok-st">"./auxilium"</span> auxilium
 main {
     print auxilium.saluta(<span class="tok-st">"Marcus"</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve, Marcus!
-</code></pre><h3 id="radixcorpusimportaimport-unknown-norma-module-rejectfab-supporting-reject">radix/corpus/importa/import-unknown-norma-module-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusimportaimport-unknown-norma-module-rejectfab-supporting-reject">#</a></h3><p>Importing a norma:* module name that the embedded library does not provide is a package-graph reject.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># This exemplum intentionally fails to compile: `norma:nonexistent` names no</span>
+</code></pre><h3 id="radixcorpusimportaimport-missing-member-rejectfab-supporting-reject">radix/corpus/importa/import-missing-member-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusimportaimport-missing-member-rejectfab-supporting-reject">#</a></h3><p>A wildcard alias reaches only the members its module exports; calling a member the module never exports is a typecheck reject.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># import - an alias reaches the module's exported surface, nothing else</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   - `* as L` binds the exported surface of the sibling module: `L.greet`</span>
+<span class="tok-co">#     resolves, `L.absent` names nothing the module exports.</span>
+<span class="tok-co">#   - A call through a namespace alias to a member the imported file does not</span>
+<span class="tok-co">#     export is `namespace_missing_export` (SEM004), reported at the call.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   - Expecting the alias to re-export module-private names: those are</span>
+<span class="tok-co">#     `import_module_private` (SEM006), a different seam.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: import, public, as</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># import missing member - the alias reaches only exported members</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># GRAMMAR:</span>
+<span class="tok-co">#   import from "./lib" * as L</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Requires module layout: import-missing-member-reject.fab imports lib.fab</span>
+<span class="tok-co"># (package or module mode).</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED: SEM004:namespace_missing_export - `absent` is not on lib's</span>
+<span class="tok-co"># exported surface (lib.fab exports greet, K and Pt only).</span>
+
+import from <span class="tok-st">"./lib"</span> <span class="tok-op">*</span> as L
+
+main {
+    print L.absent(<span class="tok-st">"x"</span>)
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusimportaimport-unknown-norma-module-rejectfab-supporting-reject">radix/corpus/importa/import-unknown-norma-module-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusimportaimport-unknown-norma-module-rejectfab-supporting-reject">#</a></h3><p>Importing a norma:* module name that the embedded library does not provide is a package-graph reject.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># This exemplum intentionally fails to compile: `norma:nonexistent` names no</span>
 <span class="tok-co"># module of the embedded Norma library, so package analysis rejects the import.</span>
 import from <span class="tok-st">"norma:nonexistent"</span> nonexistent
 
@@ -85,4 +117,4 @@ import from <span class="tok-st">"./lib"</span> const nosuch
 
 main {
     print <span class="tok-nu">1</span>
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusimportadefault-bracedfab-canonical-keyword">radix/corpus/importa/default-braced.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusimportaimportafab-canonical-keyword">radix/corpus/importa/importa.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusimportaimport-unknown-norma-module-rejectfab-supporting-reject">radix/corpus/importa/import-unknown-norma-module-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusimportaprivate-rejectfab-supporting-reject">radix/corpus/importa/private-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusimportaselective-missing-rejectfab-supporting-reject">radix/corpus/importa/selective-missing-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/importa/default-braced.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusimportadefault-bracedfab-canonical-keyword">radix/corpus/importa/default-braced.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusimportaimportafab-canonical-keyword">radix/corpus/importa/importa.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusimportaimport-missing-member-rejectfab-supporting-reject">radix/corpus/importa/import-missing-member-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusimportaimport-unknown-norma-module-rejectfab-supporting-reject">radix/corpus/importa/import-unknown-norma-module-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusimportaprivate-rejectfab-supporting-reject">radix/corpus/importa/private-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusimportaselective-missing-rejectfab-supporting-reject">radix/corpus/importa/selective-missing-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/importa/default-braced.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

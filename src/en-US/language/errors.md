@@ -42,6 +42,11 @@ functio divide(numerus a, numerus b) → numerus ⇥ textus {
 }
 ```
 
+The type after `⇥` is the payload. The value that travels on the channel is
+the compiler-owned carrier `erratum<T>` (en `error<T>`), which has one field,
+`payload`, and nothing else. `cape` (en `catch`) binds the payload `T`, never
+the carrier, so programs that do not name the carrier read exactly as before.
+
 ### Throwing — iace {#throwing--iace}
 
 `iace` sends a value on the error channel:

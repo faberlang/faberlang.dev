@@ -22,8 +22,8 @@ A target showing fewer scenarios than the others is not broken. It means the emi
 
 | Target | Capable | Analyzable | Coverage |
 |---|---|---|---|
-| [LLVM IR](/targets/llvm-text.html) | 436 | 500 | 87% |
-| [WebAssembly text](/targets/wasm-text.html) | 373 | 500 | 75% |
+| [LLVM IR](/targets/llvm-text.html) | 439 | 511 | 86% |
+| [WebAssembly text](/targets/wasm-text.html) | 376 | 511 | 74% |
 
 The matrix also measures `runner`, `sexp`, `sexp-struct`, `wasm` — MIR emit surfaces with no page here yet.
 

@@ -34,8 +34,12 @@ an exact version instead, which is also how you switch back to an older one.
 <code>faber versions</code> lists what is installed and which one is active.</p><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> update <span class="tok-op">--check</span>
 <span class="tok-fn">faber</span> update
 <span class="tok-fn">faber</span> update <span class="tok-op">--version</span> 1.15.1
-<span class="tok-fn">faber</span> versions</code></pre><h3 id="checking">Checking without emitting<a class="anchor" href="#checking">#</a></h3><pre class="faber-code"><code class="lang-text">faber check my-package/</code></pre><p>Runs the full front end (lex → parse → typecheck → MIR lowering) without
-producing output artifacts. Use this in CI and editor integrations.</p><h3 id="testing-command">Running tests<a class="anchor" href="#testing-command">#</a></h3><pre class="faber-code"><code class="lang-text">faber test my-package/
+<span class="tok-fn">faber</span> versions</code></pre><h3 id="checking">Checking without emitting<a class="anchor" href="#checking">#</a></h3><pre class="faber-code"><code class="lang-text">faber check my-package/
+faber check --lower my-package/</code></pre><p>Runs the front end (lex → parse → semantic analysis) without producing output
+artifacts. Use this in CI and editor integrations.</p><p><code>--lower</code> also lowers the program to Faber's reference form, without running
+it, and reports the errors that semantic analysis alone cannot see: a program
+that checks but cannot run. It needs a file or package path (not stdin). Since
+1.16 it covers programs with command-line (<code>cli</code>) surfaces too.</p><h3 id="testing-command">Running tests<a class="anchor" href="#testing-command">#</a></h3><pre class="faber-code"><code class="lang-text">faber test my-package/
 faber test . --filter smoke       # substring filter on case path or title
 faber test . --include math       # load only *.proba sources matching a path pattern
 faber test . --exclude 'nested/*' # skip *.proba sources matching a path pattern

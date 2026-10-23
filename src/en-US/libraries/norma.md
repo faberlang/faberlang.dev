@@ -20,7 +20,9 @@ a platform default — apps use it without declaring it in `faber.toml`
 
 Module names are English: `norma:text`, `norma:fs`, `norma:console`. A Latin
 spelling such as `norma:textus` is not a module name; it is rejected as
-`PKG001 unknown_library_module`.
+`PKG001 unknown_library_module`. Since 1.16 the check runs for every target
+before any code is emitted, so an import of a module that does not exist
+never passes `faber check`.
 
 ## Modules {#modules}
 
@@ -41,6 +43,7 @@ spelling such as `norma:textus` is not a module name; it is rejected as
 | `norma:order` | The ordering contract (`Orderable<T>`) |
 | `norma:process` | Process execution and environment |
 | `norma:random` | Entropy and randomness |
+| `norma:sink` | The sinking contract (`Sink<T>`) and an in-memory `Collector`; checks but does not run yet ([Sinks](/language/types.html#sinks)) |
 | `norma:sorted_map` | Key-ordered map |
 | `norma:tensor` | Tensor bridge helpers |
 | `norma:text` | Text and cord operations, UTF-8 `encode` / `decode` |

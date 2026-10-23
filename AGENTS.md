@@ -423,7 +423,7 @@ the English tree; `/llms-full.txt` is a locale-neutral corpus reference.
 ### Binary versions
 
 - **Content targets radix HEAD, not a release.** The site is published from
-  `main` (Faber 1.15.2 is the install surface's release; 1.15.0 has a source
+  `main` (Faber 1.16.0 is the install surface's release; 1.15.0 has a source
   tag but no published artifacts, so never offer it), so every page is checked against the radix commit
   recorded in `generator/upstream.lock.toml` and a `faber` built from that
   commit. Pass it
@@ -439,12 +439,11 @@ the English tree; `/llms-full.txt` is a locale-neutral corpus reference.
   update this note, build, commit. Nothing else on the site carries a version.
 - **Ruled but not built at HEAD.** These are not stated as fact anywhere; each
   has a sentence that is true today and must be revisited when the item lands:
-  the anonymous `record` literal (`language/types.md` "no anonymous object"
-  sentences and `cheatsheet/types.md` on `:` versus `=`); `reduce via first`
-  replacing `primus_quem`/`ubi` (the generated locale rows); `trapped<R,T>`,
+  `reduce via first` replacing `primus_quem`/`ubi` (the generated locale rows); `trapped<R,T>`,
   flat `ERRnnn` codes and no run-time message text (`language/errors.md`);
   removal of `FABER_LIBRARY_HOME` (the pages already say `--library-home`).
-  `rg -n "primus_quem|no anonymous" src` finds the first two.
+  `rg -n "primus_quem" src` finds the first. (The anonymous `record`
+  literal landed in 1.16 and is documented in `language/types.md#record`.)
 - Check against the HEAD binary, not an older build or a release tag. Holding a
   HEAD fact back "until the release" is a second content pass at publish.
 - The GPU pages state mechanism only: `@ kernel`, `[device]`, `faber run

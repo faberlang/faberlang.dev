@@ -206,6 +206,7 @@ Generated from the packs. The Latin column is the pack key and the compiler's in
 | sermo        channel
 | littera      char
 | clampa       clamp
+| erratum      error
 | filtrum      filter
 | fractus      float
 | scrinium     frame
@@ -368,6 +369,7 @@ Generated from the packs. The Latin column is the pack key and the compiler's in
 | signum                 sign
 | silu                   silu
 | sinus                  sin
+| immerge                sink
 | sectio                 slice
 | activatio_softmax      softmax
 | softmax_causal         softmax_causal
