@@ -1,5 +1,6 @@
 +++
 title = "Metal"
+description = "Metal target (Metal MSL): Apple GPU compute shader source (MSL)."
 section = "targets"
 order = 77
 sources = []

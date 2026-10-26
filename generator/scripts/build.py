@@ -505,6 +505,7 @@ class Build:
                 [["--allow-missing", f"/en-US/language/locales/{loc}.html"]
                  for loc in ("ar", "hi", "th-TH", "vi", "zh-Hans", "zh-Hant")], [])),
             ("retired-locales", ["retired-locales.py", "check", "--dist", str(DIST)]),
+            ("redirects", ["check-redirects.py", str(DIST)]),
             ("leakage", ["check-leakage-gate.py", str(DIST)]),
             ("frontmatter-leak", ["check-frontmatter-leak.py", str(DIST)]),
         ]
@@ -611,7 +612,7 @@ def smoke(dist: Path, release: str) -> list[str]:
     contains(f"{en}/cheatsheet/errors.html", "error channel", "cheat sheet errors")
     contains(f"{en}/examples/index.html", "url=/en-US/cheatsheet/", "examples index redirect")
     contains(f"{en}/examples/cat.html", "url=/en-US/cheatsheet/", "example page redirect")
-    contains("examples/cat.html", "url=/en-US/examples/cat.html", "root example stub")
+    contains("examples/cat.html", "url=/en-US/cheatsheet/\"", "root example stub (one hop)")
     contains(f"{en}/targets/index.html", "Target lanes", "target lanes index")
     contains(f"{en}/404.html", "404", "404 page")
     contains(f"{en}/releases/index.html", f"Faber {release}", "releases index")
@@ -705,7 +706,8 @@ def smoke(dist: Path, release: str) -> list[str]:
         contains("porta/index.html", needle, label)
     contains("faber-instrument.js", "data-copy", "instrument script copied to dist")
     contains("start/install.html", "<!DOCTYPE html>", "redirect install doctype")
-    contains("start/install.html", "/en-US/start/install.html", "redirect install target")
+    # One hop: the root stub skips the retired /en-US/start/install.html stub.
+    contains("start/install.html", "url=/en-US/start/\"", "redirect install target")
     contains("sitemap.xml", "<urlset", "sitemap")
     return failures
 

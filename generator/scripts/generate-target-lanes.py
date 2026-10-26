@@ -360,10 +360,15 @@ def scenarios_for(target: str) -> list[str]:
     return [s for s in SCENARIOS if (s == "nucleum") == device]
 
 
-def frontmatter(title: str, order: int) -> list[str]:
+def frontmatter(title: str, order: int, description: str = "") -> list[str]:
+    desc = []
+    if description:
+        escaped = description.replace("\\", "\\\\").replace('"', '\\"')
+        desc = [f'description = "{escaped}"']
     return [
         "+++",
         f'title = "{title}"',
+        *desc,
         'section = "targets"',
         f"order = {order}",
         "sources = []",
@@ -477,7 +482,10 @@ def lane_support_section(lane: str) -> list[str]:
 
 def render_target_page(target: str, order: int) -> str | None:
     meta = TARGETS[target]
-    lines = frontmatter(meta["label"], order)
+    # Lanes share notes (ts and go have the same one), so the meta description
+    # names the target to keep it unique per page.
+    lines = frontmatter(meta["label"], order,
+                        f"{meta['label']} target ({meta['emits']}): {meta['note']}")
     lines += [
         meta["note"],
         "",
@@ -619,7 +627,7 @@ def render_index() -> str:
         "",
         "Three more compiler lanes carry no source-text target of their own "
         "and so have no page here: **Locale** renders reader spellings (see "
-        "[reader locales](/cheatsheet/locales.html)), **AIR** is the autograd "
+        "[reader locales](/localization.html)), **AIR** is the autograd "
         "surface between typed HIR and MIR, and **Packaging** produces the "
         "FHIR and FMIR artifacts a package ships.",
         "",

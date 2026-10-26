@@ -1,5 +1,6 @@
 +++
 title = "Faber"
+description = "Faber target (Canonical Faber): Canonical re-emission — the compiler printing the program back."
 section = "targets"
 order = 73
 sources = []

@@ -622,7 +622,7 @@ def main() -> None:
       </p>
       <nav class="chips" aria-label="Grammar and syntax references">
         <a href="/en-US/reference/grammar.html">EBNF grammar</a>
-        <a href="/en-US/syntax/">Syntax guide</a>
+        <a href="/en-US/language/">Syntax guide</a>
         <a href="/en-US/corpus/">Corpus of keyword examples</a>
         <a href="/en-US/cheatsheet/">Cheat sheet</a>
       </nav>

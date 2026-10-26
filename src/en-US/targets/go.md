@@ -1,5 +1,6 @@
 +++
 title = "Go"
+description = "Go target (Go source): HIR projection with file emission and end-to-end floors."
 section = "targets"
 order = 72
 sources = []

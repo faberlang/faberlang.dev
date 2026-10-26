@@ -4,7 +4,16 @@ generate-redirects — Generate bare-path HTML redirect stubs.
 
 Walk ``dist/<source_site_locale>/**/*.html`` and write a minimal HTML
 meta-refresh stub at ``dist/<rel>`` for every rendered page. Uses directory
-URL style (``/en-US/``, not ``/en-US/index.html``).
+URL style (``/en-US/start/``, not ``/en-US/start/index.html``), matching the
+page's own canonical and its sitemap ``<loc>``.
+
+One hop only: when the locale page is itself a redirect stub (a retired IA
+path such as ``/en-US/tutorial/``), the root stub points straight at that
+stub's destination instead of chaining through it.
+
+``404.html`` is not a stub: GitHub Pages serves ``dist/404.html`` with status
+404 for every missing URL, so it gets a copy of the rendered locale 404 page
+(which carries noindex) rather than a meta refresh to a 200 page.
 
 ``dist/index.html`` is owned by the portal and is never overwritten
 (skipped). Stubs carry noindex so they do not compete with the real locale
@@ -27,7 +36,10 @@ from __future__ import annotations
 
 import argparse
 import html as html_mod
+import re
+import shutil
 from pathlib import Path
+from urllib.parse import quote, unquote
 
 BASE_URL = "https://faberlang.dev"
 
@@ -47,9 +59,29 @@ STUB = """<!DOCTYPE html>
 """
 
 
+REFRESH_RE = re.compile(r'http-equiv="refresh" content="0; url=([^"]*)"')
+
+
 def target_url(site_locale: str, rel: str) -> str:
-    """Site-absolute target path for a page relative to the locale dir."""
-    return f"/{site_locale}/{rel}"
+    """Site-absolute, percent-encoded, directory-style URL for a locale page."""
+    if rel == "index.html":
+        rel = ""
+    elif rel.endswith("/index.html"):
+        rel = rel[: -len("index.html")]
+    return quote(f"/{site_locale}/{rel}", safe="/")
+
+
+def stub_destination(html_path: Path) -> str | None:
+    """The refresh target when the page is itself a redirect stub."""
+    head = html_path.read_text(encoding="utf-8", errors="replace")[:2048]
+    match = REFRESH_RE.search(head)
+    if not match:
+        return None
+    raw = html_mod.unescape(match.group(1))
+    path, hash_, frag = raw.partition("#")
+    if path.endswith("/index.html"):
+        path = path[: -len("index.html")]
+    return quote(unquote(path), safe="/") + hash_ + frag
 
 
 def absolute_url(path: str) -> str:
@@ -87,8 +119,13 @@ def main() -> int:
             skipped += 1
             continue
 
-        target = target_url(site_locale, rel_str)
         stub_path = dist_dir / rel
+        if rel_str == "404.html":
+            shutil.copyfile(html_path, stub_path)
+            written += 1
+            continue
+
+        target = stub_destination(html_path) or target_url(site_locale, rel_str)
 
         stub_path.parent.mkdir(parents=True, exist_ok=True)
         encoded_target = html_mod.escape(target, quote=True)

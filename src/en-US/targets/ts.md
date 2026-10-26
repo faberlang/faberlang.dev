@@ -1,5 +1,6 @@
 +++
 title = "TypeScript"
+description = "TypeScript target (TypeScript source): HIR projection with file emission and end-to-end floors."
 section = "targets"
 order = 71
 sources = []

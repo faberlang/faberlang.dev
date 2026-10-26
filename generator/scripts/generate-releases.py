@@ -369,6 +369,7 @@ def render_version_page(v: Version, order: int) -> str:
     head = [
         "+++",
         f'title = "{label} {v.version}"',
+        f'description = "Release notes and install details for {label} {v.version}."',
         'section = "releases"',
         f"order = {order}",
         "sources = []",

@@ -1,5 +1,6 @@
 +++
 title = "Rust"
+description = "Rust target (Rust source): HIR projection. The package product path compiles this through Cargo."
 section = "targets"
 order = 70
 sources = []
