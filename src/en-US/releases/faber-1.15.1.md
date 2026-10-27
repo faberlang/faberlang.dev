@@ -1,5 +1,6 @@
 +++
 title = "Faber 1.15.1"
+description = "Release notes and install details for Faber 1.15.1."
 section = "releases"
 order = 12
 sources = []

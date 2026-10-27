@@ -303,6 +303,7 @@ separately proves every alias and its target:
 |---|---|---|
 | `check-internal-links.py` | Verifies every internal `href` target exists in `dist/` | 1 on broken links |
 | `check-leakage-gate.py` | No English→locale nav leakage; all locale pages carry honesty notice | 1 on gap |
+| `check-redirects.py` | Every meta-refresh stub is one hop to an existing, non-stub, directory-style URL (no chains, no `/index.html` targets) | 1 on bad stub |
 | `generate-sitemap` | Generates `dist/sitemap.xml` from maintained English HTML; alias stubs are skipped | — |
 | `inject-canonical.py` | Injects `<link rel="canonical">` into pages missing one | — |
 

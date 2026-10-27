@@ -177,7 +177,7 @@ def build(*, corpus: Path, reader_root: Path, output: Path, generator_dir: Path,
         (corpus_out / f"{term_slug}.html").write_text(_clean_generated(html))
         bucket = term_bucket[term]
         crumb = corpus_ia.breadcrumb_html([
-            ("Corpus", f"/{site_locale}/corpus/index.html"),
+            ("Corpus", f"/{site_locale}/corpus/"),
             (bucket.label, f"/{site_locale}/corpus/bucket/{bucket.key}.html"),
             (term_slug, None),
         ])
@@ -255,7 +255,9 @@ def build(*, corpus: Path, reader_root: Path, output: Path, generator_dir: Path,
             "",
             f"# Corpus category: `{category}`",
             "",
-            f"{len(terms_in_category)} canonical terms in this category.",
+            f"{len(terms_in_category)} canonical "
+            f"{'term' if len(terms_in_category) == 1 else 'terms'} in the "
+            f"`{category}` category.",
             "",
         ]
         md.extend(f"- [`{slugs[term]}`](/corpus/{slugs[term]}.html)" for term in terms_in_category)
@@ -292,7 +294,7 @@ def build(*, corpus: Path, reader_root: Path, output: Path, generator_dir: Path,
         extra_crumbs.append((
             out,
             corpus_ia.breadcrumb_html(
-                [("Corpus", f"/{site_locale}/corpus/index.html"), (bucket.label, None)]
+                [("Corpus", f"/{site_locale}/corpus/"), (bucket.label, None)]
             ),
         ))
 
@@ -304,7 +306,7 @@ def build(*, corpus: Path, reader_root: Path, output: Path, generator_dir: Path,
     extra_crumbs.append((
         az_path,
         corpus_ia.breadcrumb_html(
-            [("Corpus", f"/{site_locale}/corpus/index.html"), ("A–Z", None)]
+            [("Corpus", f"/{site_locale}/corpus/"), ("A–Z", None)]
         ),
     ))
 

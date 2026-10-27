@@ -1,5 +1,6 @@
 +++
 title = "LLVM IR"
+description = "LLVM IR target (LLVM IR text): MIR staging text for external LLVM tools. Also the route CUDA device programs take, via NVVM → PTX."
 section = "targets"
 order = 74
 sources = []

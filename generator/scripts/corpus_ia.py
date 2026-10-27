@@ -126,7 +126,7 @@ def az_markdown(slugs: list[str]) -> str:
         "# Corpus A–Z",
         "",
         f"Every one of the {len(slugs)} Faber corpus term pages, alphabetical. "
-        "The concept path lives on the [corpus hub](/corpus/index.html); this is the flat one.",
+        "The concept path lives on the [corpus hub](/corpus/); this is the flat one.",
         "",
         " ".join(f"[{letter}](#{anchor(letter)})" for letter in letters),
         "",

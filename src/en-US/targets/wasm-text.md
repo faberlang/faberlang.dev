@@ -1,5 +1,6 @@
 +++
 title = "WebAssembly text"
+description = "WebAssembly text target (WebAssembly text): WAT emission from the same MIR."
 section = "targets"
 order = 75
 sources = []

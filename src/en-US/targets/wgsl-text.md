@@ -1,5 +1,6 @@
 +++
 title = "WGSL"
+description = "WGSL target (WGSL compute shader): WebGPU compute shader source."
 section = "targets"
 order = 76
 sources = []

@@ -46,7 +46,7 @@ A function marked `@ nucleum` is a compute kernel. The device lane links the com
 
 ## Other lanes {#other-lanes}
 
-Three more compiler lanes carry no source-text target of their own and so have no page here: **Locale** renders reader spellings (see [reader locales](/cheatsheet/locales.html)), **AIR** is the autograd surface between typed HIR and MIR, and **Packaging** produces the FHIR and FMIR artifacts a package ships.
+Three more compiler lanes carry no source-text target of their own and so have no page here: **Locale** renders reader spellings (see [reader locales](/localization.html)), **AIR** is the autograd surface between typed HIR and MIR, and **Packaging** produces the FHIR and FMIR artifacts a package ships.
 
 This is the honest target list: a page exists only for a lane the compiler exposes as a text target. There is no CUDA page — CUDA device programs are produced on the NVVM → PTX path and run with `faber run --device cuda`, not emitted as source text. The [target matrix](/toolchain/target-matrix.html) measures a few more emit surfaces than the site gives pages to.
 

@@ -958,7 +958,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/ar/corpus/index.html"
-to = "/en-US/corpus/index.html"
+to = "/en-US/corpus/"
 rule = "one-to-one"
 
 [[redirects]]
@@ -1048,7 +1048,7 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/ar/corpus/libera.html"
-to = "/en-US/corpus/index.html"
+to = "/en-US/corpus/"
 rule = "corpus-index-fallback"
 
 [[redirects]]
@@ -1558,7 +1558,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/ar/corpus/sparsa.html"
-to = "/en-US/corpus/sparsa.html"
+to = "/en-US/corpus/sparse.html"
 rule = "one-to-one"
 
 [[redirects]]
@@ -1753,7 +1753,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/ar/corpus/versio.html"
-to = "/en-US/corpus/versio.html"
+to = "/en-US/corpus/version.html"
 rule = "one-to-one"
 
 [[redirects]]
@@ -2083,7 +2083,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/ar/corpus/%D8%AD%D8%B1.html"
-to = "/en-US/corpus/index.html"
+to = "/en-US/corpus/"
 rule = "corpus-index-fallback"
 
 [[redirects]]
@@ -2338,7 +2338,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/ar/corpus/%D9%85%D8%AA%D9%81%D8%B1%D9%82%D8%A9.html"
-to = "/en-US/corpus/sparsa.html"
+to = "/en-US/corpus/sparse.html"
 rule = "corpus-slug"
 
 [[redirects]]
@@ -2723,7 +2723,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/ar/index.html"
-to = "/en-US/index.html"
+to = "/en-US/"
 rule = "one-to-one"
 
 [[redirects]]
@@ -2818,17 +2818,17 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/ar/releases/"
-to = "/en-US/releases/index.html"
+to = "/en-US/releases/"
 rule = "directory-index"
 
 [[redirects]]
 from = "/ar/releases/index.html"
-to = "/en-US/releases/index.html"
+to = "/en-US/releases/"
 rule = "one-to-one"
 
 [[redirects]]
 from = "/ar/start/"
-to = "/en-US/start/index.html"
+to = "/en-US/start/"
 rule = "directory-index"
 
 [[redirects]]
@@ -2848,7 +2848,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/ar/start/index.html"
-to = "/en-US/start/index.html"
+to = "/en-US/start/"
 rule = "one-to-one"
 
 [[redirects]]
@@ -3953,7 +3953,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/hi/corpus/index.html"
-to = "/en-US/corpus/index.html"
+to = "/en-US/corpus/"
 rule = "one-to-one"
 
 [[redirects]]
@@ -4043,7 +4043,7 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/hi/corpus/libera.html"
-to = "/en-US/corpus/index.html"
+to = "/en-US/corpus/"
 rule = "corpus-index-fallback"
 
 [[redirects]]
@@ -4553,7 +4553,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/hi/corpus/sparsa.html"
-to = "/en-US/corpus/sparsa.html"
+to = "/en-US/corpus/sparse.html"
 rule = "one-to-one"
 
 [[redirects]]
@@ -4748,7 +4748,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/hi/corpus/versio.html"
-to = "/en-US/corpus/versio.html"
+to = "/en-US/corpus/version.html"
 rule = "one-to-one"
 
 [[redirects]]
@@ -5243,7 +5243,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/hi/corpus/%E0%A4%AE%E0%A5%81%E0%A4%95%E0%A5%8D%E0%A4%A4.html"
-to = "/en-US/corpus/index.html"
+to = "/en-US/corpus/"
 rule = "corpus-index-fallback"
 
 [[redirects]]
@@ -5358,7 +5358,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/hi/corpus/%E0%A4%B5%E0%A4%BF%E0%A4%B0%E0%A4%B2.html"
-to = "/en-US/corpus/sparsa.html"
+to = "/en-US/corpus/sparse.html"
 rule = "corpus-slug"
 
 [[redirects]]
@@ -5698,7 +5698,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/hi/index.html"
-to = "/en-US/index.html"
+to = "/en-US/"
 rule = "one-to-one"
 
 [[redirects]]
@@ -5793,17 +5793,17 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/hi/releases/"
-to = "/en-US/releases/index.html"
+to = "/en-US/releases/"
 rule = "directory-index"
 
 [[redirects]]
 from = "/hi/releases/index.html"
-to = "/en-US/releases/index.html"
+to = "/en-US/releases/"
 rule = "one-to-one"
 
 [[redirects]]
 from = "/hi/start/"
-to = "/en-US/start/index.html"
+to = "/en-US/start/"
 rule = "directory-index"
 
 [[redirects]]
@@ -5823,7 +5823,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/hi/start/index.html"
-to = "/en-US/start/index.html"
+to = "/en-US/start/"
 rule = "one-to-one"
 
 [[redirects]]
@@ -6923,7 +6923,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/th-TH/corpus/index.html"
-to = "/en-US/corpus/index.html"
+to = "/en-US/corpus/"
 rule = "one-to-one"
 
 [[redirects]]
@@ -7013,7 +7013,7 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/th-TH/corpus/libera.html"
-to = "/en-US/corpus/index.html"
+to = "/en-US/corpus/"
 rule = "corpus-index-fallback"
 
 [[redirects]]
@@ -7523,7 +7523,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/th-TH/corpus/sparsa.html"
-to = "/en-US/corpus/sparsa.html"
+to = "/en-US/corpus/sparse.html"
 rule = "one-to-one"
 
 [[redirects]]
@@ -7718,7 +7718,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/th-TH/corpus/versio.html"
-to = "/en-US/corpus/versio.html"
+to = "/en-US/corpus/version.html"
 rule = "one-to-one"
 
 [[redirects]]
@@ -7788,7 +7788,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/th-TH/corpus/%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%B2%E0%B8%A2.html"
-to = "/en-US/corpus/sparsa.html"
+to = "/en-US/corpus/sparse.html"
 rule = "corpus-slug"
 
 [[redirects]]
@@ -8263,7 +8263,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/th-TH/corpus/%E0%B8%AD%E0%B8%B4%E0%B8%AA%E0%B8%A3%E0%B8%B0.html"
-to = "/en-US/corpus/index.html"
+to = "/en-US/corpus/"
 rule = "corpus-index-fallback"
 
 [[redirects]]
@@ -8678,7 +8678,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/th-TH/index.html"
-to = "/en-US/index.html"
+to = "/en-US/"
 rule = "one-to-one"
 
 [[redirects]]
@@ -8773,17 +8773,17 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/th-TH/releases/"
-to = "/en-US/releases/index.html"
+to = "/en-US/releases/"
 rule = "directory-index"
 
 [[redirects]]
 from = "/th-TH/releases/index.html"
-to = "/en-US/releases/index.html"
+to = "/en-US/releases/"
 rule = "one-to-one"
 
 [[redirects]]
 from = "/th-TH/start/"
-to = "/en-US/start/index.html"
+to = "/en-US/start/"
 rule = "directory-index"
 
 [[redirects]]
@@ -8803,7 +8803,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/th-TH/start/index.html"
-to = "/en-US/start/index.html"
+to = "/en-US/start/"
 rule = "one-to-one"
 
 [[redirects]]
@@ -10098,7 +10098,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/vi/corpus/index.html"
-to = "/en-US/corpus/index.html"
+to = "/en-US/corpus/"
 rule = "one-to-one"
 
 [[redirects]]
@@ -10238,7 +10238,7 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/vi/corpus/libera.html"
-to = "/en-US/corpus/index.html"
+to = "/en-US/corpus/"
 rule = "corpus-index-fallback"
 
 [[redirects]]
@@ -10918,7 +10918,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/vi/corpus/sparsa.html"
-to = "/en-US/corpus/sparsa.html"
+to = "/en-US/corpus/sparse.html"
 rule = "one-to-one"
 
 [[redirects]]
@@ -11048,7 +11048,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/vi/corpus/th%C6%B0a.html"
-to = "/en-US/corpus/sparsa.html"
+to = "/en-US/corpus/sparse.html"
 rule = "corpus-slug"
 
 [[redirects]]
@@ -11213,7 +11213,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/vi/corpus/t%E1%BB%B1_do.html"
-to = "/en-US/corpus/index.html"
+to = "/en-US/corpus/"
 rule = "corpus-index-fallback"
 
 [[redirects]]
@@ -11278,7 +11278,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/vi/corpus/versio.html"
-to = "/en-US/corpus/versio.html"
+to = "/en-US/corpus/version.html"
 rule = "one-to-one"
 
 [[redirects]]
@@ -11658,7 +11658,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/vi/index.html"
-to = "/en-US/index.html"
+to = "/en-US/"
 rule = "one-to-one"
 
 [[redirects]]
@@ -11753,17 +11753,17 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/vi/releases/"
-to = "/en-US/releases/index.html"
+to = "/en-US/releases/"
 rule = "directory-index"
 
 [[redirects]]
 from = "/vi/releases/index.html"
-to = "/en-US/releases/index.html"
+to = "/en-US/releases/"
 rule = "one-to-one"
 
 [[redirects]]
 from = "/vi/start/"
-to = "/en-US/start/index.html"
+to = "/en-US/start/"
 rule = "directory-index"
 
 [[redirects]]
@@ -11783,7 +11783,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/vi/start/index.html"
-to = "/en-US/start/index.html"
+to = "/en-US/start/"
 rule = "one-to-one"
 
 [[redirects]]
@@ -12883,7 +12883,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/zh-Hans/corpus/index.html"
-to = "/en-US/corpus/index.html"
+to = "/en-US/corpus/"
 rule = "one-to-one"
 
 [[redirects]]
@@ -12973,7 +12973,7 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hans/corpus/libera.html"
-to = "/en-US/corpus/index.html"
+to = "/en-US/corpus/"
 rule = "corpus-index-fallback"
 
 [[redirects]]
@@ -13483,7 +13483,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/zh-Hans/corpus/sparsa.html"
-to = "/en-US/corpus/sparsa.html"
+to = "/en-US/corpus/sparse.html"
 rule = "one-to-one"
 
 [[redirects]]
@@ -13678,7 +13678,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/zh-Hans/corpus/versio.html"
-to = "/en-US/corpus/versio.html"
+to = "/en-US/corpus/version.html"
 rule = "one-to-one"
 
 [[redirects]]
@@ -14323,7 +14323,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/zh-Hans/corpus/%E7%A8%80%E7%96%8F.html"
-to = "/en-US/corpus/sparsa.html"
+to = "/en-US/corpus/sparse.html"
 rule = "corpus-slug"
 
 [[redirects]]
@@ -14373,7 +14373,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/zh-Hans/corpus/%E8%87%AA%E7%94%B1.html"
-to = "/en-US/corpus/index.html"
+to = "/en-US/corpus/"
 rule = "corpus-index-fallback"
 
 [[redirects]]
@@ -14648,7 +14648,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/zh-Hans/index.html"
-to = "/en-US/index.html"
+to = "/en-US/"
 rule = "one-to-one"
 
 [[redirects]]
@@ -14743,17 +14743,17 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/zh-Hans/releases/"
-to = "/en-US/releases/index.html"
+to = "/en-US/releases/"
 rule = "directory-index"
 
 [[redirects]]
 from = "/zh-Hans/releases/index.html"
-to = "/en-US/releases/index.html"
+to = "/en-US/releases/"
 rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hans/start/"
-to = "/en-US/start/index.html"
+to = "/en-US/start/"
 rule = "directory-index"
 
 [[redirects]]
@@ -14773,7 +14773,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/zh-Hans/start/index.html"
-to = "/en-US/start/index.html"
+to = "/en-US/start/"
 rule = "one-to-one"
 
 [[redirects]]
@@ -15873,7 +15873,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/zh-Hant/corpus/index.html"
-to = "/en-US/corpus/index.html"
+to = "/en-US/corpus/"
 rule = "one-to-one"
 
 [[redirects]]
@@ -15963,7 +15963,7 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hant/corpus/libera.html"
-to = "/en-US/corpus/index.html"
+to = "/en-US/corpus/"
 rule = "corpus-index-fallback"
 
 [[redirects]]
@@ -16473,7 +16473,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/zh-Hant/corpus/sparsa.html"
-to = "/en-US/corpus/sparsa.html"
+to = "/en-US/corpus/sparse.html"
 rule = "one-to-one"
 
 [[redirects]]
@@ -16668,7 +16668,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/zh-Hant/corpus/versio.html"
-to = "/en-US/corpus/versio.html"
+to = "/en-US/corpus/version.html"
 rule = "one-to-one"
 
 [[redirects]]
@@ -17313,7 +17313,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/zh-Hant/corpus/%E7%A8%80%E7%96%8F.html"
-to = "/en-US/corpus/sparsa.html"
+to = "/en-US/corpus/sparse.html"
 rule = "corpus-slug"
 
 [[redirects]]
@@ -17373,7 +17373,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/zh-Hant/corpus/%E8%87%AA%E7%94%B1.html"
-to = "/en-US/corpus/index.html"
+to = "/en-US/corpus/"
 rule = "corpus-index-fallback"
 
 [[redirects]]
@@ -17638,7 +17638,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/zh-Hant/index.html"
-to = "/en-US/index.html"
+to = "/en-US/"
 rule = "one-to-one"
 
 [[redirects]]
@@ -17733,17 +17733,17 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/zh-Hant/releases/"
-to = "/en-US/releases/index.html"
+to = "/en-US/releases/"
 rule = "directory-index"
 
 [[redirects]]
 from = "/zh-Hant/releases/index.html"
-to = "/en-US/releases/index.html"
+to = "/en-US/releases/"
 rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hant/start/"
-to = "/en-US/start/index.html"
+to = "/en-US/start/"
 rule = "directory-index"
 
 [[redirects]]
@@ -17763,7 +17763,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/zh-Hant/start/index.html"
-to = "/en-US/start/index.html"
+to = "/en-US/start/"
 rule = "one-to-one"
 
 [[redirects]]

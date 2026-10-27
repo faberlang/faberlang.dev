@@ -1175,7 +1175,10 @@ def pagina_description(pag):
     if len(from_fm) > 0:
         return brevia_description(strip_md_links(from_fm), 160)
     from_body = primus_paragraphus(pag.corpus)
-    if len(from_body) > 0:
+    # A first paragraph that is only a label ("Syntax:") describes nothing;
+    # 22 corpus pages shipped `content="Syntax:"`. Fall through to the
+    # title-based description instead.
+    if len(from_body) > 0 and not (len(from_body) < 40 and from_body.endswith(":")):
         return brevia_description(from_body, 160)
     if pag.titulus == "Faber":
         return ("Faber programming language — package-oriented, Latin "
@@ -1204,6 +1207,11 @@ def genera_head(pag, stylesheet_link):
                                      attr("content", "width=device-width, initial-scale=1")]))
     children.append(ir_void("meta", [attr("name", "description"),
                                      attr("content", description)]))
+    if pag.iter == "404":
+        # The not-found page is served with status 200 at its own URL
+        # (/en-US/404.html); keep it out of the index.
+        children.append(ir_void("meta", [attr("name", "robots"),
+                                         attr("content", "noindex")]))
     children.append(ir_void("meta", [attr("name", "theme-color"),
                                      attr("content", "#e8e5db"),
                                      attr("media", "(prefers-color-scheme: light)")]))
