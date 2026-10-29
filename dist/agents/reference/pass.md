@@ -2,7 +2,7 @@
 
 Marks an explicit no-op statement.
 
-**Term** `tacet` · **Section** KEYWORDS · **Also** `silent noop`
+**Term** `pass` · **Section** KEYWORDS · **Also** `silent noop`
 
 ## Syntax
 

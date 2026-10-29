@@ -2,7 +2,7 @@
 
 Primitive floating-point number type.
 
-**Term** `fractus` · **Section** KEYWORDS · **Also** `float`
+**Term** `float` · **Section** KEYWORDS
 
 ## Syntax
 

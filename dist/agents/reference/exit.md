@@ -2,7 +2,7 @@
 
 Sets the exit code or exit expression for an entry point.
 
-**Term** `exitus` · **Section** KEYWORDS
+**Term** `exit` · **Section** KEYWORDS
 
 ## Syntax
 

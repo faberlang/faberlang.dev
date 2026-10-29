@@ -43,7 +43,7 @@ metadata ratchets. Normalize file headers to a canonical template, add
 educational comments across the full corpus, and redesign stdout contracts
 for cross-target (Rust/Go) parity.</p><ul><li>Hygiene pass: coverage gaps, stdout contracts, file renames, removed stale
 exempla (<code>3e83d9658</code>)</li><li>Harness metadata ratchet for Rust, Go, and Wasm (124-file suite green)
-(<code>2fc853bf7</code>)</li><li>Phase 5: secondary coverage for cura, externa, fn, integratio, bytes,
+(<code>2fc853bf7</code>)</li><li>Phase 5: secondary coverage for cura, externa, fn, integratio, octeti,
 describe, promise, pass (<code>52d6275af</code>)</li><li>Redesign deferred stdout contracts: scalar checks replace native list/map
 debug printing for cross-target <code>.expected</code> sharing (<code>ef43bb872</code>)</li><li>Normalize all exempla file headers to canonical template (<code>5be813381</code>)</li><li>Add educational comments across the full corpus (<code>db0c2e2e4</code>)</li></ul><h3 id="other-changes">Other changes<a class="anchor" href="#other-changes">#</a></h3><ul><li><code>as</code> aliases on <code>match</code> variant payload bindings: parse <code>const field as
 alias</code> in pattern arms, resolve/lower through HIR/MIR, emit Rust/Go field

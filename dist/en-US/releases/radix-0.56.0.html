@@ -43,8 +43,8 @@ context is preserved. (<code>a42e734a9</code>)</li><li>Docs: refresh value extra
 implement with shipped numeric/collection/tensor conversion surface.
 (<code>0839ba4f7</code>, <code>a1b48deb7</code>, <code>d2f147e9a</code>, <code>2036156cc</code>)</li></ul><h4 id="conversio-coverage-primitives-collections-tensors">Conversio coverage — primitives, collections, tensors<a class="anchor" href="#conversio-coverage-primitives-collections-tensors">#</a></h4><ul><li><strong>Numeric/bool Rust codegen:</strong> <code>float</code>/<code>bool</code>/<code>ascii</code> numeric and
 truthiness lowering with driver tests and <code>numeric-bool.fab</code> exemplum.
-(<code>a7ced27bb</code>)</li><li><strong>Reject ambiguous primitives:</strong> <code>int</code>/<code>float</code>/<code>bool</code> ↔ <code>bytes</code>
-and <code>bytes ↦ bool</code> rejected at typecheck with clear diagnostics.
+(<code>a7ced27bb</code>)</li><li><strong>Reject ambiguous primitives:</strong> <code>int</code>/<code>float</code>/<code>bool</code> ↔ <code class="typ">octeti</code>
+and <code>octeti ↦ bool</code> rejected at typecheck with clear diagnostics.
 (<code>d6dfefca2</code>)</li><li><strong>Collection Tier 1 Rust codegen:</strong> Eight cross-collection <code class="glyph">↦</code> lowerings:
 <code>list↔set</code>, <code>list↔tensor</code> (1-d), tensor flatten via <code>ad_lista</code>, map
 key/value projection, and eager <code>list↔cursor</code> bridges. (<code>2321d9a3f</code>)</li><li><strong>Reject ambiguous collections:</strong> Typecheck validates allowed cross-collection
@@ -80,7 +80,7 @@ NumPy-equivalent foundation. Open seams flagged for factory goals:
 broadcasting policy, static-shape seam, views-vs-copies, MIR
 differentiability stance, backend kernel story. (<code>be0f582f2</code>)</li></ul><h3 id="other-changes">Other changes<a class="anchor" href="#other-changes">#</a></h3><ul><li><strong>Fix: close DEFER-004</strong> — repair wasm e2e and HTTP codegen test; emit Wasm
 text and binary in one paired probe, pin exempla at real Wasm tier ceilings,
-rewrite <code>octet.fab</code> without em-dash lexer failures. (<code>458346c62</code>)</li><li><strong>Fix: close DEFER-030</strong> — add shared <code>index_projection_result_ty</code> so bytes
+rewrite <code>octet.fab</code> without em-dash lexer failures. (<code>458346c62</code>)</li><li><strong>Fix: close DEFER-030</strong> — add shared <code>index_projection_result_ty</code> so octeti
 indexes (<code>list&lt;numerus&lt;u8&gt;&gt;</code>) pass MIR validation and Wasm/LLVM probes.
 (<code>424872b71</code>)</li><li><strong>Docs: repair zombie drift</strong> — align repo-shape READMEs with current
 workspace layout (exempla corpus, faber-cli vs faber runtime, cista/scena/
@@ -97,7 +97,7 @@ refresh DEFER-029, close DEFER-031 (instans-primitive), triage open items.
 Go conversion strconv deduplication (<code>3923eae35</code>); Rust conversion narrowing
 and parse helper unification (<code>e940201cf</code>); typecheck conversion/verte helper
 structuring (<code>f131b014d</code>); conversio-vs-verte shared <code>from_valor</code> emission
-routing (<code>fd5a3e7eb</code>).</li><li><strong>Style/Chore:</strong> format radix after bytes/conversio work (<code>7e3b59d93</code>);
+routing (<code>fd5a3e7eb</code>).</li><li><strong>Style/Chore:</strong> format radix after octeti/conversio work (<code>7e3b59d93</code>);
 format norma <code>toml.rs</code> EOF fix (<code>1faa44622</code>); lint fixes and hygiene debt
 from housekeeping (<code>2c2a92b82</code>).</li></ul><h3 id="breaking-author-visible">Breaking / author-visible<a class="anchor" href="#breaking-author-visible">#</a></h3><div class="table-scroll"><table><thead><tr><th>Change</th><th>Migration</th></tr></thead><tbody><tr><td>Conversio failure recovery uses <code class="glyph">⇥</code> instead of <code>coalesce</code></td><td>Replace <code>↦ … coalesce …</code> with <code class="glyph">↦ … ⇥ …</code>; the old spelling emits a parse-time migration diagnostic</td></tr><tr><td><code>Valor::Tempus</code> renamed to <code>Valor::Instans</code></td><td>Consumer match arms and JSON/SVAL wire paths must use <code>Instans</code></td></tr></tbody></table></div><h3 id="verification">Verification<a class="anchor" href="#verification">#</a></h3><pre class="faber-code"><code class="lang-bash">./scripta/lint
 RUST_TEST_THREADS=1 ./scripta/test <span class="tok-op">--full</span>

@@ -2,7 +2,7 @@
 
 Embeds a package file into a module constant at build time.
 
-**Term** `insere` · **Section** KEYWORDS
+**Term** `embed` · **Section** KEYWORDS
 
 ## Syntax
 
@@ -13,13 +13,13 @@ const <type> <name> = embed "<path>"
 ## What this teaches
 
 - Build-time embed — `const T X = embed "path"` reads a file while compiling; the program carries its contents as a literal.
-- One keyword, two results — the declared type decides: `string` requires valid UTF-8, `bytes` takes the raw bytes.
+- One keyword, two results — the declared type decides: `string` requires valid UTF-8, `list<b8>` takes the raw bytes.
 - Package-relative paths — resolved against the package root (the nearest `faber.toml`), or this file's directory when there is none.
 
 ## Common mistakes
 
 - Using an absolute path or `..` to reach outside the package — both are compile errors (SEM061).
-- Declaring `string` for a binary file — invalid UTF-8 is a compile error; declare `bytes`.
+- Declaring `string` for a binary file — invalid UTF-8 is a compile error; declare `list<b8>`.
 - Expecting a runtime read — changing the file needs a rebuild; for run-time I/O use a `call` route.
 
 ## Grammar
@@ -61,6 +61,6 @@ main {
 }
 ```
 
-See also: [`const`](const.md), [`string`](textus.md), [`bytes`](bytes.md), [`comptime`](comptime.md).
+See also: [`const`](const.md), [`string (type)`](string (type).md), [`list<b8>`](list<b8>.md), [`comptime`](comptime.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

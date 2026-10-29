@@ -51,6 +51,6 @@ main {
 }
 ```
 
-See also: [`↦`](↦.md), [`float`](float.md), [`bytes`](bytes.md).
+See also: [`↦`](↦.md), [`float`](float.md), [`list<b8>`](list<b8>.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

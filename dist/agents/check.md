@@ -14,23 +14,33 @@ main {
 faber check .
 ```
 
-A failing check prints one line per diagnostic, each carrying its code and slug:
+A failing check prints each diagnostic as a block (diagnostics are on by
+default since 1.17): the code and slug, the phase, the file, the span, the
+source line, the message and a `help` sentence. After the last block, one
+`explain:` line names the `faber explain` query for the first error that has an
+entry:
+
+```text
+error[SEM010:expression_type_mismatch] analysis src/main.fab
+phase: analysis
+file: src/main.fab
+span: 25..29
+source:     let int x ← "no"
+message: expression type mismatch
+help: provide a value of the required type, or convert it with `↦` when supported
+explain: faber explain SEM010.expression_type_mismatch
+```
+
+`faber check --no-diagnostics` gives the compact form, one line per diagnostic
+carrying its code and slug, with no message, help or footer:
 
 ```text
 error[SEM010:expression_type_mismatch]: src/main.fab:2
 ```
 
-`faber check --diagnostics` expands each one into a block with the phase, the
-file, the span, the source line, and a `help` sentence:
-
-```text
-error[SEM010:expression_type_mismatch] analysis src/main.fab: expression type mismatch
-phase: analysis
-file: src/main.fab
-span: 25..29
-source:     let int x ← "no"
-help: make the expression type match the expected type
-```
+`--no-diagnostics` is accepted by `check`, `build`, `run`, `test`, `emit`,
+`format` and `convert`. The old `--diagnostics` flag is gone from all of them.
+JSON output and exit codes are the same in both forms.
 
 `--diagnostics-locale zh-Hans` sets the language of the message and the help
 text, independently of the source file's own locale. The code and the slug
@@ -44,7 +54,9 @@ faber explain SEM010
 faber explain SEM010 --json
 ```
 
-`faber explain SEM010` says the expression type does not match the expected
-type. `--json` returns `{code, locale, message, help}`.
+`faber explain SEM010` reports `type mismatch` with the help `make the
+expression type match the expected type`; `faber explain
+SEM010.expression_type_mismatch` is the entry for this exact failure. `--json`
+returns `{code, locale, message, help}`.
 
 Fetch list: https://faberlang.dev/agents/index.md

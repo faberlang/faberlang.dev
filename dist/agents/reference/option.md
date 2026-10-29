@@ -2,12 +2,12 @@
 
 Declares a CLI option annotation.
 
-**Term** `optio` · **Section** KEYWORDS
+**Term** `option` · **Section** KEYWORDS
 
 ## Syntax
 
 ```
-@ option <binding> [short "x"] [long "name"] [type <type>] [description "..."] [global] [vel <default>]
+@ option <binding> [short "x"] [long "name"] [type <type>] [description "..."] [global] [coalesce <default>]
 ```
 
 ## What this teaches
@@ -47,6 +47,6 @@ main args args {
 }
 ```
 
-See also: [`operand`](operand.md), [`cli`](cli.md), [`command`](command.md), [`global`](global.md), [`vel`](coalesce.md).
+See also: [`operand`](operand.md), [`cli`](cli.md), [`command`](command.md), [`global`](global.md), [`coalesce`](coalesce.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

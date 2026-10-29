@@ -49,6 +49,6 @@ main {
 }
 ```
 
-See also: [`forma`](reshape.md), [`format`](format.md), [`string`](string.md), [`string`](textus.md), [`§`](§.md).
+See also: [`reshape`](reshape.md), [`format`](format.md), [`string`](string.md), [`string (type)`](string (type).md), [`§`](§.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

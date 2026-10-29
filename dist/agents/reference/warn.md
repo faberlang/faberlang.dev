@@ -2,7 +2,7 @@
 
 Writes a warning message.
 
-**Term** `mone` · **Section** KEYWORDS
+**Term** `warn` · **Section** KEYWORDS
 
 ## Syntax
 

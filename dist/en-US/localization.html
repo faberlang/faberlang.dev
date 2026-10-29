@@ -23,14 +23,14 @@ stressed by at least one language here, on purpose.</p><h2 id="en">English<a cla
     }
 }
 
-<span class="tok-kw">fn</span> choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">bool</span> first, T a, T b) <span class="tok-op">→</span> T {
-    <span class="tok-kw">return</span> first ✓ a ✗ b
+<span class="tok-kw">fn</span> choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">bool</span> <span class="tok-kw">first</span>, T a, T b) <span class="tok-op">→</span> T {
+    <span class="tok-kw">return</span> <span class="tok-kw">first</span> ✓ a ✗ b
 }
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">let</span> Span <span class="tok-kw">bytes</span> <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
-    <span class="tok-kw">print</span> <span class="tok-kw">bytes</span>.center()
-    <span class="tok-kw">print</span> choose(<span class="tok-kw">bytes</span>.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
+    <span class="tok-kw">let</span> Span bytes <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
+    <span class="tok-kw">print</span> bytes.center()
+    <span class="tok-kw">print</span> choose(bytes.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
     <span class="tok-kw">print</span> <span class="tok-op">-</span><span class="tok-nu">7</span> <span class="tok-op">/</span> <span class="tok-nu">2</span>
 }</code></pre><h2 id="la">Latin<a class="anchor" href="#la">#</a></h2><p><strong>Identity pack.</strong> The pack files are keyed by Latin spellings because Latin is <strong>neutral relative to every modern national language</strong>. No living population has a claim on it, so no reader pack has to be the one that everyone else is a translation of.</p><p><em>Architectural stress:</em> None unique — by design. It is the complete template every translated pack is built from.</p><pre class="faber-code"><code class="lang-faber locale=la"><span class="tok-kw">genus</span> Span {
     <span class="tok-kw">sit</span> f64 low

@@ -2,7 +2,7 @@
 
 Introduces a branch inside an switch or match statement.
 
-**Term** `casu` · **Section** KEYWORDS · **Also** `case`
+**Term** `case` · **Section** KEYWORDS
 
 ## Syntax
 
@@ -12,7 +12,7 @@ case <expression> <block>
 
 ## What this teaches
 
-- Pattern matching arms — `case <expression> <block>` defines a branch in an `switch` match expression
+- Pattern matching arms — `case <expression> <block>` defines a branch in a `switch` match expression
 - Default fallback — `default` provides the catch-all branch when no `case` pattern matches
 
 ## Common mistakes

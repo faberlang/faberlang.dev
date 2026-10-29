@@ -38,10 +38,10 @@ instead of <code>TypeId</code> identity, fixing compound union collapse in annot
 (<code>e80a8c045</code>)</li></ul><h4 id="mir-e2e-harness-and-gap-ledger">MIR e2e harness and gap ledger<a class="anchor" href="#mir-e2e-harness-and-gap-ledger">#</a></h4><ul><li><code>exempla_mir_e2e</code> harness that stops at validated MIR lowering (independent
 of Wasm/LLVM emission) (<code>9b7f993eb</code>)</li><li>Baseline gap ledger with per-exemplum tiers, four-way gap classification,
 and intentional-subset count (42) for backend floor ratchets</li></ul><h4 id="literal-family-polish">Literal-family polish<a class="anchor" href="#literal-family-polish">#</a></h4><p>A coordinated polish pass across the full pipeline to share parsing, lowering,
-and codegen helpers for the literal family (<code>ascii</code>, <code>bytes</code>, JSON <code>map</code>,
+and codegen helpers for the literal family (<code>ascii</code>, <code class="typ">octeti</code>, JSON <code>map</code>,
 numeric).</p><ul><li>Lexer: shared <code>delimited-literal</code> and <code>escape</code> helpers, register <code>ascii</code> and
-retired-block scan cases (<code>db26aa983</code>, <code>6301d169f</code>)</li><li>Parser: share JSON object member parsing, accept <code>bytes</code> literals in arm
-heads (<code>a0064f393</code>, <code>f3f362bd4</code>)</li><li>HIR lowering: share <code>literal_to_hir</code>, allow <code>bytes</code> patterns
+retired-block scan cases (<code>db26aa983</code>, <code>6301d169f</code>)</li><li>Parser: share JSON object member parsing, accept <code class="typ">octeti</code> literals in arm
+heads (<code>a0064f393</code>, <code>f3f362bd4</code>)</li><li>HIR lowering: share <code>literal_to_hir</code>, allow <code class="typ">octeti</code> patterns
 (<code>03fcc93bc</code>)</li><li>MIR lowering: extract <code>unsupported_literal</code> for deferred literals
 (<code>970249d09</code>)</li><li>Typecheck: fix literal docs, share interned payload helper (<code>c6db9ba18</code>)</li><li>Codegen restore blank-line separation in Rust/Go literal generators
 (<code>7266eafab</code>, <code>161e1e228</code>)</li><li>Driver tests: add <code>compile-failure</code> helper and literal-family coverage

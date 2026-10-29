@@ -2,7 +2,7 @@
 
 Compatibility annotation for asynchronous posture.
 
-**Term** `futura` · **Section** ANNOTATIONS
+**Term** `future` · **Section** ANNOTATIONS
 
 ## Syntax
 

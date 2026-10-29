@@ -2,12 +2,12 @@
 
 Repeats a block while a condition remains true.
 
-**Term** `dum` · **Section** KEYWORDS · **Also** `while`
+**Term** `while` · **Section** KEYWORDS
 
 ## Syntax
 
 ```
-while <condition> <block|ergo statement>
+while <condition> <block|then statement>
 ```
 
 ## What this teaches

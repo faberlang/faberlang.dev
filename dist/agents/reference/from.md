@@ -2,12 +2,12 @@
 
 Extracts fields from a value into local bindings.
 
-**Term** `ex` · **Section** KEYWORDS
+**Term** `from` · **Section** KEYWORDS
 
 ## Syntax
 
 ```
-from <expression> <sit|varia> <field> [, ...] [rest <ident>]
+from <expression> <let|mut> <field> [, ...] [rest <ident>]
 ```
 
 ## What this teaches
@@ -17,7 +17,7 @@ from <expression> <sit|varia> <field> [, ...] [rest <ident>]
 
 ## Common mistakes
 
-- Mode mismatch — passing a `ref` (read-only) parameter to an `from` (consume) position, or extracting a field that doesn't exist on the target type.
+- Mode mismatch — passing a `ref` (read-only) parameter to a `from` (consume) position, or extracting a field that doesn't exist on the target type.
 
 ## Grammar
 

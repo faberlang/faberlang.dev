@@ -2,7 +2,7 @@
 
 Starts a value-based branch statement.
 
-**Term** `elige` · **Section** KEYWORDS · **Also** `switch`, `choose`
+**Term** `switch` · **Section** KEYWORDS · **Also** `choose`
 
 ## Syntax
 

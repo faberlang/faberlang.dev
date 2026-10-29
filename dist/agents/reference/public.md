@@ -2,7 +2,7 @@
 
 Marks an import as re-exported from the current module.
 
-**Term** `publica` · **Section** KEYWORDS · **Also** `public`
+**Term** `public` · **Section** KEYWORDS
 
 ## Syntax
 

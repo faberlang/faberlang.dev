@@ -2,7 +2,7 @@
 
 Declares an enumeration.
 
-**Term** `ordo` · **Section** KEYWORDS · **Also** `enum`
+**Term** `enum` · **Section** KEYWORDS
 
 ## Syntax
 

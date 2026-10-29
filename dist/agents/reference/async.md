@@ -2,7 +2,7 @@
 
 Callable posture for asynchronous finite functions.
 
-**Term** `fiet` · **Section** KEYWORDS · **Also** `async`
+**Term** `async` · **Section** KEYWORDS
 
 ## Syntax
 

@@ -140,13 +140,13 @@ main {
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • When no binding named `read` is in scope, bare `read` is the read</span>
-<span class="tok-co">#     builtin (stdin line). Same rule as corpus/lege/lege.fab.</span>
+<span class="tok-co">#     builtin (all of stdin). Same rule as corpus/lege/lege.fab.</span>
 <span class="tok-co">#   • No syntactic escape hatch — the builtin stays reachable by not</span>
 <span class="tok-co">#     shadowing the spelling.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • Treating this file as a stdout golden — stdin is interactive (no</span>
-<span class="tok-co">#     sibling .expected), matching read/lege.fab.</span>
+<span class="tok-co">#   • Expecting a prompt: stdin comes from the sibling read-unshadowed.stdin</span>
+<span class="tok-co">#     fixture, which is empty, so the read reaches end of input at once.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># See also: read, read-shadowed.fab</span>
 <span class="tok-co"># =============================================================================</span>
@@ -158,12 +158,15 @@ main {
 <span class="tok-co">#   readExpr :← 'read'</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
-<span class="tok-co">#   none — interactive stdin, same class as read/lege.fab</span>
+<span class="tok-co">#   none — the empty stdin fixture ends the input, so the read gives `none`</span>
+<span class="tok-co">#   (read-unshadowed.expected).</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># BACKEND:</span>
-<span class="tok-co">#   Rust/Go/roundtrip e2e follow the read/lege.fab stdin-read class.</span>
+<span class="tok-co">#   Targets read the fixture through the case manifest's `stdin` field; the</span>
+<span class="tok-co">#   outcomes row of each target pins how it handles a read to end of input.</span>
 
 main {
     let string <span class="tok-op">∪</span> none input <span class="tok-op">←</span> read
     print input
-}</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpuskeyword-as-identprint-bindingfab-canonical-concept">radix/corpus/keyword-as-ident/print-binding.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpuskeyword-as-identprint-callfab-canonical-concept">radix/corpus/keyword-as-ident/print-call.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpuskeyword-as-identprint-fnfab-canonical-concept">radix/corpus/keyword-as-ident/print-fn.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpuskeyword-as-identread-shadowedfab-canonical-concept">radix/corpus/keyword-as-ident/read-shadowed.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpuskeyword-as-identread-unshadowedfab-canonical-concept">radix/corpus/keyword-as-ident/read-unshadowed.fab (canonical · concept)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/keyword-as-ident/print-binding.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>none
+</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpuskeyword-as-identprint-bindingfab-canonical-concept">radix/corpus/keyword-as-ident/print-binding.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpuskeyword-as-identprint-callfab-canonical-concept">radix/corpus/keyword-as-ident/print-call.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpuskeyword-as-identprint-fnfab-canonical-concept">radix/corpus/keyword-as-ident/print-fn.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpuskeyword-as-identread-shadowedfab-canonical-concept">radix/corpus/keyword-as-ident/read-shadowed.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpuskeyword-as-identread-unshadowedfab-canonical-concept">radix/corpus/keyword-as-ident/read-unshadowed.fab (canonical · concept)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/keyword-as-ident/print-binding.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

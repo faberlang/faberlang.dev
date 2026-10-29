@@ -13,121 +13,121 @@ Latin spellings are accepted lookups; the documented spelling is English.
 
 ## Keywords
 
-- [all](all.md) (`omnia`) — Marks a test hook as applying to every case.
-- [args](args.md) (`argumenta`) — Binds command-line arguments for an entry point.
-- [as](as.md) (`ut`) — Introduces an alias name.
-- [assert](assert.md) (`adfirma`) — Asserts that a condition is true at runtime.
-- [async](async.md) (`fiet`) — Callable posture for asynchronous finite functions.
-- [async_generator](async_generator.md) (`fient`) — Callable posture for asynchronous stream functions.
-- [async_main](async_main.md) (`incipiet`) — Declares the asynchronous program entry point.
-- [async_setup](async_setup.md) (`praeparabit`) — Registers an async before-each test hook.
-- [async_teardown](async_teardown.md) (`postparabit`) — Registers an async after-each test hook.
-- [await](await.md) (`tacebit`) — Awaits a promissum and discards the success value.
-- [await_const](await_const.md) (`figendum`) — Awaits a promissum and binds an immutable name.
-- [await_var](await_var.md) (`variandum`) — Awaits a promissum and binds a mutable name.
-- [before](before.md) (`ante`) — Creates an exclusive range with a Latin keyword.
-- [bool](bool.md) (`bivalens`) — Primitive types bivalens, vacuum, and ignotum.
-- [break](break.md) (`rumpe`) — Breaks out of the innermost loop.
-- [bytes](bytes.md) (`octeti`) — Primitive byte-buffer type.
-- [call](call.md) (`ad`) — ad opens a sermo endpoint and materializes the stream with an explicit conversio target.
-- [case](case.md) (`casu`) — Introduces a branch inside an elige or discerne statement.
-- [catch](catch.md) (`cape`) — Starts a catch block.
-- [class](class.md) (`genus`) — Declares a concrete type with fields and methods.
-- [comptime](comptime.md) (`praefixum`) — Computes a module constant's value at build time.
-- [const](const.md) (`fixum`) — Declares an immutable binding.
-- [continue](continue.md) (`perge`) — Continues with the next loop iteration.
+- [all](all.md) — Marks a test hook as applying to every case.
+- [args](args.md) — Binds command-line arguments for an entry point.
+- [as](as.md) — Introduces an alias name.
+- [assert](assert.md) — Asserts that a condition is true at runtime.
+- [async](async.md) — Callable posture for asynchronous finite functions.
+- [async_generator](async_generator.md) — Callable posture for asynchronous stream functions.
+- [async_main](async_main.md) — Declares the asynchronous program entry point.
+- [async_setup](async_setup.md) — Registers an async before-each test hook.
+- [async_teardown](async_teardown.md) — Registers an async after-each test hook.
+- [await](await.md) — Awaits a promissum and discards the success value.
+- [await_const](await_const.md) — Awaits a promissum and binds an immutable name.
+- [await_var](await_var.md) — Awaits a promissum and binds a mutable name.
+- [before](before.md) — Creates an exclusive range with a Latin keyword.
+- [bool](bool.md) — Primitive types bivalens, vacuum, and ignotum.
+- [break](break.md) — Breaks out of the innermost loop.
+- [call](call.md) — ad opens a sermo endpoint and materializes the stream with an explicit conversio target.
+- [case](case.md) — Introduces a branch inside an elige or discerne statement.
+- [catch](catch.md) — Starts a catch block.
+- [class](class.md) — Declares a concrete type with fields and methods.
+- [comptime](comptime.md) — Computes a module constant's value at build time.
+- [const](const.md) — Declares an immutable binding.
+- [continue](continue.md) — Continues with the next loop iteration.
 - [cursor](cursor.md) — Compatibility annotation for stream/generator posture.
-- [debug](debug.md) (`vide`) — Writes a debug value to standard error.
-- [default](default.md) (`ceterum`) — Starts the default branch of an elige or discerne statement.
-- [describe](describe.md) (`probandum`) — Groups related test cases into a named suite.
-- [description](description.md) (`descriptio`) — Attaches a description string to CLI metadata.
-- [do](do.md) (`fac`) — Starts a scoped do-while style loop.
-- [elif](elif.md) (`sin`) — Adds an else-if branch after a previous si branch.
-- [else](else.md) (`secus`) — Runs the fallback branch when preceding conditional branches do not match.
-- [embed](embed.md) (`insere`) — Embeds a package file into a module constant at build time.
-- [enum](enum.md) (`ordo`) — Declares an enumeration.
-- [errors](errors.md) (`errata`) — Marks a function parameter or binding as carrying an error value.
-- [exit](exit.md) (`exitus`) — Sets the exit code or exit expression for an entry point.
-- [false](false.md) (`falsum`) — Represents the false boolean value and can prefix a falsity check.
-- [flaky](flaky.md) (`fragilis`) — Marks a test as fragile.
-- [float](float.md) (`fractus`) — Primitive floating-point number type.
-- [fn](fn.md) (`functio`) — Declares a named function or method.
-- [for](for.md) (`itera`) — Starts a for-each iteration statement.
-- [format](format.md) (`scriptum`) — Creates a formatted string with `§` placeholders.
-- [from](from.md) (`ex`) — Extracts fields from a value into local bindings.
-- [generator](generator.md) (`fiunt`) — Callable posture for synchronous stream (generator) functions.
-- [global](global.md) (`ubique`) — Marks an option or operand as global.
-- [guard](guard.md) (`custodi`) — Groups early-exit guard checks before the main body of a function.
-- [if](if.md) (`si`) — Starts a conditional branch that runs when its condition is true.
-- [implements](implements.md) (`implet`) — Declares that a type implements one or more implendum contracts.
-- [import](import.md) (`importa`) — Imports names from another module or package source.
-- [instant](instant.md) (`instans`) — Absolute point-in-time primitive with precision contract.
-- [int](int.md) (`numerus`) — Primitive integer number type.
-- [interface](interface.md) (`implendum`) — Declares a behavioral contract with method signatures.
-- [is](is.md) (`est`) — Tests whether a value's runtime type is a given type.
-- [lambda](lambda.md) (`clausura`) — Declares or explains an inline closure expression; compact ∴ syntax is preferred for new code.
-- [let](let.md) (`sit`) — Declares an inferred immutable local.
-- [line](line.md) (`lineam`) — Reads one line of input.
-- [list](list.md) (`lista`) — Generic ordered collection type.
-- [main](main.md) (`incipit`) — Declares the synchronous program entry point.
-- [map](map.md) (`tabula`) — Generic key/value map type.
-- [match](match.md) (`discerne`) — Starts an exhaustive pattern match over a value or values.
-- [mut](mut.md) (`in`) — Marks a mutable borrowed parameter.
-- [never](never.md) (`numquam`) — Primitive never type for code paths that do not return normally.
-- [none](none.md) (`nihil`) — The absent-member type: none (la nihil) is the type, null (la nulla) is its value.
-- [not](not.md) (`non`) — Negates a boolean expression.
-- [object](object.md) (`objectum`) — Declares a type alias.
-- [only](only.md) (`solum`) — Marks a test as the only test to run.
-- [only_in](only_in.md) (`solum_in`) — Restricts a test to a named environment or target.
-- [operand](operand.md) (`operandus`) — Declares a CLI operand annotation.
-- [option](option.md) (`optio`) — Declares a CLI option annotation.
-- [optional](optional.md) (`sponte`) — Marks a named declaration slot (parameter or genus field) as voluntary — the caller or provider may omit the value.
-- [options](options.md) (`optiones`) — Binds CLI options metadata to a function declaration.
-- [panic](panic.md) (`mori`) — Raises a fatal error or panic.
-- [pass](pass.md) (`tacet`) — Marks an explicit no-op statement.
-- [private](private.md) (`privata`) — Marks a declaration as module-private (the default tier).
-- [promise](promise.md) (`promissum`) — Promise-like result type associated with async finite functions.
-- [protected](protected.md) (`protecta`) — Reserved visibility annotation rejected by semantic analysis.
-- [public](public.md) (`publica`) — Marks an import as re-exported from the current module.
-- [range](range.md) (`ab`) — Selects numeric range iteration in an itera loop.
-- [read](read.md) (`lege`) — Reads input from the active input stream.
-- [readonly](readonly.md) (`immutata`) — Marks a function as non-mutating.
-- [record](record.md) (`ratio`) — Labeled ad-hoc record type: construction, .name access, objectPattern, and holes.
-- [ref](ref.md) (`de`) — Introduces borrowed iteration or borrowed parameters.
-- [reject](reject.md) (`reice`) — Reject a condition or throw a recoverable error.
-- [repeat](repeat.md) (`repete`) — Repeats a test a fixed number of times.
-- [require](require.md) (`requirit`) — Require a condition or throw a recoverable error.
-- [rest](rest.md) (`ceteri`) — Collects remaining parameters, operands, or extracted fields.
-- [return](return.md) (`redde`) — Returns a value from a function.
-- [return_await](return_await.md) (`reddet`) — Awaits a promissum and returns its success value from a fiet body.
+- [debug](debug.md) — Writes a debug value to standard error.
+- [default](default.md) — Starts the default branch of an elige or discerne statement.
+- [describe](describe.md) — Groups related test cases into a named suite.
+- [description](description.md) — Attaches a description string to CLI metadata.
+- [do](do.md) — Starts a scoped do-while style loop.
+- [elif](elif.md) — Adds an else-if branch after a previous si branch.
+- [else](else.md) — Runs the fallback branch when preceding conditional branches do not match.
+- [embed](embed.md) — Embeds a package file into a module constant at build time.
+- [enum](enum.md) — Declares an enumeration.
+- [errors](errors.md) — Marks a function parameter or binding as carrying an error value.
+- [exit](exit.md) — Sets the exit code or exit expression for an entry point.
+- [false](false.md) — Represents the false boolean value and can prefix a falsity check.
+- [flaky](flaky.md) — Marks a test as fragile.
+- [float](float.md) — Primitive floating-point number type.
+- [fn](fn.md) — Declares a named function or method.
+- [for](for.md) — Starts a for-each iteration statement.
+- [format](format.md) — Creates a formatted string with `§` placeholders.
+- [from](from.md) — Extracts fields from a value into local bindings.
+- [generator](generator.md) — Callable posture for synchronous stream (generator) functions.
+- [global](global.md) — Marks an option or operand as global.
+- [guard](guard.md) — Groups early-exit guard checks before the main body of a function.
+- [if](if.md) — Starts a conditional branch that runs when its condition is true.
+- [implements](implements.md) — Declares that a type implements one or more implendum contracts.
+- [import](import.md) — Imports names from another module or package source.
+- [instant](instant.md) — Absolute point-in-time primitive with precision contract.
+- [int](int.md) — Primitive integer number type.
+- [interface](interface.md) — Declares a behavioral contract with method signatures.
+- [is](is.md) — Tests whether a value's runtime type is a given type.
+- [lambda](lambda.md) — Declares or explains an inline closure expression; compact ∴ syntax is preferred for new code.
+- [let](let.md) — Declares an inferred immutable local.
+- [line](line.md) — Reads one line of input.
+- [list](list.md) — Generic ordered collection type.
+- [list<b8>](list<b8>.md) — A byte buffer is a list<b8>; hex literals like |de ad be ef| write one.
+- [main](main.md) — Declares the synchronous program entry point.
+- [map](map.md) — Generic key/value map type.
+- [match](match.md) — Starts an exhaustive pattern match over a value or values.
+- [mut](mut.md) — Declares a mutable binding.
+- [mut (function)](mut (function).md) — Marks a mutable borrowed parameter.
+- [never](never.md) — Primitive never type for code paths that do not return normally.
+- [none](none.md) — The absent-member type: none (la nihil) is the type, null (la nulla) is its value.
+- [not](not.md) — Negates a boolean expression.
+- [object](object.md) — Declares a type alias.
+- [only](only.md) — Marks a test as the only test to run.
+- [only_in](only_in.md) — Restricts a test to a named environment or target.
+- [operand](operand.md) — Declares a CLI operand annotation.
+- [option](option.md) — Declares a CLI option annotation.
+- [optional](optional.md) — Marks a named declaration slot (parameter or genus field) as voluntary — the caller or provider may omit the value.
+- [options](options.md) — Binds CLI options metadata to a function declaration.
+- [panic](panic.md) — Raises a fatal error or panic.
+- [pass](pass.md) — Marks an explicit no-op statement.
+- [private](private.md) — Marks a declaration as module-private (the default tier).
+- [promise](promise.md) — Promise-like result type associated with async finite functions.
+- [protected](protected.md) — Reserved visibility annotation rejected by semantic analysis.
+- [public](public.md) — Marks an import as re-exported from the current module.
+- [range](range.md) — Selects numeric range iteration in an itera loop.
+- [read](read.md) — Reads input from the active input stream.
+- [readonly](readonly.md) — Marks a function as non-mutating.
+- [record](record.md) — Labeled ad-hoc record type: construction, .name access, objectPattern, and holes.
+- [ref](ref.md) — Introduces borrowed iteration or borrowed parameters.
+- [reject](reject.md) — Reject a condition or throw a recoverable error.
+- [repeat](repeat.md) — Repeats a test a fixed number of times.
+- [require](require.md) — Require a condition or throw a recoverable error.
+- [rest](rest.md) — Collects remaining parameters, operands, or extracted fields.
+- [return](return.md) — Returns a value from a function.
+- [return_await](return_await.md) — Awaits a promissum and returns its success value from a fiet body.
 - [selective_import](selective_import.md) — Selective imports bind exported members by name: one exported value or type per fixum local, with the imported file interface supplying the complete type.
-- [self](self.md) (`ego`) — Refers to the current instance inside a method.
-- [set](set.md) (`copia`) — Generic set collection type.
-- [setup](setup.md) (`praepara`) — Registers a before-each test hook.
-- [skip](skip.md) (`omitte`) — Marks a test case as skipped with a reason.
-- [spread](spread.md) (`sparge`) — Spreads an array or collection literal into its surrounding expression.
-- [step](step.md) (`per`) — Sets the step for a range.
-- [switch](switch.md) (`elige`) — Starts a value-based branch statement.
+- [self](self.md) — Refers to the current instance inside a method.
+- [set](set.md) — Generic set collection type.
+- [setup](setup.md) — Registers a before-each test hook.
+- [skip](skip.md) — Marks a test case as skipped with a reason.
+- [spread](spread.md) — Spreads an array or collection literal into its surrounding expression.
+- [step](step.md) — Sets the step for a range.
+- [string (type)](string (type).md) — Primitive string/text type.
+- [switch](switch.md) — Starts a value-based branch statement.
 - [tag](tag.md) — Attaches a test tag string.
-- [teardown](teardown.md) (`postpara`) — Registers an after-each test hook.
-- [test](test.md) (`proba`) — Defines a single test case.
-- [textus](textus.md) — Primitive string/text type.
-- [throw](throw.md) (`iace`) — Throws a recoverable error.
-- [timeout](timeout.md) (`temporis`) — Sets a wall-clock timeout in seconds for a test modifier.
-- [todo](todo.md) (`futurum`) — Marks a test case as pending future work with a reason.
-- [true](true.md) (`verum`) — Represents the true boolean value and can prefix a truthiness check.
-- [tuple](tuple.md) (`iuncta`) — Labeled iuncta elements: type args, construction, member access, objectPattern, and holes.
-- [type](type.md) (`typus`) — Declares a type alias.
-- [union](union.md) (`discretio`) — Declares a tagged union with variant payloads.
-- [unknown](unknown.md) (`ignotum`) — Primitive types bivalens, vacuum, and ignotum.
-- [until](until.md) (`usque`) — Creates an inclusive range with a Latin keyword.
-- [varia](varia.md) — Declares a mutable binding.
-- [variant](variant.md) (`finge`) — Constructs a tagged union variant.
-- [void](void.md) (`vacuum`) — Primitive no-value return type.
-- [warn](warn.md) (`mone`) — Writes a warning message.
-- [while](while.md) (`dum`) — Repeats a block while a condition remains true.
-- [write](write.md) (`scribe`) — Writes a value to standard output.
-- [yield](yield.md) (`cede`) — Yields one value from a generator.
+- [teardown](teardown.md) — Registers an after-each test hook.
+- [test](test.md) — Defines a single test case.
+- [throw](throw.md) — Throws a recoverable error.
+- [timeout](timeout.md) — Sets a wall-clock timeout in seconds for a test modifier.
+- [todo](todo.md) — Marks a test case as pending future work with a reason.
+- [true](true.md) — Represents the true boolean value and can prefix a truthiness check.
+- [tuple](tuple.md) — Labeled iuncta elements: type args, construction, member access, objectPattern, and holes.
+- [type](type.md) — Declares a type alias.
+- [union](union.md) — Declares a tagged union with variant payloads.
+- [unknown](unknown.md) — Primitive types bivalens, vacuum, and ignotum.
+- [until](until.md) — Creates an inclusive range with a Latin keyword.
+- [variant](variant.md) — Constructs a tagged union variant.
+- [void](void.md) — Primitive no-value return type.
+- [warn](warn.md) — Writes a warning message.
+- [while](while.md) — Repeats a block while a condition remains true.
+- [write](write.md) — Writes a value to standard output.
+- [yield](yield.md) — Yields one value from a generator.
 - [∪](∪.md) — Declares a type alias.
 
 ## Operators
@@ -136,18 +136,23 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [!.](!..md) — Asserted member, index, and call access on known-present values.
 - [![](![.md) — Asserted member, index, and call access on known-present values.
 - [=](=.md) — Assigns a value to a binding, field, or assignable expression.
-- [?(](?(.md) — Null-safe member, index, and call access.
+- [?(](?(.md) — A `?(` call runs only when the function value is present, and gives `none` when it is absent.
 - [?.](?..md) — Null-safe member, index, and call access.
 - [?[](?[.md) — Null-safe member, index, and call access.
-- [and](and.md) (`et`) — Combines boolean expressions with logical and.
-- [coalesce](coalesce.md) (`vel`) — Provides a default when the left side holds `null`.
+- [and](and.md) — Combines boolean expressions with logical and.
+- [coalesce](coalesce.md) — Provides a default when the left side holds `null`.
+- [list<T, size lo‥hi>](list<T, size lo‥hi>.md) — A length range on a list: growing past the maximum or shrinking below the minimum reports on the error channel, and a range of at least one element is never empty.
 - [modulus<u16>](modulus<u16>.md) — Unsigned 16-bit modular-word arithmetic and bit-pattern edges.
 - [modulus<u32>](modulus<u32>.md) — Unsigned 32-bit modular-word arithmetic and bit-pattern edges.
 - [modulus<u64>](modulus<u64>.md) — Unsigned 64-bit modular-word arithmetic and bit-pattern edges.
 - [modulus<u8>](modulus<u8>.md) — Unsigned 8-bit modular-word arithmetic and bit-pattern edges.
 - [non est](non est.md) — Bitwise or and est-negation operators.
-- [or](or.md) (`aut`) — Combines boolean expressions with logical or.
-- [then](then.md) (`ergo`) — Introduces a compact statement consequent.
+- [or](or.md) — Combines boolean expressions with logical or.
+- [saturating<W, lo‥hi>](saturating<W, lo‥hi>.md) — A range as the second argument of saturating: a store clamps into the range, not only into the width.
+- [then](then.md) — Introduces a compact statement consequent.
+- [trapping<W, lo‥hi>](trapping<W, lo‥hi>.md) — A range as the second argument of trapping: a store inside the range keeps its value, a store outside it traps.
+- [whole-width range](whole-width range.md) — The existing store-policy spellings are the whole-width range: saturating<u8> is saturating<u8, 0…255>, u8 is trapping<u8, 0…255>.
+- [wrapping<W, lo‥hi>](wrapping<W, lo‥hi>.md) — A range as the second argument of wrapping: a store wraps around the range, offset by its low end.
 - [§](§.md) — String-template substitution holes inside quoted literals.
 - [¬](¬.md) — Bitwise and, or, xor, not, and shifts on numerus operands.
 - [·](·.md) — Glyph inner product: vector · vector reduces to a scalar dot product.
@@ -189,32 +194,32 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [@](@.md) — Introduces an annotation for the following declaration or statement.
 - [alias](alias.md) — CLI root with options, operands, subcommands, and module mounts.
 - [cli](cli.md) — CLI root with options, operands, subcommands, and module mounts.
-- [command](command.md) (`imperium`) — CLI root with options, operands, subcommands, and module mounts.
-- [commands](commands.md) (`imperia`) — CLI root with options, operands, subcommands, and module mounts.
-- [future](future.md) (`futura`) — Compatibility annotation for asynchronous posture.
-- [unstable](unstable.md) (`nondum`) — Marks an interface method as planned but unavailable for a target.
-- [version](version.md) (`versio`) — Attaches a version string to a CLI root.
+- [command](command.md) — CLI root with options, operands, subcommands, and module mounts.
+- [commands](commands.md) — CLI root with options, operands, subcommands, and module mounts.
+- [future](future.md) — Compatibility annotation for asynchronous posture.
+- [unstable](unstable.md) — Marks an interface method as planned but unavailable for a target.
+- [version](version.md) — Attaches a version string to a CLI root.
 
 ## Literals
 
-- [reshape](reshape.md) (`forma`) — Captured backtick templates for bound payloads.
+- [reshape](reshape.md) — Captured backtick templates for bound payloads.
 
 ## Modifiers
 
-- [throws](throws.md) (`iacit`) — Marks a function as able to throw along a recoverable channel.
+- [throws](throws.md) — Marks a function as able to throw along a recoverable channel.
 
 ## Types
 
 - [atomic](atomic.md) — atomic<i32> operations are storage-sensitive compiler-owned methods.
-- [bench](bench.md) (`metior`) — Marks a test for metered or measured execution.
+- [bench](bench.md) — Marks a test for metered or measured execution.
 - [block-string](block-string.md) — Block textus literals with embedded quotes and newlines.
 - [f16](f16.md) — the bare `f16` type-position width marker.
+- [first](first.md) — Marks a test for metered or measured execution.
 - [guillemet](guillemet.md) — Guillemet textus literals: quotes and apostrophes need no escape.
 - [matrix](matrix.md) — matrix<T, [R, C]> is a register-class type distinct from tensor.
 - [named-holes](named-holes.md) — Named template holes, positional rendering, and forma capture.
 - [string](string.md) — Short quoted textus string literals and template application.
-- [take](take.md) (`prima`) — Marks a test for metered or measured execution.
-- [take_last](take_last.md) (`ultima`) — Marks a test for metered or measured execution.
+- [take_last](take_last.md) — Marks a test for metered or measured execution.
 - [tensor](tensor.md) — tensor<T, Figura> declaration shell with rank-0 vacua.
 - [trapped](trapped.md) — The result of a capture boundary: trap { ... } reifies the error channel into a value read by match.
 - [vector](vector.md) — vector type declarations: long form and vf32 sugar.
@@ -223,10 +228,10 @@ Latin spellings are accepted lookups; the documented spelling is English.
 
 - [manifest](manifest.md) — faber.toml package metadata for build, run, and test.
 - [prae](prae.md) — Angle-bracket generic parameters on functions and declarations.
-- [primus_quem](primus_quem.md) — Dedicated total first-match expression: first live element of a source satisfying the owned ubi predicate, `nulla` for no-match and empty sources.
-- [sum](sum.md) (`summa`) — Sequential sum-reduce expression: reducta via summa ex <tensor> apud [i] sit s.
+- [reducta-first](reducta-first.md) — First-match reduction: reducta via prima ex <tensor> sit x { redde <predicate> } yields the first live element (row-major) whose predicate holds, `none` for no match and empty sources.
+- [sum](sum.md) — Sequential sum-reduce expression: reducta via summa ex <tensor> apud [i] sit s.
 - [targets](targets.md) — Compilation backends listed by faber targets or radix targets.
-- [thread](thread.md) (`filum`) — Distributed reducta via summa ex … filum kernel inside @ nucleum.
+- [thread](thread.md) — Distributed reducta via summa ex … filum kernel inside @ nucleum.
 
 ## Conversions
 

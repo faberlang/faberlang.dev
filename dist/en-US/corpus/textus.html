@@ -48,7 +48,7 @@ Ave Roma [&quot;Ave&quot;, &quot;Roma&quot;] Ave Munde
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Decline row (reject reason in the comment):</span>
-<span class="tok-co">#   1. over capacity — `"abcdef" ↦ string&lt;4&gt;` asks a 6-scalar literal to fit</span>
+<span class="tok-co">#   1. over capacity — `"abcdef" ↦ string&lt;size 4&gt;` asks a 6-scalar literal to fit</span>
 <span class="tok-co">#      a capacity of 4: SEM011 textus_literal_too_long</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
@@ -63,9 +63,9 @@ Ave Roma [&quot;Ave&quot;, &quot;Roma&quot;] Ave Munde
 <span class="tok-co"># WHY: pins the fail-closed overflow token in conversio-textus-overflow-decline.expected.</span>
 
 main {
-    let string<span class="tok-op">&lt;</span><span class="tok-nu">4</span><span class="tok-op">&gt;</span> t <span class="tok-op">←</span> <span class="tok-st">"abcdef"</span> ↦ string<span class="tok-op">&lt;</span><span class="tok-nu">4</span><span class="tok-op">&gt;</span>
+    let string<span class="tok-op">&lt;</span>size <span class="tok-nu">4</span><span class="tok-op">&gt;</span> t <span class="tok-op">←</span> <span class="tok-st">"abcdef"</span> ↦ string<span class="tok-op">&lt;</span>size <span class="tok-nu">4</span><span class="tok-op">&gt;</span>
     print t
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusboundedconversio-textus-to-ascii-declinefab-supporting-reject">radix/corpus/bounded/conversio-textus-to-ascii-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusboundedconversio-textus-to-ascii-declinefab-supporting-reject">#</a></h3><p>Decline: bounded string&lt;N&gt; cannot convert directly to ascii&lt;M&gt;.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusboundedconversio-textus-to-ascii-declinefab-supporting-reject">radix/corpus/bounded/conversio-textus-to-ascii-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusboundedconversio-textus-to-ascii-declinefab-supporting-reject">#</a></h3><p>Decline: bounded string&lt;size N&gt; cannot convert directly to ascii&lt;size M&gt;.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># bounded string to ascii — unsupported conversion decline</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -77,9 +77,9 @@ main {
 <span class="tok-co">#   • assuming every string value is ASCII-safe without an explicit narrowing</span>
 <span class="tok-co">#     check.</span>
 
-fn narrow(string<span class="tok-op">&lt;</span><span class="tok-nu">8</span><span class="tok-op">&gt;</span> raw) <span class="tok-op">→</span> ascii<span class="tok-op">&lt;</span><span class="tok-nu">4</span><span class="tok-op">&gt;</span> {
-    return raw ↦ ascii<span class="tok-op">&lt;</span><span class="tok-nu">4</span><span class="tok-op">&gt;</span>
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusboundedconversio-textus-to-bounded-textus-declinefab-supporting-reject">radix/corpus/bounded/conversio-textus-to-bounded-textus-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusboundedconversio-textus-to-bounded-textus-declinefab-supporting-reject">#</a></h3><p>Decline: bounded string&lt;N&gt; cannot resize directly to bounded string&lt;M&gt;.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+fn narrow(string<span class="tok-op">&lt;</span>size <span class="tok-nu">8</span><span class="tok-op">&gt;</span> raw) <span class="tok-op">→</span> ascii<span class="tok-op">&lt;</span>size <span class="tok-nu">4</span><span class="tok-op">&gt;</span> {
+    return raw ↦ ascii<span class="tok-op">&lt;</span>size <span class="tok-nu">4</span><span class="tok-op">&gt;</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusboundedconversio-textus-to-bounded-textus-declinefab-supporting-reject">radix/corpus/bounded/conversio-textus-to-bounded-textus-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusboundedconversio-textus-to-bounded-textus-declinefab-supporting-reject">#</a></h3><p>Decline: bounded string&lt;size N&gt; cannot resize directly to bounded string&lt;size M&gt;.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># bounded string resize — unsupported conversion decline</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -91,10 +91,10 @@ fn narrow(string<span class="tok-op">&lt;</span><span class="tok-nu">8</span><sp
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • expecting a resize to truncate Unicode scalars silently.</span>
 
-fn resize(string<span class="tok-op">&lt;</span><span class="tok-nu">8</span><span class="tok-op">&gt;</span> raw) <span class="tok-op">→</span> string<span class="tok-op">&lt;</span><span class="tok-nu">4</span><span class="tok-op">&gt;</span> {
-    return raw ↦ string<span class="tok-op">&lt;</span><span class="tok-nu">4</span><span class="tok-op">&gt;</span>
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusboundedconversio-textus-to-octeti-declinefab-supporting-reject">radix/corpus/bounded/conversio-textus-to-octeti-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusboundedconversio-textus-to-octeti-declinefab-supporting-reject">#</a></h3><p>Decline: bounded string&lt;N&gt; cannot convert directly to bytes&lt;M&gt;.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
-<span class="tok-co"># bounded string to bytes — unsupported conversion decline</span>
+fn resize(string<span class="tok-op">&lt;</span>size <span class="tok-nu">8</span><span class="tok-op">&gt;</span> raw) <span class="tok-op">→</span> string<span class="tok-op">&lt;</span>size <span class="tok-nu">4</span><span class="tok-op">&gt;</span> {
+    return raw ↦ string<span class="tok-op">&lt;</span>size <span class="tok-nu">4</span><span class="tok-op">&gt;</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusboundedconversio-textus-to-octeti-declinefab-supporting-reject">radix/corpus/bounded/conversio-textus-to-octeti-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusboundedconversio-textus-to-octeti-declinefab-supporting-reject">#</a></h3><p>Decline: bounded string&lt;size N&gt; cannot convert directly to list&lt;b8, size M&gt;.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># bounded string to list&lt;b8, size M&gt; — unsupported conversion decline</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
@@ -105,6 +105,18 @@ fn resize(string<span class="tok-op">&lt;</span><span class="tok-nu">8</span><sp
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • treating UTF-8 encoding as a width-only conversion.</span>
 
-fn encode(string<span class="tok-op">&lt;</span><span class="tok-nu">8</span><span class="tok-op">&gt;</span> raw) <span class="tok-op">→</span> list<span class="tok-op">&lt;</span>b8, <span class="tok-nu">8</span><span class="tok-op">&gt;</span> {
-    return raw ↦ list<span class="tok-op">&lt;</span>b8, <span class="tok-nu">8</span><span class="tok-op">&gt;</span>
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusintrinsecatextus-transformationesfab-canonical-keyword">radix/corpus/intrinseca/textus-transformationes.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-textus-overflow-declinefab-supporting-reject">radix/corpus/bounded/conversio-textus-overflow-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-textus-to-ascii-declinefab-supporting-reject">radix/corpus/bounded/conversio-textus-to-ascii-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-textus-to-bounded-textus-declinefab-supporting-reject">radix/corpus/bounded/conversio-textus-to-bounded-textus-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-textus-to-octeti-declinefab-supporting-reject">radix/corpus/bounded/conversio-textus-to-octeti-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/intrinseca/textus-transformationes.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+fn encode(string<span class="tok-op">&lt;</span>size <span class="tok-nu">8</span><span class="tok-op">&gt;</span> raw) <span class="tok-op">→</span> list<span class="tok-op">&lt;</span>b8, size <span class="tok-nu">8</span><span class="tok-op">&gt;</span> {
+    return raw ↦ list<span class="tok-op">&lt;</span>b8, size <span class="tok-nu">8</span><span class="tok-op">&gt;</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpustextusslice-unhandled-rejectfab-supporting-reject">radix/corpus/textus/slice-unhandled-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpustextusslice-unhandled-rejectfab-supporting-reject">#</a></h3><p>A text slice outside main with no handler is refused: the window reports on the error channel.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># string reject case — an unhandled text slice is refused.</span>
+<span class="tok-co"># `slice` reports an out-of-range window on the error channel, so a function</span>
+<span class="tok-co"># that neither handles it (`⊥ default`, `do { } catch err { }`) nor declares</span>
+<span class="tok-co"># its own `⇥` cannot call it. The checker names</span>
+<span class="tok-co"># `failable_call_requires_handler`. This exemplum intentionally fails to check.</span>
+
+fn first(string s) <span class="tok-op">→</span> string {
+    return s.slice(<span class="tok-nu">0</span>, <span class="tok-nu">1</span>)
+}
+
+main {
+    print first(<span class="tok-st">"abc"</span>)
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusintrinsecatextus-transformationesfab-canonical-keyword">radix/corpus/intrinseca/textus-transformationes.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-textus-overflow-declinefab-supporting-reject">radix/corpus/bounded/conversio-textus-overflow-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-textus-to-ascii-declinefab-supporting-reject">radix/corpus/bounded/conversio-textus-to-ascii-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-textus-to-bounded-textus-declinefab-supporting-reject">radix/corpus/bounded/conversio-textus-to-bounded-textus-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-textus-to-octeti-declinefab-supporting-reject">radix/corpus/bounded/conversio-textus-to-octeti-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpustextusslice-unhandled-rejectfab-supporting-reject">radix/corpus/textus/slice-unhandled-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/intrinseca/textus-transformationes.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

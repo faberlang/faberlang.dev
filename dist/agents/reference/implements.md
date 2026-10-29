@@ -2,7 +2,7 @@
 
 Declares that a type implements one or more interface contracts.
 
-**Term** `implet` · **Section** KEYWORDS · **Also** `implements`
+**Term** `implements` · **Section** KEYWORDS
 
 ## Syntax
 

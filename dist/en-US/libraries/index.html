@@ -3,12 +3,11 @@
 <strong>Gradus</strong>, and <strong>Tela</strong> are optional dependencies you declare when you need
 graphics work, automatic differentiation, or typed views. <strong>Inferentia</strong> is an
 application built on them, still in development.</p><h2 id="norma">Norma — bundled<a class="anchor" href="#norma">#</a></h2><p>The standard library. Imported as <code>norma:*</code>, no installation step, no entry in
-<code>faber.toml</code>:</p><pre class="faber-code"><code class="lang-faber">import from <span class="tok-st">"norma:fs"</span> fs
+<code>faber.toml</code>:</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">import</span> <span class="tok-kw">from</span> <span class="tok-st">"norma:fs"</span> fs
+<span class="tok-kw">import</span> <span class="tok-kw">from</span> <span class="tok-st">"norma:text"</span> text
 
-import from <span class="tok-st">"norma:text"</span> text
-
-main {
-    print <span class="tok-st">"ready"</span>
+<span class="tok-kw">main</span> {
+    <span class="tok-kw">print</span> <span class="tok-st">"ready"</span>
 }</code></pre><p>It covers I/O, collections, strings, math, and system interaction. It is
 deliberately small — the surface that exists is stable, rather than broad and
 provisional. <a href="/en-US/libraries/norma.html">Norma →</a></p><h2 id="triga">Triga — opt in<a class="anchor" href="#triga">#</a></h2><p>A native graphics and geometry engine written in Faber: math, scene graph,

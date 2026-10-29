@@ -2,7 +2,7 @@
 
 Awaits a promise and binds a mutable name.
 
-**Term** `variandum` · **Section** KEYWORDS · **Also** `await_var`
+**Term** `await_var` · **Section** KEYWORDS
 
 ## Syntax
 

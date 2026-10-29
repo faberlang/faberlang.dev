@@ -71,43 +71,43 @@ generically.</p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span
 
 <span class="tok-kw">incipit</span> {
     <span class="tok-kw">nota</span> primum([<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
-}</code></pre></div><div class="fdt-panel" id="lt-356cf04c5ad7920b-1-p-th-TH" role="tabpanel" aria-labelledby="lt-356cf04c5ad7920b-1-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">ฟังก์ชัน</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> นัล {
-    <span class="tok-kw">ถ้า</span> res.ความ<span class="tok-kw">ยาว</span>() <span class="tok-op">≡</span> <span class="tok-nu">0</span> <span class="tok-kw">ดังนั้น</span> <span class="tok-kw">คืน</span> ว่าง<span class="tok-kw">เปล่า</span>
+}</code></pre></div><div class="fdt-panel" id="lt-356cf04c5ad7920b-1-p-th-TH" role="tabpanel" aria-labelledby="lt-356cf04c5ad7920b-1-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">ฟังก์ชัน</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> <span class="tok-kw">ไม่มี</span> {
+    <span class="tok-kw">ถ้า</span> res.ความ<span class="tok-kw">ยาว</span>() <span class="tok-op">≡</span> <span class="tok-nu">0</span> <span class="tok-kw">ดังนั้น</span> <span class="tok-kw">คืน</span> <span class="tok-kw">ขาดหาย</span>
     <span class="tok-kw">คืน</span> res[<span class="tok-nu">0</span>]
 }
 
 <span class="tok-kw">เริ่ม</span> {
     <span class="tok-kw">บันทึก</span> primum([<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
-}</code></pre></div><div class="fdt-panel" id="lt-356cf04c5ad7920b-1-p-zh-Hans" role="tabpanel" aria-labelledby="lt-356cf04c5ad7920b-1-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">函数</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">列表</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> 空<span class="tok-kw">类型</span> {
-    <span class="tok-kw">如果</span> res.长度() <span class="tok-op">≡</span> <span class="tok-nu">0</span> <span class="tok-kw">则</span> <span class="tok-kw">返回</span> 皆<span class="tok-kw">无</span>
+}</code></pre></div><div class="fdt-panel" id="lt-356cf04c5ad7920b-1-p-zh-Hans" role="tabpanel" aria-labelledby="lt-356cf04c5ad7920b-1-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">函数</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">列表</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> <span class="tok-kw">无</span> {
+    <span class="tok-kw">如果</span> res.长度() <span class="tok-op">≡</span> <span class="tok-nu">0</span> <span class="tok-kw">则</span> <span class="tok-kw">返回</span> <span class="tok-kw">缺失</span>
     <span class="tok-kw">返回</span> res[<span class="tok-nu">0</span>]
 }
 
 <span class="tok-kw">入口</span> {
     <span class="tok-kw">显示</span> primum([<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
 }</code></pre></div><div class="fdt-panel" id="lt-356cf04c5ad7920b-1-p-zh-Hant" role="tabpanel" aria-labelledby="lt-356cf04c5ad7920b-1-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">函式</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">列表</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> <span class="tok-kw">無</span> {
-    <span class="tok-kw">若</span> res.長度() <span class="tok-op">≡</span> <span class="tok-nu">0</span> <span class="tok-kw">則</span> <span class="tok-kw">傳回</span> 可空
+    <span class="tok-kw">若</span> res.長度() <span class="tok-op">≡</span> <span class="tok-nu">0</span> <span class="tok-kw">則</span> <span class="tok-kw">傳回</span> <span class="tok-kw">缺失</span>
     <span class="tok-kw">傳回</span> res[<span class="tok-nu">0</span>]
 }
 
 <span class="tok-kw">入口</span> {
     <span class="tok-kw">註記</span> primum([<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
-}</code></pre></div><div class="fdt-panel" id="lt-356cf04c5ad7920b-1-p-vi" role="tabpanel" aria-labelledby="lt-356cf04c5ad7920b-1-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">hàm</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> rỗng_ty {
-    <span class="tok-kw">nếu</span> res.độ_dài() <span class="tok-op">≡</span> <span class="tok-nu">0</span> <span class="tok-kw">do_đó</span> <span class="tok-kw">trả</span> không_gì
+}</code></pre></div><div class="fdt-panel" id="lt-356cf04c5ad7920b-1-p-vi" role="tabpanel" aria-labelledby="lt-356cf04c5ad7920b-1-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">hàm</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> <span class="tok-kw">hư_không</span> {
+    <span class="tok-kw">nếu</span> res.độ_dài() <span class="tok-op">≡</span> <span class="tok-nu">0</span> <span class="tok-kw">do_đó</span> <span class="tok-kw">trả</span> <span class="tok-kw">vắng</span>
     <span class="tok-kw">trả</span> res[<span class="tok-nu">0</span>]
 }
 
 <span class="tok-kw">bắt_đầu</span> {
     <span class="tok-kw">ghi_chú</span> primum([<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
-}</code></pre></div><div class="fdt-panel" id="lt-356cf04c5ad7920b-1-p-ar" role="tabpanel" aria-labelledby="lt-356cf04c5ad7920b-1-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">دالة</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> ن<span class="tok-kw">و</span>ع_لاشيء {
-    <span class="tok-kw">إذا</span> res.ط<span class="tok-kw">و</span>ل() <span class="tok-op">≡</span> <span class="tok-nu">0</span> <span class="tok-kw">إذن</span> <span class="tok-kw">أعد</span> خال
+}</code></pre></div><div class="fdt-panel" id="lt-356cf04c5ad7920b-1-p-ar" role="tabpanel" aria-labelledby="lt-356cf04c5ad7920b-1-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">دالة</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> <span class="tok-kw">لاشيء</span> {
+    <span class="tok-kw">إذا</span> res.ط<span class="tok-kw">و</span>ل() <span class="tok-op">≡</span> <span class="tok-nu">0</span> <span class="tok-kw">إذن</span> <span class="tok-kw">أعد</span> <span class="tok-kw">غائب</span>
     <span class="tok-kw">أعد</span> res[<span class="tok-nu">0</span>]
 }
 
 <span class="tok-kw">بداية</span> {
     <span class="tok-kw">اعرض</span> primum([<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
-}</code></pre></div><div class="fdt-panel" id="lt-356cf04c5ad7920b-1-p-hi" role="tabpanel" aria-labelledby="lt-356cf04c5ad7920b-1-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">फलन</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">सूची</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> शून्य_मान {
-    <span class="tok-kw">यदि</span> res.लंबाई() <span class="tok-op">≡</span> <span class="tok-nu">0</span> <span class="tok-kw">अतः</span> <span class="tok-kw">लौटाओ</span> शून्यवत्
+}</code></pre></div><div class="fdt-panel" id="lt-356cf04c5ad7920b-1-p-hi" role="tabpanel" aria-labelledby="lt-356cf04c5ad7920b-1-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">फलन</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">सूची</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> <span class="tok-kw">कुछनहीं</span> {
+    <span class="tok-kw">यदि</span> res.लंबाई() <span class="tok-op">≡</span> <span class="tok-nu">0</span> <span class="tok-kw">अतः</span> <span class="tok-kw">लौटाओ</span> <span class="tok-kw">अभाव</span>
     <span class="tok-kw">लौटाओ</span> res[<span class="tok-nu">0</span>]
 }
 

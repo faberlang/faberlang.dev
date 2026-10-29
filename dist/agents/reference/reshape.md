@@ -2,7 +2,7 @@
 
 Captured backtick templates for bound payloads.
 
-**Term** `forma` · **Section** LITERALS
+**Term** `reshape` · **Section** LITERALS
 
 ## Syntax
 
@@ -46,6 +46,6 @@ main {
 }
 ```
 
-See also: [`format`](format.md), [`string`](textus.md).
+See also: [`format`](format.md), [`string (type)`](string (type).md).
 
 Fetch list: https://faberlang.dev/agents/index.md

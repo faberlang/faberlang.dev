@@ -90,8 +90,8 @@ The conversation type is <code>channel&lt;O, R&gt;</code> (<code>channel&lt;O, R
 are <code>channel</code>, <code>frame</code>, <code>send&lt;T&gt;</code>, <code>recv&lt;T&gt;</code>. A channel closes itself when its conversation completes,
 and <code>Closable</code> / <code>close()</code> exist on all four backends. Sync generators (<code>generator</code>, <code>generator</code>)
 are lazy on the runner and TypeScript, and on Rust and Go for most forms. <code>continue</code> passes through a <code>do</code>
-block to the enclosing loop. <code>cura</code> / <code>curata</code> are removed.</p><p><strong>Text and bytes.</strong> <code>char</code> (<code>char</code>) is a Unicode scalar; <code>byte</code> (<code>byte</code>)
-is <code>u8</code>; <code>bytes</code> is <code>list&lt;octetus&gt;</code>; indexing a string gives <code>char</code>.
+block to the enclosing loop. <code>cura</code> / <code>curata</code> are removed.</p><p><strong>Text and bytes.</strong> <code>char</code> (<code>char</code>) is a Unicode scalar; <code>octetus</code> (<code>byte</code>)
+is <code>u8</code>; <code class="typ">octeti</code> is <code>list&lt;octetus&gt;</code>; indexing a string gives <code>char</code>.
 Numbers convert to digits, not code points. <code>value ¶ &quot;spec&quot;</code> formats a value
 (width, fill, precision, sign, hex/bin/oct) with a literal spec checked against
 the value's type. <code>print</code> shows a <code>class</code> as its construction literal, lists as

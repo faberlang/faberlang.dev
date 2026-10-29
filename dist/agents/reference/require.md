@@ -2,7 +2,7 @@
 
 Require a condition or throw a recoverable error.
 
-**Term** `requirit` · **Section** KEYWORDS · **Also** `require`
+**Term** `require` · **Section** KEYWORDS
 
 ## Syntax
 

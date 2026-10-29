@@ -2,7 +2,7 @@
 
 Breaks out of the innermost loop.
 
-**Term** `rumpe` · **Section** KEYWORDS · **Also** `break`
+**Term** `break` · **Section** KEYWORDS
 
 ## Syntax
 

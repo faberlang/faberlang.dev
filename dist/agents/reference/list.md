@@ -2,7 +2,7 @@
 
 Generic ordered collection type.
 
-**Term** `lista` · **Section** KEYWORDS · **Also** `array`, `list`
+**Term** `list` · **Section** KEYWORDS · **Also** `array`
 
 ## Syntax
 

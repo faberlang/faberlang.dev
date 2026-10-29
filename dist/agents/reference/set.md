@@ -2,7 +2,7 @@
 
 Generic set collection type.
 
-**Term** `copia` · **Section** KEYWORDS · **Also** `set`
+**Term** `set` · **Section** KEYWORDS
 
 ## Syntax
 
@@ -17,7 +17,7 @@ set<T>
 
 ## Common mistakes
 
-- Using `set<T>` without an explicit type — `empty` requires an explicit type annotation like `set<numerus>` (SEM014).
+- Using `set<T>` without an explicit type — `empty` requires an explicit type annotation like `set<int>` (SEM014).
 
 ## Grammar
 

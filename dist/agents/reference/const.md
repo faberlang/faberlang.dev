@@ -2,7 +2,7 @@
 
 Declares an immutable binding.
 
-**Term** `fixum` · **Section** KEYWORDS · **Also** `const`, `immutable`
+**Term** `const` · **Section** KEYWORDS · **Also** `immutable`
 
 ## Syntax
 
@@ -88,6 +88,6 @@ main {
 }
 ```
 
-See also: [`mut`](varia.md), [`let`](let.md), [`←`](←.md).
+See also: [`mut`](mut.md), [`let`](let.md), [`←`](←.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

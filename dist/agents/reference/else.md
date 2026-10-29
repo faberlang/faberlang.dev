@@ -2,7 +2,7 @@
 
 Runs the fallback branch when preceding conditional branches do not match.
 
-**Term** `secus` · **Section** KEYWORDS · **Also** `else`, `otherwise`
+**Term** `else` · **Section** KEYWORDS · **Also** `otherwise`
 
 ## Syntax
 

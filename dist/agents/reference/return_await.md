@@ -2,7 +2,7 @@
 
 Awaits a promise and returns its success value from a async body.
 
-**Term** `reddet` · **Section** KEYWORDS · **Also** `return_await`
+**Term** `return_await` · **Section** KEYWORDS
 
 ## Syntax
 
@@ -12,7 +12,7 @@ return_await future
 
 ## What this teaches
 
-- Await and return from a `async` function only (`return_await future`).
+- Await and return from an `async` function only (`return_await future`).
 
 ## Example
 

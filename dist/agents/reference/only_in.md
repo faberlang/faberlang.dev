@@ -2,7 +2,7 @@
 
 Restricts a test to a named environment or target.
 
-**Term** `solum_in` · **Section** KEYWORDS
+**Term** `only_in` · **Section** KEYWORDS
 
 ## Syntax
 

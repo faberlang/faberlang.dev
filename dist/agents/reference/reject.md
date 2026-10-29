@@ -2,7 +2,7 @@
 
 Reject a condition or throw a recoverable error.
 
-**Term** `reice` · **Section** KEYWORDS · **Also** `reject`
+**Term** `reject` · **Section** KEYWORDS
 
 ## Syntax
 

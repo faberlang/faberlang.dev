@@ -2,7 +2,7 @@
 
 Binds command-line arguments for an entry point.
 
-**Term** `argumenta` · **Section** KEYWORDS
+**Term** `args` · **Section** KEYWORDS
 
 ## Syntax
 
@@ -17,7 +17,7 @@ main args <name> <block> | fn <name>() args <name> <block>
 
 ## Common mistakes
 
-- attaching `@ cli` to a `fn` instead of an `main` (SEM009), or forgetting to annotate with `@ cli` before `main args`
+- attaching `@ cli` to a `fn` instead of a `main` (SEM009), or forgetting to annotate with `@ cli` before `main args`
 
 ## Grammar
 

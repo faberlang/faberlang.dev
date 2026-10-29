@@ -7,7 +7,7 @@ Angle-bracket generic parameters on functions and declarations.
 ## Syntax
 
 ```
-fn name<T>(...) | class Name<T, magnitudo N>
+fn name<T>(...) | class Name<T, size N>
 ```
 
 ## What this teaches

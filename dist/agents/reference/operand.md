@@ -2,12 +2,12 @@
 
 Declares a CLI operand annotation.
 
-**Term** `operandus` · **Section** KEYWORDS
+**Term** `operand` · **Section** KEYWORDS
 
 ## Syntax
 
 ```
-@ operand [rest] <type> <binding> [description "..."] [global] [vel <default>]
+@ operand [rest] <type> <binding> [description "..."] [global] [coalesce <default>]
 ```
 
 ## What this teaches

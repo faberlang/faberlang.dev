@@ -2,7 +2,7 @@
 
 Writes a value to standard output.
 
-**Term** `scribe` · **Section** KEYWORDS
+**Term** `write` · **Section** KEYWORDS
 
 ## Syntax
 

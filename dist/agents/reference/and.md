@@ -2,12 +2,12 @@
 
 Combines boolean expressions with logical and.
 
-**Term** `et` · **Section** OPERATORS · **Also** `and`
+**Term** `and` · **Section** OPERATORS
 
 ## Syntax
 
 ```
-<expression> et <expression>
+<expression> and <expression>
 ```
 
 ## What this teaches

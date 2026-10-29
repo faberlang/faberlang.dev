@@ -2,7 +2,7 @@
 
 Attaches a description string to CLI metadata.
 
-**Term** `descriptio` · **Section** KEYWORDS
+**Term** `description` · **Section** KEYWORDS
 
 ## Syntax
 

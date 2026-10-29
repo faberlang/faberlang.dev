@@ -2,7 +2,7 @@
 
 Declares a named function or method.
 
-**Term** `functio` · **Section** KEYWORDS · **Also** `function`
+**Term** `fn` · **Section** KEYWORDS · **Also** `function`
 
 ## Syntax
 

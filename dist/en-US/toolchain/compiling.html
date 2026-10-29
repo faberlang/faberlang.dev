@@ -67,9 +67,9 @@ lints) and rules left to target toolchains (Rust lifetime analysis, Go type
 safety). This prevents the compiler from duplicating work that target
 compilers already do correctly.</p></blockquote><h3 id="air">AIR detour<a class="anchor" href="#air">#</a></h3><p>AIR (Autograd / AI Representation) is a pure-functional transform detour off
 the HIR → MIR path. It is entered by explicit annotation on individual
-functions:</p><pre class="faber-code"><code class="lang-faber target=llvm-text">@ radix { lane <span class="tok-op">=</span> <span class="tok-st">"air"</span> }
-fn identity(bool value) <span class="tok-op">→</span> bool {
-    return value
+functions:</p><pre class="faber-code"><code class="lang-faber target=llvm-text locale=en">@ <span class="tok-kw">radix</span> <span class="tok-kw">lane</span> <span class="tok-st">"air"</span>
+<span class="tok-kw">fn</span> identity(<span class="tok-kw">bool</span> <span class="tok-kw">value</span>) <span class="tok-op">→</span> <span class="tok-kw">bool</span> {
+    <span class="tok-kw">return</span> <span class="tok-kw">value</span>
 }</code></pre><p>A lane needs a MIR-backed target: <code>faber build -t llvm-text</code> (or any other
 MIR-backed target) accepts the function above, while a plain <code>faber check</code>,
 which has no target, refuses it with <code>TARGETLANE001 lane_requires_mir_backed_target</code>.</p><p>AIR-lane functions must satisfy a purity policy — no mutation, no effects,
@@ -118,7 +118,7 @@ compute kernel and its manifest declares a <code>[device]</code> section. `faber
 fails closed with stable codes (<code>E_BACKEND_UNAVAILABLE</code>, <code>E_DEVICE_*</code>,
 <code>E_NO_DEVICE_PROGRAM</code>) instead of silently falling back to the CPU. <code>reference</code>
 runs kernels as ordinary functions on the MIR runner and is the oracle device
-results are checked against.</p><h3 id="comparison">Architecture note<a class="anchor" href="#comparison">#</a></h3><p>Faber's compilation architecture is similar in spirit to how the Rust compiler
+results are checked against; <code>cpu</code> runs them on a multicore worker queue.</p><h3 id="comparison">Architecture note<a class="anchor" href="#comparison">#</a></h3><p>Faber's compilation architecture is similar in spirit to how the Rust compiler
 works. Rust lowers through HIR → MIR → LLVM IR, embedding the LLVM toolchain
 directly for final native codegen. Faber takes a softer approach: it emits
 text for external toolchains (LLVM text, WGSL, Metal, WAT) rather than embedding

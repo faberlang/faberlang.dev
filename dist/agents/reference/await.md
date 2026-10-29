@@ -2,7 +2,7 @@
 
 Awaits a promise and discards the success value.
 
-**Term** `tacebit` · **Section** KEYWORDS · **Also** `await`
+**Term** `await` · **Section** KEYWORDS
 
 ## Syntax
 

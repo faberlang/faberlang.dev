@@ -2,7 +2,7 @@
 
 Reads one line of input.
 
-**Term** `lineam` · **Section** KEYWORDS
+**Term** `line` · **Section** KEYWORDS
 
 ## Syntax
 

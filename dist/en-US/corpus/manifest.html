@@ -6,6 +6,7 @@
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • the package manifest file `faber.toml` — configures build, run, and test for a Faber package</span>
 <span class="tok-co">#   • key manifest sections: `[package]`, `[paths]`, `[build]`</span>
+<span class="tok-co">#   • optional `[format] width = N` — opt-in line wrapping for `faber format`</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • Omitting the required [package], [paths], or [build] sections — a valid faber.toml must include all three.</span>
@@ -36,6 +37,17 @@
 <span class="tok-co">#   [build]</span>
 <span class="tok-co">#   target = "rust"</span>
 <span class="tok-co">#   kind = "bin"</span>
+<span class="tok-co">#</span>
+<span class="tok-co">#   [format]</span>
+<span class="tok-co">#   width = 100</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># The [format] table is optional. [format] width = N wraps `faber format` output at N display columns,</span>
+<span class="tok-co"># indentation included, breaking only between tokens where a newline changes</span>
+<span class="tok-co"># nothing (an unbreakable span wider than N overflows). It is a positive</span>
+<span class="tok-co"># integer; zero, a negative number or a non-integer is refused. There is no</span>
+<span class="tok-co"># built-in width: with neither the key nor the flag, output is not wrapped.</span>
+<span class="tok-co"># `faber format --width N` wins over the manifest key; `--stdin` has no package,</span>
+<span class="tok-co"># so only the flag applies.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
 <span class="tok-co">#   packageManifest :← toml document (faber tool, not Faber source)</span>

@@ -21,7 +21,7 @@ import from <source> [public] const <member> [as <local>]{, <member> [as <local>
 
 ## Common mistakes
 
-- expecting a type binding to be a value — `print Type` or `x est Type` on an imported type is an error
+- expecting a type binding to be a value — `print Type` or `x is Type` on an imported type is an error
 - expecting the bindings to re-export — only `public` bindings do
 
 ## Example

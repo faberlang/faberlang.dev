@@ -21,12 +21,31 @@ main {
     let ascii route <span class="tok-op">←</span> <span class="tok-st">'pg:query'</span>
     print route
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>pg:query
-</code></pre><h3 id="radixcorpusboundedconversio-ascii-overflow-declinefab-supporting-reject">radix/corpus/bounded/conversio-ascii-overflow-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusboundedconversio-ascii-overflow-declinefab-supporting-reject">#</a></h3><p>Decline: an ascii literal longer than the target capacity rejects with ascii_literal_too_long.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+</code></pre><h3 id="radixcorpusboundedascii-methods-argument-rejectfab-supporting-reject">radix/corpus/bounded/ascii-methods-argument-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusboundedascii-methods-argument-rejectfab-supporting-reject">#</a></h3><p>Rejected: a multi-byte ascii&lt;size N&gt; value is not an implicit string argument of a text method.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># ascii&lt;size N&gt; argument to a text method — rejected</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Only bare `ascii` and one-letter `ascii&lt;size 1&gt;` widen to `string` on their</span>
+<span class="tok-co">#     own. An `ascii&lt;size 4&gt;` value reaches `string` through an explicit `↦ string`.</span>
+<span class="tok-co">#   • The checker refuses the call with one named diagnostic, so `faber check`</span>
+<span class="tok-co">#     and `faber check --lower` agree.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Passing a bounded `ascii&lt;size N&gt;` value straight to starts_with, ends_with,</span>
+<span class="tok-co">#     replace or split.</span>
+<span class="tok-co"># =============================================================================</span>
+
+main {
+    let ascii<span class="tok-op">&lt;</span>size <span class="tok-nu">16</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> <span class="tok-st">' Hello '</span>
+    let ascii<span class="tok-op">&lt;</span>size <span class="tok-nu">4</span><span class="tok-op">&gt;</span> prefix <span class="tok-op">←</span> <span class="tok-st">' H'</span>
+    print a.starts_with(prefix)
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusboundedconversio-ascii-overflow-declinefab-supporting-reject">radix/corpus/bounded/conversio-ascii-overflow-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusboundedconversio-ascii-overflow-declinefab-supporting-reject">#</a></h3><p>Decline: an ascii literal longer than the target capacity rejects with ascii_literal_too_long.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># ascii overflow decline — literal over capacity fails closed</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Decline row (reject reason in the comment):</span>
-<span class="tok-co">#   1. over capacity — `'alpha' ↦ ascii&lt;4&gt;` asks a 5-byte literal to fit a</span>
+<span class="tok-co">#   1. over capacity — `'alpha' ↦ ascii&lt;size 4&gt;` asks a 5-byte literal to fit a</span>
 <span class="tok-co">#      capacity of 4: SEM011 ascii_literal_too_long</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
@@ -41,6 +60,6 @@ main {
 <span class="tok-co"># WHY: pins the fail-closed overflow token in conversio-ascii-overflow-decline.expected.</span>
 
 main {
-    let ascii<span class="tok-op">&lt;</span><span class="tok-nu">4</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> <span class="tok-st">'alpha'</span> ↦ ascii<span class="tok-op">&lt;</span><span class="tok-nu">4</span><span class="tok-op">&gt;</span>
+    let ascii<span class="tok-op">&lt;</span>size <span class="tok-nu">4</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> <span class="tok-st">'alpha'</span> ↦ ascii<span class="tok-op">&lt;</span>size <span class="tok-nu">4</span><span class="tok-op">&gt;</span>
     print a
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusliteraliaasciifab-canonical-existing-home">radix/corpus/literalia/ascii.fab (canonical · existing-home)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-ascii-overflow-declinefab-supporting-reject">radix/corpus/bounded/conversio-ascii-overflow-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/literalia/ascii.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusliteraliaasciifab-canonical-existing-home">radix/corpus/literalia/ascii.fab (canonical · existing-home)</a></li><li class="toc-3"><a href="#radixcorpusboundedascii-methods-argument-rejectfab-supporting-reject">radix/corpus/bounded/ascii-methods-argument-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-ascii-overflow-declinefab-supporting-reject">radix/corpus/bounded/conversio-ascii-overflow-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/literalia/ascii.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

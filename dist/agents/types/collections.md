@@ -12,6 +12,33 @@ main {
 }
 ```
 
+A length limit is written after `size`: `list<int, size 4>` holds at most four
+elements, and `list<int, size 1…∞>` is never empty (`…` includes its upper
+bound, `‥` leaves it out). A bare `list<int, 4>` is `SEM008`
+`list_count_needs_size`; `queue`, `stack`, `string`, `ascii` and `vector` take
+the same `size` marker (`SEM008` `capacity_needs_size`, `vector_width_needs_size`).
+A short list literal takes the capacity of the cell it is stored into, a call
+argument included. Appending past the maximum reports on the error channel.
+
+```faber locale=en
+main {
+    let list<int, size 0…3> pair ← [1, 2]
+    print pair
+    mut list<int, size 2‥5> ys ← [10, 20]
+    do {
+        ys.append(30)
+        ys.append(40)
+        ys.append(50)
+    }
+    catch err {
+        print "full"
+    }
+    print ys
+}
+```
+
+This prints `[1, 2]`, `full` and `[10, 20, 30, 40]`.
+
 `take(n)` and `slice(a, b)` report a window that runs past the end; they do
 not clamp. Both are failable: outside `main` give them a handler, such as a
 `⊥` recovery value.
@@ -32,7 +59,7 @@ This prints `[1, 2]` and `[1, 2, 3]`.
 
 `s ⇜ x` sinks one item into a writable sink. On a list it appends (duplicates
 kept); on a set it adds a missing item. A class becomes a sink with
-`implements Sink<T>` and the methods `sink(T)` and `flush()`. In 1.16 `⇜`
+`implements Sink<T>` and the methods `sink(T)` and `flush()`. In 1.17 `⇜`
 builds for the runner, Rust and LLVM; other targets refuse it by name.
 
 ```faber locale=en
@@ -57,7 +84,7 @@ main {
 ```
 
 A matrix element reads and writes by row and column: `m[[r, c]]` and
-`m[[r, c]] ← v`, with literal or computed coordinates. In 1.16 this runs on
+`m[[r, c]] ← v`, with literal or computed coordinates. In 1.17 this runs on
 `faber run`; generated Rust does not compile it yet, and TypeScript, Swift
 and LLVM refuse it by name.
 

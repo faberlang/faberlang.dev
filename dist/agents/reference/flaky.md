@@ -2,7 +2,7 @@
 
 Marks a test as fragile.
 
-**Term** `fragilis` · **Section** KEYWORDS
+**Term** `flaky` · **Section** KEYWORDS
 
 ## Syntax
 

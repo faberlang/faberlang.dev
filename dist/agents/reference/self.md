@@ -2,12 +2,12 @@
 
 Refers to the current instance inside a method.
 
-**Term** `ego` · **Section** KEYWORDS · **Also** `self`, `this`
+**Term** `self` · **Section** KEYWORDS · **Also** `this`
 
 ## Syntax
 
 ```
-ego.<member>
+self.<member>
 ```
 
 ## What this teaches
@@ -44,7 +44,7 @@ class Capsa {
 }
 
 main {
-    let Capsa capsa ← Capsa { titulus = "prima" }
+    let Capsa capsa ← Capsa { titulus = "first" }
     print capsa.narra()
 }
 ```

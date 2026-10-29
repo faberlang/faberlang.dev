@@ -7,12 +7,12 @@ Unsigned 16-bit modular-word arithmetic and bit-pattern edges.
 ## Syntax
 
 ```
-modulus<u16>
+wrapping_ty<u16>
 ```
 
 ## What this teaches
 
-- Modular word contract — `wrapping<u16>` wraps on overflow for add, sub, mul, neg, and shifts.
+- Modular word contract — `wrapping_ty<u16>` wraps on overflow for add, sub, mul, neg, and shifts.
 - Edge cases — Max + 1, zero - 1, and shifts beyond bit width demonstrate wrapping behavior.
 
 ## Common mistakes

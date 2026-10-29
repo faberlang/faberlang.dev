@@ -3,6 +3,6 @@
 `integer` is another spelling of the entry documented at
 [`int`](int.md).
 
-Source: `faber explain numerus`.
+Source: `faber explain int`.
 
 Fetch list: https://faberlang.dev/agents/index.md

@@ -50,6 +50,6 @@ main {
 }
 ```
 
-See also: [`string`](string.md), [`block-string`](block-string.md), [`string`](textus.md).
+See also: [`string`](string.md), [`block-string`](block-string.md), [`string (type)`](string (type).md).
 
 Fetch list: https://faberlang.dev/agents/index.md

@@ -2,7 +2,7 @@
 
 Primitive types bool, void, and unknown.
 
-**Term** `bivalens` · **Section** KEYWORDS
+**Term** `bool` · **Section** KEYWORDS
 
 ## Syntax
 

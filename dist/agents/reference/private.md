@@ -2,7 +2,7 @@
 
 Marks a declaration as module-private (the default tier).
 
-**Term** `privata` · **Section** KEYWORDS · **Also** `private`
+**Term** `private` · **Section** KEYWORDS
 
 ## Syntax
 

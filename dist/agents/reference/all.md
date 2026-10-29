@@ -2,7 +2,7 @@
 
 Marks a test hook as applying to every case.
 
-**Term** `omnia` · **Section** KEYWORDS
+**Term** `all` · **Section** KEYWORDS
 
 ## Syntax
 
@@ -12,7 +12,7 @@ all
 
 ## What this teaches
 
-- Exhaustive matching — `match all` requires every variant of a `union` to have a `case` branch.
+- Exhaustive matching — `match all` requires every variant of an `union` to have a `case` branch.
 - Safety guarantee — The compiler rejects incomplete matches, eliminating forgotten variant bugs.
 
 ## Common mistakes

@@ -2,7 +2,7 @@
 
 Spreads an array or collection literal into its surrounding expression.
 
-**Term** `sparge` · **Section** KEYWORDS · **Also** `...`
+**Term** `spread` · **Section** KEYWORDS · **Also** `...`
 
 ## Syntax
 

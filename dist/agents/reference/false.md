@@ -2,7 +2,7 @@
 
 Represents the false boolean value and can prefix a falsity check.
 
-**Term** `falsum` · **Section** KEYWORDS
+**Term** `false` · **Section** KEYWORDS
 
 ## Syntax
 

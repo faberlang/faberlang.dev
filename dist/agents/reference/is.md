@@ -2,19 +2,19 @@
 
 Tests whether a value's runtime type is a given type.
 
-**Term** `est` · **Section** KEYWORDS · **Also** `is`
+**Term** `is` · **Section** KEYWORDS
 
 ## Syntax
 
 ```
-<expression> est <type>
+<expression> is <type>
 ```
 
 ## What this teaches
 
-- Type checking — `<expr> est <type>` tests a value's runtime variant tag without extraction.
+- Type checking — `<expr> is <type>` tests a value's runtime variant tag without extraction.
 - Null checking — `<expr> is none` (la `is none`) tests the none type; the null value is `null` (la `null`).
-- Negation — `<expr> is not <type>` negates the type check.
+- Negation — `<expr> not is <type>` negates the type check.
 - Chaining — `is` composes with `and` and parenthesized expressions.
 
 ## Common mistakes

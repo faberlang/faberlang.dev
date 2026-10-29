@@ -2,7 +2,7 @@
 
 Marks a function parameter or binding as carrying an error value.
 
-**Term** `errata` · **Section** KEYWORDS
+**Term** `errors` · **Section** KEYWORDS
 
 ## Syntax
 

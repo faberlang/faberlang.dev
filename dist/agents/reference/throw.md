@@ -2,7 +2,7 @@
 
 Throws a recoverable error.
 
-**Term** `iace` · **Section** KEYWORDS · **Also** `throw`
+**Term** `throw` · **Section** KEYWORDS
 
 ## Syntax
 

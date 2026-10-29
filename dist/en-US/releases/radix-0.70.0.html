@@ -40,8 +40,8 @@ constructor completion so <code>maybeRange coalesce 0‥0</code> stays intact. E
 conversion bound-wise instead of invalid <code>as</code> carrier. EBNF, forma/faber precedence
 updated. (<code>6ca0a24d9</code>)</li><li><strong>Lower expression AD to channel MIR:</strong> expression lowering path from abstract
 declarations to channel MIR, with stepper runtime support. (<code>1f41facfb</code>)</li><li><strong>Captured argv process calls:</strong> stepper kernel and host processus support for
-captured <code>argv</code> in subprocess calls. (<code>d9d63a69d</code>)</li><li><strong>Fix numeric conversions and dense bytes value:</strong> numeric cast corrections in
-Rust codegen and dense bytes tag preservation through stepper value wire.
+captured <code>argv</code> in subprocess calls. (<code>d9d63a69d</code>)</li><li><strong>Fix numeric conversions and dense octeti value:</strong> numeric cast corrections in
+Rust codegen and dense octeti tag preservation through stepper value wire.
 (<code>effc4aba8</code>, <code>0ff60098a</code>)</li></ul><h4 id="workspace-reorganization">Workspace reorganization<a class="anchor" href="#workspace-reorganization">#</a></h4><p>Two large refactoring waves consolidate the private compiler workspace:</p><ul><li><strong>Absorb forma into `radix::forma`; extract `faber-runtime`:</strong> fold the forma
 formatter crate into the compiler (private surface), move <code>faber-runtime</code> to the
 public sibling <code>faberlang/faber-runtime</code>. 55 files changed, +60/−4551.

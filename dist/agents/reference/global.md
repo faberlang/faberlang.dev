@@ -2,7 +2,7 @@
 
 Marks an option or operand as global.
 
-**Term** `ubique` · **Section** KEYWORDS
+**Term** `global` · **Section** KEYWORDS
 
 ## Syntax
 

@@ -2,7 +2,7 @@
 
 Primitive types bool, void, and unknown.
 
-**Term** `ignotum` · **Section** KEYWORDS
+**Term** `unknown` · **Section** KEYWORDS
 
 ## Syntax
 

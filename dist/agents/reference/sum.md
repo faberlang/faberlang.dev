@@ -2,7 +2,7 @@
 
 Sequential sum-reduce expression: reduce via sum from <tensor> at [i] let s.
 
-**Term** `summa` · **Section** CONCEPTS
+**Term** `sum` · **Section** CONCEPTS
 
 ## Syntax
 
@@ -13,7 +13,7 @@ reduce via sum from <source> at [coords] let <binder> { return <term> }
 ## What this teaches
 
 - Sequential fold — `reduce via sum from` lowers to a MIR fold over the tensor's at iteration arm: a `+` accumulator seeded at zero, one term per element, `return` inside the body yields the term value.
-- Identity term — `return s` is the sequential spelling of `a.summa()`; the printed pair matches under the numeric tolerance contract.
+- Identity term — `return s` is the sequential spelling of `a.sum()`; the printed pair matches under the numeric tolerance contract.
 - Transformed term — the body may compute any numeric scalar term from the bound element (here `s + 1.0` per lane).
 
 ## Common mistakes

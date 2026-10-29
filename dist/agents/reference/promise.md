@@ -2,7 +2,7 @@
 
 Promise-like result type associated with async finite functions.
 
-**Term** `promissum` · **Section** KEYWORDS · **Also** `promise`
+**Term** `promise` · **Section** KEYWORDS
 
 ## Syntax
 

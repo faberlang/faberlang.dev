@@ -39,7 +39,7 @@ does no arithmetic. Conversions are explicit <code class="glyph">↦</code>: sam
 two's complement, <code>bN</code> to <code>f16</code> / <code>bf16</code> / <code>f32</code> / <code>f64</code> reinterprets the bit
 pattern (both ways), and a byte list and a wider-element list convert through
 each other with <code>via Le</code> or <code>via Be</code> for little- or big-endian packing. The old escape hatches are gone: `via
-Bits<code> no longer converts through a bits view, the words </code>byte<code class="glyph"> / </code>bytes` are
+Bits<code> no longer converts through a bits view, the words </code>byte<code class="glyph"> / </code>octeti` are
 retired (<code>list&lt;b8&gt;</code> is the byte list), and <code class="glyph">≠</code> is retired in favour of <code class="glyph">≢</code>
 as the negation of <code class="glyph">≡</code>. A bit-type value or a list window that a target has
 no carrier for is refused by name at emit time, not approximated.</p><p><strong>The zero of a type is written `Type {}`.</strong> <code>tensor&lt;T, [shape]&gt; {}</code>,
@@ -165,7 +165,7 @@ a lowest-lane-wins fault word, and the fault is delivered to the enclosing
 legal grammar, and a host read after a faulting launch delivers the fault
 before the read completes.</p><h3 id="breaking-changes">Breaking changes<a class="anchor" href="#breaking-changes">#</a></h3><ol><li><strong>`≠` is retired.</strong> Write <code class="glyph">≢</code> for the negation of <code class="glyph">≡</code>; <code class="glyph">≠</code> draws the
 named parse error that names its replacement.</li><li><strong>`via Bits` is retired.</strong> Convert through the bit markers: <code>x ↦ b32</code>,
-<code>u16 ↦ b16 ↦ f16</code>, and the <code>bN</code> conversion table above.</li><li><strong>`byte` / `bytes` are retired.</strong> Bytes are <code>list&lt;b8&gt;</code>; the byte literal
+<code>u16 ↦ b16 ↦ f16</code>, and the <code>bN</code> conversion table above.</li><li><strong>`byte` / `octeti` are retired.</strong> Bytes are <code>list&lt;b8&gt;</code>; the byte literal
 and byte insertion produce a <code>list&lt;b8&gt;</code> everywhere.</li><li><strong>A bare float-to-integer conversion is rejected.</strong> Name the rounding:
 <code>via Floor</code>, <code>via Ceil</code>, <code>via HalfEven</code> or <code>via Trunc</code> (the error names
 them).</li><li><strong>The typed zero is `Type {}`.</strong> Rewrite the bare form <code>← tf32[2, 2]</code> as

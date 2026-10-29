@@ -7,22 +7,22 @@ vector type declarations: long form and vf32 sugar.
 ## Syntax
 
 ```
-vector<T, N> | vf32[N]
+vector<T, size N> | vf32[N]
 ```
 
 ## What this teaches
 
-- Vector declaration — `vector<T, N>` long form and `vf32[N]` sugar syntax
+- Vector declaration — `vector<T, size N>` long form and `vf32[N]` sugar syntax
 - Register type — vectors are fixed-width register types, different from collection tensors
 
 ## Common mistakes
 
-- confusing vector<T, N> (register type) with tensor<T, [N]> (collection type) — vector is a GPU register, not a collection
+- confusing vector<T, size N> (register type) with tensor<T, [N]> (collection type) — vector is a GPU register, not a collection
 
 ## Example
 
 ```fab
-fn takes(vector<f32, 4> v, vf32[4] w) → int {
+fn takes(vector<f32, size 4> v, vf32[4] w) → int {
     return 0
 }
 

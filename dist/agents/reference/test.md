@@ -2,7 +2,7 @@
 
 Defines a single test case.
 
-**Term** `proba` · **Section** KEYWORDS · **Also** `test`, `it`
+**Term** `test` · **Section** KEYWORDS · **Also** `it`
 
 ## Syntax
 

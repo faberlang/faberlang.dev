@@ -57,7 +57,54 @@ import from <span class="tok-st">"./auxilium"</span> auxilium
 main {
     print auxilium.saluta(<span class="tok-st">"Marcus"</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve, Marcus!
-</code></pre><h3 id="radixcorpusimportaimport-missing-member-rejectfab-supporting-reject">radix/corpus/importa/import-missing-member-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusimportaimport-missing-member-rejectfab-supporting-reject">#</a></h3><p>A wildcard alias reaches only the members its module exports; calling a member the module never exports is a typecheck reject.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+</code></pre><h3 id="radixcorpusimportabraced-field-english-reject-lafab-supporting-reject">radix/corpus/importa/braced-field-english-reject-la.fab (supporting · reject)<a class="anchor" href="#radixcorpusimportabraced-field-english-reject-lafab-supporting-reject">#</a></h3><p>The English record field word from in a la file is an unknown import field (expect parse error).</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># import — English record field word in a la file (expect parse error)</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Locale surfaces are sealed in both directions — the la spelling of the</span>
+<span class="tok-co">#     source field is `from`, so the English `from` is not a field of a la record</span>
+<span class="tok-co">#   • Parse error — `PARSE050:unknown_import_field` lists the la field words</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • writing `from`, `visibility`, `name`, `as` or `all` in a la record —</span>
+<span class="tok-co">#     write `from`, `visibility`, `name`, `as` or `all`</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: import, from</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># English record field word in a la file (expect parse error)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># DELIBERATE: this exemplum keeps the English field word (`from`) on purpose, to</span>
+<span class="tok-co"># pin the PARSE050 `unknown_import_field` diagnostic in a la file.</span>
+
+import { from <span class="tok-op">=</span> <span class="tok-st">"norma:text"</span> }
+
+print <span class="tok-st">"unreachable"</span></code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusimportabraced-field-latin-rejectfab-supporting-reject">radix/corpus/importa/braced-field-latin-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusimportabraced-field-latin-rejectfab-supporting-reject">#</a></h3><p>The Latin record field word from in an en file is a wrong-locale error (expect parse error).</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># import — Latin record field word in an en file (expect parse error)</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Locale surfaces are sealed — the en spelling of the source field is</span>
+<span class="tok-co">#     `from`, so the Latin `from` is refused in an en file</span>
+<span class="tok-co">#   • Parse error — `PARSE050:wrong_locale_import_field` names the word written</span>
+<span class="tok-co">#     and the en word to use instead</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • writing `from`, `visibility`, `name`, `as` or `all` in an en record —</span>
+<span class="tok-co">#     write `from`, `visibility`, `name`, `as` or `all`</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: import, from</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># Latin record field word in an en file (expect parse error)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># DELIBERATE: this exemplum keeps the Latin field word (`from`) on purpose, to pin</span>
+<span class="tok-co"># the PARSE050 `wrong_locale_import_field` diagnostic.</span>
+
+import { from <span class="tok-op">=</span> <span class="tok-st">"norma:text"</span> }
+
+print <span class="tok-st">"unreachable"</span></code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusimportaimport-missing-member-rejectfab-supporting-reject">radix/corpus/importa/import-missing-member-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusimportaimport-missing-member-rejectfab-supporting-reject">#</a></h3><p>A wildcard alias reaches only the members its module exports; calling a member the module never exports is a typecheck reject.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># import - an alias reaches the module's exported surface, nothing else</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -117,4 +164,4 @@ import from <span class="tok-st">"./lib"</span> const nosuch
 
 main {
     print <span class="tok-nu">1</span>
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusimportadefault-bracedfab-canonical-keyword">radix/corpus/importa/default-braced.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusimportaimportafab-canonical-keyword">radix/corpus/importa/importa.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusimportaimport-missing-member-rejectfab-supporting-reject">radix/corpus/importa/import-missing-member-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusimportaimport-unknown-norma-module-rejectfab-supporting-reject">radix/corpus/importa/import-unknown-norma-module-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusimportaprivate-rejectfab-supporting-reject">radix/corpus/importa/private-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusimportaselective-missing-rejectfab-supporting-reject">radix/corpus/importa/selective-missing-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/importa/default-braced.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusimportadefault-bracedfab-canonical-keyword">radix/corpus/importa/default-braced.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusimportaimportafab-canonical-keyword">radix/corpus/importa/importa.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusimportabraced-field-english-reject-lafab-supporting-reject">radix/corpus/importa/braced-field-english-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusimportabraced-field-latin-rejectfab-supporting-reject">radix/corpus/importa/braced-field-latin-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusimportaimport-missing-member-rejectfab-supporting-reject">radix/corpus/importa/import-missing-member-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusimportaimport-unknown-norma-module-rejectfab-supporting-reject">radix/corpus/importa/import-unknown-norma-module-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusimportaprivate-rejectfab-supporting-reject">radix/corpus/importa/private-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusimportaselective-missing-rejectfab-supporting-reject">radix/corpus/importa/selective-missing-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/importa/default-braced.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

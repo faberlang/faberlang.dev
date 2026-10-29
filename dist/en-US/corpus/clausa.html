@@ -36,7 +36,7 @@ main {
 <span class="tok-co">    # Multi-parameter typed closure</span>
     let (int, int) <span class="tok-op">→</span> int adde <span class="tok-op">←</span> (int a, int b) <span class="tok-op">→</span> int ∴ a <span class="tok-op">+</span> b
     print adde(<span class="tok-nu">3</span>, <span class="tok-nu">4</span>)
-    let list<span class="tok-op">&lt;</span>int, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    let list<span class="tok-op">&lt;</span>int, size <span class="tok-nu">3</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     mut list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> duplicati <span class="tok-op">←</span> empty
 <span class="tok-co">    # predicate closure</span>
     let (int) <span class="tok-op">→</span> bool paritas <span class="tok-op">←</span> int x <span class="tok-op">→</span> bool ∴ x <span class="tok-op">%</span> <span class="tok-nu">2</span> <span class="tok-op">≡</span> <span class="tok-nu">0</span>

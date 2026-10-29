@@ -3,6 +3,6 @@
 `nullish coalescing` is another spelling of the entry documented at
 [`coalesce`](coalesce.md).
 
-Source: `faber explain vel`.
+Source: `faber explain coalesce`.
 
 Fetch list: https://faberlang.dev/agents/index.md

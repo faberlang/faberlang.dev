@@ -7,12 +7,12 @@ Unsigned 8-bit modular-word arithmetic and bit-pattern edges.
 ## Syntax
 
 ```
-modulus<u8>
+wrapping_ty<u8>
 ```
 
 ## What this teaches
 
-- Modular word contract — `wrapping<u8>` wraps on 8-bit overflow; edge cases wrap predictably.
+- Modular word contract — `wrapping_ty<u8>` wraps on 8-bit overflow; edge cases wrap predictably.
 - Bit-pattern edges — Shifting 1 ⇐ 8 wraps to 0; negating 1 wraps to 255.
 
 ## Common mistakes

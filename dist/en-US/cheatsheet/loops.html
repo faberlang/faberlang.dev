@@ -247,13 +247,55 @@ type word is <code>range&lt;int&gt;</code>.</p><div class="faber-demo-tabs" data
     }
 }</code></pre></div></div><p>A stored range can carry a step, and the step is part of its type:
 <code>let range&lt;int, 2&gt; evens ← 0…10 step 2</code> walks <code>0, 2, … 10</code>, and
-<code>evens.length()</code> is <code>6</code>. See <a href="/en-US/language/types.html#intervallum">ranges</a>.</p><h2 id="dum">While<a class="anchor" href="#dum">#</a></h2><p><code>while</code> loops while a condition holds.</p><pre class="faber-code"><code class="lang-faber locale-tabs">main {
-    mut int i <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    while i ≺ <span class="tok-nu">3</span> {
+<code>evens.length()</code> is <code>6</code>. See <a href="/en-US/language/types.html#intervallum">ranges</a>.</p><h2 id="dum">While<a class="anchor" href="#dum">#</a></h2><p><code>while</code> loops while a condition holds.</p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-2c65dca69045f470-6-t-en" data-panel="lt-2c65dca69045f470-6-p-en" data-name="English" aria-controls="lt-2c65dca69045f470-6-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-2c65dca69045f470-6-t-la" data-panel="lt-2c65dca69045f470-6-p-la" data-name="Latin" aria-controls="lt-2c65dca69045f470-6-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-2c65dca69045f470-6-t-th-TH" data-panel="lt-2c65dca69045f470-6-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-2c65dca69045f470-6-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-2c65dca69045f470-6-t-zh-Hans" data-panel="lt-2c65dca69045f470-6-p-zh-Hans" data-name="简体中文" aria-controls="lt-2c65dca69045f470-6-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-2c65dca69045f470-6-t-zh-Hant" data-panel="lt-2c65dca69045f470-6-p-zh-Hant" data-name="繁體中文" aria-controls="lt-2c65dca69045f470-6-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-2c65dca69045f470-6-t-vi" data-panel="lt-2c65dca69045f470-6-p-vi" data-name="Tiếng Việt" aria-controls="lt-2c65dca69045f470-6-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-2c65dca69045f470-6-t-ar" data-panel="lt-2c65dca69045f470-6-p-ar" data-name="العربية" aria-controls="lt-2c65dca69045f470-6-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-2c65dca69045f470-6-t-hi" data-panel="lt-2c65dca69045f470-6-p-hi" data-name="हिन्दी" aria-controls="lt-2c65dca69045f470-6-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-2c65dca69045f470-6-p-en" role="tabpanel" aria-labelledby="lt-2c65dca69045f470-6-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
+    <span class="tok-kw">mut</span> <span class="tok-kw">int</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">while</span> i ≺ <span class="tok-nu">3</span> {
         i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
-        print i
+        <span class="tok-kw">print</span> i
     }
-}</code></pre><h2 id="break">Leaving early<a class="anchor" href="#break">#</a></h2><p><code>break</code> breaks out; <code>continue</code> skips to the next iteration.</p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-11417af2c9f2db18-6-t-en" data-panel="lt-11417af2c9f2db18-6-p-en" data-name="English" aria-controls="lt-11417af2c9f2db18-6-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-11417af2c9f2db18-6-t-la" data-panel="lt-11417af2c9f2db18-6-p-la" data-name="Latin" aria-controls="lt-11417af2c9f2db18-6-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-11417af2c9f2db18-6-t-th-TH" data-panel="lt-11417af2c9f2db18-6-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-11417af2c9f2db18-6-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-11417af2c9f2db18-6-t-zh-Hans" data-panel="lt-11417af2c9f2db18-6-p-zh-Hans" data-name="简体中文" aria-controls="lt-11417af2c9f2db18-6-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-11417af2c9f2db18-6-t-zh-Hant" data-panel="lt-11417af2c9f2db18-6-p-zh-Hant" data-name="繁體中文" aria-controls="lt-11417af2c9f2db18-6-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-11417af2c9f2db18-6-t-vi" data-panel="lt-11417af2c9f2db18-6-p-vi" data-name="Tiếng Việt" aria-controls="lt-11417af2c9f2db18-6-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-11417af2c9f2db18-6-t-ar" data-panel="lt-11417af2c9f2db18-6-p-ar" data-name="العربية" aria-controls="lt-11417af2c9f2db18-6-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-11417af2c9f2db18-6-t-hi" data-panel="lt-11417af2c9f2db18-6-p-hi" data-name="हिन्दी" aria-controls="lt-11417af2c9f2db18-6-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-11417af2c9f2db18-6-p-en" role="tabpanel" aria-labelledby="lt-11417af2c9f2db18-6-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-2c65dca69045f470-6-p-la" role="tabpanel" aria-labelledby="lt-2c65dca69045f470-6-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">incipit</span> {
+    <span class="tok-kw">varia</span> <span class="tok-kw">numerus</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">dum</span> i ≺ <span class="tok-nu">3</span> {
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+        <span class="tok-kw">nota</span> i
+    }
+}</code></pre></div><div class="fdt-panel" id="lt-2c65dca69045f470-6-p-th-TH" role="tabpanel" aria-labelledby="lt-2c65dca69045f470-6-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">เริ่ม</span> {
+    <span class="tok-kw">แก้ไขได้</span> <span class="tok-kw">จํานวน</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">ขณะ</span> i ≺ <span class="tok-nu">3</span> {
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+        <span class="tok-kw">บันทึก</span> i
+    }
+}</code></pre></div><div class="fdt-panel" id="lt-2c65dca69045f470-6-p-zh-Hans" role="tabpanel" aria-labelledby="lt-2c65dca69045f470-6-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">入口</span> {
+    <span class="tok-kw">可变</span> <span class="tok-kw">整数</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">当</span> i ≺ <span class="tok-nu">3</span> {
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+        <span class="tok-kw">显示</span> i
+    }
+}</code></pre></div><div class="fdt-panel" id="lt-2c65dca69045f470-6-p-zh-Hant" role="tabpanel" aria-labelledby="lt-2c65dca69045f470-6-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">入口</span> {
+    <span class="tok-kw">可變</span> <span class="tok-kw">整數</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">當</span> i ≺ <span class="tok-nu">3</span> {
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+        <span class="tok-kw">註記</span> i
+    }
+}</code></pre></div><div class="fdt-panel" id="lt-2c65dca69045f470-6-p-vi" role="tabpanel" aria-labelledby="lt-2c65dca69045f470-6-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">bắt_đầu</span> {
+    <span class="tok-kw">khả_biến</span> <span class="tok-kw">số</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">trong_khi</span> i ≺ <span class="tok-nu">3</span> {
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+        <span class="tok-kw">ghi_chú</span> i
+    }
+}</code></pre></div><div class="fdt-panel" id="lt-2c65dca69045f470-6-p-ar" role="tabpanel" aria-labelledby="lt-2c65dca69045f470-6-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">بداية</span> {
+    <span class="tok-kw">قابل_للتغيير</span> <span class="tok-kw">عدد</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">طالما</span> i ≺ <span class="tok-nu">3</span> {
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+        <span class="tok-kw">اعرض</span> i
+    }
+}</code></pre></div><div class="fdt-panel" id="lt-2c65dca69045f470-6-p-hi" role="tabpanel" aria-labelledby="lt-2c65dca69045f470-6-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">आरंभ</span> {
+    <span class="tok-kw">परिवर्तनीय</span> <span class="tok-kw">संख्या</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">जबतक</span> i ≺ <span class="tok-nu">3</span> {
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+        <span class="tok-kw">दिखाओ</span> i
+    }
+}</code></pre></div></div><h2 id="break">Leaving early<a class="anchor" href="#break">#</a></h2><p><code>break</code> breaks out; <code>continue</code> skips to the next iteration.</p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-11417af2c9f2db18-7-t-en" data-panel="lt-11417af2c9f2db18-7-p-en" data-name="English" aria-controls="lt-11417af2c9f2db18-7-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-11417af2c9f2db18-7-t-la" data-panel="lt-11417af2c9f2db18-7-p-la" data-name="Latin" aria-controls="lt-11417af2c9f2db18-7-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-11417af2c9f2db18-7-t-th-TH" data-panel="lt-11417af2c9f2db18-7-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-11417af2c9f2db18-7-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-11417af2c9f2db18-7-t-zh-Hans" data-panel="lt-11417af2c9f2db18-7-p-zh-Hans" data-name="简体中文" aria-controls="lt-11417af2c9f2db18-7-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-11417af2c9f2db18-7-t-zh-Hant" data-panel="lt-11417af2c9f2db18-7-p-zh-Hant" data-name="繁體中文" aria-controls="lt-11417af2c9f2db18-7-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-11417af2c9f2db18-7-t-vi" data-panel="lt-11417af2c9f2db18-7-p-vi" data-name="Tiếng Việt" aria-controls="lt-11417af2c9f2db18-7-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-11417af2c9f2db18-7-t-ar" data-panel="lt-11417af2c9f2db18-7-p-ar" data-name="العربية" aria-controls="lt-11417af2c9f2db18-7-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-11417af2c9f2db18-7-t-hi" data-panel="lt-11417af2c9f2db18-7-p-hi" data-name="हिन्दी" aria-controls="lt-11417af2c9f2db18-7-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-11417af2c9f2db18-7-p-en" role="tabpanel" aria-labelledby="lt-11417af2c9f2db18-7-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
     <span class="tok-kw">let</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
     <span class="tok-kw">for</span> <span class="tok-kw">from</span> numeri <span class="tok-kw">let</span> n {
         <span class="tok-kw">if</span> n <span class="tok-op">≡</span> <span class="tok-nu">2</span> {
@@ -264,7 +306,7 @@ type word is <code>range&lt;int&gt;</code>.</p><div class="faber-demo-tabs" data
         }
         <span class="tok-kw">print</span> n
     }
-}</code></pre></div><div class="fdt-panel" id="lt-11417af2c9f2db18-6-p-la" role="tabpanel" aria-labelledby="lt-11417af2c9f2db18-6-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">incipit</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-11417af2c9f2db18-7-p-la" role="tabpanel" aria-labelledby="lt-11417af2c9f2db18-7-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">incipit</span> {
     <span class="tok-kw">sit</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span><span class="tok-kw">numerus</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
     <span class="tok-kw">itera</span> <span class="tok-kw">ex</span> numeri <span class="tok-kw">sit</span> n {
         <span class="tok-kw">si</span> n <span class="tok-op">≡</span> <span class="tok-nu">2</span> {
@@ -275,7 +317,7 @@ type word is <code>range&lt;int&gt;</code>.</p><div class="faber-demo-tabs" data
         }
         <span class="tok-kw">nota</span> n
     }
-}</code></pre></div><div class="fdt-panel" id="lt-11417af2c9f2db18-6-p-th-TH" role="tabpanel" aria-labelledby="lt-11417af2c9f2db18-6-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">เริ่ม</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-11417af2c9f2db18-7-p-th-TH" role="tabpanel" aria-labelledby="lt-11417af2c9f2db18-7-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">เริ่ม</span> {
     <span class="tok-kw">กำหนด</span> <span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span><span class="tok-kw">จํานวน</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
     <span class="tok-kw">วน</span> <span class="tok-kw">ออก</span> numeri <span class="tok-kw">กำหนด</span> n {
         <span class="tok-kw">ถ้า</span> n <span class="tok-op">≡</span> <span class="tok-nu">2</span> {
@@ -286,7 +328,7 @@ type word is <code>range&lt;int&gt;</code>.</p><div class="faber-demo-tabs" data
         }
         <span class="tok-kw">บันทึก</span> n
     }
-}</code></pre></div><div class="fdt-panel" id="lt-11417af2c9f2db18-6-p-zh-Hans" role="tabpanel" aria-labelledby="lt-11417af2c9f2db18-6-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">入口</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-11417af2c9f2db18-7-p-zh-Hans" role="tabpanel" aria-labelledby="lt-11417af2c9f2db18-7-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">入口</span> {
     <span class="tok-kw">设</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整数</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
     <span class="tok-kw">遍历</span> <span class="tok-kw">取自</span> numeri <span class="tok-kw">设</span> n {
         <span class="tok-kw">如果</span> n <span class="tok-op">≡</span> <span class="tok-nu">2</span> {
@@ -297,7 +339,7 @@ type word is <code>range&lt;int&gt;</code>.</p><div class="faber-demo-tabs" data
         }
         <span class="tok-kw">显示</span> n
     }
-}</code></pre></div><div class="fdt-panel" id="lt-11417af2c9f2db18-6-p-zh-Hant" role="tabpanel" aria-labelledby="lt-11417af2c9f2db18-6-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">入口</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-11417af2c9f2db18-7-p-zh-Hant" role="tabpanel" aria-labelledby="lt-11417af2c9f2db18-7-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">入口</span> {
     <span class="tok-kw">設為</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整數</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
     <span class="tok-kw">遍歷</span> <span class="tok-kw">取自</span> numeri <span class="tok-kw">設為</span> n {
         <span class="tok-kw">若</span> n <span class="tok-op">≡</span> <span class="tok-nu">2</span> {
@@ -308,7 +350,7 @@ type word is <code>range&lt;int&gt;</code>.</p><div class="faber-demo-tabs" data
         }
         <span class="tok-kw">註記</span> n
     }
-}</code></pre></div><div class="fdt-panel" id="lt-11417af2c9f2db18-6-p-vi" role="tabpanel" aria-labelledby="lt-11417af2c9f2db18-6-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">bắt_đầu</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-11417af2c9f2db18-7-p-vi" role="tabpanel" aria-labelledby="lt-11417af2c9f2db18-7-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">bắt_đầu</span> {
     <span class="tok-kw">đặt</span> <span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span><span class="tok-kw">số</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
     <span class="tok-kw">lặp</span> <span class="tok-kw">từ</span> numeri <span class="tok-kw">đặt</span> n {
         <span class="tok-kw">nếu</span> n <span class="tok-op">≡</span> <span class="tok-nu">2</span> {
@@ -319,7 +361,7 @@ type word is <code>range&lt;int&gt;</code>.</p><div class="faber-demo-tabs" data
         }
         <span class="tok-kw">ghi_chú</span> n
     }
-}</code></pre></div><div class="fdt-panel" id="lt-11417af2c9f2db18-6-p-ar" role="tabpanel" aria-labelledby="lt-11417af2c9f2db18-6-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">بداية</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-11417af2c9f2db18-7-p-ar" role="tabpanel" aria-labelledby="lt-11417af2c9f2db18-7-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">بداية</span> {
     <span class="tok-kw">ليكن</span> <span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span><span class="tok-kw">عدد</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
     <span class="tok-kw">كرر</span> <span class="tok-kw">من</span> numeri <span class="tok-kw">ليكن</span> n {
         <span class="tok-kw">إذا</span> n <span class="tok-op">≡</span> <span class="tok-nu">2</span> {
@@ -330,7 +372,7 @@ type word is <code>range&lt;int&gt;</code>.</p><div class="faber-demo-tabs" data
         }
         <span class="tok-kw">اعرض</span> n
     }
-}</code></pre></div><div class="fdt-panel" id="lt-11417af2c9f2db18-6-p-hi" role="tabpanel" aria-labelledby="lt-11417af2c9f2db18-6-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">आरंभ</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-11417af2c9f2db18-7-p-hi" role="tabpanel" aria-labelledby="lt-11417af2c9f2db18-7-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">आरंभ</span> {
     <span class="tok-kw">बैठा</span> <span class="tok-kw">सूची</span><span class="tok-op">&lt;</span><span class="tok-kw">संख्या</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
     <span class="tok-kw">दोहराओ</span> <span class="tok-kw">सेवन</span> numeri <span class="tok-kw">बैठा</span> n {
         <span class="tok-kw">यदि</span> n <span class="tok-op">≡</span> <span class="tok-nu">2</span> {
@@ -342,5 +384,31 @@ type word is <code>range&lt;int&gt;</code>.</p><div class="faber-demo-tabs" data
         <span class="tok-kw">दिखाओ</span> n
     }
 }</code></pre></div></div><p>A loop can also carry its own error handler — see
-<a href="/en-US/cheatsheet/errors.html#attachment"><code>catch</code> attaches to more than <code>do</code></a>.</p><p>Related: <a href="/en-US/cheatsheet/control-flow.html">Control flow</a> ·
-<a href="/en-US/cheatsheet/types.html">Types and widths</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#values">Over values</a></li><li class="toc-3"><a href="#lockstep">In lockstep</a></li><li class="toc-2"><a href="#keys">Over keys</a></li><li class="toc-2"><a href="#ranges">Over a range</a></li><li class="toc-2"><a href="#dum">While</a></li><li class="toc-2"><a href="#break">Leaving early</a></li></ul></div></nav><footer><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+<a href="/en-US/cheatsheet/errors.html#attachment"><code>catch</code> attaches to more than <code>do</code></a>.</p><h2 id="thread">Thread loops<a class="anchor" href="#thread">#</a></h2><p>A loop marked <code>thread</code> (la <code>thread</code>) runs its iterations as independent lanes:
+<code>for from src at [i, j] thread lane let v { … }</code>. Because the lanes run
+independently, one lane cannot stop the others. <code>continue</code> skips the rest of
+this lane, but <code>break</code> is <code>SEM010 break_in_thread_body</code> and a plain <code>return</code> is
+<code>SEM010 return_in_thread_body</code>. To use a lane's own stores, write only that
+lane's coordinate; a loop whose independence the compiler cannot prove is
+<code>SEM010 filum_independence_unproven</code>.</p><p><code>return thread</code> (la <code>return thread</code>) ends the current lane from any depth of the
+lane body's own blocks. It takes no value, because lanes deliver results
+through their stores. Anywhere else it is refused: outside a thread loop
+(<code>SEM010 return_thread_outside_lane</code>), with a value
+(<code>SEM010 return_thread_with_value</code>), or inside a nested closure or reduction
+body (<code>SEM010 return_thread_in_nested_body</code>).</p><pre class="faber-code"><code class="lang-faber locale=en">@ <span class="tok-kw">kernel</span>
+<span class="tok-kw">fn</span> lane_exit(<span class="tok-kw">tensor</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> values) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+    <span class="tok-kw">for</span> <span class="tok-kw">from</span> values <span class="tok-kw">at</span> [i] <span class="tok-kw">thread</span> <span class="tok-kw">lane</span> <span class="tok-kw">let</span> <span class="tok-kw">value</span> {
+        <span class="tok-kw">return</span> <span class="tok-kw">thread</span>
+    }
+}</code></pre><pre class="faber-code"><code class="lang-faber locale=en outcome=rejects"><span class="tok-kw">fn</span> run() <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+    <span class="tok-kw">return</span> <span class="tok-kw">thread</span>
+}
+
+<span class="tok-kw">main</span> {
+    run()
+}</code></pre><p>Known issue in 1.17: <code>return thread</code> is checked but not yet compiled. The code
+generators and the lowering to the runner's form refuse it by name
+(<code>return_thread_lowering_pending</code>), so a program that uses it passes `faber
+check<code> and stops at </code>faber check --lower<code class="glyph">, </code>faber build<code> and </code>faber run`. The
+formatter keeps it as written.</p><p>Related: <a href="/en-US/cheatsheet/control-flow.html">Control flow</a> ·
+<a href="/en-US/cheatsheet/types.html">Types and widths</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#values">Over values</a></li><li class="toc-3"><a href="#lockstep">In lockstep</a></li><li class="toc-2"><a href="#keys">Over keys</a></li><li class="toc-2"><a href="#ranges">Over a range</a></li><li class="toc-2"><a href="#dum">While</a></li><li class="toc-2"><a href="#break">Leaving early</a></li><li class="toc-2"><a href="#thread">Thread loops</a></li></ul></div></nav><footer><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

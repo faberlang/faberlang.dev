@@ -7,12 +7,12 @@ Unsigned 64-bit modular-word arithmetic and bit-pattern edges.
 ## Syntax
 
 ```
-modulus<u64>
+wrapping_ty<u64>
 ```
 
 ## What this teaches
 
-- Modular word contract — `wrapping<u64>` wraps on overflow; demonstrates max + 1, zero - 1.
+- Modular word contract — `wrapping_ty<u64>` wraps on overflow; demonstrates max + 1, zero - 1.
 - Carrier-mix equality — Conversions and arithmetic results compare by value across carriers.
 
 ## Common mistakes

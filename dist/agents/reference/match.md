@@ -2,7 +2,7 @@
 
 Starts an exhaustive pattern match over a value or values.
 
-**Term** `discerne` · **Section** KEYWORDS · **Also** `match`
+**Term** `match` · **Section** KEYWORDS
 
 ## Syntax
 

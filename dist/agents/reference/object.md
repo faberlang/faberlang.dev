@@ -2,7 +2,7 @@
 
 Declares a type alias.
 
-**Term** `objectum` · **Section** KEYWORDS
+**Term** `object` · **Section** KEYWORDS
 
 ## Syntax
 

@@ -88,7 +88,7 @@ main {
 <span class="tok-co">#     parse is refused by name (SEM016 decimal_radix_hint_rejected) instead of</span>
 <span class="tok-co">#     falling through to a generic type mismatch.</span>
 <span class="tok-co">#   • The same issue covers the reverse direction: a decimal source packed</span>
-<span class="tok-co">#     into `ascii&lt;N&gt; via Hex` is refused for the same reason.</span>
+<span class="tok-co">#     into `ascii&lt;size N&gt; via Hex` is refused for the same reason.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># How to make it legal:</span>
 <span class="tok-co">#   • an integer with a radix:   "ff" ↦ i32 via Hex</span>
@@ -159,27 +159,27 @@ main {
 <span class="tok-co">#     number-to-bytes conversion leaves both the width and the endianness</span>
 <span class="tok-co">#     unstated, so the checker refuses it (SEM016 numeric_to_octeti_unspecified).</span>
 <span class="tok-co">#   • Choose the width and byte order first: a sized numeric scalar writes</span>
-<span class="tok-co">#     into a fixed-width carrier with `n ↦ bytes&lt;N&gt; via Be` (or `via Le`),</span>
+<span class="tok-co">#     into a fixed-width carrier with `n ↦ list&lt;b8, size N&gt; via Be` (or `via Le`),</span>
 <span class="tok-co">#     where N is the source's exact byte width.</span>
 <span class="tok-co">#   • The bit pattern works too, once the source is a sized slot:</span>
-<span class="tok-co">#     `n ↦ b64` gives the bits and `bits ↦ bytes` gives their octets.</span>
+<span class="tok-co">#     `n ↦ b64` gives the bits and `bits ↦ list&lt;b8&gt;` gives their octets.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># How to make it legal:</span>
 <span class="tok-co">#   • let i64 n ← 300</span>
-<span class="tok-co">#     let bytes&lt;8&gt; raw ← n ↦ bytes&lt;8&gt; via Be      (big endian)</span>
-<span class="tok-co">#   • let bytes&lt;8&gt; raw ← n ↦ bytes&lt;8&gt; via Le      (little endian)</span>
+<span class="tok-co">#     let list&lt;b8, size 8&gt; raw ← n ↦ list&lt;b8, size 8&gt; via Be      (big endian)</span>
+<span class="tok-co">#   • let list&lt;b8, size 8&gt; raw ← n ↦ list&lt;b8, size 8&gt; via Le      (little endian)</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • assuming a default width — a number has no implicit byte layout.</span>
 <span class="tok-co">#   • omitting `via Be` / `via Le` — the endianness is part of the request.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: ↦, via, bytes — and the working forms in</span>
+<span class="tok-co"># See also: ↦, via, list — and the working forms in</span>
 <span class="tok-co"># corpus/conversio/octeti-scalar-write.fab (pack) and</span>
 <span class="tok-co"># corpus/conversio/octeti-endian.fab (unpack).</span>
 <span class="tok-co"># =============================================================================</span>
 
 main {
-    let _ raw <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ↦ bytes
+    let _ raw <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ↦ list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span>
     print raw
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusconversiotextus-to-lista-rejectfab-supporting-reject">radix/corpus/conversio/textus-to-lista-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusconversiotextus-to-lista-rejectfab-supporting-reject">#</a></h3><p>Rejected route: a string does not convert to a list.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># string to list — rejected route</span>

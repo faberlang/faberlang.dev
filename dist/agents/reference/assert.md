@@ -2,7 +2,7 @@
 
 Asserts that a condition is true at runtime.
 
-**Term** `adfirma` · **Section** KEYWORDS · **Also** `assert`
+**Term** `assert` · **Section** KEYWORDS
 
 ## Syntax
 

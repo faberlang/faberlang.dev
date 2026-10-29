@@ -2,7 +2,7 @@
 
 Constructs a tagged union variant.
 
-**Term** `finge` · **Section** KEYWORDS
+**Term** `variant` · **Section** KEYWORDS
 
 ## Syntax
 

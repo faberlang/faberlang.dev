@@ -2,7 +2,7 @@
 
 Marks a test case as skipped with a reason.
 
-**Term** `omitte` · **Section** KEYWORDS · **Also** `skip`
+**Term** `skip` · **Section** KEYWORDS
 
 ## Syntax
 

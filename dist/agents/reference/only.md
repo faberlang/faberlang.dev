@@ -2,7 +2,7 @@
 
 Marks a test as the only test to run.
 
-**Term** `solum` · **Section** KEYWORDS
+**Term** `only` · **Section** KEYWORDS
 
 ## Syntax
 
