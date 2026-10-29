@@ -424,8 +424,9 @@ the English tree; `/llms-full.txt` is a locale-neutral corpus reference.
 ### Binary versions
 
 - **Content targets radix HEAD, not a release.** The site is published from
-  `main` (Faber 1.16.0 is the install surface's release; 1.15.0 has a source
-  tag but no published artifacts, so never offer it), so every page is checked against the radix commit
+  `main` (Faber 1.17.0 is the install surface's release and the current pin:
+  radix tag `faber/v1.17.0`, commit 8525ddec07, radix component 0.84.0; 1.15.0
+  has a source tag but no published artifacts, so never offer it), so every page is checked against the radix commit
   recorded in `generator/upstream.lock.toml` and a `faber` built from that
   commit. Pass it
   with `build-site.sh --faber <path>`: the convert cache is keyed on the binary's
@@ -444,10 +445,10 @@ the English tree; `/llms-full.txt` is a locale-neutral corpus reference.
   flat `ERRnnn` codes and no run-time message text (`language/errors.md`);
   removal of `FABER_LIBRARY_HOME` (the pages already say `--library-home`).
   (The anonymous `record` literal landed in 1.16 and is documented in
-  `language/types.md#record`. `reduce via first` landed after 1.16 and retired
-  `primus_quem` / `ubi`: the generated locale, grammar and agent-reference
-  pages still show them until the pin moves to the 1.17 tree, and
-  `rg -n "primus_quem" src static` must find nothing afterwards.)
+  `language/types.md#record`. `reduce via first` landed in 1.17 and retired
+  `primus_quem` / `ubi`; it is documented in `language/tensor-compute.md`.
+  `rg -n "primus_quem" src static` finds only the sentence that names the
+  retired form.)
 - Check against the HEAD binary, not an older build or a release tag. Holding a
   HEAD fact back "until the release" is a second content pass at publish.
 - The GPU pages state mechanism only: `@ kernel`, `[device]`, `faber run
