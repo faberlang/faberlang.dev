@@ -31,8 +31,12 @@ The two are alternatives, not a pair: a program declares one or the other.
 
 ## Exit code {#exit}
 
-`exitus` (en `exit`) after the entry sets the process exit code. `faber run`
-ends with that code, as the generated programs do.
+`exitus` (en `exit`) after the entry sets the process exit code. The body runs
+to its end first and keeps its output; the code is only the status the process
+returns, so `exit 3` does not stop the body early. `faber run` ends with that
+code, and so does the program built for any target that runs programs: the
+runner, Rust, Go, TypeScript, Swift, Python, LLVM and Cranelift all end with
+the status the entry names. A plain entry ends with `0`.
 
 ```faber locale-tabs
 incipit exitus 2 {

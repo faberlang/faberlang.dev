@@ -66,9 +66,13 @@ faber run --device reference <package>  # plain sequential code on the MIR runne
 faber run --device cpu   <package>   # processor cores as a device
 ```
 
-`reference` is the oracle that device results are checked against. Today
-`cpu` takes the same route as `reference`: the kernels run as ordinary
-functions, single-threaded, on the MIR runner. Device selection precedence:
+`reference` is the oracle that device results are checked against: the kernels
+run as ordinary functions, single-threaded, on the MIR runner. Since 1.17 `cpu`
+is a separate device. It goes through the same session and launch pipeline as
+`metal` and `cuda`, and a multicore worker queue runs the kernels. `--threads N`
+(or `[device] threads`) sets the worker count, and `--partitions N` selects
+partitions. A package without kernels runs on the reference route. Device
+selection precedence:
 CLI `--device` > manifest `[device] device` > `auto`. The packaged FMIR image's `device` section carries the canonical device
 program plus Metal MSL and CUDA PTX artifacts (each with a provenance hash);
 `faber run` drives a real Metal/CUDA session (load → allocate → copy-in →

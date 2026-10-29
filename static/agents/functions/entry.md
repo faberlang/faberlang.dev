@@ -14,7 +14,10 @@ main args argv {
 }
 ```
 
-`exit N` after `main` sets the exit code. `faber run` ends with it.
+`exit N` after `main` sets the exit code. The body runs first and keeps its
+output; `exit 3` does not stop it early. `faber run` ends with that code, and a
+program built for any target that runs programs (runner, Rust, Go, TypeScript,
+Swift, Python, LLVM, Cranelift) ends with it too. A plain `main` ends with `0`.
 
 ```faber locale=en
 main exit 2 {

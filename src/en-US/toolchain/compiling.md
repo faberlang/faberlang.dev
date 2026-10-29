@@ -237,10 +237,10 @@ AIR (Autograd / AI Representation) is a pure-functional transform detour off
 the HIR → MIR path. It is entered by explicit annotation on individual
 functions:
 
-```faber target=llvm-text
+```faber target=llvm-text locale=en
 @ radix lane "air"
-functio identity(bivalens value) → bivalens {
-    redde value
+fn identity(bool value) → bool {
+    return value
 }
 ```
 
@@ -347,7 +347,7 @@ compute kernel and its manifest declares a `[device]` section. `faber run
 fails closed with stable codes (`E_BACKEND_UNAVAILABLE`, `E_DEVICE_*`,
 `E_NO_DEVICE_PROGRAM`) instead of silently falling back to the CPU. `reference`
 runs kernels as ordinary functions on the MIR runner and is the oracle device
-results are checked against.
+results are checked against; `cpu` runs them on a multicore worker queue.
 
 ### Architecture note {#comparison}
 

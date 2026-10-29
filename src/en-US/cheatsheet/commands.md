@@ -98,9 +98,17 @@ faber run --device reference <package>
 faber run --device cpu <package>
 ```
 
-`reference` and `cpu` run kernels as ordinary functions on the MIR runner;
-today `cpu` is the same route as `reference`. Precedence is the CLI flag, then
-the manifest `[device] device`, then `auto`.
+`reference` runs kernels as ordinary functions, single-threaded, on the MIR
+runner. Since 1.17 `cpu` is a device of its own: the same launch pipeline as
+`metal` and `cuda`, run by worker threads (`--threads N`, or `[device] threads`
+in `faber.toml`). `--partitions N` selects partitions on `cpu`, `metal` or
+`cuda`. Precedence is the CLI flag, then the manifest `[device] device`, then
+`auto`.
+
+`faber check --device cpu|metal|cuda` builds the device image without running
+it and prints `INFO001` advice: the tier of each kernel, serialized or
+unplaceable kernels, and a report for every `do device` region. See
+[Tensor computation](/language/tensor-compute.html#device-regions).
 
 A kernel runs at one of three safety tiers: `@ kernel` (IEEE-correct float
 math, the default), `@ kernel relaxed` (approximate `/` and `sqrt`, fast

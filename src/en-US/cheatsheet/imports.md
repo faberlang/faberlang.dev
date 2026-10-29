@@ -19,11 +19,11 @@ The retired `privata` import marker is not valid.
 
 Norma modules are named `norma:<module>`.
 
-```faber locale-tabs
-importa ex "norma:console" console
+```faber locale=en
+import from "norma:console" console
 
-incipit {
-    nota "ready"
+main {
+    print "ready"
 }
 ```
 
@@ -44,11 +44,11 @@ incipit {
 The name after the source is the item, not the module — so you import exactly
 what you use.
 
-```faber locale-tabs
-importa ex "norma:text" text
+```faber locale=en
+import from "norma:text" text
 
-incipit {
-    nota "ready"
+main {
+    print "ready"
 }
 ```
 
@@ -72,11 +72,11 @@ badly at the call site.
 `publica` imports *and* re-exports, so consumers of your module see the name
 too. Imports without it remain private to the current module.
 
-```faber locale-tabs
-importa ex "norma:text" publica text
+```faber locale=en
+import from "norma:text" public text
 
-incipit {
-    nota "ready"
+main {
+    print "ready"
 }
 ```
 

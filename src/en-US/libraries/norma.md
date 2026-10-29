@@ -110,12 +110,12 @@ and `encode` / `decode` / `try_decode` in `text`.
 
 ## Usage {#usage}
 
-```faber
-importa ex "norma:fs" fs
-importa ex "norma:fault" fault
+```faber locale=en
+import from "norma:fs" fs
+import from "norma:fault" fault
 
-functio legeConfig() → textus ⇥ fault.IoFault {
-    redde fs.read_file<textus>("config.toml")
+fn load_config() → string ⇥ fault.IoFault {
+    return fs.read_file<string>("config.toml")
 }
 ```
 

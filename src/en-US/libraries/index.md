@@ -15,12 +15,12 @@ application built on them, still in development.
 The standard library. Imported as `norma:*`, no installation step, no entry in
 `faber.toml`:
 
-```faber
-importa ex "norma:fs" fs
-importa ex "norma:text" text
+```faber locale=en
+import from "norma:fs" fs
+import from "norma:text" text
 
-incipit {
-    nota "ready"
+main {
+    print "ready"
 }
 ```
 

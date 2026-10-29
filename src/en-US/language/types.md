@@ -720,6 +720,9 @@ Known issue in 1.17: element access runs on `faber run`, but generated Rust
 does not compile it yet, and the TypeScript, Swift and LLVM targets refuse it
 by name rather than approximate it.
 
+Reductions (`reduce via`), ordered scans (`scan via`) and edge policies
+(`.edge<clamp>()`) are covered in [Tensor computation](/language/tensor-compute.html).
+
 Key methods: `reshape`, `get`, `set`, `create`, `tensor.structa` (Latin
 namespace lookup, not a receiver method), plus elementwise
 `added`/`subtract`/`multiply`/`divide`/`negate`, matrix multiplication
@@ -915,6 +918,40 @@ main {
 ```
 
 This prints `abcd`, `true` and `false`.
+
+### Text windows — `slice` {#text-slice}
+
+`s.slice(a, b)` is the half-open window of characters `a` up to `b`. Like the
+list window, it is checked and reports on the error channel when the window does
+not lie inside the text: an end past the length, a negative bound, or a start
+past the end. The text is never clamped to what exists. An empty window at a
+legal position is fine: `s.slice(2, 2)` is `""`. Outside `main` the call needs
+a handler (a `⊥` recovery value, a `do { } catch`, or a failable enclosing
+function), or it is `SEM011 failable_call_requires_handler`. A window the
+checker can prove is in range, from an integer guard or a loop bound, needs
+no handler.
+
+```faber locale=en
+fn window(string s, int lo, int hi) → string {
+    return s.slice(lo, hi) ⊥ "reported"
+}
+
+main {
+    let string s ← "héllo"
+    print s.slice(1, 3) ⊥ "reported"
+    print window(s, 2, 99)
+    print window(s, 4, 2)
+    do {
+        print s.slice(6, 7)
+    }
+    catch err {
+        print "start past the end reported"
+    }
+}
+```
+
+This prints `él`, `reported`, `reported` and `start past the end reported`.
+Positions count characters, so `s.slice(1, 3)` of `héllo` is `él`.
 
 ### String-template application {#string-template-application}
 
