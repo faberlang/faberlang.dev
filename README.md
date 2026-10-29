@@ -34,8 +34,11 @@ A push to `main` runs `.github/workflows/deploy-pages.yml`, which uploads
 `dist/` as a GitHub Pages artifact and publishes it at https://faberlang.dev.
 The workflow does not build anything, so `dist/` must be current when you push.
 
-## Licence
+## License
 
-This repository has no licence file of its own yet. The Faber compiler, runner
-and standard library are `MIT OR Apache-2.0`; see
-[faberlang/faber](https://github.com/faberlang/faber).
+faberlang.dev is written by Ian Zepp. The site, its Markdown sources, the
+generator, and the agent skills and guides it publishes are available under
+either of the MIT license or the Apache License, Version 2.0, at your option
+(`LICENSE-MIT`, `LICENSE-APACHE`), the same terms as
+[faberlang/faber](https://github.com/faberlang/faber). Contributions are
+dual-licensed under the same terms.
