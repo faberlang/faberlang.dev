@@ -23,7 +23,7 @@ ergonomic developer tool.
 |---|---|
 | `faber build <path>` | Compile a package to a target backend (default: Rust) |
 | `faber check <path>` | Type-check without emitting code |
-| `faber run <path>` | Interpret and run a source file, package, or archive on the MIR runner (never compiles) |
+| `faber run <path>` | Interpret and run a source file, package, or archive on the MIR runner (never compiles); `--target` builds for a target and runs the result |
 | `faber test <path>` | Run proba cases on the MIR runner |
 | `faber format <path>` | Report files whose layout differs from canonical formatting; `--write` applies it |
 | `faber convert <path> --to <locale>` | Convert source between reader-locale surfaces (report-only unless `--write`) |
@@ -78,9 +78,16 @@ silently falls back: unavailable backends, bad descriptors, and
 entry/dtype/shape mismatches fail closed with a stable code
 (`E_BACKEND_UNAVAILABLE`, `E_DEVICE_*`, `E_NO_DEVICE_PROGRAM`).
 
-Kernels use 32-bit integers. Inside an `@ nucleum` (en `@ kernel`) function a
-64-bit `int` is refused: `SEM008 nucleum_wide_integer` for the declaration and
-`nucleum_wide_intermediate` for a wide intermediate. Write `i32`:
+Kernel integers. Since 1.17 a kernel may use `int` (64-bit), `i64`, `u64`,
+`wrapping<u64>`, `saturating<u64>` and `d64` as values: parameters, tensor
+elements, lane binders, locals and stores. `faber check` stays clean, and the
+old `SEM008 nucleum_wide_integer` and `nucleum_d64` refusals are gone. Whether
+a device can carry them is a per-target fact in the requirement report: Metal
+does; the other device targets refuse the kernel by name rather than
+approximate it. An integer intermediate beyond the 64-bit range (a `d64`
+intermediate beyond its 128-bit carrier) is `SEM008 nucleum_wide_intermediate`,
+and `f64` is still refused in kernels (`SEM008 nucleum_f64`). Write `i32` and
+`f32` to keep a kernel portable to every device:
 
 ```faber locale=en
 @ kernel
@@ -89,6 +96,52 @@ fn scale(tf32[4] a, i32 k) → tf32[4] {
     return a * (k ↦ f32)
 }
 ```
+
+### Kernel safety tiers {#kernel-tiers}
+
+A kernel runs at one of three ordered safety tiers, written after `@ kernel`
+(la `laxus`, `intutus`):
+
+| Tier | Written | Float math | Index checks |
+|---|---|---|---|
+| default | `@ kernel` | IEEE-correct; FMA contraction, reordered reductions and library transcendentals within their published bounds | every check the compiler cannot prove stays |
+| relaxed | `@ kernel relaxed` | adds approximate `/` and `sqrt`, fast transcendentals, flushing denormals to zero and reassociating float expressions | as default |
+| unsafe | `@ kernel unsafe` | includes `relaxed` | also drops the checks the compiler cannot prove; an out-of-range access is undefined behaviour |
+
+```faber locale=en
+@ kernel
+@ public
+fn scale_default(f32 x) → f32 {
+    return x * 2.0
+}
+
+@ kernel relaxed
+@ public
+fn scale_relaxed(f32 x) → f32 {
+    return x * 2.0
+}
+
+@ kernel unsafe
+@ public
+fn scale_unsafe(f32 x) → f32 {
+    return x * 2.0
+}
+```
+
+The tiers are one ordered choice, not independent flags: `@ kernel relaxed
+unsafe` is refused (`PARSE018 duplicate_nucleum_tier`), as is a tier on a
+`fragment`, on anything that is not a kernel function, or a word that is not a
+tier. Integer results stay exact at every tier, and a check the author wrote (a
+`trapping` store, an `is_finite` test, a bounds test) always runs. On Metal the
+default tier emits IEEE division, precise `sqrt` and precise transcendentals,
+and the relaxed and unsafe tiers emit the fast forms; a backend that cannot
+honour a tier runs the default one, never a looser one.
+
+`faber run --safe` and `faber build --safe` run every kernel at the default
+tier for that command, and `safe = true` under `[device]` in `faber.toml` does
+the same for the package. The switch can only lower a tier, and no environment
+variable sets it. Use it to check whether a relaxed or unsafe kernel changes
+an answer.
 
 ### Updating faber {#updating}
 
@@ -164,10 +217,15 @@ faber explain --search query
 diagnostic codes as a subset. It reads from the language corpus
 (`radix/corpus/`).
 
+`--locale <locale>` chooses the reader locale whose spellings terms are listed
+and looked up by; without it `faber explain` uses the current package's
+`faber.toml` `[locale]`, else English. `--diagnostics-locale` is separate: it
+sets only the message language of a diagnostic explanation.
+
 ## In-process scripting
 
 Alongside the compiled `faber build` path, `faber run` executes Faber source
-in-process through the MIR runner. It never compiles.
+in-process through the MIR runner. Without `--target` it never compiles.
 
 ### Usage {#usage}
 
@@ -178,6 +236,28 @@ faber run script.fab
 This runs Faber source in-process after the normal front half of the
 compiler (parse through typecheck + MIR lowering), without invoking
 `rustc` or spawning a build process.
+
+### Building a target, then running it {#run-target}
+
+`faber run --target <target>` is the one form of `run` that compiles. It builds
+the package for that target, then runs the built program with the arguments
+after `--`; the program's standard streams and exit code pass straight through.
+
+| `--target` | What it builds and runs | Needs on `PATH` |
+|---|---|---|
+| `ts` | a Node project, run with `node` | `tsc` and `node` |
+| `go` | a Go module (vendored runtime, builds offline), run as built | `go` |
+| `llvm-host` | a native program through LLVM | `llvm-as`, `opt`, `clang` |
+| `clif-jit` | native code compiled in memory with Cranelift and run in this process | nothing else |
+
+```bash
+faber run --target ts my-app/ -- --flag value
+faber run --target clif-jit my-app/
+```
+
+A missing tool is refused by name. `faber build --target clif-jit` and `faber
+emit --target clif-jit` are refused by name: that target exists to run. Device
+packages keep their own route (`--device`, above).
 
 ### How it works {#how-it-works}
 

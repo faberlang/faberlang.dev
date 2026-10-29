@@ -12,7 +12,7 @@ a table a model fetches. Pages written under `src/en-US/language/locales/`:
                    Latin page, which stays two-column (Latin | English).
                    English has no page: it is the page language itself and a
                    base surface, so its spelling leads every table instead
-  diagnostics.md   one compiler failure (`faber check --diagnostics`) captured
+  diagnostics.md   one compiler failure (`faber check`, diagnostics on by default) captured
                    in every installed locale by capture-locale-diagnostics.sh
   examples.md      one program shown across all eight surfaces, read from the
                    committed locale-tabs cache — never re-rendered here
@@ -382,7 +382,7 @@ def render_diagnostics(captures: Path) -> str | None:
     lines += [
         "The failure is lexical, so it is identical in every locale: a string "
         "literal with no closing quote, `LEX001`. Only the message text moves. "
-        "Run `faber check --diagnostics --diagnostics-locale <locale>` to reproduce it.",
+        "Run `faber check --diagnostics-locale <locale>` to reproduce it.",
         "",
     ]
     for loc in present:

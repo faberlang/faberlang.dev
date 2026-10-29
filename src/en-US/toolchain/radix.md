@@ -1142,8 +1142,8 @@ faber test <package>
 faber targets
 ```
 
-`faber run` interprets on the MIR runner and never compiles; `faber build -t
-<target>` builds.
+`faber run` interprets on the MIR runner and compiles only with `--target`
+(`ts`, `go`, `llvm-host`, `clif-jit`); `faber build -t <target>` builds.
 
 For implementation archaeology, start with the driver and move outward:
 

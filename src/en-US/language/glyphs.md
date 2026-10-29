@@ -113,6 +113,9 @@ Worked through in full under
 | `?` `?.` `?[` `?(` | Optional chaining |
 | `!` `!.` `![` `!(` | Non-null assertion |
 
+When the callee of `?(` or the receiver of `?[` is absent, the arguments or the
+index are not evaluated, so their side effects do not run (since 1.17).
+
 ### Ranges {#ranges}
 
 | Glyph | Meaning |
@@ -132,7 +135,7 @@ walked with `for range r let i`, printed, and used to slice a rank-1 tensor,
 | `"` | `string` | Line string |
 | `«` `»` | `string` | Block string (guillemets) |
 | `` ` `` | `forma` | Captured template |
-| `\|` | `list<b8>` (en `bytes`) | Hex byte literal, `\|00ff\|` |
+| `\|` | `list<b8>` | Hex byte literal, `\|00ff\|` |
 | `/…/` | `regex` | Inline pattern after `regex` or `_`: `regex /a+b/`; `\/` writes a slash |
 | `§` | template hole | Placeholder inside `"…"`, `«…»`, `` `…` `` |
 

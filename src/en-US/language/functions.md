@@ -519,10 +519,12 @@ genus Par<T> {
 
 ### Size parameters {#size-parameters}
 
-`magnitudo` declares a size parameter in generic parameter lists, bound by the bounded collection it appears in:
+`magnitudo` declares a size parameter in generic parameter lists, bound by the bounded collection it appears in. The collection spells its capacity with the same marker, `lista<T, magnitudo N>`; a bare `lista<T, N>` is retired:
 
 ```faber
-functio longitudo<T, magnitudo N>(lista<T, N> xs) → numerus {
+functio longitudo<T, magnitudo N>(lista<T, magnitudo N> xs) → numerus {
     redde xs.longitudo()
 }
 ```
+
+A call that names a size argument writes the marker too, as the signature declares the parameter (`f<int, size 4>(x)` in English); a bare natural there is `SEM057 size_marker_required`.

@@ -440,11 +440,14 @@ the English tree; `/llms-full.txt` is a locale-neutral corpus reference.
   update this note, build, commit. Nothing else on the site carries a version.
 - **Ruled but not built at HEAD.** These are not stated as fact anywhere; each
   has a sentence that is true today and must be revisited when the item lands:
-  `reduce via first` replacing `primus_quem`/`ubi` (the generated locale rows); `trapped<R,T>`,
+  `trapped<R,T>`,
   flat `ERRnnn` codes and no run-time message text (`language/errors.md`);
   removal of `FABER_LIBRARY_HOME` (the pages already say `--library-home`).
-  `rg -n "primus_quem" src` finds the first. (The anonymous `record`
-  literal landed in 1.16 and is documented in `language/types.md#record`.)
+  (The anonymous `record` literal landed in 1.16 and is documented in
+  `language/types.md#record`. `reduce via first` landed after 1.16 and retired
+  `primus_quem` / `ubi`: the generated locale, grammar and agent-reference
+  pages still show them until the pin moves to the 1.17 tree, and
+  `rg -n "primus_quem" src static` must find nothing afterwards.)
 - Check against the HEAD binary, not an older build or a release tag. Holding a
   HEAD fact back "until the release" is a second content pass at publish.
 - The GPU pages state mechanism only: `@ kernel`, `[device]`, `faber run

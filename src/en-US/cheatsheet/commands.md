@@ -14,7 +14,7 @@ open [The faber CLI](/toolchain/cli.html).
 |---|---|
 | `faber check <package>` | Fast front-end validation: lex, parse, type check, lower |
 | `faber build <package> -t rust` | Emit a Rust project for review or native compilation |
-| `faber run <package>` | Interpret and execute an application package (never compiles) |
+| `faber run <package>` | Interpret and execute an application package (compiles only with `--target`) |
 | `faber test <package>` | Run package tests when the package defines test surfaces |
 | `faber explain <code>` | Read a stable diagnostic explanation |
 | `faber update --check` | See whether a newer release exists; `faber update` installs it |
@@ -54,9 +54,10 @@ faber run .
 ```
 
 Use `run` for application packages with an `incipit` entry point. It
-interprets the package on the MIR runner and never compiles; `faber build -t
-<target>` is the command that builds. Library-only packages should be checked
-and tested instead.
+interprets the package on the MIR runner and does not compile; `faber build -t
+<target>` is the command that builds. `faber run --target
+ts|go|llvm-host|clif-jit` is the exception: it builds for that target and runs
+the result. Library-only packages should be checked and tested instead.
 
 ## Explain diagnostics {#explain}
 
@@ -101,9 +102,15 @@ faber run --device cpu <package>
 today `cpu` is the same route as `reference`. Precedence is the CLI flag, then
 the manifest `[device] device`, then `auto`.
 
-Inside a kernel, integers are 32-bit: a 64-bit `int` is refused
-(`SEM008 nucleum_wide_integer`, or `nucleum_wide_intermediate` for a wide
-intermediate value). Write `i32`.
+A kernel runs at one of three safety tiers: `@ kernel` (IEEE-correct float
+math, the default), `@ kernel relaxed` (approximate `/` and `sqrt`, fast
+transcendentals) and `@ kernel unsafe` (also drops the index checks the
+compiler cannot prove). `--safe` on `faber run` or `faber build`, or `safe =
+true` under `[device]` in `faber.toml`, runs every kernel at the default tier.
+
+Inside a kernel, `i64`, `u64`, `wrapping<u64>` and `d64` are admitted values
+since 1.17; the target decides whether it can carry them (Metal does, the other
+device targets refuse by name). `f64` is still refused.
 
 See [device execution](/toolchain/cli.html#device-execution) for the contract.
 

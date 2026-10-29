@@ -125,7 +125,7 @@ incipit {
 
 ## Vectors {#vectors}
 
-`vector<T, N>` is a fixed-width vector, with `vf32[N]` as its sugar. Build one
+`vector<T, size N>` is a fixed-width vector, with `vf32[N]` as its sugar; the long form needs the `size` marker (`vector<f32, 4>` is retired). Build one
 by converting a literal — the conversion is what fixes the width.
 
 ```faber locale-tabs

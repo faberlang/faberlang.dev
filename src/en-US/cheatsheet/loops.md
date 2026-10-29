@@ -141,5 +141,47 @@ incipit {
 A loop can also carry its own error handler — see
 [`cape` attaches to more than `fac`](/cheatsheet/errors.html#attachment).
 
+## Thread loops {#thread}
+
+A loop marked `thread` (la `filum`) runs its iterations as independent lanes:
+`for from src at [i, j] thread lane let v { … }`. Because the lanes run
+independently, one lane cannot stop the others. `continue` skips the rest of
+this lane, but `break` is `SEM010 break_in_thread_body` and a plain `return` is
+`SEM010 return_in_thread_body`. To use a lane's own stores, write only that
+lane's coordinate; a loop whose independence the compiler cannot prove is
+`SEM010 filum_independence_unproven`.
+
+`return thread` (la `redde filum`) ends the current lane from any depth of the
+lane body's own blocks. It takes no value, because lanes deliver results
+through their stores. Anywhere else it is refused: outside a thread loop
+(`SEM010 return_thread_outside_lane`), with a value
+(`SEM010 return_thread_with_value`), or inside a nested closure or reduction
+body (`SEM010 return_thread_in_nested_body`).
+
+```faber locale=en
+@ kernel
+fn lane_exit(tensor<f32, [4]> values) → void {
+    for from values at [i] thread lane let value {
+        return thread
+    }
+}
+```
+
+```faber locale=en outcome=rejects
+fn run() → void {
+    return thread
+}
+
+main {
+    run()
+}
+```
+
+Known issue in 1.17: `return thread` is checked but not yet compiled. The code
+generators and the lowering to the runner's form refuse it by name
+(`return_thread_lowering_pending`), so a program that uses it passes `faber
+check` and stops at `faber check --lower`, `faber build` and `faber run`. The
+formatter keeps it as written.
+
 Related: [Control flow](/cheatsheet/control-flow.html) ·
 [Types and widths](/cheatsheet/types.html)

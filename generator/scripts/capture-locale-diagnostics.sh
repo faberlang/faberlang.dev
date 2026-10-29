@@ -4,7 +4,7 @@
 # The Reader locales tour claims that diagnostics render in the reader's own
 # language, not English prose inside localized source. This script proves it
 # with the compiler: it checks one deliberately broken program once per reader
-# pack and commits the raw `faber check --diagnostics` output under
+# pack and commits the raw `faber check` output under
 # generator/locale-captures/. A page then shows the same failure spelled in
 # each language, and the file it reads is the command's own output, never a
 # hand-copied transcript.
@@ -16,8 +16,9 @@
 # warning to the `en` capture alone.
 #
 # `--locale` selects the reader pack the whole run is rendered against, message
-# language included. `--diagnostics` is what prints the prose; without it the
-# toolchain emits codes and source spans only.
+# language included. Diagnostics are on by default (1.17), so a plain
+# `faber check` prints the prose; `--no-diagnostics` would give codes and
+# source spans only.
 #
 # Requires a workspace build of `faber`. A PATH copy is used only as a
 # fallback and is reported.
@@ -95,7 +96,7 @@ for loc in "${LOCALES[@]}"; do
     # absolute path would differ between a checkout and a worktree, and a
     # capture that changes with the directory it ran in is not a capture.
     set +e
-    (cd "$REPO" && "$FABER" check --diagnostics --locale "$loc" \
+    (cd "$REPO" && "$FABER" check --locale "$loc" \
         "generator/locale-captures/error.fab") 2>&1 \
         | sed "s|${REPO}/||g" > "${OUT}/${loc}.txt"
     set -e
@@ -105,7 +106,7 @@ for loc in "${LOCALES[@]}"; do
         exit 1
     fi
     installed=$((installed + 1))
-    echo "  ${loc}: $(grep -m1 '^error\[' "${OUT}/${loc}.txt" | sed 's/^error\[[^]]*\] [a-z]* [^:]*: //')"
+    echo "  ${loc}: $(grep -m1 '^message: ' "${OUT}/${loc}.txt" | sed 's/^message: //')"
 done
 
 # The feature tour needs the two base surfaces and at least one non-Latin

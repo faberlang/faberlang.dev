@@ -53,7 +53,7 @@ register types.
 | `nihil` | Null / absent (the null value is `nulla`) | `nulla` |
 | `instans` | Duration / time instant | — |
 | `json` | Compile-time JSON value | `{ "key": "value" }` |
-| `octeti` (en `bytes`) | Byte string, exactly `lista<b8>` (en `list<b8>`) | \|00ff\| |
+| `lista<b8>` (en `list<b8>`) | Byte string: a run of raw bytes. There is no separate byte word (the old `octeti` / `bytes` is retired) | \|00ff\| |
 
 ### Sized numeric types {#sized-numeric-types}
 
@@ -82,7 +82,9 @@ The bare width marker is the type.
 
 The markers `b8`, `b16`, `b32` and `b64` are raw bits, not numbers, so they
 are not in the table above. A `b8` is exactly eight bits, and a `b8` is also
-the element of a byte string: `|00ff|` is a `lista<b8>` (en `bytes`).
+the element of a byte string: `|00ff|` is a `lista<b8>` (en `list<b8>`). There is no byte
+type: eight raw bits are `b8`, an eight-bit number is `u8`, and a run of bytes
+is `list<b8>`.
 
 Raw bits take the bit operators `∧ ∨ ⊻ ¬ ⇐ ⇒` and nothing else. Each operation
 acts at the type's own width: a left shift drops bits off the top, and a shift
@@ -503,8 +505,14 @@ incipit {
 }
 ```
 
-Key methods: `length`, `get`, `append`, `sum`, `first`, `last`, `take`,
-`slice`.
+Key methods: `length`, `get`, `append`, `extend`, `find`, `sum`, `first`,
+`last`, `take`, `slice`.
+
+`xs.extend(ys)` appends every element of another list of the same element type,
+in order and in place; the argument is read once first, so a list can extend
+itself. `xs.find(T x ∴ predicate)` (la `reperta`) returns the first element
+where the predicate holds as `T ∪ none`, calling the predicate left to right and
+stopping at the first match. Since 1.17.
 
 `take(n)` and `slice(a, b)` are checked windows. A window that runs past the
 end of the list is reported, not clamped, so both are failable: outside
@@ -530,6 +538,59 @@ This prints `[1, 2]`, `[1, 2, 3, 4, 5]` and `[2, 3]`. Before 1.15 the second
 call clamped silently; it now falls back to `xs` because the window failed.
 The runner, Rust, TypeScript and Python all check windows this way (generated
 TypeScript and Python clamped until 1.16).
+
+### Bounded lists — `size` {#bounded-lists}
+
+A list can carry a length limit in its type. The limit is written after `size`
+(la `magnitudo`): `list<int, size 4>` holds at most four elements. A bare
+`list<int, 4>` is retired by name (`SEM008 list_count_needs_size`), and so is a
+bare `lo‥hi` range, which bounds a value rather than a count. The same rule
+covers every bounded container: `vector<f32, size 4>` (the `vf32[4]` sugar is
+unchanged), `queue<int, size 4>`, `stack<int, size 4>`, `string<size 8>` and
+`ascii<size 8>` (`SEM008 vector_width_needs_size`, `SEM008 capacity_needs_size`).
+
+A range after `size` bounds the length. `‥` leaves the upper bound out and `…`
+includes it, so `list<int, size 2‥5>` holds two to four elements and
+`list<int, size 1…∞>` is never empty: `first` and `last` return plain values.
+Growing past the maximum or removing below the minimum reports on the error
+channel. `list<int, size 3>` and `list<int, size 0…3>` are the same type.
+
+A short list literal takes the capacity of the cell it is stored into, whether
+the cell is a variable, a field or a call argument: `[1, 2]` stored into
+`list<int, size 0…3>` is a list with room for three. A literal longer than the
+maximum is refused by name.
+
+```faber locale=en
+main {
+    # Never empty: first and last are plain ints.
+    mut list<int, size 1…∞> xs ← [1, 2, 3]
+    print xs.first()
+    print xs.last()
+    print xs.length()
+    xs.append(4)
+    print xs
+
+    # Lengths 2 to 4: the fifth push does not fit.
+    mut list<int, size 2‥5> ys ← [10, 20]
+    do {
+        ys.append(30)
+        ys.append(40)
+        ys.append(50)
+        print "unreachable"
+    }
+    catch err {
+        print "full: §"(err)
+    }
+    print ys
+
+    # A short literal takes the cell's capacity.
+    let list<int, size 0…3> pair ← [1, 2]
+    print pair
+}
+```
+
+This prints `1`, `3`, `3`, `[1, 2, 3, 4]`, then `full: list length range: push
+past the maximum`, `[10, 20, 30, 40]` and `[1, 2]`.
 
 ### Tabula — key-value map {#tabula}
 
@@ -655,7 +716,7 @@ This prints `2.0`, `0.0`, `4.0` and `[[1.0, 2.0], [7.5, 4.0]]`. A bracket
 range on a vector or a matrix slices to a vector or a matrix, and `↦`
 converts between tensors, vectors and matrices of the same shape.
 
-Known issue in 1.16: element access runs on `faber run`, but generated Rust
+Known issue in 1.17: element access runs on `faber run`, but generated Rust
 does not compile it yet, and the TypeScript, Swift and LLVM targets refuse it
 by name rather than approximate it.
 
@@ -750,7 +811,7 @@ main {
 
 This prints `7`. Lists and sets are sinks too: `⇜` appends to a list
 (duplicates kept) and adds a missing item to a set. On a bounded
-`list<T, N>` that is already full, `.sink(v)` reports.
+`list<T, size N>` that is already full, `.sink(v)` reports.
 
 ```faber locale=en
 main {
@@ -764,7 +825,7 @@ main {
 
 This prints `["begin", "step", "step"]`; `log.append(v)` and `log ⇜ v` do the same thing here.
 
-Known issue in 1.16: `⇜` runs on `faber run`, Rust and LLVM; the Go,
+Known issue in 1.17: `⇜` runs on `faber run`, Rust and LLVM; the Go,
 TypeScript, Swift, WebAssembly, Racket, Python and Cranelift targets refuse it
 by name (`CODEGEN001`).
 
@@ -835,18 +896,18 @@ shape. They are not interchangeable synonyms.
 | `«…»` | `textus` | Block/multiline Unicode; `(…)` renders |
 | `` `…` `` | `forma` | Captured templates; `(…)` captures |
 | `{ … }` | `json` | Compile-time JSON document |
-| `\|…\|` | `lista<b8>` (en `bytes`) | Compile-time hex bytes |
+| `\|…\|` | `lista<b8>` (en `list<b8>`) | Compile-time hex bytes |
 | `regex /…/` | `regex` | Inline pattern literal; raw body, `\/` writes a slash (inside a class too: `[\/]`) |
 | `_ /…/` | `regex` | The same literal where the cell gives the type |
 | `[ … ]` | `lista<T>` | Faber list literal |
 
-A bounded text cell such as `ascii<N>` keeps text behaviour: `+` joins and
+A bounded text cell such as `ascii<size N>` keeps text behaviour: `+` joins and
 the ordering operators compare as text.
 
 ```faber locale=en
 main {
-    let ascii<8> a ← 'ab'
-    let ascii<8> b ← 'cd'
+    let ascii<size 8> a ← 'ab'
+    let ascii<size 8> b ← 'cd'
     print a + b
     print a ≺ b
     print 'ab' ≥ 'cd'

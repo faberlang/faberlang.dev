@@ -82,6 +82,20 @@ incipit {
 
 Use `publica` only when you deliberately intend to widen your module's surface.
 
+## The braced record form {#braced}
+
+An import can also be written as a record. The field names are spelled by the
+file's reader pack, so an English file writes `from`, `visibility`, `name` and
+`as`, and a Latin file writes `ex`, `visibilitas`, `nomen` and `ut`.
+
+```faber locale=en
+import { from = "norma:text", visibility = public, name = text, as = t }
+```
+
+A field word from another locale is refused by name:
+`import { ex = "norma:text" }` in an English file is `PARSE050
+wrong_locale_import_field`.
+
 ## From the target language {#target-bound}
 
 A target word before the specifier imports a module of the target language

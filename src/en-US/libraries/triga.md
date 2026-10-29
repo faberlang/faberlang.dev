@@ -40,7 +40,7 @@ facades that point at their leaves.
 
 | Import | Owns |
 |--------|------|
-| `triga:math` | `Box<N>`, `Quaternion`, `Euler`, `Color`, `Sphere`, `Plane`, `Ray`, transform payload, face-code tables, vector and matrix helpers over the language's `vector<f32, N>` and `matrix<f32, [R, C]>` |
+| `triga:math` | `Box<N>`, `Quaternion`, `Euler`, `Color`, `Sphere`, `Plane`, `Ray`, transform payload, face-code tables, vector and matrix helpers over the language's `vector<f32, size N>` and `matrix<f32, [R, C]>` |
 | `triga:graph/object` | `Object`, `Scene` |
 | `triga:graph/camera` | `PerspectiveCamera`, `OrthographicCamera`, projection facts |
 | `triga:lighting/light` | `Light`, `AmbientLight`, `DirectionalLight`, `PointLight` |
@@ -73,7 +73,7 @@ implicit `self` receiver. Free functions cover constructors (`quaternion`,
 generators, and graphics-domain work on the language's own `vector` and
 `matrix` types, which cannot grow receivers.
 
-The math carriers are the language types `vector<f32, N>` and
+The math carriers are the language types `vector<f32, size N>` and
 `matrix<f32, [R, C]>`; Triga has no `Vector3` or `Matrix4` class. Faber
 morphologia governs receiver posture: the scene store is mutated in place on a
 `mut` receiver, while math values return a new value and leave the receiver
@@ -84,8 +84,8 @@ importa ex "triga:math" math
 
 functio demo() → math.Quaternion {
     # Free function: a constructor, no receiver exists yet
-    sit vector<f32, 3> lo ← [0.0, 0.0, 0.0] ↦ vector<f32, 3>
-    sit vector<f32, 3> hi ← [2.0, 2.0, 2.0] ↦ vector<f32, 3>
+    sit vector<f32, magnitudo 3> lo ← [0.0, 0.0, 0.0] ↦ vector<f32, magnitudo 3>
+    sit vector<f32, magnitudo 3> hi ← [2.0, 2.0, 2.0] ↦ vector<f32, magnitudo 3>
     sit math.Box<3> ∪ nihil bounds ← math.box_from_min_max(lo, hi)
 
     # Receiver method: returns a new Quaternion, receiver unchanged
@@ -155,7 +155,7 @@ metadata. The browser seam for the DOM and Canvas2D is [Tela](/libraries/tela.ht
 
 | Layer | State |
 |-------|-------|
-| Math / transforms | Native Faber (`vector<f32, N>`, `matrix<f32, [R, C]>`, quaternions, …) |
+| Math / transforms | Native Faber (`vector<f32, size N>`, `matrix<f32, [R, C]>`, quaternions, …) |
 | Scene store | Handles, graph edits, world transforms |
 | Buffer geometry | SoA attributes, draw batches, vertex-layout reflection |
 | Primitive generators | Deterministic plane/box/sphere/… mesh builders |
