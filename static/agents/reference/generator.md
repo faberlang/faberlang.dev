@@ -2,7 +2,7 @@
 
 Callable posture for synchronous stream (generator) functions.
 
-**Term** `fiunt` · **Section** KEYWORDS · **Also** `generator`
+**Term** `generator` · **Section** KEYWORDS
 
 ## Syntax
 
@@ -17,7 +17,7 @@ fn name(…) generator → T
 
 ## Common mistakes
 
-- Using `@ cursor` only when teaching preferred morphology — prefer `generator`.
+- Using `@ iterator` only when teaching preferred morphology — prefer `generator`.
 
 ## Grammar
 

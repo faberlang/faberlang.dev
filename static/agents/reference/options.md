@@ -2,7 +2,7 @@
 
 Binds CLI options metadata to a function declaration.
 
-**Term** `optiones` · **Section** KEYWORDS
+**Term** `options` · **Section** KEYWORDS
 
 ## Syntax
 

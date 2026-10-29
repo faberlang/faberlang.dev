@@ -2,7 +2,7 @@
 
 Repeats a test a fixed number of times.
 
-**Term** `repete` · **Section** KEYWORDS
+**Term** `repeat` · **Section** KEYWORDS
 
 ## Syntax
 

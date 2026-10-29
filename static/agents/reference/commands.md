@@ -2,7 +2,7 @@
 
 CLI root with options, operands, subcommands, and module mounts.
 
-**Term** `imperia` · **Section** ANNOTATIONS
+**Term** `commands` · **Section** ANNOTATIONS
 
 ## Syntax
 
@@ -18,7 +18,7 @@ CLI root with options, operands, subcommands, and module mounts.
 
 ## Common mistakes
 
-- attaching `@ cli` to a `fn` instead of an `main` (SEM009), or reusing duplicate CLI flags or binding names within the same CLI surface
+- attaching `@ cli` to a `fn` instead of a `main` (SEM009), or reusing duplicate CLI flags or binding names within the same CLI surface
 
 ## Grammar
 

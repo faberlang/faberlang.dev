@@ -2,7 +2,7 @@
 
 Distributed reduce via sum from … thread kernel inside @ kernel.
 
-**Term** `filum` · **Section** CONCEPTS
+**Term** `thread` · **Section** CONCEPTS
 
 ## Syntax
 

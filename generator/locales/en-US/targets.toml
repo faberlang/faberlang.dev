@@ -129,7 +129,7 @@ selects where it runs.
 | Device | What it is |
 |---|---|
 | `reference` | Plain sequential code on the MIR runner; the oracle device results are checked against |
-| `cpu` | Processor cores as a device; until the worker device lands, the same route as `reference` |
+| `cpu` | Processor cores as a device: the same session and launch pipeline as `metal` and `cuda`, run by a multicore worker queue (`--threads N`, `[device] threads`) |
 | `metal` | Apple Metal |
 | `cuda` | NVIDIA CUDA |
 | `auto` | Resolve against the machine's probes; fails closed when none, or more than one, is admitted |

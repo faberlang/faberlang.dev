@@ -1,6 +1,8 @@
-error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab: unterminated string literal (newline in string)
+error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab
 phase: lex
 file: generator/locale-captures/error.fab
 span: 173..187
 source: ⁨fixum textus nuntius ← "Salve, munde!⁩
-help: close the string literal before the end of the line or file
+message: unterminated string literal (newline in string)
+help: Double-quoted text strings are single-line; write `\n` for a newline or use `«...»` for multiline text.
+explain: faber explain LEX001.newline_in_string_literal

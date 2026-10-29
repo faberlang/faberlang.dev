@@ -2,7 +2,7 @@
 
 Raises a fatal error or panic.
 
-**Term** `mori` · **Section** KEYWORDS · **Also** `panic`
+**Term** `panic` · **Section** KEYWORDS
 
 ## Syntax
 

@@ -2,7 +2,7 @@
 
 Starts the default branch of an switch or match statement.
 
-**Term** `ceterum` · **Section** KEYWORDS · **Also** `default`
+**Term** `default` · **Section** KEYWORDS
 
 ## Syntax
 
@@ -12,7 +12,7 @@ default <block>
 
 ## What this teaches
 
-- Default arm — `default <block>` is the catch-all branch in an `switch` or `match` match expression
+- Default arm — `default <block>` is the catch-all branch in a `switch` or `match` match expression
 - Fallback handling — when no `case` pattern matches, execution falls through to the `default` block
 
 ## Common mistakes

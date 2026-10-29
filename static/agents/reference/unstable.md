@@ -2,7 +2,7 @@
 
 Marks an interface method as planned but unavailable for a target.
 
-**Term** `nondum` · **Section** ANNOTATIONS
+**Term** `unstable` · **Section** ANNOTATIONS
 
 ## Syntax
 

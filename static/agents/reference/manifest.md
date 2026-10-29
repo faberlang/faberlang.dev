@@ -14,6 +14,7 @@ faber.toml
 
 - the package manifest file `faber.toml` — configures build, run, and test for a Faber package
 - key manifest sections: `[package]`, `[paths]`, `[build]`
+- optional `[format] width = N` — opt-in line wrapping for `faber format`
 
 ## Common mistakes
 
@@ -52,6 +53,15 @@ entry = "main.fab"
 [build]
 target = "rust"
 kind = "bin"
+[format]
+width = 100
+The [format] table is optional. [format] width = N wraps `faber format` output at N display columns,
+indentation included, breaking only between tokens where a newline changes
+nothing (an unbreakable span wider than N overflows). It is a positive
+integer; zero, a negative number or a non-integer is refused. There is no
+built-in width: with neither the key nor the flag, output is not wrapped.
+`faber format --width N` wins over the manifest key; `--stdin` has no package,
+so only the flag applies.
 
 ## Example
 

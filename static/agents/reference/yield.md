@@ -2,7 +2,7 @@
 
 Yields one value from a generator.
 
-**Term** `cede` · **Section** KEYWORDS · **Also** `yield`
+**Term** `yield` · **Section** KEYWORDS
 
 ## Syntax
 

@@ -2,7 +2,7 @@
 
 Starts a catch block.
 
-**Term** `cape` · **Section** KEYWORDS · **Also** `catch`
+**Term** `catch` · **Section** KEYWORDS
 
 ## Syntax
 

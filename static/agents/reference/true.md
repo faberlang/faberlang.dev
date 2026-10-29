@@ -2,7 +2,7 @@
 
 Represents the true boolean value and can prefix a truthiness check.
 
-**Term** `verum` · **Section** KEYWORDS
+**Term** `true` · **Section** KEYWORDS
 
 ## Syntax
 

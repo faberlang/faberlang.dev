@@ -2,7 +2,7 @@
 
 Declares a concrete type with fields and methods.
 
-**Term** `genus` · **Section** KEYWORDS · **Also** `class`, `struct`
+**Term** `class` · **Section** KEYWORDS · **Also** `struct`
 
 ## Syntax
 

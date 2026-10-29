@@ -2,7 +2,7 @@
 
 Sets a wall-clock timeout in seconds for a test modifier.
 
-**Term** `temporis` · **Section** KEYWORDS
+**Term** `timeout` · **Section** KEYWORDS
 
 ## Syntax
 

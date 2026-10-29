@@ -123,7 +123,7 @@ FAMILIES: list[dict] = [
         "ids": """
             annotation annotation_name braced_annotation annotation_field_list
             annotation_field annotation_sugar nucleum_annotation nucleum_sugar
-            nucleum_braced nucleum_modifier nucleum_field_list nucleum_field
+            nucleum_braced nucleum_modifier nucleum_tier nucleum_field_list nucleum_field
             radix_annotation radix_directive ad_annotation nondum_annotation
         """.split(),
     },
@@ -142,7 +142,8 @@ FAMILIES: list[dict] = [
             failable_promissum_type ratio_type hole_type qualified_type type_head
             type_arguments type_argument labeled_type_argument width_type_sugar
             shape_suffix figura figura_product figura_primary figura_list
-            function_type type_list spelled_lift lift_extent
+            function_type type_list spelled_lift lift_extent range_argument
+            sized_range_argument range_bound range_glyph
         """.split(),
     },
     {
@@ -160,7 +161,7 @@ FAMILIES: list[dict] = [
             casu_variant_clause custodi_stmt si_guard_clause ex_stmt
             extract_fields extract_field ceteri_field redde_stmt reddet_stmt
             tacebit_stmt cede_stmt rumpe_stmt perge_stmt tacet_stmt adfirma_stmt
-            requirit_stmt reice_stmt inc_dec_stmt nota_stmt fac_stmt
+            requirit_stmt reice_stmt inc_dec_stmt nota_stmt fac_stmt fac_modifier
         """.split(),
     },
     {
@@ -184,9 +185,10 @@ FAMILIES: list[dict] = [
             array_element iuncta_expr json_literal regex_literal json_member typed_constructor field_list field_init field_key
             construction_source json_value json_object json_array json_string
             json_number finge_expr qualified_ident praefixum_expr scriptum_expr
-            lege_expr first_match_expr reducta_expr reducta_op reducta_group
+            lege_expr reducta_expr reducta_op reducta_group
             reducta_body reducta_identity sort_expr sort_direction sort_body
-            filum_clause capta_expr
+            filum_clause capta_expr group_key scan_expr scan_op scan_group
+            scan_order_clause
         """.split(),
     },
     {

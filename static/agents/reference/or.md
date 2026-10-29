@@ -2,7 +2,7 @@
 
 Combines boolean expressions with logical or.
 
-**Term** `aut` · **Section** OPERATORS · **Also** `or`
+**Term** `or` · **Section** OPERATORS
 
 ## Syntax
 
@@ -114,6 +114,6 @@ fn carum() → bool {
 }
 ```
 
-See also: [`et`](and.md), [`vel`](coalesce.md), [`⊻`](⊻.md).
+See also: [`and`](and.md), [`coalesce`](coalesce.md), [`⊻`](⊻.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

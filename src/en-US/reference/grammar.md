@@ -17,7 +17,7 @@ statements. You do not need to read the rules to write Faber. The
 example; this section is for looking up which words belong to which part of
 the language.
 
-The 284 rules are grouped into the families below. Each family page
+The 294 rules are grouped into the families below. Each family page
 explains that part of the language, then lists the words you write there
 and links each one to its [term page](/en-US/corpus/).
 

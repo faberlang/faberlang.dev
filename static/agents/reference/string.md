@@ -17,7 +17,7 @@ Short quoted string string literals and template application.
 
 ## Common mistakes
 
-- Applying template § to ascii or bytes literals — template application works only on string ("...") string literals.
+- Applying template § to ascii or list<b8> literals — template application works only on string ("...") string literals.
 
 ## Grammar
 
@@ -44,6 +44,6 @@ main {
 }
 ```
 
-See also: [`block-string`](block-string.md), [`§`](§.md), [`string`](textus.md).
+See also: [`block-string`](block-string.md), [`§`](§.md), [`string (type)`](string (type).md).
 
 Fetch list: https://faberlang.dev/agents/index.md

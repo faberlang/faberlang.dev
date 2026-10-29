@@ -2,7 +2,7 @@
 
 Labeled ad-hoc record type: construction, .name access, objectPattern, and holes.
 
-**Term** `ratio` · **Section** KEYWORDS · **Also** `record`
+**Term** `record` · **Section** KEYWORDS
 
 ## Syntax
 

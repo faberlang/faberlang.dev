@@ -2,7 +2,7 @@
 
 Registers an async before-each test hook.
 
-**Term** `praeparabit` · **Section** KEYWORDS
+**Term** `async_setup` · **Section** KEYWORDS
 
 ## Syntax
 

@@ -2,7 +2,7 @@
 
 Declares an inferred immutable local.
 
-**Term** `sit` · **Section** KEYWORDS
+**Term** `let` · **Section** KEYWORDS
 
 ## Syntax
 
@@ -61,6 +61,6 @@ main {
 }
 ```
 
-See also: [`const`](const.md), [`mut`](varia.md), [`←`](←.md).
+See also: [`const`](const.md), [`mut`](mut.md), [`←`](←.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

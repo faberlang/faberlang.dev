@@ -2,7 +2,7 @@
 
 call opens a channel endpoint and materializes the stream with an explicit conversion target.
 
-**Term** `ad` · **Section** KEYWORDS
+**Term** `call` · **Section** KEYWORDS
 
 ## Syntax
 

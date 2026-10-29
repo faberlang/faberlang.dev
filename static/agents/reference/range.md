@@ -2,7 +2,7 @@
 
 Selects numeric range iteration in an for loop.
 
-**Term** `ab` · **Section** KEYWORDS
+**Term** `range` · **Section** KEYWORDS
 
 ## Syntax
 
@@ -13,7 +13,7 @@ for range <range> <binding>
 ## What this teaches
 
 - `for range` bounded range iteration — iterates over a numeric range with an optional step
-- Step syntax — the `per <step>` clause controls stride within the range
+- Step syntax — the `step <step>` clause controls stride within the range
 
 ## Common mistakes
 
@@ -41,6 +41,6 @@ main {
 }
 ```
 
-See also: [`for`](for.md), [`from`](from.md), [`ref`](ref.md), [`per`](step.md), `range pipeline`.
+See also: [`for`](for.md), [`from`](from.md), [`ref`](ref.md), [`step`](step.md), `range pipeline`.
 
 Fetch list: https://faberlang.dev/agents/index.md

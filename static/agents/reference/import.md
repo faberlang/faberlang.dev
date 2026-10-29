@@ -2,7 +2,7 @@
 
 Imports names from another module or package source.
 
-**Term** `importa` · **Section** KEYWORDS · **Also** `import`
+**Term** `import` · **Section** KEYWORDS
 
 ## Syntax
 
@@ -17,7 +17,7 @@ import from <source> [public] (<name> [as <alias>] | * as <alias>)
 
 ## Common mistakes
 
-- Missing the `from` source in the import record — an import record requires an `from` source path.
+- Missing the `from` source in the import record — an import record requires a `from` source path.
 
 ## Grammar
 

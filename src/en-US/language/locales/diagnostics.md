@@ -25,89 +25,105 @@ The failure is lexical, so it is identical in every locale: a string literal wit
 ## English (`en`) {#en}
 
 ```console locale=la
-error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab: unterminated string literal (newline in string)
+error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab
 phase: lex
 file: generator/locale-captures/error.fab
 span: 173..187
 source: ⁨fixum textus nuntius ← "Salve, munde!⁩
-help: close the string literal before the end of the line or file
+message: unterminated string literal (newline in string)
+help: Double-quoted text strings are single-line; write `\n` for a newline or use `«...»` for multiline text.
+explain: faber explain LEX001.newline_in_string_literal
 ```
 
 ## Latin (`la`) {#la}
 
 ```console locale=la
-error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab: unterminated string literal (newline in string)
+error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab
 phase: lex
 file: generator/locale-captures/error.fab
 span: 173..187
 source: ⁨fixum textus nuntius ← "Salve, munde!⁩
+message: unterminated string literal (newline in string)
 help: close the string literal before the end of the line or file
+explain: faber explain LEX001.newline_in_string_literal
 ```
 
 ## Arabic (`ar`) {#ar}
 
 ```console locale=la
-error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab: حرفية سلسلة غير مغلقة (سطر جديد في السلسلة)
+error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab
 phase: lex
 file: generator/locale-captures/error.fab
 span: 173..187
 source: ⁨fixum textus nuntius ← "Salve, munde!⁩
+message: حرفية سلسلة غير مغلقة (سطر جديد في السلسلة)
 help: أغلق حرفية السلسلة قبل نهاية السطر أو الملف
+explain: faber explain LEX001.newline_in_string_literal
 ```
 
 ## Hindi (`hi`) {#hi}
 
 ```console locale=la
-error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab: समाप्त न हुआ string literal (string में newline)
+error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab
 phase: lex
 file: generator/locale-captures/error.fab
 span: 173..187
 source: ⁨fixum textus nuntius ← "Salve, munde!⁩
+message: समाप्त न हुआ string literal (string में newline)
 help: पंक्ति या फ़ाइल के अंत से पहले string literal बंद करें
+explain: faber explain LEX001.newline_in_string_literal
 ```
 
 ## Thai (`th-TH`) {#th-th}
 
 ```console locale=la
-error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab: ลิเทอรัลสตริงไม่ปิดท้าย (มีบรรทัดใหม่ในสตริง)
+error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab
 phase: lex
 file: generator/locale-captures/error.fab
 span: 173..187
 source: ⁨fixum textus nuntius ← "Salve, munde!⁩
+message: ลิเทอรัลสตริงไม่ปิดท้าย (มีบรรทัดใหม่ในสตริง)
 help: ปิดลิเทอรัลสตริงก่อนจบบรรทัดหรือไฟล์
+explain: faber explain LEX001.newline_in_string_literal
 ```
 
 ## Vietnamese (`vi`) {#vi}
 
 ```console locale=la
-error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab: literal chuỗi chưa được kết thúc (có dòng mới trong chuỗi)
+error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab
 phase: lex
 file: generator/locale-captures/error.fab
 span: 173..187
 source: ⁨fixum textus nuntius ← "Salve, munde!⁩
+message: literal chuỗi chưa được kết thúc (có dòng mới trong chuỗi)
 help: đóng literal chuỗi trước cuối dòng hoặc tệp
+explain: faber explain LEX001.newline_in_string_literal
 ```
 
 ## Simplified Chinese (`zh-Hans`) {#zh-hans}
 
 ```console locale=la
-error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab: 未闭合字符串字面量（字符串中出现换行）
+error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab
 phase: lex
 file: generator/locale-captures/error.fab
 span: 173..187
 source: ⁨fixum textus nuntius ← "Salve, munde!⁩
+message: 未闭合字符串字面量（字符串中出现换行）
 help: 在行尾或文件结束前闭合字符串字面量
+explain: faber explain LEX001.newline_in_string_literal
 ```
 
 ## Traditional Chinese (`zh-Hant`) {#zh-hant}
 
 ```console locale=la
-error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab: 未結束的字串字面值（字串中出現換行）
+error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab
 phase: lex
 file: generator/locale-captures/error.fab
 span: 173..187
 source: ⁨fixum textus nuntius ← "Salve, munde!⁩
+message: 未結束的字串字面值（字串中出現換行）
 help: 在行尾或檔案結束前結束字串字面值
+explain: faber explain LEX001.newline_in_string_literal
 ```
 
 ---

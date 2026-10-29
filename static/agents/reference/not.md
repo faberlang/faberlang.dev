@@ -2,7 +2,7 @@
 
 Negates a boolean expression.
 
-**Term** `non` · **Section** KEYWORDS · **Also** `!`
+**Term** `not` · **Section** KEYWORDS · **Also** `!`
 
 ## Syntax
 

@@ -2,18 +2,18 @@
 
 Sets the step for a range.
 
-**Term** `per` · **Section** KEYWORDS
+**Term** `step` · **Section** KEYWORDS
 
 ## Syntax
 
 ```
-<range> per <expression>
+<range> step <expression>
 ```
 
 ## What this teaches
 
-- Range stepping — `per <expr>` after a range specifies the increment between iterations.
-- Custom step sizes — Unlike the default step of 1, `per 2` iterates over even numbers only.
+- Range stepping — `step <expr>` after a range specifies the increment between iterations.
+- Custom step sizes — Unlike the default step of 1, `step 2` iterates over even numbers only.
 
 ## Common mistakes
 

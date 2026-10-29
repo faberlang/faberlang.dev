@@ -2,12 +2,12 @@
 
 Declares or explains an inline closure expression; compact ∴ syntax is preferred for new code.
 
-**Term** `clausura` · **Section** KEYWORDS
+**Term** `lambda` · **Section** KEYWORDS
 
 ## Syntax
 
 ```
-<type> <name> [→ <type>] [⇥ <error-type>] ∴ <expression|fac-block>
+<type> <name> [→ <type>] [⇥ <error-type>] ∴ <expression|do-block>
 ```
 
 ## What this teaches

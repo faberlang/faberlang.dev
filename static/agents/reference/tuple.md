@@ -2,7 +2,7 @@
 
 Labeled tuple elements: type args, construction, member access, objectPattern, and holes.
 
-**Term** `iuncta` · **Section** KEYWORDS
+**Term** `tuple` · **Section** KEYWORDS
 
 ## Syntax
 

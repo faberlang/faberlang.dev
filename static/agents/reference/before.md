@@ -2,7 +2,7 @@
 
 Creates an exclusive range with a Latin keyword.
 
-**Term** `ante` · **Section** KEYWORDS
+**Term** `before` · **Section** KEYWORDS
 
 ## Syntax
 

@@ -1,5 +1,0 @@
-importa ex "norma:text" publica text
-
-incipit {
-    nota "ready"
-}

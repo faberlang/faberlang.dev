@@ -2,7 +2,7 @@
 
 Primitive never type for code paths that do not return normally.
 
-**Term** `numquam` · **Section** KEYWORDS · **Also** `never`
+**Term** `never` · **Section** KEYWORDS
 
 ## Syntax
 

@@ -2,7 +2,7 @@
 
 Writes a debug value to standard error.
 
-**Term** `vide` · **Section** KEYWORDS
+**Term** `debug` · **Section** KEYWORDS
 
 ## Syntax
 

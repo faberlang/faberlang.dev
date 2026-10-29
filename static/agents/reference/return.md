@@ -2,7 +2,7 @@
 
 Returns a value from a function.
 
-**Term** `redde` · **Section** KEYWORDS · **Also** `return`
+**Term** `return` · **Section** KEYWORDS
 
 ## Syntax
 

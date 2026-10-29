@@ -2,7 +2,7 @@
 
 Declares the synchronous program entry point.
 
-**Term** `incipit` · **Section** KEYWORDS · **Also** `main`, `entry`
+**Term** `main` · **Section** KEYWORDS · **Also** `entry`
 
 ## Syntax
 

@@ -7,13 +7,13 @@ Bitwise or and est-negation operators.
 ## Syntax
 
 ```
-<expression> ∨ <expression> | <expression> is not <expression>
+<expression> ∨ <expression> | <expression> not is <expression>
 ```
 
 ## What this teaches
 
 - Bitwise or — `∨` combines bit flags; distinct from logical short-circuit `or` and `coalesce`.
-- Negated est — `not is` (la `is not`) checks that a value's runtime type is not the given type, e.g. `x not is none`.
+- Negated est — `not is` (la `not is`) checks that a value's runtime type is not the given type, e.g. `x not is none`.
 
 ## Common mistakes
 
@@ -35,7 +35,7 @@ binaryExpr :← expr ('∨' | 'non' 'est') expr
 
 ```
 Cross-ref boolean short-circuit: et/et.fab, aut/binarius.fab, vel/binarius.fab.
-Negated est parses as `expr non est target`.
+Negated est parses as `expr not is target`.
 ```
 
 ## Example
@@ -58,6 +58,6 @@ main {
 }
 ```
 
-See also: [`∧`](∧.md), [`⊻`](⊻.md), [`¬`](¬.md), [`et`](and.md), [`or`](or.md), [`vel`](coalesce.md), [`is not`](non est.md), [`est`](is.md).
+See also: [`∧`](∧.md), [`⊻`](⊻.md), [`¬`](¬.md), [`and`](and.md), [`or`](or.md), [`coalesce`](coalesce.md), [`is not`](non est.md), [`is`](is.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

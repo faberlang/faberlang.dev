@@ -2,12 +2,12 @@
 
 Marks a named declaration slot (parameter or class field) as voluntary — the caller or provider may omit the value.
 
-**Term** `sponte` · **Section** KEYWORDS · **Also** `optional`, `voluntary`
+**Term** `optional` · **Section** KEYWORDS · **Also** `voluntary`
 
 ## Syntax
 
 ```
-<type> <name> optional [= default | vel default]
+<type> <name> optional [= default | coalesce default]
 ```
 
 ## What this teaches
@@ -54,6 +54,6 @@ class User {
 }
 ```
 
-See also: [`vel`](coalesce.md), [`none`](none.md), [`∪`](∪.md), [`fn`](fn.md), [`class`](class.md).
+See also: [`coalesce`](coalesce.md), [`none`](none.md), [`∪`](∪.md), [`fn`](fn.md), [`class`](class.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

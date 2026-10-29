@@ -2,7 +2,7 @@
 
 Declares a behavioral contract with method signatures.
 
-**Term** `implendum` · **Section** KEYWORDS · **Also** `interface`
+**Term** `interface` · **Section** KEYWORDS
 
 ## Syntax
 

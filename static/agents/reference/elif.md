@@ -2,7 +2,7 @@
 
 Adds an else-if branch after a previous if branch.
 
-**Term** `sin` · **Section** KEYWORDS · **Also** `else if`
+**Term** `elif` · **Section** KEYWORDS · **Also** `else if`
 
 ## Syntax
 

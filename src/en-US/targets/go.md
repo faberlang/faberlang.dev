@@ -18,7 +18,7 @@ Go has no generics-free way to express some Faber types, so the emitter material
 
 | Capable | Analyzable | Coverage |
 |---|---|---|
-| 458 | 509 | 90% |
+| 508 | 564 | 90% |
 
 From the [target matrix](/toolchain/target-matrix.html): how many corpus exempla lower to this target. Coverage is not a quality score — an emitter can lower a term and still erase a distinction.
 
@@ -29,7 +29,7 @@ Terms the matrix records as partial, planned, or unsupported for this target. A 
 | Category | Terms |
 |---|---|
 | Keywords — application lane | <a id="ad"></a>`ad`, <a id="itera"></a>`itera`, <a id="numerus"></a>`numerus` |
-| Operators — application lane | <a id="modulus-u16"></a>`modulus<u16>`, <a id="modulus-u32"></a>`modulus<u32>`, <a id="modulus-u64"></a>`modulus<u64>`, <a id="modulus-u8"></a>`modulus<u8>`, `·`, `×`, `↦`, `⊗`, `⊙` |
+| Operators — application lane | <a id="modulus-u16"></a>`modulus<u16>`, <a id="modulus-u32"></a>`modulus<u32>`, <a id="modulus-u64"></a>`modulus<u64>`, <a id="modulus-u8"></a>`modulus<u8>`, <a id="whole-width-range"></a>`whole-width range`, <a id="wrapping-w-lo-hi"></a>`wrapping<W, lo‥hi>`, `·`, `×`, `‥`, `↦`, `⊗`, `⊙` |
 
 ## Typed tensors {#tensores}
 

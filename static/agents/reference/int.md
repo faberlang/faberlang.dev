@@ -2,7 +2,7 @@
 
 Primitive integer number type.
 
-**Term** `numerus` · **Section** KEYWORDS · **Also** `integer`, `int`
+**Term** `int` · **Section** KEYWORDS · **Also** `integer`
 
 ## Syntax
 

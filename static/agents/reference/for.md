@@ -2,7 +2,7 @@
 
 Starts a for-each iteration statement.
 
-**Term** `itera` · **Section** KEYWORDS · **Also** `iterate`
+**Term** `for` · **Section** KEYWORDS · **Also** `iterate`
 
 ## Syntax
 
@@ -35,8 +35,8 @@ Sync cursor values and collected lista of doubled results.
 ## Backend
 
 ```
-Rust lowers `fient` through the async-cursor carrier. Go supports the
-`fiunt` half and reports `fient` as an explicit target gap.
+Rust lowers `async_generator` through the async-cursor carrier. Go supports the
+`generator` half and reports `async_generator` as an explicit target gap.
 Multi-value sync stream function that yields values via cede
 ```
 

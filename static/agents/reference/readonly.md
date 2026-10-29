@@ -2,7 +2,7 @@
 
 Marks a function as non-mutating.
 
-**Term** `immutata` · **Section** KEYWORDS
+**Term** `readonly` · **Section** KEYWORDS
 
 ## Syntax
 
@@ -17,7 +17,7 @@ fn <name>(...) readonly → <type>
 
 ## Common mistakes
 
-- Mutating state inside an `readonly` function — `readonly` is a non-mutation contract; modifying `mut` parameters or external state breaks the contract.
+- Mutating state inside a `readonly` function — `readonly` is a non-mutation contract; modifying `mut` parameters or external state breaks the contract.
 
 ## Grammar
 

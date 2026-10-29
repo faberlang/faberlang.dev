@@ -2,7 +2,7 @@
 
 Creates a formatted string with `§` placeholders.
 
-**Term** `scriptum` · **Section** KEYWORDS
+**Term** `format` · **Section** KEYWORDS
 
 ## Syntax
 

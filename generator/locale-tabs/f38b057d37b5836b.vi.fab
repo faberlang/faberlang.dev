@@ -1,4 +1,4 @@
-hàm divide(số a, số b) → số ∪ rỗng_ty {
-    nếu b ≡ 0 do_đó trả không_gì
+hàm divide(số a, số b) → số ∪ hư_không {
+    nếu b ≡ 0 do_đó trả vắng
     trả a / b
 }

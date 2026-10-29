@@ -2,7 +2,7 @@
 
 Marks a test for metered or measured execution.
 
-**Term** `ultima` · **Section** TYPES
+**Term** `take_last` · **Section** TYPES
 
 ## Syntax
 
@@ -50,6 +50,6 @@ main {
 }
 ```
 
-See also: [`timeout`](timeout.md), [`prima`](take.md), [`ultima`](take_last.md).
+See also: [`timeout`](timeout.md), [`first`](first.md), [`take_last`](take_last.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

@@ -2,7 +2,7 @@
 
 Introduces a compact statement consequent.
 
-**Term** `ergo` · **Section** OPERATORS · **Also** `ergo`, `therefore`
+**Term** `then` · **Section** OPERATORS · **Also** `ergo`, `therefore`
 
 ## Syntax
 

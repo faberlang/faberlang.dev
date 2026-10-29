@@ -2,7 +2,7 @@
 
 Starts a scoped do-while style loop.
 
-**Term** `fac` · **Section** KEYWORDS · **Also** `do`
+**Term** `do` · **Section** KEYWORDS
 
 ## Syntax
 

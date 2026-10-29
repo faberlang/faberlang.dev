@@ -1,8 +1,8 @@
 # mutable
 
 `mutable` is another spelling of the entry documented at
-[`varia`](varia.md).
+[`mut`](mut.md).
 
-Source: `faber explain varia`.
+Source: `faber explain mut`.
 
 Fetch list: https://faberlang.dev/agents/index.md

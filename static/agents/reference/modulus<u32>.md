@@ -7,12 +7,12 @@ Unsigned 32-bit modular-word arithmetic and bit-pattern edges.
 ## Syntax
 
 ```
-modulus<u32>
+wrapping_ty<u32>
 ```
 
 ## What this teaches
 
-- Modular word contract — `wrapping<u32>` is an unsigned 32-bit word with wrapping arithmetic.
+- Modular word contract — `wrapping_ty<u32>` is an unsigned 32-bit word with wrapping arithmetic.
 - Edge cases — Max + 1, zero - 1, and 1 ⇐ 32 demonstrate wrapping at the 32-bit boundary.
 
 ## Common mistakes

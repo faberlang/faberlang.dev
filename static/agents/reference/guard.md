@@ -2,7 +2,7 @@
 
 Groups early-exit guard checks before the main body of a function.
 
-**Term** `custodi` · **Section** KEYWORDS · **Also** `guard`
+**Term** `guard` · **Section** KEYWORDS
 
 ## Syntax
 
@@ -12,7 +12,7 @@ guard <block>
 
 ## What this teaches
 
-- Guard blocks — `guard { if <conditio> { <exitus> } }` groups early-exit checks before a function's main logic.
+- Guard blocks — `guard { if <conditio> { <exit> } }` groups early-exit checks before a function's main logic.
 - Separation of concerns — guard blocks keep preconditions clearly separated from the main body.
 - Multiple guards — multiple `if` conditions in one guard block, each with its own exit path.
 

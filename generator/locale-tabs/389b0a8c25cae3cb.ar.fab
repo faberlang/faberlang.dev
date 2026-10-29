@@ -4,6 +4,6 @@
 }
 
 دالة exigePositivum(عدد value) → عدد ⇥ نص {
-    يرفض value ≺ 0 ارم "negative value"
+    ارفض value ≺ 0 ارم "negative value"
     أعد value
 }

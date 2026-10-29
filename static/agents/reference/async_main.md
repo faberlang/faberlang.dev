@@ -2,7 +2,7 @@
 
 Declares the asynchronous program entry point.
 
-**Term** `incipiet` · **Section** KEYWORDS
+**Term** `async_main` · **Section** KEYWORDS
 
 ## Syntax
 
@@ -17,7 +17,7 @@ async_main <block>
 
 ## Common mistakes
 
-- Calling a `async` function without consuming its promise; use `await_const`, `await_var`, `return_await`, or `await` inside an `async_main`.
+- Calling an `async` function without consuming its promise; use `await_const`, `await_var`, `return_await`, or `await` inside an `async_main`.
 
 ## Grammar
 
@@ -34,7 +34,7 @@ none — Rust async runtime whitelist (compile-only in harness)
 ## Backend
 
 ```
-Pairs with `fiet` and awaited bindings; contrast with incipit
+Pairs with `async` and awaited bindings; contrast with incipit
 (synchronous entry).
 Helper async finite function
 ```

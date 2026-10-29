@@ -2,7 +2,7 @@
 
 Registers a before-each test hook.
 
-**Term** `praepara` · **Section** KEYWORDS
+**Term** `setup` · **Section** KEYWORDS
 
 ## Syntax
 

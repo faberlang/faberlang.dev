@@ -2,7 +2,7 @@
 
 Marks a test case as pending future work with a reason.
 
-**Term** `futurum` · **Section** KEYWORDS · **Also** `todo`, `pending`
+**Term** `todo` · **Section** KEYWORDS · **Also** `pending`
 
 ## Syntax
 

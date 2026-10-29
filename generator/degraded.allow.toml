@@ -46,24 +46,9 @@ subject = "releases/radix-0.78.0.md"
 why = "a generated release-notes fence carries an inline comment the lexer refuses (LEX007); the page shows its source unchanged"
 
 [[allow]]
-kind = "agent-reference-slug-collision"
-subject = "varia"
-why = "same wrinkle as the corpus `varia` entry: the English pack spells both the binding word `varia` and the parameter marker `in` as `mut`; `in` keeps /agents/reference/mut.md and `varia` names itself in its page title (`mut (varia)`)"
-
-[[allow]]
-kind = "agent-reference-slug-collision"
-subject = "textus"
-why = "the English pack gives `textus` and `string` one slug; the first term in sorted order keeps it and `textus` names itself in its page title, by design"
-
-[[allow]]
 kind = "agent-reference-projection"
 subject = "is"
 why = "rewriting this registry example onto the English pack no longer passes `faber check --locale=en` (a keyword is also an identifier here); the registry's own text ships, which is the designed tiebreaker"
-
-[[allow]]
-kind = "agent-reference-projection"
-subject = "bytes"
-why = "same as `is`: the projected example fails `faber check --locale=en`, so the registry text ships"
 
 [[allow]]
 kind = "agent-reference-projection"
@@ -83,4 +68,9 @@ why = "same as `is`: the projected example for `imperia` (page slug `commands`) 
 [[allow]]
 kind = "agent-reference-projection"
 subject = "command"
+why = "same as `is`: the projected example fails `faber check --locale=en`, so the registry text ships"
+
+[[allow]]
+kind = "agent-reference-projection"
+subject = "list<b8>"
 why = "same as `is`: the projected example fails `faber check --locale=en`, so the registry text ships"

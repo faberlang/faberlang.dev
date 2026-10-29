@@ -7,17 +7,17 @@ Compatibility annotation for stream/generator posture.
 ## Syntax
 
 ```
-@ cursor
+@ iterator
 ```
 
 ## What this teaches
 
 - Preferred stream posture — write `generator` for a synchronous stream or `async_generator` for an asynchronous stream.
-- Compatibility annotation — `@ cursor` remains accepted and preserved as the legacy spelling for stream/generator posture.
+- Compatibility annotation — `@ iterator` remains accepted and preserved as the legacy spelling for stream/generator posture.
 
 ## Common mistakes
 
-- Using `yield` outside a stream body — `yield` is valid only inside `generator` or `async_generator` bodies, including compatible `@ cursor` declarations.
+- Using `yield` outside a stream body — `yield` is valid only inside `generator` or `async_generator` bodies, including compatible `@ iterator` declarations.
 
 ## Grammar
 

@@ -43,6 +43,6 @@ still line one»
 }
 ```
 
-See also: [`string`](string.md), [`string`](textus.md).
+See also: [`string`](string.md), [`string (type)`](string (type).md).
 
 Fetch list: https://faberlang.dev/agents/index.md

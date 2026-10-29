@@ -2,7 +2,7 @@
 
 Declares a tagged union with variant payloads.
 
-**Term** `discretio` · **Section** KEYWORDS · **Also** `union`, `sum type`
+**Term** `union` · **Section** KEYWORDS · **Also** `sum type`
 
 ## Syntax
 

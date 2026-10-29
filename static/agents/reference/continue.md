@@ -2,7 +2,7 @@
 
 Continues with the next loop iteration.
 
-**Term** `perge` · **Section** KEYWORDS · **Also** `continue`
+**Term** `continue` · **Section** KEYWORDS
 
 ## Syntax
 

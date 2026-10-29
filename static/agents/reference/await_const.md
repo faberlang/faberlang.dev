@@ -2,7 +2,7 @@
 
 Awaits a promise and binds an immutable name.
 
-**Term** `figendum` · **Section** KEYWORDS · **Also** `await_const`
+**Term** `await_const` · **Section** KEYWORDS
 
 ## Syntax
 

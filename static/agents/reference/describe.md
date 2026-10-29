@@ -2,7 +2,7 @@
 
 Groups related test cases into a named suite.
 
-**Term** `probandum` · **Section** KEYWORDS · **Also** `describe`, `suite`
+**Term** `describe` · **Section** KEYWORDS · **Also** `suite`
 
 ## Syntax
 

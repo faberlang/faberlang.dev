@@ -2,7 +2,7 @@
 
 Collects remaining parameters, operands, or extracted fields.
 
-**Term** `ceteri` · **Section** KEYWORDS · **Also** `rest`
+**Term** `rest` · **Section** KEYWORDS
 
 ## Syntax
 
@@ -13,7 +13,7 @@ rest <type> <name>
 ## What this teaches
 
 - Rest parameters — `rest <type> <name>` in a function signature collects all remaining arguments into a list
-- Variadic functions — `rest list<numerus> numeri` enables summing an arbitrary number of numeric arguments
+- Variadic functions — `rest list<int> numeri` enables summing an arbitrary number of numeric arguments
 
 ## Common mistakes
 

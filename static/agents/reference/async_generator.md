@@ -2,7 +2,7 @@
 
 Callable posture for asynchronous stream functions.
 
-**Term** `fient` · **Section** KEYWORDS · **Also** `async_generator`
+**Term** `async_generator` · **Section** KEYWORDS
 
 ## Syntax
 

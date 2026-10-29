@@ -2,7 +2,7 @@
 
 Registers an after-each test hook.
 
-**Term** `postpara` · **Section** KEYWORDS
+**Term** `teardown` · **Section** KEYWORDS
 
 ## Syntax
 

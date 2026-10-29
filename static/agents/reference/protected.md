@@ -2,7 +2,7 @@
 
 Reserved visibility annotation rejected by semantic analysis.
 
-**Term** `protecta` · **Section** KEYWORDS · **Also** `protected`
+**Term** `protected` · **Section** KEYWORDS
 
 ## Syntax
 
@@ -28,7 +28,7 @@ annotatedDecl :← '@' 'protecta' funcDecl
 ## Expected error
 
 ```
-`@ protecta` is reserved and has no active visibility meaning
+`@ protected` is reserved and has no active visibility meaning
 ```
 
 ## Example

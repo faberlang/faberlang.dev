@@ -73,12 +73,14 @@ page. The second column names the grammar rule the word belongs to.
 | [`comptime`](/en-US/corpus/comptime.html) | `praefixum_expr` |
 | [`format`](/en-US/corpus/format.html) | `scriptum_expr` |
 | [`read`](/en-US/corpus/read.html), [`line`](/en-US/corpus/line.html) | `lege_expr` |
-| [`primus_quem`](/en-US/corpus/primus_quem.html) | `first_match_expr` |
 | [`from`](/en-US/corpus/from.html) | `reducta_expr` |
 | [`all`](/en-US/corpus/all.html), [`sum`](/en-US/corpus/sum.html) | `reducta_op` |
 | [`per`](/en-US/corpus/step.html) | `reducta_group` |
 | [`let`](/en-US/corpus/let.html), [`mut`](/en-US/corpus/mut.html) | `reducta_body` |
 | [`coalesce`](/en-US/corpus/coalesce.html) | `reducta_identity` |
+| [`from`](/en-US/corpus/from.html), [`let`](/en-US/corpus/let.html) | `scan_expr` |
+| [`all`](/en-US/corpus/all.html), [`sum`](/en-US/corpus/sum.html) | `scan_op` |
+| [`per`](/en-US/corpus/step.html) | `scan_group` |
 | [`ref`](/en-US/corpus/ref.html), [`from`](/en-US/corpus/from.html) | `sort_expr` |
 | [`let`](/en-US/corpus/let.html), [`mut`](/en-US/corpus/mut.html) | `sort_body` |
 ## Formal grammar {#formal-grammar}

@@ -2,12 +2,12 @@
 
 Provides a default when the left side holds `null`.
 
-**Term** `vel` · **Section** OPERATORS · **Also** `nullish coalescing`
+**Term** `coalesce` · **Section** OPERATORS · **Also** `nullish coalescing`
 
 ## Syntax
 
 ```
-<expression> vel <expression>
+<expression> coalesce <expression>
 ```
 
 ## What this teaches

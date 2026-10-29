@@ -243,8 +243,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/ar/corpus/bytes.html"
-to = "/en-US/corpus/bytes.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/cape.html"
@@ -268,18 +268,18 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/ar/corpus/category/ad.html"
-to = "/en-US/corpus/category/ad.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/aliasing.html"
-to = "/en-US/corpus/category/aliasing.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/application.html"
-to = "/en-US/corpus/category/application.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/arithmetic.html"
@@ -288,8 +288,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/ar/corpus/category/assignment.html"
-to = "/en-US/corpus/category/assignment.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/async.html"
@@ -298,8 +298,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/ar/corpus/category/availability.html"
-to = "/en-US/corpus/category/availability.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/binding.html"
@@ -308,13 +308,13 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/ar/corpus/category/bitwise.html"
-to = "/en-US/corpus/category/bitwise.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/boolean.html"
-to = "/en-US/corpus/category/boolean.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/cli.html"
@@ -323,13 +323,13 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/ar/corpus/category/codegen.html"
-to = "/en-US/corpus/category/codegen.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/collection.html"
-to = "/en-US/corpus/category/collection.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/comparison.html"
@@ -343,8 +343,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/ar/corpus/category/control-flow.html"
-to = "/en-US/corpus/category/control-flow.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/conversion.html"
@@ -353,13 +353,13 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/ar/corpus/category/declaration.html"
-to = "/en-US/corpus/category/declaration.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/destructuring.html"
-to = "/en-US/corpus/category/destructuring.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/endpoint.html"
@@ -368,18 +368,18 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/ar/corpus/category/entry.html"
-to = "/en-US/corpus/category/entry.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/errors.html"
-to = "/en-US/corpus/category/errors.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/expression.html"
-to = "/en-US/corpus/category/expression.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/format.html"
@@ -403,18 +403,18 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/ar/corpus/category/io.html"
-to = "/en-US/corpus/category/io.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/iteration.html"
-to = "/en-US/corpus/category/iteration.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/lane.html"
-to = "/en-US/corpus/category/lane.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/literal.html"
@@ -428,43 +428,43 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/ar/corpus/category/metadata.html"
-to = "/en-US/corpus/category/metadata.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/modifier.html"
-to = "/en-US/corpus/category/modifier.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/mutation.html"
-to = "/en-US/corpus/category/mutation.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/non-null-chain.html"
-to = "/en-US/corpus/category/non-null-chain.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/object.html"
-to = "/en-US/corpus/category/object.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/operators.html"
-to = "/en-US/corpus/category/operators.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/optional-chain.html"
-to = "/en-US/corpus/category/optional-chain.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/output.html"
-to = "/en-US/corpus/category/output.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/package.html"
@@ -478,8 +478,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/ar/corpus/category/template.html"
-to = "/en-US/corpus/category/template.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/testing.html"
@@ -488,8 +488,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/ar/corpus/category/transfer.html"
-to = "/en-US/corpus/category/transfer.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/category/type.html"
@@ -498,8 +498,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/ar/corpus/category/types.html"
-to = "/en-US/corpus/category/types.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/cede.html"
@@ -1203,8 +1203,8 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/ar/corpus/octeti.html"
-to = "/en-US/corpus/bytes.html"
-rule = "english-redirect"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/omitte.html"
@@ -1308,13 +1308,13 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/ar/corpus/primus%20quem.html"
-to = "/en-US/corpus/primus_quem.html"
-rule = "english-redirect"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/primus_quem.html"
-to = "/en-US/corpus/primus_quem.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/privata.html"
@@ -2003,8 +2003,8 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/ar/corpus/%D8%A8%D8%A7%D9%8A%D8%AA%D8%A7%D8%AA.html"
-to = "/en-US/corpus/bytes.html"
-rule = "corpus-slug"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/ar/corpus/%D8%A8%D8%AF%D8%A7%D9%8A%D8%A9.html"
@@ -3238,8 +3238,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/hi/corpus/bytes.html"
-to = "/en-US/corpus/bytes.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/cape.html"
@@ -3263,18 +3263,18 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/hi/corpus/category/ad.html"
-to = "/en-US/corpus/category/ad.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/aliasing.html"
-to = "/en-US/corpus/category/aliasing.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/application.html"
-to = "/en-US/corpus/category/application.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/arithmetic.html"
@@ -3283,8 +3283,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/hi/corpus/category/assignment.html"
-to = "/en-US/corpus/category/assignment.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/async.html"
@@ -3293,8 +3293,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/hi/corpus/category/availability.html"
-to = "/en-US/corpus/category/availability.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/binding.html"
@@ -3303,13 +3303,13 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/hi/corpus/category/bitwise.html"
-to = "/en-US/corpus/category/bitwise.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/boolean.html"
-to = "/en-US/corpus/category/boolean.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/cli.html"
@@ -3318,13 +3318,13 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/hi/corpus/category/codegen.html"
-to = "/en-US/corpus/category/codegen.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/collection.html"
-to = "/en-US/corpus/category/collection.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/comparison.html"
@@ -3338,8 +3338,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/hi/corpus/category/control-flow.html"
-to = "/en-US/corpus/category/control-flow.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/conversion.html"
@@ -3348,13 +3348,13 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/hi/corpus/category/declaration.html"
-to = "/en-US/corpus/category/declaration.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/destructuring.html"
-to = "/en-US/corpus/category/destructuring.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/endpoint.html"
@@ -3363,18 +3363,18 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/hi/corpus/category/entry.html"
-to = "/en-US/corpus/category/entry.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/errors.html"
-to = "/en-US/corpus/category/errors.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/expression.html"
-to = "/en-US/corpus/category/expression.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/format.html"
@@ -3398,18 +3398,18 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/hi/corpus/category/io.html"
-to = "/en-US/corpus/category/io.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/iteration.html"
-to = "/en-US/corpus/category/iteration.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/lane.html"
-to = "/en-US/corpus/category/lane.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/literal.html"
@@ -3423,43 +3423,43 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/hi/corpus/category/metadata.html"
-to = "/en-US/corpus/category/metadata.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/modifier.html"
-to = "/en-US/corpus/category/modifier.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/mutation.html"
-to = "/en-US/corpus/category/mutation.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/non-null-chain.html"
-to = "/en-US/corpus/category/non-null-chain.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/object.html"
-to = "/en-US/corpus/category/object.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/operators.html"
-to = "/en-US/corpus/category/operators.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/optional-chain.html"
-to = "/en-US/corpus/category/optional-chain.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/output.html"
-to = "/en-US/corpus/category/output.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/package.html"
@@ -3473,8 +3473,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/hi/corpus/category/template.html"
-to = "/en-US/corpus/category/template.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/testing.html"
@@ -3483,8 +3483,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/hi/corpus/category/transfer.html"
-to = "/en-US/corpus/category/transfer.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/category/type.html"
@@ -3493,8 +3493,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/hi/corpus/category/types.html"
-to = "/en-US/corpus/category/types.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/cede.html"
@@ -4198,8 +4198,8 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/hi/corpus/octeti.html"
-to = "/en-US/corpus/bytes.html"
-rule = "english-redirect"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/omitte.html"
@@ -4303,13 +4303,13 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/hi/corpus/primus%20quem.html"
-to = "/en-US/corpus/primus_quem.html"
-rule = "english-redirect"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/primus_quem.html"
-to = "/en-US/corpus/primus_quem.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/privata.html"
@@ -5193,8 +5193,8 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/hi/corpus/%E0%A4%AC%E0%A4%BE%E0%A4%87%E0%A4%9F.html"
-to = "/en-US/corpus/bytes.html"
-rule = "corpus-slug"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/hi/corpus/%E0%A4%AC%E0%A4%BE%E0%A4%95%E0%A5%80.html"
@@ -6208,8 +6208,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/th-TH/corpus/bytes.html"
-to = "/en-US/corpus/bytes.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/cape.html"
@@ -6233,18 +6233,18 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/th-TH/corpus/category/ad.html"
-to = "/en-US/corpus/category/ad.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/aliasing.html"
-to = "/en-US/corpus/category/aliasing.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/application.html"
-to = "/en-US/corpus/category/application.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/arithmetic.html"
@@ -6253,8 +6253,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/th-TH/corpus/category/assignment.html"
-to = "/en-US/corpus/category/assignment.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/async.html"
@@ -6263,8 +6263,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/th-TH/corpus/category/availability.html"
-to = "/en-US/corpus/category/availability.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/binding.html"
@@ -6273,13 +6273,13 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/th-TH/corpus/category/bitwise.html"
-to = "/en-US/corpus/category/bitwise.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/boolean.html"
-to = "/en-US/corpus/category/boolean.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/cli.html"
@@ -6288,13 +6288,13 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/th-TH/corpus/category/codegen.html"
-to = "/en-US/corpus/category/codegen.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/collection.html"
-to = "/en-US/corpus/category/collection.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/comparison.html"
@@ -6308,8 +6308,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/th-TH/corpus/category/control-flow.html"
-to = "/en-US/corpus/category/control-flow.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/conversion.html"
@@ -6318,13 +6318,13 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/th-TH/corpus/category/declaration.html"
-to = "/en-US/corpus/category/declaration.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/destructuring.html"
-to = "/en-US/corpus/category/destructuring.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/endpoint.html"
@@ -6333,18 +6333,18 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/th-TH/corpus/category/entry.html"
-to = "/en-US/corpus/category/entry.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/errors.html"
-to = "/en-US/corpus/category/errors.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/expression.html"
-to = "/en-US/corpus/category/expression.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/format.html"
@@ -6368,18 +6368,18 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/th-TH/corpus/category/io.html"
-to = "/en-US/corpus/category/io.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/iteration.html"
-to = "/en-US/corpus/category/iteration.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/lane.html"
-to = "/en-US/corpus/category/lane.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/literal.html"
@@ -6393,43 +6393,43 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/th-TH/corpus/category/metadata.html"
-to = "/en-US/corpus/category/metadata.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/modifier.html"
-to = "/en-US/corpus/category/modifier.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/mutation.html"
-to = "/en-US/corpus/category/mutation.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/non-null-chain.html"
-to = "/en-US/corpus/category/non-null-chain.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/object.html"
-to = "/en-US/corpus/category/object.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/operators.html"
-to = "/en-US/corpus/category/operators.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/optional-chain.html"
-to = "/en-US/corpus/category/optional-chain.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/output.html"
-to = "/en-US/corpus/category/output.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/package.html"
@@ -6443,8 +6443,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/th-TH/corpus/category/template.html"
-to = "/en-US/corpus/category/template.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/testing.html"
@@ -6453,8 +6453,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/th-TH/corpus/category/transfer.html"
-to = "/en-US/corpus/category/transfer.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/category/type.html"
@@ -6463,8 +6463,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/th-TH/corpus/category/types.html"
-to = "/en-US/corpus/category/types.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/cede.html"
@@ -7168,8 +7168,8 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/th-TH/corpus/octeti.html"
-to = "/en-US/corpus/bytes.html"
-rule = "english-redirect"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/omitte.html"
@@ -7273,13 +7273,13 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/th-TH/corpus/primus%20quem.html"
-to = "/en-US/corpus/primus_quem.html"
-rule = "english-redirect"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/primus_quem.html"
-to = "/en-US/corpus/primus_quem.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/privata.html"
@@ -8433,8 +8433,8 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/th-TH/corpus/%E0%B9%84%E0%B8%9A%E0%B8%95%E0%B9%8C.html"
-to = "/en-US/corpus/bytes.html"
-rule = "corpus-slug"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/th-TH/corpus/%E0%B9%84%E0%B8%9B%E0%B8%95%E0%B9%88%E0%B8%AD.html"
@@ -9198,13 +9198,13 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/vi/corpus/byte.html"
-to = "/en-US/corpus/bytes.html"
-rule = "corpus-slug"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/bytes.html"
-to = "/en-US/corpus/bytes.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/b%C3%A3o_h%C3%B2a.html"
@@ -9278,18 +9278,18 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/vi/corpus/category/ad.html"
-to = "/en-US/corpus/category/ad.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/aliasing.html"
-to = "/en-US/corpus/category/aliasing.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/application.html"
-to = "/en-US/corpus/category/application.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/arithmetic.html"
@@ -9298,8 +9298,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/vi/corpus/category/assignment.html"
-to = "/en-US/corpus/category/assignment.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/async.html"
@@ -9308,8 +9308,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/vi/corpus/category/availability.html"
-to = "/en-US/corpus/category/availability.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/binding.html"
@@ -9318,13 +9318,13 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/vi/corpus/category/bitwise.html"
-to = "/en-US/corpus/category/bitwise.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/boolean.html"
-to = "/en-US/corpus/category/boolean.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/cli.html"
@@ -9333,13 +9333,13 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/vi/corpus/category/codegen.html"
-to = "/en-US/corpus/category/codegen.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/collection.html"
-to = "/en-US/corpus/category/collection.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/comparison.html"
@@ -9353,8 +9353,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/vi/corpus/category/control-flow.html"
-to = "/en-US/corpus/category/control-flow.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/conversion.html"
@@ -9363,13 +9363,13 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/vi/corpus/category/declaration.html"
-to = "/en-US/corpus/category/declaration.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/destructuring.html"
-to = "/en-US/corpus/category/destructuring.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/endpoint.html"
@@ -9378,18 +9378,18 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/vi/corpus/category/entry.html"
-to = "/en-US/corpus/category/entry.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/errors.html"
-to = "/en-US/corpus/category/errors.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/expression.html"
-to = "/en-US/corpus/category/expression.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/format.html"
@@ -9413,18 +9413,18 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/vi/corpus/category/io.html"
-to = "/en-US/corpus/category/io.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/iteration.html"
-to = "/en-US/corpus/category/iteration.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/lane.html"
-to = "/en-US/corpus/category/lane.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/literal.html"
@@ -9438,43 +9438,43 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/vi/corpus/category/metadata.html"
-to = "/en-US/corpus/category/metadata.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/modifier.html"
-to = "/en-US/corpus/category/modifier.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/mutation.html"
-to = "/en-US/corpus/category/mutation.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/non-null-chain.html"
-to = "/en-US/corpus/category/non-null-chain.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/object.html"
-to = "/en-US/corpus/category/object.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/operators.html"
-to = "/en-US/corpus/category/operators.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/optional-chain.html"
-to = "/en-US/corpus/category/optional-chain.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/output.html"
-to = "/en-US/corpus/category/output.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/package.html"
@@ -9488,8 +9488,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/vi/corpus/category/template.html"
-to = "/en-US/corpus/category/template.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/testing.html"
@@ -9498,8 +9498,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/vi/corpus/category/transfer.html"
-to = "/en-US/corpus/category/transfer.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/category/type.html"
@@ -9508,8 +9508,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/vi/corpus/category/types.html"
-to = "/en-US/corpus/category/types.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/cede.html"
@@ -10518,8 +10518,8 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/vi/corpus/octeti.html"
-to = "/en-US/corpus/bytes.html"
-rule = "english-redirect"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/omitte.html"
@@ -10628,13 +10628,13 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/vi/corpus/primus%20quem.html"
-to = "/en-US/corpus/primus_quem.html"
-rule = "english-redirect"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/primus_quem.html"
-to = "/en-US/corpus/primus_quem.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/vi/corpus/privata.html"
@@ -12168,8 +12168,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hans/corpus/bytes.html"
-to = "/en-US/corpus/bytes.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/cape.html"
@@ -12193,18 +12193,18 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/ad.html"
-to = "/en-US/corpus/category/ad.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/aliasing.html"
-to = "/en-US/corpus/category/aliasing.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/application.html"
-to = "/en-US/corpus/category/application.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/arithmetic.html"
@@ -12213,8 +12213,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/assignment.html"
-to = "/en-US/corpus/category/assignment.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/async.html"
@@ -12223,8 +12223,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/availability.html"
-to = "/en-US/corpus/category/availability.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/binding.html"
@@ -12233,13 +12233,13 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/bitwise.html"
-to = "/en-US/corpus/category/bitwise.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/boolean.html"
-to = "/en-US/corpus/category/boolean.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/cli.html"
@@ -12248,13 +12248,13 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/codegen.html"
-to = "/en-US/corpus/category/codegen.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/collection.html"
-to = "/en-US/corpus/category/collection.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/comparison.html"
@@ -12268,8 +12268,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/control-flow.html"
-to = "/en-US/corpus/category/control-flow.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/conversion.html"
@@ -12278,13 +12278,13 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/declaration.html"
-to = "/en-US/corpus/category/declaration.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/destructuring.html"
-to = "/en-US/corpus/category/destructuring.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/endpoint.html"
@@ -12293,18 +12293,18 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/entry.html"
-to = "/en-US/corpus/category/entry.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/errors.html"
-to = "/en-US/corpus/category/errors.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/expression.html"
-to = "/en-US/corpus/category/expression.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/format.html"
@@ -12328,18 +12328,18 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/io.html"
-to = "/en-US/corpus/category/io.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/iteration.html"
-to = "/en-US/corpus/category/iteration.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/lane.html"
-to = "/en-US/corpus/category/lane.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/literal.html"
@@ -12353,43 +12353,43 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/metadata.html"
-to = "/en-US/corpus/category/metadata.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/modifier.html"
-to = "/en-US/corpus/category/modifier.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/mutation.html"
-to = "/en-US/corpus/category/mutation.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/non-null-chain.html"
-to = "/en-US/corpus/category/non-null-chain.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/object.html"
-to = "/en-US/corpus/category/object.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/operators.html"
-to = "/en-US/corpus/category/operators.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/optional-chain.html"
-to = "/en-US/corpus/category/optional-chain.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/output.html"
-to = "/en-US/corpus/category/output.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/package.html"
@@ -12403,8 +12403,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/template.html"
-to = "/en-US/corpus/category/template.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/testing.html"
@@ -12413,8 +12413,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/transfer.html"
-to = "/en-US/corpus/category/transfer.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/type.html"
@@ -12423,8 +12423,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hans/corpus/category/types.html"
-to = "/en-US/corpus/category/types.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/cede.html"
@@ -13128,8 +13128,8 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/zh-Hans/corpus/octeti.html"
-to = "/en-US/corpus/bytes.html"
-rule = "english-redirect"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/omitte.html"
@@ -13233,13 +13233,13 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/zh-Hans/corpus/primus%20quem.html"
-to = "/en-US/corpus/primus_quem.html"
-rule = "english-redirect"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/primus_quem.html"
-to = "/en-US/corpus/primus_quem.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/privata.html"
@@ -14063,8 +14063,8 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/zh-Hans/corpus/%E5%AD%97%E8%8A%82.html"
-to = "/en-US/corpus/bytes.html"
-rule = "corpus-slug"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hans/corpus/%E5%AE%88%E6%8A%A4.html"
@@ -15158,8 +15158,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hant/corpus/bytes.html"
-to = "/en-US/corpus/bytes.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/cape.html"
@@ -15183,18 +15183,18 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/ad.html"
-to = "/en-US/corpus/category/ad.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/aliasing.html"
-to = "/en-US/corpus/category/aliasing.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/application.html"
-to = "/en-US/corpus/category/application.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/arithmetic.html"
@@ -15203,8 +15203,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/assignment.html"
-to = "/en-US/corpus/category/assignment.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/async.html"
@@ -15213,8 +15213,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/availability.html"
-to = "/en-US/corpus/category/availability.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/binding.html"
@@ -15223,13 +15223,13 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/bitwise.html"
-to = "/en-US/corpus/category/bitwise.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/boolean.html"
-to = "/en-US/corpus/category/boolean.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/cli.html"
@@ -15238,13 +15238,13 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/codegen.html"
-to = "/en-US/corpus/category/codegen.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/collection.html"
-to = "/en-US/corpus/category/collection.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/comparison.html"
@@ -15258,8 +15258,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/control-flow.html"
-to = "/en-US/corpus/category/control-flow.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/conversion.html"
@@ -15268,13 +15268,13 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/declaration.html"
-to = "/en-US/corpus/category/declaration.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/destructuring.html"
-to = "/en-US/corpus/category/destructuring.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/endpoint.html"
@@ -15283,18 +15283,18 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/entry.html"
-to = "/en-US/corpus/category/entry.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/errors.html"
-to = "/en-US/corpus/category/errors.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/expression.html"
-to = "/en-US/corpus/category/expression.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/format.html"
@@ -15318,18 +15318,18 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/io.html"
-to = "/en-US/corpus/category/io.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/iteration.html"
-to = "/en-US/corpus/category/iteration.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/lane.html"
-to = "/en-US/corpus/category/lane.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/literal.html"
@@ -15343,43 +15343,43 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/metadata.html"
-to = "/en-US/corpus/category/metadata.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/modifier.html"
-to = "/en-US/corpus/category/modifier.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/mutation.html"
-to = "/en-US/corpus/category/mutation.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/non-null-chain.html"
-to = "/en-US/corpus/category/non-null-chain.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/object.html"
-to = "/en-US/corpus/category/object.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/operators.html"
-to = "/en-US/corpus/category/operators.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/optional-chain.html"
-to = "/en-US/corpus/category/optional-chain.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/output.html"
-to = "/en-US/corpus/category/output.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/package.html"
@@ -15393,8 +15393,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/template.html"
-to = "/en-US/corpus/category/template.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/testing.html"
@@ -15403,8 +15403,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/transfer.html"
-to = "/en-US/corpus/category/transfer.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/type.html"
@@ -15413,8 +15413,8 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hant/corpus/category/types.html"
-to = "/en-US/corpus/category/types.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/cede.html"
@@ -16118,8 +16118,8 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/zh-Hant/corpus/octeti.html"
-to = "/en-US/corpus/bytes.html"
-rule = "english-redirect"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/omitte.html"
@@ -16223,13 +16223,13 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/zh-Hant/corpus/primus%20quem.html"
-to = "/en-US/corpus/primus_quem.html"
-rule = "english-redirect"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/primus_quem.html"
-to = "/en-US/corpus/primus_quem.html"
-rule = "one-to-one"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/privata.html"
@@ -16853,8 +16853,8 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/zh-Hant/corpus/%E4%BD%8D%E5%85%83%E7%B5%84.html"
-to = "/en-US/corpus/bytes.html"
-rule = "corpus-slug"
+to = "/en-US/corpus/"
+rule = "corpus-index-fallback"
 
 [[redirects]]
 from = "/zh-Hant/corpus/%E4%BD%9C%E7%82%BA.html"

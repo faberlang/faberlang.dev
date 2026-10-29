@@ -1,5 +1,0 @@
-匯入 取自 "norma:console" console
-
-入口 {
-    註記 "ready"
-}

@@ -2,7 +2,7 @@
 
 Introduces borrowed iteration or borrowed parameters.
 
-**Term** `de` · **Section** KEYWORDS
+**Term** `ref` · **Section** KEYWORDS
 
 ## Syntax
 
@@ -18,7 +18,7 @@ ref <expression>
 
 ## Common mistakes
 
-- Passing a `ref` parameter to an `mut` or `from` position — mode mismatch; cannot pass a read-only reference where mutation or consumption is expected (SEM057).
+- Passing a `ref` parameter to a `mut` or `from` position — mode mismatch; cannot pass a read-only reference where mutation or consumption is expected (SEM057).
 
 ## Grammar
 
@@ -46,13 +46,13 @@ main {
     for ref persona let clavis {
         print clavis
     }
-    let list<int, 3> numeri ← [10, 20, 30]
+    let list<int, size 3> numeri ← [10, 20, 30]
     for ref numeri let index {
         print index
     }
 }
 ```
 
-See also: [`from`](from.md), [`in`](mut.md).
+See also: [`from`](from.md), [`mut (function)`](mut (function).md).
 
 Fetch list: https://faberlang.dev/agents/index.md

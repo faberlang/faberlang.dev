@@ -2,7 +2,7 @@
 
 Primitive no-value return type.
 
-**Term** `vacuum` · **Section** KEYWORDS · **Also** `void`, `unit`
+**Term** `void` · **Section** KEYWORDS · **Also** `unit`
 
 ## Syntax
 

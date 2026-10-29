@@ -2,7 +2,7 @@
 
 Computes a module constant's value at build time.
 
-**Term** `praefixum` · **Section** KEYWORDS
+**Term** `comptime` · **Section** KEYWORDS
 
 ## Syntax
 

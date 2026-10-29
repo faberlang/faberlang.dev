@@ -84,21 +84,21 @@ these corpus rows as a quality score.
 
 | target | capable | analyzable | % |
 |---|---|---|---|
-| rust | 505 | 509 | 99% |
-| go | 458 | 509 | 90% |
-| ts | 509 | 509 | 100% |
-| faber | 509 | 509 | 100% |
+| rust | 560 | 564 | 99% |
+| go | 508 | 564 | 90% |
+| ts | 564 | 564 | 100% |
+| faber | 564 | 564 | 100% |
 
 **Systems lane (MIR → device/IR artifacts)**
 
 | target | capable | analyzable | % |
 |---|---|---|---|
-| llvm-text | 439 | 511 | 86% |
-| wasm-text | 376 | 511 | 74% |
-| wasm | 375 | 511 | 73% |
-| sexp-struct | 461 | 511 | 90% |
-| sexp | 459 | 511 | 90% |
-| runner | 453 | 511 | 89% |
+| llvm-text | 484 | 567 | 85% |
+| wasm-text | 406 | 567 | 72% |
+| wasm | 405 | 567 | 71% |
+| sexp-struct | 502 | 567 | 89% |
+| sexp | 498 | 567 | 88% |
+| runner | 495 | 567 | 87% |
 
 ## Device kernel support {#device-kernel-support}
 
@@ -116,7 +116,7 @@ selects where it runs.
 | Device | What it is |
 |---|---|
 | `reference` | Plain sequential code on the MIR runner; the oracle device results are checked against |
-| `cpu` | Processor cores as a device; until the worker device lands, the same route as `reference` |
+| `cpu` | Processor cores as a device: the same session and launch pipeline as `metal` and `cuda`, run by a multicore worker queue (`--threads N`, `[device] threads`) |
 | `metal` | Apple Metal |
 | `cuda` | NVIDIA CUDA |
 | `auto` | Resolve against the machine's probes; fails closed when none, or more than one, is admitted |
@@ -205,6 +205,7 @@ a device row is not a statement about the device route.
 | <a id="iuncta"></a>`iuncta` | ✓ | ✓ | ✓ | ✓ |
 | <a id="lege"></a>`lege` | ✓ | ✓ | ✓ | ✓ |
 | <a id="lineam"></a>`lineam` | ✓ | ✓ | ✓ | ✓ |
+| <a id="list-b8"></a>`list<b8>` | ✓ | ✓ | ✓ | ✓ |
 | <a id="lista"></a>`lista` | ✓ | ✓ | ✓ | ✓ |
 | <a id="mone"></a>`mone` | ✓ | ✓ | ✓ | ✓ |
 | <a id="mori"></a>`mori` | ✓ | ✓ | ✓ | ✓ |
@@ -213,7 +214,6 @@ a device row is not a statement about the device route.
 | <a id="numerus"></a>`numerus` | ✓ | ◐ | ✓ | ✓ |
 | <a id="numquam"></a>`numquam` | ✓ | ✓ | ✓ | ✓ |
 | <a id="objectum"></a>`objectum` | ✓ | ✓ | ✓ | ✓ |
-| <a id="octeti"></a>`octeti` | ✓ | ✓ | ✓ | ✓ |
 | <a id="omitte"></a>`omitte` | ✓ | ✓ | ✓ | ✓ |
 | <a id="omnia"></a>`omnia` | ✓ | ✓ | ✓ | ✓ |
 | <a id="operandus"></a>`operandus` | ✓ | ✓ | ✓ | ✓ |
@@ -284,17 +284,22 @@ a device row is not a statement about the device route.
 | <a id="aut"></a>`aut` | ✓ | ✓ | ✓ | ✓ |
 | <a id="ergo"></a>`ergo` | ✓ | ✓ | ✓ | ✓ |
 | <a id="et"></a>`et` | ✓ | ✓ | ✓ | ✓ |
+| <a id="list-t-size-lo-hi"></a>`list<T, size lo‥hi>` | ✓ | ✓ | ✓ | ✓ |
 | <a id="modulus-u16"></a>`modulus<u16>` | ✓ | ✕ | ✓ | ✓ |
 | <a id="modulus-u32"></a>`modulus<u32>` | ✓ | ✕ | ✓ | ✓ |
 | <a id="modulus-u64"></a>`modulus<u64>` | ✓ | ✕ | ✓ | ✓ |
 | <a id="modulus-u8"></a>`modulus<u8>` | ✓ | ✕ | ✓ | ✓ |
 | <a id="non-est"></a>`non est` | ✓ | ✓ | ✓ | ✓ |
+| <a id="saturating-w-lo-hi"></a>`saturating<W, lo‥hi>` | ✓ | ✓ | ✓ | ✓ |
+| <a id="trapping-w-lo-hi"></a>`trapping<W, lo‥hi>` | ✓ | ✓ | ✓ | ✓ |
 | <a id="vel"></a>`vel` | ✓ | ✓ | ✓ | ✓ |
+| <a id="whole-width-range"></a>`whole-width range` | ✓ | ✕ | ✓ | ✓ |
+| <a id="wrapping-w-lo-hi"></a>`wrapping<W, lo‥hi>` | ✓ | ✕ | ✓ | ✓ |
 | <a id=""></a>`§` | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`¬` | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`·` | ✓ | ✕ | ✓ | ✓ |
 | <a id=""></a>`×` | ✓ | ○ | ✓ | ✓ |
-| <a id=""></a>`‥` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`‥` | ✓ | ◐ | ✓ | ✓ |
 | <a id=""></a>`…` | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`←` | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`→` | ✓ | ✓ | ✓ | ✓ |
@@ -351,7 +356,7 @@ a device row is not a statement about the device route.
 | <a id="ego"></a>`ego` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="elige"></a>`elige` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="errata"></a>`errata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| <a id="est"></a>`est` | ✕ | ◐ | ◐ | ◐ | ◐ | ✓ |
+| <a id="est"></a>`est` | ✓ | ◐ | ◐ | ◐ | ◐ | ✓ |
 | <a id="ex"></a>`ex` | ✓ | ◐ | ◐ | ◐ | ◐ | ✓ |
 | <a id="exitus"></a>`exitus` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="fac"></a>`fac` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -370,7 +375,7 @@ a device row is not a statement about the device route.
 | <a id="iace"></a>`iace` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="ignotum"></a>`ignotum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="immutata"></a>`immutata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| <a id="implendum"></a>`implendum` | ◐ | ◐ | ◐ | ✓ | ✓ | ✓ |
+| <a id="implendum"></a>`implendum` | ✓ | ◐ | ◐ | ◐ | ◐ | ✓ |
 | <a id="implet"></a>`implet` | ◐ | ◐ | ◐ | ✓ | ✓ | ✓ |
 | <a id="importa"></a>`importa` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ |
 | <a id="in"></a>`in` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -382,6 +387,7 @@ a device row is not a statement about the device route.
 | <a id="iuncta"></a>`iuncta` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | <a id="lege"></a>`lege` | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | <a id="lineam"></a>`lineam` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
+| <a id="list-b8"></a>`list<b8>` | ✓ | ◐ | ◐ | ✓ | ✓ | ✓ |
 | <a id="lista"></a>`lista` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ |
 | <a id="mone"></a>`mone` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="mori"></a>`mori` | ✓ | ✓ | ✓ | ✓ | ✓ | ◐ |
@@ -390,7 +396,6 @@ a device row is not a statement about the device route.
 | <a id="numerus"></a>`numerus` | ◐ | ◐ | ◐ | ✓ | ✓ | ◐ |
 | <a id="numquam"></a>`numquam` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="objectum"></a>`objectum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="octeti"></a>`octeti` | ✓ | ◐ | ◐ | ✓ | ✓ | ✓ |
 | <a id="omitte"></a>`omitte` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="omnia"></a>`omnia` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="operandus"></a>`operandus` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -443,7 +448,7 @@ a device row is not a statement about the device route.
 | <a id="variandum"></a>`variandum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="verum"></a>`verum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="vide"></a>`vide` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`∪` | ◐ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`∪` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
 
 ## Operators — systems lane
 
@@ -452,38 +457,43 @@ a device row is not a statement about the device route.
 | term | llvm-text | wasm-text | wasm | sexp-struct | sexp | runner |
 | --- | --- | --- | --- | --- | --- | --- |
 | <a id=""></a>`!(` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`!.` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`!.` | ✓ | ✓ | ✓ | ✓ | ✓ | ◐ |
 | <a id=""></a>`![` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`=` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?(` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?.` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?(` | ✕ | ✕ | ✕ | ✓ | ◐ | ✓ |
+| <a id=""></a>`?.` | ◐ | ◐ | ◐ | ✓ | ✓ | ✓ |
 | <a id=""></a>`?[` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="aut"></a>`aut` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="ergo"></a>`ergo` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="et"></a>`et` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="list-t-size-lo-hi"></a>`list<T, size lo‥hi>` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ |
 | <a id="modulus-u16"></a>`modulus<u16>` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="modulus-u32"></a>`modulus<u32>` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="modulus-u64"></a>`modulus<u64>` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="modulus-u8"></a>`modulus<u8>` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="non-est"></a>`non est` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="saturating-w-lo-hi"></a>`saturating<W, lo‥hi>` | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| <a id="trapping-w-lo-hi"></a>`trapping<W, lo‥hi>` | ✕ | ✕ | ✕ | ✕ | ✕ | ◐ |
 | <a id="vel"></a>`vel` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="whole-width-range"></a>`whole-width range` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="wrapping-w-lo-hi"></a>`wrapping<W, lo‥hi>` | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | <a id=""></a>`§` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`¬` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`·` | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | <a id=""></a>`×` | ✓ | ○ | ○ | ✓ | ✓ | ✓ |
-| <a id=""></a>`‥` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`‥` | ◐ | ◐ | ◐ | ✓ | ✓ | ✓ |
 | <a id=""></a>`…` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`←` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`→` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`↤` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`↦` | ◐ | ◐ | ◐ | ◐ | ◐ | ✓ |
+| <a id=""></a>`↦` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ |
 | <a id=""></a>`⇐` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⇒` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⇥` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`∈` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`∧` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`∨` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`∴` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`∴` | ◐ | ◐ | ◐ | ◐ | ◐ | ✓ |
 | <a id=""></a>`∷` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≡` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≢` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |

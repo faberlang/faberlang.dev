@@ -2,7 +2,7 @@
 
 Introduces an alias name.
 
-**Term** `ut` · **Section** KEYWORDS · **Also** `as`
+**Term** `as` · **Section** KEYWORDS
 
 ## Syntax
 

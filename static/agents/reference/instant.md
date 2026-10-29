@@ -2,7 +2,7 @@
 
 Absolute point-in-time primitive with precision contract.
 
-**Term** `instans` · **Section** KEYWORDS
+**Term** `instant` · **Section** KEYWORDS
 
 ## Syntax
 
@@ -89,6 +89,6 @@ main {
 }
 ```
 
-See also: [`↦`](↦.md), [`⊥`](⊥.md), [`string`](textus.md).
+See also: [`↦`](↦.md), [`⊥`](⊥.md), [`string (type)`](string (type).md).
 
 Fetch list: https://faberlang.dev/agents/index.md

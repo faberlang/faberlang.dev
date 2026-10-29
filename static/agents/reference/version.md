@@ -2,7 +2,7 @@
 
 Attaches a version string to a CLI root.
 
-**Term** `versio` · **Section** ANNOTATIONS
+**Term** `version` · **Section** ANNOTATIONS
 
 ## Syntax
 

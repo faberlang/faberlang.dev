@@ -3,6 +3,6 @@
 `dictionary` is another spelling of the entry documented at
 [`map`](map.md).
 
-Source: `faber explain tabula`.
+Source: `faber explain map`.
 
 Fetch list: https://faberlang.dev/agents/index.md

@@ -2,7 +2,7 @@
 
 Registers an async after-each test hook.
 
-**Term** `postparabit` · **Section** KEYWORDS
+**Term** `async_teardown` · **Section** KEYWORDS
 
 ## Syntax
 

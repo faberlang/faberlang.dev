@@ -2,7 +2,7 @@
 
 Creates an inclusive range with a Latin keyword.
 
-**Term** `usque` · **Section** KEYWORDS
+**Term** `until` · **Section** KEYWORDS
 
 ## Syntax
 

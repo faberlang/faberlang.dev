@@ -2,7 +2,7 @@
 
 Declares a type alias.
 
-**Term** `typus` · **Section** KEYWORDS · **Also** `type`
+**Term** `type` · **Section** KEYWORDS
 
 ## Syntax
 

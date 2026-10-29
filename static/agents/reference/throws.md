@@ -2,7 +2,7 @@
 
 Marks a function as able to throw along a recoverable channel.
 
-**Term** `iacit` · **Section** MODIFIERS
+**Term** `throws` · **Section** MODIFIERS
 
 ## Syntax
 

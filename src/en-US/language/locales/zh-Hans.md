@@ -29,7 +29,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 
 ```text locale=la
 | English          Latin        简体中文
-| ---------------  -----------  -----------
+| ---------------  -----------  ----------
 | all              omnia        全部
 | and              et           且
 | annotation       annotatio    注解
@@ -76,6 +76,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | desc             descendens   降序
 | describe         probandum    验题
 | description      descriptio   描述
+| device           machina      设备
 | do               fac          执行
 | elif             sin          否则如果
 | else             secus        否则
@@ -83,9 +84,11 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | empty            vacua        空集
 | enum             ordo         枚举
 | errors           errata       勘误
+| exclusive        exclusive    exclusive
 | exit             exitus       退出
 | expect_failure   erratur      预期失败
 | false            falsum       假
+| first            prima        第一个
 | flaky            fragilis     易碎
 | fn               functio      函数
 | for              itera        遍历
@@ -99,6 +102,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | if               si           如果
 | implements       implet       实现
 | import           importa      导入
+| inclusive        inclusive    inclusive
 | interface        implendum    契约
 | internal         interna      内部
 | is               est          是
@@ -126,11 +130,11 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | optional         sponte       可选
 | options          optiones     可选项
 | or               aut          或
+| order            order        order
 | own              penes        拥有
 | panic            mori         崩溃
 | pass             tacet        静默
 | per              pro          按
-| primus_quem      primus_quem  primus_quem
 | print            nota         显示
 | private          privata      私有
 | product          factum       求积
@@ -143,12 +147,14 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | reduce           reducta      归约
 | ref              de           借自
 | reject           reice        拒绝
+| relaxed          laxus        宽松
 | rename           verte        改名
 | repeat           repete       重复
 | require          requirit     需求
 | rest             ceteri       其余
 | return           redde        返回
 | return_await     reddet       等返
+| scan             scan         scan
 | schema           schema       架构
 | self             ego          自身
 | setup            praepara     备置
@@ -171,18 +177,20 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | throws           iacit        可抛
 | timeout          temporis     时限
 | todo             futurum      预期
+| total            total        total
 | trap             capta        陷阱
 | true             verum        真
 | tuple            iuncta       元组
 | type             typus        类型
-| ubi              ubi          ubi
 | union            discretio    判别
+| unsafe           intutus      不安全
 | unstable         nondum       不稳定
 | until            usque        到
 | variant          finge        构造
 | version          versio       版本
 | vertex           vertex       顶点
 | via              via          经由
+| visibility       visibilitas  可见性
 | warn             mone         警告
 | while            dum          当
 | within           intra        内
@@ -200,8 +208,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | ascii        ascii        窄字串
 | atomic       atomic       原子
 | bool         bivalens     布尔
-| byte         octetus      单字节
-| bytes        octeti       字节
 | census       census       普查
 | channel      sermo        通道
 | char         littera      字符
@@ -292,15 +298,18 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | dot                   productum              点积
 | drain                 exhauri                耗尽
 | drop                  omissa                 丢弃
+| edge                  limes                  边界
 | end                   terminus               结束
 | ends_with             finis                  结尾是
 | escape                munita                 转义
 | exchange              exchange               交换
 | exp                   exponentia             指数
 | expanded              expande                扩展
+| extend                extende                扩展
 | fill                  reple                  填充
 | filter                filtrata               过滤
 | find                  inventa                查找
+| find                  reperta                查找
 | find_all              collecta               查找全部
 | finish                fini                   结束
 | first                 primus                 第一个
@@ -325,7 +334,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | last                  ultimus                最后一个
 | length                longitudo              长度
 | less                  minor                  小于
-| limes                 limes                  边界
 | ln                    logarithmus            自然对数
 | load                  load                   加载
 | log10                 logarithmus_decimalis  常用对数
@@ -344,12 +352,14 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | named                 nominatus              命名分组
 | negate                nega                   取负
 | negated               negativa               已取负
+| norm                  norm                   norm
 | norm_layer            laminatio              层归一化
 | norm_rms              rms_norm               rms_norm
 | norm_rope             rope_norm              rope_norm
 | normalize             normalizata            归一化
 | power                 potentia               乘方
 | put                   pone                   放入
+| rank                  rank                   rank
 | reduce                reducta                归约
 | relu                  activatio_relu         ReLU
 | remove_first          decapita               移除首项

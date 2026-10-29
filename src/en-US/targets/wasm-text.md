@@ -18,7 +18,7 @@ A stack machine, so the arithmetic reads inside out. Useful as a check on what a
 
 | Capable | Analyzable | Coverage |
 |---|---|---|
-| 376 | 511 | 74% |
+| 406 | 567 | 72% |
 
 From the [target matrix](/toolchain/target-matrix.html): how many corpus exempla lower to this target. Coverage is not a quality score — an emitter can lower a term and still erase a distinction.
 
@@ -28,8 +28,8 @@ Terms the matrix records as partial, planned, or unsupported for this target. A 
 
 | Category | Terms |
 |---|---|
-| Keywords — systems lane | <a id="ad"></a>`ad`, <a id="argumenta"></a>`argumenta`, <a id="clausura"></a>`clausura`, <a id="est"></a>`est`, <a id="ex"></a>`ex`, <a id="functio"></a>`functio`, <a id="genus"></a>`genus`, <a id="implendum"></a>`implendum`, <a id="implet"></a>`implet`, <a id="importa"></a>`importa`, <a id="instans"></a>`instans`, <a id="itera"></a>`itera`, <a id="iuncta"></a>`iuncta`, <a id="lege"></a>`lege`, <a id="lista"></a>`lista`, <a id="numerus"></a>`numerus`, <a id="octeti"></a>`octeti`, <a id="tabula"></a>`tabula`, <a id="textus"></a>`textus` |
-| Operators — systems lane | `·`, `×`, `↦`, `⊗`, `⊘`, `⊙` |
+| Keywords — systems lane | <a id="ad"></a>`ad`, <a id="argumenta"></a>`argumenta`, <a id="clausura"></a>`clausura`, <a id="est"></a>`est`, <a id="ex"></a>`ex`, <a id="functio"></a>`functio`, <a id="genus"></a>`genus`, <a id="implendum"></a>`implendum`, <a id="implet"></a>`implet`, <a id="importa"></a>`importa`, <a id="instans"></a>`instans`, <a id="itera"></a>`itera`, <a id="iuncta"></a>`iuncta`, <a id="lege"></a>`lege`, <a id="list-b8"></a>`list<b8>`, <a id="lista"></a>`lista`, <a id="numerus"></a>`numerus`, <a id="tabula"></a>`tabula`, <a id="textus"></a>`textus` |
+| Operators — systems lane | `?(`, `?.`, <a id="list-t-size-lo-hi"></a>`list<T, size lo‥hi>`, <a id="saturating-w-lo-hi"></a>`saturating<W, lo‥hi>`, <a id="trapping-w-lo-hi"></a>`trapping<W, lo‥hi>`, <a id="wrapping-w-lo-hi"></a>`wrapping<W, lo‥hi>`, `·`, `×`, `‥`, `↦`, `∴`, `⊗`, `⊘`, `⊙` |
 
 ## Typed tensors {#tensores}
 

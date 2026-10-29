@@ -2,7 +2,7 @@
 
 Starts a conditional branch that runs when its condition is true.
 
-**Term** `si` · **Section** KEYWORDS · **Also** `if`
+**Term** `if` · **Section** KEYWORDS
 
 ## Syntax
 

@@ -1,55 +1,70 @@
 # mut
 
-Marks a mutable borrowed parameter.
+Declares a mutable binding.
 
-**Term** `in` · **Section** KEYWORDS
+**Term** `mut` · **Section** KEYWORDS · **Also** `let`, `mutable`
 
 ## Syntax
 
 ```
-in <type> <name>
+mut <type|_> <pattern> [← <expression>]
 ```
 
 ## What this teaches
 
-- Marks a mutable borrowed parameter.
-- Related keywords: ref, from
+- Mutable bindings — `mut` for values that can be reassigned after declaration
+- Write-once bindings — `let` for values that cannot be reassigned
 
 ## Common mistakes
 
-- Mode mismatch — passing a `ref` (read-only) value to an `mut` position, or using `mut` to mutate a parameter declared as `ref` (SEM057).
+- declaring mut when the binding is never reassigned — use let instead (WARN013)
 
 ## Grammar
 
 ```
-paramMode :← 'in' type
+bindingStmt :← ('varia' | 'sit') type? ident '←' expr
 ```
 
 ## Expected output
 
 ```
-Scalar stdout smoke (see body).
-```
-
-## Backend
-
-```
-Cross-ref: functio/in-ex.fab.
+0, 1, 11, "Salve, Mundus!", 30, "Vale"
 ```
 
 ## Example
 
 ```fab
-fn sum(mut list<int> values) → int {
-    return values.sum()
-}
-
 main {
-    mut list<int> xs ← [1, 2, 3]
-    print sum(mut xs)
+    # --- Mutable bindings with mut ---
+
+    mut _ computus ← 0
+    print computus
+
+    computus ← 1
+    print computus
+
+    computus ← computus + 10
+    print computus
+
+    # --- Write-once bindings: let ---
+
+    let _ salutatio ← "Salve, Mundus!"
+    print salutatio
+
+    # let infers the type of each local
+    let _ x ← 10
+    let _ y ← 20
+    let _ sum ← x + y
+    print sum
+
+    # --- Reassign only mut bindings ---
+
+    mut _ nuntius ← "Salve"
+    nuntius ← "Vale"
+    print nuntius
 }
 ```
 
-See also: [`ref`](ref.md), [`from`](from.md).
+See also: [`const`](const.md), [`←`](←.md), [`↑`](↑.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

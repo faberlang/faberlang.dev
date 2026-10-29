@@ -2,7 +2,7 @@
 
 Generic key/value map type.
 
-**Term** `tabula` · **Section** KEYWORDS · **Also** `map`, `dictionary`
+**Term** `map` · **Section** KEYWORDS · **Also** `dictionary`
 
 ## Syntax
 
