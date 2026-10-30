@@ -48,7 +48,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [errors](errors.md) — Marks a function parameter or binding as carrying an error value.
 - [exit](exit.md) — Sets the exit code or exit expression for an entry point.
 - [false](false.md) — Represents the false boolean value and can prefix a falsity check.
-- [flaky](flaky.md) — Marks a test as fragile.
+- [flaky](flaky.md) — Rejected by faber test because flaky retries are not executed.
 - [float](float.md) — Primitive floating-point number type.
 - [fn](fn.md) — Declares a named function or method.
 - [for](for.md) — Starts a for-each iteration statement.
@@ -96,7 +96,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [record](record.md) — Labeled ad-hoc record type: construction, .name access, objectPattern, and holes.
 - [ref](ref.md) — Introduces borrowed iteration or borrowed parameters.
 - [reject](reject.md) — Reject a condition or throw a recoverable error.
-- [repeat](repeat.md) — Repeats a test a fixed number of times.
+- [repeat](repeat.md) — Runs a test N times and passes only if every run passes.
 - [require](require.md) — Require a condition or throw a recoverable error.
 - [rest](rest.md) — Collects remaining parameters, operands, or extracted fields.
 - [return](return.md) — Returns a value from a function.

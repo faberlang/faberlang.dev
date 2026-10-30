@@ -65,7 +65,7 @@ SCENARIOS = {
     },
     "nucleum": {
         "title": "A compute kernel",
-        "blurb": "A function marked `@ nucleum`. Device lanes only — this is a "
+        "blurb": "A `kernel` declaration. Device lanes only — this is a "
                  "different kind of source, not a variant of the programs above.",
     },
 }
@@ -190,7 +190,7 @@ LANES = {
         "short": "GPU",
         "kind": "the device lane",
         "order": 63,
-        "blurb": "A function marked `@ nucleum` is a compute kernel. The device "
+        "blurb": "A `kernel` declaration is a compute kernel. The device "
                  "lane links the compiler to real Metal and CUDA execution.",
         "detail": "The shader text below is the lowering surface. Real device "
                   "execution — `faber run --device metal|cuda` — is the "
@@ -385,7 +385,7 @@ def support_section(target: str) -> list[str]:
             "## Measured support {#support}",
             "",
             f"`{target}` is a **device-kernel emitter**, not a "
-            "general-language target. It lowers `@ nucleum` compute kernels "
+            "general-language target. It lowers `kernel` declarations "
             "and related GPU views, and deliberately nothing else, so it is "
             "not scored against the general corpus — a percentage there would "
             "read as a completion score it is not. Its measured support is the "

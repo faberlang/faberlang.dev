@@ -35,7 +35,7 @@ MIR is where meaning takes execution-shaped form: lower-level targets, validatio
 
 ## GPU — the device lane {#gpu}
 
-A function marked `@ nucleum` is a compute kernel. The device lane links the compiler to real Metal and CUDA execution.
+A `kernel` declaration is a compute kernel. The device lane links the compiler to real Metal and CUDA execution.
 
 [GPU lane overview](/targets/gpu.html)
 
@@ -59,7 +59,7 @@ The same small programs run through every lane, so the pages compare like with l
 | **Typed tensors** | Builds two shaped matrices, multiplies them, and reduces the product to a scalar. Exercises shape-bearing types and a reduction. |
 | **The error channel** | A function that may fail, and a caller that catches. Shows how the `⇥` channel becomes each target's own error idiom. |
 | **Collections and iteration** | A list folded to a total with `itera ex`. The plainest possible read on how loops lower. |
-| **A compute kernel** | A function marked `@ nucleum`. Device lanes only — this is a different kind of source, not a variant of the programs above. |
+| **A compute kernel** | A `kernel` declaration. Device lanes only — this is a different kind of source, not a variant of the programs above. |
 
 ## Support is measured elsewhere {#support}
 

@@ -116,8 +116,8 @@ FAMILIES: list[dict] = [
         "slug": "annotations",
         "title": "Annotations & directives",
         "blurb": (
-            "The `@` annotation family: the generic shape, the kernel "
-            "(`@ kernel`), compiler-lane (`@ radix`), and capability "
+            "The `@` annotation family: the generic shape, the accepted "
+            "legacy kernel annotation (`@ kernel`), compiler-lane (`@ radix`), and capability "
             "(`@ call`) directives."
         ),
         "ids": """
@@ -339,9 +339,9 @@ lane, or capability applies.
 
 The generic shape is `@` plus a name, optionally with fields in braces.
 `@ public` marks a function an importer can see. `@ cli` names the binary
-a package produces. The same family covers `@ kernel`, `@ radix`, and
-`@ call` — specialized directives most source meets later. The table
-below lists the words those directives use.
+a package produces. The same family covers `@ radix`, `@ call`, and the
+accepted legacy kernel annotation `@ kernel` — specialized directives most
+source meets later. The table below lists the words those directives use.
 
 ```faber locale=en
 @ public

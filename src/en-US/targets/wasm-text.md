@@ -18,7 +18,7 @@ A stack machine, so the arithmetic reads inside out. Useful as a check on what a
 
 | Capable | Analyzable | Coverage |
 |---|---|---|
-| 406 | 567 | 72% |
+| 407 | 569 | 72% |
 
 From the [target matrix](/toolchain/target-matrix.html): how many corpus exempla lower to this target. Coverage is not a quality score — an emitter can lower a term and still erase a distinction.
 

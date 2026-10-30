@@ -27,7 +27,7 @@ and links each one to its [term page](/en-US/corpus/).
 |---|---|
 | [Programs, regions & imports](/en-US/reference/grammar/program.html) | The shape of a source file: optional frontmatter, the optional `module` region, the top-level statement spine, imports, and the program entry points and test suites. |
 | [Declarations & bindings](/en-US/reference/grammar/declarations.html) | Bindings, functions, generic parameters, closures, classes, and the fields and methods a class holds. |
-| [Annotations & directives](/en-US/reference/grammar/annotations.html) | The `@` annotation family: the generic shape, the kernel (`@ kernel`), compiler-lane (`@ radix`), and capability (`@ call`) directives. |
+| [Annotations & directives](/en-US/reference/grammar/annotations.html) | The `@` annotation family: the generic shape, the accepted legacy kernel annotation (`@ kernel`), compiler-lane (`@ radix`), and capability (`@ call`) directives. |
 | [Types & contracts](/en-US/reference/grammar/types.html) | Type syntax and the declarations built on it: interfaces, type aliases, enums, tagged unions, and relational schemas. |
 | [Statements & control flow](/en-US/reference/grammar/statements.html) | Statements and control flow: conditionals, loops, `switch` and `match`, guards, extraction, loop and function transfer, and the diagnostic statements. |
 | [Expressions & operators](/en-US/reference/grammar/expressions.html) | Expressions and the operator stack, from the assignment root down through the precedence ladder to calls, literals, and the collection and JSON forms. |

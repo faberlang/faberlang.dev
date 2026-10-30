@@ -3,7 +3,7 @@ describe "modifiers" {
         assert true
     }
 
-    test "flaky guard" repeat 3 {
+    test "every run" repeat 3 {
         assert true
     }
 

@@ -63,7 +63,7 @@ It is **not** a product completion score for Metal, CUDA, or GPU training.
 - **General MIR** percentages (llvm-text, wasm, sexp, …) score ordinary systems
   IR emission over the same full corpus.
 - **Device-kernel emitters are not scored here.** `metal-text` and `wgsl-text`
-  lower a device-safe kernel surface — `@ nucleum` compute kernels and related
+  lower a device-safe kernel surface — `kernel` declarations and related
   GPU views — and deliberately nothing else: no packages, async, CLI, full
   control flow, or host libraries. Measuring them against all ~280
   general-language terms answers a question that does not apply to them, so
@@ -84,21 +84,21 @@ these corpus rows as a quality score.
 
 | target | capable | analyzable | % |
 |---|---|---|---|
-| rust | 560 | 564 | 99% |
-| go | 508 | 564 | 90% |
-| ts | 564 | 564 | 100% |
-| faber | 564 | 564 | 100% |
+| rust | 562 | 566 | 99% |
+| go | 508 | 566 | 90% |
+| ts | 566 | 566 | 100% |
+| faber | 566 | 566 | 100% |
 
 **Systems lane (MIR → device/IR artifacts)**
 
 | target | capable | analyzable | % |
 |---|---|---|---|
-| llvm-text | 484 | 567 | 85% |
-| wasm-text | 406 | 567 | 72% |
-| wasm | 405 | 567 | 71% |
-| sexp-struct | 502 | 567 | 89% |
-| sexp | 498 | 567 | 88% |
-| runner | 495 | 567 | 87% |
+| llvm-text | 485 | 569 | 85% |
+| wasm-text | 407 | 569 | 72% |
+| wasm | 406 | 569 | 71% |
+| sexp-struct | 504 | 569 | 89% |
+| sexp | 500 | 569 | 88% |
+| runner | 497 | 569 | 87% |
 
 ## Device kernel support {#device-kernel-support}
 
@@ -109,7 +109,7 @@ route is defined and what each device target emits. It carries no measurement;
 
 ### How a device program runs
 
-A kernel is a function marked `@ kernel`. A package carries a device program
+A kernel is a function declared with `kernel`. A package carries a device program
 when its manifest has a `[device]` section. `faber run --device <device>`
 selects where it runs.
 

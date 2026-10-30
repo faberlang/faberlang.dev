@@ -1,6 +1,6 @@
 # repeat
 
-Repeats a test a fixed number of times.
+Runs a test N times and passes only if every run passes.
 
 **Term** `repeat` · **Section** KEYWORDS
 
@@ -12,11 +12,12 @@ repeat <number>
 
 ## What this teaches
 
-- Test flakiness mitigation — `repeat <N>` runs a test case up to N times until it passes; useful for non-deterministic or flaky tests
+- `repeat <N>` runs the test case N times and passes only if every run passes; it does not retry until one run passes.
 - Declared as a test modifier on `test`
 
 ## Common mistakes
 
+- Treating `repeat` as retry-until-pass — all N runs must pass.
 - Confusing `repeat` (test repetition modifier) with `for` (loop iterator) or `do`/`while` (loop constructs).
 
 ## Grammar
@@ -25,22 +26,21 @@ repeat <number>
 testModifier :← 'repete' integer
 ```
 
-## Expected output
-
-```
-No incipit — declaration or test-runner surface only.
-```
-
 ## Backend
 
 ```
 declaration-only test modifier (whitelist: repete/repete.fab).
 ```
 
+## EXPECTED RUNNER OUTCOME
+
+`faber test corpus/repeat/repeat.fab` runs the passing case twice; it passes
+only when both executions pass.
+
 ## Example
 
 ```fab
-test "flaky guard" repeat 2 {
+test "two passing runs" repeat 2 {
     assert true
 }
 ```
