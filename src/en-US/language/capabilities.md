@@ -95,8 +95,7 @@ payload, `↦ lista<T>` collects frames into a list.
 ## Native leaves {#providers}
 
 Each effect family is served by a native leaf in the `faber-leaf` crate
-(`radix/crates/faber-leaf`). The interpreter (`faber run`) and generated Rust
-share it. Each leaf owns all verbs under its prefix:
+(`radix/crates/faber-leaf`). The MIR runner and generated Rust share it. Each leaf owns all verbs under its prefix:
 
 | Leaf | Prefix | I/O domain |
 |------|--------|------------|

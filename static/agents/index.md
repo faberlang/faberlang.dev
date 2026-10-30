@@ -15,7 +15,7 @@ Read these, in order. Writing Faber starts here, not in the HTML documentation.
 11. https://faberlang.dev/agents/libraries.md — `import from "norma:text"`.
 12. https://faberlang.dev/agents/grammar.md — the forms the other pages use.
 13. https://faberlang.dev/agents/tensors.md — `reduce via`, `reduce via first`, `per` grouping, `scan via`, `.edge<clamp>()`.
-14. https://faberlang.dev/agents/device.md — `do all`, `do device`, and `faber check --device`.
+14. https://faberlang.dev/agents/device.md — `kernel`, argument exclusivity, `do all`, `do device`, `do eligible`, and `--device-mode`.
 15. https://faberlang.dev/agents/reference/index.md — one page per `faber explain` entry, generated from the compiler registry.
 
 Install route: https://faberlang.dev/install.md

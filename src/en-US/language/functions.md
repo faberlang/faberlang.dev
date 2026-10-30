@@ -265,8 +265,9 @@ incipit {
 An unmarked parameter is read-only all the way down: it cannot be assigned to,
 and sharing a list parameter into a writable binding (`mut list<int> ys ← xs`)
 is `SEM065 const_shared_into_var`. A writable copy is written
-`mut list<int> ys ← copy xs`. `varia` (en `mut`) and `own` are repeated at the
-call site, as in `duplica(varia n)` and `consume(own t)`; leaving the marker off
+`mut list<int> ys ← copy xs`. Since 1.18 `copy` is refused for a value that
+reaches something with identity, such as a channel or a `Closable` class: see [what `copy` will not duplicate](/language/types.html#copy-resources).
+`varia` (en `mut`) and `own` are repeated at the call site, as in `duplica(varia n)` and `consume(own t)`; leaving the marker off
 is `SEM057 call_marker_missing`. A `de` argument takes no call-site marker.
 
 The same words (`de`, `ex`) are reused in other constructs — do not read
@@ -390,7 +391,7 @@ incipit {
 #### Range — itera ab {#range-itera-ab}
 
 ```faber
-itera ab 0‥10 sit i {
+itera ab 0 ‥ 10 sit i {
     nota i
 }
 ```

@@ -42,7 +42,7 @@ faber run hello
 
 `faber check` runs the front end: lexing, parsing, and type checking, far
 enough to catch ordinary package mistakes without building a native binary.
-`faber run` interprets the package and prints `Hello, world!`. When a check
+`faber run` runs the package and prints `Hello, world!`. When a check
 fails, read the diagnostic code first. Codes are stable search handles:
 `faber explain <CODE>` prints the entry.
 

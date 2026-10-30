@@ -14,7 +14,7 @@ open [The faber CLI](/toolchain/cli.html).
 |---|---|
 | `faber check <package>` | Fast front-end validation: lex, parse, type check, lower |
 | `faber build <package> -t rust` | Emit a Rust project for review or native compilation |
-| `faber run <package>` | Interpret and execute an application package (compiles only with `--target`) |
+| `faber run <package>` | Run an application package in this process: `clif-jit` when it accepts the program, otherwise the MIR runner |
 | `faber test <package>` | Run package tests when the package defines test surfaces |
 | `faber explain <code>` | Read a stable diagnostic explanation |
 | `faber update --check` | See whether a newer release exists; `faber update` installs it |
@@ -53,11 +53,13 @@ patching emitted Rust by hand.
 faber run .
 ```
 
-Use `run` for application packages with an `incipit` entry point. It
-interprets the package on the MIR runner and does not compile; `faber build -t
-<target>` is the command that builds. `faber run --target
-ts|go|llvm-host|clif-jit` is the exception: it builds for that target and runs
-the result. Library-only packages should be checked and tested instead.
+Use `run` for application packages with an `incipit` entry point. Since 1.18
+it compiles the package to native code in memory (the `clif-jit` engine), and
+falls back to the MIR runner when that lane declines the program; the fallback
+is decided before anything runs. `faber run --target runner` picks the MIR
+runner, and `--target clif-jit|ts|go|llvm-host` picks that engine with no
+fallback. `faber build -t <target>` is the command that writes a build. Library-only
+packages should be checked and tested instead.
 
 ## Explain diagnostics {#explain}
 
@@ -87,7 +89,7 @@ emit`, `--locale` selects the input locale pack, not the output surface.
 
 ## Device execution {#device}
 
-Packages carrying an `@ nucleum` compute kernel run on a GPU. Device selection
+Packages carrying a `kernel` run on a GPU. Device selection
 is explicit and fail-closed — a named device never silently falls back to CPU.
 
 ```bash
@@ -110,9 +112,14 @@ it and prints `INFO001` advice: the tier of each kernel, serialized or
 unplaceable kernels, and a report for every `do device` region. See
 [Tensor computation](/language/tensor-compute.html#device-regions).
 
-A kernel runs at one of three safety tiers: `@ kernel` (IEEE-correct float
-math, the default), `@ kernel relaxed` (approximate `/` and `sqrt`, fast
-transcendentals) and `@ kernel unsafe` (also drops the index checks the
+`faber check|build|run --device-mode eligible` lets the compiler use proved
+device variants of unmarked functions, in kernels and inside `do eligible`. The
+default, `explicit`, does not. See
+[device mode](/toolchain/cli.html#device-mode).
+
+A kernel runs at one of three safety tiers: `kernel name(…)` (IEEE-correct float
+math, the default), `kernel name(…) relaxed` (approximate `/` and `sqrt`, fast
+transcendentals) and `kernel name(…) unsafe` (also drops the index checks the
 compiler cannot prove). `--safe` on `faber run` or `faber build`, or `safe =
 true` under `[device]` in `faber.toml`, runs every kernel at the default tier.
 

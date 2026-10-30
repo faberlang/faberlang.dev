@@ -23,7 +23,7 @@ ergonomic developer tool.
 |---|---|
 | `faber build <path>` | Compile a package to a target backend (default: Rust) |
 | `faber check <path>` | Type-check without emitting code |
-| `faber run <path>` | Interpret and run a source file, package, or archive on the MIR runner (never compiles); `--target` builds for a target and runs the result |
+| `faber run <path>` | Run a source file, package, or archive: compiled in memory with Cranelift (`clif-jit`) when that lane accepts it, otherwise on the MIR runner; `--target` picks the engine |
 | `faber test <path>` | Run proba cases on the MIR runner |
 | `faber format <path>` | Report files whose layout differs from canonical formatting; `--write` applies it |
 | `faber convert <path> --to <locale>` | Convert source between reader-locale surfaces (report-only unless `--write`) |
@@ -54,8 +54,8 @@ warnings) or `--deny <CODE>` (a specific catalog code, repeatable).
 ### Device execution (Metal / CUDA) {#device-execution}
 
 `faber run` can execute a package's device program on a real GPU. A package
-carries a device program when its source declares an `@ nucleum` compute
-kernel and its manifest declares a `[device]` section (`device`, and
+carries a device program when its source declares a `kernel` and its manifest
+declares a `[device]` section (`device`, and
 `inputs` for the kernel's input buffers):
 
 ```bash
@@ -94,58 +94,97 @@ and `f64` is still refused in kernels (`SEM008 nucleum_f64`). Write `i32` and
 `f32` to keep a kernel portable to every device:
 
 ```faber locale=en
-@ kernel
 @ public
-fn scale(tf32[4] a, i32 k) → tf32[4] {
+kernel scale(tf32[4] a, i32 k) → tf32[4] {
     return a * (k ↦ f32)
 }
 ```
 
 ### Kernel safety tiers {#kernel-tiers}
 
-A kernel runs at one of three ordered safety tiers, written after `@ kernel`
-(la `laxus`, `intutus`):
+A kernel runs at one of three ordered safety tiers. The tier word follows the
+parameter list of the `kernel` head (la `laxus`, `intutus`):
 
 | Tier | Written | Float math | Index checks |
 |---|---|---|---|
-| default | `@ kernel` | IEEE-correct; FMA contraction, reordered reductions and library transcendentals within their published bounds | every check the compiler cannot prove stays |
-| relaxed | `@ kernel relaxed` | adds approximate `/` and `sqrt`, fast transcendentals, flushing denormals to zero and reassociating float expressions | as default |
-| unsafe | `@ kernel unsafe` | includes `relaxed` | also drops the checks the compiler cannot prove; an out-of-range access is undefined behaviour |
+| default | `kernel name(…)` | IEEE-correct; FMA contraction, reordered reductions and library transcendentals within their published bounds | every check the compiler cannot prove stays |
+| relaxed | `kernel name(…) relaxed` | adds approximate `/` and `sqrt`, fast transcendentals, flushing denormals to zero and reassociating float expressions | as default |
+| unsafe | `kernel name(…) unsafe` | includes `relaxed` | also drops the checks the compiler cannot prove; an out-of-range access is undefined behaviour |
 
 ```faber locale=en
-@ kernel
 @ public
-fn scale_default(f32 x) → f32 {
+kernel scale_default(f32 x) → f32 {
     return x * 2.0
 }
 
-@ kernel relaxed
 @ public
-fn scale_relaxed(f32 x) → f32 {
+kernel scale_relaxed(f32 x) relaxed → f32 {
     return x * 2.0
 }
 
-@ kernel unsafe
 @ public
-fn scale_unsafe(f32 x) → f32 {
+kernel scale_unsafe(f32 x) unsafe → f32 {
     return x * 2.0
 }
 ```
 
-The tiers are one ordered choice, not independent flags: `@ kernel relaxed
-unsafe` is refused (`PARSE018 duplicate_nucleum_tier`), as is a tier on a
-`fragment`, on anything that is not a kernel function, or a word that is not a
-tier. Integer results stay exact at every tier, and a check the author wrote (a
-`trapping` store, an `is_finite` test, a bounds test) always runs. On Metal the
-default tier emits IEEE division, precise `sqrt` and precise transcendentals,
-and the relaxed and unsafe tiers emit the fast forms; a backend that cannot
-honour a tier runs the default one, never a looser one.
+The tiers are one ordered choice, not independent flags: a head takes one mode
+word, and the annotation form `@ kernel relaxed unsafe` is refused (`PARSE018
+duplicate_nucleum_tier`), as is a tier on a `fragment`, on anything that is not
+a kernel function, or a word that is not a tier. Integer results stay exact at
+every tier, and a check the author wrote (a `trapping` store, an `is_finite`
+test, a bounds test) always runs. On Metal the default tier emits IEEE division,
+precise `sqrt` and precise transcendentals, and the relaxed and unsafe tiers
+emit the fast forms. Since 1.18 CUDA selects `f32` division and `sqrt` by tier
+too: correctly rounded at the default tier, approximate only at relaxed and
+unsafe. A backend that cannot honour a tier runs the default one, never a
+looser one.
 
 `faber run --safe` and `faber build --safe` run every kernel at the default
 tier for that command, and `safe = true` under `[device]` in `faber.toml` does
 the same for the package. The switch can only lower a tier, and no environment
 variable sets it. Use it to check whether a relaxed or unsafe kernel changes
 an answer.
+
+### Kernel eligibility and `--device-mode` {#device-mode}
+
+`--device-mode` is a compilation option on `faber check`, `faber build` and
+`faber run`. It decides which proofs the compiler may use for device code;
+`--device` still decides where a program runs.
+
+```bash
+faber check my-app/ --device-mode eligible
+faber build my-app/ --device-mode eligible
+faber run my-app/ --device metal --device-mode eligible
+```
+
+| Call | `explicit` (the default) | `eligible` |
+|---|---|---|
+| A host call outside `do eligible` | Host | Host |
+| A host call inside `do eligible` | Host | A device candidate, launched once every check passes; otherwise host |
+| A `kernel` calling an unmarked function | Compile error naming the dependency | Compiled when the function and its callees are proved device-safe |
+| Anything a `kernel` or `do device` needs that is host-only | Compile error | Compile error |
+
+The compiler infers eligibility for every function in both modes, and
+`faber check --device <device>` reports it as one `INFO001 device_eligibility`
+line per callable (`--json` gives JSON Lines). `eligible` mode moves no host code
+to a device outside a `do eligible` block, and it never excuses an unsafe body.
+[Do eligible](/language/tensor-compute.html#do-eligible) has the block's rules.
+
+### Device output and exit status {#device-output}
+
+Since 1.18 the `device: selected backend` line goes to standard error, so
+standard output carries only what the program prints. A kernel fault exits with
+the same status on every device as on `reference`: 70. The host no longer waits
+on each launch, so a fault can reach the program at the first read of that
+kernel's output, before later program output.
+
+`faber run --stats` and `--stats-file` report the device buffer counters under
+`device.runtime`: allocations, releases, pool hits, and the buffers and bytes
+parked in the pool. A steady kernel loop, the same kernels at the same shapes,
+makes no device buffer allocations or releases once it has warmed up. The first
+iterations of a shape can allocate; a new shape can allocate once, then settles
+again.
 
 ### Updating faber {#updating}
 
@@ -172,6 +211,10 @@ faber check --lower my-package/
 Runs the front end (lex → parse → semantic analysis) without producing output
 artifacts. Use this in CI and editor integrations.
 
+Since 1.18 borrow-region inference is total. A construct it cannot yet reason
+about is refused by name (`SEM008 region_facts_not_built`) instead of being
+approximated.
+
 `--lower` also lowers the program to Faber's reference form, without running
 it, and reports the errors that semantic analysis alone cannot see: a program
 that checks but cannot run. It needs a file or package path (not stdin). Since
@@ -189,8 +232,9 @@ faber test . --suite suite/path   # select by probandum suite path
 faber test . --tag slow           # select by tag modifier
 ```
 
-`faber test` runs proba cases on the MIR runner — no Cargo or rustc is
-invoked for the package, so no Rust toolchain is needed. Inline `probandum`
+`faber test` runs proba cases on the MIR runner, whatever engine `faber run`
+would pick — no Cargo or rustc is invoked for the package, so no Rust toolchain
+is needed. Inline `probandum`
 and `proba` suites live alongside source code, and colocated `*.proba`
 files are discovered as test-only sources (never imported, excluded from
 Cista snapshots). See [Inline testing](/language/errors.html).
@@ -207,6 +251,11 @@ exits 1 if any would. `--write` applies the change, `--check` is the explicit
 spelling of the default, and `--stdout` writes the result to stdout instead.
 Formatting never translates between reader locales; use
 `faber convert --to <locale>` for that.
+
+Range glyphs come out space-padded, `0 ‥ 10`, in value and type positions alike.
+Known issue in 1.18: `faber format` and `faber convert` print every kernel in the
+annotation form, `@ kernel` above an `fn`, so a `kernel` head does not survive
+`--write` yet. The result means the same thing.
 
 ### Explaining diagnostics {#explaining}
 
@@ -226,10 +275,16 @@ and looked up by; without it `faber explain` uses the current package's
 `faber.toml` `[locale]`, else English. `--diagnostics-locale` is separate: it
 sets only the message language of a diagnostic explanation.
 
-## In-process scripting
+The same split holds on every command. Since 1.18 `--diagnostics-locale` never
+changes how source is read, and `faber build --locale` applies to a single file
+and wins over its frontmatter. A frontmatter locale that is invalid or cannot be
+loaded is an error, not silent English: `LOCALE003` on `faber run`, `PKG001` on
+`faber check` and `faber build`.
+
+## In-process execution
 
 Alongside the compiled `faber build` path, `faber run` executes Faber source
-in-process through the MIR runner. Without `--target` it never compiles.
+in this process, with no external toolchain.
 
 ### Usage {#usage}
 
@@ -237,33 +292,43 @@ in-process through the MIR runner. Without `--target` it never compiles.
 faber run script.fab
 ```
 
-This runs Faber source in-process after the normal front half of the
-compiler (parse through typecheck + MIR lowering), without invoking
-`rustc` or spawning a build process.
+Since 1.18 this compiles the program to native code in memory with Cranelift,
+the `clif-jit` engine, and runs it. There is no object file, no linker and no
+`rustc`. When the Cranelift lowering declines the program, `faber run` falls
+back to the MIR runner, and the output is the same as `--target runner`. The
+choice is made before anything runs, so a program that traps or exits nonzero
+on `clif-jit` is never run a second time.
 
-### Building a target, then running it {#run-target}
+Device runs, archives, `--stats` and `--shuffle-seed` always use the MIR runner.
+`--debug` reports the engine on standard error, including when `clif-jit`
+declined the program.
 
-`faber run --target <target>` is the one form of `run` that compiles. It builds
-the package for that target, then runs the built program with the arguments
-after `--`; the program's standard streams and exit code pass straight through.
+### Choosing the engine {#run-target}
 
-| `--target` | What it builds and runs | Needs on `PATH` |
+`faber run --target <target>` picks the engine and takes no fallback: a program
+the engine refuses stops with that diagnostic. `runner` and `clif-jit` run in
+this process. The others build the package for that target, then run the built
+program. Every engine takes the program's arguments after `--`, and the
+program's standard streams and exit code pass straight through.
+
+| `--target` | What it runs | Needs on `PATH` |
 |---|---|---|
+| `runner` | the MIR runner, the reference every other target is checked against | nothing else |
+| `clif-jit` | native code compiled in memory with Cranelift | nothing else |
 | `ts` | a Node project, run with `node` | `tsc` and `node` |
 | `go` | a Go module (vendored runtime, builds offline), run as built | `go` |
 | `llvm-host` | a native program through LLVM | `llvm-as`, `opt`, `clang` |
-| `clif-jit` | native code compiled in memory with Cranelift and run in this process | nothing else |
 
 ```bash
 faber run --target ts my-app/ -- --flag value
-faber run --target clif-jit my-app/
+faber run --target runner my-app/
 ```
 
-A missing tool is refused by name. `faber build --target clif-jit` and `faber
-emit --target clif-jit` are refused by name: that target exists to run. Device
-packages keep their own route (`--device`, above).
+A missing tool is refused by name. `faber build` and `faber emit` refuse
+`--target clif-jit` and `--target runner` by name: those engines exist to run.
+Device packages keep their own route (`--device`, above).
 
-### How it works {#how-it-works}
+### How the runner works {#how-it-works}
 
 The compiler produces analysed HIR, validated MIR, and a resolved
 runtime-intrinsic table. The MIR runner dispatches MIR blocks straight
@@ -279,7 +344,7 @@ Source → Lex → Parse → Collect → Resolve → Lower → Typecheck
 
 ### Latency {#latency}
 
-The scripting path runs the same linear frontend as the compiled path,
+The runner path runs the same linear frontend as the compiled path,
 plus runner time proportional to what the script actually executes:
 
 | Phase | Cost |
@@ -292,6 +357,8 @@ fast enough to feel like a shell script.
 
 ### Limitations {#limitations}
 
+- `clif-jit` has the language limits of the `clif` target, so a program it
+  declines runs on the MIR runner instead
 - The MIR runner does not support all host I/O routes that the compiled
   path does — some `norma:*` wrappers remain compiled-only
 - The runner is a MIR-native diagnostic/reference executor, not a

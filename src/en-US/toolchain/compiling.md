@@ -47,13 +47,12 @@ supports, erases, warns on, or rejects.
 | `sexp` | MIR | yes | no | no | **Limited** |
 
 *`run` via device execution: `faber run --device cuda` (llvm-text) /
-`--device metal` (metal-text) launches `@ nucleum` kernels on a real GPU;
+`--device metal` (metal-text) launches `kernel` declarations on a real GPU;
 `-t llvm-text` / `-t metal-text` themselves remain emit-only. Only *public*
-`@ nucleum` functions are launchable entries — a private `@ nucleum`
-function stays a module-internal helper with no entry row. Kernel closures
-marked `nucleum` follow a device-safe contract: device-safe signature
-types, no error channel, no host effects, and no escapes out of the
-closure. TypeScript and
+kernels are launchable entries — a private `kernel` stays a module-internal
+helper with no entry row. A closure inside a kernel follows a device-safe
+contract: device-safe signature types, no error channel, no host effects, and
+no escapes out of the closure. TypeScript and
 Go also have exempla e2e harnesses that execute emitted code under host
 toolchains; that is a measurement surface, not a `faber package` product path.
 
@@ -69,7 +68,7 @@ How mature each target is, measured on the corpus (777 programs the suite runs, 
 | Target | `-t` | Output | Evidence | Source |
 | --- | --- | --- | --- | --- |
 | **Reference** | | | | |
-| MIR runner | (`faber run`) | executes the program; the oracle | suite 774 / 777 (the rest are pinned expected failures); 53 of the passes are library files with no entry function, which count when they check and lower to valid MIR | public |
+| MIR runner | (`faber run -t runner`) | executes the program; the oracle | suite 774 / 777 (the rest are pinned expected failures); 53 of the passes are library files with no entry function, which count when they check and lower to valid MIR | public |
 | Faber | `faber` | canonical Faber in the source's locale (`format`, `convert`) | round-trip 753 / 760 | public |
 | FMIR / FHIR | `fmir`, `fhir` | serialized MIR and analyzed HIR artifacts | no corpus lane (exercised by the package build and run tests) | public |
 | **Application languages** | | | | |
@@ -341,8 +340,8 @@ not a package device-execution path.
 
 #### Device execution (Metal / CUDA) {#device-execution}
 
-A package carries a device program when its source declares an `@ kernel`
-compute kernel and its manifest declares a `[device]` section. `faber run
+A package carries a device program when its source declares a `kernel` and
+its manifest declares a `[device]` section. `faber run
 --device reference|cpu|metal|cuda|auto` runs it through the host driver and
 fails closed with stable codes (`E_BACKEND_UNAVAILABLE`, `E_DEVICE_*`,
 `E_NO_DEVICE_PROGRAM`) instead of silently falling back to the CPU. `reference`

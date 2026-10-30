@@ -13,7 +13,7 @@ main {
 ```
 
 A length limit is written after `size`: `list<int, size 4>` holds at most four
-elements, and `list<int, size 1…∞>` is never empty (`…` includes its upper
+elements, and `list<int, size 1 … ∞>` is never empty (`…` includes its upper
 bound, `‥` leaves it out). A bare `list<int, 4>` is `SEM008`
 `list_count_needs_size`; `queue`, `stack`, `string`, `ascii` and `vector` take
 the same `size` marker (`SEM008` `capacity_needs_size`, `vector_width_needs_size`).
@@ -22,9 +22,9 @@ argument included. Appending past the maximum reports on the error channel.
 
 ```faber locale=en
 main {
-    let list<int, size 0…3> pair ← [1, 2]
+    let list<int, size 0 … 3> pair ← [1, 2]
     print pair
-    mut list<int, size 2‥5> ys ← [10, 20]
+    mut list<int, size 2 ‥ 5> ys ← [10, 20]
     do {
         ys.append(30)
         ys.append(40)
@@ -59,8 +59,8 @@ This prints `[1, 2]` and `[1, 2, 3]`.
 
 `s ⇜ x` sinks one item into a writable sink. On a list it appends (duplicates
 kept); on a set it adds a missing item. A class becomes a sink with
-`implements Sink<T>` and the methods `sink(T)` and `flush()`. In 1.17 `⇜`
-builds for the runner, Rust and LLVM; other targets refuse it by name.
+`implements Sink<T>` and the methods `sink(T)` and `flush()`. In 1.18 the Go,
+TypeScript, Swift and Python targets refuse `⇜` by name.
 
 ```faber locale=en
 main {
@@ -84,9 +84,9 @@ main {
 ```
 
 A matrix element reads and writes by row and column: `m[[r, c]]` and
-`m[[r, c]] ← v`, with literal or computed coordinates. In 1.17 this runs on
-`faber run`; generated Rust does not compile it yet, and TypeScript, Swift
-and LLVM refuse it by name.
+`m[[r, c]] ← v`, with literal or computed coordinates. In 1.18 this runs on
+`faber run`; generated Rust does not compile it yet, and Swift and LLVM refuse
+it by name.
 
 ```faber locale=en
 main {
@@ -100,7 +100,7 @@ A range is a value of type `range<int>`. `for range` walks it.
 
 ```faber locale=en
 main {
-    let range<int> r ← 0‥3
+    let range<int> r ← 0 ‥ 3
     print r
     for range r let i {
         print i
@@ -112,7 +112,7 @@ A stored range may carry a step; the step is part of the type.
 
 ```faber locale=en
 main {
-    let range<int, 2> evens ← 0…10 step 2
+    let range<int, 2> evens ← 0 … 10 step 2
     print evens.length()
     print evens.contains(3)
 }

@@ -292,6 +292,32 @@ The call site repeats the `mut` and `own` markers (Latin `varia` and
 `SEM057 call_marker_missing`. A parameter with no marker is `ref`: the function
 may read it and may not write it.
 
+### What `copy` will not duplicate {#copy-resources}
+
+`copy` makes an independent value, and some values have an identity that cannot
+be duplicated: a channel, which is how a file or other host resource reaches
+Faber, and a class that `implements Closable`. Since 1.18 a `copy` of a value that
+reaches one is a compile error, through a field, a collection element, a union
+or a tuple member, and the diagnostic names the member path.
+`SEM066 copy_nonduplicable_member` here reports `Envelope.payload`:
+
+```faber locale=en outcome=rejects
+class Envelope {
+    mut channel payload
+}
+
+main {
+    let channel source ← call 'runtime:echo' ("hello")
+    let Envelope packet ← Envelope { payload = source }
+    mut Envelope duplicate ← copy packet
+    print duplicate.payload
+}
+```
+
+Share the value without `copy`, or hand the resource over with `own` where the
+consumer may own it. Deep copies of ordinary classes, lists and maps are
+unchanged.
+
 ### Comparison policy {#comparison-policy}
 
 | Operator | Family | Behaviour |
@@ -544,26 +570,26 @@ TypeScript and Python clamped until 1.16).
 A list can carry a length limit in its type. The limit is written after `size`
 (la `magnitudo`): `list<int, size 4>` holds at most four elements. A bare
 `list<int, 4>` is retired by name (`SEM008 list_count_needs_size`), and so is a
-bare `lo‥hi` range, which bounds a value rather than a count. The same rule
+bare `lo ‥ hi` range, which bounds a value rather than a count. The same rule
 covers every bounded container: `vector<f32, size 4>` (the `vf32[4]` sugar is
 unchanged), `queue<int, size 4>`, `stack<int, size 4>`, `string<size 8>` and
 `ascii<size 8>` (`SEM008 vector_width_needs_size`, `SEM008 capacity_needs_size`).
 
 A range after `size` bounds the length. `‥` leaves the upper bound out and `…`
-includes it, so `list<int, size 2‥5>` holds two to four elements and
-`list<int, size 1…∞>` is never empty: `first` and `last` return plain values.
+includes it, so `list<int, size 2 ‥ 5>` holds two to four elements and
+`list<int, size 1 … ∞>` is never empty: `first` and `last` return plain values.
 Growing past the maximum or removing below the minimum reports on the error
-channel. `list<int, size 3>` and `list<int, size 0…3>` are the same type.
+channel. `list<int, size 3>` and `list<int, size 0 … 3>` are the same type.
 
 A short list literal takes the capacity of the cell it is stored into, whether
 the cell is a variable, a field or a call argument: `[1, 2]` stored into
-`list<int, size 0…3>` is a list with room for three. A literal longer than the
+`list<int, size 0 … 3>` is a list with room for three. A literal longer than the
 maximum is refused by name.
 
 ```faber locale=en
 main {
     # Never empty: first and last are plain ints.
-    mut list<int, size 1…∞> xs ← [1, 2, 3]
+    mut list<int, size 1 … ∞> xs ← [1, 2, 3]
     print xs.first()
     print xs.last()
     print xs.length()
@@ -571,7 +597,7 @@ main {
     print xs
 
     # Lengths 2 to 4: the fifth push does not fit.
-    mut list<int, size 2‥5> ys ← [10, 20]
+    mut list<int, size 2 ‥ 5> ys ← [10, 20]
     do {
         ys.append(30)
         ys.append(40)
@@ -584,7 +610,7 @@ main {
     print ys
 
     # A short literal takes the cell's capacity.
-    let list<int, size 0…3> pair ← [1, 2]
+    let list<int, size 0 … 3> pair ← [1, 2]
     print pair
 }
 ```
@@ -686,7 +712,7 @@ tensor. A literal range that falls outside a literal shape is
 ```faber locale=en
 main {
     let tf32[6] v ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0] ↦ tf32[6]
-    let tf32[3] mid ← v[1‥4]
+    let tf32[3] mid ← v[1 ‥ 4]
     print mid
 }
 ```
@@ -699,6 +725,23 @@ forms follow the three list reads: `m.get([r, c])` gives `none` for a
 coordinate outside the shape, `m.at([r, c])` reports it on the error channel,
 and `m.set([r, c], v)` stores. A literal coordinate that is provably outside
 the shape is refused at compile time.
+
+A vector and a matrix are values, so `←` copies them. Since 1.18 every target
+agrees: a write through the copy never reaches the original. There is no storage
+for a marker to name, so `ref` over a vector is refused
+(`SEM008 scalar_access_marker`).
+
+```faber locale=en
+main {
+    let vf32[3] a ← [1.0, 2.0, 3.0] ↦ vf32[3]
+    mut vf32[3] b ← a
+    b[0] ← 9.0
+    print a[0]
+    print b[0]
+}
+```
+
+This prints `1.0` and `9.0`.
 
 ```faber locale=en
 main {
@@ -716,9 +759,9 @@ This prints `2.0`, `0.0`, `4.0` and `[[1.0, 2.0], [7.5, 4.0]]`. A bracket
 range on a vector or a matrix slices to a vector or a matrix, and `↦`
 converts between tensors, vectors and matrices of the same shape.
 
-Known issue in 1.17: element access runs on `faber run`, but generated Rust
-does not compile it yet, and the TypeScript, Swift and LLVM targets refuse it
-by name rather than approximate it.
+Known issue in 1.18: element access runs on `faber run`, but generated Rust
+does not compile it yet, and the Swift and LLVM targets refuse it by name rather
+than approximate it.
 
 Reductions (`reduce via`), ordered scans (`scan via`) and edge policies
 (`.edge<clamp>()`) are covered in [Tensor computation](/language/tensor-compute.html).
@@ -828,19 +871,18 @@ main {
 
 This prints `["begin", "step", "step"]`; `log.append(v)` and `log ⇜ v` do the same thing here.
 
-Known issue in 1.17: `⇜` runs on `faber run`, Rust and LLVM; the Go,
-TypeScript, Swift, WebAssembly, Racket, Python and Cranelift targets refuse it
-by name (`CODEGEN001`).
+Known issue in 1.18: the Go, TypeScript, Swift and Python targets refuse `⇜` by
+name (`CODEGEN001`).
 
 ### Intervallum — ranges {#intervallum}
 
 ```faber
 # exclusive range: 0, 1, 2, 3, 4
-itera ab 0‥5 sit i {
+itera ab 0 ‥ 5 sit i {
     nota i
 }
 # inclusive range: 0, 1, 2, 3, 4, 5
-itera ab 0…5 sit i {
+itera ab 0 … 5 sit i {
     nota i
 }
 ```
@@ -854,7 +896,7 @@ printing it shows its construction:
 
 ```faber locale=en
 main {
-    let range<int> r ← 2‥5
+    let range<int> r ← 2 ‥ 5
     print r
     for range r let i {
         print i
@@ -871,7 +913,7 @@ the step.
 
 ```faber locale=en
 main {
-    let range<int, 2> evens ← 0…10 step 2
+    let range<int, 2> evens ← 0 … 10 step 2
     print evens.length()
     print evens.contains(4)
     print evens.contains(3)

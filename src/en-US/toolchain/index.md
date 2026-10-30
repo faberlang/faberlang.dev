@@ -14,7 +14,7 @@ There is no separate build tool to install.
 ```bash
 faber init my-app          # create a package
 faber check my-app/        # typecheck, no output written
-faber run my-app/          # interpret in-process (compiles only with --target)
+faber run my-app/          # run in-process (clif-jit, else the MIR runner)
 faber build my-app/ -t rust  # compile to a target
 faber test my-app/         # run inline proba suites
 faber format my-app/       # report files that would change (--write applies)
@@ -31,7 +31,7 @@ resolve, typecheck) with nothing written to disk.
 | `init` | create a new package |
 | `check` | semantic analysis on a file or package |
 | `build` | compile and write output for a target |
-| `run` | interpret a single file, package, or archive; with `--target`, build for a target and run it |
+| `run` | run a single file, package, or archive in this process; with `--target`, pick the engine |
 | `repl` | interactive MIR runner, re-lowering each line |
 | `test` | run `proba` cases on the runner, no Cargo or rustc |
 | `format` | report (or `--write`) canonical formatting at the source's own locale |
