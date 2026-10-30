@@ -69,7 +69,7 @@ are rendered in another language — the glyphs and the order stay put.
   Nullability is `T ∪ none`, and crossing between integer and float is an
   explicit `↦`. [Types and values](/language/types.html).
 - **Math-oriented operators.** Integer `/` floors; true division is `÷`;
-  comparisons read as math (`≤`, `≥`, `≠`, `≈`). When math and hardware
+  comparisons read as math (`≤`, `≥`, `≢`, `≈`). When math and hardware
   convention disagree, Faber follows the math.
 - **Widths apply at the store.** Arithmetic runs unbounded; a width limit is
   applied once, where a value is stored into or converted to a bounded cell.

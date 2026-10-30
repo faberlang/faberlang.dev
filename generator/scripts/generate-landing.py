@@ -543,7 +543,7 @@ def main() -> None:
         <h3>Math-oriented operators</h3>
         <p>
           Integer <code>/</code> floors, so <code>-7 / 2</code> is <code>-4</code>; true
-          division is <code>÷</code>. Comparisons read as math (<code>≤ ≥ ≠ ≈</code>),
+          division is <code>÷</code>. Comparisons read as math (<code>≤ ≥ ≢ ≈</code>),
           and tensor work has its own operators (<code>·</code> matmul,
           <code>⊙</code> elementwise). When math and hardware convention disagree,
           Faber follows the math.

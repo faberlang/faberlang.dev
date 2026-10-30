@@ -41,7 +41,7 @@ only state compile-time facts. <a href="/en-US/language/behavior/glyph-law.html"
 <code>f64 low</code>, never <code>low: f64</code> — for parameters, locals and fields alike.
 Nullability is <code>T ∪ none</code>, and crossing between integer and float is an
 explicit <code class="glyph">↦</code>. <a href="/en-US/language/types.html">Types and values</a>.</li><li><strong>Math-oriented operators.</strong> Integer <code class="glyph">/</code> floors; true division is <code class="glyph">÷</code>;
-comparisons read as math (<code class="glyph">≤</code>, <code class="glyph">≥</code>, <code class="glyph">≠</code>, <code class="glyph">≈</code>). When math and hardware
+comparisons read as math (<code class="glyph">≤</code>, <code class="glyph">≥</code>, <code class="glyph">≢</code>, <code class="glyph">≈</code>). When math and hardware
 convention disagree, Faber follows the math.</li><li><strong>Widths apply at the store.</strong> Arithmetic runs unbounded; a width limit is
 applied once, where a value is stored into or converted to a bounded cell.
 <a href="/en-US/language/behavior/numeric-widths.html">Math in the ether</a>.</li><li><strong>Reader locales, sealed.</strong> One reader locale per file, never mixed. The
