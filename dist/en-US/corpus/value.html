@@ -79,9 +79,11 @@ main {
 <span class="tok-co"># (valor-scalaria), the byte row (valor-boxing) and the deeper rows — nested</span>
 <span class="tok-co"># class, widening, recovery and tag tests (valor-composita-deep).</span>
 
+<span class="tok-co"># The fields are declared y then x; the boxed object prints declaration order,</span>
+<span class="tok-co"># not the order the literal below writes them.</span>
 class Punctum {
-    mut int x
     mut int y
+    mut int x
 }
 
 main {
@@ -116,7 +118,7 @@ main {
     let tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>] ↦ tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
     let value boxedGrid <span class="tok-op">←</span> grid ↦ value
     print boxedGrid
-}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>{&quot;x&quot;: 3, &quot;y&quot;: 4}
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>{&quot;y&quot;: 4, &quot;x&quot;: 3}
 3
 4
 [1, 2]

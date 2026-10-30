@@ -131,8 +131,9 @@ main {
 }</code></pre><p>An unmarked parameter is read-only all the way down: it cannot be assigned to,
 and sharing a list parameter into a writable binding (<code>mut list&lt;int&gt; ys ← xs</code>)
 is <code>SEM065 const_shared_into_var</code>. A writable copy is written
-<code>mut list&lt;int&gt; ys ← copy xs</code>. <code>mut</code> (en <code>mut</code>) and <code>own</code> are repeated at the
-call site, as in <code>duplica(mut n)</code> and <code>consume(own t)</code>; leaving the marker off
+<code>mut list&lt;int&gt; ys ← copy xs</code>. Since 1.18 <code>copy</code> is refused for a value that
+reaches something with identity, such as a channel or a <code>Closable</code> class: see <a href="/en-US/language/types.html#copy-resources">what <code>copy</code> will not duplicate</a>.
+<code>mut</code> (en <code>mut</code>) and <code>own</code> are repeated at the call site, as in <code>duplica(mut n)</code> and <code>consume(own t)</code>; leaving the marker off
 is <code>SEM057 call_marker_missing</code>. A <code>ref</code> argument takes no call-site marker.</p><p>The same words (<code>ref</code>, <code>from</code>) are reused in other constructs — do not read
 every <code>from</code> as &quot;consume&quot;:</p><div class="table-scroll"><table><thead><tr><th>Surface</th><th>Role</th></tr></thead><tbody><tr><td><code>ref string name</code> on parameter</td><td>Shared borrow</td></tr><tr><td><code>mut int count</code> on parameter</td><td>Mutable borrow</td></tr><tr><td><code>own string buffer</code> on parameter</td><td>Move into callee</td></tr><tr><td><code>for from items let item</code></td><td>Iterate values</td></tr><tr><td><code>for ref map let key</code></td><td>Iterate keys</td></tr><tr><td><code>from source let x, rest rest</code></td><td>Destructure fields</td></tr><tr><td><code>import from &quot;path&quot;</code></td><td>Import from module</td></tr></tbody></table></div><h3 id="entry-point">Entry point<a class="anchor" href="#entry-point">#</a></h3><p>The program entry point is <code>main</code>:</p><pre class="faber-code"><code class="lang-faber">main {
     print <span class="tok-st">"ingressus"</span>

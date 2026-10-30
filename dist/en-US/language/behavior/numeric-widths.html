@@ -35,53 +35,53 @@ unbounded <code>int</code> keeps it. The limits appear only where the value beco
     print cell
 }</code></pre><p>The run stops at the store with an out-of-range error and a non-zero exit
 status.</p><h2 id="ranged">Ranged cells<a class="anchor" href="#ranged">#</a></h2><p>A policy word can take a range as its second argument, so a cell holds exactly
-the values it names: <code>saturating&lt;W, lo‥hi&gt;</code>, <code>trapping&lt;W, lo‥hi&gt;</code> and
-<code>wrapping&lt;W, lo‥hi&gt;</code>. <code class="glyph">‥</code> leaves the upper bound out, <code class="glyph">…</code> includes it, and <code class="glyph">∞</code>
+the values it names: <code>saturating&lt;W, lo ‥ hi&gt;</code>, <code>trapping&lt;W, lo ‥ hi&gt;</code> and
+<code>wrapping&lt;W, lo ‥ hi&gt;</code>. <code class="glyph">‥</code> leaves the upper bound out, <code class="glyph">…</code> includes it, and <code class="glyph">∞</code>
 is no bound. The rule is the same as everywhere else: arithmetic stays exact,
 and only the store applies the range. A <code>trapping</code> cell errors on a value
 outside it, a <code>saturating</code> cell clamps, and a <code>wrapping</code> cell wraps into the
-range.</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">fn</span> offset(<span class="tok-kw">trapping</span><span class="tok-op">&lt;</span>i32, <span class="tok-op">-</span><span class="tok-nu">2</span>‥<span class="tok-nu">3</span><span class="tok-op">&gt;</span> dy) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+range.</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">fn</span> offset(<span class="tok-kw">trapping</span><span class="tok-op">&lt;</span>i32, <span class="tok-op">-</span><span class="tok-nu">2</span> ‥ <span class="tok-nu">3</span><span class="tok-op">&gt;</span> dy) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
     <span class="tok-kw">return</span> dy
 }
 
-<span class="tok-kw">fn</span> grow(<span class="tok-kw">trapping</span><span class="tok-op">&lt;</span>u8, <span class="tok-nu">0</span>‥<span class="tok-nu">10</span><span class="tok-op">&gt;</span> small) <span class="tok-op">→</span> <span class="tok-kw">trapping</span><span class="tok-op">&lt;</span>u8, <span class="tok-nu">0</span>‥<span class="tok-nu">20</span><span class="tok-op">&gt;</span> {
+<span class="tok-kw">fn</span> grow(<span class="tok-kw">trapping</span><span class="tok-op">&lt;</span>u8, <span class="tok-nu">0</span> ‥ <span class="tok-nu">10</span><span class="tok-op">&gt;</span> small) <span class="tok-op">→</span> <span class="tok-kw">trapping</span><span class="tok-op">&lt;</span>u8, <span class="tok-nu">0</span> ‥ <span class="tok-nu">20</span><span class="tok-op">&gt;</span> {
     <span class="tok-kw">return</span> small
 }
 
 <span class="tok-kw">main</span> {
     <span class="tok-kw">let</span> i32 d <span class="tok-op">←</span> <span class="tok-nu">2</span>
-    <span class="tok-kw">let</span> <span class="tok-kw">trapping</span><span class="tok-op">&lt;</span>i32, <span class="tok-op">-</span><span class="tok-nu">2</span>‥<span class="tok-nu">3</span><span class="tok-op">&gt;</span> dy <span class="tok-op">←</span> d
+    <span class="tok-kw">let</span> <span class="tok-kw">trapping</span><span class="tok-op">&lt;</span>i32, <span class="tok-op">-</span><span class="tok-nu">2</span> ‥ <span class="tok-nu">3</span><span class="tok-op">&gt;</span> dy <span class="tok-op">←</span> d
     <span class="tok-kw">let</span> i32 e <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">2</span>
-    <span class="tok-kw">let</span> <span class="tok-kw">trapping</span><span class="tok-op">&lt;</span>i32, <span class="tok-op">-</span><span class="tok-nu">2</span>‥<span class="tok-nu">3</span><span class="tok-op">&gt;</span> dz <span class="tok-op">←</span> e
+    <span class="tok-kw">let</span> <span class="tok-kw">trapping</span><span class="tok-op">&lt;</span>i32, <span class="tok-op">-</span><span class="tok-nu">2</span> ‥ <span class="tok-nu">3</span><span class="tok-op">&gt;</span> dz <span class="tok-op">←</span> e
     <span class="tok-kw">print</span> dy
     <span class="tok-kw">print</span> dz
-<span class="tok-co">    # Exact arithmetic: 4 is outside -2‥3 and prints as 4; nothing is stored.</span>
+<span class="tok-co">    # Exact arithmetic: 4 is outside -2 ‥ 3 and prints as 4; nothing is stored.</span>
     <span class="tok-kw">print</span> dy <span class="tok-op">+</span> dy
 <span class="tok-co">    # A ranged cell reads as its width.</span>
     <span class="tok-kw">let</span> i32 back <span class="tok-op">←</span> dy
     <span class="tok-kw">print</span> back
     <span class="tok-kw">print</span> offset(<span class="tok-op">-</span><span class="tok-nu">2</span>)
 <span class="tok-co">    # The inclusive glyph holds its high end.</span>
-    <span class="tok-kw">let</span> <span class="tok-kw">trapping</span><span class="tok-op">&lt;</span>u8, <span class="tok-nu">1</span><span class="tok-op">…</span><span class="tok-nu">5</span><span class="tok-op">&gt;</span> top <span class="tok-op">←</span> <span class="tok-nu">5</span>
+    <span class="tok-kw">let</span> <span class="tok-kw">trapping</span><span class="tok-op">&lt;</span>u8, <span class="tok-nu">1</span> <span class="tok-op">…</span> <span class="tok-nu">5</span><span class="tok-op">&gt;</span> top <span class="tok-op">←</span> <span class="tok-nu">5</span>
     <span class="tok-kw">print</span> top
 <span class="tok-co">    # Widening a range needs no check.</span>
-    <span class="tok-kw">let</span> <span class="tok-kw">trapping</span><span class="tok-op">&lt;</span>u8, <span class="tok-nu">0</span>‥<span class="tok-nu">20</span><span class="tok-op">&gt;</span> larger <span class="tok-op">←</span> grow(<span class="tok-nu">7</span>)
+    <span class="tok-kw">let</span> <span class="tok-kw">trapping</span><span class="tok-op">&lt;</span>u8, <span class="tok-nu">0</span> ‥ <span class="tok-nu">20</span><span class="tok-op">&gt;</span> larger <span class="tok-op">←</span> grow(<span class="tok-nu">7</span>)
     <span class="tok-kw">print</span> larger
 <span class="tok-co">    # A ranged cell indexes a list: it can only name a slot inside its range.</span>
     <span class="tok-kw">let</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>, <span class="tok-nu">40</span>]
-    <span class="tok-kw">let</span> <span class="tok-kw">trapping</span><span class="tok-op">&lt;</span>u8, <span class="tok-nu">0</span>‥<span class="tok-nu">4</span><span class="tok-op">&gt;</span> ix <span class="tok-op">←</span> <span class="tok-nu">2</span>
+    <span class="tok-kw">let</span> <span class="tok-kw">trapping</span><span class="tok-op">&lt;</span>u8, <span class="tok-nu">0</span> ‥ <span class="tok-nu">4</span><span class="tok-op">&gt;</span> ix <span class="tok-op">←</span> <span class="tok-nu">2</span>
     <span class="tok-kw">print</span> xs[ix]
 <span class="tok-co">    # The whole-width range is the bare type.</span>
-    <span class="tok-kw">let</span> <span class="tok-kw">trapping</span><span class="tok-op">&lt;</span>u8, <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">255</span><span class="tok-op">&gt;</span> same <span class="tok-op">←</span> <span class="tok-nu">200</span>
+    <span class="tok-kw">let</span> <span class="tok-kw">trapping</span><span class="tok-op">&lt;</span>u8, <span class="tok-nu">0</span> <span class="tok-op">…</span> <span class="tok-nu">255</span><span class="tok-op">&gt;</span> same <span class="tok-op">←</span> <span class="tok-nu">200</span>
     <span class="tok-kw">let</span> u8 plain <span class="tok-op">←</span> same
     <span class="tok-kw">print</span> plain
 }</code></pre><p>This prints <code>2</code>, <code>-2</code>, <code>4</code>, <code>2</code>, <code>-2</code>, <code>5</code>, <code>7</code>, <code>30</code> and <code>200</code>.</p><p>The spellings from the table above are whole-width ranges: <code>saturating&lt;u8&gt;</code> is
-<code>saturating&lt;u8, 0…255&gt;</code>, a bare <code>u8</code> is <code>trapping&lt;u8, 0…255&gt;</code>, and <code>inf</code> is
-<code>trapping&lt;inf, -∞…∞&gt;</code>. Three mistakes are refused by name: a range outside the
-width (<code>trapping&lt;u8, 0‥300&gt;</code>, <code>SEM008 ranged_policy_range_outside_width</code>), an
+<code>saturating&lt;u8, 0 … 255&gt;</code>, a bare <code>u8</code> is <code>trapping&lt;u8, 0 … 255&gt;</code>, and <code>inf</code> is
+<code>trapping&lt;inf, -∞ … ∞&gt;</code>. Three mistakes are refused by name: a range outside the
+width (<code>trapping&lt;u8, 0 ‥ 300&gt;</code>, <code>SEM008 ranged_policy_range_outside_width</code>), an
 unsigned range that starts below zero (`SEM008
 ranged_policy_unsigned_negative_bound`), and a range with no policy word
-(<code>u8&lt;0‥8&gt;</code>, <code>SEM008 ranged_policy_word_required</code>). <code>faber run</code>, the Rust target
+(<code>u8&lt;0 ‥ 8&gt;</code>, <code>SEM008 ranged_policy_word_required</code>). <code>faber run</code>, the Rust target
 and the Faber emitter apply ranged cells; every other target stops at emission
 (most with <code>ranged store policy</code> in the message). A list length range is the same idea for a count: see
 <a href="/en-US/language/types.html#bounded-lists">bounded lists</a>.</p><h2 id="why">Why it works this way<a class="anchor" href="#why">#</a></h2><p>The rule buys predictability. A reader can look at an expression and reason
