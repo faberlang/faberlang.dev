@@ -1,7 +1,7 @@
 {
   "name": "faberlang-agent-skills",
   "description": "Focused agent guides for the Faber Romanus programming language: install, the English reader spelling, packages, and corpus lookup.",
-  "version": "1.18.0",
+  "version": "1.18.1",
   "homepage": "https://faberlang.dev",
   "docs_home": "https://faberlang.dev/agents/index.md",
   "install": "https://faberlang.dev/install.md",

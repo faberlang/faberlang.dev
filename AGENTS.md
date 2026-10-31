@@ -424,8 +424,8 @@ the English tree; `/llms-full.txt` is a locale-neutral corpus reference.
 ### Binary versions
 
 - **Content targets radix HEAD, not a release.** The site is published from
-  `main` (Faber 1.18.0 is the install surface's release and the current pin:
-  radix tag `faber/v1.18.0`, commit b183aa2826, radix component 0.84.0; 1.15.0
+  `main` (Faber 1.18.1 is the install surface's release and the current pin:
+  radix tag `faber/v1.18.1`, commit df9936117d, radix component 0.84.0; 1.15.0
   has a source tag but no published artifacts, so never offer it), so every page is checked against the radix commit
   recorded in `generator/upstream.lock.toml` and a `faber` built from that
   commit. Pass it
