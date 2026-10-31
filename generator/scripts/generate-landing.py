@@ -635,7 +635,7 @@ def main() -> None:
       <h2>Compute is one thing you can build</h2>
       <p>
         The same language carries numeric and device work. Tensor operators and
-        <code>@ kernel</code> kernels lower to WGSL, Metal and CUDA routes, and
+        <code>kernel</code> declarations lower to WGSL, Metal and CUDA routes, and
         <a href="/en-US/libraries/gradus.html">Gradus</a> uses them for
         autograd. Device execution is explicit and fail-closed: a requested
         backend never silently falls back to CPU. It is under active

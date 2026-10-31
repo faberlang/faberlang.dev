@@ -17,11 +17,12 @@ These are the forms the other pages check.
 - A recoverable error is `→ int ⇥ string`, sent with `throw`, caught with `do` / `catch`.
 - `require b ≢ 0 throw "..."` throws when the condition fails. `reject value ≺ 0 throw "..."` throws when it holds.
 - `ref`, `mut`, and `own` sit before the parameter type. A call repeats `mut` and `own`: `duplica(mut n)`.
-- A `mut` made from a read-only value is `mut list<int> ys ← copy xs`.
+- A `mut` made from a read-only value is `mut list<int> ys ← copy xs`. `copy` of a value holding a channel or a `Closable` class is `SEM066`.
 - An async function writes `async` before `→`. The caller is `async_main` and binds with `await_const`.
 - A module import is `import from "./greet" greet`. An exported function is marked `@ public`.
 - A library import is `import from "norma:text" text`.
 - A generic function is `fn identitas<T>(T valor) → T`.
+- A kernel is `kernel scale(f32 x) → f32 { return x }`. A mode word, `relaxed`, `unsafe`, or `fragment`, follows the parameter list.
 - A comment is a `#` line by itself.
 
 Do not write `name: T`. Do not write `int?`. Do not write `//`. Do not put `#` after code on the same line.

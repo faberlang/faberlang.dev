@@ -103,4 +103,4 @@ rendering untouched — and identifiers like `saturate` are never translated.
 | [Glyphs and Latin](/language/glyphs.html) | the full glyph table, vocabulary rationale, canonical vs sugar |
 | [Reader locales](/language/reader-locales.html) | how one program renders in eight surfaces |
 | [Capabilities and frames](/language/capabilities.html) | `call` dispatch and the host I/O boundary |
-| [Tensor computation](/language/tensor-compute.html) | reductions, `reduce via first`, grouping, scans, edge policies, `do all` and `do device` |
+| [Tensor computation](/language/tensor-compute.html) | reductions, `reduce via first`, grouping, scans, edge policies, `kernel`, `do all` and `do device` |

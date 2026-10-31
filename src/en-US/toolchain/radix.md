@@ -952,7 +952,7 @@ When the source has vertex or fragment entries, the driver:
 
 This path is still MIR-backed: source-owned body semantics flow through MIR,
 while stage interface facts come from the graphics side tables. It is not the
-same path as a generic `@ nucleum` compute kernel.
+same path as a generic `kernel` declaration.
 
 Relevant driver code is in
 `crates/radix-module/src/driver/mod.rs`, in
@@ -998,8 +998,9 @@ mean that the artifact has a complete external runtime.
 | `scena` | legacy package MIR | hidden/delegated | hidden legacy build/run/package | Source-backed compatibility runtime; not the preferred package surface. |
 
 The `pascal`, `cobol`, `fortran`, `odin`, and `basic` targets are novelty
-emitters behind default-off features; they are not available in a default
-build and `faber targets` reports them as `available=no`.
+emitters behind default-off features, and `evm` is an experimental emit-only
+target behind one; they are not available in a default build and `faber
+targets` reports them as `available=no`.
 
 Lean is not a live `Target` enum member or discoverable backend. The
 `radix-hir-lean` crate supports HIR aspect/checker experiments; it is not a
@@ -1142,8 +1143,9 @@ faber test <package>
 faber targets
 ```
 
-`faber run` interprets on the MIR runner and compiles only with `--target`
-(`ts`, `go`, `llvm-host`, `clif-jit`); `faber build -t <target>` builds.
+`faber run` compiles in memory on `clif-jit` and falls back to the MIR runner;
+`--target` picks the engine (`runner`, `clif-jit`, `ts`, `go`, `llvm-host`).
+`faber build -t <target>` builds.
 
 For implementation archaeology, start with the driver and move outward:
 

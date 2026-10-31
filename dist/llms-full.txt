@@ -26,7 +26,7 @@ This file is the generated keyword catalog, not the writing guide.
 
 ## Generated corpus frontmatter reference
 
-- Distinct frontmatter terms: 472
+- Distinct frontmatter terms: 474
 - Canonical term pages: 247
 - Alias spellings: 149
 - Categories: 36
@@ -853,7 +853,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `fragilis`
 - Kind: keyword
 - Category: testing
-- Summary: Marks a test as fragile.
+- Summary: Rejected by faber test because flaky retries are not executed.
 - Syntax: `fragilis <number>`
 - Aliases: none
 - Related: none
@@ -1693,7 +1693,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `proba`
 - Kind: keyword
 - Category: testing
-- Summary: Defines a single test case.
+- Summary: Defines a single test case and its modifiers.
 - Syntax: `proba <name> [modifiers] <block>`
 - Aliases: `test`, `it`
 - Related: `probandum`, `adfirma`, `omitte`, `futurum`
@@ -1909,7 +1909,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `repete`
 - Kind: keyword
 - Category: testing
-- Summary: Repeats a test a fixed number of times.
+- Summary: Runs a test N times and passes only if every run passes.
 - Syntax: `repete <number>`
 - Aliases: none
 - Related: `fragilis`

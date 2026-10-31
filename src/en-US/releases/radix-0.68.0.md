@@ -2,7 +2,7 @@
 title = "Radix 0.68.0"
 description = "Release notes and install details for Radix 0.68.0."
 section = "releases"
-order = 47
+order = 48
 sources = []
 +++
 

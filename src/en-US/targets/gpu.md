@@ -5,7 +5,7 @@ order = 63
 sources = []
 +++
 
-A function marked `@ nucleum` is a compute kernel. The device lane links the compiler to real Metal and CUDA execution.
+A `kernel` declaration is a compute kernel. The device lane links the compiler to real Metal and CUDA execution.
 
 The shader text below is the lowering surface. Real device execution — `faber run --device metal|cuda` — is the narrower product proof, recorded in the [device kernel support summary](/toolchain/target-matrix.html#device-kernel-support).
 

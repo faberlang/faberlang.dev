@@ -46,5 +46,24 @@ main {
 
 `mut list<int> ys ← xs` is `SEM065` `const_shared_into_var`.
 
+`copy` duplicates deeply, so it refuses a value that reaches a channel or a
+`Closable` class, through a field, element, union or tuple member. A file or
+other host resource reaches Faber as a channel. That is `SEM066`
+`copy_nonduplicable_member`, and the message names the member path. Share the
+value without `copy`, or pass the resource with `own`.
+
+```faber locale=en outcome=rejects
+class Envelope {
+    mut channel payload
+}
+
+main {
+    let channel source ← call 'runtime:echo' ("hello")
+    let Envelope packet ← Envelope { payload = source }
+    mut Envelope duplicate ← copy packet
+    print duplicate.payload
+}
+```
+
 Parent: https://faberlang.dev/agents/functions.md
 Next: https://faberlang.dev/agents/functions/async.md

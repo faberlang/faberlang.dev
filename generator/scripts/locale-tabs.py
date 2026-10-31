@@ -53,6 +53,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+import upstream
+
 REPO = Path(__file__).resolve().parents[2]
 WORKSPACE = REPO.parent
 CACHE = REPO / "generator" / "locale-tabs"
@@ -134,10 +136,11 @@ def stage_packs(faber: str) -> bool:
     `faber convert --to` looks for share/faber/locale/<X>/pack.toml relative
     to its own executable. A workspace build has no such directory, so every
     locale fails with a pack-not-found error and the transcode silently
-    produces nothing. The packs themselves live in the radix tree; link them
-    into place. This writes only inside radix/target/, which is build output.
+    produces nothing. The packs are the pinned radix tree's, so a checkout on
+    another commit cannot change a panel; link them beside the binary, which
+    writes only into build output.
     """
-    src = WORKSPACE / "radix" / "locale"
+    src = upstream.radix_root() / "locale"
     if not src.is_dir():
         print(f"  no reader packs at {src}", file=sys.stderr)
         return False
@@ -193,7 +196,7 @@ def cache_vocabularies() -> int:
     """
     import tomllib
 
-    src = WORKSPACE / "radix" / "locale"
+    src = upstream.radix_root() / "locale"
     written = 0
     for loc in LOCALES:
         pack = src / loc["id"] / "pack.toml"

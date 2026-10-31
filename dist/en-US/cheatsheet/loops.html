@@ -395,8 +395,7 @@ lane body's own blocks. It takes no value, because lanes deliver results
 through their stores. Anywhere else it is refused: outside a thread loop
 (<code>SEM010 return_thread_outside_lane</code>), with a value
 (<code>SEM010 return_thread_with_value</code>), or inside a nested closure or reduction
-body (<code>SEM010 return_thread_in_nested_body</code>).</p><pre class="faber-code"><code class="lang-faber locale=en">@ <span class="tok-kw">kernel</span>
-<span class="tok-kw">fn</span> lane_exit(<span class="tok-kw">tensor</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> values) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+body (<code>SEM010 return_thread_in_nested_body</code>).</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">kernel</span> lane_exit(<span class="tok-kw">tensor</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> values) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
     <span class="tok-kw">for</span> <span class="tok-kw">from</span> values <span class="tok-kw">at</span> [i] <span class="tok-kw">thread</span> <span class="tok-kw">lane</span> <span class="tok-kw">let</span> <span class="tok-kw">value</span> {
         <span class="tok-kw">return</span> <span class="tok-kw">thread</span>
     }
@@ -406,7 +405,7 @@ body (<code>SEM010 return_thread_in_nested_body</code>).</p><pre class="faber-co
 
 <span class="tok-kw">main</span> {
     run()
-}</code></pre><p>Known issue in 1.17: <code>return thread</code> is checked but not yet compiled. The code
+}</code></pre><p>Known issue in 1.18: <code>return thread</code> is checked but not yet compiled. The code
 generators and the lowering to the runner's form refuse it by name
 (<code>return_thread_lowering_pending</code>), so a program that uses it passes `faber
 check<code> and stops at </code>faber check --lower<code class="glyph">, </code>faber build<code> and </code>faber run`. The

@@ -3,7 +3,7 @@ probandum "modifiers" {
         adfirma verum
     }
 
-    proba "flaky guard" repete 3 {
+    proba "every run" repete 3 {
         adfirma verum
     }
 

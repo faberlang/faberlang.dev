@@ -8,17 +8,15 @@
 <span class="tok-co">#     instead of propagating it; the block's trailing expression is the success.</span>
 <span class="tok-co">#   • Ruled shape (error model 2026-10-13, grammar/EBNF.md): the result is</span>
 <span class="tok-co">#     trapped&lt;R, T&gt;, variants returned { value: R } and thrown { error: T },</span>
-<span class="tok-co">#     read with an ordinary match; R and T are separate slots.</span>
-<span class="tok-co">#   • On the current compiler the boundary's result checks and runs as the</span>
-<span class="tok-co">#     union R ∪ E, so this program matches the members (case int / case</span>
-<span class="tok-co">#     string); the returned/thrown variant arms land with the trapped</span>
-<span class="tok-co">#     re-typing (need f9d8a611 follow-ups).</span>
-<span class="tok-co">#   • trap catches only the ⇥ channel — panic stays fatal; the success and</span>
-<span class="tok-co">#     error types collapsing to one type is rejected (trap_union_collapsed).</span>
+<span class="tok-co">#     read with an ordinary match.</span>
+<span class="tok-co">#   • R and T are separate slots, so a string success with a string error is</span>
+<span class="tok-co">#     legal — the variants carry the discrimination, not the types.</span>
+<span class="tok-co">#   • trap catches only the ⇥ channel — panic stays fatal.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • Expecting trap to catch panic or assert — it never does.</span>
-<span class="tok-co">#   • Success and error of the same type — the value cannot tell them apart.</span>
+<span class="tok-co">#   • Matching the member types (case int / case string) — the result is the</span>
+<span class="tok-co">#     tagged trapped&lt;R, T&gt;, so the arms name the variants returned and thrown.</span>
 <span class="tok-co">#   • Confusing trap with catch — catch is the statement-level handler that</span>
 <span class="tok-co">#     binds the payload; trap is the expression that yields the value.</span>
 <span class="tok-co">#</span>
@@ -32,27 +30,44 @@ fn half(int n) <span class="tok-op">→</span> int ⇥ string {
     return n <span class="tok-op">/</span> <span class="tok-nu">2</span>
 }
 
+<span class="tok-co"># R ≡ T: legal, because the slots are separate and the variants tell them apart.</span>
+fn twin() <span class="tok-op">→</span> string ⇥ string {
+    return <span class="tok-st">"value"</span>
+}
+
 main {
 <span class="tok-co">    # trap { ... } turns the failable call's two exits into one value.</span>
     let _ missed <span class="tok-op">←</span> trap { half(<span class="tok-nu">7</span>) }
     match missed {
-        case int let value {
+        case returned let value {
             print <span class="tok-st">"returned §"</span>(value)
         }
-        case string let err {
+        case thrown let err {
             print <span class="tok-st">"thrown §"</span>(err)
         }
     }
 
     let _ made <span class="tok-op">←</span> trap { half(<span class="tok-nu">8</span>) }
     match made {
-        case int let value {
+        case returned let value {
             print <span class="tok-st">"returned §"</span>(value)
         }
-        case string let err {
+        case thrown let err {
             print <span class="tok-st">"thrown §"</span>(err)
+        }
+    }
+
+<span class="tok-co">    # A string success with a string error: legal, the arms still discriminate.</span>
+    let _ twinned <span class="tok-op">←</span> trap { twin() }
+    match twinned {
+        case returned let value {
+            print <span class="tok-st">"twin returned §"</span>(value)
+        }
+        case thrown let error {
+            print <span class="tok-st">"twin thrown §"</span>(error)
         }
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>thrown odd
 returned 4
+twin returned value
 </code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpustrappedtrappedfab-canonical-type">radix/corpus/trapped/trapped.fab (canonical · type)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/trapped/trapped.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

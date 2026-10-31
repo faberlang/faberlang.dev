@@ -104,7 +104,7 @@ transformed, and lowered without losing the reader's sense of intent.
 ## GPU device execution {#gpu-device-execution}
 
 A package carries a device program when its source declares a compute kernel
-with `@ kernel` and its manifest declares a `[device]` section. `faber run`
+with `kernel` and its manifest declares a `[device]` section. `faber run`
 selects the device explicitly and fails closed with a stable code rather than
 silently falling back to the CPU:
 

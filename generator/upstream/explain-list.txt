@@ -33,8 +33,9 @@ KEYWORDS
   enum                  variant     Declares an enumeration.
   errors                function    Marks a function parameter or binding as carrying an error value.
   exit                  function    Sets the exit code or exit expression for an entry point.
+  expect_failure        testing     Defines a single test case and its modifiers.
   false                 logic       Represents the false boolean value and can prefix a falsity check.
-  flaky                 testing     Marks a test as fragile.
+  flaky                 testing     Rejected by faber test because flaky retries are not executed.
   float                 type        Primitive floating-point number type.
   fn                    function    Declares a named function or method.
   for                   loop        Starts a for-each iteration statement.
@@ -82,7 +83,7 @@ KEYWORDS
   record                type        Labeled ad-hoc record type: construction, .name access, objectPattern, and holes.
   ref                   loop        Introduces borrowed iteration or borrowed parameters.
   reject                error       Reject a condition or throw a recoverable error.
-  repeat                testing     Repeats a test a fixed number of times.
+  repeat                testing     Runs a test N times and passes only if every run passes.
   require               error       Require a condition or throw a recoverable error.
   rest                  function    Collects remaining parameters, operands, or extracted fields.
   return                jump        Returns a value from a function.
@@ -98,7 +99,7 @@ KEYWORDS
   switch                branch      Starts a value-based branch statement.
   tag                   testing     Attaches a test tag string.
   teardown              testing     Registers an after-each test hook.
-  test                  testing     Defines a single test case.
+  test                  testing     Defines a single test case and its modifiers.
   throw                 error       Throws a recoverable error.
   timeout               testing     Sets a wall-clock timeout in seconds for a test modifier.
   todo                  testing     Marks a test case as pending future work with a reason.

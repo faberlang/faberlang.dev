@@ -47,8 +47,9 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [enum](enum.md) — Declares an enumeration.
 - [errors](errors.md) — Marks a function parameter or binding as carrying an error value.
 - [exit](exit.md) — Sets the exit code or exit expression for an entry point.
+- [expect_failure](expect_failure.md) — Defines a single test case and its modifiers.
 - [false](false.md) — Represents the false boolean value and can prefix a falsity check.
-- [flaky](flaky.md) — Marks a test as fragile.
+- [flaky](flaky.md) — Rejected by faber test because flaky retries are not executed.
 - [float](float.md) — Primitive floating-point number type.
 - [fn](fn.md) — Declares a named function or method.
 - [for](for.md) — Starts a for-each iteration statement.
@@ -96,7 +97,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [record](record.md) — Labeled ad-hoc record type: construction, .name access, objectPattern, and holes.
 - [ref](ref.md) — Introduces borrowed iteration or borrowed parameters.
 - [reject](reject.md) — Reject a condition or throw a recoverable error.
-- [repeat](repeat.md) — Repeats a test a fixed number of times.
+- [repeat](repeat.md) — Runs a test N times and passes only if every run passes.
 - [require](require.md) — Require a condition or throw a recoverable error.
 - [rest](rest.md) — Collects remaining parameters, operands, or extracted fields.
 - [return](return.md) — Returns a value from a function.
@@ -112,7 +113,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [switch](switch.md) — Starts a value-based branch statement.
 - [tag](tag.md) — Attaches a test tag string.
 - [teardown](teardown.md) — Registers an after-each test hook.
-- [test](test.md) — Defines a single test case.
+- [test](test.md) — Defines a single test case and its modifiers.
 - [throw](throw.md) — Throws a recoverable error.
 - [timeout](timeout.md) — Sets a wall-clock timeout in seconds for a test modifier.
 - [todo](todo.md) — Marks a test case as pending future work with a reason.

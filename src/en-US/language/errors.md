@@ -111,6 +111,39 @@ functio tutum(numerus a, numerus b) → numerus {
 A direct failable call is not an ordinary expression. Place calls to
 `→ T ⇥ E` functions inside an active `fac` / `cape` boundary.
 
+### Capturing — trap {#capturing--trap}
+
+`trap { … }` (Latin *capta*) runs its block and turns the error channel into a
+value. Since 1.18 the value is the tagged `trapped<R, T>`, with the variants
+`returned` and `thrown`, read with an ordinary `match`. `R` and `T` are separate
+slots, so a string success with a string error is legal: the variants carry the
+difference. Arms that name member types, `case int` or `case string`, no longer
+work.
+
+```faber locale=en
+fn half(int n) → int ⇥ string {
+    if n % 2 ≢ 0 {
+        throw "odd"
+    }
+    return n / 2
+}
+
+main {
+    let _ missed ← trap { half(7) }
+    match missed {
+        case returned let value {
+            print "returned §"(value)
+        }
+        case thrown let err {
+            print "thrown §"(err)
+        }
+    }
+}
+```
+
+This prints `thrown odd`. `trap` captures only the `⇥` channel: a panic stays
+fatal. A boundary around nothing failable is `WARN036 trap_error_channel_empty`.
+
 ### The alternate channel in async surfaces {#async-alternate}
 
 The same `⇥ E` channel rides *inside* Faber's async types rather than as a

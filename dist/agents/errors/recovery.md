@@ -1,7 +1,8 @@
 # Recovery
 
 `do` / `catch` is the local boundary around a `⇥` call. `catch` names the
-error `err`.
+error `err`. `trap { half(7) }` is the expression form: it gives a `trapped<R, T>`,
+read with `match` over `case returned let value` and `case thrown let err`.
 
 ```faber locale=en
 fn divide(int a, int b) → int ⇥ string {

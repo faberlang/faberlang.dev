@@ -33,7 +33,131 @@ fn identitas(int x) <span class="tok-op">→</span> int {
 main {
     print identitas(<span class="tok-nu">5</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>5
-</code></pre><h3 id="radixcorpuskernellegality-rejectfab-supporting-reject">radix/corpus/kernel/legality-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernellegality-rejectfab-supporting-reject">#</a></h3><p>Kernel legality at check time: host output, host-only types, calls to non-kernels, host calls to private kernels, and raw thread-id calls are named diagnostics.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+</code></pre><h3 id="radixcorpuskernelarg-exclusivity-reject-lafab-supporting-reject">radix/corpus/kernel/arg-exclusivity-reject-la.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernelarg-exclusivity-reject-lafab-supporting-reject">#</a></h3><p>Nuclei argumentorum exklusivitas (la): omnis vocatio ubi argumentum scribendum (<code>mut</code>/<code>penes</code>) cum alio argumento cellam habet nominatim refutatur.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># kernel — kernel argument exclusivity rejects overlap (la)</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • A kernel's arguments stay live together for the whole launch, so a</span>
+<span class="tok-co">#     writable argument (`mut`, `penes`) may not overlap any other</span>
+<span class="tok-co">#     argument — whichever side of the call it is written on.</span>
+<span class="tok-co">#   • The whole tensor spelled twice, a `←` alias of it, and a view of the</span>
+<span class="tok-co">#     same storage are all the same overlap: one storage, two arguments.</span>
+<span class="tok-co">#   • Each refusal is named: `kernel_argument_overlap` for whole-tensor and</span>
+<span class="tok-co">#     alias overlap, `tensor_view_read_only` when a view is one side of the</span>
+<span class="tok-co">#     pair (a view is read-only and names its base).</span>
+<span class="tok-co">#   • To pass a value that must not overlap, bind an independent copy</span>
+<span class="tok-co">#     (`← exemplum t`) or call `materialize()` on a view first.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • relying on argument order — a read-only argument before the `mut` one</span>
+<span class="tok-co">#     overlaps exactly like one after it</span>
+<span class="tok-co">#   • passing two `penes` arguments that share storage — exclusive on both</span>
+<span class="tok-co">#     sides is still one storage</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: kernel, mutabilitas, tensor</span>
+<span class="tok-co"># =============================================================================</span>
+
+@ kernel
+@ public
+fn axpy(mut tf32[<span class="tok-nu">3</span>] y, tf32[<span class="tok-nu">3</span>] x) <span class="tok-op">→</span> void {
+    y ⇇ x
+}
+
+@ kernel
+@ public
+fn scala(tf32[<span class="tok-nu">3</span>] a, mut tf32[<span class="tok-nu">3</span>] b) <span class="tok-op">→</span> void {
+    b ⇇ a
+}
+
+@ kernel
+@ public
+fn cap2(penes tf32[<span class="tok-nu">3</span>] a, penes tf32[<span class="tok-nu">3</span>] b) <span class="tok-op">→</span> void {
+    a ⇇ b
+}
+
+main {
+    mut tf32[<span class="tok-nu">3</span>] t <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>] ↦ tf32[<span class="tok-nu">3</span>]
+    let tf32[<span class="tok-nu">3</span>] u <span class="tok-op">←</span> t
+
+<span class="tok-co">    # 1. writable first, the same tensor after</span>
+    axpy(mut t, t)
+
+<span class="tok-co">    # 2. read-only first, writable second: the same overlap</span>
+    scala(t, mut t)
+
+<span class="tok-co">    # 3. a `←` alias names the same storage on either side</span>
+    axpy(mut t, u)
+    scala(u, mut t)
+
+<span class="tok-co">    # 4. a view of the writable argument's storage</span>
+    axpy(mut t, t.forma([<span class="tok-nu">3</span>]))
+
+<span class="tok-co">    # 5. two `penes` arguments sharing one storage</span>
+    cap2(penes t, penes u)
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuskernelarg-exclusivity-rejectfab-supporting-reject">radix/corpus/kernel/arg-exclusivity-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernelarg-exclusivity-rejectfab-supporting-reject">#</a></h3><p>Kernel argument exclusivity refuses every call where a writable (<code>mut</code>/<code>own</code>) argument overlaps another argument: the whole tensor spelled twice, a <code class="glyph">←</code> alias, a view of the same storage, or two <code>own</code> arguments sharing it.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># kernel — kernel argument exclusivity rejects overlap (K1)</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • A kernel's arguments stay live together for the whole launch, so a</span>
+<span class="tok-co">#     writable argument (`mut`, `own`) may not overlap any other argument —</span>
+<span class="tok-co">#     whichever side of the call it is written on.</span>
+<span class="tok-co">#   • The whole tensor spelled twice, a `←` alias of it, and a view of the</span>
+<span class="tok-co">#     same storage are all the same overlap: one storage, two arguments.</span>
+<span class="tok-co">#   • Each refusal is named: `kernel_argument_overlap` for whole-tensor and</span>
+<span class="tok-co">#     alias overlap, `tensor_view_read_only` when a view is one side of the</span>
+<span class="tok-co">#     pair (a view is read-only and names its base).</span>
+<span class="tok-co">#   • To pass a value that must not overlap, bind an independent copy</span>
+<span class="tok-co">#     (`← copy t`) or call `materialize()` on a view first.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • relying on argument order — a read-only argument before the `mut` one</span>
+<span class="tok-co">#     overlaps exactly like one after it</span>
+<span class="tok-co">#   • passing two `own` arguments that share storage — exclusive on both</span>
+<span class="tok-co">#     sides is still one storage</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: kernel, mutabilitas, tensor</span>
+<span class="tok-co"># =============================================================================</span>
+
+@ kernel
+@ public
+fn axpy(mut tf32[<span class="tok-nu">3</span>] y, tf32[<span class="tok-nu">3</span>] x) <span class="tok-op">→</span> void {
+    y ⇇ x
+}
+
+@ kernel
+@ public
+fn scale(tf32[<span class="tok-nu">3</span>] a, mut tf32[<span class="tok-nu">3</span>] b) <span class="tok-op">→</span> void {
+    b ⇇ a
+}
+
+@ kernel
+@ public
+fn take2(own tf32[<span class="tok-nu">3</span>] a, own tf32[<span class="tok-nu">3</span>] b) <span class="tok-op">→</span> void {
+    a ⇇ b
+}
+
+main {
+    mut tf32[<span class="tok-nu">3</span>] t <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>] ↦ tf32[<span class="tok-nu">3</span>]
+    let tf32[<span class="tok-nu">3</span>] u <span class="tok-op">←</span> t
+
+<span class="tok-co">    # 1. writable first, the same tensor after</span>
+    axpy(mut t, t)
+
+<span class="tok-co">    # 2. read-only first, writable second: the same overlap</span>
+    scale(t, mut t)
+
+<span class="tok-co">    # 3. a `←` alias names the same storage on either side</span>
+    axpy(mut t, u)
+    scale(u, mut t)
+
+<span class="tok-co">    # 4. a view of the writable argument's storage</span>
+    axpy(mut t, t.reshape([<span class="tok-nu">3</span>]))
+
+<span class="tok-co">    # 5. two `own` arguments sharing one storage</span>
+    take2(own t, own u)
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuskernellegality-rejectfab-supporting-reject">radix/corpus/kernel/legality-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernellegality-rejectfab-supporting-reject">#</a></h3><p>Kernel legality at check time: host output, host-only types, calls to non-kernels, host calls to private kernels, and raw thread-id calls are named diagnostics.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># kernel — kernel legality is decided by `faber check`</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -169,4 +293,4 @@ fn k(f32 x) <span class="tok-op">→</span> f32 {
 
 main {
     print <span class="tok-nu">1</span>
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusannotation-sugarnucleum-fragmentfab-canonical-annotation">radix/corpus/annotation-sugar/nucleum-fragment.fab (canonical · annotation)</a></li><li class="toc-3"><a href="#radixcorpuskernellegality-rejectfab-supporting-reject">radix/corpus/kernel/legality-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskerneltier-duplicate-rejectfab-supporting-reject">radix/corpus/kernel/tier-duplicate-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskerneltier-fragment-rejectfab-supporting-reject">radix/corpus/kernel/tier-fragment-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskerneltier-non-kernel-rejectfab-supporting-reject">radix/corpus/kernel/tier-non-kernel-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskerneltier-unknown-rejectfab-supporting-reject">radix/corpus/kernel/tier-unknown-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/annotation-sugar/nucleum-fragment.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusannotation-sugarnucleum-fragmentfab-canonical-annotation">radix/corpus/annotation-sugar/nucleum-fragment.fab (canonical · annotation)</a></li><li class="toc-3"><a href="#radixcorpuskernelarg-exclusivity-reject-lafab-supporting-reject">radix/corpus/kernel/arg-exclusivity-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernelarg-exclusivity-rejectfab-supporting-reject">radix/corpus/kernel/arg-exclusivity-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernellegality-rejectfab-supporting-reject">radix/corpus/kernel/legality-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskerneltier-duplicate-rejectfab-supporting-reject">radix/corpus/kernel/tier-duplicate-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskerneltier-fragment-rejectfab-supporting-reject">radix/corpus/kernel/tier-fragment-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskerneltier-non-kernel-rejectfab-supporting-reject">radix/corpus/kernel/tier-non-kernel-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskerneltier-unknown-rejectfab-supporting-reject">radix/corpus/kernel/tier-unknown-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/annotation-sugar/nucleum-fragment.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

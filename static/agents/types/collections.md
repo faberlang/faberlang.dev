@@ -59,8 +59,8 @@ This prints `[1, 2]` and `[1, 2, 3]`.
 
 `s ⇜ x` sinks one item into a writable sink. On a list it appends (duplicates
 kept); on a set it adds a missing item. A class becomes a sink with
-`implements Sink<T>` and the methods `sink(T)` and `flush()`. In 1.17 `⇜`
-builds for the runner, Rust and LLVM; other targets refuse it by name.
+`implements Sink<T>` and the methods `sink(T)` and `flush()`. In 1.18 the Go,
+TypeScript, Swift and Python targets refuse `⇜` by name.
 
 ```faber locale=en
 main {
@@ -84,9 +84,9 @@ main {
 ```
 
 A matrix element reads and writes by row and column: `m[[r, c]]` and
-`m[[r, c]] ← v`, with literal or computed coordinates. In 1.17 this runs on
-`faber run`; generated Rust does not compile it yet, and TypeScript, Swift
-and LLVM refuse it by name.
+`m[[r, c]] ← v`, with literal or computed coordinates. In 1.18 this runs on
+`faber run`; generated Rust does not compile it yet, and Swift and LLVM refuse
+it by name.
 
 ```faber locale=en
 main {

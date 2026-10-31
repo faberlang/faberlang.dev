@@ -388,8 +388,8 @@ and commit the resulting `generator/locale-tabs/*.fab` alongside the Markdown.
 
 `render` transcodes with `faber format --locale`, which resolves reader packs
 relative to its own binary. A workspace build has no `share/faber/locale/`, so
-the script links the packs from the Radix tree into place on each run — inside
-`radix/target/`, which is build output. Without that every locale fails with a
+the script links the packs from the pinned tree (`upstream.radix_root()`) into
+place on each run, beside the binary. Without that every locale fails with a
 pack-not-found error while still exiting 0.
 
 It also caches each pack's keyword vocabulary as `vocab.<locale>.json`.
@@ -424,8 +424,8 @@ the English tree; `/llms-full.txt` is a locale-neutral corpus reference.
 ### Binary versions
 
 - **Content targets radix HEAD, not a release.** The site is published from
-  `main` (Faber 1.17.0 is the install surface's release and the current pin:
-  radix tag `faber/v1.17.0`, commit 8525ddec07, radix component 0.84.0; 1.15.0
+  `main` (Faber 1.18.1 is the install surface's release and the current pin:
+  radix tag `faber/v1.18.1`, commit df9936117d, radix component 0.84.0; 1.15.0
   has a source tag but no published artifacts, so never offer it), so every page is checked against the radix commit
   recorded in `generator/upstream.lock.toml` and a `faber` built from that
   commit. Pass it
@@ -441,10 +441,10 @@ the English tree; `/llms-full.txt` is a locale-neutral corpus reference.
   update this note, build, commit. Nothing else on the site carries a version.
 - **Ruled but not built at HEAD.** These are not stated as fact anywhere; each
   has a sentence that is true today and must be revisited when the item lands:
-  `trapped<R,T>`,
   flat `ERRnnn` codes and no run-time message text (`language/errors.md`);
   removal of `FABER_LIBRARY_HOME` (the pages already say `--library-home`).
-  (The anonymous `record` literal landed in 1.16 and is documented in
+  (`trapped<R,T>` landed in 1.18 and is documented in `language/errors.md`.
+  The anonymous `record` literal landed in 1.16 and is documented in
   `language/types.md#record`. `reduce via first` landed in 1.17 and retired
   `primus_quem` / `ubi`; it is documented in `language/tensor-compute.md`.
   `rg -n "primus_quem" src static` finds only the sentence that names the

@@ -56,14 +56,13 @@ main {
 ```
 
 `scan via` keeps the running value at every position. It needs `thread lane`,
-which is legal only in a `@ kernel` function. `total exclusive` stops one
+which is legal only in a `kernel`. `total exclusive` stops one
 element short, `per key` scans each group on its own, and `order desc` walks
 from the end. A kernel that host code calls is also `@ public`.
 
 ```faber locale=en
-@ kernel
 @ public
-fn running(tf32[8] xs) → tf32[8] {
+kernel running(tf32[8] xs) → tf32[8] {
     return scan via sum total exclusive from xs at [i] per i % 2 order desc thread lane let v { return v }
 }
 

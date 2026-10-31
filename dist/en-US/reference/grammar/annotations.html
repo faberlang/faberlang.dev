@@ -4,9 +4,9 @@ does not run. It tells the compiler a fact about that declaration: that it
 is exported, that it is a command-line program, that a kernel, compiler
 lane, or capability applies.</p><p>The generic shape is <code class="glyph">@</code> plus a name, optionally with fields in braces.
 <code>@ public</code> marks a function an importer can see. <code>@ cli</code> names the binary
-a package produces. The same family covers <code>@ kernel</code>, <code>@ radix</code>, and
-<code>@ call</code> — specialized directives most source meets later. The table
-below lists the words those directives use.</p><pre class="faber-code"><code class="lang-faber locale=en">@ <span class="tok-kw">public</span>
+a package produces. The same family covers <code>@ radix</code>, <code>@ call</code>, and the
+accepted legacy kernel annotation <code>@ kernel</code> — specialized directives most
+source meets later. The table below lists the words those directives use.</p><pre class="faber-code"><code class="lang-faber locale=en">@ <span class="tok-kw">public</span>
 <span class="tok-kw">fn</span> saluta(<span class="tok-kw">string</span> nomen) <span class="tok-op">→</span> <span class="tok-kw">string</span> {
     <span class="tok-kw">return</span> <span class="tok-st">"Salve, §!"</span>(nomen)
 }</code></pre><p>A command-line entry uses the same <code class="glyph">@</code> shape above <code>main args</code>:</p><pre class="faber-code"><code class="lang-faber locale=en">@ <span class="tok-kw">cli</span> { <span class="tok-kw">name</span> <span class="tok-op">=</span> <span class="tok-st">"echo"</span> }

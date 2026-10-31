@@ -159,8 +159,7 @@ through their stores. Anywhere else it is refused: outside a thread loop
 body (`SEM010 return_thread_in_nested_body`).
 
 ```faber locale=en
-@ kernel
-fn lane_exit(tensor<f32, [4]> values) → void {
+kernel lane_exit(tensor<f32, [4]> values) → void {
     for from values at [i] thread lane let value {
         return thread
     }
@@ -177,7 +176,7 @@ main {
 }
 ```
 
-Known issue in 1.17: `return thread` is checked but not yet compiled. The code
+Known issue in 1.18: `return thread` is checked but not yet compiled. The code
 generators and the lowering to the runner's form refuse it by name
 (`return_thread_lowering_pending`), so a program that uses it passes `faber
 check` and stops at `faber check --lower`, `faber build` and `faber run`. The

@@ -3,7 +3,7 @@
         khẳng_định đúng
     }
 
-    kiểm_thử "flaky guard" lặp_lại 3 {
+    kiểm_thử "every run" lặp_lại 3 {
         khẳng_định đúng
     }
 

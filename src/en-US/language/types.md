@@ -292,6 +292,32 @@ The call site repeats the `mut` and `own` markers (Latin `varia` and
 `SEM057 call_marker_missing`. A parameter with no marker is `ref`: the function
 may read it and may not write it.
 
+### What `copy` will not duplicate {#copy-resources}
+
+`copy` makes an independent value, and some values have an identity that cannot
+be duplicated: a channel, which is how a file or other host resource reaches
+Faber, and a class that `implements Closable`. Since 1.18 a `copy` of a value that
+reaches one is a compile error, through a field, a collection element, a union
+or a tuple member, and the diagnostic names the member path.
+`SEM066 copy_nonduplicable_member` here reports `Envelope.payload`:
+
+```faber locale=en outcome=rejects
+class Envelope {
+    mut channel payload
+}
+
+main {
+    let channel source ← call 'runtime:echo' ("hello")
+    let Envelope packet ← Envelope { payload = source }
+    mut Envelope duplicate ← copy packet
+    print duplicate.payload
+}
+```
+
+Share the value without `copy`, or hand the resource over with `own` where the
+consumer may own it. Deep copies of ordinary classes, lists and maps are
+unchanged.
+
 ### Comparison policy {#comparison-policy}
 
 | Operator | Family | Behaviour |
@@ -700,6 +726,23 @@ coordinate outside the shape, `m.at([r, c])` reports it on the error channel,
 and `m.set([r, c], v)` stores. A literal coordinate that is provably outside
 the shape is refused at compile time.
 
+A vector and a matrix are values, so `←` copies them. Since 1.18 every target
+agrees: a write through the copy never reaches the original. There is no storage
+for a marker to name, so `ref` over a vector is refused
+(`SEM008 scalar_access_marker`).
+
+```faber locale=en
+main {
+    let vf32[3] a ← [1.0, 2.0, 3.0] ↦ vf32[3]
+    mut vf32[3] b ← a
+    b[0] ← 9.0
+    print a[0]
+    print b[0]
+}
+```
+
+This prints `1.0` and `9.0`.
+
 ```faber locale=en
 main {
     mut matrix<f32, [2, 2]> m ← [[1.0, 2.0], [3.0, 4.0]] ↦ matrix<f32, [2, 2]>
@@ -716,9 +759,9 @@ This prints `2.0`, `0.0`, `4.0` and `[[1.0, 2.0], [7.5, 4.0]]`. A bracket
 range on a vector or a matrix slices to a vector or a matrix, and `↦`
 converts between tensors, vectors and matrices of the same shape.
 
-Known issue in 1.17: element access runs on `faber run`, but generated Rust
-does not compile it yet, and the TypeScript, Swift and LLVM targets refuse it
-by name rather than approximate it.
+Known issue in 1.18: element access runs on `faber run`, but generated Rust
+does not compile it yet, and the Swift and LLVM targets refuse it by name rather
+than approximate it.
 
 Reductions (`reduce via`), ordered scans (`scan via`) and edge policies
 (`.edge<clamp>()`) are covered in [Tensor computation](/language/tensor-compute.html).
@@ -828,9 +871,8 @@ main {
 
 This prints `["begin", "step", "step"]`; `log.append(v)` and `log ⇜ v` do the same thing here.
 
-Known issue in 1.17: `⇜` runs on `faber run`, Rust and LLVM; the Go,
-TypeScript, Swift, WebAssembly, Racket, Python and Cranelift targets refuse it
-by name (`CODEGEN001`).
+Known issue in 1.18: the Go, TypeScript, Swift and Python targets refuse `⇜` by
+name (`CODEGEN001`).
 
 ### Intervallum — ranges {#intervallum}
 

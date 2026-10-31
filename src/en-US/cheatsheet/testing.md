@@ -56,7 +56,7 @@ probandum "modifiers" {
         adfirma verum
     }
 
-    proba "flaky guard" repete 3 {
+    proba "every run" repete 3 {
         adfirma verum
     }
 
@@ -69,11 +69,13 @@ probandum "modifiers" {
 | Modifier | Meaning |
 |---|---|
 | `tag "<name>"` | Label for selection and filtering |
-| `repete <n>` | Run the test *n* times — catches flakiness |
+| `repete <n>` | Run the test *n* times; it passes only if every run passes |
+| `fragilis <n>` | Rejected by `faber test`: flaky retries are not run, so the case fails without running its body |
 | `futurum "<reason>"` | Expected-pending; documents why it does not run yet |
 | `omitte` | Skip |
 
-`repete` is a test modifier, not a loop. For loops see
+`repete` is a test modifier, not a loop, and it does not retry until a run
+passes. For loops see
 [Loops](/cheatsheet/loops.html).
 
 ## Asserting {#adfirma}
