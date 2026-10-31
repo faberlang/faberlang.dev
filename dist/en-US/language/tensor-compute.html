@@ -3,8 +3,7 @@
 running values with <code>scan via</code>. Both walk the elements in row-major order and
 bind each element to a name. A <code>kernel</code> is a function that runs on a device. The
 device blocks at the end of this page, <code>do all</code> and <code>do device</code>, group kernel
-launches so that a fault is reported once, and <code>do eligible</code> lets ordinary calls
-run on a device when they can.</p><p>The examples run with <code>faber run</code>. The kernel examples need a device route:
+launches so that a fault is reported once.</p><p>The examples run with <code>faber run</code>. The kernel examples need a device route:
 add <code>--device cpu</code> (or <code>--device reference</code> for plain sequential code) when you
 run a package that calls a kernel.</p><h2 id="reduce">Reductions<a class="anchor" href="#reduce">#</a></h2><p><code>reduce via &lt;op&gt; from &lt;tensor&gt;</code> folds every element into one value. The
 operators are <code>sum</code>, <code>product</code>, <code>max</code>, <code>min</code>, <code>argmax</code>, <code>argmin</code>, <code>all</code>,
@@ -181,7 +180,7 @@ row stays refused (<code>SEM010 filum_independence_unproven</code>).</p><pre cla
 <span class="tok-kw">kernel</span> row_totals(tf32[<span class="tok-nu">4</span>, <span class="tok-nu">3</span>] w, <span class="tok-kw">mut</span> tf32[<span class="tok-nu">4</span>, <span class="tok-nu">3</span>] scratch, <span class="tok-kw">mut</span> tf32[<span class="tok-nu">4</span>] totals) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
     <span class="tok-kw">for</span> <span class="tok-kw">from</span> totals <span class="tok-kw">at</span> [i] <span class="tok-kw">thread</span> <span class="tok-kw">lane</span> <span class="tok-kw">let</span> unused {
         <span class="tok-kw">mut</span> f32 <span class="tok-kw">total</span> <span class="tok-op">←</span> <span class="tok-nu">0.0</span>
-        <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span> ‥ <span class="tok-nu">3</span> <span class="tok-kw">let</span> j {
+        <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span>‥<span class="tok-nu">3</span> <span class="tok-kw">let</span> j {
             scratch[[i, j]] <span class="tok-op">←</span> w[[i, j]] <span class="tok-op">*</span> <span class="tok-nu">2.0</span>
             <span class="tok-kw">total</span> <span class="tok-op">←</span> <span class="tok-kw">total</span> <span class="tok-op">+</span> w[[i, j]]
         }
@@ -189,7 +188,7 @@ row stays refused (<code>SEM010 filum_independence_unproven</code>).</p><pre cla
     }
 }</code></pre><h2 id="device-regions">Grouping device work: <code>do all</code> and <code>do device</code><a class="anchor" href="#device-regions">#</a></h2><p>A kernel can fail. A kernel that declares <code>⇥ string</code> reports on the error
 channel, and on a device many lanes can fail at once. The lowest lane's error is
-the one delivered, and delivery is a choice the block makes:</p><div class="table-scroll"><table><thead><tr><th>Block</th><th>Where a kernel fault reaches <code>catch</code></th></tr></thead><tbody><tr><td><code>do { … }</code></td><td>Ordinary delivery, as for any failable call.</td></tr><tr><td><code>do all { … }</code></td><td><strong>Once, when the block exits</strong>, however many launches ran.</td></tr><tr><td><code>do device { … }</code></td><td>The same, and the body is also checked as a device-resident region.</td></tr><tr><td><code>do eligible { … }</code></td><td>Ordinary delivery, as for <code>do</code>. See <a href="#do-eligible">Do eligible</a>.</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber locale=en">@ <span class="tok-kw">public</span>
+the one delivered, and delivery is a choice the block makes:</p><div class="table-scroll"><table><thead><tr><th>Block</th><th>Where a kernel fault reaches <code>catch</code></th></tr></thead><tbody><tr><td><code>do { … }</code></td><td>Ordinary delivery, as for any failable call.</td></tr><tr><td><code>do all { … }</code></td><td><strong>Once, when the block exits</strong>, however many launches ran.</td></tr><tr><td><code>do device { … }</code></td><td>The same, and the body is also checked as a device-resident region.</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber locale=en">@ <span class="tok-kw">public</span>
 <span class="tok-kw">kernel</span> scale(<span class="tok-kw">tensor</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> src, <span class="tok-kw">mut</span> <span class="tok-kw">tensor</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> dst) <span class="tok-op">→</span> <span class="tok-kw">void</span> ⇥ <span class="tok-kw">string</span> {
     <span class="tok-kw">for</span> <span class="tok-kw">from</span> src <span class="tok-kw">at</span> [i] <span class="tok-kw">thread</span> <span class="tok-kw">lane</span> <span class="tok-kw">let</span> v {
         <span class="tok-kw">if</span> v ≺ <span class="tok-nu">0.0</span> {
@@ -214,7 +213,7 @@ the one delivered, and delivery is a choice the block makes:</p><div class="tabl
 although two launches faulted. Reading a faulted output on the host inside the
 block delivers the fault at that read.</p><p><code>do device</code> marks the block as a <strong>device-resident region</strong>. The body may hold
 kernel launches, <code>for range</code> loops and <code>if</code> conditions over captured scalars,
-and <code>mut</code> scalar state, and nothing else. The checker refuses the rest by name:</p><div class="table-scroll"><table><thead><tr><th>Written in the region</th><th>Diagnostic</th></tr></thead><tbody><tr><td>A host call or a host effect such as <code>print</code></td><td><code>nucleum_host_call</code>, <code>nucleum_host_effect</code></td></tr><tr><td>A tensor allocated inside</td><td><code>nucleum_region_alloc_not_built</code></td></tr><tr><td>A condition, bound or scalar store that reads a value computed on the device</td><td><code>nucleum_region_device_read_not_built</code></td></tr><tr><td>A <code>for … thread lane</code> loop written directly in the block</td><td><code>nucleum_region_lane_loop_not_built</code></td></tr><tr><td>A <code>return</code>, <code>break</code> or <code>continue</code> leaving the block</td><td><code>nucleum_block_exit_crosses_boundary</code></td></tr><tr><td>A nested <code>do device</code></td><td><code>fac_machina_nested</code></td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber locale=en">@ <span class="tok-kw">public</span>
+and <code>mut</code> scalar state, and nothing else. The checker refuses the rest by name:</p><div class="table-scroll"><table><thead><tr><th>Written in the region</th><th>Diagnostic</th></tr></thead><tbody><tr><td>A host call or a host effect such as <code>print</code></td><td><code>nucleum_host_call</code>, <code>nucleum_host_effect</code></td></tr><tr><td>A tensor allocated inside</td><td><code>nucleum_region_alloc_not_built</code></td></tr><tr><td>A condition, bound or scalar store that reads a value computed on the device</td><td><code>nucleum_region_device_read_not_built</code></td></tr><tr><td>A <code>for…thread lane</code> loop written directly in the block</td><td><code>nucleum_region_lane_loop_not_built</code></td></tr><tr><td>A <code>return</code>, <code>break</code> or <code>continue</code> leaving the block</td><td><code>nucleum_block_exit_crosses_boundary</code></td></tr><tr><td>A nested <code>do device</code></td><td><code>fac_machina_nested</code></td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber locale=en">@ <span class="tok-kw">public</span>
 <span class="tok-kw">kernel</span> bump(<span class="tok-kw">tensor</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> dom, <span class="tok-kw">mut</span> <span class="tok-kw">tensor</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> t, i32 <span class="tok-kw">step</span>) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
     <span class="tok-kw">for</span> <span class="tok-kw">from</span> dom <span class="tok-kw">at</span> [i] <span class="tok-kw">thread</span> <span class="tok-kw">lane</span> <span class="tok-kw">let</span> v {
         t[[i]] <span class="tok-op">←</span> v <span class="tok-op">+</span> (<span class="tok-kw">step</span> ↦ f32)
@@ -225,7 +224,7 @@ and <code>mut</code> scalar state, and nothing else. The checker refuses the res
     <span class="tok-kw">mut</span> <span class="tok-kw">tensor</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> t <span class="tok-op">←</span> tf32[<span class="tok-nu">4</span>] {}
     <span class="tok-kw">let</span> <span class="tok-kw">tensor</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> z <span class="tok-op">←</span> tf32[<span class="tok-nu">4</span>] {}
     <span class="tok-kw">do</span> <span class="tok-kw">device</span> {
-        <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span> ‥ <span class="tok-nu">8</span> <span class="tok-kw">let</span> k {
+        <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span>‥<span class="tok-nu">8</span> <span class="tok-kw">let</span> k {
             bump(z, <span class="tok-kw">mut</span> t, k ↦ i32)
             <span class="tok-kw">if</span> k <span class="tok-op">%</span> <span class="tok-nu">2</span> <span class="tok-op">≡</span> <span class="tok-nu">0</span> <span class="tok-kw">then</span> bump(z, <span class="tok-kw">mut</span> t, <span class="tok-nu">1</span>)
         }
@@ -238,33 +237,6 @@ and <code>mut</code> scalar state, and nothing else. The checker refuses the res
 image without running it and prints one <code>INFO001</code> line per region with its
 inputs, in-outs, launches per iteration and host syncs. For the program
 above:</p><pre class="faber-code"><code class="lang-text">device region at line 12: inputs [z: tensor&lt;f32, [4]&gt;]; in-outs [t: tensor&lt;f32, [4]&gt;]; launches per iteration 1 (up to 2), 0 outside the loop; 0 host syncs</code></pre><p>Only the handler stays outside the region: it receives faults and <code class="glyph">⇥</code> errors
-once, at the block's exit.</p><h2 id="do-eligible">Do eligible<a class="anchor" href="#do-eligible">#</a></h2><p><code>do eligible { … }</code> (Latin <em>do idonea</em>) gives the calls in its body permission to
-run on a device when they can. Nothing is required of them: a call that cannot
-be placed stays on the host, so the block is ordinary host code with an
-opportunity in it. The permission does its work when the program is compiled
-with <a href="/en-US/toolchain/cli.html#device-mode"><code>--device-mode eligible</code></a>. Under the
-default, <code>explicit</code>, the block runs as a plain <code>do</code>.</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
-    <span class="tok-kw">let</span> <span class="tok-kw">int</span> eligible <span class="tok-op">←</span> <span class="tok-nu">7</span>
-    <span class="tok-kw">do</span> eligible {
-        <span class="tok-kw">print</span> eligible
-    }
-    <span class="tok-kw">do</span> eligible {
-        <span class="tok-kw">throw</span> <span class="tok-st">"stop"</span>
-    } <span class="tok-kw">catch</span> err {
-        <span class="tok-kw">print</span> <span class="tok-st">"caught"</span>
-    }
-    <span class="tok-kw">mut</span> <span class="tok-kw">int</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">do</span> eligible {
-        i ↑
-        <span class="tok-kw">if</span> i ≺ <span class="tok-nu">3</span> { <span class="tok-kw">continue</span> }
-        <span class="tok-kw">print</span> i
-    } <span class="tok-kw">while</span> i ≺ <span class="tok-nu">3</span>
-}</code></pre><p>This prints <code>7</code>, <code>caught</code> and <code>3</code>. The rules:</p><ul><li>Permission follows execution. It covers the body and the functions the body
-calls synchronously, and is restored on every exit.</li><li>Faults keep regular <code>do</code> timing. <code>do eligible</code> adds no deferred delivery.</li><li>In a trailing <code>while</code>, only the body has permission. The condition runs under
-the surrounding permission, and each iteration enters the body anew.</li><li>Creating a closure captures no permission. A closure body with its own
-<code>do eligible</code> activates when it runs.</li><li>A <code>do</code> takes one modifier. A second word, even a repeat, is <code>PARSE020
-fac_modifier_redundant</code>; compose by nesting blocks.</li><li><code>eligible</code> is claimed only directly after <code>do</code>, so <code>let int eligible</code> stays
-legal, as above.</li></ul><p>A device launch inside the block happens only after every check passes, and a
-refusal happens before the launch, so no host effect runs twice.</p><p>Related: <a href="/en-US/language/types.html#tensor">Types and values</a> for the tensor types,
+once, at the block's exit.</p><p>Related: <a href="/en-US/language/types.html#tensor">Types and values</a> for the tensor types,
 <a href="/en-US/language/errors.html">Errors and testing</a> for <code>do { } catch</code>, and the
-<a href="/en-US/targets/gpu.html">GPU target</a> for what the device emitters produce.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#reduce">Reductions</a></li><li class="toc-2"><a href="#first">First match</a></li><li class="toc-2"><a href="#per">Grouped reductions</a></li><li class="toc-2"><a href="#scan">Ordered scans</a></li><li class="toc-2"><a href="#edge">Edge policies</a></li><li class="toc-2"><a href="#kernel">Kernels</a></li><li class="toc-3"><a href="#kernel-exclusivity">Argument exclusivity</a></li><li class="toc-3"><a href="#scratch-rows">Scratch rows</a></li><li class="toc-2"><a href="#device-regions">Grouping device work: do all and do device</a></li><li class="toc-2"><a href="#do-eligible">Do eligible</a></li></ul></div></nav><footer><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+<a href="/en-US/targets/gpu.html">GPU target</a> for what the device emitters produce.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#reduce">Reductions</a></li><li class="toc-2"><a href="#first">First match</a></li><li class="toc-2"><a href="#per">Grouped reductions</a></li><li class="toc-2"><a href="#scan">Ordered scans</a></li><li class="toc-2"><a href="#edge">Edge policies</a></li><li class="toc-2"><a href="#kernel">Kernels</a></li><li class="toc-3"><a href="#kernel-exclusivity">Argument exclusivity</a></li><li class="toc-3"><a href="#scratch-rows">Scratch rows</a></li><li class="toc-2"><a href="#device-regions">Grouping device work: do all and do device</a></li></ul></div></nav><footer><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

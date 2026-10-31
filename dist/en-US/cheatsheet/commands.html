@@ -37,10 +37,7 @@ in <code>faber.toml</code>). <code>--partitions N</code> selects partitions on <
 <code>auto</code>.</p><p><code>faber check --device cpu|metal|cuda</code> builds the device image without running
 it and prints <code>INFO001</code> advice: the tier of each kernel, serialized or
 unplaceable kernels, and a report for every <code>do device</code> region. See
-<a href="/en-US/language/tensor-compute.html#device-regions">Tensor computation</a>.</p><p><code>faber check|build|run --device-mode eligible</code> lets the compiler use proved
-device variants of unmarked functions, in kernels and inside <code>do eligible</code>. The
-default, <code>explicit</code>, does not. See
-<a href="/en-US/toolchain/cli.html#device-mode">device mode</a>.</p><p>A kernel runs at one of three safety tiers: <code>kernel name(…)</code> (IEEE-correct float
+<a href="/en-US/language/tensor-compute.html#device-regions">Tensor computation</a>.</p><p>A kernel runs at one of three safety tiers: <code>kernel name(…)</code> (IEEE-correct float
 math, the default), <code>kernel name(…) relaxed</code> (approximate <code class="glyph">/</code> and <code>sqrt</code>, fast
 transcendentals) and <code>kernel name(…) unsafe</code> (also drops the index checks the
 compiler cannot prove). <code>--safe</code> on <code>faber run</code> or <code>faber build</code>, or `safe =

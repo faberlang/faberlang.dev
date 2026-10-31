@@ -1,6 +1,6 @@
 # test
 
-Defines a single test case.
+Defines a single test case and its modifiers.
 
 **Term** `test` · **Section** KEYWORDS · **Also** `it`
 
@@ -14,6 +14,7 @@ test <name> [modifiers] <block>
 
 - Individual test cases — `test` declares one test with a descriptive name and optional modifiers
 - Tests live inside `describe` suites and contain `assert` assertions
+- Expected failure — `expect_failure` passes when the body fails in a way the test runner captures (for example, a failed assertion or runtime fault); clean completion, timeouts, step-budget exhaustion and blocked outcomes do not satisfy it
 
 ## Common mistakes
 

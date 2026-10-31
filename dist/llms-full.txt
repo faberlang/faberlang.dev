@@ -1693,7 +1693,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `proba`
 - Kind: keyword
 - Category: testing
-- Summary: Defines a single test case.
+- Summary: Defines a single test case and its modifiers.
 - Syntax: `proba <name> [modifiers] <block>`
 - Aliases: `test`, `it`
 - Related: `probandum`, `adfirma`, `omitte`, `futurum`

@@ -47,6 +47,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [enum](enum.md) — Declares an enumeration.
 - [errors](errors.md) — Marks a function parameter or binding as carrying an error value.
 - [exit](exit.md) — Sets the exit code or exit expression for an entry point.
+- [expect_failure](expect_failure.md) — Defines a single test case and its modifiers.
 - [false](false.md) — Represents the false boolean value and can prefix a falsity check.
 - [flaky](flaky.md) — Rejected by faber test because flaky retries are not executed.
 - [float](float.md) — Primitive floating-point number type.
@@ -112,7 +113,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [switch](switch.md) — Starts a value-based branch statement.
 - [tag](tag.md) — Attaches a test tag string.
 - [teardown](teardown.md) — Registers an after-each test hook.
-- [test](test.md) — Defines a single test case.
+- [test](test.md) — Defines a single test case and its modifiers.
 - [throw](throw.md) — Throws a recoverable error.
 - [timeout](timeout.md) — Sets a wall-clock timeout in seconds for a test modifier.
 - [todo](todo.md) — Marks a test case as pending future work with a reason.

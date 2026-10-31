@@ -326,19 +326,19 @@ The runner, Rust, TypeScript and Python all check windows this way (generated
 TypeScript and Python clamped until 1.16).</p><h3 id="bounded-lists">Bounded lists — <code>size</code><a class="anchor" href="#bounded-lists">#</a></h3><p>A list can carry a length limit in its type. The limit is written after <code>size</code>
 (la <code>size</code>): <code>list&lt;int, size 4&gt;</code> holds at most four elements. A bare
 <code>list&lt;int, 4&gt;</code> is retired by name (<code>SEM008 list_count_needs_size</code>), and so is a
-bare <code>lo ‥ hi</code> range, which bounds a value rather than a count. The same rule
+bare <code>lo‥hi</code> range, which bounds a value rather than a count. The same rule
 covers every bounded container: <code>vector&lt;f32, size 4&gt;</code> (the <code>vf32[4]</code> sugar is
 unchanged), <code>queue&lt;int, size 4&gt;</code>, <code>stack&lt;int, size 4&gt;</code>, <code>string&lt;size 8&gt;</code> and
 <code>ascii&lt;size 8&gt;</code> (<code>SEM008 vector_width_needs_size</code>, <code>SEM008 capacity_needs_size</code>).</p><p>A range after <code>size</code> bounds the length. <code class="glyph">‥</code> leaves the upper bound out and <code class="glyph">…</code>
-includes it, so <code>list&lt;int, size 2 ‥ 5&gt;</code> holds two to four elements and
-<code>list&lt;int, size 1 … ∞&gt;</code> is never empty: <code>first</code> and <code>last</code> return plain values.
+includes it, so <code>list&lt;int, size 2‥5&gt;</code> holds two to four elements and
+<code>list&lt;int, size 1…∞&gt;</code> is never empty: <code>first</code> and <code>last</code> return plain values.
 Growing past the maximum or removing below the minimum reports on the error
-channel. <code>list&lt;int, size 3&gt;</code> and <code>list&lt;int, size 0 … 3&gt;</code> are the same type.</p><p>A short list literal takes the capacity of the cell it is stored into, whether
+channel. <code>list&lt;int, size 3&gt;</code> and <code>list&lt;int, size 0…3&gt;</code> are the same type.</p><p>A short list literal takes the capacity of the cell it is stored into, whether
 the cell is a variable, a field or a call argument: <code>[1, 2]</code> stored into
-<code>list&lt;int, size 0 … 3&gt;</code> is a list with room for three. A literal longer than the
+<code>list&lt;int, size 0…3&gt;</code> is a list with room for three. A literal longer than the
 maximum is refused by name.</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
 <span class="tok-co">    # Never empty: first and last are plain ints.</span>
-    <span class="tok-kw">mut</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span>, <span class="tok-kw">size</span> <span class="tok-nu">1</span> <span class="tok-op">…</span> <span class="tok-op">∞</span><span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    <span class="tok-kw">mut</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span>, <span class="tok-kw">size</span> <span class="tok-nu">1</span><span class="tok-op">…</span><span class="tok-op">∞</span><span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     <span class="tok-kw">print</span> xs.<span class="tok-kw">first</span>()
     <span class="tok-kw">print</span> xs.last()
     <span class="tok-kw">print</span> xs.length()
@@ -346,7 +346,7 @@ maximum is refused by name.</p><pre class="faber-code"><code class="lang-faber l
     <span class="tok-kw">print</span> xs
 
 <span class="tok-co">    # Lengths 2 to 4: the fifth push does not fit.</span>
-    <span class="tok-kw">mut</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span>, <span class="tok-kw">size</span> <span class="tok-nu">2</span> ‥ <span class="tok-nu">5</span><span class="tok-op">&gt;</span> ys <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>]
+    <span class="tok-kw">mut</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span>, <span class="tok-kw">size</span> <span class="tok-nu">2</span>‥<span class="tok-nu">5</span><span class="tok-op">&gt;</span> ys <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>]
     <span class="tok-kw">do</span> {
         ys.append(<span class="tok-nu">30</span>)
         ys.append(<span class="tok-nu">40</span>)
@@ -359,7 +359,7 @@ maximum is refused by name.</p><pre class="faber-code"><code class="lang-faber l
     <span class="tok-kw">print</span> ys
 
 <span class="tok-co">    # A short literal takes the cell's capacity.</span>
-    <span class="tok-kw">let</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span>, <span class="tok-kw">size</span> <span class="tok-nu">0</span> <span class="tok-op">…</span> <span class="tok-nu">3</span><span class="tok-op">&gt;</span> pair <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
+    <span class="tok-kw">let</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span>, <span class="tok-kw">size</span> <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">3</span><span class="tok-op">&gt;</span> pair <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
     <span class="tok-kw">print</span> pair
 }</code></pre><p>This prints <code>1</code>, <code>3</code>, <code>3</code>, <code>[1, 2, 3, 4]</code>, then `full: list length range: push
 past the maximum<code class="glyph">, </code>[10, 20, 30, 40]<code> and </code>[1, 2]`.</p><h3 id="tabula">Tabula — key-value map<a class="anchor" href="#tabula">#</a></h3><pre class="faber-code"><code class="lang-faber">main {
@@ -407,7 +407,7 @@ new record, or use a class with a <code>mut</code> field.</p><pre class="faber-c
 tensor. A literal range that falls outside a literal shape is
 <code>SEM011 index_provably_out_of_bounds</code>.</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
     <span class="tok-kw">let</span> tf32[<span class="tok-nu">6</span>] v <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>] ↦ tf32[<span class="tok-nu">6</span>]
-    <span class="tok-kw">let</span> tf32[<span class="tok-nu">3</span>] mid <span class="tok-op">←</span> v[<span class="tok-nu">1</span> ‥ <span class="tok-nu">4</span>]
+    <span class="tok-kw">let</span> tf32[<span class="tok-nu">3</span>] mid <span class="tok-op">←</span> v[<span class="tok-nu">1</span>‥<span class="tok-nu">4</span>]
     <span class="tok-kw">print</span> mid
 }</code></pre><p>This prints <code>[2.0, 3.0, 4.0]</code>.</p><p>A matrix reads and writes one element by row and column with a double
 bracket, <code>m[[row, col]]</code>, and the coordinates may be computed. The method
@@ -509,7 +509,7 @@ for range <span class="tok-nu">0</span> <span class="tok-op">…</span> <span cl
 English file that writes the Latin <code>range</code> is
 <code>PARSE040 wrong_locale_type</code>). A range stored in a cell can be walked, and
 printing it shows its construction:</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
-    <span class="tok-kw">let</span> <span class="tok-kw">range</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> r <span class="tok-op">←</span> <span class="tok-nu">2</span> ‥ <span class="tok-nu">5</span>
+    <span class="tok-kw">let</span> <span class="tok-kw">range</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> r <span class="tok-op">←</span> <span class="tok-nu">2</span>‥<span class="tok-nu">5</span>
     <span class="tok-kw">print</span> r
     <span class="tok-kw">for</span> <span class="tok-kw">range</span> r <span class="tok-kw">let</span> i {
         <span class="tok-kw">print</span> i
@@ -518,7 +518,7 @@ printing it shows its construction:</p><pre class="faber-code"><code class="lang
 <code>range&lt;int&gt;</code> has step 1, and <code>range&lt;int, 2&gt;</code> steps by 2. <code>length()</code> counts
 only the members on the step, and <code>contains(v)</code> is true only for a value on
 the step.</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
-    <span class="tok-kw">let</span> <span class="tok-kw">range</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span>, <span class="tok-nu">2</span><span class="tok-op">&gt;</span> evens <span class="tok-op">←</span> <span class="tok-nu">0</span> <span class="tok-op">…</span> <span class="tok-nu">10</span> <span class="tok-kw">step</span> <span class="tok-nu">2</span>
+    <span class="tok-kw">let</span> <span class="tok-kw">range</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span>, <span class="tok-nu">2</span><span class="tok-op">&gt;</span> evens <span class="tok-op">←</span> <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">10</span> <span class="tok-kw">step</span> <span class="tok-nu">2</span>
     <span class="tok-kw">print</span> evens.length()
     <span class="tok-kw">print</span> evens.contains(<span class="tok-nu">4</span>)
     <span class="tok-kw">print</span> evens.contains(<span class="tok-nu">3</span>)

@@ -34,6 +34,7 @@ main {
 
 `faber --help` also lists `faber build . -t rust`, `faber test .`,
 `faber format .` (reports drift; `--write` applies), and `faber explain SEM010`.
+In 1.18 `faber format` refuses a file that imports a `norma:*` module (`PKG001`).
 
 A second source file is https://faberlang.dev/agents/modules.md.
 
