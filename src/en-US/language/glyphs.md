@@ -123,12 +123,9 @@ index are not evaluated, so their side effects do not run (since 1.17).
 | `‥` | Exclusive range endpoint |
 | `…` | Inclusive range endpoint |
 
-Range glyphs are written space-padded, `1 ‥ 10`, in value and type positions
-alike: `list<int, size 2 ‥ 5>`. `faber format` writes them that way.
-
 A range is a value of type `range<T>` (la `intervallum<T>`): it can be stored,
 walked with `for range r let i`, printed, and used to slice a rank-1 tensor,
-`v[1 ‥ 4]`. See [Intervallum — ranges](/language/types.html#intervallum).
+`v[1‥4]`. See [Intervallum — ranges](/language/types.html#intervallum).
 
 ### Literal delimiters {#literal-delimiters}
 

@@ -112,11 +112,6 @@ it and prints `INFO001` advice: the tier of each kernel, serialized or
 unplaceable kernels, and a report for every `do device` region. See
 [Tensor computation](/language/tensor-compute.html#device-regions).
 
-`faber check|build|run --device-mode eligible` lets the compiler use proved
-device variants of unmarked functions, in kernels and inside `do eligible`. The
-default, `explicit`, does not. See
-[device mode](/toolchain/cli.html#device-mode).
-
 A kernel runs at one of three safety tiers: `kernel name(…)` (IEEE-correct float
 math, the default), `kernel name(…) relaxed` (approximate `/` and `sqrt`, fast
 transcendentals) and `kernel name(…) unsafe` (also drops the index checks the

@@ -23,7 +23,6 @@ These are the forms the other pages check.
 - A library import is `import from "norma:text" text`.
 - A generic function is `fn identitas<T>(T valor) → T`.
 - A kernel is `kernel scale(f32 x) → f32 { return x }`. A mode word, `relaxed`, `unsafe`, or `fragment`, follows the parameter list.
-- A range is padded: `0 ‥ 10` leaves out its end, `0 … 10` includes it.
 - A comment is a `#` line by itself.
 
 Do not write `name: T`. Do not write `int?`. Do not write `//`. Do not put `#` after code on the same line.

@@ -146,31 +146,6 @@ the same for the package. The switch can only lower a tier, and no environment
 variable sets it. Use it to check whether a relaxed or unsafe kernel changes
 an answer.
 
-### Kernel eligibility and `--device-mode` {#device-mode}
-
-`--device-mode` is a compilation option on `faber check`, `faber build` and
-`faber run`. It decides which proofs the compiler may use for device code;
-`--device` still decides where a program runs.
-
-```bash
-faber check my-app/ --device-mode eligible
-faber build my-app/ --device-mode eligible
-faber run my-app/ --device metal --device-mode eligible
-```
-
-| Call | `explicit` (the default) | `eligible` |
-|---|---|---|
-| A host call outside `do eligible` | Host | Host |
-| A host call inside `do eligible` | Host | A device candidate, launched once every check passes; otherwise host |
-| A `kernel` calling an unmarked function | Compile error naming the dependency | Compiled when the function and its callees are proved device-safe |
-| Anything a `kernel` or `do device` needs that is host-only | Compile error | Compile error |
-
-The compiler infers eligibility for every function in both modes, and
-`faber check --device <device>` reports it as one `INFO001 device_eligibility`
-line per callable (`--json` gives JSON Lines). `eligible` mode moves no host code
-to a device outside a `do eligible` block, and it never excuses an unsafe body.
-[Do eligible](/language/tensor-compute.html#do-eligible) has the block's rules.
-
 ### Device output and exit status {#device-output}
 
 Since 1.18 the `device: selected backend` line goes to standard error, so
@@ -252,10 +227,13 @@ spelling of the default, and `--stdout` writes the result to stdout instead.
 Formatting never translates between reader locales; use
 `faber convert --to <locale>` for that.
 
-Range glyphs come out space-padded, `0 ‥ 10`, in value and type positions alike.
 Known issue in 1.18: `faber format` and `faber convert` print every kernel in the
 annotation form, `@ kernel` above an `fn`, so a `kernel` head does not survive
 `--write` yet. The result means the same thing.
+
+Known issue in 1.18: the released `faber format` and `faber convert` refuse a
+file that imports a `norma:*` module (`PKG001 unknown_library_module`, nothing
+written), though `faber check` and `faber run` accept it.
 
 ### Explaining diagnostics {#explaining}
 

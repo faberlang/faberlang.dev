@@ -22,10 +22,26 @@ Corpus content is divided by shape:
 |---------|----------|
 | Single-file language exempla (keywords, operators, types, concepts) | `radix/corpus/` |
 | Package-shaped corpus fixtures | `radix/corpus-product/` |
+| Complete simulation programs | `radix/corpus-simulations/` |
 | Application demos | `examples/` (sibling dirs) |
 
 The old `examples/corpus/` path is a redirect stub. The generated corpus
 pages on this site are built from `radix/corpus/`.
+
+## Simulations {#simulations}
+
+Since 1.18 four complete programs sit beside the corpus, each with a README, a
+small smoke and its provenance:
+
+| Program | What it does |
+|---|---|
+| `fusion-containment` | Particle orbits from one Latin source, on the reference route, multicore CPU and Metal |
+| `drone-mission` | Branchy aircraft mission evaluation, where each GPU lane flies a whole mission |
+| `swarm-decimal` | A deterministic many-actor simulation in fixed-point decimals |
+| `h264-encoder` | A constrained-baseline H.264 encoder on native multicore CPU workers; no GPU acceleration is claimed |
+
+Device execution and the native Rust emitter are in the released `faber` binary,
+not the open-source build. Each README gives its exact route requirements.
 
 ## Size {#stats}
 

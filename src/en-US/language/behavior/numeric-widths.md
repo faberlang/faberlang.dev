@@ -83,47 +83,47 @@ status.
 ## Ranged cells {#ranged}
 
 A policy word can take a range as its second argument, so a cell holds exactly
-the values it names: `saturating<W, lo ‥ hi>`, `trapping<W, lo ‥ hi>` and
-`wrapping<W, lo ‥ hi>`. `‥` leaves the upper bound out, `…` includes it, and `∞`
+the values it names: `saturating<W, lo‥hi>`, `trapping<W, lo‥hi>` and
+`wrapping<W, lo‥hi>`. `‥` leaves the upper bound out, `…` includes it, and `∞`
 is no bound. The rule is the same as everywhere else: arithmetic stays exact,
 and only the store applies the range. A `trapping` cell errors on a value
 outside it, a `saturating` cell clamps, and a `wrapping` cell wraps into the
 range.
 
 ```faber locale=en
-fn offset(trapping<i32, -2 ‥ 3> dy) → int {
+fn offset(trapping<i32, -2‥3> dy) → int {
     return dy
 }
 
-fn grow(trapping<u8, 0 ‥ 10> small) → trapping<u8, 0 ‥ 20> {
+fn grow(trapping<u8, 0‥10> small) → trapping<u8, 0‥20> {
     return small
 }
 
 main {
     let i32 d ← 2
-    let trapping<i32, -2 ‥ 3> dy ← d
+    let trapping<i32, -2‥3> dy ← d
     let i32 e ← -2
-    let trapping<i32, -2 ‥ 3> dz ← e
+    let trapping<i32, -2‥3> dz ← e
     print dy
     print dz
-    # Exact arithmetic: 4 is outside -2 ‥ 3 and prints as 4; nothing is stored.
+    # Exact arithmetic: 4 is outside -2‥3 and prints as 4; nothing is stored.
     print dy + dy
     # A ranged cell reads as its width.
     let i32 back ← dy
     print back
     print offset(-2)
     # The inclusive glyph holds its high end.
-    let trapping<u8, 1 … 5> top ← 5
+    let trapping<u8, 1…5> top ← 5
     print top
     # Widening a range needs no check.
-    let trapping<u8, 0 ‥ 20> larger ← grow(7)
+    let trapping<u8, 0‥20> larger ← grow(7)
     print larger
     # A ranged cell indexes a list: it can only name a slot inside its range.
     let list<int> xs ← [10, 20, 30, 40]
-    let trapping<u8, 0 ‥ 4> ix ← 2
+    let trapping<u8, 0‥4> ix ← 2
     print xs[ix]
     # The whole-width range is the bare type.
-    let trapping<u8, 0 … 255> same ← 200
+    let trapping<u8, 0…255> same ← 200
     let u8 plain ← same
     print plain
 }
@@ -132,12 +132,12 @@ main {
 This prints `2`, `-2`, `4`, `2`, `-2`, `5`, `7`, `30` and `200`.
 
 The spellings from the table above are whole-width ranges: `saturating<u8>` is
-`saturating<u8, 0 … 255>`, a bare `u8` is `trapping<u8, 0 … 255>`, and `inf` is
-`trapping<inf, -∞ … ∞>`. Three mistakes are refused by name: a range outside the
-width (`trapping<u8, 0 ‥ 300>`, `SEM008 ranged_policy_range_outside_width`), an
+`saturating<u8, 0…255>`, a bare `u8` is `trapping<u8, 0…255>`, and `inf` is
+`trapping<inf, -∞…∞>`. Three mistakes are refused by name: a range outside the
+width (`trapping<u8, 0‥300>`, `SEM008 ranged_policy_range_outside_width`), an
 unsigned range that starts below zero (`SEM008
 ranged_policy_unsigned_negative_bound`), and a range with no policy word
-(`u8<0 ‥ 8>`, `SEM008 ranged_policy_word_required`). `faber run`, the Rust target
+(`u8<0‥8>`, `SEM008 ranged_policy_word_required`). `faber run`, the Rust target
 and the Faber emitter apply ranged cells; every other target stops at emission
 (most with `ranged store policy` in the message). A list length range is the same idea for a count: see
 [bounded lists](/language/types.html#bounded-lists).

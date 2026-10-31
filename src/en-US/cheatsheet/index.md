@@ -100,6 +100,6 @@ in use; the corpus has the exhaustive entry for every one.
 | `∪` | union of types |
 | `↦` | convert to this type |
 | `∴` | closure joint |
-| `‥` | range, as in `0 ‥ 10` |
+| `‥` | range, as in `0‥10` |
 
 Full discussion: [Glyphs and Latin](/language/glyphs.html).

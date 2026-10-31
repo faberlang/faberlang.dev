@@ -391,7 +391,7 @@ incipit {
 #### Range — itera ab {#range-itera-ab}
 
 ```faber
-itera ab 0 ‥ 10 sit i {
+itera ab 0‥10 sit i {
     nota i
 }
 ```

@@ -85,7 +85,7 @@ main {
     mut tensor<f32, [4]> t ← tf32[4] {}
     let tensor<f32, [4]> z ← tf32[4] {}
     do device {
-        for range 0 ‥ 8 let k {
+        for range 0‥8 let k {
             bump(z, mut t, k ↦ i32)
             if k % 2 ≡ 0 then bump(z, mut t, 1)
         }
@@ -99,29 +99,6 @@ main {
 `faber check --device cpu` (or `metal`, `cuda`) builds the device image without
 running it and prints each region's inputs, in-outs, launches per iteration and
 host syncs.
-
-`do eligible { … }` gives the calls in its body permission to run on a device
-when they can; a call that cannot be placed stays on the host. It keeps regular
-`do` fault timing. Permission covers the body and its synchronous callees, not a
-trailing `while` condition, and creating a closure captures none. A `do` takes
-one modifier (`PARSE020` `fac_modifier_redundant`); compose by nesting.
-
-```faber locale=en
-main {
-    do eligible {
-        print 1
-    } catch err {
-        print "caught"
-    }
-}
-```
-
-The permission does its work under `--device-mode eligible`, a compilation
-option on `faber check`, `build` and `run`. It also lets a `kernel` call an
-unmarked function the compiler proves device-safe, where the default
-`--device-mode explicit` is a compile error. `--device` still picks the backend.
-`faber check --device cpu --device-mode eligible` reports each function's
-eligibility as `INFO001` `device_eligibility`.
 
 Parent: https://faberlang.dev/agents/tensors.md
 

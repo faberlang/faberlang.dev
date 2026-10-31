@@ -11,8 +11,7 @@ A tensor or matrix folds to a value with `reduce via`, and to a tensor of
 running values with `scan via`. Both walk the elements in row-major order and
 bind each element to a name. A `kernel` is a function that runs on a device. The
 device blocks at the end of this page, `do all` and `do device`, group kernel
-launches so that a fault is reported once, and `do eligible` lets ordinary calls
-run on a device when they can.
+launches so that a fault is reported once.
 
 The examples run with `faber run`. The kernel examples need a device route:
 add `--device cpu` (or `--device reference` for plain sequential code) when you
@@ -308,7 +307,7 @@ row stays refused (`SEM010 filum_independence_unproven`).
 kernel row_totals(tf32[4, 3] w, mut tf32[4, 3] scratch, mut tf32[4] totals) → void {
     for from totals at [i] thread lane let unused {
         mut f32 total ← 0.0
-        for range 0 ‥ 3 let j {
+        for range 0‥3 let j {
             scratch[[i, j]] ← w[[i, j]] * 2.0
             total ← total + w[[i, j]]
         }
@@ -328,7 +327,6 @@ the one delivered, and delivery is a choice the block makes:
 | `do { … }` | Ordinary delivery, as for any failable call. |
 | `do all { … }` | **Once, when the block exits**, however many launches ran. |
 | `do device { … }` | The same, and the body is also checked as a device-resident region. |
-| `do eligible { … }` | Ordinary delivery, as for `do`. See [Do eligible](#do-eligible). |
 
 ```faber locale=en
 @ public
@@ -368,7 +366,7 @@ and `mut` scalar state, and nothing else. The checker refuses the rest by name:
 | A host call or a host effect such as `print` | `nucleum_host_call`, `nucleum_host_effect` |
 | A tensor allocated inside | `nucleum_region_alloc_not_built` |
 | A condition, bound or scalar store that reads a value computed on the device | `nucleum_region_device_read_not_built` |
-| A `for … thread lane` loop written directly in the block | `nucleum_region_lane_loop_not_built` |
+| A `for…thread lane` loop written directly in the block | `nucleum_region_lane_loop_not_built` |
 | A `return`, `break` or `continue` leaving the block | `nucleum_block_exit_crosses_boundary` |
 | A nested `do device` | `fac_machina_nested` |
 
@@ -384,7 +382,7 @@ main {
     mut tensor<f32, [4]> t ← tf32[4] {}
     let tensor<f32, [4]> z ← tf32[4] {}
     do device {
-        for range 0 ‥ 8 let k {
+        for range 0‥8 let k {
             bump(z, mut t, k ↦ i32)
             if k % 2 ≡ 0 then bump(z, mut t, 1)
         }
@@ -407,52 +405,6 @@ device region at line 12: inputs [z: tensor<f32, [4]>]; in-outs [t: tensor<f32, 
 
 Only the handler stays outside the region: it receives faults and `⇥` errors
 once, at the block's exit.
-
-## Do eligible {#do-eligible}
-
-`do eligible { … }` (Latin *fac idonea*) gives the calls in its body permission to
-run on a device when they can. Nothing is required of them: a call that cannot
-be placed stays on the host, so the block is ordinary host code with an
-opportunity in it. The permission does its work when the program is compiled
-with [`--device-mode eligible`](/toolchain/cli.html#device-mode). Under the
-default, `explicit`, the block runs as a plain `do`.
-
-```faber locale=en
-main {
-    let int eligible ← 7
-    do eligible {
-        print eligible
-    }
-    do eligible {
-        throw "stop"
-    } catch err {
-        print "caught"
-    }
-    mut int i ← 0
-    do eligible {
-        i ↑
-        if i ≺ 3 { continue }
-        print i
-    } while i ≺ 3
-}
-```
-
-This prints `7`, `caught` and `3`. The rules:
-
-- Permission follows execution. It covers the body and the functions the body
-  calls synchronously, and is restored on every exit.
-- Faults keep regular `do` timing. `do eligible` adds no deferred delivery.
-- In a trailing `while`, only the body has permission. The condition runs under
-  the surrounding permission, and each iteration enters the body anew.
-- Creating a closure captures no permission. A closure body with its own
-  `do eligible` activates when it runs.
-- A `do` takes one modifier. A second word, even a repeat, is `PARSE020
-  fac_modifier_redundant`; compose by nesting blocks.
-- `eligible` is claimed only directly after `do`, so `let int eligible` stays
-  legal, as above.
-
-A device launch inside the block happens only after every check passes, and a
-refusal happens before the launch, so no host effect runs twice.
 
 Related: [Types and values](/language/types.html#tensor) for the tensor types,
 [Errors and testing](/language/errors.html) for `do { } catch`, and the
