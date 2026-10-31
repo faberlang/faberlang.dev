@@ -33,6 +33,7 @@ KEYWORDS
   enum                  variant     Declares an enumeration.
   errors                function    Marks a function parameter or binding as carrying an error value.
   exit                  function    Sets the exit code or exit expression for an entry point.
+  expect_failure        testing     Defines a single test case and its modifiers.
   false                 logic       Represents the false boolean value and can prefix a falsity check.
   flaky                 testing     Rejected by faber test because flaky retries are not executed.
   float                 type        Primitive floating-point number type.
@@ -98,7 +99,7 @@ KEYWORDS
   switch                branch      Starts a value-based branch statement.
   tag                   testing     Attaches a test tag string.
   teardown              testing     Registers an after-each test hook.
-  test                  testing     Defines a single test case.
+  test                  testing     Defines a single test case and its modifiers.
   throw                 error       Throws a recoverable error.
   timeout               testing     Sets a wall-clock timeout in seconds for a test modifier.
   todo                  testing     Marks a test case as pending future work with a reason.

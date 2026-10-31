@@ -31,7 +31,6 @@ never passes `faber check`.
 | `norma:console` | Console I/O (stdin, stdout, stderr) |
 | `norma:crypto` | Cryptography (hash, HMAC, cipher, sign) |
 | `norma:csv` | CSV wire format |
-| `norma:db` | SQLite connections, transactions and prepared writes ([below](#db)) |
 | `norma:deque` | Double-ended queue |
 | `norma:encoding` | Encoding and decoding (base64, hex, URL) |
 | `norma:fault` | The I/O fault union (`IoFault`) |
@@ -127,63 +126,6 @@ For files that must never be left half-written, `norma:fs` has
 `write_file_durably` and `write_bytes_durably`. They replace the file
 atomically: a failure or an interruption leaves the previous complete file,
 never a partial one.
-
-## SQLite: `norma:db` {#db}
-
-`norma:db` opens SQLite databases and writes to them through owned resources:
-`Connection`, `Transaction` and `PreparedWrite`. It runs on the MIR runner and
-generated Rust; other targets refuse it
-(`SEM011 sermo_resource_target_unsupported`).
-
-```faber locale=en
-import from "norma:db" db
-
-fn save(db.Connection connection, list<int> items) → void ⇥ db.DbFault {
-    let db.Transaction transaction ← connection.begin("Immediate")
-    let db.PreparedWrite insert ← transaction.prepare("INSERT INTO sample(value) VALUES (?1)")
-    for from items let item {
-        insert.execute([item ↦ value])
-    }
-    transaction.commit()
-}
-
-main {
-    do {
-        let db.Connection connection ← db.open(":memory:")
-        connection.execute("CREATE TABLE sample (id INTEGER PRIMARY KEY, value INTEGER)", [])
-        save(connection, [10, 20, 30])
-        print connection.close() ⊥ false
-    } catch fault {
-        print fault.kind
-    }
-}
-```
-
-This prints `true`.
-
-| Call | Result |
-|---|---|
-| `db.open(path)` | A `Connection`; `":memory:"` opens a private in-memory database |
-| `connection.execute(sql, parameters)` | The number of rows changed |
-| `connection.begin(mode)` | A `Transaction`; `mode` defaults to `"Deferred"` |
-| `connection.prepare(sql)`, `transaction.prepare(sql)` | A reusable `PreparedWrite` |
-| `writer.execute(parameters)` | The number of rows changed |
-| `writer.execute_returning_id(parameters)` | An `InsertResult` with `rows_changed` and `returned_id`, from an explicit integer `RETURNING` column; transaction writers only |
-| `transaction.commit()`, `transaction.rollback()` | Ends the transaction |
-| `close()` | Closes the resource; a failable `bool` on `⇥ string` |
-
-Parameters are always bound, as a `list<value>`. Everything but `close` reports
-on `⇥ db.DbFault`, whose `kind` and `operation` say what failed; SQLite's own
-codes are in `primary_code` and `extended_code`.
-
-A resource lives in its scope. A transaction that was not committed rolls back
-when it leaves scope, on a normal exit, an early `return` or an error. Retained
-aliases share one native resource, so closing one closes them all, and using a
-closed resource is a `Closed` fault. A resource cannot be duplicated: `copy` of a
-`Connection`, or of anything holding one, is `SEM066`.
-
-`norma:db` covers writes. Typed rows and cursors for reading results are not in
-this module yet.
 
 ```faber locale=en
 import from "norma:fs" fs

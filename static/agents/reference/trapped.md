@@ -13,14 +13,14 @@ trapped<R, T>
 ## What this teaches
 
 - trap { ... } runs its block and reifies the ⇥ error channel into a value instead of propagating it; the block's trailing expression is the success.
-- Ruled shape (error model 2026-10-13, grammar/EBNF.md): the result is trapped<R, T>, variants returned { value: R } and thrown { error: T }, read with an ordinary match; R and T are separate slots.
-- On the current compiler the boundary's result checks and runs as the union R ∪ E, so this program matches the members (case int / case string); the returned/thrown variant arms land with the trapped re-typing (need f9d8a611 follow-ups).
-- trap catches only the ⇥ channel — panic stays fatal; the success and error types collapsing to one type is rejected (trap_union_collapsed).
+- Ruled shape (error model 2026-10-13, grammar/EBNF.md): the result is trapped<R, T>, variants returned { value: R } and thrown { error: T }, read with an ordinary match.
+- R and T are separate slots, so a string success with a string error is legal — the variants carry the discrimination, not the types.
+- trap catches only the ⇥ channel — panic stays fatal.
 
 ## Common mistakes
 
 - Expecting trap to catch panic or assert — it never does.
-- Success and error of the same type — the value cannot tell them apart.
+- Matching the member types (case int / case string) — the result is the tagged trapped<R, T>, so the arms name the variants returned and thrown.
 - Confusing trap with catch — catch is the statement-level handler that binds the payload; trap is the expression that yields the value.
 
 ## Example
@@ -33,25 +33,41 @@ fn half(int n) → int ⇥ string {
     return n / 2
 }
 
+# R ≡ T: legal, because the slots are separate and the variants tell them apart.
+fn twin() → string ⇥ string {
+    return "value"
+}
+
 main {
     # trap { ... } turns the failable call's two exits into one value.
     let _ missed ← trap { half(7) }
     match missed {
-        case int let value {
+        case returned let value {
             print "returned §"(value)
         }
-        case string let err {
+        case thrown let err {
             print "thrown §"(err)
         }
     }
 
     let _ made ← trap { half(8) }
     match made {
-        case int let value {
+        case returned let value {
             print "returned §"(value)
         }
-        case string let err {
+        case thrown let err {
             print "thrown §"(err)
+        }
+    }
+
+    # A string success with a string error: legal, the arms still discriminate.
+    let _ twinned ← trap { twin() }
+    match twinned {
+        case returned let value {
+            print "twin returned §"(value)
+        }
+        case thrown let error {
+            print "twin thrown §"(error)
         }
     }
 }
