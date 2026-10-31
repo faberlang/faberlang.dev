@@ -424,9 +424,8 @@ the English tree; `/llms-full.txt` is a locale-neutral corpus reference.
 ### Binary versions
 
 - **Content targets radix HEAD, not a release.** The site is published from
-  `main` (Faber 1.18.0 is the install surface's release; the pin is peer/main
-  commit 00dc6a2af0 until the `faber/v1.18.0` tag exists, then re-pin to the tag;
-  radix component 0.85.0; 1.15.0
+  `main` (Faber 1.18.0 is the install surface's release and the current pin:
+  radix tag `faber/v1.18.0`, commit b183aa2826, radix component 0.84.0; 1.15.0
   has a source tag but no published artifacts, so never offer it), so every page is checked against the radix commit
   recorded in `generator/upstream.lock.toml` and a `faber` built from that
   commit. Pass it
@@ -442,10 +441,10 @@ the English tree; `/llms-full.txt` is a locale-neutral corpus reference.
   update this note, build, commit. Nothing else on the site carries a version.
 - **Ruled but not built at HEAD.** These are not stated as fact anywhere; each
   has a sentence that is true today and must be revisited when the item lands:
-  `trapped<R,T>`,
   flat `ERRnnn` codes and no run-time message text (`language/errors.md`);
   removal of `FABER_LIBRARY_HOME` (the pages already say `--library-home`).
-  (The anonymous `record` literal landed in 1.16 and is documented in
+  (`trapped<R,T>` landed in 1.18 and is documented in `language/errors.md`.
+  The anonymous `record` literal landed in 1.16 and is documented in
   `language/types.md#record`. `reduce via first` landed in 1.17 and retired
   `primus_quem` / `ubi`; it is documented in `language/tensor-compute.md`.
   `rg -n "primus_quem" src static` finds only the sentence that names the
