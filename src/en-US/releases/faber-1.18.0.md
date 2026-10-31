@@ -10,15 +10,32 @@ sources = []
 |---|---|
 | **Product** | Faber |
 | **Version** | 1.18.0 |
+| **Tag** | `faber-v1.18.0` |
+| **GitHub** | [faber-v1.18.0](https://github.com/faberlang/releases/releases/tag/faber-v1.18.0) |
+| **Published** | 2026-10-31 |
 | **License** | MIT OR Apache-2.0 |
 
 ## Install this version {#install}
 
-No prebuilt archives were published for this version. It is listed here because its release notes are part of the record.
+Pinned download for **Faber 1.18.0**. For the current release, use [Start](/start/) instead.
+
+| Platform | Archive | Size | Checksum |
+|---|---|---|---|
+| **macOS arm64** | [faber-v1.18.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.18.0/faber-v1.18.0-aarch64-apple-darwin.tar.gz) | 33.6 MB | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.18.0/faber-v1.18.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** | [faber-v1.18.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.18.0/faber-v1.18.0-x86_64-unknown-linux-gnu.tar.gz) | 37.7 MB | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.18.0/faber-v1.18.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+
+```bash
+# The installer verifies the checksum and installs a versioned
+# binary that `faber update` and `faber versions` manage.
+curl -fsSL https://raw.githubusercontent.com/faberlang/faber/main/install.sh \
+  | sh -s -- --version 1.18.0
+export PATH="$HOME/.faber/bin:$PATH"
+faber --version
+```
 
 ## Release notes {#notes}
 
-> **Status**: draft
+> **Status**: final — published 2026-10-31
 
 Faber 1.18 follows 1.17 with a new kernel declaration form, a compile-time refusal for copying resources and a faster default engine: a plain `faber run` now compiles in memory with Cranelift and falls back to the runner when Cranelift declines a program. Vectors and matrices now copy on assignment, and overlapping writable kernel arguments are refused. Device loops allocate less and wait on the host less often. There is also a long run of fixes to the Go, LLVM, Rust and Cranelift targets. Some features still check but cannot run on every target; the known ranges are listed below.
 
@@ -26,20 +43,6 @@ Faber 1.18 follows 1.17 with a new kernel declaration form, a compile-time refus
 
 ### Language changes in this release
 
-> **Draft only: remove this table at the cut.** Status is checked against the release branch. A pending row moves below only if it lands; otherwise delete its paragraph and keep its line in "Not in this release".
-
-| Change | Status |
-| --- | --- |
-| `kernel name(..) { .. }` declaration head | Landed in the parser, checker and lowering. Not yet in the grammar, `faber format` or `faber convert` |
-| `copy` refuses non-duplicable members | Landed |
-| `faber run` defaults to clif-jit with runner fallback | Landed |
-| `repeat N` documented as run N times, all must pass | Landed |
-| Tagged `trapped<R, T>` result of `trap` | On the integration branch, past this draft's base; confirm at the cut |
-| Range glyphs always space-padded | Pending |
-| `do eligible` and `--device-mode` (checkpoint) | Pending |
-| Norma `db` module | Pending |
-
-#### Landed
 
 **A kernel declaration head.** `kernel name(params) { … }` is the canonical way to declare a kernel. It takes the tier or `fragment` word after the parameter list, and other annotations still stack above it. `@ kernel fn` stays accepted and means the same thing. Latin uses `nucleum`.
 
@@ -63,17 +66,11 @@ A declaration that carries both heads is `PARSE018 nucleum_double_head`, and `@ 
 
 **What `repeat N` means.** A `repeat N` test runs N times and passes only if every run passes. It does not retry until a pass. The reference now also says that `expect_failure` passes only when the body escapes through the error channel, and that `flaky` cases are rejected and their bodies do not run.
 
-#### Pending
+**`trap` returns a tagged result.** `trap { … }` yields `trapped<R, T>`, with variants `returned { value }` and `thrown { error }`, read with an ordinary `match`. A string success with a string error becomes legal, because the variants carry the difference. Matching the member types (`case int`, `case string`) stops working; see "Breaking changes".
 
-> **Draft only.** These paragraphs describe work on its own branch. None of it is in this draft's base.
+**`expect_failure` means what it says.** A test marked `expect_failure` (Latin `erratur`) now passes when its body fails by a failed assertion or a runtime fault, and fails if the body passes cleanly. Timeouts and step-budget exhaustion keep their normal outcomes.
 
-**Range glyphs are always padded.** `faber format` will print `‥` and `…` with spaces in type positions as it already does in expressions: `trapping<i32, -2 ‥ 3>`, `saturating<u8, 0 … 255>`, `list<int, size 1 … 8>`. Tight input still parses. Only formatter output changes, so `faber format` will report existing tight types as drift.
-
-**Scoped device eligibility.** `do eligible { … }` (Latin `fac idonea`) will let the eligible calls inside its body run on the device, with the fault timing of a regular `do`. `--device-mode explicit|eligible` will set the compilation policy; the default is `explicit`. One modifier fits after `do`, so nest blocks to combine `all`, `device` and `eligible`. This is a checkpoint rather than the full delivery of eligibility inference.
-
-**Norma `db`.** A new Norma module will provide SQLite connections, owned scopes and prepared transactions, with provider faults preserved as `DbFault`. Typed rows, cursors and parallel simulation are not part of this work.
-
-**`trap` returns a tagged result.** `trap { … }` will yield `trapped<R, T>`, with variants `returned { value }` and `thrown { error }`, read with an ordinary `match`. A string success with a string error becomes legal, because the variants carry the difference. Matching the member types (`case int`, `case string`) stops working; see "Breaking changes".
+**`repeat N` is documented correctly.** A test with `repeat N` runs N times and passes only if every run passes. `flaky` is documented as rejected by the runner.
 
 ### More language rules
 
@@ -117,11 +114,24 @@ A declaration that carries both heads is `PARSE018 nucleum_double_head`, and `@ 
 
 **Statistics and output.** Device statistics now report `buffer_alloc_count`, `buffer_release_count` and the buffer pool's hits, buffers and bytes. CUDA reports `gpu_busy_ns` from its own events instead of zero. A kernel fault exits 70 on CPU, Metal and CUDA, as it does on the reference device. The `device: selected backend` line moved to stderr, so stdout carries only program output.
 
+### Simulations
+
+Four complete programs now ship in `corpus-simulations/`, each with a README, a small smoke and its provenance. They show the same Faber source running on the reference route, on CPU workers and on Metal where each README says so.
+
+- **fusion-containment:** particle orbits in Latin, with an English rendering beside the source, on the reference route, multicore CPU and Metal.
+- **drone-mission:** a branchy mission simulation where each GPU lane flies a whole mission.
+- **swarm-decimal:** a deterministic many-actor simulation in fixed-point decimals.
+- **h264-encoder:** a constrained-baseline H.264 encoder on native multicore CPU workers. It makes no claim of GPU acceleration.
+
+Device routes are in the released `faber` binary, not the open-source build.
+
 ### Tooling
 
 **Choosing an engine.** `faber run --target runner` names the interpreter, and `--debug` reports when `clif-jit` declines a program. `faber corpus` also verifies the `clif-jit` and `c` targets.
 
 **Locale flags do what they say.** `--diagnostics-locale` changes only the language of diagnostics, not the code locale. `--locale` now takes effect on a single-file `faber build` and wins over frontmatter. An installed `faber` reads Latin frontmatter correctly on `faber build -t llvm-text` and on the single-file `faber emit` routes. A frontmatter locale that is invalid, empty, not a string or cannot be loaded is now an error rather than silent English: `LOCALE003` on `faber run`, and `PKG001` on `faber check` and `faber build`.
+
+**The public source builds again.** `cargo build -p faber` works from the open-source repository, and a release-gate step now builds the export so it stays that way. `faber format`, `convert` and `doc` keep comments on union variants, enum members and shared fields.
 
 **`faber format` and `faber convert`.** Formatting no longer reports a false `SEM057 call_marker_on_read_only` on a valid imported `mut` call. `faber convert --to la` fixes three files that passed `check` but failed re-validation. Multi-file packages are still converted file by file (see "Known issues").
 
@@ -143,21 +153,35 @@ A declaration that carries both heads is `PARSE018 nucleum_double_head`, and `@ 
 
 7. **Borrow results can change.** With region inference total, a program may be accepted or refused differently than under the block-scope rule, and an uncovered construct is `SEM008 region_facts_not_built`.
 
-8. **`trap` results.** *(Only if the tagged result lands.)* Rewrite `case int` and `case string` arms on a `trap` result as the `returned` and `thrown` variants.
+8. **`trap` results.** Rewrite `case int` and `case string` arms on a `trap` result as the `returned` and `thrown` variants.
 
 ### How this release was gated
-
-> **Placeholder.** Replace this block with the results after the gate runs.
 
 The release is gated by `./scripta/release-gate --locked-release-build` on the exact candidate, after the cheap gates pass. Corpus verification is `scripta/corpus-release`, with one `corpus-suites/full` leg per target: `runner`, `rust`, `canonical`, `go`, `ts`, `wasm`, `llvm`, `roundtrip`, `mir`, `sexp`, `python`, `clif`, `gpu` and `swift`. Each leg must report no failures. `swift` is optional, and `gpu` needs a Metal host. The `c` and `clif-jit` legs are not part of `corpus-release`.
 
 Each finding is classified as an audit finding would be. A `residual` finding blocks nothing material and ships as a known issue. A `block_range` finding blocks a defined feature, or a feature on some targets; it ships, and the range is listed below as unsupported. Only a `block_release` finding holds a release.
 
-Results: *to be filled in*. Corpus results per target: *to be filled in*.
+Results on the candidate: `release-gate --locked-release-build` passed, including the public export build and the leakage scan. `corpus-release` passed: no failures on any target leg.
+
+| Leg | Passed | Expected failures |
+| --- | --- | --- |
+| `runner` | 901 | 5 |
+| `canonical` | 878 | 28 |
+| `roundtrip` | 872 | 4 |
+| `mir` | 870 | 6 |
+| `rust` | 864 | 34 |
+| `ts` | 812 | 93 |
+| `go` | 741 | 164 |
+| `llvm` | 701 | 204 |
+| `sexp` | 680 | 207 |
+| `clif` | 666 | 210 |
+| `python` | 642 | 235 |
+| `wasm` | 611 | 294 |
+| `swift` | 469 | 436 |
+
+The `gpu` leg ran no cases in this release: all 1,212 reported not applicable, so it proves nothing here. Metal and CUDA behaviour rests on the device tests and on each change's own receipts.
 
 ### Known issues
-
-> **Placeholder.** Confirm the classes after the gate runs. The lists below carry 1.17's known issues forward, with items fixed in this window removed, and add what this window found.
 
 #### Unsupported ranges (`block_range`)
 
@@ -182,6 +206,9 @@ These are target-specific limits, not promises made by a successful check. Some 
 
 #### Residual
 
+- **Metal A2 under load.** The A2 reduced-grid oracle test produced a non-finite cell twice on a loaded machine and passes alone. A2 is not a public simulation. This is under investigation.
+- **`trap_text_parity_test` under load.** The test timed out once at 600 s on a loaded machine and takes 32 s alone.
+- **Two Swift cases.** `bounded/itera-ex-bounded-lista-above-ten` and `product/generic-class-import` fail on the Swift target and are pinned as known failures.
 - **Multi-file package conversion.** `faber convert` analyses a package file by file, so a package whose files depend on each other can report per-file failures.
 - **Metal hardware tests under load.** Hardware tests can time out on a busy shared machine. Repeat a timeout without competing workloads before treating it as a reproducible device failure.
 - **Display details.** Bounded byte lists do not consistently print as bit-token lists across targets. The runner can print their raw bytes, and Rust can expose an internal carrier representation. Stored ranges also print in internal or noncanonical forms on several generated targets.
@@ -193,7 +220,10 @@ These are target-specific limits, not promises made by a successful check. Some 
 - Index-check removal for `@ kernel unsafe`, and tier selection for CUDA transcendentals.
 - Native compiled kernels on `--device cpu`. The chunk boundary for them exists, but CPU kernels are still run by the interpreter on worker threads.
 - A public EVM target. The `evm` target is experimental, off by default and not in the released `faber`.
-- Full kernel eligibility inference, and typed rows and cursors for Norma `db`.
+- `do eligible` and `--device-mode`, and the rest of kernel eligibility inference. They are approved and move to 1.19.
+- The Norma `db` module. It is approved and moves to 1.19.
+- Always space-padded range glyphs in types. Approved; moves to 1.19.
+- The store ruling (a value carries no policy; the destination decides at every store). `docs/design/numeric-model.md` describes it, but the compiler does not fully follow it yet.
 - A package manager and library install command.
 - Memory spanning across multiple GPUs (lanes span GPUs; tensors are still replicated).
 
