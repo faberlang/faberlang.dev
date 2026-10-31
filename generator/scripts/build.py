@@ -478,7 +478,8 @@ class Build:
                   outputs=[DIST / "start" / "install.html"])
         self.step("landing", "generate-landing.py", [DIST / "index.html"],
                   inputs=[GENERATOR / "landing", SCRIPTS / "site_assets.py", SCRIPTS / "agent_pass.py",
-                          GENERATOR / "locales" / SITE / "chrome.toml", *self.pin("grammar")],
+                          GENERATOR / "locales" / SITE / "chrome.toml", STATIC / "install.md",
+                          *self.pin("grammar")],
                   outputs=[DIST / "index.html"])
         (DIST / "porta").mkdir(parents=True, exist_ok=True)
         self.step("portal", "generate-portal.py", [DIST / "porta" / "index.html"],
