@@ -128,6 +128,12 @@ gradus = "Gradus — autograd"
 tela = "Tela — views"
 inferentia = "Inferentia — inference"
 the_corpus = "The corpus"
+group_internals = "Internals"
+internals_overview = "Compiler overview"
+internals_hir = "HIR"
+internals_mir = "MIR"
+internals_adding_a_target = "Adding a target"
+internals_documentation_standard = "Documentation standard"
 
 # The sidebar tree, mirroring nav.fab item for item (nav.fab renders; this
 # registers structure and per-locale labels). section is the target page's
@@ -333,3 +339,26 @@ section = "libraries"
 label = "The corpus"
 href = "/libraries/corpus.html"
 section = "libraries"
+[[nav.group]]
+id = "internals"
+label = "Internals"
+[[nav.group.item]]
+label = "Compiler overview"
+href = "/en-US/compiler/"
+section = "compiler"
+[[nav.group.item]]
+label = "HIR"
+href = "/en-US/compiler/hir.html"
+section = "compiler-hir"
+[[nav.group.item]]
+label = "MIR"
+href = "/en-US/compiler/mir.html"
+section = "compiler-mir"
+[[nav.group.item]]
+label = "Adding a target"
+href = "/en-US/compiler/adding-a-target.html"
+section = "compiler-adding-a-target"
+[[nav.group.item]]
+label = "Documentation standard"
+href = "/en-US/compiler/documentation-standard.html"
+section = "compiler-documentation-standard"
