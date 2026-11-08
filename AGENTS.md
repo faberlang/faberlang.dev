@@ -229,6 +229,14 @@ snapshot, and the regenerated `src/`, `static/` and `dist/` together.
 Tree ids are content addresses, so a radix history rewrite that only changes
 commits leaves the pin valid.
 
+Corpus files are read through `generator/scripts/fab_sections.py`, a port of the
+compiler's section splitter (`crates/radix-module/src/driver/frontmatter.rs`):
+the case header is the `+++ toml` section (or the legacy `+++` pair), the
+expected output is the `+++ … stdout` section, and the corpus pages, search
+index and `llms-full.txt` walk only `corpus/reference/` once the pin has one
+(through 1.18 the exempla were `corpus/` itself). Change the reader when the
+compiler's splitter changes, not the callers.
+
 `faber` on PATH (or `--faber`) is used for reader-locale conversion. Results
 are cached in `generator/target/convert-cache/` keyed by compiler version,
 reader pack tree, source locale and source text.
