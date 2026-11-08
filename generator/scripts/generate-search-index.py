@@ -33,14 +33,13 @@ try:
 except ModuleNotFoundError:  # pragma: no cover - Python < 3.11 fallback
     import tomli as tomllib  # type: ignore
 
+import fab_sections
 from corpus_locale import assign_slugs, default_reader_root, load_pack
 
 
 def parse_frontmatter(path: Path) -> dict[str, object] | None:
-    parts = path.read_text(encoding="utf-8").split("+++", 2)
-    if len(parts) != 3:
-        return None
-    return tomllib.loads(parts[1])
+    """A case's TOML header, legacy `+++` pair or 1.19 `+++ toml` section."""
+    return fab_sections.header_fields(path)
 
 
 def as_list(value: object) -> list[str]:
@@ -72,7 +71,7 @@ def main() -> None:
         args.reader_root = default_reader_root()
 
     canonical: dict[str, dict[str, object]] = {}
-    for path in sorted(args.corpus.rglob("*.fab")):
+    for path in sorted(fab_sections.published_corpus(args.corpus).rglob("*.fab")):
         fields = parse_frontmatter(path)
         if not fields:
             continue
