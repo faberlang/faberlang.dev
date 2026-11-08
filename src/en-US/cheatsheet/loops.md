@@ -27,25 +27,32 @@ incipit {
 
 ### In lockstep {#lockstep}
 
-`ex` also accepts a comma series: give it N collections and N name binders,
-and the loop walks them all in lockstep — one shared index, one value from
-each list per turn:
+`ex` also walks several lists together. Join the sources with `et` (English
+`and`) and the binders the same way, and the loop walks them all in lockstep —
+one shared index, one value from each list per turn:
 
 ```faber locale-tabs
 incipit {
     sit lista<textus> nomina ← ["Alia", "Brunus"]
     sit lista<numerus> aetates ← [34, 27]
 
-    itera ex nomina, aetates apud [i] sit nomen, aetas {
+    itera ex nomina et aetates apud [i] sit nomen et aetas {
         nota i, nomen, aetas
     }
 }
 ```
 
-`apud` (English `at`) names the shared index. The sources are listas, the
-binders are plain names, and the first source owns the length: if a later
-list is shorter, the loop stops with a runtime error rather than silently
-truncating to the minimum.
+`apud` (English `at`) names the shared index. The sources are listas, and the
+binders are plain names, one per source. The lists must have the same length:
+lengths known to differ are refused at check (`SEM010
+itera_lockstep_length_mismatch`), and the walk never truncates to the shorter
+list. Maps and sets cannot be lockstep sources.
+
+Since 1.19 a comma in a loop head means the next loop in, and every clause after
+it starts with its own `ex` or `ab`. The old comma series `itera ex a, b` is
+refused (`PARSE001 itera_bare_comma_source`). Nested comma clauses such as
+`itera ab 0 ‥ m, ab 0 ‥ n sit i, j` parse but are not lowered in 1.19
+(`SEM008 itera_nested_clause_unsupported`): write two nested loops.
 
 ## Over keys {#keys}
 
@@ -176,7 +183,7 @@ main {
 }
 ```
 
-Known issue in 1.18: `return thread` is checked but not yet compiled. The code
+Known issue in 1.19: `return thread` is checked but not yet compiled. The code
 generators and the lowering to the runner's form refuse it by name
 (`return_thread_lowering_pending`), so a program that uses it passes `faber
 check` and stops at `faber check --lower`, `faber build` and `faber run`. The

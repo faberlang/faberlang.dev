@@ -92,6 +92,43 @@ probandum "assertiones" {
 }
 ```
 
+## Tests in the program's own file {#sections}
+
+Since 1.19 a source file can carry its tests, and the output a run should
+print, in sections after its program. Each section starts with a whole-line
+marker: `+++ toml` for the header, `+++ faber` for the program, `+++ faber
+test` for the tests, and `+++ text stdout` (or `stdin`, `stderr`; also `json`,
+`jsonl`, `base64`) for streams. A section runs to the next marker.
+
+```text
++++ toml
+locale = "en"
+
++++ faber
+@ public
+fn double(int x) → int {
+    return x * 2
+}
+
+main {
+    print double(21)
+}
+
++++ faber test
+test "doubles" {
+    assert double(21) ≡ 42
+}
+
++++ text stdout
+42
+```
+
+The test section sees the program's `@ public` items, as a sibling file would.
+`check`, `run` and `build` compile only the program section; `faber test`
+runs the test section, and `faber corpus` compares the program's output with
+the stream sections. A file with only a `+++ faber test` section is a test-only
+file that `faber test` runs and `faber run` refuses.
+
 ## Where tests live, and running them {#running}
 
 Tests sit beside the code they exercise, inside the package. Run them with:
