@@ -10,7 +10,7 @@ sources = []
 A tensor or matrix folds to a value with `reduce via`, and to a tensor of
 running values with `scan via`. Both walk the elements in row-major order and
 bind each element to a name. A `kernel` is a function that runs on a device. The
-device blocks at the end of this page, `do all` and `do device`, group kernel
+device blocks at the end of this page, `do batch` and `do device`, group kernel
 launches so that a fault is reported once.
 
 The examples run with `faber run`. The kernel examples need a device route:
@@ -316,7 +316,7 @@ kernel row_totals(tf32[4, 3] w, mut tf32[4, 3] scratch, mut tf32[4] totals) → 
 }
 ```
 
-## Grouping device work: `do all` and `do device` {#device-regions}
+## Grouping device work: `do batch` and `do device` {#device-regions}
 
 A kernel can fail. A kernel that declares `⇥ string` reports on the error
 channel, and on a device many lanes can fail at once. The lowest lane's error is
@@ -325,7 +325,7 @@ the one delivered, and delivery is a choice the block makes:
 | Block | Where a kernel fault reaches `catch` |
 |---|---|
 | `do { … }` | Ordinary delivery, as for any failable call. |
-| `do all { … }` | **Once, when the block exits**, however many launches ran. |
+| `do batch { … }` | **Once, when the block exits**, however many launches ran. |
 | `do device { … }` | The same, and the body is also checked as a device-resident region. |
 
 ```faber locale=en
@@ -342,7 +342,7 @@ kernel scale(tensor<f32, [4]> src, mut tensor<f32, [4]> dst) → void ⇥ string
 main {
     let tensor<f32, [4]> src ← [1.0, -2.0, 3.0, -4.0] ↦ tensor<f32, [4]>
     mut tensor<f32, [4]> dst ← tf32[4] {}
-    do all {
+    do batch {
         scale(src, mut dst)
         scale(src, mut dst)
     }
@@ -356,6 +356,18 @@ main {
 With `faber run --device cpu` this prints `negative lane` once and then `done`,
 although two launches faulted. Reading a faulted output on the host inside the
 block delivers the fault at that read.
+
+`do all { … }` is the legacy spelling of `do batch`. It stays accepted in the
+same slot and means the same thing; `faber fac-batch-codemod --write` rewrites
+it as `do batch` (Latin `fac gregatim`).
+
+`do eligible { … }` (Latin `fac idonea`) grants device eligibility to its body
+and to the functions it calls synchronously, and restores the surrounding
+permission when it exits; a closure created inside captures none. Faults keep
+ordinary `do` timing. With `--device-mode eligible`, analysis may admit proved
+ordinary functions as device variants there. In 1.19 the block checks and runs,
+but eligible code is not yet placed on a device. A `do` takes one modifier
+word: compose `batch`, `device` and `eligible` with nested blocks.
 
 `do device` marks the block as a **device-resident region**. The body may hold
 kernel launches, `for range` loops and `if` conditions over captured scalars,
@@ -394,7 +406,7 @@ main {
 ```
 
 A region is checked, not compiled differently: it executes exactly as
-`do all`. `faber check --device cpu` (or `metal`, `cuda`) builds the device
+`do batch`. `faber check --device cpu` (or `metal`, `cuda`) builds the device
 image without running it and prints one `INFO001` line per region with its
 inputs, in-outs, launches per iteration and host syncs. For the program
 above:
