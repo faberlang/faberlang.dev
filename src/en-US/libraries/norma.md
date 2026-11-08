@@ -31,6 +31,7 @@ never passes `faber check`.
 | `norma:console` | Console I/O (stdin, stdout, stderr) |
 | `norma:crypto` | Cryptography (hash, HMAC, cipher, sign) |
 | `norma:csv` | CSV wire format |
+| `norma:db` | SQLite: connections, transactions and prepared writes, with `DbFault` errors (runner and generated Rust; since 1.19) |
 | `norma:deque` | Double-ended queue |
 | `norma:encoding` | Encoding and decoding (base64, hex, URL) |
 | `norma:fault` | The I/O fault union (`IoFault`) |

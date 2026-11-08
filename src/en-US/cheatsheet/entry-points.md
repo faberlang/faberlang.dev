@@ -38,6 +38,10 @@ code, and so does the program built for any target that runs programs: the
 runner, Rust, Go, TypeScript, Swift, Python, LLVM and Cranelift all end with
 the status the entry names. A plain entry ends with `0`.
 
+Since 1.19 the code must be in the POSIX range 0 to 255. A constant outside it
+is refused (`SEM010 main_exit_out_of_range`), and a run-time value outside it
+traps, on the runner and every target alike.
+
 ```faber locale-tabs
 incipit exitus 2 {
     nota "done"

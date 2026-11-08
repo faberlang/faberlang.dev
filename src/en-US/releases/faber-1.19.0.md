@@ -130,7 +130,7 @@ main {
 
 #### Simulations
 
-The simulations moved from `corpus-simulations/` to `corpus/simulations/`. Beside the four from 1.18, the directory now has `a2-flood`, a regional flood solver with run-time extent stencil kernels; `chemical-diffusion`, coupled spatial chemistry checked against an independent reference; `rocket-nozzle-flow`, a quasi-one-dimensional nozzle flow solver; and `structural-fea`. Each has a README and a `PROVENANCE.md`. Device execution and the native Rust emitter are in the released `faber` binary, not the open-source build.
+The simulations moved from `corpus-simulations/` to `corpus/simulations/`. Beside the four from 1.18, the directory now has `a2-flood`, a regional flood solver with run-time extent stencil kernels; `chemical-diffusion`, coupled spatial chemistry checked against an independent reference; `rocket-nozzle-flow`, a quasi-one-dimensional nozzle flow solver; and `structural-fea`, static linear elasticity solved matrix-free. The last two are paused spikes. Each has a README and a `PROVENANCE.md`. Device execution and the native Rust emitter are in the released `faber` binary, not the open-source build.
 
 ### Breaking changes
 

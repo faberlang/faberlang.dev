@@ -20,9 +20,10 @@ Corpus content is divided by shape:
 
 | Content | Lives in |
 |---------|----------|
-| Single-file language exempla (keywords, operators, types, concepts) | `radix/corpus/` |
-| Package-shaped corpus fixtures | `radix/corpus-product/` |
-| Complete simulation programs | `radix/corpus-simulations/` |
+| Single-file language exempla (keywords, operators, types, concepts) | `radix/corpus/reference/` |
+| Package-shaped corpus fixtures | `radix/corpus/product/` |
+| Complete simulation programs | `radix/corpus/simulations/` |
+| The Norma suite, one proof package per case | `radix/corpus/norma/` |
 | Application demos | `examples/` (sibling dirs) |
 
 The old `examples/corpus/` path is a redirect stub. The generated corpus
@@ -30,8 +31,9 @@ pages on this site are built from `radix/corpus/`.
 
 ## Simulations {#simulations}
 
-Since 1.18 four complete programs sit beside the corpus, each with a README, a
-small smoke and its provenance:
+Complete programs live in `corpus/simulations/`, each with a README, a small
+smoke and its provenance. Before 1.19 the directory was `corpus-simulations/`.
+1.18 shipped four of them, and 1.19 adds four more:
 
 | Program | What it does |
 |---|---|
@@ -39,6 +41,10 @@ small smoke and its provenance:
 | `drone-mission` | Branchy aircraft mission evaluation, where each GPU lane flies a whole mission |
 | `swarm-decimal` | A deterministic many-actor simulation in fixed-point decimals |
 | `h264-encoder` | A constrained-baseline H.264 encoder on native multicore CPU workers; no GPU acceleration is claimed |
+| `a2-flood` | A regional flood solver at corpus size: run-time extent stencil kernels and a device-resident clock, pinned against an independent binary64 reference |
+| `chemical-diffusion` | Coupled spatial chemistry, checked against an independent reference, with CPU worker and partition controls |
+| `rocket-nozzle-flow` | Quasi-one-dimensional compressible nozzle flow: geometry, a host solver and `f32` device primitives |
+| `structural-fea` | Static three-dimensional linear elasticity on eight-node hexahedral elements, solved matrix-free with preconditioned conjugate gradients (paused spike) |
 
 Device execution and the native Rust emitter are in the released `faber` binary,
 not the open-source build. Each README gives its exact route requirements.
@@ -52,18 +58,27 @@ keyword, operator group, or concept. Each term has one owning file, and the
 
 ## Layout {#layout}
 
+Since 1.19 one `corpus/` tree holds every suite, and each subtree says what its
+cases are. A language exemplum lives at `reference/<kind>/<term>/<file>.fab`.
+
 ```
 corpus/
-  functio/           # function keyword exemplars
-  genus/             # record type exemplars
-  si/                # conditional branch exemplars
-  itera/             # iteration exemplars
-  lista/ tabula/     # collection type exemplars
-  tensor/ sparsa/    # tensor exemplars
-  ad/                # capability call exemplars
-  operatores/        # glyph / operator groups
+  reference/         # language exempla, one directory per term
+    keyword/         #   keywords (itera/, functio/, …)
+    type/            #   types (lista/, tensor/, …)
+    operator-group/  #   glyph and operator groups
+    reject/          #   programs the compiler must refuse
+    ...
+  product/           # package-shaped fixtures, one faber.toml per case
+  simulations/       # complete programs with smoke packages
+  norma/             # the Norma suite
+  format/            # faber format inputs and their expected output
   ...
 ```
+
+A case's expected output lives in the file itself, in `+++ text stdout` (or
+`stderr`, `json`, `jsonl`, `base64`) sections; a reject case names its
+diagnostics in its header. There are no `.expected` sidecars.
 
 ## File format {#file-format}
 
