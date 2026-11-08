@@ -320,7 +320,19 @@ def project_corpus_source(source: str, mapping: dict[str, str], reader: str, fab
 
     Each conversion is a full compiler process, so failed conversions are
     memoized per (reader, body) and every invocation is bounded by a timeout —
-    an unbounded convert here is what left earlier builds waiting forever."""
+    an unbounded convert here is what left earlier builds waiting forever.
+
+    A 1.19 sectioned record (`+++ toml` / `+++ faber` / streams) is first put in
+    the legacy `+++` header shape, program only, so the split below holds."""
+    import fab_sections
+
+    try:
+        record = fab_sections.split(source)
+    except fab_sections.SectionError:
+        return source
+    if record.header is None:
+        return source
+    source = fab_sections.legacy_record(record)
     parts = source.split("+++", 2)
     if len(parts) != 3:
         return source

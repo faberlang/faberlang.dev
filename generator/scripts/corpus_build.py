@@ -22,6 +22,7 @@ from collections import defaultdict
 from pathlib import Path
 
 import corpus_ia
+import fab_sections
 import receipt
 import speculum_py
 from corpus_locale import assign_slugs, load_pack
@@ -97,20 +98,28 @@ def build(*, corpus: Path, reader_root: Path, output: Path, generator_dir: Path,
     canonical: dict[str, dict] = {}
     category_terms: dict[str, list] = defaultdict(list)
 
+    # `corpus` is the published subtree (`fab_sections.published_corpus`):
+    # `corpus/` itself through 1.18, `corpus/reference/` from 1.19. Paths shown
+    # on the pages stay rooted at the checkout name, `radix/corpus/...`.
+    corpus_dir = corpus if corpus.name == "corpus" else corpus.parent
     for path in sorted(corpus.rglob("*.fab")):
-        source = path.read_text()
-        parts = source.split("+++", 2)
-        if len(parts) != 3:
+        parts = fab_sections.read(path)
+        if parts.header is None:
             continue
-        fields = tomllib.loads(parts[1])
+        fields = tomllib.loads(parts.header)
         term = fields.get("term")
         if not term:
             continue
         include = bool(fields.get("canonical", False)) or fields.get("kind") == "reject"
         if include:
-            expected_path = path.with_suffix(".expected")
-            expected = expected_path.read_text() if expected_path.exists() else ""
-            rel = path.relative_to(corpus.parent.parent)
+            # 1.19 cases carry their expected output in a stdout section; the
+            # 1.18 corpus kept it in a `.expected` sidecar beside the case.
+            expected = fab_sections.stream_text(parts, "stdout")
+            if expected is None:
+                expected_path = path.with_suffix(".expected")
+                expected = expected_path.read_text() if expected_path.exists() else ""
+            source = fab_sections.legacy_record(parts)
+            rel = path.relative_to(corpus_dir.parent.parent)
             records_by_term[term].append(
                 (not fields.get("canonical", False), str(rel), source, expected)
             )

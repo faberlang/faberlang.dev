@@ -38,6 +38,7 @@ sys.path.insert(0, str(SCRIPTS))
 
 import corpus_build  # noqa: E402
 import diagrams  # noqa: E402
+import fab_sections  # noqa: E402
 import locales_registry  # noqa: E402
 import receipt  # noqa: E402
 import speculum_py  # noqa: E402
@@ -77,7 +78,8 @@ PAGE_DATA = [
     GENERATOR / "locale-tabs",
     GENERATOR / "diagrams",
 ]
-CORPUS_TOOLCHAIN = PAGE_TOOLCHAIN + ["corpus_build.py", "corpus_ia.py", "corpus_locale.py", "agent_reference.py"]
+CORPUS_TOOLCHAIN = PAGE_TOOLCHAIN + ["corpus_build.py", "corpus_ia.py", "corpus_locale.py", "agent_reference.py",
+                                     "fab_sections.py"]
 CORPUS_DATA = PAGE_DATA + [GENERATOR / "corpus-categories.toml", EXPLAIN_SNAPSHOT]
 
 # Presentation passes over a stage tree, in order. `{tree}` is the stage root.
@@ -390,7 +392,7 @@ class Build:
         (stage / SITE).mkdir(parents=True)
         receipt.drain()
         stats = corpus_build.build(
-            corpus=upstream.radix_root() / "corpus",
+            corpus=fab_sections.published_corpus(upstream.radix_root() / "corpus"),
             reader_root=upstream.radix_root() / "locale",
             output=stage / SITE, generator_dir=GENERATOR, site_locale=SITE,
             reader_locale=self.reader, stylesheet=STYLESHEET,
@@ -462,10 +464,11 @@ class Build:
         pins = self.pin("corpus", "locale")
         self.step("llms-full", "render-llms.py",
                   ["--corpus", corpus, "--output", DIST / "llms-full.txt"],
-                  inputs=[SCRIPTS / "corpus_locale.py", *pins], outputs=[DIST / "llms-full.txt"])
+                  inputs=[SCRIPTS / "corpus_locale.py", SCRIPTS / "fab_sections.py", *pins],
+                  outputs=[DIST / "llms-full.txt"])
         self.step("search-index", "generate-search-index.py",
                   ["--corpus", corpus, "--output-dir", DIST, "--locale", SITE],
-                  inputs=[SCRIPTS / "corpus_locale.py", *pins],
+                  inputs=[SCRIPTS / "corpus_locale.py", SCRIPTS / "fab_sections.py", *pins],
                   outputs=[DIST / "search-index.json", DIST / "search-index.en-US.json"])
         self.step("ia-redirects", "ia-redirects.py", ["stubs"], inputs=[],
                   outputs=[DIST / SITE / "start" / "install.html"])
