@@ -23,8 +23,8 @@ ergonomic developer tool.
 |---|---|
 | `faber build <path>` | Compile a package to a target backend (default: Rust) |
 | `faber check <path>` | Type-check without emitting code |
-| `faber run <path>` | Run a source file, package, or archive: compiled in memory with Cranelift (`clif-jit`) when that lane accepts it, otherwise on the MIR runner; `--target` picks the engine |
-| `faber test <path>` | Run proba cases on the MIR runner |
+| `faber run <path>` | Run a source file, package, or archive: compiled in memory with Cranelift (`clif-jit`); `--device reference` runs it on the MIR runner, `--target` builds for a target and runs the result |
+| `faber test <path>` | Run test cases on the MIR runner: `+++ faber test` sections, test-only `.fab` files and `.proba` files |
 | `faber format <path>` | Report files whose layout differs from canonical formatting; `--write` applies it |
 | `faber convert <path> --to <locale>` | Convert source between reader-locale surfaces (report-only unless `--write`) |
 | `faber explain <term>` | Explain a glyph, keyword, grammar term, or diagnostic code |
@@ -37,7 +37,9 @@ ergonomic developer tool.
 | `faber verify <file>` | Run aspect verification on a single file |
 | `faber verify-library <input>` | Verify a library package's target binding manifest |
 | `faber model inspect <path>` | Inspect model-file metadata (safetensors) |
-| `faber lex` / `parse` / `hir` / `mir` / `cli-ir` | JSON phase dumps (compatibility aliases for `radix <phase>`) |
+| `faber perf <dir>` | Compare the variants of a performance scenario described by its `perf.toml` |
+| `faber fac-batch-codemod <path>` | Rewrite legacy `do all` as `do batch` (report-only unless `--write`) |
+| `faber debug lex` / `parse` / `hir` / `mir` / `cli-ir` / `abi` | Hidden developer group: phase dumps and the host ABI contract. The top-level `faber lex` … `faber cli-ir` names stay as hidden aliases for 1.19 |
 | `faber host manifest` | Script host introspection (kernel manifest) |
 
 ### Building a package {#building}
@@ -48,8 +50,14 @@ faber build my-package/ -t rust
 
 The `-t` flag selects the codegen target. `faber build --help` lists the
 accepted values and `faber targets` shows each target's current capability
-notes. Diagnostics can be promoted to errors with `--deny-warnings` (all
-warnings) or `--deny <CODE>` (a specific catalog code, repeatable).
+notes. Without `-t`, `faber build` uses the manifest's `[build] target` when the
+package declares one, and `rust` otherwise. Diagnostics can be promoted to
+errors with `--deny-warnings` (all warnings) or `--deny <CODE>` (a specific
+catalog code, repeatable).
+
+`--threads N` bakes a worker count into the program emitted for `python`, `c`,
+`swift`, `go` and `ts`. Without it the program uses `[device] threads` when the
+manifest sets it, and otherwise half the host's cores, at least one.
 
 ### Device execution (Metal / CUDA) {#device-execution}
 
@@ -71,7 +79,9 @@ run as ordinary functions, single-threaded, on the MIR runner. Since 1.17 `cpu`
 is a separate device. It goes through the same session and launch pipeline as
 `metal` and `cuda`, and a multicore worker queue runs the kernels. `--threads N`
 (or `[device] threads`) sets the worker count, and `--partitions N` selects
-partitions. A package without kernels runs on the reference route. Device
+partitions. A program without kernels opens no device: `--device reference`
+runs it on the MIR runner, and `cpu`, `metal` or `cuda` run it on the default
+host engine. Device
 selection precedence:
 CLI `--device` > manifest `[device] device` > `auto`. The packaged FMIR image's `device` section carries the canonical device
 program plus Metal MSL and CUDA PTX artifacts (each with a provenance hash);
@@ -89,9 +99,14 @@ old `SEM008 nucleum_wide_integer` and `nucleum_d64` refusals are gone. Whether
 a device can carry them is a per-target fact in the requirement report: Metal
 does; the other device targets refuse the kernel by name rather than
 approximate it. An integer intermediate beyond the 64-bit range (a `d64`
-intermediate beyond its 128-bit carrier) is `SEM008 nucleum_wide_intermediate`,
-and `f64` is still refused in kernels (`SEM008 nucleum_f64`). Write `i32` and
-`f32` to keep a kernel portable to every device:
+intermediate beyond its 128-bit carrier) is `SEM008 nucleum_wide_intermediate`.
+
+Since 1.19 `f64` is legal in a kernel too, including the `f64` result of
+integer `÷`. The CPU device and CUDA carry it natively; Metal and WGSL refuse
+the kernel by name, naming the `f64` value and its line, and AMD refuses it
+until a native path is verified. No device narrows `f64` silently or emulates
+it, and `--device auto` does not move such a kernel to the CPU: pass `--device
+cpu`. Write `i32` and `f32` to keep a kernel portable to every device:
 
 ```faber locale=en
 @ public
@@ -146,6 +161,14 @@ the same for the package. The switch can only lower a tier, and no environment
 variable sets it. Use it to check whether a relaxed or unsafe kernel changes
 an answer.
 
+### Device admission {#device-mode}
+
+`--device-mode explicit|eligible` on `faber check`, `build` and `run` sets the
+device admission policy at compile time. `explicit`, the default, admits only
+declared kernels. `eligible` also lets analysis admit proved ordinary functions
+as device variants inside a `do eligible { … }` block. The policy does not choose
+where code runs, and 1.19 does not yet place eligible code on a device.
+
 ### Device output and exit status {#device-output}
 
 Since 1.18 the `device: selected backend` line goes to standard error, so
@@ -186,6 +209,16 @@ faber check --lower my-package/
 Runs the front end (lex → parse → semantic analysis) without producing output
 artifacts. Use this in CI and editor integrations.
 
+`--target T` checks against compilation target `T` with the refusal logic
+`faber build --target T` uses, writing nothing: what passes `check --target T`
+is not refused later by a build for the same target. Without the flag, a
+package whose manifest declares `[build] target` is checked against that
+target; with neither, `check` runs semantic analysis only.
+
+```text
+faber check --target go my-package/
+```
+
 Since 1.18 borrow-region inference is total. A construct it cannot yet reason
 about is refused by name (`SEM008 region_facts_not_built`) instead of being
 approximated.
@@ -205,14 +238,24 @@ faber test . --exclude 'nested/*' # skip *.proba sources matching a path pattern
 faber test . --name my_case       # select by proba name
 faber test . --suite suite/path   # select by probandum suite path
 faber test . --tag slow           # select by tag modifier
+faber test . --forbid-only        # refuse every `only` test instead of focusing on it
 ```
 
-`faber test` runs proba cases on the MIR runner, whatever engine `faber run`
+`faber test` runs test cases on the MIR runner, whatever engine `faber run`
 would pick — no Cargo or rustc is invoked for the package, so no Rust toolchain
-is needed. Inline `probandum`
-and `proba` suites live alongside source code, and colocated `*.proba`
-files are discovered as test-only sources (never imported, excluded from
-Cista snapshots). See [Inline testing](/language/errors.html).
+is needed. Since 1.19 a source file can carry its own tests in a `+++ faber
+test` section after its program; the section sees the program's `@ public`
+items, as a sibling file would. A file whose only Faber section is the tests is
+a test-only file: `faber test` runs it, and `check`, `run` and `build` refuse it
+(`PKG001 test_only_source`). Inline `probandum` and `proba` suites still live
+alongside source code, and colocated `*.proba` files are discovered as
+test-only sources (never imported, excluded from Cista snapshots). See [Inline
+testing](/language/errors.html).
+
+`faber corpus <case>` runs a case and compares its output with the file's own
+`+++ text stdout` (or `json`, `jsonl`, `base64`) and stderr sections, feeding
+any `+++ … stdin` section to the program. Since 1.19 there is no `--expected`
+flag and no `.expected` sidecar.
 
 ### Formatting {#formatting}
 
@@ -227,13 +270,12 @@ spelling of the default, and `--stdout` writes the result to stdout instead.
 Formatting never translates between reader locales; use
 `faber convert --to <locale>` for that.
 
-Known issue in 1.18: `faber format` and `faber convert` print every kernel in the
-annotation form, `@ kernel` above an `fn`, so a `kernel` head does not survive
-`--write` yet. The result means the same thing.
-
-Known issue in 1.18: the released `faber format` and `faber convert` refuse a
-file that imports a `norma:*` module (`PKG001 unknown_library_module`, nothing
-written), though `faber check` and `faber run` accept it.
+Since 1.19 `faber format` and `faber convert` keep whichever kernel head a file
+uses. `--normalize-kernel-heads` rewrites every `@ kernel fn name(..)` as
+`kernel name(..) [mode]`. Formatting also writes a file's sections in canonical
+order (the `+++ toml` header, the program, `+++ faber test`, then stdin, stdout
+and stderr) without touching their payload bytes, keeps an end-of-line `#`
+comment on its line, and spaces range glyphs in types (`0 ‥ 8`).
 
 ### Explaining diagnostics {#explaining}
 
@@ -270,40 +312,55 @@ in this process, with no external toolchain.
 faber run script.fab
 ```
 
-Since 1.18 this compiles the program to native code in memory with Cranelift,
-the `clif-jit` engine, and runs it. There is no object file, no linker and no
-`rustc`. When the Cranelift lowering declines the program, `faber run` falls
-back to the MIR runner, and the output is the same as `--target runner`. The
-choice is made before anything runs, so a program that traps or exits nonzero
-on `clif-jit` is never run a second time.
+This compiles the program to native code in memory with Cranelift, the
+`clif-jit` engine, and runs it. There is no object file, no linker and no
+`rustc`. Since 1.19 there is no silent fallback: when the Cranelift lowering
+declines the program, `faber run` stops with `ENGINE001` and exit status 69
+before anything runs. `faber run --device reference` runs a program on the MIR
+runner by request, and never draws that refusal. A program that traps or exits
+nonzero is never run a second time.
 
-Device runs, archives, `--stats` and `--shuffle-seed` always use the MIR runner.
-`--debug` reports the engine on standard error, including when `clif-jit`
-declined the program.
+A program that declares kernels runs its host half on `clif-jit` too, against
+the device the run selects. On `--device cpu`, a kernel the Cranelift lane
+compiler accepts runs as native code; one it declines runs on the interpreted
+lane engine and prints one `ENGINE002` note.
+
+A zip archive, `--shuffle-seed`, and `--stats` outside a device route still run
+on the MIR runner, and say so once with an `ENGINE001` note.
+`--strict-engine`, or `[run] strict-engine = true` in `faber.toml`, turns those
+notes into refusals with exit status 69. `--debug` reports the engine on
+standard error.
+
+```bash
+faber run --device reference script.fab   # the MIR runner, by request
+faber run --strict-engine my-app/         # refuse every slow route
+```
 
 ### Choosing the engine {#run-target}
 
 `faber run --target <target>` picks the engine and takes no fallback: a program
-the engine refuses stops with that diagnostic. `runner` and `clif-jit` run in
-this process. The others build the package for that target, then run the built
-program. Every engine takes the program's arguments after `--`, and the
+the engine refuses stops with that diagnostic. `clif-jit` runs in this process.
+The others build the package for that target, then run the built program. Every engine takes the program's arguments after `--`, and the
 program's standard streams and exit code pass straight through.
 
 | `--target` | What it runs | Needs on `PATH` |
 |---|---|---|
-| `runner` | the MIR runner, the reference every other target is checked against | nothing else |
 | `clif-jit` | native code compiled in memory with Cranelift | nothing else |
 | `ts` | a Node project, run with `node` | `tsc` and `node` |
 | `go` | a Go module (vendored runtime, builds offline), run as built | `go` |
 | `llvm-host` | a native program through LLVM | `llvm-as`, `opt`, `clang` |
+| `python` | a Python program | the target's own toolchain |
+| `c` | a C program | the target's own toolchain |
+| `swift` | a Swift program | the target's own toolchain |
 
 ```bash
 faber run --target ts my-app/ -- --flag value
-faber run --target runner my-app/
+faber run --target python my-app/
 ```
 
-A missing tool is refused by name. `faber build` and `faber emit` refuse
-`--target clif-jit` and `--target runner` by name: those engines exist to run.
+Since 1.19 `--target runner` is retired: it stops with a message that names
+`--device reference`. A missing tool is refused by name. `faber build` and
+`faber emit` refuse `--target clif-jit` by name: that engine exists to run.
 Device packages keep their own route (`--device`, above).
 
 ### How the runner works {#how-it-works}
@@ -335,8 +392,8 @@ fast enough to feel like a shell script.
 
 ### Limitations {#limitations}
 
-- `clif-jit` has the language limits of the `clif` target, so a program it
-  declines runs on the MIR runner instead
+- `clif-jit` has the language limits of the `clif` target; a program it
+  declines needs `--device reference` to run on the MIR runner
 - The MIR runner does not support all host I/O routes that the compiled
   path does — some `norma:*` wrappers remain compiled-only
 - The runner is a MIR-native diagnostic/reference executor, not a
