@@ -40,4 +40,32 @@ faber check .
 `faber check .` exits 0. It is lexing, parsing, and type checking. It does
 not build a native binary. `faber run .` prints `Salve, munde!`.
 
+A source file may also carry its own tests and expected output after the
+program, each part under a whole-line marker. `check`, `run` and `build` read
+only the program section; `faber test .` runs the `+++ faber test` section,
+which sees the program's `@ public` items.
+
+```text
++++ toml
+locale = "en"
+
++++ faber
+@ public
+fn double(int x) → int {
+    return x * 2
+}
+
+main {
+    print double(21)
+}
+
++++ faber test
+test "doubles" {
+    assert double(21) ≡ 42
+}
+
++++ text stdout
+42
+```
+
 Next: https://faberlang.dev/agents/functions.md
