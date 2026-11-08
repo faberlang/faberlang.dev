@@ -529,3 +529,28 @@ functio longitudo<T, magnitudo N>(lista<T, magnitudo N> xs) → numerus {
 ```
 
 A call that names a size argument writes the marker too, as the signature declares the parameter (`f<int, size 4>(x)` in English); a bare natural there is `SEM057 size_marker_required`.
+
+A size can also come from a run-time value. `let size N ← n` (Latin `sit
+magnitudo N ← n`) lifts an `int` into a size at the declaration: the lift
+checks that `n` is not negative and snapshots it, and `N` may then name an
+extent in a type. A size reads as a plain `int` wherever a number is wanted.
+The witness needs its initializer; a deferred `let size N`, `mut size` and
+`ref size` are not witnesses. `const size N = 64` is the static form, and since
+1.19 the old run-time `const size N ← n` is `PARSE010 runtime_const_retired`.
+
+```faber locale=en
+fn runtime_extent(int value) → int {
+    return value
+}
+
+main {
+    mut int n ← runtime_extent(3)
+    let size N ← n
+    n ← n + 10
+    print N
+    print n
+    print N + 1
+}
+```
+
+This prints `3`, `13` and `4`: the later store to `n` leaves `N` alone.
