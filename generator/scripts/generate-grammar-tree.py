@@ -81,8 +81,9 @@ FAMILIES: list[dict] = [
             "program entry points and test suites."
         ),
         "ids": """
-            fab_file frontmatter program regio_decl statement ad_handler_decl
-            nondum_functio_decl
+            fab_file frontmatter toml_section faber_section faber_test_section
+            file_section stream_section program regio_decl statement
+            ad_handler_decl nondum_functio_decl
             statement_core importa_decl importa_record import_field_list
             import_field ex_field visibilitas_field nomen_field ut_field
             omnia_field importa_sugar import_target publica named_import wildcard_import
@@ -101,6 +102,7 @@ FAMILIES: list[dict] = [
         "ids": """
             binding_decl expr_stmt block_stmt const_init insere_expr fixum_decl
             figendum_decl sit_decl ref_decl array_destruct object_destruct functio_decl
+            kernel_decl kernel_mode
             param_list generic_params type_param_list size_param_list
             generic_param size_param generic_bound contract_ref
             generic_type_default generic_size_default call_type_args
@@ -156,7 +158,7 @@ FAMILIES: list[dict] = [
         ),
         "ids": """
             si_stmt si_tail secus_clause arm else_arm dum_stmt itera_stmt
-            itera_binding apud_clause elige_stmt casu_elige_clause
+            itera_clause itera_binding apud_clause elige_stmt casu_elige_clause
             ceterum_clause discerne_stmt discriminants subject_path
             casu_variant_clause custodi_stmt si_guard_clause ex_stmt
             extract_fields extract_field ceteri_field redde_stmt reddet_stmt
@@ -236,7 +238,10 @@ FAMILY_PROSE: dict[str, str] = {
     "program": """\
 A Faber source file is a program. The compiler reads it from the top: an
 optional frontmatter header, an optional `module` region, then the
-declarations, imports, tests, and the entry point that starts it. There is
+declarations, imports, tests, and the entry point that starts it. A file may
+also be split by whole-line section markers (`+++ toml`, `+++ faber`,
+`+++ faber test`, and stream sections such as `+++ text stdout`); the
+compiler reads only the program section. There is
 no hidden wrapper around those declarations and no separate "program"
 object to construct.
 
