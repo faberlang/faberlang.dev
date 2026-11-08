@@ -53,12 +53,12 @@ patching emitted Rust by hand.
 faber run .
 ```
 
-Use `run` for application packages with an `incipit` entry point. Since 1.18
-it compiles the package to native code in memory (the `clif-jit` engine), and
-falls back to the MIR runner when that lane declines the program; the fallback
-is decided before anything runs. `faber run --target runner` picks the MIR
-runner, and `--target clif-jit|ts|go|llvm-host` picks that engine with no
-fallback. `faber build -t <target>` is the command that writes a build. Library-only
+Use `run` for application packages with an `incipit` entry point. It compiles
+the package to native code in memory (the `clif-jit` engine). Since 1.19 a
+program that lane declines is refused with `ENGINE001` before anything runs,
+not handed to the interpreter. `faber run --device reference` picks the MIR
+runner, and `--target clif-jit|ts|go|llvm-host|python|c|swift` picks that
+engine with no fallback. `faber build -t <target>` is the command that writes a build. Library-only
 packages should be checked and tested instead.
 
 ## Explain diagnostics {#explain}

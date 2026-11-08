@@ -14,7 +14,7 @@ There is no separate build tool to install.
 ```bash
 faber init my-app          # create a package
 faber check my-app/        # typecheck, no output written
-faber run my-app/          # run in-process (clif-jit, else the MIR runner)
+faber run my-app/          # run in-process on clif-jit; --device reference for the MIR runner
 faber build my-app/ -t rust  # compile to a target
 faber test my-app/         # run inline proba suites
 faber format my-app/       # report files that would change (--write applies)
@@ -33,13 +33,13 @@ resolve, typecheck) with nothing written to disk.
 | `build` | compile and write output for a target |
 | `run` | run a single file, package, or archive in this process; with `--target`, pick the engine |
 | `repl` | interactive MIR runner, re-lowering each line |
-| `test` | run `proba` cases on the runner, no Cargo or rustc |
+| `test` | run `+++ faber test` sections and `proba` cases on the runner, no Cargo or rustc |
 | `format` | report (or `--write`) canonical formatting at the source's own locale |
 | `convert` | convert source between reader-locale surfaces (`--to <locale>`) |
 | `explain` | explain a glyph, keyword, or grammar term |
 | `targets` | list targets and their current capability notes |
 | `verify` | aspect verification on a single file |
-| `emit`, `lex`, `parse`, `hir`, `mir` | compiler-phase inspection (aliases for `radix`) |
+| `emit`, `debug lex`, `debug parse`, `debug hir`, `debug mir` | compiler-phase inspection (`debug` is hidden; the bare phase names are hidden aliases for 1.19) |
 
 `faber` is for packages. `radix` is the developer tool for single files and
 compiler-phase inspection — see [Inside Radix](/toolchain/radix.html).
@@ -48,11 +48,11 @@ compiler-phase inspection — see [Inside Radix](/toolchain/radix.html).
 
 | Command | What happens | When |
 |---|---|---|
-| `faber run` | parse → typecheck → MIR, then runs the MIR in-process; compiles only with `--target` | iterating, scripting, tests |
+| `faber run` | parse → typecheck → MIR, then compiles in memory with Cranelift and runs in-process; `--device reference` runs the MIR itself, `--target` builds for a target first | iterating, scripting, tests |
 | `faber build -t <target>` | lowers to the chosen target and writes the output | shipping, benchmarking |
 
 Both run the same frontend, so `run` typechecks exactly as strictly as
-`build`. `run` just skips code generation and linking.
+`build`. `run` writes nothing to disk and needs no linker.
 
 ## Where the rest lives {#deeper}
 

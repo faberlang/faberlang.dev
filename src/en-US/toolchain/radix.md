@@ -1143,8 +1143,9 @@ faber test <package>
 faber targets
 ```
 
-`faber run` compiles in memory on `clif-jit` and falls back to the MIR runner;
-`--target` picks the engine (`runner`, `clif-jit`, `ts`, `go`, `llvm-host`).
+`faber run` compiles in memory on `clif-jit` and refuses (`ENGINE001`) what it
+declines; `--device reference` runs on the MIR runner, and `--target` picks the
+engine (`clif-jit`, `ts`, `go`, `llvm-host`, `python`, `c`, `swift`).
 `faber build -t <target>` builds.
 
 For implementation archaeology, start with the driver and move outward:

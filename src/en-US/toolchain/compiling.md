@@ -68,7 +68,7 @@ How mature each target is, measured on the corpus (777 programs the suite runs, 
 | Target | `-t` | Output | Evidence | Source |
 | --- | --- | --- | --- | --- |
 | **Reference** | | | | |
-| MIR runner | (`faber run -t runner`) | executes the program; the oracle | suite 774 / 777 (the rest are pinned expected failures); 53 of the passes are library files with no entry function, which count when they check and lower to valid MIR | public |
+| MIR runner | (`faber run --device reference`) | executes the program; the oracle | suite 774 / 777 (the rest are pinned expected failures); 53 of the passes are library files with no entry function, which count when they check and lower to valid MIR | public |
 | Faber | `faber` | canonical Faber in the source's locale (`format`, `convert`) | round-trip 753 / 760 | public |
 | FMIR / FHIR | `fmir`, `fhir` | serialized MIR and analyzed HIR artifacts | no corpus lane (exercised by the package build and run tests) | public |
 | **Application languages** | | | | |
