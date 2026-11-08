@@ -159,9 +159,11 @@ def read_sample(path: Path) -> str:
     Pack exemplars carry the header so they are valid standalone sources; the
     portal shows them inside a panel that already names the locale.
     """
-    text = path.read_text(encoding="utf-8")
-    text = re.sub(r"\A\+\+\+\n.*?\n\+\+\+\n", "", text, count=1, flags=re.S)
-    return text.strip()
+    import fab_sections
+
+    # From 1.19 a pack exemplar may use `+++ toml` / `+++ faber` sections; the
+    # shared reader returns the program either way.
+    return fab_sections.read(path).program.strip()
 
 
 def load_sample(exemplars_dir: Path, reader_root: Path, reader_locale: str) -> str:
