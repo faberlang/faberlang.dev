@@ -20,7 +20,7 @@ No prebuilt archives were published for this version. It is listed here because 
 
 > **Status**: draft
 
-Faber 1.19 follows 1.18 with a sectioned source file: one `.fab` file can now hold its program, its tests and the input and output a test run expects. Loops gain an `and` head that walks several lists in lockstep, and a comma in a loop head is now reserved for the next loop in. The kernel head is finished: `faber format` keeps it and the grammar reference lists it. A run-time size is now `let size N ← n`. `faber run` no longer falls back to the interpreter silently: a program that Cranelift declines is refused, and every slow route says so. The Norma `db` module, `do batch` and `do eligible` ship, and `f64` is legal in kernels on the routes that carry it natively.
+Faber 1.19 follows 1.18 with a sectioned source file: one `.fab` file can now hold its program, its tests and the input and output a test run expects. Loops gain an `and` head that walks several lists in lockstep, and a comma in a loop head is now reserved for the next loop in. The kernel head is finished: `faber format` keeps it and the grammar reference lists it. A run-time size is now `let size N ← n`. `faber run` no longer falls back to the interpreter silently: a program that Cranelift declines is refused, and every slow route says so. The Norma `db` module, `do batch` and `do eligible` ship, and `f64` is legal in kernels on the routes that carry it natively. Four device-route programs that returned wrong numbers without an error now match the reference.
 
 > **Experimental through version 1.** The language changes constantly, and breaking changes ship in minor releases. Faber 1.19 carries no stability promise, and neither does any other 1.x release. A 2.0 release is planned for when the language is largely stable.
 
@@ -132,6 +132,21 @@ main {
 
 The simulations moved from `corpus-simulations/` to `corpus/simulations/`. Beside the four from 1.18, the directory now has `a2-flood`, a regional flood solver with run-time extent stencil kernels; `chemical-diffusion`, coupled spatial chemistry checked against an independent reference; `rocket-nozzle-flow`, a quasi-one-dimensional nozzle flow solver; and `structural-fea`, static linear elasticity solved matrix-free. The last two are paused spikes. Each has a README and a `PROVENANCE.md`. Device execution and the native Rust emitter are in the released `faber` binary, not the open-source build.
 
+### Fixes
+
+**Device routes no longer return wrong numbers silently.** Four programs ran to completion on `--device cpu` or `--device metal` with results that differed from `--device reference`. Each now matches the reference, and each has a corpus case or a regression test that runs it on every available route:
+
+- `wrapping<u32>` arithmetic inside a CPU-device kernel (shifts, xors, multiplies and a mask, as in a per-lane hash) is reduced to 32 bits again. Unreduced values used to reach the kernel's output.
+- `wrapping<u64>` arithmetic in the host half of a device program, which runs on the Cranelift JIT, keeps its wrapping policy. A `splitmix64` stream returned zeros, then garbage, from its second draw. A conversion from a wrapping value into an exact range still traps when the value is out of range.
+- A `mut tensor<u64>` that a kernel advances on `--device cpu` keeps its state from one launch to the next. It used to read back as zero after every launch.
+- A host copy-into (`<==`) between device regions now updates the device buffer, or is refused by name when it cannot. Before, the buffers kept their first-round contents.
+
+**Targets.** `ordo` is now fully supported on LLVM. About 15 corpus cases that failed on one target now pass: on C (`generic-call-type-args`, `instans`, `reperta`), Go (`tensor-shape-generic`, `empty-match`, `lista-tensor-padded`), LLVM (`ordo`, `d64`, `d64-arithmetic`), TypeScript (`importa`), Python (`tensor`) and Cranelift (`valor-collection-defaults`). On LLVM, a chained call on a method that returns `self` keeps the receiver's identity. The runner keeps exact `u64` subtraction traps.
+
+**Formatting.** `faber format` and `faber convert` keep record construction fields in source order, and keep static size declarations.
+
+**`faber check`** reports a missing package path as a structured error, not a crash.
+
 ### Breaking changes
 
 1. **Lockstep loops use `and`.** Rewrite `for from a, b let x, y` as `for from a and b let x and y`. A range product written `for range 0 ‥ m, 0 ‥ n` is refused; write two nested `for range` loops.
@@ -151,6 +166,11 @@ The simulations moved from `corpus-simulations/` to `corpus/simulations/`. Besid
 - **Nested loop clauses are not lowered.** `for range 0 ‥ m, range 0 ‥ n let i, j` parses and is refused with `SEM008 itera_nested_clause_unsupported`.
 - **`return thread` is still check-only.** Code generation refuses it with `return_thread_lowering_pending`.
 - **`do eligible` does not move work to a device yet.** The modifier and `--device-mode eligible` check and run with ordinary `do` semantics.
+- **A `u64` above 2⁶³ on `--device cpu`.** The Cranelift JIT host half prints such a value as signed when it is read back from a tensor, and refuses a `u64` literal that large. `--device reference` and `--device metal` print it correctly. A fix is in progress; if it lands before the tag, this item goes.
+
+### How this release was gated
+
+A release is blocked by the Rust workspace tests and clippy, on the source tree and on the public export, and by the export's leakage check. The corpus is not a release gate: not every target supports every construct, and the corpus records which ones do.
 
 ### Not in this release
 
