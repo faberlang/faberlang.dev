@@ -52,25 +52,5 @@ why = "rewriting this registry example onto the English pack no longer passes `f
 
 [[allow]]
 kind = "agent-reference-projection"
-subject = "alias"
-why = "same as `is`: the projected example fails `faber check --locale=en`, so the registry text ships"
-
-[[allow]]
-kind = "agent-reference-projection"
-subject = "cli"
-why = "same as `is`: the projected example fails `faber check --locale=en`, so the registry text ships"
-
-[[allow]]
-kind = "agent-reference-projection"
-subject = "commands"
-why = "same as `is`: the projected example for `imperia` (page slug `commands`) fails `faber check --locale=en`, so the registry text ships"
-
-[[allow]]
-kind = "agent-reference-projection"
-subject = "command"
-why = "same as `is`: the projected example fails `faber check --locale=en`, so the registry text ships"
-
-[[allow]]
-kind = "agent-reference-projection"
 subject = "list<b8>"
 why = "same as `is`: the projected example fails `faber check --locale=en`, so the registry text ships"
