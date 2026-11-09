@@ -944,12 +944,22 @@ def nav_tree():
         finge_item("The corpus", "/libraries/corpus.html", "libraries"),
     ]
 
+    internals_items = [
+        finge_en_item("Compiler overview", "/compiler/", "compiler"),
+        finge_en_item("HIR", "/compiler/hir.html", "compiler-hir"),
+        finge_en_item("MIR", "/compiler/mir.html", "compiler-mir"),
+        finge_en_item("Adding a target", "/compiler/adding-a-target.html", "compiler-adding-a-target"),
+        finge_en_item("Documentation standard", "/compiler/documentation-standard.html",
+                      "compiler-documentation-standard"),
+    ]
+
     return [
         {"id": "start", "label": "Start", "items": start_items},
         {"id": "language", "label": "The Language", "items": language_items},
         {"id": "targets", "label": "Targets", "items": targets_items},
         {"id": "locales", "label": "Reader locales", "items": locales_items},
         {"id": "libraries", "label": "Libraries", "items": libraries_items},
+        {"id": "internals", "label": "Internals", "items": internals_items},
     ]
 
 

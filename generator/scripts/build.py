@@ -628,6 +628,7 @@ def smoke(dist: Path, release: str) -> list[str]:
     contains(matrix, "Application lane", "targets HIR summary")
     contains(matrix, "Systems lane", "targets MIR summary")
     contains(f"{en}/index.html", "/toolchain/target-matrix.html", "sidebar target matrix link")
+    contains(f"{en}/index.html", "/en-US/compiler/hir.html", "sidebar compiler internals link")
     contains("robots.txt", "Sitemap:", "robots.txt")
     contains("robots.txt", "Allow: /", "robots allow all")
     if (dist / "robots.txt").is_file() and re.search(
@@ -637,7 +638,7 @@ def smoke(dist: Path, release: str) -> list[str]:
     contains("search-index.en-US.json", '"d":"fn"', "search index English slugs")
     contains(f"{en}/corpus/fn.html", "<title>fn — Faber</title>", "localized corpus fn page")
     contains(f"{en}/corpus/functio.html", "url=/en-US/corpus/fn.html", "latin corpus identity redirect")
-    for section in ("language", "toolchain", "libraries", "reference"):
+    for section in ("language", "toolchain", "libraries", "reference", "compiler"):
         contains(f"{en}/{section}/index.html", "<!DOCTYPE html>", f"{section} index")
     contains(f"{en}/language/index.html", "saturate", "language index shows code")
     for lib in ("norma", "triga", "gradus", "tela", "inferentia"):
