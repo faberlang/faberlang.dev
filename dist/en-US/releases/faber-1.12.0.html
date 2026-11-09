@@ -42,7 +42,7 @@ operation. The Racket (<code>sexp</code>) target names the whole family unsuppor
 (<code>regex_engine_unavailable</code>). The named gaps are listed under &quot;Known issues&quot;.</p><p><strong>Membership glyphs.</strong> <code>x ∈ xs</code> tests membership and <code>x ∉ xs</code> negates it. The
 right operand is a list, a set, a map (the test is on the keys), an enum value
 set (<code>c ∈ [Color.rubrum, Color.viridis]</code>), or a range (<code>age ∈ 18‥65</code>). The
-keyword forms <code>between</code> and <code>within</code> (Latin <code>between</code> and <code>within</code>) are retired:
+keyword forms <code>between</code> and <code>within</code> (Latin <code>inter</code> and <code>intra</code>) are retired:
 they now draw <code>PARSE001 membership_keyword_retired</code>, which names the glyph to
 write. Membership never applies to text: <code>&quot;a&quot; ∈ &quot;abc&quot;</code> is
 <code>SEM010 membership_over_text</code>, and a substring test is <code>haystack.contains(needle)</code>.
@@ -61,7 +61,7 @@ under <code class="glyph">≡</code> and <code class="glyph">≠</code> next to 
 <code class="glyph">↦</code>, and the diagnostic text now names <code class="glyph">≅</code> and <code class="glyph">↦</code>.</p><p><strong>Integer to `f32` rounds once.</strong> <code>int ↦ f32</code> on the MIR runner rounds directly
 from the integer instead of through <code>f64</code>.</p><p><strong>Ranges.</strong> A range <code>step</code> is a positive stride and the direction comes only
 from the bounds: <code>10‥0 step 2</code> yields 10 8 6 4 2 and <code>0‥10 step 2</code> yields
-0 2 4 6 8 (Latin <code>step</code>). A literal zero or negative step is the new compile
+0 2 4 6 8 (Latin <code>per</code>). A literal zero or negative step is the new compile
 error <code>SEM011 range_step_not_positive</code>; a computed one traps at run time. A <code>var</code>
 range binder is a fresh copy at the top of each iteration, so writing to it no
 longer steers the loop. Rust, Go, TypeScript and Swift emission follow the same
@@ -91,7 +91,7 @@ passed <code>faber check</code> and then failed with an unsupported-lowering err
 naming the value, instead of an invalid-MIR failure at run time.</li><li><code>assert cond &quot;msg&quot;</code> on one line is <code>PARSE001 adfirma_message_particle</code> (the
 message was silently dropped); write <code>assert cond panic &quot;msg&quot;</code>. A string on
 the next line is still its own statement.</li><li>A payload-free <code>enum</code> no longer draws <code>WARN025</code> (<code>union_no_common_members</code>);
-an enum is not a written union.</li><li><code>reduce</code> (Latin <code>reduce</code>) folds into a fresh accumulator, so the caller's
+an enum is not a written union.</li><li><code>reduce</code> (Latin <code>reducta</code>) folds into a fresh accumulator, so the caller's
 initial value is no longer overwritten by the result.</li><li>An enum variant stored into a <code>T ∪ none</code> slot or an optional class field, and
 a payload variant of a generic union (<code>Opt&lt;int&gt;</code>), now check, lower and run
 on the runner.</li><li>A declared enum annotation no longer draws the union guardrail warning.</li><li>The MIR runner grows its native stack per call and stops a runaway recursion
@@ -168,7 +168,7 @@ instead of a dead path.</li><li><code>faber format</code>, <code>convert</code> 
 <code>main</code> needs a handler: give it a <code class="glyph">⊥</code> default, wrap it in <code>do { } catch</code> or
 <code>trap { }</code>, or declare <code>⇥ string</code> on the function. In Rust,
 <code>faber::Regex::new</code> returns <code>Result&lt;Regex, RegexError&gt;</code>; there is no
-infallible alias.</li><li><strong>`between` / `within` (Latin `between` / `within`) are retired.</strong> Write <code>x ∈ xs</code>,
+infallible alias.</li><li><strong>`between` / `within` (Latin `inter` / `intra`) are retired.</strong> Write <code>x ∈ xs</code>,
 <code>x ∈ a‥b</code>, and <code>x ∉ …</code> for the negation. Membership over text is rejected;
 use <code>.contains(…)</code>.</li><li><strong>`wrapping&lt;W&gt;` reduces only at the store.</strong> An unstored expression over
 wrapping operands (a division, remainder, comparison, <code>print</code>, or <code class="glyph">↦</code>) is

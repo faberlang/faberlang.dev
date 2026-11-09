@@ -55,6 +55,12 @@ SKIP_PAGES = {Path("reference/grammar.html")}
 SKIP_DIRS: set[str] = set()
 
 SPAN_RE = re.compile(r'<code class="(kw|typ)">([^<]*)</code>')
+# Spans that quote the Latin spelling on purpose: "(Latin `ex`)", "(Latin `verum` /
+# `falsum`)", "(Latin `fixum`, `varia`, `generis`)". The text before such a span ends in
+# "Latin", then zero or more earlier spans joined by `,`, `/`, `and` or `or`. Swapping
+# them printed the English word where the page names the Latin one (1.19.0 notes).
+# project_reader_terms.LATIN_RUN keeps the same runs in the Markdown projection.
+AFTER_LATIN = re.compile(r'\bLatin\s+(?:<code[^>]*>[^<]*</code>\s*(?:,|/|and|or)\s*)*$')
 
 
 def term_map(reader: str) -> dict[str, dict[str, str]]:
@@ -105,6 +111,8 @@ def localize_page(page: Path, mapping: dict[str, dict[str, str]]) -> int:
     def replace(match: re.Match) -> str:
         nonlocal swapped
         cls, term = match.group(1), match.group(2)
+        if AFTER_LATIN.search(text, max(0, match.start() - 300), match.start()):
+            return match.group(0)
         local = mapping[cls].get(term)
         if local is None or local == term:
             return match.group(0)

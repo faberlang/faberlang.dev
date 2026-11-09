@@ -223,12 +223,21 @@ def project_code(
     return "".join(out)
 
 
+LATIN_RUN = re.compile(r"\bLatin\s+`+[^`]*`+(?:\s*(?:,|/|and|or)\s*`+[^`]*`+)*")
+
+
 def _project_inline(line: str, mapping: dict[str, str], *, declined: set[str] | None = None) -> str:
     protected: list[str] = []
     def hold(match: re.Match) -> str:
         protected.append(match.group(0))
         return f"\x00{len(protected) - 1}\x00"
     line = re.sub(r"\]\([^)]*\)|\{#[^}]*\}|<[^>\n]*>", hold, line)
+    # Spans right after the word "Latin" quote the Latin spelling on purpose, as in
+    # "(Latin `fac gregatim`)" or "(Latin `verum` / `falsum`)": projecting them onto
+    # the reader pack turned the 1.19.0 release notes' Latin forms into their English
+    # ones. Fences opt out with `locale=la`; this is the inline equivalent.
+    # localize-spans.py's AFTER_LATIN keeps the same runs in its HTML pass.
+    line = LATIN_RUN.sub(hold, line)
     parts = re.split(r"(`+[^`]*`+)", line)
     for i, part in enumerate(parts):
         if part.startswith("`") and part.endswith("`"):

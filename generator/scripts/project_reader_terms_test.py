@@ -32,6 +32,17 @@ class ReaderTermProjectionTest(unittest.TestCase):
         self.assertIn("`non-null`", result)
         self.assertIn("`T ∪ none`", result)
 
+    def test_span_after_latin_keeps_its_latin_spelling(self) -> None:
+        result = self.project("`do batch { … }` (Latin `fac gregatim`), and `itera ex xs`.\n")
+        self.assertIn("(Latin `fac gregatim`)", result)
+        self.assertIn("`for from xs`", result)
+
+    def test_spans_listed_after_latin_keep_their_latin_spelling(self) -> None:
+        result = self.project("`true` / `false` (Latin `verum` / `falsum`); `fixum` (Latin `fixum`, `varia`, `generis`).\n")
+        self.assertIn("(Latin `verum` / `falsum`)", result)
+        self.assertIn("(Latin `fixum`, `varia`, `generis`)", result)
+        self.assertIn("`const` (Latin", result)
+
     def test_code_strings_and_comments(self) -> None:
         result = self.project('```faber\n# itera — Starts\nfixum textus x ← "fixum"\n```\n')
         self.assertIn("# for — Starts", result)

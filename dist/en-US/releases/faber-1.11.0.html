@@ -56,11 +56,11 @@ Code<code>; the type-argument hint is gone. A registered </code>@ conversion` pa
 serves explicit <code class="glyph">↦</code>, and <code>enum</code> has built-in <code class="glyph">↦</code> rows.</p><p><strong>One conditional expression.</strong> <code>c ✓ a ✗ b</code> is the only conditional
 expression, one level deep, the same in every locale. <code>c ? a : b</code> and
 <code>c sic a else b</code> are removed (<code>PARSE030 conditional_question_colon_removed</code>).</p><p><strong>Null words are split.</strong> In the English reader the null value is <code>null</code> and
-the null type is <code>none</code> (Latin <code>null</code> / <code>none</code>). <code>is</code> / <code>is not</code> (<code>is</code> /
+the null type is <code>none</code> (Latin <code>nulla</code> / <code class="kw">nihil</code>). <code>is</code> / <code>is not</code> (<code>is</code> /
 <code>is not</code>) is a type test only; a value on its right-hand side is
 <code>SEM011 est_value_rhs</code>. An imported type is a legal <code>is</code> target.</p><p><strong>Records.</strong> Every <code>class</code> (<code>class</code>) field declares exactly one of <code>const</code>, <code>var</code>,
-<code>static</code> (Latin <code>const</code>, <code>mut</code>, <code>static</code>); an unmarked field is <code>PARSE010</code>.
-<code>nexum</code> is removed. Copy-with-changes is <code>Genus { x = 1 } from p</code> (Latin <code>from</code>);
+<code>static</code> (Latin <code class="kw">fixum</code>, <code class="kw">varia</code>, <code>generis</code>); an unmarked field is <code>PARSE010</code>.
+<code>nexum</code> is removed. Copy-with-changes is <code>Genus { x = 1 } from p</code> (Latin <code class="kw">ex</code>);
 <code>spread</code> is gone from construction literals. Members are public by default, and
 <code>@ private</code> is enforced. Class inheritance (<code>extends</code>, <code>abstract</code>; Latin <code>sub</code>,
 <code>abstractus</code>) is removed: contracts are <code>interface</code> and <code>implements</code>

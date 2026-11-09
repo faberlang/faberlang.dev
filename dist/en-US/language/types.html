@@ -121,7 +121,7 @@ Package targets that lack hardware support reject them:</p><pre class="faber-cod
 
 <span class="tok-kw">fn</span> swap(<span class="tok-kw">mut</span> <span class="tok-kw">atomic</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> cell, i32 <span class="tok-kw">value</span>) <span class="tok-op">→</span> i32 {
     <span class="tok-kw">return</span> cell.exchange(<span class="tok-kw">value</span>)
-}</code></pre><h3 id="borrow-markers">Borrow markers on types<a class="anchor" href="#borrow-markers">#</a></h3><p>Access markers (<code>ref</code>, <code>mut</code>, <code>own</code>, <code>copy</code>; Latin <code>ref</code>, <code>mut</code>, <code>penes</code>,
+}</code></pre><h3 id="borrow-markers">Borrow markers on types<a class="anchor" href="#borrow-markers">#</a></h3><p>Access markers (<code>ref</code>, <code>mut</code>, <code>own</code>, <code>copy</code>; Latin <code class="kw">de</code>, <code class="kw">varia</code>, <code>penes</code>,
 <code>exemplum</code>) can appear on types in parameter positions to indicate how a value
 is passed. A parameter with no marker is <code>ref</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> toml
 locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
@@ -148,7 +148,7 @@ main {
     imprime(s)
     duplica(mut n)
     let _ t <span class="tok-op">←</span> consume(own s)
-}</code></pre><p>The call site repeats the <code>mut</code> and <code>own</code> markers (Latin <code>mut</code> and
+}</code></pre><p>The call site repeats the <code>mut</code> and <code>own</code> markers (Latin <code class="kw">varia</code> and
 <code>penes</code>): <code>duplica(mut n)</code>, <code>consume(own s)</code>. Leaving one off is
 <code>SEM057 call_marker_missing</code>. A parameter with no marker is <code>ref</code>: the function
 may read it and may not write it.</p><h3 id="copy-resources">What <code>copy</code> will not duplicate<a class="anchor" href="#copy-resources">#</a></h3><p><code>copy</code> makes an independent value, and some values have an identity that cannot
@@ -380,7 +380,7 @@ assign by key:</p><pre class="faber-code"><code class="lang-faber locale=en"><sp
     puncta[<span class="tok-st">"beta"</span>] <span class="tok-op">←</span> <span class="tok-nu">2</span>
     <span class="tok-kw">print</span> puncta.length()
 }</code></pre><h3 id="record">Records — labeled values<a class="anchor" href="#record">#</a></h3><p>A record is a value made of labeled fields. The English type word is
-<code>record</code> (Latin <code>record</code>). Fields are read by label, never by position, and a
+<code>record</code> (Latin <code>ratio</code>). Fields are read by label, never by position, and a
 record is not a class: two record types are the same when they have the same
 labels with exactly the same field types, in any order.</p><p>A bare <code>{ label = value }</code> in a cell with no declared type is a record whose
 fields take their default types; <code>record&lt;*&gt;</code> names that type. A record prints
@@ -447,7 +447,7 @@ than approximate it.</p><p>Reductions (<code>reduce via</code>), ordered scans (
 namespace lookup, not a receiver method), plus elementwise
 <code>added</code>/<code>subtract</code>/<code>multiply</code>/<code>divide</code>/<code>negate</code>, matrix multiplication
 (<code>matmul</code>), and reductions (<code>sum</code>, <code>mean</code>).</p><h3 id="sparsa">Sparsa — sparse fixed-shape buffer<a class="anchor" href="#sparsa">#</a></h3><p>The English spelling is <code>sparse</code> (since 1.15; an English file that writes
-the Latin <code>sparse</code> is <code>PARSE040 wrong_locale_type</code>).</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
+the Latin <code>sparsa</code> is <code>PARSE040 wrong_locale_type</code>).</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
     <span class="tok-kw">mut</span> <span class="tok-kw">sparse</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> <span class="tok-kw">sparse</span> <span class="tok-op">←</span> <span class="tok-kw">empty</span>
     <span class="tok-kw">sparse</span>.<span class="tok-kw">set</span>([<span class="tok-nu">0</span>, <span class="tok-nu">1</span>], <span class="tok-nu">4.0</span>)
     <span class="tok-kw">sparse</span>.<span class="tok-kw">set</span>([<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], <span class="tok-nu">9.0</span>)
@@ -525,7 +525,7 @@ for range <span class="tok-nu">0</span> ‥ <span class="tok-nu">5</span> let i 
 for range <span class="tok-nu">0</span> <span class="tok-op">…</span> <span class="tok-nu">5</span> let i {
     print i
 }</code></pre><p><code class="glyph">‥</code> is exclusive range endpoint; <code class="glyph">…</code> is inclusive.</p><p>A range is also a value. The English type word is <code>range</code> (since 1.15; an
-English file that writes the Latin <code>range</code> is
+English file that writes the Latin <code>intervallum</code> is
 <code>PARSE040 wrong_locale_type</code>). A range stored in a cell can be walked, and
 printing it shows its construction:</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
     <span class="tok-kw">let</span> <span class="tok-kw">range</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> r <span class="tok-op">←</span> <span class="tok-nu">2</span>‥<span class="tok-nu">5</span>

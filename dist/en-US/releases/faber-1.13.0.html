@@ -23,7 +23,7 @@ building real programs — compiled programs cannot yet touch the outside
 world, there is no way to install a library beyond the built-in standard
 library, and the standard library still has holes. Those limits are listed in
 detail under Known issues; none of them gate this release.</p><h3 id="language">Language<a class="anchor" href="#language">#</a></h3><p><strong>Output follows the file's locale.</strong> The words a program prints — boolean
-<code>true</code> / <code>false</code> (Latin <code>true</code> / <code>false</code>), the null value <code>none</code> (<code>none</code>),
+<code>true</code> / <code>false</code> (Latin <code class="kw">verum</code> / <code class="kw">falsum</code>), the null value <code>none</code> (<code>none</code>),
 and the tuple head <code>tuple</code> (<code>tuple</code>) — come from the locale pack of the file
 that defines them, on every backend: the runner, Rust, Go, TypeScript, Swift,
 Python, WebAssembly, LLVM and the S-expression target. A generic function
@@ -48,7 +48,7 @@ build the typed zero: every part takes its default, including a tensor of
 vectors and size-parameter extents. The bare form (<code>← tf32[2, 2]</code>) is
 retired, as is <code>Type []</code>; a call-form constructor is refused at parse time.
 The inferred constructor <code class="glyph">_ {}</code> builds the typed zero where the type comes
-from context. <code>empty</code> (Latin <code>empty</code>) is the default empty instance of the
+from context. <code>empty</code> (Latin <code>vacua</code>) is the default empty instance of the
 declared type: at a dense tensor, vector or matrix slot it <em>is</em> the typed
 zero. <code>empty</code> claims zero-or-more types only — a text, character, byte,
 regex or tuple slot refuses it by name. The English reader spells the marker
@@ -169,7 +169,7 @@ named parse error that names its replacement.</li><li><strong>`via Bits` is reti
 and byte insertion produce a <code>list&lt;b8&gt;</code> everywhere.</li><li><strong>A bare float-to-integer conversion is rejected.</strong> Name the rounding:
 <code>via Floor</code>, <code>via Ceil</code>, <code>via HalfEven</code> or <code>via Trunc</code> (the error names
 them).</li><li><strong>The typed zero is `Type {}`.</strong> Rewrite the bare form <code>← tf32[2, 2]</code> as
-<code>tf32[2, 2] {}</code>; <code>Type []</code> and call-form constructors are refused.</li><li><strong>A bare `none` value is retired.</strong> Write <code>null</code> (Latin <code>null</code>); the
+<code>tf32[2, 2] {}</code>; <code>Type []</code> and call-form constructors are refused.</li><li><strong>A bare `none` value is retired.</strong> Write <code>null</code> (Latin <code>nulla</code>); the
 parse error names the locale's word.</li><li><strong>English `empty` is retired.</strong> The English empty-instance marker is
 <code>empty</code>; Latin keeps <code>empty</code>.</li><li><strong>`.sorted(key)` is retired</strong> in favour of the sort expression, and the
 <code>ordered_map</code> module is renamed <code>sorted_map</code>.</li><li><strong>CLI renames.</strong> <code>--reader-locale</code> is <code>--locale</code>; diagnostics move to the
