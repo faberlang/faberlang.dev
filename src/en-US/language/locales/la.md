@@ -50,6 +50,7 @@ Generated from the packs. The Latin column is the pack key and the compiler's in
 | figendum     await_const
 | variandum    await_var
 | axis         axis
+| gregatim     batch
 | ante         before
 | metior       bench
 | inter        between
@@ -79,6 +80,7 @@ Generated from the packs. The Latin column is the pack key and the compiler's in
 | machina      device
 | fac          do
 | sin          elif
+| idonea       eligible
 | secus        else
 | insere       embed
 | vacua        empty

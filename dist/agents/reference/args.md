@@ -40,7 +40,7 @@ declaration-only CLI entry (whitelist: argumenta/argumenta.fab).
 ## Example
 
 ```fab
-@ cli "argumenta-smoke"
+@ cli { name = "argumenta-smoke" }
 @ description "args exemplum"
 main args args {
 }

@@ -26,37 +26,45 @@ reduce via first from <source> [at [coords]] let <binder> { return <predicate> }
 ## Example
 
 ```fab
-+++
++++ toml
 locale = "la"
-+++
++++ faber
 fn switch(tf32[3] xs) → float ∪ none {
-    return reduce via first from xs let x { return x ≻ 2.0 }
+    return reduce via first from xs let x {
+        return x ≻ 2.0
+    }
 }
 
 # No-match — no live element yields `none`, never an error.
 fn elige_nullum(tf32[2] xs) → float ∪ none {
-    return reduce via first from xs let x { return x ≻ 9.0 }
+    return reduce via first from xs let x {
+        return x ≻ 9.0
+    }
 }
 
 # Empty source — a statically zero-extent tensor yields `none`.
 fn elige_vacuum(tf32[0] xs) → float ∪ none {
-    return reduce via first from xs let x { return x ≻ 0.0 }
+    return reduce via first from xs let x {
+        return x ≻ 0.0
+    }
 }
 
 # Matrix — row-major order; `at [i, j]` binds the coordinates.
 fn elige_cellam(tf32[2, 2] m) → float ∪ none {
-    return reduce via first from m at [i, j] let x { return x ≻ 1.0 }
+    return reduce via first from m at [i, j] let x {
+        return x ≻ 1.0
+    }
 }
 
 main {
-    let tf32[3] xs ← [1.0, 5.0, 3.0] ↦ tf32[3]
+    let tf32[3] xs ← [1.0, 5.0, 3.0] ↦ tensor<f32, [3]>
     print switch(xs)
-    let tf32[2] ys ← [1.0, 2.0] ↦ tf32[2]
+    let tf32[2] ys ← [1.0, 2.0] ↦ tensor<f32, [2]>
     print elige_nullum(ys)
     let tf32[0] vacua_tensor ← empty
     print elige_vacuum(vacua_tensor)
     let list<f32> flat ← [0.5, 2.0, 3.0, 4.0]
-    let tf32[2, 2] m ← flat ↦ tf32[2, 2]
+    let tf32[2, 2] m ← flat ↦ tensor<f32, [2, 2]>
     print elige_cellam(m)
 }
 ```

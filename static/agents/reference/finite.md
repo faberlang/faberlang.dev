@@ -46,7 +46,7 @@ fraction field (≢ 0) is what separates NaN from ±Inf inside that class.
 
 ```fab
 fn finite(f32 x) → bool {
-    let _ bits ← x ↦ b32 ↦ u32
+    let _ bits ← (x ↦ b32) ↦ u32
     let _ exponent ← bits ⇒ 23 ∧ 255 ∷ u32
     let _ omnino ← 255 ∷ u32
     return exponent ≢ omnino
@@ -54,7 +54,7 @@ fn finite(f32 x) → bool {
 
 # nan() — the same field gate narrowed to NaN only (exponent 0xFF, fraction ≠ 0).
 fn nan(f32 x) → bool {
-    let _ bits ← x ↦ b32 ↦ u32
+    let _ bits ← (x ↦ b32) ↦ u32
     let _ exponent ← bits ⇒ 23 ∧ 255 ∷ u32
     let _ fraction ← bits ∧ 8388607 ∷ u32
     let _ omnino ← exponent ≡ 255 ∷ u32
@@ -64,13 +64,13 @@ fn nan(f32 x) → bool {
 
 main {
     # 0x3FC00000 = 1.5f32 — finite.
-    let _ one_and_half ← 1069547520 ∷ u32 ↦ b32 ↦ f32
+    let _ one_and_half ← (1069547520 ∷ u32 ↦ b32) ↦ f32
 
     # 0x7FC00000 — canonical quiet NaN.
-    let _ quiet_nan ← 2143289344 ∷ u32 ↦ b32 ↦ f32
+    let _ quiet_nan ← (2143289344 ∷ u32 ↦ b32) ↦ f32
 
     # 0x7F800000 — +Inf.
-    let _ infinitas ← 2139095040 ∷ u32 ↦ b32 ↦ f32
+    let _ infinitas ← (2139095040 ∷ u32 ↦ b32) ↦ f32
     print finite(one_and_half)
     print finite(quiet_nan)
     print finite(infinitas)
@@ -79,9 +79,9 @@ main {
     # The canonical quiet NaN payload survives the round trip bit-identically
     # on both lanes (the 0xFE00→0x7E00 re-canonicalization residual only
     # touches non-canonical spellings — see the header note).
-    let _ back ← quiet_nan ↦ b32 ↦ u32
+    let _ back ← (quiet_nan ↦ b32) ↦ u32
     print back
-    print back ≡ (2143289344 ∷ u32)
+    print back ≡ 2143289344 ∷ u32
 }
 ```
 

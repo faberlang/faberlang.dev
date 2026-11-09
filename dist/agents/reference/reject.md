@@ -37,22 +37,14 @@ empty — success-path main only (reice.expected)
 
 ```fab
 union GuardError {
-    Invalid { string causa }
+    Invalid {
+        string causa
+    }
 }
 
 fn guarded(int value) → int ⇥ GuardError {
     reject value ≺ 0 throw variant Invalid { causa = "value must not be negative" }
     return value
-}
-
-main {
-    do {
-        let int ok ← guarded(1)
-        assert ok ≡ 1
-    }
-    catch err {
-        assert false panic "success path must not throw"
-    }
 }
 
 test "true path is recoverable" {
@@ -62,6 +54,16 @@ test "true path is recoverable" {
     }
     catch err {
         # recovered — reject entered ⇥ and catch intercepted it
+    }
+}
+
+main {
+    do {
+        let int ok ← guarded(1)
+        assert ok ≡ 1
+    }
+    catch err {
+        assert false panic "success path must not throw"
     }
 }
 ```

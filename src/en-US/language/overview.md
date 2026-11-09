@@ -18,6 +18,10 @@ helper, and an entry point. Every panel on this page is compiler output, so the
 page cannot claim something the toolchain does not produce.
 
 ```faber
++++ toml
+locale = "la"
+
++++ faber
 genus Span {
     sit f64 low
     sit f64 high
@@ -103,6 +107,15 @@ pub struct Span {
     pub low: f64,
     pub high: f64,
 }
+impl faber::FaberZero for Span {
+    fn faber_zero() -> Self {
+        Self {
+            low: <f64 as faber::FaberZero>::faber_zero(),
+            high: <f64 as faber::FaberZero>::faber_zero(),
+        }
+    }
+}
+
 
 impl ::core::fmt::Debug for Span {
     fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
@@ -126,26 +139,25 @@ through faber.
 
 | Target | Emits | Package | Runs |
 |--------|-------|---------|------|
-| `rust` | yes | yes | yes |
+| `rust` | yes | yes | — |
 | `faber` | yes | — | — |
-| `ts` | yes | — | — |
-| `go` | yes | — | — |
-| `python` | yes | — | — |
+| `ts` | yes | yes | yes |
+| `go` | yes | yes | yes |
+| `python` | yes | — | yes |
 | `haskell` | yes | — | — |
-| `c` | yes | — | — |
+| `c` | yes | yes | yes |
 | `wasm-text` | yes | — | — |
 | `wasm` | yes | — | — |
 | `llvm-text` | yes | yes | yes |
 | `metal-text` | yes | yes | yes |
 | `wgsl-text` | yes | — | — |
 | `sexp` | yes | — | — |
-| `swift` | yes | — | — |
-| `fhir` | yes | yes | yes |
+| `swift` | yes | — | yes |
+| `fhir` | yes | yes | — |
 | `llvm-host` | yes | yes | yes |
 | `clif` | yes | — | — |
-| `fmir-text` | yes | yes | yes |
-| `fmir` | yes | yes | yes |
-| `fmir-bin` | yes | yes | yes |
+| `fmir-text` | yes | yes | — |
+| `fmir` | yes | yes | — |
 | `device-runtime` | — | — | — |
 
 Rust builds as a Cargo package today. Other targets give you source files to

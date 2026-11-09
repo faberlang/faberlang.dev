@@ -18,13 +18,13 @@ CLI root with options, operands, subcommands, and module mounts.
 
 ## Common mistakes
 
-- attaching `@ cli` to a `fn` instead of a `main` (SEM009), or reusing duplicate CLI flags or binding names within the same CLI surface
+- attaching `@ cli` to a `fn` instead of an `main` (SEM009), or reusing duplicate CLI flags or binding names within the same CLI surface
 
 ## Grammar
 
 ```
 cliDecl :← '@' 'cli' stringLit
-incipit argumenta args { ... }
+  incipit argumenta args { ... }
 ```
 
 ## Expected output
@@ -37,23 +37,22 @@ Requires CLI flags/args at run time; no fixed stdout contract.
 
 ```
 Rust runtime whitelist (missing operand 'nomen'); Go compile whitelist.
-Cross-ref optio/, operandus/, descriptio/, ubique/, argumenta/ keyword dirs.
+  Cross-ref optio/, operandus/, descriptio/, ubique/, argumenta/ keyword dirs.
+@ cli { name = "exemplum" }
+@ version "0.1.0"
+@ description "Faber CLI framework smoke exemplum"
+@ option { binding = verbose, short = "v", long = "verbose", type = bool, description = "Enable verbose output", global = true }
+main args args {
+}
 ```
 
 ## Example
 
 ```fab
-@ cli "exemplum"
-@ version "0.1.0"
-@ description "Faber CLI framework smoke exemplum"
-@ option verbose short "v" long "verbose" type bool global description "Enable verbose output"
-main args args {
-}
-
-@ command "greet"
+@ command { name = "greet" }
 @ alias "g"
 @ description "Greet by name"
-@ operand string nomen description "Name to greet"
+@ operand { type = string, binding = name, description = "Name to greet" }
 fn greet() args args → void {
     if args.verbose {
         print "verbose"
@@ -61,7 +60,7 @@ fn greet() args args → void {
     print "Salve, §!"(args.nomen)
 }
 
-@ command "version"
+@ command { name = "version" }
 @ alias "v"
 fn version() → void {
     print "exemplum v0.1.0"

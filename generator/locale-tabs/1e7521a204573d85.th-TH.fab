@@ -1,0 +1,12 @@
++++ toml
+locale = "th-TH"
+
++++ faber
+เริ่ม {
+    กำหนด รายการ<ข้อความ> nomina ← ["Alia", "Brunus"]
+    กำหนด รายการ<จํานวน> aetates ← [34, 27]
+
+    วน ออก nomina และ aetates ที่ [i] กำหนด nomen และ aetas {
+        บันทึก i, nomen, aetas
+    }
+}

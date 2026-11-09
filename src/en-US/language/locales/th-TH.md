@@ -50,6 +50,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | await_const      figendum     รอคง
 | await_var        variandum    รอแปร
 | axis             axis         แกน
+| batch            gregatim     เป็นชุด
 | before           ante         ก่อน
 | bench            metior       วัด
 | between          inter        ระหว่าง
@@ -79,6 +80,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | device           machina      อุปกรณ์
 | do               fac          ทำ
 | elif             sin          ถ้าไม่ก็
+| eligible         idonea       เข้าเกณฑ์
 | else             secus        มิฉะนั้น
 | embed            insere       ฝัง
 | empty            vacua        เซตว่าง

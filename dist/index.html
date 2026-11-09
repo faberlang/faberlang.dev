@@ -23,9 +23,9 @@
 <div class="grain" aria-hidden="true"></div>
 <div class="hud" aria-hidden="true">
   <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
-  <span class="lbl l1">Faber · 1.18.1</span><span class="lbl l2" id="hud-clock">UTC --:--:--</span>
+  <span class="lbl l1">Faber · 1.19.0</span><span class="lbl l2" id="hud-clock">UTC --:--:--</span>
   <i class="ruler"></i>
-  <div class="ticker"><div class="ticker-track"><div class="ticker-group"><span>Faber 1.18.1</span><i></i><span>MIT OR Apache-2.0</span><i></i><span>8 reader locales</span><i></i><span>21 targets</span><i></i><span>294 grammar productions</span><i></i><span>No accounts</span><i></i><span>Experimental through version 1</span><i></i><span>System fonts · zero external requests</span><i></i></div><div class="ticker-group"><span>Faber 1.18.1</span><i></i><span>MIT OR Apache-2.0</span><i></i><span>8 reader locales</span><i></i><span>21 targets</span><i></i><span>294 grammar productions</span><i></i><span>No accounts</span><i></i><span>Experimental through version 1</span><i></i><span>System fonts · zero external requests</span><i></i></div></div></div>
+  <div class="ticker"><div class="ticker-track"><div class="ticker-group"><span>Faber 1.19.0</span><i></i><span>MIT OR Apache-2.0</span><i></i><span>8 reader locales</span><i></i><span>20 targets</span><i></i><span>307 grammar productions</span><i></i><span>No accounts</span><i></i><span>Experimental through version 1</span><i></i><span>System fonts · zero external requests</span><i></i></div><div class="ticker-group"><span>Faber 1.19.0</span><i></i><span>MIT OR Apache-2.0</span><i></i><span>8 reader locales</span><i></i><span>20 targets</span><i></i><span>307 grammar productions</span><i></i><span>No accounts</span><i></i><span>Experimental through version 1</span><i></i><span>System fonts · zero external requests</span><i></i></div></div></div>
 </div>
 
 <header class="site-top">
@@ -68,11 +68,11 @@
     <section class="pass-wrap" aria-label="Install Faber">
       <article class="pass" aria-label="Agent pass">
         <div class="pass-main">
-          <div class="pass-top"><span>Faber · agent pass</span><span>v1.18.1</span></div>
+          <div class="pass-top"><span>Faber · agent pass</span><span>v1.19.0</span></div>
           <h2 class="pass-title">Give your model this link</h2>
           <a class="channel" href="/install.md">faberlang.dev<wbr>/install.md</a>
           <dl class="fields">
-            <div class="row"><dt>Version</dt><i class="ld"></i><dd>1.18.1</dd></div>
+            <div class="row"><dt>Version</dt><i class="ld"></i><dd>1.19.0</dd></div>
             <div class="row"><dt>Platforms</dt><i class="ld"></i><dd>macOS arm64 · Linux x64</dd></div>
             <div class="row"><dt>License</dt><i class="ld"></i><dd>MIT OR Apache-2.0</dd></div>
           </dl>
@@ -138,7 +138,11 @@ main {
     print choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
     print -7 / 2
 }</code></pre></div>
-    <div class="fdt-panel" id="fl-loc-p-la" role="tabpanel" aria-labelledby="fl-loc-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— Latin — the classical surface the language is named for</span></div><pre><code class="lang-faber locale=la">genus Span {
+    <div class="fdt-panel" id="fl-loc-p-la" role="tabpanel" aria-labelledby="fl-loc-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— Latin — the classical surface the language is named for</span></div><pre><code class="lang-faber locale=la">+++ toml
+locale = &quot;la&quot;
+
++++ faber
+genus Span {
     sit f64 low
     sit f64 high
 
@@ -161,7 +165,11 @@ incipit {
     nota choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
     nota -7 / 2
 }</code></pre></div>
-    <div class="fdt-panel" id="fl-loc-p-th-TH" role="tabpanel" aria-labelledby="fl-loc-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai — spaceless script</span></div><pre class="th"><code class="lang-faber locale=th-TH">ชนิด Span {
+    <div class="fdt-panel" id="fl-loc-p-th-TH" role="tabpanel" aria-labelledby="fl-loc-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai — spaceless script</span></div><pre class="th"><code class="lang-faber locale=th-TH">+++ toml
+locale = &quot;th-TH&quot;
+
++++ faber
+ชนิด Span {
     กำหนด f64 low
     กำหนด f64 high
 
@@ -184,7 +192,11 @@ incipit {
     บันทึก choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
     บันทึก -7 / 2
 }</code></pre></div>
-    <div class="fdt-panel" id="fl-loc-p-zh-Hans" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans">类 Span {
+    <div class="fdt-panel" id="fl-loc-p-zh-Hans" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans">+++ toml
+locale = &quot;zh-Hans&quot;
+
++++ faber
+类 Span {
     设 f64 low
     设 f64 high
 
@@ -207,7 +219,11 @@ incipit {
     显示 choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
     显示 -7 / 2
 }</code></pre></div>
-    <div class="fdt-panel" id="fl-loc-p-zh-Hant" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant">類型 Span {
+    <div class="fdt-panel" id="fl-loc-p-zh-Hant" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant">+++ toml
+locale = &quot;zh-Hant&quot;
+
++++ faber
+類型 Span {
     設為 f64 low
     設為 f64 high
 
@@ -230,7 +246,11 @@ incipit {
     註記 choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
     註記 -7 / 2
 }</code></pre></div>
-    <div class="fdt-panel" id="fl-loc-p-vi" role="tabpanel" aria-labelledby="fl-loc-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi">kiểu Span {
+    <div class="fdt-panel" id="fl-loc-p-vi" role="tabpanel" aria-labelledby="fl-loc-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi">+++ toml
+locale = &quot;vi&quot;
+
++++ faber
+kiểu Span {
     đặt f64 low
     đặt f64 high
 
@@ -253,7 +273,11 @@ bắt_đầu {
     ghi_chú choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
     ghi_chú -7 / 2
 }</code></pre></div>
-    <div class="fdt-panel" id="fl-loc-p-ar" role="tabpanel" aria-labelledby="fl-loc-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic — right-to-left, bidi isolated</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar">صنف Span {
+    <div class="fdt-panel" id="fl-loc-p-ar" role="tabpanel" aria-labelledby="fl-loc-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic — right-to-left, bidi isolated</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar">+++ toml
+locale = &quot;ar&quot;
+
++++ faber
+صنف Span {
     ليكن f64 low
     ليكن f64 high
 
@@ -276,7 +300,11 @@ bắt_đầu {
     اعرض choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
     اعرض -7 / 2
 }</code></pre></div>
-    <div class="fdt-panel" id="fl-loc-p-hi" role="tabpanel" aria-labelledby="fl-loc-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi — Devanagari</span></div><pre class="hi"><code class="lang-faber locale=hi">वर्ग Span {
+    <div class="fdt-panel" id="fl-loc-p-hi" role="tabpanel" aria-labelledby="fl-loc-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi — Devanagari</span></div><pre class="hi"><code class="lang-faber locale=hi">+++ toml
+locale = &quot;hi&quot;
+
++++ faber
+वर्ग Span {
     बैठा f64 low
     बैठा f64 high
 
@@ -357,7 +385,7 @@ outside
       <li>
         <h3>A mechanical grammar</h3>
         <p>
-          294 grammar productions, generated and checked as the parser’s
+          307 grammar productions, generated and checked as the parser’s
           authority. One construct has one spelling. Arrows mean runtime effects
           (<code>←</code> assign, <code>→</code> return, <code>⇥</code> error channel);
           <code>=</code> and <code>:</code> only state compile-time facts.
@@ -446,6 +474,15 @@ pub struct Span {
     pub low: f64,
     pub high: f64,
 }
+impl faber::FaberZero for Span {
+    fn faber_zero() -&gt; Self {
+        Self {
+            low: &lt;f64 as faber::FaberZero&gt;::faber_zero(),
+            high: &lt;f64 as faber::FaberZero&gt;::faber_zero(),
+        }
+    }
+}
+
 
 impl ::core::fmt::Debug for Span {
     fn fmt(&amp;self, f: &amp;mut ::core::fmt::Formatter&lt;&#x27;_&gt;) -&gt; ::core::fmt::Result {
@@ -480,9 +517,15 @@ class Span {
 
 package main
 
+import &quot;fmt&quot;
+
 type Span struct {
     Low float64
     High float64
+}
+func (self *Span) Error() string {
+    if self == nil { return &quot;&lt;nil&gt;&quot; }
+    return fmt.Sprintf(&quot;&amp;%v&quot;, *self)
 }
 
 func (self *Span) Contains(p_x float64) bool {
@@ -589,11 +632,11 @@ extension Span: CustomStringConvertible {
       <thead><tr><th>Target</th><th>Emits</th><th>Package</th><th>Runs</th><th>In practice</th></tr></thead>
       <tbody>
         <tr class="fl-cap-group"><th colspan="5" scope="colgroup">Source for your existing project</th></tr>
-        <tr><td><strong>Rust</strong></td><td class="st-ok">yes</td><td class="st-ok">yes</td><td class="st-ok">yes</td><td>The primary target: a full Cargo package, and runnable through faber.</td></tr>
-        <tr><td><strong>TypeScript</strong></td><td class="st-ok">yes</td><td class="st-defer">—</td><td class="st-defer">—</td><td>Source emission; package assembly is not built yet.</td></tr>
-        <tr><td><strong>Go</strong></td><td class="st-ok">yes</td><td class="st-defer">—</td><td class="st-defer">—</td><td>Source emission; package assembly is not built yet.</td></tr>
-        <tr><td><strong>Swift</strong></td><td class="st-ok">yes</td><td class="st-defer">—</td><td class="st-defer">—</td><td>Source emission; a subset.</td></tr>
-        <tr><td><strong>Python</strong></td><td class="st-ok">yes</td><td class="st-defer">—</td><td class="st-defer">—</td><td>Source emission; a limited subset.</td></tr>
+        <tr><td><strong>Rust</strong></td><td class="st-ok">yes</td><td class="st-ok">yes</td><td class="st-defer">—</td><td>The primary target: a full Cargo package, and runnable through faber.</td></tr>
+        <tr><td><strong>TypeScript</strong></td><td class="st-ok">yes</td><td class="st-ok">yes</td><td class="st-ok">yes</td><td>Source emission; package assembly is not built yet.</td></tr>
+        <tr><td><strong>Go</strong></td><td class="st-ok">yes</td><td class="st-ok">yes</td><td class="st-ok">yes</td><td>Source emission; package assembly is not built yet.</td></tr>
+        <tr><td><strong>Swift</strong></td><td class="st-ok">yes</td><td class="st-defer">—</td><td class="st-ok">yes</td><td>Source emission; a subset.</td></tr>
+        <tr><td><strong>Python</strong></td><td class="st-ok">yes</td><td class="st-defer">—</td><td class="st-ok">yes</td><td>Source emission; a limited subset.</td></tr>
         <tr><td><strong>Haskell</strong></td><td class="st-ok">yes</td><td class="st-defer">—</td><td class="st-defer">—</td><td>Source emission; a limited subset.</td></tr>
         <tr class="fl-cap-group"><th colspan="5" scope="colgroup">Systems, native and device</th></tr>
         <tr><td><strong>Native executable</strong></td><td class="st-ok">yes</td><td class="st-ok">yes</td><td class="st-ok">yes</td><td>MIR lowered to LLVM, linked for the local host.</td></tr>
@@ -602,8 +645,8 @@ extension Span: CustomStringConvertible {
         <tr><td><strong>Metal</strong></td><td class="st-ok">yes</td><td class="st-ok">yes</td><td class="st-ok">yes</td><td>Shader source; device execution through the Metal route.</td></tr>
         <tr><td><strong>WGSL</strong></td><td class="st-ok">yes</td><td class="st-defer">—</td><td class="st-defer">—</td><td>WebGPU compute shader source.</td></tr>
         <tr class="fl-cap-group"><th colspan="5" scope="colgroup">Portable package images</th></tr>
-        <tr><td><strong>FHIR</strong></td><td class="st-ok">yes</td><td class="st-ok">yes</td><td class="st-ok">yes</td><td>A portable analyzed-program package envelope.</td></tr>
-        <tr><td><strong>FMIR</strong></td><td class="st-ok">yes</td><td class="st-ok">yes</td><td class="st-ok">yes</td><td>A source-independent package image that faber can run.</td></tr>
+        <tr><td><strong>FHIR</strong></td><td class="st-ok">yes</td><td class="st-ok">yes</td><td class="st-defer">—</td><td>A portable analyzed-program package envelope.</td></tr>
+        <tr><td><strong>FMIR</strong></td><td class="st-ok">yes</td><td class="st-ok">yes</td><td class="st-defer">—</td><td>A source-independent package image that faber can run.</td></tr>
       </tbody>
     </table>
     </div>
@@ -675,7 +718,7 @@ extension Span: CustomStringConvertible {
       <p class="kicker"><i class="sq" aria-hidden="true"></i>Grammar</p>
       <h2>A grammar you can read in one sitting</h2>
       <p>
-        The language is specified as 294 productions in a single
+        The language is specified as 307 productions in a single
         EBNF, generated from one source and published in full. It is large
         enough to be expressive and regular enough to hold in your head or a
         model’s context. The reference pages are generated from the same source,
@@ -733,7 +776,7 @@ extension Span: CustomStringConvertible {
       </a>
       <a class="fl-door" href="/en-US/reference/grammar.html">
         <strong>Grammar</strong>
-        <span>All 294 productions, generated from one EBNF.</span>
+        <span>All 307 productions, generated from one EBNF.</span>
       </a>
       <a class="fl-door" href="/en-US/start/">
         <strong>Start</strong>

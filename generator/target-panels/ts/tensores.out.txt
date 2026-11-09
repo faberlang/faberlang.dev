@@ -2,12 +2,12 @@
 
 import { display, tensor } from "@faber/runtime";
 
-(() => {
+(() => { try { return (() => {
     const l_flat_a: Array<number> = [1, 2, 3, 4, 5, 6];
     const l_flat_b: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    const l_a: tensor.Tensor<number> = tensor.Tensor.fromArray<number>(l_flat_a, [2, 3], (value) => Number(value));
-    const l_b: tensor.Tensor<number> = tensor.Tensor.fromArray<number>(l_flat_b, [3, 4], (value) => Number(value));
+    const l_a: tensor.Tensor<number> = tensor.Tensor.fromArray<number>(l_flat_a, [2, 3], (value) => Number(value), undefined, (expected: number, actual: number) => `tensor conversion expected ${expected} elements, got ${actual}`);
+    const l_b: tensor.Tensor<number> = tensor.Tensor.fromArray<number>(l_flat_b, [3, 4], (value) => Number(value), undefined, (expected: number, actual: number) => `tensor conversion expected ${expected} elements, got ${actual}`);
     const l_product: tensor.Tensor<number> = l_a.matmul(l_b, true);
     const l_mean: number = l_product.media();
     console.log(display.value(((x: number): string => { const v = Math.fround(x); if (!Number.isFinite(v)) { return display.value(v, "fractus"); } let e = v.toExponential(); for (let p = 0; p < 9; p++) { e = v.toExponential(p); if (Math.fround(Number(e)) === v) { break; } } const m = /^(-?)(\d)(?:\.(\d+))?e([+-]\d+)$/.exec(e) as RegExpExecArray; const sign = Object.is(v, -0) ? "-" : m[1]; const digits = m[2] + (m[3] ?? ""); const n = Number(m[4]); let body: string; if (n < 0) { body = "0." + "0".repeat(-n - 1) + digits; } else if (digits.length <= n + 1) { body = digits + "0".repeat(n + 1 - digits.length) + ".0"; } else { body = digits.slice(0, n + 1) + "." + digits.slice(n + 1); } return sign + body; })(l_mean), "textus"));
-})();
+})(); } catch (__e: any) { const __m = __e instanceof Error ? (((__e as any).__faberAssertion === true || (__e as any).__faberAbort === true) ? "abort: " + __e.message : __e.message) : (__e !== null && typeof __e === "object" && (__e as any).__faberFail === true ? "abort: " + String((__e as any).error) : String(__e)); console.error((__e !== null && typeof __e === "object" && (__e as any).__faberTrap === true ? "error: " : (__e !== null && typeof __e === "object" && ((__e as any).__faberAssertion === true || (__e as any).__faberAbort === true || (__e as any).__faberFail === true) ? "" : "Error: ")) + __m); (globalThis as any).process.exitCode = 70; return 70; } })();

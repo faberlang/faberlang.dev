@@ -39,10 +39,8 @@ main {
 
     mut _ computus ← 0
     print computus
-
     computus ← 1
     print computus
-
     computus ← computus + 10
     print computus
 

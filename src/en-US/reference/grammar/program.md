@@ -12,7 +12,10 @@ sources = [
 
 A Faber source file is a program. The compiler reads it from the top: an
 optional frontmatter header, an optional `module` region, then the
-declarations, imports, tests, and the entry point that starts it. There is
+declarations, imports, tests, and the entry point that starts it. A file may
+also be split by whole-line section markers (`+++ toml`, `+++ faber`,
+`+++ faber test`, and stream sections such as `+++ text stdout`); the
+compiler reads only the program section. There is
 no hidden wrapper around those declarations and no separate "program"
 object to construct.
 

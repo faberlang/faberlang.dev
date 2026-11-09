@@ -2,9 +2,15 @@
 
 package main
 
+import "fmt"
+
 type Span struct {
     Low float64
     High float64
+}
+func (self *Span) Error() string {
+    if self == nil { return "<nil>" }
+    return fmt.Sprintf("&%v", *self)
 }
 
 func (self *Span) Contains(p_x float64) bool {

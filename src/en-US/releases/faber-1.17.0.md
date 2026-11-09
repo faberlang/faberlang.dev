@@ -2,7 +2,7 @@
 title = "Faber 1.17.0"
 description = "Release notes and install details for Faber 1.17.0."
 section = "releases"
-order = 11
+order = 13
 sources = []
 +++
 
@@ -51,7 +51,7 @@ Faber 1.17 follows 1.16 with list size ranges, ranged integer stores and more de
 
 **A lane-local return.** `return thread` means “end this lane”, even inside an ordinary loop nested in the lane. It takes no value; lanes publish results through stores. Plain `return` still cannot leave a thread lane. Writing `return thread` outside a lane, with a value, or inside a nested closure or reduction body is a named `SEM010` error. The syntax, placement checks and formatter are present, but execution lowering is not: a correctly placed use is still refused as `return_thread_lowering_pending`.
 
-**Ranges on integer cells.** A store policy can carry a range: `saturating<u32, 0‥8>` clamps to 0 through 7, `trapping<i32, -2‥3>` traps outside −2 through 2, and `wrapping<u32, 0‥8>` reduces modulo eight. `‥` is half-open; `…` includes the high end. Both ends must be written, with `∞` or `-∞` for an unbounded side. Arithmetic computes before the destination applies its policy once. The runner and Rust apply these ranges; other executable targets and kernels refuse them by name.
+**Ranges on integer cells.** A store policy can carry a range: `saturating<u32, 0 ‥ 8>` clamps to 0 through 7, `trapping<i32, -2 ‥ 3>` traps outside −2 through 2, and `wrapping<u32, 0 ‥ 8>` reduces modulo eight. `‥` is half-open; `…` includes the high end. Both ends must be written, with `∞` or `-∞` for an unbounded side. Arithmetic computes before the destination applies its policy once. The runner and Rust apply these ranges; other executable targets and kernels refuse them by name.
 
 **List lengths and short literals.** `list<T, size lo‥hi>` carries a length range. Growing past its maximum or removing below its minimum reports on `⇥`. A list whose minimum is at least one has non-optional `first()` and `last()` results. `list<T, size N>` means at most `N` elements, not exactly `N`.
 
@@ -59,7 +59,7 @@ A short literal now takes the destination's capacity instead of bringing a small
 
 ```fab
 main {
-    let list<int, size 0…3> pair ← [1, 2]
+    let list<int, size 0 … 3> pair ← [1, 2]
     print pair
 }
 ```

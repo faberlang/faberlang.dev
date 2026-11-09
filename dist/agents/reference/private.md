@@ -34,7 +34,7 @@ privata
 ## Example
 
 ```fab
-@ private { }
+@ private
 fn privatum() → string {
     return "private"
 }

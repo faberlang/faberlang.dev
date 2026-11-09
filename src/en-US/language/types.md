@@ -576,7 +576,7 @@ unchanged), `queue<int, size 4>`, `stack<int, size 4>`, `string<size 8>` and
 `ascii<size 8>` (`SEM008 vector_width_needs_size`, `SEM008 capacity_needs_size`).
 
 A range after `size` bounds the length. `‥` leaves the upper bound out and `…`
-includes it, so `list<int, size 2‥5>` holds two to four elements and
+includes it, so `list<int, size 2 ‥ 5>` holds two to four elements and
 `list<int, size 1…∞>` is never empty: `first` and `last` return plain values.
 Growing past the maximum or removing below the minimum reports on the error
 channel. `list<int, size 3>` and `list<int, size 0…3>` are the same type.
@@ -597,7 +597,7 @@ main {
     print xs
 
     # Lengths 2 to 4: the fifth push does not fit.
-    mut list<int, size 2‥5> ys ← [10, 20]
+    mut list<int, size 2 ‥ 5> ys ← [10, 20]
     do {
         ys.append(30)
         ys.append(40)

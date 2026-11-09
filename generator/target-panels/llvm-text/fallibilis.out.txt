@@ -6,6 +6,7 @@
 @__faber_rt_v1_context = linkonce_odr global ptr null
 @__faber_rt_v1_status = linkonce_odr global i32 0
 declare void @__faber_rt_v1_fatal(ptr, %FaberRtSliceV1) noreturn
+declare void @__faber_rt_v1_trap(ptr, %FaberRtSliceV1, i32) noreturn
 declare void @__faber_rt_v1_numerus_overflow(ptr) noreturn
 ; @literal-data __faber_text_literal_text_16_64_69_76_69_73_69_6f_6e_20_62_79_20_7a_65_72_6f family=text family_index=0 family_index_count=1 family_count=1 representation=static-byte-data representation_index=0 representation_index_count=1 representation_count=1 byte_data_schema_version=1 encoding=utf8 byte_data_schema_version_index=0 byte_data_schema_version_index_count=1 encoding_index=0 encoding_index_count=1 byte_data_schema_version_count=1 encoding_count=1 layout="[17 x i8]" bytes=17 payload_bytes=16 layout_index=0 layout_index_count=1 payload_byte_index=0 payload_byte_index_count=1 payload_byte_count=1 layout_count=1 byte_length_count=1 terminator_bytes=1 terminator_byte_index=0 terminator_byte_index_count=1 terminator_byte_count=1 terminator_policy_index=0 terminator_policy_index_count=1 terminator_policy_count=1 null_terminated_index=0 null_terminated_index_count=1 null_terminated=true null_terminated_count=1 mutability_index=0 mutability_index_count=1 mutability="constant" mutability_count=1 pointer_policy_index=0 pointer_policy_index_count=1 pointer_policy="gep-nonempty-direct-empty" pointer_policy_count=1 linkage_index=0 linkage_index_count=1 linkage="linkonce_odr unnamed_addr constant" linkage_count=1 alignment_index=0 alignment_index_count=1 alignment="align 1" alignment_count=1
 @__faber_text_literal_text_16_64_69_76_69_73_69_6f_6e_20_62_79_20_7a_65_72_6f = linkonce_odr unnamed_addr constant [17 x i8] c"division by zero\00", align 1
@@ -22,7 +23,7 @@ declare i32 @__faber_rt_v1_diagnostic_mone_text(ptr, ptr)
 ; @runtime __faber_rt_v1_diagnostic_nota_i64 category=host-integration
 declare i32 @__faber_rt_v1_diagnostic_nota_i64(ptr, i64)
 
-define { i1, i64, ptr } @divide(i64 %l0, i64 %l1) {
+define internal { i1, i64, ptr } @divide(i64 %l0, i64 %l1) {
     entry:
       %l0.addr = alloca i64
       %l1.addr = alloca i64
@@ -55,7 +56,7 @@ define { i1, i64, ptr } @divide(i64 %l0, i64 %l1) {
       br i1 %ex.zero10, label %ex.trap11, label %ex.ok11
     ex.trap11:
       %ex.ctx11 = load ptr, ptr @__faber_rt_v1_context
-      call void @__faber_rt_v1_fatal(ptr %ex.ctx11, %FaberRtSliceV1 { ptr getelementptr inbounds ([23 x i8], ptr @__faber_trap_msg_6e756d65727573206469766973696f6e206661696c6564, i64 0, i64 0), i64 23 })
+      call void @__faber_rt_v1_trap(ptr %ex.ctx11, %FaberRtSliceV1 { ptr getelementptr inbounds ([23 x i8], ptr @__faber_trap_msg_6e756d65727573206469766973696f6e206661696c6564, i64 0, i64 0), i64 23 }, i32 0)
       unreachable
     ex.ok11:
       %ex.neg12 = icmp slt i128 %ex.w7, 0
@@ -197,6 +198,6 @@ body:
   %total = add i64 %off, %n
   %s0 = insertvalue %FaberRtSliceV1 undef, ptr %buf, 0
   %s1 = insertvalue %FaberRtSliceV1 %s0, i64 %total, 1
-  call void @__faber_rt_v1_fatal(ptr %ctx, %FaberRtSliceV1 %s1)
+  call void @__faber_rt_v1_trap(ptr %ctx, %FaberRtSliceV1 %s1, i32 0)
   unreachable
 }

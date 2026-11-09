@@ -5,76 +5,28 @@ The retired <code>private</code> import marker is not valid.</p><h2 id="stdlib">
 
 <span class="tok-kw">main</span> {
     <span class="tok-kw">print</span> <span class="tok-st">"ready"</span>
-}</code></pre><h2 id="local">From a local file<a class="anchor" href="#local">#</a></h2><p>A relative path imports a sibling module. No extension.</p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-d8759c2cfd576001-0-t-en" data-panel="lt-d8759c2cfd576001-0-p-en" data-name="English" aria-controls="lt-d8759c2cfd576001-0-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-d8759c2cfd576001-0-t-la" data-panel="lt-d8759c2cfd576001-0-p-la" data-name="Latin" aria-controls="lt-d8759c2cfd576001-0-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-d8759c2cfd576001-0-t-th-TH" data-panel="lt-d8759c2cfd576001-0-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-d8759c2cfd576001-0-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-d8759c2cfd576001-0-t-zh-Hans" data-panel="lt-d8759c2cfd576001-0-p-zh-Hans" data-name="简体中文" aria-controls="lt-d8759c2cfd576001-0-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-d8759c2cfd576001-0-t-zh-Hant" data-panel="lt-d8759c2cfd576001-0-p-zh-Hant" data-name="繁體中文" aria-controls="lt-d8759c2cfd576001-0-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-d8759c2cfd576001-0-t-vi" data-panel="lt-d8759c2cfd576001-0-p-vi" data-name="Tiếng Việt" aria-controls="lt-d8759c2cfd576001-0-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-d8759c2cfd576001-0-t-ar" data-panel="lt-d8759c2cfd576001-0-p-ar" data-name="العربية" aria-controls="lt-d8759c2cfd576001-0-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-d8759c2cfd576001-0-t-hi" data-panel="lt-d8759c2cfd576001-0-p-hi" data-name="हिन्दी" aria-controls="lt-d8759c2cfd576001-0-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-d8759c2cfd576001-0-p-en" role="tabpanel" aria-labelledby="lt-d8759c2cfd576001-0-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">import</span> <span class="tok-kw">from</span> <span class="tok-st">"./auxilium"</span> saluta
+}</code></pre><h2 id="local">From a local file<a class="anchor" href="#local">#</a></h2><p>A relative path imports a sibling module. No extension.</p><pre class="faber-code"><code class="lang-faber locale-tabs"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> toml
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">print</span> <span class="tok-st">"ready"</span>
-}</code></pre></div><div class="fdt-panel" id="lt-d8759c2cfd576001-0-p-la" role="tabpanel" aria-labelledby="lt-d8759c2cfd576001-0-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">importa</span> <span class="tok-kw">ex</span> <span class="tok-st">"./auxilium"</span> saluta
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> faber
+import from <span class="tok-st">"./auxilium"</span> saluta
 
-<span class="tok-kw">incipit</span> {
-    <span class="tok-kw">nota</span> <span class="tok-st">"ready"</span>
-}</code></pre></div><div class="fdt-panel" id="lt-d8759c2cfd576001-0-p-th-TH" role="tabpanel" aria-labelledby="lt-d8759c2cfd576001-0-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">นำเข้า</span> <span class="tok-kw">ออก</span> <span class="tok-st">"./auxilium"</span> saluta
-
-<span class="tok-kw">เริ่ม</span> {
-    <span class="tok-kw">บันทึก</span> <span class="tok-st">"ready"</span>
-}</code></pre></div><div class="fdt-panel" id="lt-d8759c2cfd576001-0-p-zh-Hans" role="tabpanel" aria-labelledby="lt-d8759c2cfd576001-0-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">导入</span> <span class="tok-kw">取自</span> <span class="tok-st">"./auxilium"</span> saluta
-
-<span class="tok-kw">入口</span> {
-    <span class="tok-kw">显示</span> <span class="tok-st">"ready"</span>
-}</code></pre></div><div class="fdt-panel" id="lt-d8759c2cfd576001-0-p-zh-Hant" role="tabpanel" aria-labelledby="lt-d8759c2cfd576001-0-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">匯入</span> <span class="tok-kw">取自</span> <span class="tok-st">"./auxilium"</span> saluta
-
-<span class="tok-kw">入口</span> {
-    <span class="tok-kw">註記</span> <span class="tok-st">"ready"</span>
-}</code></pre></div><div class="fdt-panel" id="lt-d8759c2cfd576001-0-p-vi" role="tabpanel" aria-labelledby="lt-d8759c2cfd576001-0-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">nhập</span> <span class="tok-kw">từ</span> <span class="tok-st">"./auxilium"</span> saluta
-
-<span class="tok-kw">bắt_đầu</span> {
-    <span class="tok-kw">ghi_chú</span> <span class="tok-st">"ready"</span>
-}</code></pre></div><div class="fdt-panel" id="lt-d8759c2cfd576001-0-p-ar" role="tabpanel" aria-labelledby="lt-d8759c2cfd576001-0-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">استورد</span> <span class="tok-kw">من</span> <span class="tok-st">"./auxilium"</span> saluta
-
-<span class="tok-kw">بداية</span> {
-    <span class="tok-kw">اعرض</span> <span class="tok-st">"ready"</span>
-}</code></pre></div><div class="fdt-panel" id="lt-d8759c2cfd576001-0-p-hi" role="tabpanel" aria-labelledby="lt-d8759c2cfd576001-0-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">आयात</span> <span class="tok-kw">सेवन</span> <span class="tok-st">"./auxilium"</span> saluta
-
-<span class="tok-kw">आरंभ</span> {
-    <span class="tok-kw">दिखाओ</span> <span class="tok-st">"ready"</span>
-}</code></pre></div></div><h2 id="items">Importing a specific item<a class="anchor" href="#items">#</a></h2><p>The name after the source is the item, not the module — so you import exactly
+main {
+    print <span class="tok-st">"ready"</span>
+}</code></pre><h2 id="items">Importing a specific item<a class="anchor" href="#items">#</a></h2><p>The name after the source is the item, not the module — so you import exactly
 what you use.</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">import</span> <span class="tok-kw">from</span> <span class="tok-st">"norma:text"</span> text
 
 <span class="tok-kw">main</span> {
     <span class="tok-kw">print</span> <span class="tok-st">"ready"</span>
-}</code></pre><h2 id="aliasing">Aliasing<a class="anchor" href="#aliasing">#</a></h2><p><code>as</code> renames on the way in.</p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-d404a49852fe1f02-1-t-en" data-panel="lt-d404a49852fe1f02-1-p-en" data-name="English" aria-controls="lt-d404a49852fe1f02-1-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-d404a49852fe1f02-1-t-la" data-panel="lt-d404a49852fe1f02-1-p-la" data-name="Latin" aria-controls="lt-d404a49852fe1f02-1-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-d404a49852fe1f02-1-t-th-TH" data-panel="lt-d404a49852fe1f02-1-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-d404a49852fe1f02-1-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-d404a49852fe1f02-1-t-zh-Hans" data-panel="lt-d404a49852fe1f02-1-p-zh-Hans" data-name="简体中文" aria-controls="lt-d404a49852fe1f02-1-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-d404a49852fe1f02-1-t-zh-Hant" data-panel="lt-d404a49852fe1f02-1-p-zh-Hant" data-name="繁體中文" aria-controls="lt-d404a49852fe1f02-1-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-d404a49852fe1f02-1-t-vi" data-panel="lt-d404a49852fe1f02-1-p-vi" data-name="Tiếng Việt" aria-controls="lt-d404a49852fe1f02-1-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-d404a49852fe1f02-1-t-ar" data-panel="lt-d404a49852fe1f02-1-p-ar" data-name="العربية" aria-controls="lt-d404a49852fe1f02-1-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-d404a49852fe1f02-1-t-hi" data-panel="lt-d404a49852fe1f02-1-p-hi" data-name="हिन्दी" aria-controls="lt-d404a49852fe1f02-1-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-d404a49852fe1f02-1-p-en" role="tabpanel" aria-labelledby="lt-d404a49852fe1f02-1-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">import</span> <span class="tok-kw">from</span> <span class="tok-st">"./auxilium"</span> saluta <span class="tok-kw">as</span> greet
+}</code></pre><h2 id="aliasing">Aliasing<a class="anchor" href="#aliasing">#</a></h2><p><code>as</code> renames on the way in.</p><pre class="faber-code"><code class="lang-faber locale-tabs"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> toml
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">print</span> <span class="tok-st">"ready"</span>
-}</code></pre></div><div class="fdt-panel" id="lt-d404a49852fe1f02-1-p-la" role="tabpanel" aria-labelledby="lt-d404a49852fe1f02-1-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">importa</span> <span class="tok-kw">ex</span> <span class="tok-st">"./auxilium"</span> saluta <span class="tok-kw">ut</span> greet
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> faber
+import from <span class="tok-st">"./auxilium"</span> saluta as greet
 
-<span class="tok-kw">incipit</span> {
-    <span class="tok-kw">nota</span> <span class="tok-st">"ready"</span>
-}</code></pre></div><div class="fdt-panel" id="lt-d404a49852fe1f02-1-p-th-TH" role="tabpanel" aria-labelledby="lt-d404a49852fe1f02-1-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">นำเข้า</span> <span class="tok-kw">ออก</span> <span class="tok-st">"./auxilium"</span> saluta <span class="tok-kw">ในชื่อ</span> greet
-
-<span class="tok-kw">เริ่ม</span> {
-    <span class="tok-kw">บันทึก</span> <span class="tok-st">"ready"</span>
-}</code></pre></div><div class="fdt-panel" id="lt-d404a49852fe1f02-1-p-zh-Hans" role="tabpanel" aria-labelledby="lt-d404a49852fe1f02-1-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">导入</span> <span class="tok-kw">取自</span> <span class="tok-st">"./auxilium"</span> saluta <span class="tok-kw">作为</span> greet
-
-<span class="tok-kw">入口</span> {
-    <span class="tok-kw">显示</span> <span class="tok-st">"ready"</span>
-}</code></pre></div><div class="fdt-panel" id="lt-d404a49852fe1f02-1-p-zh-Hant" role="tabpanel" aria-labelledby="lt-d404a49852fe1f02-1-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">匯入</span> <span class="tok-kw">取自</span> <span class="tok-st">"./auxilium"</span> saluta <span class="tok-kw">作為</span> greet
-
-<span class="tok-kw">入口</span> {
-    <span class="tok-kw">註記</span> <span class="tok-st">"ready"</span>
-}</code></pre></div><div class="fdt-panel" id="lt-d404a49852fe1f02-1-p-vi" role="tabpanel" aria-labelledby="lt-d404a49852fe1f02-1-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">nhập</span> <span class="tok-kw">từ</span> <span class="tok-st">"./auxilium"</span> saluta <span class="tok-kw">như</span> greet
-
-<span class="tok-kw">bắt_đầu</span> {
-    <span class="tok-kw">ghi_chú</span> <span class="tok-st">"ready"</span>
-}</code></pre></div><div class="fdt-panel" id="lt-d404a49852fe1f02-1-p-ar" role="tabpanel" aria-labelledby="lt-d404a49852fe1f02-1-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">استورد</span> <span class="tok-kw">من</span> <span class="tok-st">"./auxilium"</span> saluta <span class="tok-kw">كـ</span> greet
-
-<span class="tok-kw">بداية</span> {
-    <span class="tok-kw">اعرض</span> <span class="tok-st">"ready"</span>
-}</code></pre></div><div class="fdt-panel" id="lt-d404a49852fe1f02-1-p-hi" role="tabpanel" aria-labelledby="lt-d404a49852fe1f02-1-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">आयात</span> <span class="tok-kw">सेवन</span> <span class="tok-st">"./auxilium"</span> saluta <span class="tok-kw">रूपमें</span> greet
-
-<span class="tok-kw">आरंभ</span> {
-    <span class="tok-kw">दिखाओ</span> <span class="tok-st">"ready"</span>
-}</code></pre></div></div><p>Useful when two modules export the same name, or when the original reads
+main {
+    print <span class="tok-st">"ready"</span>
+}</code></pre><p>Useful when two modules export the same name, or when the original reads
 badly at the call site.</p><h2 id="publica">Re-exporting<a class="anchor" href="#publica">#</a></h2><p><code>public</code> imports <em>and</em> re-exports, so consumers of your module see the name
 too. Imports without it remain private to the current module.</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">import</span> <span class="tok-kw">from</span> <span class="tok-st">"norma:text"</span> <span class="tok-kw">public</span> text
 

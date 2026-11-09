@@ -27,9 +27,9 @@ import from <source> [public] const <member> [as <local>]{, <member> [as <local>
 ## Example
 
 ```fab
-+++
++++ toml
 locale = "la"
-+++
++++ faber
 import from "norma:console" const write_partial as output, write_bytes as output_bytes
 
 fn write((string) → void sink, string name) → void {

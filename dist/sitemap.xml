@@ -180,7 +180,7 @@
   <url><loc>https://faberlang.dev/en-US/corpus/lambda.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/let.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/line.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/list%3CT%2C%20size%20lo%E2%80%A5hi%3E.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/list%3CT%2C%20size%20lo%20%E2%80%A5%20hi%3E.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/list%3Cb8%3E.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/list.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/main.html</loc></url>
@@ -201,6 +201,7 @@
   <url><loc>https://faberlang.dev/en-US/corpus/never.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/none.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/not.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/null.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/only.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/only_in.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/operand.html</loc></url>
@@ -238,7 +239,7 @@
   <url><loc>https://faberlang.dev/en-US/corpus/return.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/return_await.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/rust-reserved-names.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/saturating%3CW%2C%20lo%E2%80%A5hi%3E.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/saturating%3CW%2C%20lo%20%E2%80%A5%20hi%3E.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/saturating.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/scalaria.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/schema.html</loc></url>
@@ -286,7 +287,7 @@
   <url><loc>https://faberlang.dev/en-US/corpus/timeout.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/todo.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/trapped.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/trapping%3CW%2C%20lo%E2%80%A5hi%3E.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/trapping%3CW%2C%20lo%20%E2%80%A5%20hi%3E.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/true.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/ts-reserved-field-names.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/tuple.html</loc></url>
@@ -296,6 +297,7 @@
   <url><loc>https://faberlang.dev/en-US/corpus/union.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/unstable.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/until.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/valor%20collection%20defaults.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/value.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/varia.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/variant.html</loc></url>
@@ -305,7 +307,7 @@
   <url><loc>https://faberlang.dev/en-US/corpus/warn.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/while.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/word-list-sum.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/wrapping%3CW%2C%20lo%E2%80%A5hi%3E.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/wrapping%3CW%2C%20lo%20%E2%80%A5%20hi%3E.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/wrapping%3Cu64%3E%20to%20int.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/write.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/yield.html</loc></url>
@@ -370,6 +372,7 @@
   <url><loc>https://faberlang.dev/en-US/releases/faber-1.17.0.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/releases/faber-1.18.0.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/releases/faber-1.18.1.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/releases/faber-1.19.0.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/releases/faber-1.2.0.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/releases/faber-1.3.0.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/releases/faber-1.4.0.html</loc></url>

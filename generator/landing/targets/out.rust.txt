@@ -11,6 +11,15 @@ pub struct Span {
     pub low: f64,
     pub high: f64,
 }
+impl faber::FaberZero for Span {
+    fn faber_zero() -> Self {
+        Self {
+            low: <f64 as faber::FaberZero>::faber_zero(),
+            high: <f64 as faber::FaberZero>::faber_zero(),
+        }
+    }
+}
+
 
 impl ::core::fmt::Debug for Span {
     fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {

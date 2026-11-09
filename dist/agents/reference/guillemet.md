@@ -43,10 +43,10 @@ tab<TAB>here
 ```fab
 main {
     print «she said "hi" and it's fine»
-    print «hello, §»("me")
-    print «line one\nline two»
+    print "hello, §"("me")
+    print "line one\nline two"
     let string a ← «x "y" z»
-    print «tab\there»
+    print "tab\there"
 }
 ```
 

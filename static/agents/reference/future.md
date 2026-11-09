@@ -42,7 +42,7 @@ Rust async runtime not linked in exempla harness (whitelist: futura/futura.fab).
 ## Example
 
 ```fab
-@ future { }
+@ future
 fn responde() → int {
     return 42
 }

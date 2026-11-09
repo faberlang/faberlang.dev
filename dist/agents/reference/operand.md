@@ -41,9 +41,9 @@ declaration-only CLI metadata (whitelist: operandus/operandus.fab).
 ## Example
 
 ```fab
-@ cli "operandus-smoke"
-@ operand string input description "Input path"
-@ operand rest string files description "Extra files"
+@ cli { name = "operandus-smoke" }
+@ operand { type = string, binding = input, description = "Input path" }
+@ operand { rest = true, type = string, binding = files, description = "Extra files" }
 main args args {
 }
 ```

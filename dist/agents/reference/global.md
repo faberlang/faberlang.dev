@@ -40,8 +40,8 @@ declaration-only CLI metadata (whitelist: ubique/ubique.fab).
 ## Example
 
 ```fab
-@ cli "ubique-smoke"
-@ option verbose short "v" long "verbose" type bool global description "Global verbose flag"
+@ cli { name = "ubique-smoke" }
+@ option { binding = verbose, short = "v", long = "verbose", type = bool, description = "Global verbose flag", global = true }
 main args args {
 }
 ```

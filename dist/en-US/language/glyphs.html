@@ -9,7 +9,11 @@ float tensors.</p><pre class="faber-code"><code class="lang-faber locale=en"><sp
 attaches a value the compiler already knows — field shape inside a literal,
 declaration metadata, annotation fields. Most languages spell both with <code class="glyph">=</code>
 and leave the reader to infer which is meant; Faber splits them, so the glyph
-itself tells you whether anything happens at runtime.</p><pre class="faber-code"><code class="lang-faber">class Punctum {
+itself tells you whether anything happens at runtime.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> toml
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
+
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> faber
+class Punctum {
     let int x
     let int y
 }
@@ -32,7 +36,11 @@ A reader who knows the Rust backend can still recognise the Faber source because
 the keyword vocabulary and type-first order produce a distinct visual register.</p><h3 id="type-first">Type-first declarations<a class="anchor" href="#type-first">#</a></h3><p>Faber puts the type before the name in every declaration. This is the opposite of
 mainstream C-family syntax, and it is deliberate:</p><div class="table-scroll"><table><thead><tr><th>Construct</th><th>C-family habit</th><th>Faber</th></tr></thead><tbody><tr><td>Variable</td><td><code>int count = 0</code></td><td><code>int count ← 0</code></td></tr><tr><td>Function</td><td><code>fn greet(name: String) → String</code></td><td><code>fn salve(string name) → string</code></td></tr><tr><td>Parameter</td><td><code>(String name)</code></td><td><code>(string name)</code></td></tr></tbody></table></div><p>Type-first declarations mean the shape of data is the first thing the reader sees.
 This aligns naturally with languages that read left-to-right for semantic breadth
-— Chinese, Hindi, and Arabic declarations follow the same order.</p><pre class="faber-code"><code class="lang-faber">fn divide(int a, int b) <span class="tok-op">→</span> int <span class="tok-op">∪</span> none {
+— Chinese, Hindi, and Arabic declarations follow the same order.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> toml
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
+
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> faber
+fn divide(int a, int b) <span class="tok-op">→</span> int <span class="tok-op">∪</span> none {
     if b <span class="tok-op">≡</span> <span class="tok-nu">0</span> then return null
     return a <span class="tok-op">/</span> b
 }</code></pre><h3 id="latin">The behavioural vocabulary<a class="anchor" href="#latin">#</a></h3><p>Faber gives every construct that has behavioural or grammatical shape a word.
@@ -54,7 +62,11 @@ which human language the keywords are rendered in.</p><h4 id="value-flow">Value 
 point of confusion for new readers:</p><div class="table-scroll"><table><thead><tr><th>Glyph</th><th>Role</th><th>Use for</th></tr></thead><tbody><tr><td><code class="glyph">←</code></td><td><strong>Runtime flow</strong></td><td>Initial binding, reassignment, and mutation at execution time</td></tr><tr><td><code class="glyph">=</code></td><td><strong>Structural shape</strong></td><td>Field names inside literals and declaration metadata — not runtime stores</td></tr></tbody></table></div><p>Most languages overload <code class="glyph">=</code> for both &quot;define this field in a type&quot;
 and &quot;put a runtime value in this variable.&quot; Faber splits those jobs. Every
 <code class="glyph">←</code> is live data flow; every <code class="glyph">=</code> inside <code>Type { … }</code>
-is class field layout.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># Runtime binding: ← attaches a value to a name</span>
+is class field layout.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> toml
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
+
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> faber
+<span class="tok-co"># Runtime binding: ← attaches a value to a name</span>
 class Point {
     let int x
     let int y
@@ -79,23 +91,43 @@ Multiple surfaces parse to the same <code>HirAnnotation</code> or type node.
 families below build on the markers. The choice between a container's long
 form and its sugar is
 per-module, not per-repository — a CLI package may use long form everywhere,
-while a tensor kernel module uses sugar:</p><div class="table-scroll"><table><thead><tr><th>Sugar</th><th>Canonical form</th><th>Domain</th></tr></thead><tbody><tr><td><code>tf32</code>, <code>tf32[4]</code>, <code>ti64[2, 3]</code></td><td><code>tensor&lt;f32, _&gt;</code>, <code>tensor&lt;f32, [4]&gt;</code></td><td>Dense tensor — <code>t</code> + width + optional shape</td></tr><tr><td><code>sf32</code>, <code>sf32[2, 3]</code>, <code>si64[N]</code></td><td><code>sparse&lt;f32, _&gt;</code>, <code>sparse&lt;f32, [2, 3]&gt;</code></td><td>Sparse tensor — <code>s</code> + width + optional shape</td></tr><tr><td><code>mf32[4, 4]</code>, <code>mu32[3, 3]</code></td><td><code>matrix&lt;f32, [4, 4]&gt;</code></td><td>Register-class matrix — <code>m</code> + width + shape</td></tr><tr><td><code>lf32</code>, <code>lu32</code>, <code>li64</code></td><td><code>list&lt;f32&gt;</code>, <code>list&lt;u32&gt;</code></td><td>List — <code>l</code> + width</td></tr></tbody></table></div><p><strong>General Faber (prefer long form):</strong></p><pre class="faber-code"><code class="lang-faber">main {
+while a tensor kernel module uses sugar:</p><div class="table-scroll"><table><thead><tr><th>Sugar</th><th>Canonical form</th><th>Domain</th></tr></thead><tbody><tr><td><code>tf32</code>, <code>tf32[4]</code>, <code>ti64[2, 3]</code></td><td><code>tensor&lt;f32, _&gt;</code>, <code>tensor&lt;f32, [4]&gt;</code></td><td>Dense tensor — <code>t</code> + width + optional shape</td></tr><tr><td><code>sf32</code>, <code>sf32[2, 3]</code>, <code>si64[N]</code></td><td><code>sparse&lt;f32, _&gt;</code>, <code>sparse&lt;f32, [2, 3]&gt;</code></td><td>Sparse tensor — <code>s</code> + width + optional shape</td></tr><tr><td><code>mf32[4, 4]</code>, <code>mu32[3, 3]</code></td><td><code>matrix&lt;f32, [4, 4]&gt;</code></td><td>Register-class matrix — <code>m</code> + width + shape</td></tr><tr><td><code>lf32</code>, <code>lu32</code>, <code>li64</code></td><td><code>list&lt;f32&gt;</code>, <code>list&lt;u32&gt;</code></td><td>List — <code>l</code> + width</td></tr></tbody></table></div><p><strong>General Faber (prefer long form):</strong></p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> toml
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
+
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> faber
+main {
     let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> values <span class="tok-op">←</span> empty
     let tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> empty
     let i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span>
-}</code></pre><p><strong>Numeric modules (prefer sugar):</strong></p><pre class="faber-code"><code class="lang-faber">main {
+}</code></pre><p><strong>Numeric modules (prefer sugar):</strong></p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> toml
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
+
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> faber
+main {
     let lf32 values <span class="tok-op">←</span> empty
     let tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] grid <span class="tok-op">←</span> empty
     let i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span>
 }</code></pre><p>Sugar is <strong>type-position only</strong>. Value identifiers named <code>f32</code>,
 <code>tf32</code>, or <code>mf32</code> are unchanged — the compiler only
 interprets these as sugar when they appear in type positions. A file that
-consistently uses sugar should say so once at the top:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># STYLE: numeric sugar (tf32, mf32, sf32, lf32, lu32)</span></code></pre><h3 id="annotation-sugar">Annotation sugar<a class="anchor" href="#annotation-sugar">#</a></h3><p>Faber annotations follow the same dual-surface model as numeric types.
+consistently uses sugar should say so once at the top:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> toml
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
+
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> faber
+<span class="tok-co"># STYLE: numeric sugar (tf32, mf32, sf32, lf32, lu32)</span></code></pre><h3 id="annotation-sugar">Annotation sugar<a class="anchor" href="#annotation-sugar">#</a></h3><p>Faber annotations follow the same dual-surface model as numeric types.
 Annotations are compiler-owned metadata attached to declarations — like
 <code>@ option</code> for CLI option definitions or <code>@ future</code> for async functions
-(legacy — prefer the <code>async</code> posture word in the signature slot).</p><p><strong>Canonical form:</strong> a braced record with explicit field names:</p><pre class="faber-code"><code class="lang-faber">@ option { binding <span class="tok-op">=</span> verbose, short <span class="tok-op">=</span> <span class="tok-st">"v"</span>, long <span class="tok-op">=</span> <span class="tok-st">"verbose"</span>, type <span class="tok-op">=</span> bool, description <span class="tok-op">=</span> <span class="tok-st">"Enable verbose output"</span>, global <span class="tok-op">=</span> true }
+(legacy — prefer the <code>async</code> posture word in the signature slot).</p><p><strong>Canonical form:</strong> a braced record with explicit field names:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> toml
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
+
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> faber
+@ option { binding <span class="tok-op">=</span> verbose, short <span class="tok-op">=</span> <span class="tok-st">"v"</span>, long <span class="tok-op">=</span> <span class="tok-st">"verbose"</span>, type <span class="tok-op">=</span> bool, description <span class="tok-op">=</span> <span class="tok-st">"Enable verbose output"</span>, global <span class="tok-op">=</span> true }
 main {
-}</code></pre><p><strong>Sugar form:</strong> positional arguments and named aliases:</p><pre class="faber-code"><code class="lang-faber">@ option { binding <span class="tok-op">=</span> verbose, short <span class="tok-op">=</span> <span class="tok-st">"v"</span>, long <span class="tok-op">=</span> <span class="tok-st">"verbose"</span>, type <span class="tok-op">=</span> bool, description <span class="tok-op">=</span> <span class="tok-st">"Enable verbose output"</span>, global <span class="tok-op">=</span> true }
+}</code></pre><p><strong>Sugar form:</strong> positional arguments and named aliases:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> toml
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
+
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> faber
+@ option { binding <span class="tok-op">=</span> verbose, short <span class="tok-op">=</span> <span class="tok-st">"v"</span>, long <span class="tok-op">=</span> <span class="tok-st">"verbose"</span>, type <span class="tok-op">=</span> bool, description <span class="tok-op">=</span> <span class="tok-st">"Enable verbose output"</span>, global <span class="tok-op">=</span> true }
 main {
 }</code></pre><p>Both forms produce the same <code>HirAnnotation</code> record. The canonical
 form is explicit and self-documenting; the sugar form is concise for

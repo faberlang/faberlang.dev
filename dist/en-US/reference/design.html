@@ -8,7 +8,11 @@ rendered in or which target backend the code compiles to.</p><h3 id="i-types-bef
 reader needs to know <em>what kind of thing</em> this is before the name
 tells them <em>which</em> thing. This aligns with languages whose
 grammatical order reads from category to instance — Chinese, Hindi, Arabic
-— and produces declarations that scan uniformly.</p><pre class="faber-code"><code class="lang-faber">fn salve(string name) <span class="tok-op">→</span> string {
+— and produces declarations that scan uniformly.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> toml
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
+
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> faber
+fn salve(string name) <span class="tok-op">→</span> string {
     return name
 }
 <span class="tok-co"># Type before name in every declaration</span>
@@ -18,7 +22,11 @@ main {
 }</code></pre><h3 id="ii-mechanical-over-magical">II. Mechanical over magical<a class="anchor" href="#ii-mechanical-over-magical">#</a></h3><p>The same construct should mean the same thing everywhere. If a reader needs
 distant context to know what a symbol does, the syntax is suspect. Faber
 prefers explicit, local reasoning — the declaration site carries enough
-information to understand what will happen at the use site.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># The meaning of a call is determined by the function's signature,</span>
+information to understand what will happen at the use site.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> toml
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
+
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> faber
+<span class="tok-co"># The meaning of a call is determined by the function's signature,</span>
 <span class="tok-co"># not by invisible trait resolution or implicit conversions.</span>
 fn duplica(int n) <span class="tok-op">→</span> int {
     return n <span class="tok-op">*</span> <span class="tok-nu">2</span>
@@ -48,7 +56,11 @@ meanings. Aliases must point back to one canonical concept. This is the
 principle that drives Faber's split between <code class="glyph">←</code>
 (runtime binding) and <code class="glyph">=</code> (structural field shape) — most
 languages collapse both into <code class="glyph">=</code>, but that overloading hides
-whether a line is a data-flow operation or a type-level definition.</p><pre class="faber-code"><code class="lang-faber">class Point {
+whether a line is a data-flow operation or a type-level definition.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> toml
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
+
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> faber
+class Point {
     let int x
     let int y
 }
@@ -68,7 +80,11 @@ runtime event. There is no syntactic ambiguity about whether a particular
 declaration slots use post-name markers: <code>optional</code>. These are
 distinct concepts — <em>a value that may be absent</em> vs *a slot the
 caller may omit* — and Faber keeps them syntactically separate rather
-than collapsing both into <code>T?</code> or <code>Option&lt;T&gt;</code>.</p><pre class="faber-code"><code class="lang-faber">fn find(string key) <span class="tok-op">→</span> int <span class="tok-op">∪</span> none {
+than collapsing both into <code>T?</code> or <code>Option&lt;T&gt;</code>.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> toml
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
+
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> faber
+fn find(string key) <span class="tok-op">→</span> int <span class="tok-op">∪</span> none {
     return null
 }
 

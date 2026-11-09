@@ -2,7 +2,7 @@
 
 The absent-member type: none (la none) is the type, null (la null) is its value.
 
-**Term** `none` · **Section** KEYWORDS
+**Term** `none` · **Section** TYPES
 
 ## Syntax
 

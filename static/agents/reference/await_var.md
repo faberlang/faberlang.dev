@@ -17,9 +17,9 @@ await_var T name ← future
 ## Example
 
 ```fab
-+++
++++ toml
 locale = "la"
-+++
++++ faber
 fn responde() async → int {
     return 3
 }

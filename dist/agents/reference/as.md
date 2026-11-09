@@ -40,7 +40,7 @@ Cross-ref: destructura/, importa/, discerne/ (per-field ut).
 ## Example
 
 ```fab
-fn greet(string location as loc) → string {
+fn greet(string loc) → string {
     return loc
 }
 

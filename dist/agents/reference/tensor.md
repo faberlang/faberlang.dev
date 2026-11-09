@@ -41,7 +41,6 @@ fn identity(tensor<f32, []> value) → tensor<f32, []> {
 main {
     let tensor<f32, []> empty ← empty
     let tensor<f32, []> roundtrip ← identity(empty)
-
     print roundtrip.length()
 }
 ```

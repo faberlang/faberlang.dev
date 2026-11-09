@@ -41,7 +41,7 @@ Cross-ref: futura/futura.fab, itera/cursor-iteratio.fab; Go whitelist: cursor/cu
 ## Example
 
 ```fab
-@ cursor { }
+@ cursor
 fn stream() → int {
     yield 1
     yield 2

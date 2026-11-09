@@ -34,6 +34,10 @@ promissum typus notus (promissum.expected).
 ## Example
 
 ```fab
+fn pass_failable(promise<int ⇥ string> pending) → promise<int ⇥ string> {
+    return pending
+}
+
 fn compute() async → int {
     return 7
 }

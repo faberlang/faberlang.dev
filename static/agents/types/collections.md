@@ -24,7 +24,7 @@ argument included. Appending past the maximum reports on the error channel.
 main {
     let list<int, size 0…3> pair ← [1, 2]
     print pair
-    mut list<int, size 2‥5> ys ← [10, 20]
+    mut list<int, size 2 ‥ 5> ys ← [10, 20]
     do {
         ys.append(30)
         ys.append(40)

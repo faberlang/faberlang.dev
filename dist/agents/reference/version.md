@@ -40,7 +40,7 @@ declaration-only CLI metadata (whitelist: meta/versio.fab).
 ## Example
 
 ```fab
-@ cli "versio-smoke"
+@ cli { name = "versio-smoke" }
 @ version "0.1.0"
 @ description "Version metadata exemplum"
 main args args {

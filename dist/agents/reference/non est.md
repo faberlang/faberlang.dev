@@ -42,8 +42,8 @@ Negated est parses as `expr not is target`.
 
 ```fab
 main {
-    let _ vexilla ← 0b1010
-    let _ persona ← 0b1100
+    let _ vexilla ← 10
+    let _ persona ← 12
     let _ velata ← vexilla ∨ persona
     # 14 (0b1110)
     print velata

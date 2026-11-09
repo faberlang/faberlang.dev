@@ -75,7 +75,9 @@ page. The second column names the grammar rule the word belongs to.
 | [`elif`](/en-US/corpus/elif.html) | `si_tail` |
 | [`else`](/en-US/corpus/else.html) | `secus_clause` |
 | [`while`](/en-US/corpus/while.html) | `dum_stmt` |
-| [`range`](/en-US/corpus/range.html), [`ref`](/en-US/corpus/ref.html), [`from`](/en-US/corpus/from.html), [`for`](/en-US/corpus/for.html), [`let`](/en-US/corpus/let.html), [`mut`](/en-US/corpus/mut.html) | `itera_stmt` |
+| [`ref`](/en-US/corpus/ref.html), [`for`](/en-US/corpus/for.html), [`let`](/en-US/corpus/let.html), [`mut`](/en-US/corpus/mut.html) | `itera_stmt` |
+| [`range`](/en-US/corpus/range.html), [`and`](/en-US/corpus/and.html), [`from`](/en-US/corpus/from.html) | `itera_clause` |
+| [`and`](/en-US/corpus/and.html) | `itera_binding` |
 | [`at`](/en-US/corpus/at.html) | `apud_clause` |
 | [`switch`](/en-US/corpus/switch.html) | `elige_stmt` |
 | [`case`](/en-US/corpus/case.html) | `casu_elige_clause` |

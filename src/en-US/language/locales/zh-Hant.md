@@ -50,6 +50,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | await_const      figendum     等定
 | await_var        variandum    等變
 | axis             axis         軸
+| batch            gregatim     批量
 | before           ante         之前
 | bench            metior       測量
 | between          inter        之間
@@ -79,6 +80,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | device           machina      裝置
 | do               fac          執行
 | elif             sin          否則若
+| eligible         idonea       合格
 | else             secus        否則
 | embed            insere       嵌入
 | empty            vacua        空集

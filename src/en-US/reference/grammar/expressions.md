@@ -64,7 +64,7 @@ page. The second column names the grammar rule the word belongs to.
 | [`spread`](/en-US/corpus/spread.html) | `argument` |
 | [`ref`](/en-US/corpus/ref.html), [`mut`](/en-US/corpus/mut.html) | `call_marker` |
 | [`spread`](/en-US/corpus/spread.html) | `template_argument` |
-| [`false`](/en-US/corpus/false.html), [`true`](/en-US/corpus/true.html) | `literal` |
+| [`false`](/en-US/corpus/false.html), [`null`](/en-US/corpus/null.html), [`true`](/en-US/corpus/true.html) | `literal` |
 | [`self`](/en-US/corpus/self.html) | `primary` |
 | [`call`](/en-US/corpus/call.html) | `ad_expr` |
 | [`tuple`](/en-US/corpus/tuple.html) | `iuncta_expr` |

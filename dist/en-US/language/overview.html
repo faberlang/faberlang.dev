@@ -5,7 +5,11 @@ math-oriented operators — and the same program can be written and read in
 eight language surfaces. This page is the claim plus the shape of everything;
 the pages below it go one level deeper.</p><h2 id="program">One program<a class="anchor" href="#program">#</a></h2><p>This is the whole program the landing page opens with: a small type, a generic
 helper, and an entry point. Every panel on this page is compiler output, so the
-page cannot claim something the toolchain does not produce.</p><pre class="faber-code"><code class="lang-faber">class Span {
+page cannot claim something the toolchain does not produce.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> toml
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
+
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> faber
+class Span {
     let f64 low
     let f64 high
 
@@ -65,6 +69,15 @@ below exactly as <code>radix emit --target rust</code> produces it:</p><pre clas
     <span class="tok-kw">pub</span> low: <span class="tok-ty">f64</span>,
     <span class="tok-kw">pub</span> high: <span class="tok-ty">f64</span>,
 }
+<span class="tok-kw">impl</span> faber::FaberZero <span class="tok-kw">for</span> Span {
+    <span class="tok-kw">fn</span> faber_zero() -&gt; Self {
+        Self {
+            low: &lt;<span class="tok-ty">f64</span> <span class="tok-kw">as</span> faber::FaberZero&gt;::faber_zero(),
+            high: &lt;<span class="tok-ty">f64</span> <span class="tok-kw">as</span> faber::FaberZero&gt;::faber_zero(),
+        }
+    }
+}
+
 
 <span class="tok-kw">impl</span> ::core::fmt::Debug <span class="tok-kw">for</span> Span {
     <span class="tok-kw">fn</span> fmt(&amp;<span class="tok-kw">self</span>, f: &amp;<span class="tok-kw">mut</span> ::core::fmt::Formatter&lt;'_&gt;) -&gt; ::core::fmt::Result {
@@ -81,7 +94,7 @@ below exactly as <code>radix emit --target rust</code> produces it:</p><pre clas
     }
 }</code></pre><p>The table is read from <code>faber targets</code>, so it cannot drift from the toolchain.
 <code>Emits</code> is source emission, <code>Package</code> is package assembly, <code>Runs</code> is running
-through faber.</p><div class="table-scroll"><table><thead><tr><th>Target</th><th>Emits</th><th>Package</th><th>Runs</th></tr></thead><tbody><tr><td><code>rust</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>faber</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>ts</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>go</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>python</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>haskell</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>c</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>wasm-text</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>wasm</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>llvm-text</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>metal-text</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>wgsl-text</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>sexp</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>swift</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>fhir</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>llvm-host</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>clif</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>fmir-text</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>fmir</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>fmir-bin</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>device-runtime</code></td><td>—</td><td>—</td><td>—</td></tr></tbody></table></div><p>Rust builds as a Cargo package today. Other targets give you source files to
+through faber.</p><div class="table-scroll"><table><thead><tr><th>Target</th><th>Emits</th><th>Package</th><th>Runs</th></tr></thead><tbody><tr><td><code>rust</code></td><td>yes</td><td>yes</td><td>—</td></tr><tr><td><code>faber</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>ts</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>go</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>python</code></td><td>yes</td><td>—</td><td>yes</td></tr><tr><td><code>haskell</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>c</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>wasm-text</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>wasm</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>llvm-text</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>metal-text</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>wgsl-text</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>sexp</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>swift</code></td><td>yes</td><td>—</td><td>yes</td></tr><tr><td><code>fhir</code></td><td>yes</td><td>yes</td><td>—</td></tr><tr><td><code>llvm-host</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>clif</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>fmir-text</code></td><td>yes</td><td>yes</td><td>—</td></tr><tr><td><code>fmir</code></td><td>yes</td><td>yes</td><td>—</td></tr><tr><td><code>device-runtime</code></td><td>—</td><td>—</td><td>—</td></tr></tbody></table></div><p>Rust builds as a Cargo package today. Other targets give you source files to
 add to your existing project; assembling them into installable packages is
 not built yet. Support is stated target by target — generics and some
 operators do not lower to every target, and the matrix records where.

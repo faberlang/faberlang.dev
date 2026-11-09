@@ -40,7 +40,7 @@ declaration-only function modifier (whitelist: immutata/immutata.fab).
 ## Example
 
 ```fab
-fn inspecta() readonly → int {
+fn inspecta() → int {
     return 0
 }
 ```

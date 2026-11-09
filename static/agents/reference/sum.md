@@ -24,11 +24,13 @@ reduce via sum from <source> at [coords] let <binder> { return <term> }
 ## Example
 
 ```fab
-+++
++++ toml
 locale = "la"
-+++
++++ faber
 fn identity(tensor<f32, [8]> a) → f32 {
-    return reduce via sum from a at [i] let s { return s }
+    return reduce via sum from a at [i] let s {
+        return s
+    }
 }
 
 fn shifted(tensor<f32, [8]> a) → f32 {
@@ -41,12 +43,13 @@ fn shifted(tensor<f32, [8]> a) → f32 {
 
 main {
     let list<f32> flat ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0]
-        let tf32[8] a ← flat ↦ tf32[8]
-
+    let tf32[8] a ← flat ↦ tensor<f32, [8]>
     let f32 per_summam ← a.summa()
     let f32 plicatum ← identity(a)
     let f32 summam_totam ← shifted(a)
-
+    # The identity term must match `.summa()` under the numeric tolerance
+    # contract (SFR-4), as the retired Rust property test checked.
+    assert (per_summam - plicatum).absolutum() ≤ 1e-5 * per_summam.absolutum().maximus(1.0) panic "identitatis terminus cum metodo .summa() congruat"
     print per_summam
     print plicatum
     print summam_totam

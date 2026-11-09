@@ -36,13 +36,17 @@ typeAliasDecl :← 'typus' ident '=' typeExpr
 
 ```fab
 type Signum = int
+
 type Cognomen = string
+
 type Viget = bool
 
 # --- Generic type aliases ---
 
 type Nomina = list<string>
+
 type Puncta = list<int>
+
 type Index = map<string, int>
 
 # Nullable type alias (canonical T ∪ none form)
@@ -53,7 +57,6 @@ main {
     let Signum signum ← 42
     let Cognomen cognomen ← "Marcus"
     let Viget viget ← true
-
     print signum
     print cognomen
     print viget
@@ -61,7 +64,6 @@ main {
     # Using generic aliases
     let Nomina sodales ← ["Gaius", "Lucius", "Titus"]
     print sodales
-
     let Puncta puncta ← [100, 95, 87]
     print puncta
 }

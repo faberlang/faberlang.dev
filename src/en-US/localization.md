@@ -73,6 +73,10 @@ main {
 *Architectural stress:* None unique — by design. It is the complete template every translated pack is built from.
 
 ```faber locale=la
++++ toml
+locale = "la"
+
++++ faber
 genus Span {
     sit f64 low
     sit f64 high
@@ -105,6 +109,10 @@ incipit {
 *Architectural stress:* **Spaceless script.** Thai has no inter-word boundaries, so a tokenizer that quietly assumed whitespace separates words breaks immediately. Combining vowel and tone marks stack on base characters, so a keyword is not a run of independent code points.
 
 ```faber locale=th-TH
++++ toml
+locale = "th-TH"
+
++++ faber
 ชนิด Span {
     กำหนด f64 low
     กำหนด f64 high
@@ -137,6 +145,10 @@ incipit {
 *Architectural stress:* **Full-width and half-width punctuation** collapse under NFKC normalization, so the compiler cannot treat visually distinct characters as distinct tokens. **Paired keywords** (如果 / 否则) are single tokens rather than multi-token phrases, which is what forced reader packs to support keyword groups at all.
 
 ```faber locale=zh-Hans
++++ toml
+locale = "zh-Hans"
+
++++ faber
 类 Span {
     设 f64 low
     设 f64 high
@@ -169,6 +181,10 @@ incipit {
 *Architectural stress:* **Sibling packs.** Two packs for one language proved the substrate could carry divergent vocabulary over identical semantics, and forced the vocabulary-governance rules that keep them from drifting apart.
 
 ```faber locale=zh-Hant
++++ toml
+locale = "zh-Hant"
+
++++ faber
 類型 Span {
     設為 f64 low
     設為 f64 high
@@ -201,6 +217,10 @@ incipit {
 *Architectural stress:* **Heavy diacritics on Latin script.** NFKC edge cases and accent-sensitive suggestion matching, where two spellings look nearly identical and must not be confused. Multi-word keywords join with underscores: `bắt_đầu`.
 
 ```faber locale=vi
++++ toml
+locale = "vi"
+
++++ faber
 kiểu Span {
     đặt f64 low
     đặt f64 high
@@ -233,6 +253,10 @@ bắt_đầu {
 *Architectural stress:* **Bidirectional text.** Contextual glyph shaping, ligatures, and the split between logical and visual order. Diagnostics have to bidi-isolate the source they quote, or an error message points at the wrong character.
 
 ```faber locale=ar
++++ toml
+locale = "ar"
+
++++ faber
 صنف Span {
     ليكن f64 low
     ليكن f64 high
@@ -265,6 +289,10 @@ bắt_đầu {
 *Architectural stress:* **Matra and virama consonant clusters**, where a grapheme spans several code points and NFKC equivalence has to hold. It is also the pack that confirmed **Indic numerals** (०-९) stay rejected inside numeric literals — a digit that looks like a number but is not one.
 
 ```faber locale=hi
++++ toml
+locale = "hi"
+
++++ faber
 वर्ग Span {
     बैठा f64 low
     बैठा f64 high

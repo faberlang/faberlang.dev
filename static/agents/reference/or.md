@@ -87,8 +87,8 @@ vel
     let _ gradus ← puncta ≥ 80 ✓ "B" ✗ "F"
     print gradus
 Bit per bit
-    let _ vexilla ← 0b1010
-    let _ persona ← 0b1100
+    let _ vexilla ← 10
+    let _ persona ← 12
     let _ coniuncta ← vexilla ∧ persona
     print coniuncta
     let _ velata ← vexilla ∨ persona

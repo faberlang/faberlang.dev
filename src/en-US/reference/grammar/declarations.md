@@ -69,13 +69,14 @@ page. The second column names the grammar rule the word belongs to.
 | Term | Grammar rule |
 |---|---|
 | [`embed`](/en-US/corpus/embed.html) | `insere_expr` |
-| [`const`](/en-US/corpus/const.html), [`mut`](/en-US/corpus/mut.html) | `fixum_decl` |
+| [`const`](/en-US/corpus/const.html), [`const`](/en-US/corpus/const.html), [`mut`](/en-US/corpus/mut.html) | `fixum_decl` |
 | [`await_const`](/en-US/corpus/await_const.html), [`await_var`](/en-US/corpus/await_var.html) | `figendum_decl` |
-| [`let`](/en-US/corpus/let.html) | `sit_decl` |
+| [`let`](/en-US/corpus/let.html), [`let`](/en-US/corpus/let.html) | `sit_decl` |
 | [`ref`](/en-US/corpus/ref.html) | `ref_decl` |
 | [`let`](/en-US/corpus/let.html), [`mut`](/en-US/corpus/mut.html) | `array_destruct` |
 | [`let`](/en-US/corpus/let.html), [`mut`](/en-US/corpus/mut.html) | `object_destruct` |
 | [`fn`](/en-US/corpus/fn.html) | `functio_decl` |
+| [`kernel`](/en-US/corpus/kernel.html) | `kernel_decl` |
 | [`implements`](/en-US/corpus/implements.html) | `generic_bound` |
 | [`rest`](/en-US/corpus/rest.html), [`optional`](/en-US/corpus/optional.html), [`as`](/en-US/corpus/as.html), [`coalesce`](/en-US/corpus/coalesce.html) | `parameter` |
 | [`args`](/en-US/corpus/args.html), [`errors`](/en-US/corpus/errors.html), [`exit`](/en-US/corpus/exit.html), [`throws`](/en-US/corpus/throws.html), [`readonly`](/en-US/corpus/readonly.html), [`options`](/en-US/corpus/options.html) | `func_modifier` |

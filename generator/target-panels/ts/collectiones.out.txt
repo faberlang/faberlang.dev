@@ -5,11 +5,11 @@ import { display, exact } from "@faber/runtime";
 function summa(p_numeri: Array<number>): number {
     let l_total: number = 0;
     for (const l_n of p_numeri) {
-        l_total = exact.store(exact.add(l_total, l_n), -9007199254740991, 9007199254740991, "i64", "assignment to `total`", "");
+        l_total = exact.store(exact.add(l_total, l_n), -9223372036854775808, 9223372036854775807, "i64", "assignment to `total`", "");
     }
     return l_total;
 }
-(() => {
+(() => { try { return (() => {
     const l_valores: Array<number> = [1, 2, 3, 4, 5];
     console.log(display.value(summa(l_valores), "numerus"));
-})();
+})(); } catch (__e: any) { const __m = __e instanceof Error ? (((__e as any).__faberAssertion === true || (__e as any).__faberAbort === true) ? "abort: " + __e.message : __e.message) : (__e !== null && typeof __e === "object" && (__e as any).__faberFail === true ? "abort: " + String((__e as any).error) : String(__e)); console.error((__e !== null && typeof __e === "object" && (__e as any).__faberTrap === true ? "error: " : (__e !== null && typeof __e === "object" && ((__e as any).__faberAssertion === true || (__e as any).__faberAbort === true || (__e as any).__faberFail === true) ? "" : "Error: ")) + __m); (globalThis as any).process.exitCode = 70; return 70; } })();

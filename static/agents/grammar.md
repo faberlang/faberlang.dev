@@ -50,8 +50,10 @@ main {
 ```
 
 ```faber locale=en outcome=rejects
-main { # trailing
-    print "en"
+main {
+    let int x ← 1 + # no
+        2
+    print x
 }
 ```
 

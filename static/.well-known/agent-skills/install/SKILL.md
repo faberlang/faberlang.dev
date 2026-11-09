@@ -15,8 +15,8 @@ description: "Download and verify the current Faber CLI release for macOS arm64 
 
 - **Version:** 1.19.0
 - **Tag:** `faber-v1.19.0`
-- **Published:** pending
-- **Bundled compiler:** Radix pending
+- **Published:** 2026-11-09
+- **Bundled compiler:** Radix 0.84.0
 - **Release page:** https://github.com/faberlang/releases/releases/tag/faber-v1.19.0
 - **License:** MIT OR Apache-2.0
 

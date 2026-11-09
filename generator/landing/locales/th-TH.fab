@@ -1,3 +1,7 @@
++++ toml
+locale = "th-TH"
+
++++ faber
 ชนิด Span {
     กำหนด f64 low
     กำหนด f64 high

@@ -34,13 +34,11 @@ none
 ## Example
 
 ```fab
-fn sum(rest list<int> numeri) → int {
+fn sum(list<int> numeri) → int {
     mut _ total ← 0
-
     for from numeri let n {
         total ← total + n
     }
-
     return total
 }
 

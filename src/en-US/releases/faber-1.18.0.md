@@ -2,7 +2,7 @@
 title = "Faber 1.18.0"
 description = "Release notes and install details for Faber 1.18.0."
 section = "releases"
-order = 10
+order = 12
 sources = []
 +++
 
@@ -206,7 +206,7 @@ These are target-specific limits, not promises made by a successful check. Some 
 
 #### Residual
 
-- **Metal A2 under load.** The A2 reduced-grid oracle test produced a non-finite cell twice on a loaded machine and passes alone. A2 is not a public simulation. This is under investigation.
+- **Metal A2 under load.** The A2 reduced-grid oracle test produced a non-finite cell twice on a loaded machine (2026-10-30, "cell 0 is not finite") and passes alone. Investigated on the physical Metal host (Apple M5 Max): the readback provably follows completed work — a driver test now pins a host read settling a sealed window still in flight — no unordered host read exists on the Metal route, and the oracle passed quiet and recorded-load campaigns (5 quiet; 20 loaded, four concurrent Metal workers plus CPU spinners; six concurrent in-process A2 tests under full CPU load with a memory-pressure holder). The failing runs came from earlier builds this checkout cannot diff. On failure the test now prints the whole depth field with raw bit patterns and the device run's counters, so a recurrence carries its evidence. A non-finite cell is a wrong result and stays a gate failure, not a timing flake.
 - **`trap_text_parity_test` under load.** The test timed out once at 600 s on a loaded machine and takes 32 s alone.
 - **Two Swift cases.** `bounded/itera-ex-bounded-lista-above-ten` and `product/generic-class-import` fail on the Swift target and are pinned as known failures.
 - **Multi-file package conversion.** `faber convert` analyses a package file by file, so a package whose files depend on each other can report per-file failures.

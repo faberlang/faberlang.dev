@@ -51,8 +51,9 @@ main {
     maybeNota(false)
 
     # condition false, so pass never runs
-    if false then pass
-
+    if false {
+        pass
+    }
     print "finis"
 }
 ```

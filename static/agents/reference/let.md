@@ -49,13 +49,10 @@ main {
     let _ salve ← "Salve"
     let _ name ← "Marcus"
     let _ nuntius ← "§, §!"(salve, name)
-
     print nuntius
-
     let _ label
     label ← "deferred"
     print label
-
     let _ idem ← nuntius
     print idem
 }

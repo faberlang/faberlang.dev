@@ -25,6 +25,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [await](await.md) — Awaits a promissum and discards the success value.
 - [await_const](await_const.md) — Awaits a promissum and binds an immutable name.
 - [await_var](await_var.md) — Awaits a promissum and binds a mutable name.
+- [batch](batch.md) — do batch defers recoverable kernel errors to its owning catch.
 - [before](before.md) — Creates an exclusive range with a Latin keyword.
 - [bool](bool.md) — Primitive types bivalens, vacuum, and ignotum.
 - [break](break.md) — Breaks out of the innermost loop.
@@ -76,7 +77,6 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [mut](mut.md) — Declares a mutable binding.
 - [mut (function)](mut (function).md) — Marks a mutable borrowed parameter.
 - [never](never.md) — Primitive never type for code paths that do not return normally.
-- [none](none.md) — The absent-member type: none (la nihil) is the type, null (la nulla) is its value.
 - [not](not.md) — Negates a boolean expression.
 - [object](object.md) — Declares a type alias.
 - [only](only.md) — Marks a test as the only test to run.
@@ -142,18 +142,18 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [?[](?[.md) — Null-safe member, index, and call access.
 - [and](and.md) — Combines boolean expressions with logical and.
 - [coalesce](coalesce.md) — Provides a default when the left side holds `null`.
-- [list<T, size lo‥hi>](list<T, size lo‥hi>.md) — A length range on a list: growing past the maximum or shrinking below the minimum reports on the error channel, and a range of at least one element is never empty.
+- [list<T, size lo ‥ hi>](list<T, size lo ‥ hi>.md) — A length range on a list: growing past the maximum or shrinking below the minimum reports on the error channel, and a range of at least one element is never empty.
 - [modulus<u16>](modulus<u16>.md) — Unsigned 16-bit modular-word arithmetic and bit-pattern edges.
 - [modulus<u32>](modulus<u32>.md) — Unsigned 32-bit modular-word arithmetic and bit-pattern edges.
 - [modulus<u64>](modulus<u64>.md) — Unsigned 64-bit modular-word arithmetic and bit-pattern edges.
 - [modulus<u8>](modulus<u8>.md) — Unsigned 8-bit modular-word arithmetic and bit-pattern edges.
 - [non est](non est.md) — Bitwise or and est-negation operators.
 - [or](or.md) — Combines boolean expressions with logical or.
-- [saturating<W, lo‥hi>](saturating<W, lo‥hi>.md) — A range as the second argument of saturating: a store clamps into the range, not only into the width.
+- [saturating<W, lo ‥ hi>](saturating<W, lo ‥ hi>.md) — A range as the second argument of saturating: a store clamps into the range, not only into the width.
 - [then](then.md) — Introduces a compact statement consequent.
-- [trapping<W, lo‥hi>](trapping<W, lo‥hi>.md) — A range as the second argument of trapping: a store inside the range keeps its value, a store outside it traps.
-- [whole-width range](whole-width range.md) — The existing store-policy spellings are the whole-width range: saturating<u8> is saturating<u8, 0…255>, u8 is trapping<u8, 0…255>.
-- [wrapping<W, lo‥hi>](wrapping<W, lo‥hi>.md) — A range as the second argument of wrapping: a store wraps around the range, offset by its low end.
+- [trapping<W, lo ‥ hi>](trapping<W, lo ‥ hi>.md) — A range as the second argument of trapping: a store inside the range keeps its value, a store outside it traps.
+- [whole-width range](whole-width range.md) — The existing store-policy spellings are the whole-width range: saturating<u8> is saturating<u8, 0 … 255>, u8 is trapping<u8, 0 … 255>.
+- [wrapping<W, lo ‥ hi>](wrapping<W, lo ‥ hi>.md) — A range as the second argument of wrapping: a store wraps around the range, offset by its low end.
 - [§](§.md) — String-template substitution holes inside quoted literals.
 - [¬](¬.md) — Bitwise and, or, xor, not, and shifts on numerus operands.
 - [·](·.md) — Glyph inner product: vector · vector reduces to a scalar dot product.
@@ -203,6 +203,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 
 ## Literals
 
+- [null](null.md) — Null literal and nullable union bindings.
 - [reshape](reshape.md) — Captured backtick templates for bound payloads.
 
 ## Modifiers
@@ -219,6 +220,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [guillemet](guillemet.md) — Guillemet textus literals: quotes and apostrophes need no escape.
 - [matrix](matrix.md) — matrix<T, [R, C]> is a register-class type distinct from tensor.
 - [named-holes](named-holes.md) — Named template holes, positional rendering, and forma capture.
+- [none](none.md) — The absent-member type: none (la nihil) is the type, null (la nulla) is its value.
 - [string](string.md) — Short quoted textus string literals and template application.
 - [take_last](take_last.md) — Marks a test for metered or measured execution.
 - [tensor](tensor.md) — tensor<T, Figura> declaration shell with rank-0 vacua.

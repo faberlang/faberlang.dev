@@ -26,23 +26,23 @@ u16|u32|u64 ↦ b16|b32|b64 ↦ f16|bf16|f32|f64 and f16|bf16|f32|f64 ↦ b16|b3
 ## Example
 
 ```fab
-+++
++++ toml
 locale = "la"
-+++
++++ faber
 fn in_f16(u16 n) → f16 {
-    return n ↦ b16 ↦ f16
+    return (n ↦ b16) ↦ f16
 }
 
 fn ex_bf16(bf16 x) → u16 {
-    return x ↦ b16 ↦ u16
+    return (x ↦ b16) ↦ u16
 }
 
 fn in_f32(u32 n) → f32 {
-    return n ↦ b32 ↦ f32
+    return (n ↦ b32) ↦ f32
 }
 
 fn ex_f64(f64 x) → u64 {
-    return x ↦ b64 ↦ u64
+    return (x ↦ b64) ↦ u64
 }
 
 main {

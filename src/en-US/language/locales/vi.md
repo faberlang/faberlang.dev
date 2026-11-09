@@ -50,6 +50,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | await_const      figendum     đợi_hằng
 | await_var        variandum    đợi_biến
 | axis             axis         trục
+| batch            gregatim     theo_lô
 | before           ante         trước
 | bench            metior       đo_lường
 | between          inter        giữa
@@ -79,6 +80,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | device           machina      thiết_bị
 | do               fac          làm
 | elif             sin          nếukhôngthì
+| eligible         idonea       đủ_điều_kiện
 | else             secus        khác
 | embed            insere       nhúng
 | empty            vacua        tập_rỗng

@@ -41,7 +41,7 @@ Prefer explicit ⇥ error types for callable contracts; see iace/functio-fallibi
 
 ```fab
 interface Canens {
-    fn canta(string vox) throws → void
+    fn canta(string vox) → void
 }
 
 main {

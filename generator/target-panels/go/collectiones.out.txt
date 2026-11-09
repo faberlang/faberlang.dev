@@ -16,6 +16,7 @@ func summa(p_numeri []int) int {
 }
 
 func main() {
+    defer rt.TrapHandle()
     l_valores := []int{1, 2, 3, 4, 5}
     fmt.Println(summa(l_valores))
 }

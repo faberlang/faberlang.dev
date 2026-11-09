@@ -2,7 +2,7 @@
 title = "Faber 1.18.1"
 description = "Release notes and install details for Faber 1.18.1."
 section = "releases"
-order = 9
+order = 11
 sources = []
 +++
 
@@ -63,6 +63,20 @@ This release brings the open-source repository up to date, including the fix for
 
 The exported public tree builds and passes `cargo test --workspace` on macOS arm64 and Linux x86-64. Its public corpus passes on the runner and in round trip on macOS.
 
+### Install
+
+The installer is the recommended route; it verifies the checksum and installs a versioned binary that `faber update` and `faber versions` manage:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/faberlang/faber/main/install.sh | sh
+```
+
+An existing managed install upgrades with `faber update`.
+
 ### Known issues
 
 The 1.18.0 known issues still apply. `faber build --target clif` does not yet work from an installed binary; that fix is planned for 1.19.
+
+---
+
+[All releases](/releases/) · [Start](/start/)

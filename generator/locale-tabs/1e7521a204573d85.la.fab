@@ -1,0 +1,12 @@
++++ toml
+locale = "la"
+
++++ faber
+incipit {
+    sit lista<textus> nomina ← ["Alia", "Brunus"]
+    sit lista<numerus> aetates ← [34, 27]
+
+    itera ex nomina et aetates apud [i] sit nomen et aetas {
+        nota i, nomen, aetas
+    }
+}

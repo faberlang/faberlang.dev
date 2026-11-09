@@ -37,22 +37,33 @@ Validation and grading lines for sample x, aetas, and puncta values.
 main {
     # then replaces a one-statement block body
     let _ x ← 10
-
-    if x ≻ 5 then print "x magnum est"
+    if x ≻ 5 {
+        print "x magnum est"
+    }
 
     # else then pairs else with a single consequent
     let _ aetas ← 25
-    if aetas ≥ 18 then print "adultus"
-    else then print "minor"
+    if aetas ≥ 18 {
+        print "adultus"
+    }
+    else {
+        print "minor"
+    }
 
     # Two-way one-liner (85 < 90 → "not A")
     let _ puncta ← 85
-    if puncta ≥ 90 then print "A"
-    else then print "not A"
+    if puncta ≥ 90 {
+        print "A"
+    }
+    else {
+        print "not A"
+    }
 
     # bool condition used directly
     let _ valet ← true
-    if valet then print "Recte"
+    if valet {
+        print "Recte"
+    }
 }
 ```
 

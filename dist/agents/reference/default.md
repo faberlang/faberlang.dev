@@ -43,8 +43,12 @@ Cross-ref: elige/ceterum.fab.
 main {
     let _ tag ← "z"
     switch tag {
-        case "a" { print "a" }
-        default { print "default" }
+        case "a" {
+            print "a"
+        }
+        default {
+            print "default"
+        }
     }
 }
 ```

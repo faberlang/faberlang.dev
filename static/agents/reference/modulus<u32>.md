@@ -41,7 +41,7 @@ main {
     print ring3
     let wrapping<u32> ring4 ← -one
     print ring4
-    let wrapping<u32> ring5 ← ¬zero
+    let wrapping<u32> ring5 ← ¬ zero
     print ring5
     let wrapping<u32> ring6 ← one ⇐ 32
     print ring6

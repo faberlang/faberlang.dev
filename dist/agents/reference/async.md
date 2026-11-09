@@ -35,9 +35,9 @@ callablePosture :← 'fiet'
 ## Example
 
 ```fab
-+++
++++ toml
 locale = "la"
-+++
++++ faber
 fn responde() async → int {
     return 42
 }

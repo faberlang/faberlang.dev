@@ -40,7 +40,9 @@ fn twin() → string ⇥ string {
 
 main {
     # trap { ... } turns the failable call's two exits into one value.
-    let _ missed ← trap { half(7) }
+    let _ missed ← trap {
+        half(7)
+    }
     match missed {
         case returned let value {
             print "returned §"(value)
@@ -49,8 +51,9 @@ main {
             print "thrown §"(err)
         }
     }
-
-    let _ made ← trap { half(8) }
+    let _ made ← trap {
+        half(8)
+    }
     match made {
         case returned let value {
             print "returned §"(value)
@@ -61,7 +64,9 @@ main {
     }
 
     # A string success with a string error: legal, the arms still discriminate.
-    let _ twinned ← trap { twin() }
+    let _ twinned ← trap {
+        twin()
+    }
     match twinned {
         case returned let value {
             print "twin returned §"(value)

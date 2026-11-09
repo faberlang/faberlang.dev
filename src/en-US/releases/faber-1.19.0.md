@@ -10,15 +10,32 @@ sources = []
 |---|---|
 | **Product** | Faber |
 | **Version** | 1.19.0 |
+| **Tag** | `faber-v1.19.0` |
+| **GitHub** | [faber-v1.19.0](https://github.com/faberlang/releases/releases/tag/faber-v1.19.0) |
+| **Published** | 2026-11-09 |
 | **License** | MIT OR Apache-2.0 |
 
 ## Install this version {#install}
 
-No prebuilt archives were published for this version. It is listed here because its release notes are part of the record.
+Pinned download for **Faber 1.19.0**. For the current release, use [Start](/start/) instead.
+
+| Platform | Archive | Size | Checksum |
+|---|---|---|---|
+| **macOS arm64** | [faber-v1.19.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.19.0/faber-v1.19.0-aarch64-apple-darwin.tar.gz) | 49.9 MB | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.19.0/faber-v1.19.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** | [faber-v1.19.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.19.0/faber-v1.19.0-x86_64-unknown-linux-gnu.tar.gz) | 56.0 MB | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.19.0/faber-v1.19.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+
+```bash
+# The installer verifies the checksum and installs a versioned
+# binary that `faber update` and `faber versions` manage.
+curl -fsSL https://raw.githubusercontent.com/faberlang/faber/main/install.sh \
+  | sh -s -- --version 1.19.0
+export PATH="$HOME/.faber/bin:$PATH"
+faber --version
+```
 
 ## Release notes {#notes}
 
-> **Status**: draft
+> **Status**: final — tagged `faber/v1.19.0` on 2026-11-08
 
 Faber 1.19 follows 1.18 with a sectioned source file: one `.fab` file can now hold its program, its tests and the input and output a test run expects. Loops gain an `and` head that walks several lists in lockstep, and a comma in a loop head is now reserved for the next loop in. The kernel head is finished: `faber format` keeps it and the grammar reference lists it. A run-time size is now `let size N ← n`. `faber run` no longer falls back to the interpreter silently: a program that Cranelift declines is refused, and every slow route says so. The Norma `db` module, `do batch` and `do eligible` ship, and `f64` is legal in kernels on the routes that carry it natively. Four device-route programs that returned wrong numbers without an error now match the reference.
 
@@ -141,11 +158,11 @@ The simulations moved from `corpus-simulations/` to `corpus/simulations/`. Besid
 - A `mut tensor<u64>` that a kernel advances on `--device cpu` keeps its state from one launch to the next. It used to read back as zero after every launch.
 - A host copy-into (`<==`) between device regions now updates the device buffer, or is refused by name when it cannot. Before, the buffers kept their first-round contents.
 
-**Targets.** `ordo` is now fully supported on LLVM. About 15 corpus cases that failed on one target now pass: on C (`generic-call-type-args`, `instans`, `reperta`), Go (`tensor-shape-generic`, `empty-match`, `lista-tensor-padded`), LLVM (`ordo`, `d64`, `d64-arithmetic`), TypeScript (`importa`), Python (`tensor`) and Cranelift (`valor-collection-defaults`). On LLVM, a chained call on a method that returns `self` keeps the receiver's identity. The runner keeps exact `u64` subtraction traps.
+**Targets.** `ordo` is now fully supported on LLVM. Twelve corpus cases that failed on one target now pass: on C (`generic-call-type-args`, `instans`, `reperta`), Go (`tensor-shape-generic`, `empty-match`, `lista-tensor-padded`), LLVM (`ordo`, `d64`, `d64-arithmetic`), TypeScript (`importa`), Python (`tensor`) and Cranelift (`valor-collection-defaults`). On LLVM, a chained call on a method that returns `self` keeps the receiver's identity. The runner keeps exact `u64` subtraction traps.
 
 **Formatting.** `faber format` and `faber convert` keep record construction fields in source order, and keep static size declarations.
 
-**`faber check`** reports a missing package path as a structured error, not a crash.
+**`faber check`** reports a missing package path with its own diagnostic, which names the path.
 
 ### Breaking changes
 
@@ -166,7 +183,7 @@ The simulations moved from `corpus-simulations/` to `corpus/simulations/`. Besid
 - **Nested loop clauses are not lowered.** `for range 0 ‥ m, range 0 ‥ n let i, j` parses and is refused with `SEM008 itera_nested_clause_unsupported`.
 - **`return thread` is still check-only.** Code generation refuses it with `return_thread_lowering_pending`.
 - **`do eligible` does not move work to a device yet.** The modifier and `--device-mode eligible` check and run with ordinary `do` semantics.
-- **A `u64` above 2⁶³ on `--device cpu`.** The Cranelift JIT host half prints such a value as signed when it is read back from a tensor, and refuses a `u64` literal that large. `--device reference` and `--device metal` print it correctly. A fix is in progress; if it lands before the tag, this item goes.
+- **A `u64` above 2⁶³ on `--device cpu`.** The Cranelift JIT host half prints such a value as signed when it is read back from a tensor, and refuses a `u64` literal that large. `--device reference` prints it correctly. A fix is in progress.
 
 ### How this release was gated
 

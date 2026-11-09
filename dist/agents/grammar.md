@@ -5,10 +5,11 @@ These are the forms the other pages check.
 - A type stands before the name: `string name`, `int n`.
 - A runtime store is `←`. A name is bound with `let`, `mut`, or `ref`, and the binding writes its type: `let int n ← 0`, or `let _ n ← 0` to infer it. There is no short form. `let` does not change. `mut` does. `ref` reads.
 - `const int LIMIT = 3` is a compile-time fact, set with `=`. A run-time `const int n ← 0` is an error, and so is `var`.
+- A run-time size is `let size N ← n`; the static form is `const size N = 64`.
 - A function is `fn name(int a) → int { return a }`. A `void` function uses a bare `return`.
 - The entry is `main { }` or `main args argv { }`.
 - Branches are `if`, `elif`, and `else`.
-- A list walk is `for from nums let item { }`. A condition loop is `while n ≺ 2 { }`.
+- A list walk is `for from nums let item { }`. Lists walked together join with `and`: `for from xs and ys let x and y { }`. A condition loop is `while n ≺ 2 { }`.
 - Comparisons in these programs are `≺`, `≥`, `≡`, and `≢`.
 - A missing `int` is `int ∪ none`. The missing value is `null`.
 - A list is `list<int>`. An empty list is `empty`.
@@ -23,9 +24,10 @@ These are the forms the other pages check.
 - A library import is `import from "norma:text" text`.
 - A generic function is `fn identitas<T>(T valor) → T`.
 - A kernel is `kernel scale(f32 x) → f32 { return x }`. A mode word, `relaxed`, `unsafe`, or `fragment`, follows the parameter list.
-- A comment is a `#` line by itself.
+- A comment is a `#` line by itself, or a `#` after a complete statement or an opening `{` on the same line.
+- A file may label its parts with whole-line markers: `+++ toml` (header), `+++ faber` (program), `+++ faber test` (tests), `+++ text stdout` (expected output). A file with no markers is all program.
 
-Do not write `name: T`. Do not write `int?`. Do not write `//`. Do not put `#` after code on the same line.
+Do not write `name: T`. Do not write `int?`. Do not write `//`. Do not put `#` inside an unfinished expression.
 
 ```faber locale=en
 # English source.
@@ -48,8 +50,10 @@ main {
 ```
 
 ```faber locale=en outcome=rejects
-main { # trailing
-    print "en"
+main {
+    let int x ← 1 + # no
+        2
+    print x
 }
 ```
 

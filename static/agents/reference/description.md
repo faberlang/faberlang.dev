@@ -40,7 +40,7 @@ declaration-only CLI metadata (whitelist: descriptio/descriptio.fab).
 ## Example
 
 ```fab
-@ cli "descriptio-smoke"
+@ cli { name = "descriptio-smoke" }
 @ description "Short CLI description"
 main args args {
 }

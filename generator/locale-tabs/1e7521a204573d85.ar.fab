@@ -1,0 +1,12 @@
++++ toml
+locale = "ar"
+
++++ faber
+بداية {
+    ليكن قائمة<نص> nomina ← ["Alia", "Brunus"]
+    ليكن قائمة<عدد> aetates ← [34, 27]
+
+    كرر من nomina و aetates عند [i] ليكن nomen و aetas {
+        اعرض i, nomen, aetas
+    }
+}

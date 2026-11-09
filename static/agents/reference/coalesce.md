@@ -31,7 +31,7 @@ coalesceExpr :← expr 'vel' expr
 ```
 ignotus, Marcus, 0, false, defectum, inventum, 7, supplementum, 9 (vel.expected).
 fn fortasse(bool adest) → int ∪ none {
-    if adest { return 7 }
+    if adest then return 7
     return null
 }
 fn supplementum(int valor) → int {

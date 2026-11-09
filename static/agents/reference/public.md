@@ -35,7 +35,7 @@ publica
 ## Example
 
 ```fab
-@ public { }
+@ public
 fn publicum() → string {
     return "public"
 }

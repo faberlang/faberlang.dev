@@ -50,6 +50,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | await_const      figendum     انتظر_ثابت
 | await_var        variandum    انتظر_متغير
 | axis             axis         محور
+| batch            gregatim     دفعة
 | before           ante         قبل
 | bench            metior       قس
 | between          inter        بين
@@ -79,6 +80,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | device           machina      جهاز
 | do               fac          افعل
 | elif             sin          وإلاإذا
+| eligible         idonea       مؤهل
 | else             secus        وإلا
 | embed            insere       تضمين
 | empty            vacua        فارغ

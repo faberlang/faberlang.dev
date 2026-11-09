@@ -40,9 +40,9 @@ declaration-only CLI metadata (whitelist: optio/optio.fab).
 ## Example
 
 ```fab
-@ cli "optio-smoke"
-@ option verbose short "v" long "verbose" type bool description "Verbose mode"
-@ option count long "count" type int description "Repeat count"
+@ cli { name = "optio-smoke" }
+@ option { binding = verbose, short = "v", long = "verbose", type = bool, description = "Verbose mode" }
+@ option { binding = count, long = "count", type = int, description = "Repeat count" }
 main args args {
 }
 ```

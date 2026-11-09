@@ -34,9 +34,9 @@ Product path is Rust async-cursor; other backends may fail closed.
 ## Example
 
 ```fab
-+++
++++ toml
 locale = "la"
-+++
++++ faber
 fn stream() async_generator → int {
     yield 1
     yield 2

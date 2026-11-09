@@ -50,6 +50,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | await_const      figendum     रुको_स्थिर
 | await_var        variandum    रुको_चर
 | axis             axis         अक्ष
+| batch            gregatim     बैच
 | before           ante         पहले
 | bench            metior       मापो
 | between          inter        बीच
@@ -79,6 +80,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | device           machina      उपकरण
 | do               fac          करो
 | elif             sin          अन्यथायदि
+| eligible         idonea       योग्य
 | else             secus        अन्यथा
 | embed            insere       अंतःस्थापित
 | empty            vacua        खाली

@@ -2,7 +2,7 @@
 title = "Faber 1.6.0"
 description = "Release notes and install details for Faber 1.6.0."
 section = "releases"
-order = 23
+order = 25
 sources = []
 +++
 

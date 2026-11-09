@@ -41,7 +41,7 @@ main {
     print ring3
     let wrapping<u8> ring4 ← -one
     print ring4
-    let wrapping<u8> ring5 ← ¬zero
+    let wrapping<u8> ring5 ← ¬ zero
     print ring5
     let wrapping<u8> ring6 ← one ⇐ 8
     print ring6

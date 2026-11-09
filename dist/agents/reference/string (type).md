@@ -40,14 +40,12 @@ Smoke asserts exit 0 only.
 ```fab
 main {
     let _ nuntius ← " Ave Roma "
-
     let _ secta ← nuntius.slice(1, 4)
     let _ magna ← nuntius.uppercase()
     let _ parva ← nuntius.lowercase()
     let _ rasa ← nuntius.trim()
     let _ partes ← rasa.split(" ")
     let _ mutata ← rasa.replace("Roma", "Munde")
-
     print secta, magna, parva
     print rasa, partes, mutata
 }

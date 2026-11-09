@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="The four range forms: exclusive ‥, inclusive …, until (inclusive) and before (exclusive); the bounds pick the direction."><meta name="theme-color" content="#e8e5db" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="for — Faber"><meta property="og:description" content="The four range forms: exclusive ‥, inclusive …, until (inclusive) and before (exclusive); the bounds pick the direction."><meta property="og:url" content="https://faberlang.dev/en-US/corpus/for.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23ff5a2c'/%3E%3Cpath%20d='M46%2032H19M31%2019L18%2032L31%2045'%20fill='none'%20stroke='%230a0c0f'%20stroke-width='6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/corpus/for.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>for — Faber</title><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-instrument.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">←</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword..." aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/install.md">install</a></nav></div></div><div class="fl-banner" role="status"><p><strong>Experimental through version 1.</strong> Version 0 was alpha. This is the first language release: the interface is relatively stable, not frozen. Nothing is promised stable until version 2.</p></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">←</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/en-US/start/">Start here</a></li><li><a href="/en-US/releases/">Releases</a></li></ul><div class="side-h">The Language</div><ul class="nav"><li><a href="/en-US/language/overview.html">Overview</a></li><li><details class="nav-branch"><summary>Behavior</summary><ul><li><a href="/en-US/language/behavior/type-first.html">Types before names</a></li><li><a href="/en-US/language/behavior/glyph-law.html">The glyph law</a></li><li><a href="/en-US/language/behavior/numeric-widths.html">Math in the ether</a></li><li><a href="/en-US/language/behavior/sealed-locales.html">Sealed reader locales</a></li><li><a href="/en-US/language/behavior/packages.html">A program is a package</a></li><li><a href="/en-US/language/behavior/errors-and-tests.html">Errors as values, tests as declarations</a></li></ul></details></li><li><details class="nav-branch"><summary>Grammar</summary><ul><li><a href="/en-US/reference/grammar.html">Grammar overview</a></li><li><a href="/en-US/reference/grammar/program.html">Programs, regions &amp; imports</a></li><li><a href="/en-US/reference/grammar/declarations.html">Declarations &amp; bindings</a></li><li><a href="/en-US/reference/grammar/annotations.html">Annotations &amp; directives</a></li><li><a href="/en-US/reference/grammar/types.html">Types &amp; contracts</a></li><li><a href="/en-US/reference/grammar/statements.html">Statements &amp; control flow</a></li><li><a href="/en-US/reference/grammar/expressions.html">Expressions &amp; operators</a></li><li><a href="/en-US/reference/grammar/patterns.html">Patterns &amp; destructuring</a></li><li><a href="/en-US/reference/grammar/errors.html">Error channel</a></li><li><a href="/en-US/reference/grammar/lexical.html">Lexical structure &amp; glyphs</a></li></ul></details></li><li><a href="/en-US/corpus/az.html" class="active">Terms A–Z</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">Targets</div><ul class="nav"><li><a href="/en-US/targets/">All targets</a></li><li><details class="nav-branch"><summary>Application · HIR</summary><ul><li><a href="/en-US/targets/rust.html">Rust</a></li><li><a href="/en-US/targets/ts.html">TypeScript</a></li><li><a href="/en-US/targets/go.html">Go</a></li><li><a href="/en-US/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>Systems · MIR</summary><ul><li><a href="/en-US/targets/llvm-text.html">LLVM IR</a></li><li><a href="/en-US/targets/wasm-text.html">WebAssembly text</a></li></ul></details></li><li><details class="nav-branch"><summary>Device · GPU</summary><ul><li><a href="/en-US/targets/metal-text.html">Metal</a></li><li><a href="/en-US/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li></ul><div class="side-h">Reader locales</div><ul class="nav"><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/locales/keywords.html">Keyword reference</a></li><li><a href="/en-US/language/locales/examples.html">Locale examples</a></li><li><a href="/en-US/language/locales/diagnostics.html">Diagnostics by locale</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/tela.html">Tela — views</a></li><li><a href="/en-US/libraries/inferentia.html">Inferentia — inference</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul></aside><main id="main-content"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/en-US/corpus/">Corpus</a> &rsaquo; <a href="/en-US/corpus/bucket/other.html">Other</a> &rsaquo; for</nav><h1>for</h1><p><strong>Translation status:</strong> English reader-locale proof. Term names and code fences follow the <code>en</code> pack; supporting prose may still be English.</p><div class="content"><p>The four range forms: exclusive <code class="glyph">‥</code>, inclusive <code class="glyph">…</code>, <code>until</code> (inclusive) and <code>before</code> (exclusive); the bounds pick the direction.</p><p><strong>Aliases:</strong> <code>iterate</code></p><p><strong>Syntax:</strong> <code>for range &lt;a&gt;‥&lt;b&gt; let &lt;i&gt; { }</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>loop</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/en-US/corpus/from.html">from</a></li><li><a href="/en-US/corpus/ref.html">ref</a></li><li><a href="/en-US/corpus/range.html">range</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusiteracursor-iteratiofab-canonical-keyword">radix/corpus/itera/cursor-iteratio.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteracursor-iteratiofab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Range iteration is exact at the i64 edge; the step contract is checked at run time and a zero or negative step aborts."><meta name="theme-color" content="#e8e5db" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="for — Faber"><meta property="og:description" content="Range iteration is exact at the i64 edge; the step contract is checked at run time and a zero or negative step aborts."><meta property="og:url" content="https://faberlang.dev/en-US/corpus/for.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23ff5a2c'/%3E%3Cpath%20d='M46%2032H19M31%2019L18%2032L31%2045'%20fill='none'%20stroke='%230a0c0f'%20stroke-width='6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/corpus/for.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>for — Faber</title><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-instrument.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">←</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword..." aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/install.md">install</a></nav></div></div><div class="fl-banner" role="status"><p><strong>Experimental through version 1.</strong> Version 0 was alpha. This is the first language release: the interface is relatively stable, not frozen. Nothing is promised stable until version 2.</p></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">←</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/en-US/start/">Start here</a></li><li><a href="/en-US/releases/">Releases</a></li></ul><div class="side-h">The Language</div><ul class="nav"><li><a href="/en-US/language/overview.html">Overview</a></li><li><details class="nav-branch"><summary>Behavior</summary><ul><li><a href="/en-US/language/behavior/type-first.html">Types before names</a></li><li><a href="/en-US/language/behavior/glyph-law.html">The glyph law</a></li><li><a href="/en-US/language/behavior/numeric-widths.html">Math in the ether</a></li><li><a href="/en-US/language/behavior/sealed-locales.html">Sealed reader locales</a></li><li><a href="/en-US/language/behavior/packages.html">A program is a package</a></li><li><a href="/en-US/language/behavior/errors-and-tests.html">Errors as values, tests as declarations</a></li></ul></details></li><li><details class="nav-branch"><summary>Grammar</summary><ul><li><a href="/en-US/reference/grammar.html">Grammar overview</a></li><li><a href="/en-US/reference/grammar/program.html">Programs, regions &amp; imports</a></li><li><a href="/en-US/reference/grammar/declarations.html">Declarations &amp; bindings</a></li><li><a href="/en-US/reference/grammar/annotations.html">Annotations &amp; directives</a></li><li><a href="/en-US/reference/grammar/types.html">Types &amp; contracts</a></li><li><a href="/en-US/reference/grammar/statements.html">Statements &amp; control flow</a></li><li><a href="/en-US/reference/grammar/expressions.html">Expressions &amp; operators</a></li><li><a href="/en-US/reference/grammar/patterns.html">Patterns &amp; destructuring</a></li><li><a href="/en-US/reference/grammar/errors.html">Error channel</a></li><li><a href="/en-US/reference/grammar/lexical.html">Lexical structure &amp; glyphs</a></li></ul></details></li><li><a href="/en-US/corpus/az.html" class="active">Terms A–Z</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">Targets</div><ul class="nav"><li><a href="/en-US/targets/">All targets</a></li><li><details class="nav-branch"><summary>Application · HIR</summary><ul><li><a href="/en-US/targets/rust.html">Rust</a></li><li><a href="/en-US/targets/ts.html">TypeScript</a></li><li><a href="/en-US/targets/go.html">Go</a></li><li><a href="/en-US/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>Systems · MIR</summary><ul><li><a href="/en-US/targets/llvm-text.html">LLVM IR</a></li><li><a href="/en-US/targets/wasm-text.html">WebAssembly text</a></li></ul></details></li><li><details class="nav-branch"><summary>Device · GPU</summary><ul><li><a href="/en-US/targets/metal-text.html">Metal</a></li><li><a href="/en-US/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li></ul><div class="side-h">Reader locales</div><ul class="nav"><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/locales/keywords.html">Keyword reference</a></li><li><a href="/en-US/language/locales/examples.html">Locale examples</a></li><li><a href="/en-US/language/locales/diagnostics.html">Diagnostics by locale</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/tela.html">Tela — views</a></li><li><a href="/en-US/libraries/inferentia.html">Inferentia — inference</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul></aside><main id="main-content"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/en-US/corpus/">Corpus</a> &rsaquo; <a href="/en-US/corpus/bucket/other.html">Other</a> &rsaquo; for</nav><h1>for</h1><p><strong>Translation status:</strong> English reader-locale proof. Term names and code fences follow the <code>en</code> pack; supporting prose may still be English.</p><div class="content"><p>Range iteration is exact at the i64 edge; the step contract is checked at run time and a zero or negative step aborts.</p><p><strong>Aliases:</strong> <code>iterate</code></p><p><strong>Syntax:</strong> <code>for range &lt;start&gt;…&lt;end&gt; step &lt;step&gt; let &lt;item&gt; { &lt;body&gt; }</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>loop</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/en-US/corpus/from.html">from</a></li><li><a href="/en-US/corpus/ref.html">ref</a></li><li><a href="/en-US/corpus/range.html">range</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusreferencekeyworditeracursor-iteratiofab-canonical-keyword">radix/corpus/reference/keyword/itera/cursor-iteratio.fab (canonical · keyword)<a class="anchor" href="#radixcorpusreferencekeyworditeracursor-iteratiofab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># for — Starts a for-each iteration statement.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -72,7 +72,7 @@ Async cursor iteration:
   async numerus: 0
   async numerus: 1
   async numerus: 2
-</code></pre><h3 id="radixcorpusiterain-functionefab-canonical-keyword">radix/corpus/itera/in-functione.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiterain-functionefab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+</code></pre><h3 id="radixcorpusreferencekeyworditerain-functionefab-canonical-keyword">radix/corpus/reference/keyword/itera/in-functione.fab (canonical · keyword)<a class="anchor" href="#radixcorpusreferencekeyworditerain-functionefab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># for — Starts a for-each iteration statement.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -145,7 +145,7 @@ main {
 2
 60
 20
-</code></pre><h3 id="radixcorpusiteraintervallum-gradusfab-canonical-keyword">radix/corpus/itera/intervallum-gradus.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteraintervallum-gradusfab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+</code></pre><h3 id="radixcorpusreferencekeyworditeraintervallum-gradusfab-canonical-keyword">radix/corpus/reference/keyword/itera/intervallum-gradus.fab (canonical · keyword)<a class="anchor" href="#radixcorpusreferencekeyworditeraintervallum-gradusfab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># for — Starts a for-each iteration statement.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -174,27 +174,27 @@ main {
 
 main {
 <span class="tok-co">    # Step by 2 (exclusive: 0, 2, 4, 6, 8)</span>
-    for range <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> step <span class="tok-nu">2</span> let i {
+    for range <span class="tok-nu">0</span> ‥ <span class="tok-nu">10</span> step <span class="tok-nu">2</span> let i {
         print i
     }
 
 <span class="tok-co">    # Step by 2 (inclusive: 0, 2, 4, 6, 8, 10)</span>
-    for range <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">10</span> step <span class="tok-nu">2</span> let i {
+    for range <span class="tok-nu">0</span> <span class="tok-op">…</span> <span class="tok-nu">10</span> step <span class="tok-nu">2</span> let i {
         print i
     }
 
 <span class="tok-co">    # Step by 3</span>
-    for range <span class="tok-nu">0</span>‥<span class="tok-nu">15</span> step <span class="tok-nu">3</span> let i {
+    for range <span class="tok-nu">0</span> ‥ <span class="tok-nu">15</span> step <span class="tok-nu">3</span> let i {
         print i
     }
 
 <span class="tok-co">    # Descending: the bounds pick the direction, the step stays positive</span>
-    for range <span class="tok-nu">10</span>‥<span class="tok-nu">0</span> step <span class="tok-nu">1</span> let i {
+    for range <span class="tok-nu">10</span> ‥ <span class="tok-nu">0</span> step <span class="tok-nu">1</span> let i {
         print i
     }
 
 <span class="tok-co">    # Descending by 2</span>
-    for range <span class="tok-nu">10</span>‥<span class="tok-nu">0</span> step <span class="tok-nu">2</span> let i {
+    for range <span class="tok-nu">10</span> ‥ <span class="tok-nu">0</span> step <span class="tok-nu">2</span> let i {
         print i
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0
@@ -228,7 +228,7 @@ main {
 6
 4
 2
-</code></pre><h3 id="radixcorpusiteraintervallumfab-canonical-keyword">radix/corpus/itera/intervallum.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteraintervallumfab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+</code></pre><h3 id="radixcorpusreferencekeyworditeraintervallumfab-canonical-keyword">radix/corpus/reference/keyword/itera/intervallum.fab (canonical · keyword)<a class="anchor" href="#radixcorpusreferencekeyworditeraintervallumfab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># for — Starts a for-each iteration statement.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -258,27 +258,27 @@ main {
 
 main {
 <span class="tok-co">    # Basic range (exclusive: 0, 1, 2, 3, 4)</span>
-    for range <span class="tok-nu">0</span>‥<span class="tok-nu">5</span> let i {
+    for range <span class="tok-nu">0</span> ‥ <span class="tok-nu">5</span> let i {
         print i
     }
 
 <span class="tok-co">    # Explicit exclusive with before (same as ‥)</span>
-    for range <span class="tok-nu">0</span> before <span class="tok-nu">5</span> let i {
+    for range <span class="tok-nu">0</span> ‥ <span class="tok-nu">5</span> let i {
         print i
     }
 
 <span class="tok-co">    # Inclusive range with … (0, 1, 2, 3, 4, 5)</span>
-    for range <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">5</span> let i {
+    for range <span class="tok-nu">0</span> <span class="tok-op">…</span> <span class="tok-nu">5</span> let i {
         print i
     }
 
 <span class="tok-co">    # Range starting from non-zero</span>
-    for range <span class="tok-nu">5</span>‥<span class="tok-nu">10</span> let i {
+    for range <span class="tok-nu">5</span> ‥ <span class="tok-nu">10</span> let i {
         print i
     }
 
 <span class="tok-co">    # Descending direction</span>
-    for range <span class="tok-nu">5</span>‥<span class="tok-nu">0</span> let i {
+    for range <span class="tok-nu">5</span> ‥ <span class="tok-nu">0</span> let i {
         print i
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0
@@ -307,7 +307,7 @@ main {
 3
 2
 1
-</code></pre><h3 id="radixcorpusiteralockstep-n2fab-canonical-keyword">radix/corpus/itera/lockstep-n2.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteralockstep-n2fab-canonical-keyword">#</a></h3><p>Lockstep walk of two lists with two binders.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+</code></pre><h3 id="radixcorpusreferencekeyworditeralockstep-n2fab-canonical-keyword">radix/corpus/reference/keyword/itera/lockstep-n2.fab (canonical · keyword)<a class="anchor" href="#radixcorpusreferencekeyworditeralockstep-n2fab-canonical-keyword">#</a></h3><p>Lockstep walk of two lists with two binders.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># lockstep N=2 — one walk over two aligned lists.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -330,13 +330,13 @@ main {
 main {
     let list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> labels <span class="tok-op">←</span> [<span class="tok-st">"one"</span>, <span class="tok-st">"two"</span>, <span class="tok-st">"three"</span>]
     let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> values <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    for from labels, values let label, value {
+    for from labels and values let label and value {
         print label
         print value
     }
     let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> left <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
     let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> right <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    for from left, right let a, b {
+    for from left and right let a and b {
         print a <span class="tok-op">-</span> b
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>one
@@ -348,7 +348,7 @@ three
 9
 18
 27
-</code></pre><h3 id="radixcorpusiteralockstep-n3fab-canonical-keyword">radix/corpus/itera/lockstep-n3.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteralockstep-n3fab-canonical-keyword">#</a></h3><p>Lockstep walk of three lists with three binders.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+</code></pre><h3 id="radixcorpusreferencekeyworditeralockstep-n3fab-canonical-keyword">radix/corpus/reference/keyword/itera/lockstep-n3.fab (canonical · keyword)<a class="anchor" href="#radixcorpusreferencekeyworditeralockstep-n3fab-canonical-keyword">#</a></h3><p>Lockstep walk of three lists with three binders.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># lockstep N=3 — one walk over three aligned lists.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -368,14 +368,14 @@ main {
     let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> bases <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">200</span>, <span class="tok-nu">300</span>]
     let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> keys <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> payloads <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
-    for from bases, keys, payloads let base, key, payload {
+    for from bases and keys and payloads let base and key and payload {
         let int total <span class="tok-op">←</span> base <span class="tok-op">+</span> key <span class="tok-op">+</span> payload
         print total
     }
     let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> rows <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
     let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> cols <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]
     let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> cells <span class="tok-op">←</span> [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>]
-    for from rows, cols, cells let row, col, cell {
+    for from rows and cols and cells let row and col and cell {
         let int grid <span class="tok-op">←</span> row <span class="tok-op">*</span> col <span class="tok-op">+</span> cell
         print grid
     }
@@ -384,7 +384,7 @@ main {
 333
 8
 14
-</code></pre><h3 id="radixcorpusiteranidificatusfab-canonical-keyword">radix/corpus/itera/nidificatus.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteranidificatusfab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+</code></pre><h3 id="radixcorpusreferencekeyworditeranidificatusfab-canonical-keyword">radix/corpus/reference/keyword/itera/nidificatus.fab (canonical · keyword)<a class="anchor" href="#radixcorpusreferencekeyworditeranidificatusfab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># for — Starts a for-each iteration statement.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -424,15 +424,15 @@ main {
     }
 
 <span class="tok-co">    # Multiplication table over exclusive ranges 1‥4 (i, j ∈ {1,2,3})</span>
-    for range <span class="tok-nu">1</span>‥<span class="tok-nu">4</span> let i {
-        for range <span class="tok-nu">1</span>‥<span class="tok-nu">4</span> let j {
+    for range <span class="tok-nu">1</span> ‥ <span class="tok-nu">4</span> let i {
+        for range <span class="tok-nu">1</span> ‥ <span class="tok-nu">4</span> let j {
             print i, <span class="tok-st">"*"</span>, j, <span class="tok-st">"←"</span>, i <span class="tok-op">*</span> j
         }
     }
 
 <span class="tok-co">    # Nested ranges: 4 × 4 grid of (x, y) with x, y ∈ {0,1,2,3}</span>
-    for range <span class="tok-nu">0</span>‥<span class="tok-nu">3</span> let x {
-        for range <span class="tok-nu">0</span>‥<span class="tok-nu">3</span> let y {
+    for range <span class="tok-nu">0</span> ‥ <span class="tok-nu">3</span> let x {
+        for range <span class="tok-nu">0</span> ‥ <span class="tok-nu">3</span> let y {
             print x, y
         }
     }
@@ -463,34 +463,33 @@ main {
 2 0
 2 1
 2 2
-</code></pre><h3 id="radixcorpusiterarange-product-n2fab-canonical-keyword">radix/corpus/itera/range-product-n2.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiterarange-product-n2fab-canonical-keyword">#</a></h3><p>Cartesian walk of two ranges with two binders.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
-<span class="tok-co"># range product N=2 — one walk over two declared numeric domains.</span>
-<span class="tok-co"># =============================================================================</span>
+</code></pre><h3 id="radixcorpusreferencekeyworditerarange-product-n2fab-canonical-keyword">radix/corpus/reference/keyword/itera/range-product-n2.fab (canonical · keyword)<a class="anchor" href="#radixcorpusreferencekeyworditerarange-product-n2fab-canonical-keyword">#</a></h3><p>Nested walk of two numeric ranges with one binder per loop.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nested range walk N=2 — two declared numeric domains, one loop per axis.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • `for range` with a comma-separated range series walks the Cartesian</span>
-<span class="tok-co">#     product of the declared domains — every (i, j) pair, exactly once</span>
-<span class="tok-co">#   • the binder series names one binder per range, in the same order</span>
-<span class="tok-co">#   • order is structural: the leftmost range is the outermost walk, so the</span>
-<span class="tok-co">#     output is row-major — each outer value carries the complete inner walk</span>
+<span class="tok-co">#   • explicit nesting visits every (i, j) pair exactly once</span>
+<span class="tok-co">#   • the outer range controls i and the inner range controls j</span>
+<span class="tok-co">#   • order is structural: each outer value carries the complete inner walk</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • expecting a zip — aligned walks are the separate `for from` series;</span>
-<span class="tok-co">#     ranges of unequal visit counts are multiplied, never truncated</span>
-<span class="tok-co">#   • writing nested `for range` loops with a hand-made counter to visit a</span>
-<span class="tok-co">#     grid — the product series is the flat spelling of that nesting</span>
+<span class="tok-co">#   • expecting the loops to zip — aligned walks are the separate `for from` series</span>
+<span class="tok-co">#   • compressing nested loops into a comma-separated head, which currently declines</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># See also: from, at</span>
 <span class="tok-co"># =============================================================================</span>
 
 main {
-    for range <span class="tok-nu">0</span>‥<span class="tok-nu">2</span>, <span class="tok-nu">0</span>‥<span class="tok-nu">2</span> let i, j {
-        print i
-        print j
+    for range <span class="tok-nu">0</span> ‥ <span class="tok-nu">2</span> let i {
+        for range <span class="tok-nu">0</span> ‥ <span class="tok-nu">2</span> let j {
+            print i
+            print j
+        }
     }
-    for range <span class="tok-nu">3</span>‥<span class="tok-nu">5</span>, <span class="tok-nu">1</span>‥<span class="tok-nu">3</span> let first, second {
-        print first
-        print second
+    for range <span class="tok-nu">3</span> ‥ <span class="tok-nu">5</span> let first {
+        for range <span class="tok-nu">1</span> ‥ <span class="tok-nu">3</span> let second {
+            print first
+            print second
+        }
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0
 0
@@ -508,31 +507,35 @@ main {
 1
 4
 2
-</code></pre><h3 id="radixcorpusiterarange-product-n3fab-canonical-keyword">radix/corpus/itera/range-product-n3.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiterarange-product-n3fab-canonical-keyword">#</a></h3><p>Cartesian walk of three ranges with three binders.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
-<span class="tok-co"># range product N=3 — one walk over three declared numeric domains.</span>
-<span class="tok-co"># =============================================================================</span>
+</code></pre><h3 id="radixcorpusreferencekeyworditerarange-product-n3fab-canonical-keyword">radix/corpus/reference/keyword/itera/range-product-n3.fab (canonical · keyword)<a class="anchor" href="#radixcorpusreferencekeyworditerarange-product-n3fab-canonical-keyword">#</a></h3><p>Nested walk of three numeric ranges with one binder per loop.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nested range walk N=3 — three declared numeric domains, one loop per axis.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • the range series takes any N — three domains multiply into every</span>
-<span class="tok-co">#     (i, j, k) triple with three binders, all alive at once</span>
-<span class="tok-co">#   • nesting stays leftmost-outermost: i is outermost, k is innermost, and</span>
-<span class="tok-co">#     each outer pair carries the complete innermost walk</span>
+<span class="tok-co">#   • explicit nesting visits every (i, j, k) triple</span>
+<span class="tok-co">#   • i is outermost, k is innermost, and each binder is scoped to its loop</span>
+<span class="tok-co">#   • each outer pair carries the complete innermost walk</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • nesting product walks for three axes — the series is flat: one clause,</span>
-<span class="tok-co">#     N ranges, N binders</span>
-<span class="tok-co">#   • reading the binders as a tuple to destructure — each binder is one</span>
-<span class="tok-co">#     plain name scoped to the body</span>
+<span class="tok-co">#   • compressing the loops into a comma-separated head, which currently declines</span>
+<span class="tok-co">#   • reading the binders as a tuple to destructure — each is a plain name</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># See also: from, at</span>
 <span class="tok-co"># =============================================================================</span>
 
 main {
-    for range <span class="tok-nu">1</span>‥<span class="tok-nu">3</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span>, <span class="tok-nu">0</span>‥<span class="tok-nu">2</span> let i, j, k {
-        print i <span class="tok-op">*</span> <span class="tok-nu">100</span> <span class="tok-op">+</span> j <span class="tok-op">*</span> <span class="tok-nu">10</span> <span class="tok-op">+</span> k
+    for range <span class="tok-nu">1</span> ‥ <span class="tok-nu">3</span> let i {
+        for range <span class="tok-nu">2</span> ‥ <span class="tok-nu">4</span> let j {
+            for range <span class="tok-nu">0</span> ‥ <span class="tok-nu">2</span> let k {
+                print i <span class="tok-op">*</span> <span class="tok-nu">100</span> <span class="tok-op">+</span> j <span class="tok-op">*</span> <span class="tok-nu">10</span> <span class="tok-op">+</span> k
+            }
+        }
     }
-    for range <span class="tok-nu">5</span>‥<span class="tok-nu">7</span>, <span class="tok-nu">1</span>‥<span class="tok-nu">3</span>, <span class="tok-nu">0</span>‥<span class="tok-nu">2</span> let first, second, third {
-        print first <span class="tok-op">*</span> <span class="tok-nu">100</span> <span class="tok-op">+</span> second <span class="tok-op">*</span> <span class="tok-nu">10</span> <span class="tok-op">+</span> third
+    for range <span class="tok-nu">5</span> ‥ <span class="tok-nu">7</span> let first {
+        for range <span class="tok-nu">1</span> ‥ <span class="tok-nu">3</span> let second {
+            for range <span class="tok-nu">0</span> ‥ <span class="tok-nu">2</span> let third {
+                print first <span class="tok-op">*</span> <span class="tok-nu">100</span> <span class="tok-op">+</span> second <span class="tok-op">*</span> <span class="tok-nu">10</span> <span class="tok-op">+</span> third
+            }
+        }
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>120
 121
@@ -550,20 +553,20 @@ main {
 611
 620
 621
-</code></pre><h3 id="radixcorpusiterarange-product-semanticsfab-canonical-keyword">radix/corpus/itera/range-product-semantics.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiterarange-product-semanticsfab-canonical-keyword">#</a></h3><p>Range product semantics: sign classes, offsets, and step directions with exclusive/inclusive boundary twins.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
-<span class="tok-co"># range product semantics — the sign/offset/step matrix, end to end.</span>
+</code></pre><h3 id="radixcorpusreferencekeyworditerarange-product-semanticsfab-canonical-keyword">radix/corpus/reference/keyword/itera/range-product-semantics.fab (canonical · keyword)<a class="anchor" href="#radixcorpusreferencekeyworditerarange-product-semanticsfab-canonical-keyword">#</a></h3><p>Nested range semantics: sign classes, offsets, and per-axis steps with exclusive/inclusive boundary twins.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nested range semantics — sign, offset, and per-axis steps, end to end.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • every walk below is a Cartesian product in arity N=2: the leftmost</span>
-<span class="tok-co">#     range is the outer axis, and each outer value carries the complete</span>
-<span class="tok-co">#     ordered inner walk — no axis is ever zipped, reordered, or truncated</span>
+<span class="tok-co">#   • each two-axis walk below is written as explicit nested `for range` loops:</span>
+<span class="tok-co">#     the outer axis carries a complete ordered inner walk — no axis is</span>
+<span class="tok-co">#     ever zipped, reordered, or truncated</span>
 <span class="tok-co">#   • sign classes are not normalized: crossing (-5‥5), negative-to-</span>
 <span class="tok-co">#     negative (-8‥-3), and positive-to-positive (2‥7) axes all keep their</span>
 <span class="tok-co">#     declared values, with and without a step</span>
 <span class="tok-co">#   • a step applies to its own axis only: a stepped outer offset (1‥9 step</span>
 <span class="tok-co">#     3) still walks the inner axis completely, and a stepped inner axis</span>
-<span class="tok-co">#     (0‥10 step 2) never reorders the product</span>
+<span class="tok-co">#     (0‥10 step 2) never reorders the nested walk</span>
 <span class="tok-co">#   • boundary twins: each row appears in the exclusive form (`‥`) and the</span>
 <span class="tok-co">#     inclusive form (`…`); the twin includes the upper endpoint only when</span>
 <span class="tok-co">#     the progression reaches it — values are never appended or dropped to</span>
@@ -581,97 +584,137 @@ main {
 
 main {
 <span class="tok-co">    # crossing sign class, no step / stepped, exclusive + inclusive twins</span>
-    for range <span class="tok-op">-</span><span class="tok-nu">5</span>‥<span class="tok-nu">5</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> let i, j {
-        print i
-        print j
+    for range <span class="tok-op">-</span><span class="tok-nu">5</span> ‥ <span class="tok-nu">5</span> let i {
+        for range <span class="tok-nu">2</span> ‥ <span class="tok-nu">4</span> let j {
+            print i
+            print j
+        }
     }
-    for range <span class="tok-op">-</span><span class="tok-nu">5</span><span class="tok-op">…</span><span class="tok-nu">5</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> let i, j {
-        print i
-        print j
+    for range <span class="tok-op">-</span><span class="tok-nu">5</span> <span class="tok-op">…</span> <span class="tok-nu">5</span> let i {
+        for range <span class="tok-nu">2</span> <span class="tok-op">…</span> <span class="tok-nu">4</span> let j {
+            print i
+            print j
+        }
     }
-    for range <span class="tok-op">-</span><span class="tok-nu">5</span>‥<span class="tok-nu">5</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> let i, j {
-        print i
-        print j
+    for range <span class="tok-op">-</span><span class="tok-nu">5</span> ‥ <span class="tok-nu">5</span> step <span class="tok-nu">2</span> let i {
+        for range <span class="tok-nu">2</span> ‥ <span class="tok-nu">4</span> let j {
+            print i
+            print j
+        }
     }
-    for range <span class="tok-op">-</span><span class="tok-nu">5</span><span class="tok-op">…</span><span class="tok-nu">5</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> let i, j {
-        print i
-        print j
+    for range <span class="tok-op">-</span><span class="tok-nu">5</span> <span class="tok-op">…</span> <span class="tok-nu">5</span> step <span class="tok-nu">2</span> let i {
+        for range <span class="tok-nu">2</span> <span class="tok-op">…</span> <span class="tok-nu">4</span> let j {
+            print i
+            print j
+        }
     }
 
 <span class="tok-co">    # negative-to-negative sign class, no step / stepped, twins</span>
-    for range <span class="tok-op">-</span><span class="tok-nu">8</span>‥<span class="tok-op">-</span><span class="tok-nu">3</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> let i, j {
-        print i
-        print j
+    for range <span class="tok-op">-</span><span class="tok-nu">8</span> ‥ <span class="tok-op">-</span><span class="tok-nu">3</span> let i {
+        for range <span class="tok-nu">2</span> ‥ <span class="tok-nu">4</span> let j {
+            print i
+            print j
+        }
     }
-    for range <span class="tok-op">-</span><span class="tok-nu">8</span><span class="tok-op">…</span><span class="tok-op">-</span><span class="tok-nu">3</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> let i, j {
-        print i
-        print j
+    for range <span class="tok-op">-</span><span class="tok-nu">8</span> <span class="tok-op">…</span> <span class="tok-op">-</span><span class="tok-nu">3</span> let i {
+        for range <span class="tok-nu">2</span> <span class="tok-op">…</span> <span class="tok-nu">4</span> let j {
+            print i
+            print j
+        }
     }
-    for range <span class="tok-op">-</span><span class="tok-nu">8</span>‥<span class="tok-op">-</span><span class="tok-nu">3</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> let i, j {
-        print i
-        print j
+    for range <span class="tok-op">-</span><span class="tok-nu">8</span> ‥ <span class="tok-op">-</span><span class="tok-nu">3</span> step <span class="tok-nu">2</span> let i {
+        for range <span class="tok-nu">2</span> ‥ <span class="tok-nu">4</span> let j {
+            print i
+            print j
+        }
     }
-    for range <span class="tok-op">-</span><span class="tok-nu">8</span><span class="tok-op">…</span><span class="tok-op">-</span><span class="tok-nu">3</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> let i, j {
-        print i
-        print j
+    for range <span class="tok-op">-</span><span class="tok-nu">8</span> <span class="tok-op">…</span> <span class="tok-op">-</span><span class="tok-nu">3</span> step <span class="tok-nu">2</span> let i {
+        for range <span class="tok-nu">2</span> <span class="tok-op">…</span> <span class="tok-nu">4</span> let j {
+            print i
+            print j
+        }
     }
 
 <span class="tok-co">    # positive-to-positive sign class, no step / stepped, twins</span>
-    for range <span class="tok-nu">2</span>‥<span class="tok-nu">7</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> let i, j {
-        print i
-        print j
+    for range <span class="tok-nu">2</span> ‥ <span class="tok-nu">7</span> let i {
+        for range <span class="tok-nu">2</span> ‥ <span class="tok-nu">4</span> let j {
+            print i
+            print j
+        }
     }
-    for range <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">7</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> let i, j {
-        print i
-        print j
+    for range <span class="tok-nu">2</span> <span class="tok-op">…</span> <span class="tok-nu">7</span> let i {
+        for range <span class="tok-nu">2</span> <span class="tok-op">…</span> <span class="tok-nu">4</span> let j {
+            print i
+            print j
+        }
     }
-    for range <span class="tok-nu">2</span>‥<span class="tok-nu">7</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> let i, j {
-        print i
-        print j
+    for range <span class="tok-nu">2</span> ‥ <span class="tok-nu">7</span> step <span class="tok-nu">2</span> let i {
+        for range <span class="tok-nu">2</span> ‥ <span class="tok-nu">4</span> let j {
+            print i
+            print j
+        }
     }
-    for range <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">7</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> let i, j {
-        print i
-        print j
+    for range <span class="tok-nu">2</span> <span class="tok-op">…</span> <span class="tok-nu">7</span> step <span class="tok-nu">2</span> let i {
+        for range <span class="tok-nu">2</span> <span class="tok-op">…</span> <span class="tok-nu">4</span> let j {
+            print i
+            print j
+        }
     }
 
 <span class="tok-co">    # offset row — both axes off zero, twins</span>
-    for range <span class="tok-nu">3</span>‥<span class="tok-nu">12</span>, <span class="tok-op">-</span><span class="tok-nu">2</span>‥<span class="tok-nu">4</span> let i, j {
-        print i
-        print j
+    for range <span class="tok-nu">3</span> ‥ <span class="tok-nu">12</span> let i {
+        for range <span class="tok-op">-</span><span class="tok-nu">2</span> ‥ <span class="tok-nu">4</span> let j {
+            print i
+            print j
+        }
     }
-    for range <span class="tok-nu">3</span><span class="tok-op">…</span><span class="tok-nu">12</span>, <span class="tok-op">-</span><span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> let i, j {
-        print i
-        print j
+    for range <span class="tok-nu">3</span> <span class="tok-op">…</span> <span class="tok-nu">12</span> let i {
+        for range <span class="tok-op">-</span><span class="tok-nu">2</span> <span class="tok-op">…</span> <span class="tok-nu">4</span> let j {
+            print i
+            print j
+        }
     }
 
 <span class="tok-co">    # stepped offset row — the stepped outer axis stays outer, twins</span>
-    for range <span class="tok-nu">1</span>‥<span class="tok-nu">9</span> step <span class="tok-nu">3</span>, <span class="tok-op">-</span><span class="tok-nu">2</span>‥<span class="tok-nu">4</span> let i, j {
-        print i
-        print j
+    for range <span class="tok-nu">1</span> ‥ <span class="tok-nu">9</span> step <span class="tok-nu">3</span> let i {
+        for range <span class="tok-op">-</span><span class="tok-nu">2</span> ‥ <span class="tok-nu">4</span> let j {
+            print i
+            print j
+        }
     }
-    for range <span class="tok-nu">1</span><span class="tok-op">…</span><span class="tok-nu">9</span> step <span class="tok-nu">3</span>, <span class="tok-op">-</span><span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> let i, j {
-        print i
-        print j
+    for range <span class="tok-nu">1</span> <span class="tok-op">…</span> <span class="tok-nu">9</span> step <span class="tok-nu">3</span> let i {
+        for range <span class="tok-op">-</span><span class="tok-nu">2</span> <span class="tok-op">…</span> <span class="tok-nu">4</span> let j {
+            print i
+            print j
+        }
     }
 
-<span class="tok-co">    # zero-start step on the inner axis (product form of 0‥10 step 2), twins</span>
-    for range <span class="tok-nu">3</span>‥<span class="tok-nu">5</span>, <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> step <span class="tok-nu">2</span> let i, j {
-        print i
-        print j
+<span class="tok-co">    # zero-start step on the inner axis (inner form of 0‥10 step 2), twins</span>
+    for range <span class="tok-nu">3</span> ‥ <span class="tok-nu">5</span> let i {
+        for range <span class="tok-nu">0</span> ‥ <span class="tok-nu">10</span> step <span class="tok-nu">2</span> let j {
+            print i
+            print j
+        }
     }
-    for range <span class="tok-nu">3</span><span class="tok-op">…</span><span class="tok-nu">5</span>, <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">10</span> step <span class="tok-nu">2</span> let i, j {
-        print i
-        print j
+    for range <span class="tok-nu">3</span> <span class="tok-op">…</span> <span class="tok-nu">5</span> let i {
+        for range <span class="tok-nu">0</span> <span class="tok-op">…</span> <span class="tok-nu">10</span> step <span class="tok-nu">2</span> let j {
+            print i
+            print j
+        }
     }
 
 <span class="tok-co">    # descending outer axis with a positive stride, twins</span>
-    for range <span class="tok-nu">10</span>‥<span class="tok-nu">0</span> step <span class="tok-nu">2</span>, <span class="tok-nu">1</span>‥<span class="tok-nu">3</span> let i, j {
-        print i
-        print j
+    for range <span class="tok-nu">10</span> ‥ <span class="tok-nu">0</span> step <span class="tok-nu">2</span> let i {
+        for range <span class="tok-nu">1</span> ‥ <span class="tok-nu">3</span> let j {
+            print i
+            print j
+        }
     }
-    for range <span class="tok-nu">10</span><span class="tok-op">…</span><span class="tok-nu">0</span> step <span class="tok-nu">2</span>, <span class="tok-nu">1</span><span class="tok-op">…</span><span class="tok-nu">3</span> let i, j {
-        print i
-        print j
+    for range <span class="tok-nu">10</span> <span class="tok-op">…</span> <span class="tok-nu">0</span> step <span class="tok-nu">2</span> let i {
+        for range <span class="tok-nu">1</span> <span class="tok-op">…</span> <span class="tok-nu">3</span> let j {
+            print i
+            print j
+        }
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>-5
 2
@@ -1445,56 +1488,7 @@ main {
 2
 0
 3
-</code></pre><h3 id="radixcorpusiterarange-runtime-stepfab-canonical-operator-group">radix/corpus/itera/range-runtime-step.fab (canonical · operator-group)<a class="anchor" href="#radixcorpusiterarange-runtime-stepfab-canonical-operator-group">#</a></h3><p>Range iteration is exact at the i64 edge; the step contract is checked at run time and a zero or negative step aborts.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
-<span class="tok-co"># for — range bounds are exact; the step contract lives at run time.</span>
-<span class="tok-co"># =============================================================================</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • Exact intermediates at the i64 edge — the inclusive range</span>
-<span class="tok-co">#     9223372036854775800…9223372036854775807 has eight values and the walk</span>
-<span class="tok-co">#     counts all eight. The bounds are numbers, not 64-bit containers: nothing</span>
-<span class="tok-co">#     overflows while the loop counts, and the walk prints 8.</span>
-<span class="tok-co">#   • The step contract is checked at run time — `for range 0‥5 step s` with</span>
-<span class="tok-co">#     `mut int s ← -2` is not a compile error. The run prints its earlier</span>
-<span class="tok-co">#     output, then aborts when the loop is entered with</span>
-<span class="tok-co">#     "range step must be positive"; the program exits non-zero and the body</span>
-<span class="tok-co">#     never runs.</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • Expecting a negative step to walk the range backwards — the bounds pick</span>
-<span class="tok-co">#     the direction and the step stays a positive stride.</span>
-<span class="tok-co">#   • Expecting the run-time step to be validated where it is computed — the</span>
-<span class="tok-co">#     check fires at loop entry, so earlier prints are already on stdout.</span>
-<span class="tok-co">#   • Expecting the i64-edge walk to wrap — the bounds are exact without any</span>
-<span class="tok-co">#     arithmetic on the bound values.</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># See also: intervallum-gradus, numerus-overflow, for</span>
-<span class="tok-co"># =============================================================================</span>
-
-<span class="tok-co"># range-runtime-step — exact bounds, run-time step check</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># POLICY:</span>
-<span class="tok-co">#   A range bound is exact; the step is a positive stride whose direction</span>
-<span class="tok-co">#   comes from the bounds. A step that is zero or negative is a run-time</span>
-<span class="tok-co">#   trap, not a compile error, so it aborts the run at loop entry.</span>
-
-main {
-<span class="tok-co">    # (a) i64 edge: eight values, counted without overflow.</span>
-    mut int n <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    for range <span class="tok-nu">9223372036854775800</span><span class="tok-op">…</span><span class="tok-nu">9223372036854775807</span> let i {
-        n <span class="tok-op">←</span> n <span class="tok-op">+</span> <span class="tok-nu">1</span>
-    }
-    print n
-
-<span class="tok-co">    # (b) run-time step: a non-positive step aborts at loop entry.</span>
-    mut int s <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">2</span>
-    print <span class="tok-st">"start"</span>
-    for range <span class="tok-nu">0</span>‥<span class="tok-nu">5</span> step s let i {
-        print i
-    }
-}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>8
-start
-</code></pre><h3 id="radixcorpusiterarange-until-beforefab-canonical-keyword">radix/corpus/itera/range-until-before.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiterarange-until-beforefab-canonical-keyword">#</a></h3><p>The four range forms: exclusive <code class="glyph">‥</code>, inclusive <code class="glyph">…</code>, <code>until</code> (inclusive) and <code>before</code> (exclusive); the bounds pick the direction.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+</code></pre><h3 id="radixcorpusreferencekeyworditerarange-until-beforefab-canonical-keyword">radix/corpus/reference/keyword/itera/range-until-before.fab (canonical · keyword)<a class="anchor" href="#radixcorpusreferencekeyworditerarange-until-beforefab-canonical-keyword">#</a></h3><p>The four range forms: exclusive <code class="glyph">‥</code>, inclusive <code class="glyph">…</code>, <code>until</code> (inclusive) and <code>before</code> (exclusive); the bounds pick the direction.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># for — the four range forms on one runner</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -1530,42 +1524,42 @@ start
 
 main {
 <span class="tok-co">    # exclusive glyph form: 5‥5 is empty, so this body never runs</span>
-    for range <span class="tok-nu">5</span>‥<span class="tok-nu">5</span> let i {
+    for range <span class="tok-nu">5</span> ‥ <span class="tok-nu">5</span> let i {
         print <span class="tok-st">"never5"</span>
     }
 
 <span class="tok-co">    # inclusive glyph form: 5…5 yields 5 once</span>
-    for range <span class="tok-nu">5</span><span class="tok-op">…</span><span class="tok-nu">5</span> let i {
+    for range <span class="tok-nu">5</span> <span class="tok-op">…</span> <span class="tok-nu">5</span> let i {
         print i
     }
 
 <span class="tok-co">    # inclusive descending with a stride: the bounds pick the direction</span>
-    for range <span class="tok-nu">10</span><span class="tok-op">…</span><span class="tok-nu">0</span> step <span class="tok-nu">5</span> let i {
+    for range <span class="tok-nu">10</span> <span class="tok-op">…</span> <span class="tok-nu">0</span> step <span class="tok-nu">5</span> let i {
         print i
     }
 
 <span class="tok-co">    # exclusive ascending with a stride: 0, 4, 8</span>
-    for range <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> step <span class="tok-nu">4</span> let i {
+    for range <span class="tok-nu">0</span> ‥ <span class="tok-nu">10</span> step <span class="tok-nu">4</span> let i {
         print i
     }
 
 <span class="tok-co">    # until: the inclusive word form</span>
-    for range <span class="tok-nu">3</span> until <span class="tok-nu">6</span> let i {
+    for range <span class="tok-nu">3</span> <span class="tok-op">…</span> <span class="tok-nu">6</span> let i {
         print i
     }
 
 <span class="tok-co">    # before: the exclusive word form</span>
-    for range <span class="tok-nu">3</span> before <span class="tok-nu">6</span> let i {
+    for range <span class="tok-nu">3</span> ‥ <span class="tok-nu">6</span> let i {
         print i
     }
 
 <span class="tok-co">    # a negative start with an exclusive end</span>
-    for range <span class="tok-op">-</span><span class="tok-nu">2</span>‥<span class="tok-nu">2</span> let i {
+    for range <span class="tok-op">-</span><span class="tok-nu">2</span> ‥ <span class="tok-nu">2</span> let i {
         print i
     }
 
 <span class="tok-co">    # an inclusive end below the start, descending by stride</span>
-    for range <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-op">-</span><span class="tok-nu">2</span> step <span class="tok-nu">2</span> let i {
+    for range <span class="tok-nu">2</span> <span class="tok-op">…</span> <span class="tok-op">-</span><span class="tok-nu">2</span> step <span class="tok-nu">2</span> let i {
         print i
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>5
@@ -1589,7 +1583,56 @@ main {
 2
 0
 -2
-</code></pre><h3 id="radixcorpusiteraapud-declinefab-supporting-reject">radix/corpus/itera/apud-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusiteraapud-declinefab-supporting-reject">#</a></h3><p>at coordinate iteration declines arity mismatch and unindexed iterables with structured issues.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+</code></pre><h3 id="radixcorpusreferenceoperator-groupiterarange-runtime-stepfab-canonical-operator-group">radix/corpus/reference/operator-group/itera/range-runtime-step.fab (canonical · operator-group)<a class="anchor" href="#radixcorpusreferenceoperator-groupiterarange-runtime-stepfab-canonical-operator-group">#</a></h3><p>Range iteration is exact at the i64 edge; the step contract is checked at run time and a zero or negative step aborts.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># for — range bounds are exact; the step contract lives at run time.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Exact intermediates at the i64 edge — the inclusive range</span>
+<span class="tok-co">#     9223372036854775800…9223372036854775807 has eight values and the walk</span>
+<span class="tok-co">#     counts all eight. The bounds are numbers, not 64-bit containers: nothing</span>
+<span class="tok-co">#     overflows while the loop counts, and the walk prints 8.</span>
+<span class="tok-co">#   • The step contract is checked at run time — `for range 0‥5 step s` with</span>
+<span class="tok-co">#     `mut int s ← -2` is not a compile error. The run prints its earlier</span>
+<span class="tok-co">#     output, then aborts when the loop is entered with</span>
+<span class="tok-co">#     "range step must be positive"; the program exits non-zero and the body</span>
+<span class="tok-co">#     never runs.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Expecting a negative step to walk the range backwards — the bounds pick</span>
+<span class="tok-co">#     the direction and the step stays a positive stride.</span>
+<span class="tok-co">#   • Expecting the run-time step to be validated where it is computed — the</span>
+<span class="tok-co">#     check fires at loop entry, so earlier prints are already on stdout.</span>
+<span class="tok-co">#   • Expecting the i64-edge walk to wrap — the bounds are exact without any</span>
+<span class="tok-co">#     arithmetic on the bound values.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: intervallum-gradus, numerus-overflow, for</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># range-runtime-step — exact bounds, run-time step check</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># POLICY:</span>
+<span class="tok-co">#   A range bound is exact; the step is a positive stride whose direction</span>
+<span class="tok-co">#   comes from the bounds. A step that is zero or negative is a run-time</span>
+<span class="tok-co">#   trap, not a compile error, so it aborts the run at loop entry.</span>
+
+main {
+<span class="tok-co">    # (a) i64 edge: eight values, counted without overflow.</span>
+    mut int n <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    for range <span class="tok-nu">9223372036854775800</span> <span class="tok-op">…</span> <span class="tok-nu">9223372036854775807</span> let i {
+        n <span class="tok-op">←</span> n <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    }
+    print n
+
+<span class="tok-co">    # (b) run-time step: a non-positive step aborts at loop entry.</span>
+    mut int s <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">2</span>
+    print <span class="tok-st">"start"</span>
+    for range <span class="tok-nu">0</span> ‥ <span class="tok-nu">5</span> step s let i {
+        print i
+    }
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>8
+start
+</code></pre><h3 id="radixcorpusreferencerejectiteraapud-declinefab-supporting-reject">radix/corpus/reference/reject/itera/apud-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusreferencerejectiteraapud-declinefab-supporting-reject">#</a></h3><p>at coordinate iteration declines arity mismatch and unindexed iterables with structured issues.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># at decline — arity mismatch and unindexed iterables fail closed.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -1643,7 +1686,7 @@ fn generic<span class="tok-op">&lt;</span>size R, size C<span class="tok-op">&gt
     for from grid at [r, c] let cell {
         print cell
     }
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusiteralockstep-declinefab-supporting-reject">radix/corpus/itera/lockstep-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusiteralockstep-declinefab-supporting-reject">#</a></h3><p>Lockstep declines: source/binder arity, at-coordinate cardinality, and statically known unequal lengths fail closed.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusreferencerejectiteralockstep-declinefab-supporting-reject">radix/corpus/reference/reject/itera/lockstep-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusreferencerejectiteralockstep-declinefab-supporting-reject">#</a></h3><p>Lockstep declines: source/binder arity, at-coordinate cardinality, and statically known unequal lengths fail closed.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># lockstep decline — arity, at-cardinality, and static length laws.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -1673,64 +1716,27 @@ fn generic<span class="tok-op">&lt;</span>size R, size C<span class="tok-op">&gt
 <span class="tok-co"># and the fail-closed equal-length admission for the lockstep series.</span>
 
 fn arity(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> ks, list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> vs) <span class="tok-op">→</span> void {
-    for from ks, vs let k {
+    for from ks and vs let k {
         print k
     }
 }
 
 fn cardinality(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> ks, list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> vs) <span class="tok-op">→</span> void {
-    for from ks, vs at [i, j] let k, v {
+    for from ks and vs at [i, j] let k and v {
         print k
     }
 }
 
 fn lengths() <span class="tok-op">→</span> void {
-    for from [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>], [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>] let k, v {
+    for from [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>] and [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>] let k and v {
         print k
     }
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusiterarange-product-declinefab-supporting-reject">radix/corpus/itera/range-product-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusiterarange-product-declinefab-supporting-reject">#</a></h3><p>Range product declines: source/binder arity, extent/binder shadowing, and a mixed range/plain series fail closed.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
-<span class="tok-co"># range product decline — arity, shadowing, and mixed-source laws.</span>
-<span class="tok-co"># =============================================================================</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># Decline rows (reject reason in each comment):</span>
-<span class="tok-co">#   1. arity — 2 ranges carry 1 binder: SEM010</span>
-<span class="tok-co">#      itera_range_source_binder_arity_mismatch (one binder per range;</span>
-<span class="tok-co">#      never a partial bind, never a silent first-range-only walk)</span>
-<span class="tok-co">#   2. shadowing — a binder spelling that also names an extent reference:</span>
-<span class="tok-co">#      SEM010 itera_range_extent_binder_shadowing (ranges lower outside the</span>
-<span class="tok-co">#      binder scope, so the shared spelling would name two different</span>
-<span class="tok-co">#      bindings)</span>
-<span class="tok-co">#   3. mixed source — `0‥m, n` joins a range with a plain value: SEM010</span>
-<span class="tok-co">#      itera_range_mixed_source (every member must be a range expression;</span>
-<span class="tok-co">#      the product is never a zip fallback and never borrows the</span>
-<span class="tok-co">#      single-range `range` issue)</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • expecting the walk to bind what it can and skip the rest — every</span>
-<span class="tok-co">#     product law here declines the whole statement</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># See also: from, at</span>
-<span class="tok-co"># =============================================================================</span>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusreferencerejectiterarange-product-declinefab-supporting-reject">radix/corpus/reference/reject/itera/range-product-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusreferencerejectiterarange-product-declinefab-supporting-reject">#</a></h3><p>Comma-separated loop clauses are currently refused before nested-loop lowering.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># Nested clauses are parsed, but lowering currently declines the entire statement with the named</span>
+<span class="tok-co"># `itera_nested_clause_unsupported` diagnostic; separate nested loop statements remain supported.</span>
 
-<span class="tok-co"># range product reject cases — expected compile failure</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># WHY: documents the source/binder arity law, the extent/binder shadowing</span>
-<span class="tok-co"># law, and the every-member-is-a-range law for the Cartesian series.</span>
-
-fn counts(int m, int n) <span class="tok-op">→</span> void {
-    for range <span class="tok-nu">0</span>‥m, <span class="tok-nu">0</span>‥n let i {
-        print i
+<span class="tok-co"># Representative source — expected compile failure.</span>
+fn nested(int m, int n) <span class="tok-op">→</span> void {
+    for range <span class="tok-nu">0</span>‥m, range <span class="tok-nu">0</span>‥n let i, j {
+        print i <span class="tok-op">+</span> j
     }
-}
-
-fn shadows(int k) <span class="tok-op">→</span> void {
-    for range <span class="tok-nu">0</span>‥k, <span class="tok-nu">1</span>‥<span class="tok-nu">2</span> let k, j {
-        print k
-    }
-}
-
-fn mixes(int m, int n) <span class="tok-op">→</span> void {
-    for range <span class="tok-nu">0</span>‥m, n let i, j {
-        print i
-    }
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusiteracursor-iteratiofab-canonical-keyword">radix/corpus/itera/cursor-iteratio.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterain-functionefab-canonical-keyword">radix/corpus/itera/in-functione.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteraintervallum-gradusfab-canonical-keyword">radix/corpus/itera/intervallum-gradus.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteraintervallumfab-canonical-keyword">radix/corpus/itera/intervallum.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteralockstep-n2fab-canonical-keyword">radix/corpus/itera/lockstep-n2.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteralockstep-n3fab-canonical-keyword">radix/corpus/itera/lockstep-n3.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteranidificatusfab-canonical-keyword">radix/corpus/itera/nidificatus.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-product-n2fab-canonical-keyword">radix/corpus/itera/range-product-n2.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-product-n3fab-canonical-keyword">radix/corpus/itera/range-product-n3.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-product-semanticsfab-canonical-keyword">radix/corpus/itera/range-product-semantics.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-runtime-stepfab-canonical-operator-group">radix/corpus/itera/range-runtime-step.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-until-beforefab-canonical-keyword">radix/corpus/itera/range-until-before.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteraapud-declinefab-supporting-reject">radix/corpus/itera/apud-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusiteralockstep-declinefab-supporting-reject">radix/corpus/itera/lockstep-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-product-declinefab-supporting-reject">radix/corpus/itera/range-product-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/itera/cursor-iteratio.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusreferencekeyworditeracursor-iteratiofab-canonical-keyword">radix/corpus/reference/keyword/itera/cursor-iteratio.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusreferencekeyworditerain-functionefab-canonical-keyword">radix/corpus/reference/keyword/itera/in-functione.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusreferencekeyworditeraintervallum-gradusfab-canonical-keyword">radix/corpus/reference/keyword/itera/intervallum-gradus.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusreferencekeyworditeraintervallumfab-canonical-keyword">radix/corpus/reference/keyword/itera/intervallum.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusreferencekeyworditeralockstep-n2fab-canonical-keyword">radix/corpus/reference/keyword/itera/lockstep-n2.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusreferencekeyworditeralockstep-n3fab-canonical-keyword">radix/corpus/reference/keyword/itera/lockstep-n3.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusreferencekeyworditeranidificatusfab-canonical-keyword">radix/corpus/reference/keyword/itera/nidificatus.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusreferencekeyworditerarange-product-n2fab-canonical-keyword">radix/corpus/reference/keyword/itera/range-product-n2.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusreferencekeyworditerarange-product-n3fab-canonical-keyword">radix/corpus/reference/keyword/itera/range-product-n3.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusreferencekeyworditerarange-product-semanticsfab-canonical-keyword">radix/corpus/reference/keyword/itera/range-product-semantics.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusreferencekeyworditerarange-until-beforefab-canonical-keyword">radix/corpus/reference/keyword/itera/range-until-before.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusreferenceoperator-groupiterarange-runtime-stepfab-canonical-operator-group">radix/corpus/reference/operator-group/itera/range-runtime-step.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusreferencerejectiteraapud-declinefab-supporting-reject">radix/corpus/reference/reject/itera/apud-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusreferencerejectiteralockstep-declinefab-supporting-reject">radix/corpus/reference/reject/itera/lockstep-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusreferencerejectiterarange-product-declinefab-supporting-reject">radix/corpus/reference/reject/itera/range-product-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/reference/keyword/itera/cursor-iteratio.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

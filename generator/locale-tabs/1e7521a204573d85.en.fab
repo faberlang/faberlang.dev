@@ -1,0 +1,12 @@
++++ toml
+locale = "en"
+
++++ faber
+main {
+    let list<string> nomina ← ["Alia", "Brunus"]
+    let list<int> aetates ← [34, 27]
+
+    for from nomina and aetates at [i] let nomen and aetas {
+        print i, nomen, aetas
+    }
+}

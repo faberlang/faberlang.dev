@@ -1,0 +1,12 @@
++++ toml
+locale = "hi"
+
++++ faber
+आरंभ {
+    बैठा सूची<पाठ> nomina ← ["Alia", "Brunus"]
+    बैठा सूची<संख्या> aetates ← [34, 27]
+
+    दोहराओ सेवन nomina और aetates पर [i] बैठा nomen और aetas {
+        दिखाओ i, nomen, aetas
+    }
+}
