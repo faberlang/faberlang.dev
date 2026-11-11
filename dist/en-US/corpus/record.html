@@ -7,7 +7,7 @@
 <span class="tok-co">#   • labeled type args: record&lt;g: f32, w: int&gt;</span>
 <span class="tok-co">#   • construction: record&lt;g: f32, w: int&gt; { g = 1.0, w = 2 }</span>
 <span class="tok-co">#     (the constructor head is the file's own locale spelling: `record` in</span>
-<span class="tok-co">#     this English file; the canonical Latin `record` head is accepted only in</span>
+<span class="tok-co">#     this English file; the canonical Latin `ratio` head is accepted only in</span>
 <span class="tok-co">#     a Latin file — unit 047eef65)</span>
 <span class="tok-co">#   • .name access: point.g (labels only — no bracket form)</span>
 <span class="tok-co">#   • objectPattern destructuring: let {g, w} ← point</span>
@@ -27,7 +27,7 @@
 main {
 <span class="tok-co">    # Construction and .name access.</span>
 <span class="tok-co">    # Same-locale surface: the en type-head `record` claims the constructor</span>
-<span class="tok-co">    # slot too (map-in-both, unit 047eef65); the canonical Latin `record`</span>
+<span class="tok-co">    # slot too (map-in-both, unit 047eef65); the canonical Latin `ratio`</span>
 <span class="tok-co">    # head is rejected in an English file.</span>
     let record<span class="tok-op">&lt;</span>g<span class="tok-op">:</span> f32, w<span class="tok-op">:</span> int<span class="tok-op">&gt;</span> point <span class="tok-op">←</span> record<span class="tok-op">&lt;</span>g<span class="tok-op">:</span> f32, w<span class="tok-op">:</span> int<span class="tok-op">&gt;</span> { g <span class="tok-op">=</span> <span class="tok-nu">1.0</span>, w <span class="tok-op">=</span> <span class="tok-nu">2</span> }
     print point.g

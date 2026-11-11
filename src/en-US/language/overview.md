@@ -18,10 +18,6 @@ helper, and an entry point. Every panel on this page is compiler output, so the
 page cannot claim something the toolchain does not produce.
 
 ```faber
-+++ toml
-locale = "la"
-
-+++ faber
 genus Span {
     sit f64 low
     sit f64 high

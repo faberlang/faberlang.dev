@@ -9,11 +9,7 @@ describe flow, and both are written where the flow is declared.</li><li><code cl
 at compile time.</li></ul><p>The rule behind the split is <em>one sign, one job</em>. A glyph may have exact
 aliases, but it should not carry unrelated meanings. That is why a reader can
 scan a Faber function and see every data-flow operation at once: every <code class="glyph">←</code> is
-live, and every <code class="glyph">=</code> is settled before the program starts.</p><h2 id="shape">What it looks like<a class="anchor" href="#shape">#</a></h2><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> toml
-locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
-
-<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> faber
-class Punctum {
+live, and every <code class="glyph">=</code> is settled before the program starts.</p><h2 id="shape">What it looks like<a class="anchor" href="#shape">#</a></h2><pre class="faber-code"><code class="lang-faber">class Punctum {
     let int x
     let int y
 }

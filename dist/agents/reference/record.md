@@ -30,7 +30,7 @@ record<label: type, …> { label = value }
 main {
     # Construction and .name access.
     # Same-locale surface: the en type-head `record` claims the constructor
-    # slot too (map-in-both, unit 047eef65); the canonical Latin `record`
+    # slot too (map-in-both, unit 047eef65); the canonical Latin `ratio`
     # head is rejected in an English file.
     let record<g: f32, w: int> point ← record<g: f32, w: int> { g = 1.0, w = 2 }
     print point.g

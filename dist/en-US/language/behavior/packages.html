@@ -28,11 +28,7 @@ package target many backends.</p><pre class="faber-code"><code class="lang-toml"
 
 <span class="tok-kw">[locale]</span>
 <span class="tok-an">locale</span> = <span class="tok-st">"en"</span></code></pre><p><code>faber init</code> writes <code>[package]</code>, <code>[paths]</code> and <code>[build] kind</code>; the <code>target</code> key
-and the <code>[locale]</code> table are optional.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> toml
-locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
-
-<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> faber
-fn duplica(int n) <span class="tok-op">→</span> int {
+and the <code>[locale]</code> table are optional.</p><pre class="faber-code"><code class="lang-faber">fn duplica(int n) <span class="tok-op">→</span> int {
     return n <span class="tok-op">*</span> <span class="tok-nu">2</span>
 }
 
