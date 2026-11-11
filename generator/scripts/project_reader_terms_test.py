@@ -93,6 +93,11 @@ class ReaderTermProjectionTest(unittest.TestCase):
         self.assertIn('"non est"', result)
         self.assertIn("# the value in the list", result)
 
+    def test_comment_span_after_latin_keeps_its_latin_spelling(self) -> None:
+        result = self.project("```faber\n# the `ratio` head; the canonical Latin `ratio`\nsit numerus x ← 1\n```\n")
+        self.assertIn("# the `record` head; the canonical Latin `ratio`", result)
+        self.assertIn("let int x ← 1", result)
+
     def test_comment_names_short_keywords_in_backticks(self) -> None:
         result = self.project("```faber\n# using `per` and the value in the list\n```\n")
         self.assertIn("`step`", result)
