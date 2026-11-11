@@ -1,7 +1,3 @@
-+++ toml
-locale = "zh-Hans"
-
-+++ faber
 类 Span {
     设 f64 low
     设 f64 high

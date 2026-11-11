@@ -1,7 +1,3 @@
-+++ toml
-locale = "hi"
-
-+++ faber
 वर्ग Span {
     बैठा f64 low
     बैठा f64 high

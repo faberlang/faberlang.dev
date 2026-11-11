@@ -1,7 +1,3 @@
-+++ toml
-locale = "vi"
-
-+++ faber
 kiểu Span {
     đặt f64 low
     đặt f64 high

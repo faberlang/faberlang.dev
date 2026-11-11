@@ -1,7 +1,3 @@
-+++ toml
-locale = "th-TH"
-
-+++ faber
 เริ่ม {
     กำหนด รายการ<ข้อความ> nomina ← ["Alia", "Brunus"]
     กำหนด รายการ<จํานวน> aetates ← [34, 27]

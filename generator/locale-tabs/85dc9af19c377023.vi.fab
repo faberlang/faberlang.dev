@@ -1,7 +1,3 @@
-+++ toml
-locale = "vi"
-
-+++ faber
 bắt_đầu {
     đặt danh_sách<văn_bản> nomina ← ["Alia", "Brunus"]
     đặt danh_sách<số> aetates ← [34, 27]

@@ -1,7 +1,3 @@
-+++ toml
-locale = "en"
-
-+++ faber
 main {
     let list<string> nomina ← ["Alia", "Brunus"]
     let list<int> aetates ← [34, 27]

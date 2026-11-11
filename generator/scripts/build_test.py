@@ -18,7 +18,7 @@ import bump_release  # noqa: E402
 import corpus_build  # noqa: E402
 import receipt  # noqa: E402
 import upstream  # noqa: E402
-from localize import Converter  # noqa: E402
+from localize import Converter, strip_stamp  # noqa: E402
 
 
 def fake_faber(directory: Path, *, fail_marker: str = "BROKEN") -> Path:
@@ -43,7 +43,7 @@ def fake_faber(directory: Path, *, fail_marker: str = "BROKEN") -> Path:
             if {fail_marker!r} in text:
                 sys.stderr.write("error[SEM001]: nope\\nsecond line\\n")
                 raise SystemExit(1)
-            sys.stdout.write("+++\\nlocale = \\"en\\"\\n+++\\n" + text.upper())
+            sys.stdout.write("+++ toml\\nlocale = \\"en\\"\\n\\n+++ faber\\n" + text.upper())
             raise SystemExit(0)
         raise SystemExit(2)
     """))
@@ -163,6 +163,18 @@ class ConverterTests(unittest.TestCase):
         self.assertEqual(converter.convert("abc", "la", "p.md", "transcode"), "ABC")
         self.assertEqual(converter.convert("abc", "la", "p.md", "transcode"), "ABC")
         self.assertEqual(calls(self.dir), ["la"])
+
+    def test_strip_stamp_reads_both_header_forms(self):
+        program = "main {\n}\n"
+        tests = "\n+++ faber test\ntest \"t\" {\n}\n"
+        self.assertEqual(strip_stamp('+++\nlocale = "en"\n+++\n' + program), program)
+        self.assertEqual(strip_stamp('+++ toml\nlocale = "en"\n\n+++ faber\n' + program), program)
+        # Only the header and the program's own marker go; a test section stays.
+        self.assertEqual(
+            strip_stamp('+++ toml\nlocale = "en"\n\n+++ faber\n' + program + tests),
+            program + tests,
+        )
+        self.assertEqual(strip_stamp(program), program)
 
     def test_failure_is_cached_and_reported_every_time(self):
         converter = self.converter()

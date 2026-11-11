@@ -1,7 +1,3 @@
-+++ toml
-locale = "ar"
-
-+++ faber
 صنف Span {
     ليكن f64 low
     ليكن f64 high

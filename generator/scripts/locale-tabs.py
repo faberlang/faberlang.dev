@@ -54,6 +54,7 @@ import sys
 from pathlib import Path
 
 import upstream
+from localize import strip_stamp
 
 REPO = Path(__file__).resolve().parents[2]
 WORKSPACE = REPO.parent
@@ -172,11 +173,10 @@ def transcode(faber: str, source: str, locale: str) -> str | None:
         )
     finally:
         tmp.unlink(missing_ok=True)
-    # `--stdout` stamps the target locale into a TOML frontmatter block; the
-    # panel already sits under a card that names its locale. Same strip as
-    # localize-markdown.py, so the key digests what the page carries.
-    out = re.sub(r"\A\+\+\+\n.*?\n\+\+\+\n", "", proc.stdout, count=1,
-                 flags=re.S).strip()
+    # `--stdout` stamps the target locale into a TOML header; the panel
+    # already sits under a card that names its locale. Same strip as the
+    # build's converter (localize.py), so the key digests what the page carries.
+    out = strip_stamp(proc.stdout).strip()
     # A pack failure still exits 0 and prints warnings to stderr, so an empty
     # or unchanged body is the real signal that nothing was rendered.
     if proc.returncode != 0 or not out:
