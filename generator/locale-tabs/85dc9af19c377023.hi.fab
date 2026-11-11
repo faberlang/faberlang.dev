@@ -1,7 +1,3 @@
-+++ toml
-locale = "hi"
-
-+++ faber
 आरंभ {
     बैठा सूची<पाठ> nomina ← ["Alia", "Brunus"]
     बैठा सूची<संख्या> aetates ← [34, 27]

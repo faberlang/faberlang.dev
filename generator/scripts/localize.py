@@ -25,8 +25,22 @@ import receipt
 from project_reader_terms import load_mapping, project_markdown
 
 FENCE = "```"
-FRONTMATTER_STAMP = re.compile(r"\A\+\+\+\n.*?\n\+\+\+\n", re.S)
+# The header `faber convert` writes in front of its output. Up to 1.18 it is a
+# bare `+++` pair; from 1.19 it is a `+++ toml` section, ended by the next
+# marker. The `+++ faber` marker that opens the program goes with it, since the
+# fence shows the program alone; any other marker (`+++ faber test`, a stream)
+# stays, because code with no opening marker is already the program.
+FRONTMATTER_STAMP = re.compile(
+    r"\A(?:\+\+\+\n.*?\n\+\+\+\n"
+    r"|\+\+\+ toml\n(?:(?!\+\+\+)[^\n]*\n)*?(?:\+\+\+ faber\n|(?=\+\+\+)))",
+    re.S,
+)
 CONVERT_TIMEOUT = 90
+
+
+def strip_stamp(output: str) -> str:
+    """Converter output without the locale header it adds."""
+    return FRONTMATTER_STAMP.sub("", output, count=1)
 
 
 def faber_version(faber: str) -> str:
@@ -61,7 +75,8 @@ class Converter:
         cache_dir.mkdir(parents=True, exist_ok=True)
 
     def _key(self, source_locale: str, body: str) -> str:
-        digest = hashlib.sha256(f"{self.stamp}|{source_locale}|{body}".encode("utf-8"))
+        # `strip-2`: entries cached before the 1.19 header was stripped hold it.
+        digest = hashlib.sha256(f"strip-2|{self.stamp}|{source_locale}|{body}".encode("utf-8"))
         return digest.hexdigest()
 
     def convert(self, body: str, source_locale: str, label: str, kind: str) -> str | None:
@@ -95,7 +110,7 @@ class Converter:
             fail_path.write_text(detail, encoding="utf-8")
             receipt.degraded(kind, label, detail)
             return None
-        converted = FRONTMATTER_STAMP.sub("", proc.stdout, count=1)
+        converted = strip_stamp(proc.stdout)
         ok_path.write_text(converted, encoding="utf-8")
         return converted
 

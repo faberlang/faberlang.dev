@@ -1,7 +1,3 @@
-+++ toml
-locale = "zh-Hant"
-
-+++ faber
 類型 Span {
     設為 f64 low
     設為 f64 high

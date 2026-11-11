@@ -1,7 +1,3 @@
-+++ toml
-locale = "la"
-
-+++ faber
 genus Span {
     sit f64 low
     sit f64 high

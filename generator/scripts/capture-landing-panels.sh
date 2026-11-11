@@ -122,12 +122,13 @@ for loc in en la th-TH zh-Hans zh-Hant vi ar hi; do
     [ -s "${OUT}/locales/${loc}.fab" ] || { echo "  ${loc} — EMPTY" >&2; exit 1; }
     # Strip the frontmatter the converter adds: the panel is rendered in a
     # <pre> that already names its locale.
-    python3 - "${OUT}/locales/${loc}.fab" <<'PY'
-import sys, re
-p = sys.argv[1]
+    python3 - "${SCRIPT_DIR}" "${OUT}/locales/${loc}.fab" <<'PY'
+import sys
+sys.path.insert(0, sys.argv[1])
+from localize import strip_stamp
+p = sys.argv[2]
 s = open(p, encoding="utf-8").read()
-s = re.sub(r"\A\+\+\+\n.*?\n\+\+\+\n", "", s, count=1, flags=re.S)
-open(p, "w", encoding="utf-8").write(s)
+open(p, "w", encoding="utf-8").write(strip_stamp(s))
 PY
     mkdir -p "${WORK}/chk-${loc}/src"
     sed "s/^locale = .*/locale = \"${loc}\"/" "${WORK}/demo/faber.toml" > "${WORK}/chk-${loc}/faber.toml"

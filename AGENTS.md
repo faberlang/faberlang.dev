@@ -271,7 +271,7 @@ overwrites the edit; change the generator or the upstream source instead.
 | `generate-grammar-tree.py` | `src/en-US/reference/grammar.md` (family overview), `src/en-US/reference/grammar/*.md` (term tables, no EBNF), `static/agents/grammar/productions.md` (+ `dist/` copy; the full English-spelling EBNF) | same radix grammar inputs as `generate-grammar`, plus `dist/en-US/corpus/` for term links |
 | `generate-target-lanes.py` | `src/en-US/targets/*.md` | captured lane panels |
 | `generate-localization.py` | `src/en-US/localization.md` | locale registry + captured panels |
-| `generate-releases.py` | `src/en-US/releases/*.md` | `gh` release tags + `radix/packaging/release/notes/v*.md` (Faber) and `radix/docs/release/v*.md` (Radix) |
+| `generate-releases.py` | `src/en-US/releases/*.md` | `gh` release tags + `radix/packaging/release/notes/v*.md` (Faber) and `generator/releases/radix-notes/v*.md` (Radix, frozen: radix retired its 0.x notes in 4e0e0df4f9) |
 | `generate-agent-locales.py` | `static/agents/locales.md`, `dist/agents/locales.md` | `radix/locale/*/pack.toml` |
 | `generate-agent-reference.py` | `static/agents/reference/`, `dist/agents/reference/` | `faber explain --list` and `faber explain <term> --json` |
 
@@ -297,8 +297,11 @@ neither a designed shape nor the expected list in
 the expected list is the pack drift owned by a compiler-side fix.
 
 A generator whose declared inputs are unchanged is skipped. **`generate-releases.py`
-is not part of the build**: it needs `gh` and network access. Run it by hand
-when a release lands.
+is not part of the build**: it needs `gh` and network access. The radix
+`release-faber.yml` workflow runs it, `bump_release.py` and
+`build-site.sh --refresh-upstream faber/vX.Y.Z --full` when a version-bump PR
+merges, then pushes to `main`. It fails rather than writing pages when a notes
+directory is missing, since that would delete every published notes section.
 
 ### Post-build validation scripts
 

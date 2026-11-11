@@ -10,7 +10,7 @@ Two sources, joined on version:
 
     github faberlang/releases   published tags and downloadable assets
     <radix>/packaging/release/notes/v*.md   the Faber release notes
-    <radix>/docs/release/v*.md              the Radix release notes
+    generator/releases/radix-notes/v*.md    the Radix release notes (frozen)
 
 Neither source is complete on its own. A version can have notes but no
 published tag (developed, documented, never shipped as an asset), or a tag but
@@ -54,7 +54,10 @@ PRODUCTS = {
         "label": "Radix",
         "blurb": "The compiler. Bundled inside the `faber` CLI; also published "
                  "standalone for anyone who needs it directly.",
-        "notes_dir": WORKSPACE / "radix" / "docs" / "release",
+        # Radix 0.x notes were retired from radix with docs/release in
+        # 4e0e0df4f9 (2026-11-06). This repository keeps the frozen copies
+        # (taken from its parent), so the published history stays whole.
+        "notes_dir": REPO / "generator" / "releases" / "radix-notes",
     },
 }
 
@@ -186,8 +189,9 @@ def collect() -> dict[str, list[Version]]:
     for product, meta in PRODUCTS.items():
         notes_dir = meta["notes_dir"]
         if not notes_dir.is_dir():
-            print(f"  warning: no notes checkout at {notes_dir}", file=sys.stderr)
-            continue
+            # Fail closed: writing pages without the notes would delete every
+            # published notes section for this product.
+            sys.exit(f"generate-releases: no {product} notes at {notes_dir}")
         for path in sorted(notes_dir.glob("v*.md")):
             version = path.stem[1:]
             if NOTES_SKIP.search(version):
@@ -481,12 +485,11 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--output-dir", default="src/en-US/releases")
     ap.add_argument("--radix", type=Path, default=None,
-                    help="radix checkout to read the notes from (default: the "
+                    help="radix checkout to read the Faber notes from (default: the "
                          "sibling checkout, which may lag the release tag)")
     args = ap.parse_args()
     if args.radix:
         PRODUCTS["faber"]["notes_dir"] = args.radix / "packaging" / "release" / "notes"
-        PRODUCTS["radix"]["notes_dir"] = args.radix / "docs" / "release"
 
     out = REPO / args.output_dir
     out.mkdir(parents=True, exist_ok=True)

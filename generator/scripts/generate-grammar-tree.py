@@ -67,8 +67,9 @@ REPO = Path(__file__).resolve().parents[2]
 # an UPPERCASE rule name is a lexical terminal — rather than listed by hand, so
 # it tracks the spine. Every other id is named here.
 #
-# The emitter fails closed on drift: an unlisted production, a duplicate, or
-# a stale id aborts the run rather than silently dropping grammar.
+# The emitter fails closed on drift: an unlisted production or a duplicate
+# aborts the run rather than silently dropping grammar. An id the pinned EBNF
+# lacks is only named, so the map can lead the pin (see check_partition).
 # ---------------------------------------------------------------------------
 
 FAMILIES: list[dict] = [
@@ -101,7 +102,7 @@ FAMILIES: list[dict] = [
         ),
         "ids": """
             binding_decl expr_stmt block_stmt const_init insere_expr fixum_decl
-            figendum_decl sit_decl ref_decl array_destruct object_destruct functio_decl
+            varia_decl figendum_decl sit_decl name_slot ref_decl array_destruct object_destruct functio_decl
             kernel_decl kernel_mode
             param_list generic_params type_param_list size_param_list
             generic_param size_param generic_bound contract_ref
@@ -944,14 +945,19 @@ def check_partition(productions: list[tuple[int, str, str]]) -> None:
             "generate-grammar-tree: EBNF productions missing from the family "
             "map: " + ", ".join(unassigned)
         )
+    # A mapped id the pinned EBNF lacks drops no grammar. The map has to lead
+    # the pin: the release job moves the pin to the new tag and rebuilds with
+    # no chance to edit this file, so productions added on radix main are
+    # mapped before they are released. Name them and carry on.
     if stale:
-        raise SystemExit(
+        print(
             "generate-grammar-tree: family map names productions not in the "
-            "EBNF: " + ", ".join(stale)
+            "pinned EBNF (newer grammar or retired): " + ", ".join(stale),
+            file=sys.stderr,
         )
 
     for fam in FAMILIES:
-        fam["ids"] = families[fam["slug"]]
+        fam["ids"] = [pid for pid in families[fam["slug"]] if pid in all_ids]
 
 
 def render_family(

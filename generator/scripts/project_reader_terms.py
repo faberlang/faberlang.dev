@@ -182,10 +182,15 @@ def project_code(
                 i = end
                 continue
             comment = _project_non_est(_project_compounds(text[i:end], mapping), mapping)
+            # "the canonical Latin `ratio`" names the Latin form on purpose,
+            # in a comment as in prose (see LATIN_RUN).
+            latin = [(m.start(), m.end()) for m in LATIN_RUN.finditer(comment)]
 
             def comment_replace(m: re.Match) -> str:
                 key = m.group(0)
                 if key in declined or _guarded(comment, m.start(), m.end()):
+                    return key
+                if any(start <= m.start() < stop for start, stop in latin):
                     return key
                 if len(key) < 4 and key not in SHORT_SAFE:
                     # `in` / `per` / `est` are English words in a comment, and

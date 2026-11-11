@@ -39,11 +39,7 @@ substrate because they are the base surfaces:</p><div class="table-scroll"><tabl
 <code>examples/reader-locale/</code> with localised source, diagnostic test
 cases, and a <code>faber.toml</code> manifest. The same program rendered in the two
 base surfaces — English (this page's reader locale) and Latin —
-then the six packaged locale surfaces below:</p><p><strong>English</strong> <code>en</code> — <em>base surface</em></p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> toml
-locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
-
-<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span> faber
-fn salve(string name) <span class="tok-op">→</span> string {
+then the six packaged locale surfaces below:</p><p><strong>English</strong> <code>en</code> — <em>base surface</em></p><pre class="faber-code"><code class="lang-faber">fn salve(string name) <span class="tok-op">→</span> string {
     let string msg <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(name)
     return msg
 }

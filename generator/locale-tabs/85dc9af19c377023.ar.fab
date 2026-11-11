@@ -1,7 +1,3 @@
-+++ toml
-locale = "ar"
-
-+++ faber
 بداية {
     ليكن قائمة<نص> nomina ← ["Alia", "Brunus"]
     ليكن قائمة<عدد> aetates ← [34, 27]

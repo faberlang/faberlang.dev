@@ -1,7 +1,3 @@
-+++ toml
-locale = "zh-Hant"
-
-+++ faber
 入口 {
     設為 列表<文字> nomina ← ["Alia", "Brunus"]
     設為 列表<整數> aetates ← [34, 27]
